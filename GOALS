@@ -1,0 +1,29 @@
+LaTeXila
+
+Objectifs pour la version 0.0.1 :
+- ouvrir plusieurs fichiers à la fois
+- boutons pour compiler et visionner le résultat
+- coloration syntaxique
+- pouvoir afficher les numéros de lignes
+- zone d'affichage de messages : si y a des erreurs à la compilation, etc
+- précédent/suivant
+- traduction en français
+
+Objectifs en plus pour la version 0.1 :
+- (correction de bugs)
+- (commencer à chercher un autre développeur)
+- complétion automatique
+- repliage de code (aussi pour \section)
+- indentation
+- recherche/remplacement
+- pouvoir créer des modèles
+- boutons de base : sections, labels et références, taille et style des caractères, listes
+- table de symboles
+- petit navigateur de fichiers intégré
+- support de bibtex
+- supprimer automatiquement toute une série de fichiers en quittant
+- système de backup (fichiers~) et de sauvegarde automatique toutes les x minutes
+- pouvoir configurer les commandes pour la compilation et le visionnage
+- préférences pour les caractères (taille, police, couleurs, etc)
+- pouvoir choisir les boutons à afficher
+
