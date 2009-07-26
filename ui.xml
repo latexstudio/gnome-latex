@@ -1,0 +1,47 @@
+<!--
+This XML file describe the menu and the toolbar based on action.
+In the code, GtkUIManager is used to construct them.
+-->
+
+<ui>
+  <menubar>
+    <menu action="File">
+      <menuitem action="FileNew" />
+      <menuitem action="FileOpen" />
+      <menuitem action="FileSave" />
+      <menuitem action="FileSaveAs" />
+      <menuitem action="FileQuit" />
+    </menu>
+    
+    <menu action="Edit">
+      <menuitem action="EditUndo" />
+      <menuitem action="EditRedo" />
+    </menu>
+    
+    <menu action="LaTeX">
+      <menuitem action="compile_latex" />
+      <menuitem action="viewDVI" />
+      <separator />
+      <menuitem action="compile_pdflatex" />
+      <menuitem action="viewPDF" />
+    </menu>
+    
+    <menu action="Help">
+      <menuitem action="HelpAbout" />
+    </menu>
+  </menubar>
+  
+  <toolbar>
+    <toolitem action="FileNew" />
+    <toolitem action="FileOpen" />
+    <toolitem action="FileSave" />
+    <toolitem action="EditUndo" />
+    <toolitem action="EditRedo" />
+    <separator />
+    <toolitem action="compile_latex" />
+    <toolitem action="viewDVI" />
+    <separator />
+    <toolitem action="compile_pdflatex" />
+    <toolitem action="viewPDF" />
+  </toolbar>
+</ui>
