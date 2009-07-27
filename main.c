@@ -56,6 +56,8 @@ main (int argc, char *argv[])
 
 	gtk_init (&argc, &argv);
 
+	/* main window */
+
 	GtkWidget *window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	g_signal_connect (G_OBJECT (window), "destroy",
 			G_CALLBACK (gtk_main_quit), NULL);
@@ -63,8 +65,16 @@ main (int argc, char *argv[])
 			G_CALLBACK (gtk_main_quit), NULL);
 	gtk_window_set_title (GTK_WINDOW (window), "LaTeXila");
 
-	GtkWidget *main_vbox = gtk_vbox_new (FALSE, 0);
-	gtk_container_add (GTK_CONTAINER (window), main_vbox);
+	/* boxes and panes */
+
+	GtkWidget *vbox1 = gtk_vbox_new (FALSE, 0);
+	gtk_container_add (GTK_CONTAINER (window), vbox1);
+
+	GtkWidget *vbox2 = gtk_vbox_new (FALSE, 0);
+	gtk_box_pack_end (GTK_BOX (vbox1), vbox2, TRUE, TRUE, 0);
+
+	GtkWidget *vpaned = gtk_vpaned_new ();
+	gtk_box_pack_start (GTK_BOX (vbox2), vpaned, TRUE, TRUE, 0);
 
 	/* menubar */
 	GtkUIManager *ui_manager = gtk_ui_manager_new ();
@@ -78,11 +88,41 @@ main (int argc, char *argv[])
 		return EXIT_FAILURE;
 	}
 	g_signal_connect (ui_manager, "add-widget", G_CALLBACK (menu_add_widget),
-			main_vbox);
+			vbox1);
+
+	/* source view */
+	GtkWidget *source_view = gtk_text_view_new ();
+	GtkTextBuffer *source_buffer = gtk_text_view_get_buffer (
+			GTK_TEXT_VIEW (source_view));
+	char *source_default_text = "\\documentclass[a4paper,11pt]{article}\n"
+		"\\begin{document}\n"
+		"\\end{document}";
+	gtk_text_buffer_set_text (source_buffer, source_default_text, -1);
+
+	// with a scrollbar
+	GtkWidget *sw = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_paned_pack1 (GTK_PANED (vpaned), sw, TRUE, TRUE);
+	gtk_container_add (GTK_CONTAINER (sw), source_view);
+	
+	/* log zone */
+	GtkWidget *log_view = gtk_text_view_new ();
+	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (
+			GTK_TEXT_VIEW (log_view));
+	gtk_text_buffer_set_text (log_buffer, "Welcome to LaTeXila!", -1);
+	gtk_text_view_set_editable (GTK_TEXT_VIEW(log_view), FALSE);
+	
+	// with a scrollbar
+	sw = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_paned_pack2 (GTK_PANED (vpaned), sw, TRUE, TRUE);
+	gtk_container_add (GTK_CONTAINER (sw), log_view);
 
 	/* statusbar */
 	GtkWidget *statusbar = gtk_statusbar_new ();
-	gtk_box_pack_end (GTK_BOX (main_vbox), statusbar, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox2), statusbar, FALSE, FALSE, 0);
 
 
 	gtk_widget_show_all (window);
