@@ -1,13 +1,13 @@
 TODO LaTeXila
 
-23/07/2009 au 30/07/2009
+23/07/2009 au 29/07/2009
 
 [-] faire l'interface graphique
 	x menu
 	x barre d'outils
 	- zone de texte éditable (comme gedit)
 	- zone de log/messages
-	- barre de status
+	x barre de status
 
 [-] trouver plus de doc sur le développement d'application GNOME (un site qui regroupe tout ?)
 	x barre d'outils : boutons avec texte et icône qui changent selon les préférences définies dans GNOME : texte en-dessous, icônes seules, etc.
