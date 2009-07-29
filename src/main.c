@@ -1,7 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <locale.h>
+#include <libintl.h>
 #include <gtk/gtk.h>
+
+#include "main.h"
 
 static void
 menu_add_widget (GtkUIManager *ui_manager, GtkWidget *widget, GtkContainer *box)
@@ -13,6 +17,11 @@ menu_add_widget (GtkUIManager *ui_manager, GtkWidget *widget, GtkContainer *box)
 int
 main (int argc, char *argv[])
 {
+	/* localisation */	
+	setlocale (LC_ALL, "");
+	bindtextdomain ("latexila", "/usr/share/locale");
+	textdomain ("latexila");
+
 	char *xml_file = "ui.xml";
 
 	// all the actions (for the menu and the toolbar)
@@ -20,35 +29,36 @@ main (int argc, char *argv[])
 	// the names come from the XML file
 	GtkActionEntry entries[] =
 	{
-		{"File", NULL, "File", NULL, NULL, NULL},
-		{"FileNew", GTK_STOCK_NEW, "New", "<Control>N", "New file", NULL},
-		{"FileOpen", GTK_STOCK_OPEN, "Open...", "<Control>O", "Open a file",
+		{"File", NULL, _("File"), NULL, NULL, NULL},
+		{"FileNew", GTK_STOCK_NEW, _("New"), "<Control>N", _("New file"),
 			NULL},
-		{"FileSave", GTK_STOCK_SAVE, "Save...", "<Control>S",
-			"Save the current file", NULL},
-		{"FileSaveAs", GTK_STOCK_SAVE_AS, "Save as...", "<Shift><Control>S",
-			"Save the current file with a different name", NULL},
-		{"FileQuit", GTK_STOCK_QUIT, "Quit", "<Control>Q", "Quit the program",
-			gtk_main_quit},
+		{"FileOpen", GTK_STOCK_OPEN, _("Open..."), "<Control>O",
+			_("Open a file"), NULL},
+		{"FileSave", GTK_STOCK_SAVE, _("Save..."), "<Control>S",
+			_("Save the current file"), NULL},
+		{"FileSaveAs", GTK_STOCK_SAVE_AS, _("Save as..."), "<Shift><Control>S",
+			_("Save the current file with a different name"), NULL},
+		{"FileQuit", GTK_STOCK_QUIT, _("Quit"), "<Control>Q",
+			_("Quit the program"), gtk_main_quit},
 		
-		{"Edit", NULL, "Edit", NULL, NULL, NULL},
-		{"EditUndo", GTK_STOCK_UNDO, "Undo", "<Control>Z",
-			"Undo the last action", NULL},
-		{"EditRedo", GTK_STOCK_REDO, "Redo", "<Shift><Control>Z",
-			"Redo the last undone action", NULL},
+		{"Edit", NULL, _("Edit"), NULL, NULL, NULL},
+		{"EditUndo", GTK_STOCK_UNDO, _("Undo"), "<Control>Z",
+			_("Undo the last action"), NULL},
+		{"EditRedo", GTK_STOCK_REDO, _("Redo"), "<Shift><Control>Z",
+			_("Redo the last undone action"), NULL},
 		
 		{"LaTeX", NULL, "LaTeX", NULL, NULL, NULL},
-		{"compile_latex", GTK_STOCK_EXECUTE, "Compile (latex)", "<Release>F5",
-			"Produce the document in DVI format", NULL},
-		{"viewDVI", GTK_STOCK_FILE, "View DVI", "<Release>F6",
-			"View the DVI file", NULL},
-		{"compile_pdflatex", GTK_STOCK_EXECUTE, "Compile (pdflatex)",
-			"<Release>F7", "Produce the document in PDF format", NULL},
-		{"viewPDF", GTK_STOCK_FILE, "View PDF", "<Release>F8",
-			"View the PDF file", NULL},
+		{"compile_latex", GTK_STOCK_EXECUTE, _("Compile (latex)"),
+			"<Release>F5", _("Produce the document in DVI format"), NULL},
+		{"viewDVI", GTK_STOCK_FILE, _("View DVI"), "<Release>F6",
+			_("View the DVI file"), NULL},
+		{"compile_pdflatex", GTK_STOCK_EXECUTE, _("Compile (pdflatex)"),
+			"<Release>F7", _("Produce the document in PDF format"), NULL},
+		{"viewPDF", GTK_STOCK_FILE, _("View PDF"), "<Release>F8",
+			_("View the PDF file"), NULL},
 		
-		{"Help", NULL, "Help", NULL, NULL, NULL},
-		{"HelpAbout", GTK_STOCK_ABOUT, "About", NULL, "About LaTeXila", NULL}
+		{"Help", NULL, _("Help"), NULL, NULL, NULL},
+		{"HelpAbout", GTK_STOCK_ABOUT, _("About"), NULL, _("About LaTeXila"), NULL}
 	};
 
 	int nb_entries = sizeof (entries) / sizeof (entries[0]);
@@ -76,7 +86,7 @@ main (int argc, char *argv[])
 	GtkWidget *vpaned = gtk_vpaned_new ();
 	gtk_box_pack_start (GTK_BOX (vbox2), vpaned, TRUE, TRUE, 0);
 
-	/* menubar */
+	/* menubar and toolbar */
 	GtkUIManager *ui_manager = gtk_ui_manager_new ();
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
@@ -110,7 +120,7 @@ main (int argc, char *argv[])
 	GtkWidget *log_view = gtk_text_view_new ();
 	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (
 			GTK_TEXT_VIEW (log_view));
-	gtk_text_buffer_set_text (log_buffer, "Welcome to LaTeXila!", -1);
+	gtk_text_buffer_set_text (log_buffer, _("Welcome to LaTeXila!"), -1);
 	gtk_text_view_set_editable (GTK_TEXT_VIEW(log_view), FALSE);
 	
 	// with a scrollbar
