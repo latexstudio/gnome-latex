@@ -1,26 +1,14 @@
 TODO LaTeXila
 
-23/07/2009 au 28/07/2009
+Jul 31, 2009 to Aug 7, 2009
 
-[x] faire l'interface graphique
-	x menu
-	x barre d'outils
-	x zone de texte éditable (comme gedit)
-	x zone de log/messages
-	x barre de status
+[-] about
 
-[x] trouver plus de doc sur le développement d'application GNOME
-	x barre d'outils : boutons avec texte et icône qui changent selon les préférences définies dans GNOME : texte en-dessous, icônes seules, etc.
-	x icônes de base changeant selon le thème
-	x traduction, internationalisation
-	x coloration syntaxique
+[-] files
+	- new (with tabs)
+	- open
+	- save and save as
 
-[x] GIT
-	x mettre en place GIT en local
-	x comprendre les commandes de base
+[-] syntaxic color
 
-[-] traduction (gettext)
-	- lire le tutoriel
-	- mettre en place la traduction
-	- traduire en français
-
+[-] show/hide line numbers
