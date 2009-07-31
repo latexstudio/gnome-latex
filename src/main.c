@@ -7,13 +7,6 @@
 
 #include "main.h"
 
-static void
-menu_add_widget (GtkUIManager *ui_manager, GtkWidget *widget, GtkContainer *box)
-{
-   gtk_box_pack_start (GTK_BOX (box), widget, FALSE, FALSE, 0);
-   gtk_widget_show (widget);
-}
-
 int
 main (int argc, char *argv[])
 {
@@ -30,8 +23,8 @@ main (int argc, char *argv[])
 	GtkActionEntry entries[] =
 	{
 		{"File", NULL, _("File"), NULL, NULL, NULL},
-		{"FileNew", GTK_STOCK_NEW, _("New"), "<Control>N", _("New file"),
-			NULL},
+		{"FileNew", GTK_STOCK_NEW, _("New"), "<Control>N",
+			_("New file"), NULL},
 		{"FileOpen", GTK_STOCK_OPEN, _("Open..."), "<Control>O",
 			_("Open a file"), NULL},
 		{"FileSave", GTK_STOCK_SAVE, _("Save..."), "<Control>S",
@@ -48,17 +41,18 @@ main (int argc, char *argv[])
 			_("Redo the last undone action"), NULL},
 		
 		{"LaTeX", NULL, "LaTeX", NULL, NULL, NULL},
-		{"compile_latex", GTK_STOCK_EXECUTE, _("Compile (latex)"),
-			"<Release>F5", _("Produce the document in DVI format"), NULL},
+		{"compile_latex", GTK_STOCK_EXECUTE, _("Compile (latex)"), "<Release>F5",
+			_("Produce the document in DVI format"), NULL},
 		{"viewDVI", GTK_STOCK_FILE, _("View DVI"), "<Release>F6",
 			_("View the DVI file"), NULL},
-		{"compile_pdflatex", GTK_STOCK_EXECUTE, _("Compile (pdflatex)"),
-			"<Release>F7", _("Produce the document in PDF format"), NULL},
+		{"compile_pdflatex", GTK_STOCK_EXECUTE, _("Compile (pdflatex)"), "<Release>F7",
+			_("Produce the document in PDF format"), NULL},
 		{"viewPDF", GTK_STOCK_FILE, _("View PDF"), "<Release>F8",
 			_("View the PDF file"), NULL},
 		
 		{"Help", NULL, _("Help"), NULL, NULL, NULL},
-		{"HelpAbout", GTK_STOCK_ABOUT, _("About"), NULL, _("About LaTeXila"), NULL}
+		{"HelpAbout", GTK_STOCK_ABOUT, _("About"), NULL,
+			_("About LaTeXila"), about_dialog}
 	};
 
 	int nb_entries = sizeof (entries) / sizeof (entries[0]);
@@ -67,16 +61,16 @@ main (int argc, char *argv[])
 	gtk_init (&argc, &argv);
 
 	/* main window */
-
 	GtkWidget *window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	g_signal_connect (G_OBJECT (window), "destroy",
 			G_CALLBACK (gtk_main_quit), NULL);
 	g_signal_connect (G_OBJECT (window), "delete_event",
 			G_CALLBACK (gtk_main_quit), NULL);
-	gtk_window_set_title (GTK_WINDOW (window), "LaTeXila");
+	gtk_window_set_title (GTK_WINDOW (window), PROGRAM_NAME);
+	gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
+	gtk_window_set_default_size (GTK_WINDOW (window), 500, 400);
 
 	/* boxes and panes */
-
 	GtkWidget *vbox1 = gtk_vbox_new (FALSE, 0);
 	gtk_container_add (GTK_CONTAINER (window), vbox1);
 
@@ -136,8 +130,51 @@ main (int argc, char *argv[])
 
 
 	gtk_widget_show_all (window);
-
 	gtk_main ();
 
 	return EXIT_SUCCESS;
 }
+
+static void
+menu_add_widget (GtkUIManager *ui_manager, GtkWidget *widget, GtkContainer *box)
+{
+   gtk_box_pack_start (GTK_BOX (box), widget, FALSE, FALSE, 0);
+   gtk_widget_show (widget);
+}
+
+static void
+about_dialog (void)
+{
+	char *comments = _(PROGRAM_NAME " is a LaTeX development environment for the GNOME Desktop");
+	char *copyright = "Copyright © 2009 Sébastien Wilmet";
+
+	//TODO show the appropriate text for the GPL 3 licence (from a file?)
+	char *licence = "GPL 3 or later";
+
+	//TODO set the url hook
+	char *website = "http://latexila.sourceforge.net/";
+
+	//TODO list of translators
+	const char * const authors[] =
+	{
+		"Sébastien Wilmet <sebastien.wilmet@gmail.com>",
+		NULL
+	};
+
+	gtk_show_about_dialog (
+			NULL,
+			"program-name", PROGRAM_NAME,
+			"authors", authors,
+			"comments", comments,
+			"copyright", copyright,
+			"license", licence,
+			"version", PROGRAM_VERSION,
+			"title", _("About " PROGRAM_NAME),
+			"website", website,
+			NULL
+	);
+}
+
+
+
+
