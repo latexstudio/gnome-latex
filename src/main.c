@@ -1,38 +1,56 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include <locale.h>
 #include <libintl.h>
 #include <gtk/gtk.h>
 
 #include "main.h"
+#include "callbacks.h"
+#include "error.h"
 
 int
 main (int argc, char *argv[])
 {
-	/* localisation */	
+	gtk_init (&argc, &argv);
+
+	/* localisation */
 	setlocale (LC_ALL, "");
 	bindtextdomain ("latexila", "/usr/share/locale");
 	textdomain ("latexila");
 
-	char *xml_file = "ui.xml";
+	/* main window */
+	GtkWidget *window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	g_signal_connect (G_OBJECT (window), "destroy",
+			G_CALLBACK (cb_quit), NULL);
+	gtk_window_set_title (GTK_WINDOW (window), PROGRAM_NAME);
+	gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
+	gtk_window_set_default_size (GTK_WINDOW (window), 500, 400);
 
+	/* boxes */
+	GtkWidget *main_vbox = gtk_vbox_new (FALSE, 0);
+	gtk_container_add (GTK_CONTAINER (window), main_vbox);
+
+	/* menubar and toolbar */
+	
 	// all the actions (for the menu and the toolbar)
 	// name, stock_id, label, accelerator, tooltip, callback
 	// the names come from the XML file
+	//
+	//TODO try to place "entries" out of the main function without errors
+	//because of gettext (the _() macro)
 	GtkActionEntry entries[] =
 	{
 		{"File", NULL, _("File"), NULL, NULL, NULL},
 		{"FileNew", GTK_STOCK_NEW, _("New"), "<Control>N",
 			_("New file"), NULL},
 		{"FileOpen", GTK_STOCK_OPEN, _("Open..."), "<Control>O",
-			_("Open a file"), NULL},
+			_("Open a file"), G_CALLBACK (cb_open)},
 		{"FileSave", GTK_STOCK_SAVE, _("Save..."), "<Control>S",
 			_("Save the current file"), NULL},
 		{"FileSaveAs", GTK_STOCK_SAVE_AS, _("Save as..."), "<Shift><Control>S",
 			_("Save the current file with a different name"), NULL},
 		{"FileQuit", GTK_STOCK_QUIT, _("Quit"), "<Control>Q",
-			_("Quit the program"), gtk_main_quit},
+			_("Quit the program"), G_CALLBACK (cb_quit)},
 		
 		{"Edit", NULL, _("Edit"), NULL, NULL, NULL},
 		{"EditUndo", GTK_STOCK_UNDO, _("Undo"), "<Control>Z",
@@ -52,47 +70,40 @@ main (int argc, char *argv[])
 		
 		{"Help", NULL, _("Help"), NULL, NULL, NULL},
 		{"HelpAbout", GTK_STOCK_ABOUT, _("About"), NULL,
-			_("About LaTeXila"), about_dialog}
+			_("About LaTeXila"), G_CALLBACK (cb_about_dialog)}
 	};
 
-	int nb_entries = sizeof (entries) / sizeof (entries[0]);
+	guint nb_entries = G_N_ELEMENTS (entries);
 
-
-	gtk_init (&argc, &argv);
-
-	/* main window */
-	GtkWidget *window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	g_signal_connect (G_OBJECT (window), "destroy",
-			G_CALLBACK (gtk_main_quit), NULL);
-	g_signal_connect (G_OBJECT (window), "delete_event",
-			G_CALLBACK (gtk_main_quit), NULL);
-	gtk_window_set_title (GTK_WINDOW (window), PROGRAM_NAME);
-	gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
-	gtk_window_set_default_size (GTK_WINDOW (window), 500, 400);
-
-	/* boxes and panes */
-	GtkWidget *vbox1 = gtk_vbox_new (FALSE, 0);
-	gtk_container_add (GTK_CONTAINER (window), vbox1);
-
-	GtkWidget *vbox2 = gtk_vbox_new (FALSE, 0);
-	gtk_box_pack_end (GTK_BOX (vbox1), vbox2, TRUE, TRUE, 0);
-
-	GtkWidget *vpaned = gtk_vpaned_new ();
-	gtk_box_pack_start (GTK_BOX (vbox2), vpaned, TRUE, TRUE, 0);
-
-	/* menubar and toolbar */
-	GtkUIManager *ui_manager = gtk_ui_manager_new ();
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
+	GtkUIManager *ui_manager = gtk_ui_manager_new ();
 	gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
-	int tmp = gtk_ui_manager_add_ui_from_file (ui_manager, xml_file, NULL);
-	if (tmp == 0)
+
+	// load the xml file
+	char *xml_file = "ui.xml";
+	GError *error = NULL;
+	gtk_ui_manager_add_ui_from_file (ui_manager, xml_file, &error);
+	if (error)
 	{
-		fprintf (stderr, "Error with %s\n", xml_file);
-		return EXIT_FAILURE;
+		print_error ("building menubar and toolbar failed: %s", error->message);
+		g_error_free (error);
 	}
-	g_signal_connect (ui_manager, "add-widget", G_CALLBACK (menu_add_widget),
-			vbox1);
+
+	// get and put the menubar and the toolbar to the main vbox
+	GtkWidget *menubar = gtk_ui_manager_get_widget (ui_manager, "/MainMenu");
+	gtk_box_pack_start (GTK_BOX (main_vbox), menubar, FALSE, FALSE, 0);
+	GtkWidget *toolbar = gtk_ui_manager_get_widget (ui_manager, "/MainToolbar");
+	gtk_box_pack_start (GTK_BOX (main_vbox), toolbar, FALSE, FALSE, 0);
+
+	// accelerators
+	gtk_window_add_accel_group (GTK_WINDOW (window), 
+			gtk_ui_manager_get_accel_group (ui_manager));
+
+
+	/* vertical pane for the source view and the log zone */
+	GtkWidget *vpaned = gtk_vpaned_new ();
+	gtk_box_pack_start (GTK_BOX (main_vbox), vpaned, TRUE, TRUE, 0);
 
 	/* source view */
 	GtkWidget *source_view = gtk_text_view_new ();
@@ -126,7 +137,7 @@ main (int argc, char *argv[])
 
 	/* statusbar */
 	GtkWidget *statusbar = gtk_statusbar_new ();
-	gtk_box_pack_start (GTK_BOX (vbox2), statusbar, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (main_vbox), statusbar, FALSE, FALSE, 0);
 
 
 	gtk_widget_show_all (window);
@@ -134,47 +145,4 @@ main (int argc, char *argv[])
 
 	return EXIT_SUCCESS;
 }
-
-static void
-menu_add_widget (GtkUIManager *ui_manager, GtkWidget *widget, GtkContainer *box)
-{
-   gtk_box_pack_start (GTK_BOX (box), widget, FALSE, FALSE, 0);
-   gtk_widget_show (widget);
-}
-
-static void
-about_dialog (void)
-{
-	char *comments = _(PROGRAM_NAME " is a LaTeX development environment for the GNOME Desktop");
-	char *copyright = "Copyright © 2009 Sébastien Wilmet";
-
-	//TODO show the appropriate text for the GPL 3 licence (from a file?)
-	char *licence = "GPL 3 or later";
-
-	//TODO set the url hook
-	char *website = "http://latexila.sourceforge.net/";
-
-	//TODO list of translators
-	const char * const authors[] =
-	{
-		"Sébastien Wilmet <sebastien.wilmet@gmail.com>",
-		NULL
-	};
-
-	gtk_show_about_dialog (
-			NULL,
-			"program-name", PROGRAM_NAME,
-			"authors", authors,
-			"comments", comments,
-			"copyright", copyright,
-			"license", licence,
-			"version", PROGRAM_VERSION,
-			"title", _("About " PROGRAM_NAME),
-			"website", website,
-			NULL
-	);
-}
-
-
-
 

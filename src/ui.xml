@@ -4,7 +4,7 @@ In the code, GtkUIManager is used to construct them.
 -->
 
 <ui>
-  <menubar>
+  <menubar name="MainMenu">
     <menu action="File">
       <menuitem action="FileNew" />
       <menuitem action="FileOpen" />
@@ -31,7 +31,7 @@ In the code, GtkUIManager is used to construct them.
     </menu>
   </menubar>
   
-  <toolbar>
+  <toolbar name="MainToolbar">
     <toolitem action="FileNew" />
     <toolitem action="FileOpen" />
     <toolitem action="FileSave" />
