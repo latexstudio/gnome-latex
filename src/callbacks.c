@@ -8,12 +8,14 @@
 #include "callbacks.h"
 #include "error.h"
 
+static void open_file (const gchar *file_name, GtkTextView *text_view);
+
 void
-cb_open (void)
+cb_open (GtkAction *action, widgets_t *widgets)
 {
 	GtkWidget *dialog = gtk_file_chooser_dialog_new (
 			_("Open File"),
-			NULL,
+			GTK_WINDOW (widgets->window),
 			GTK_FILE_CHOOSER_ACTION_OPEN,
 			GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 			GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
@@ -25,10 +27,14 @@ cb_open (void)
 		char *filename;
 		filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
 
+		docs.active->path = g_strdup (filename);
+		docs.active->saved = TRUE;
+
 		//TODO open the file in a new tab
-		//open_file (filename);
+		open_file (filename, docs.active->text_view);
 		
 		print_info ("Open file: \"%s\"", filename);
+
 		g_free (filename);
 	}
 
@@ -36,7 +42,7 @@ cb_open (void)
 }
 
 void
-cb_about_dialog (void)
+cb_about_dialog (GtkAction *action, widgets_t *widgets)
 {
 	gchar *comments = _(PROGRAM_NAME " is a LaTeX development environment for the GNOME Desktop");
 	gchar *copyright = "Copyright © 2009 Sébastien Wilmet";
@@ -54,7 +60,7 @@ cb_about_dialog (void)
 	};
 
 	gtk_show_about_dialog (
-			NULL,
+			GTK_WINDOW (widgets->window),
 			"program-name", PROGRAM_NAME,
 			"authors", authors,
 			"comments", comments,
@@ -73,4 +79,24 @@ cb_quit (void)
 {
 	print_info ("Bye bye");
 	gtk_main_quit ();
+}
+
+static void
+open_file (const gchar *file_name, GtkTextView *text_view)
+{
+	g_return_if_fail (file_name && text_view);
+
+	gchar *contents = NULL;
+
+	if (g_file_get_contents (file_name, &contents, NULL, NULL))
+	{
+		GtkTextBuffer *text_buffer = gtk_text_view_get_buffer (text_view);
+		gchar *utf8 = g_locale_to_utf8 (contents, -1, NULL, NULL, NULL);
+		gtk_text_buffer_set_text (text_buffer, utf8, -1);
+		g_free (contents);
+		g_free (utf8);
+	}
+
+	else
+		print_warning ("impossible to open the file \"%s\"", file_name);
 }

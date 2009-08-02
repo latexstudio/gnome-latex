@@ -8,6 +8,8 @@
 #include "callbacks.h"
 #include "error.h"
 
+docs_t docs = {NULL, NULL};
+
 int
 main (int argc, char *argv[])
 {
@@ -75,8 +77,16 @@ main (int argc, char *argv[])
 
 	guint nb_entries = G_N_ELEMENTS (entries);
 
+	// this structure contain the window and the widgets used in callbacks
+	// functions
+	// so the widgets must be initialized before the call of
+	// gtk_action_group_add_actions ()
+	widgets_t widgets;
+	widgets.window = window;
+
+	// create the action group and the ui manager
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
-	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
+	gtk_action_group_add_actions (action_group, entries, nb_entries, &widgets);
 	GtkUIManager *ui_manager = gtk_ui_manager_new ();
 	gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
 
@@ -120,6 +130,10 @@ main (int argc, char *argv[])
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_paned_pack1 (GTK_PANED (vpaned), sw, TRUE, TRUE);
 	gtk_container_add (GTK_CONTAINER (sw), source_view);
+
+	// initialize the extern structure docs
+	document_t first_document = {NULL, FALSE, GTK_TEXT_VIEW (source_view)};
+	docs.active = &first_document;
 	
 	/* log zone */
 	GtkWidget *log_view = gtk_text_view_new ();
