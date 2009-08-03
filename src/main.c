@@ -44,7 +44,7 @@ main (int argc, char *argv[])
 	{
 		{"File", NULL, _("File"), NULL, NULL, NULL},
 		{"FileNew", GTK_STOCK_NEW, _("New"), "<Control>N",
-			_("New file"), NULL},
+			_("New file"), G_CALLBACK (cb_new)},
 		{"FileOpen", GTK_STOCK_OPEN, _("Open..."), "<Control>O",
 			_("Open a file"), G_CALLBACK (cb_open)},
 		{"FileSave", GTK_STOCK_SAVE, _("Save..."), "<Control>S",

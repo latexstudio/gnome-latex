@@ -8,8 +8,8 @@ Jul 31, 2009 to Aug 7, 2009
 	x open
 	x save 
 	x save as
+	x new
 	- close
-	- new
 	- tabs
 
 [-] GtkSourceView

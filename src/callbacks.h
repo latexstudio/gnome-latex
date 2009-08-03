@@ -1,6 +1,7 @@
 #ifndef CALLBACKS_H
 #define CALLBACKS_H
 
+void cb_new (GtkAction *action, widgets_t *widgets);
 void cb_open (GtkAction *action, widgets_t *widgets);
 void cb_save (GtkAction *action, widgets_t *widgets);
 void cb_save_as (GtkAction *action, widgets_t *widgets);

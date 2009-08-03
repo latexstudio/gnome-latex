@@ -13,6 +13,16 @@ static void save_as_dialog (widgets_t *widgets);
 static void file_save (void);
 
 void
+cb_new (GtkAction *action, widgets_t *widgets)
+{
+	docs.active->path = NULL;
+	docs.active->saved = TRUE;
+
+	GtkTextBuffer *text_buffer = gtk_text_view_get_buffer (docs.active->text_view);
+	gtk_text_buffer_set_text (text_buffer, "", -1);
+}
+
+void
 cb_open (GtkAction *action, widgets_t *widgets)
 {
 	GtkWidget *dialog = gtk_file_chooser_dialog_new (
