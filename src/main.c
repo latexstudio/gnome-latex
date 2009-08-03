@@ -48,9 +48,9 @@ main (int argc, char *argv[])
 		{"FileOpen", GTK_STOCK_OPEN, _("Open..."), "<Control>O",
 			_("Open a file"), G_CALLBACK (cb_open)},
 		{"FileSave", GTK_STOCK_SAVE, _("Save..."), "<Control>S",
-			_("Save the current file"), NULL},
+			_("Save the current file"), G_CALLBACK (cb_save)},
 		{"FileSaveAs", GTK_STOCK_SAVE_AS, _("Save as..."), "<Shift><Control>S",
-			_("Save the current file with a different name"), NULL},
+			_("Save the current file with a different name"), G_CALLBACK (cb_save_as)},
 		{"FileQuit", GTK_STOCK_QUIT, _("Quit"), "<Control>Q",
 			_("Quit the program"), G_CALLBACK (cb_quit)},
 		
@@ -123,6 +123,10 @@ main (int argc, char *argv[])
 		"\\begin{document}\n"
 		"\\end{document}";
 	gtk_text_buffer_set_text (source_buffer, source_default_text, -1);
+
+	// when the text is modified, the "saved" field of document_t must be FALSE
+	g_signal_connect (G_OBJECT (source_buffer), "changed",
+			G_CALLBACK (cb_text_changed), NULL);
 
 	// with a scrollbar
 	GtkWidget *sw = gtk_scrolled_window_new (NULL, NULL);

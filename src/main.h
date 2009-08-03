@@ -6,6 +6,13 @@
 #define PROGRAM_NAME "LaTeXila"
 #define PROGRAM_VERSION "0.0.1"
 
+// used for data callbacks
+typedef struct
+{
+	GtkWidget *window;
+} widgets_t;
+
+// each document opened is represented by a document_t structure
 typedef struct
 {
 	gchar *path;
@@ -19,11 +26,7 @@ typedef struct
 	document_t *active;
 } docs_t;
 
-typedef struct
-{
-	GtkWidget *window;
-} widgets_t;
-
+// all the documents are accessible by the docs variable
 extern docs_t docs;
 
 #endif /* MAIN_H */
