@@ -8,7 +8,7 @@
 #include "callbacks.h"
 #include "error.h"
 
-docs_t docs = {NULL, NULL};
+docs_t docs = {NULL, NULL, NULL, NULL}; 
 
 int
 main (int argc, char *argv[])
@@ -22,11 +22,13 @@ main (int argc, char *argv[])
 
 	/* main window */
 	GtkWidget *window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	g_signal_connect (G_OBJECT (window), "destroy",
-			G_CALLBACK (cb_quit), NULL);
+	g_signal_connect (G_OBJECT (window), "delete_event",
+			G_CALLBACK (cb_delete_event), NULL);
 	gtk_window_set_title (GTK_WINDOW (window), PROGRAM_NAME);
 	gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
-	gtk_window_set_default_size (GTK_WINDOW (window), 500, 400);
+	gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
+
+	docs.main_window = GTK_WINDOW (window);
 
 	/* boxes */
 	GtkWidget *main_vbox = gtk_vbox_new (FALSE, 0);
@@ -51,6 +53,8 @@ main (int argc, char *argv[])
 			_("Save the current file"), G_CALLBACK (cb_save)},
 		{"FileSaveAs", GTK_STOCK_SAVE_AS, _("Save as..."), "<Shift><Control>S",
 			_("Save the current file with a different name"), G_CALLBACK (cb_save_as)},
+		{"FileClose", GTK_STOCK_CLOSE, _("Close"), "<Control>W",
+			_("Close the current file"), G_CALLBACK (cb_close)},
 		{"FileQuit", GTK_STOCK_QUIT, _("Quit"), "<Control>Q",
 			_("Quit the program"), G_CALLBACK (cb_quit)},
 		
@@ -77,16 +81,9 @@ main (int argc, char *argv[])
 
 	guint nb_entries = G_N_ELEMENTS (entries);
 
-	// this structure contain the window and the widgets used in callbacks
-	// functions
-	// so the widgets must be initialized before the call of
-	// gtk_action_group_add_actions ()
-	widgets_t widgets;
-	widgets.window = window;
-
 	// create the action group and the ui manager
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
-	gtk_action_group_add_actions (action_group, entries, nb_entries, &widgets);
+	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
 	GtkUIManager *ui_manager = gtk_ui_manager_new ();
 	gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
 
@@ -115,31 +112,15 @@ main (int argc, char *argv[])
 	GtkWidget *vpaned = gtk_vpaned_new ();
 	gtk_box_pack_start (GTK_BOX (main_vbox), vpaned, TRUE, TRUE, 0);
 
-	/* source view */
-	GtkWidget *source_view = gtk_text_view_new ();
-	GtkTextBuffer *source_buffer = gtk_text_view_get_buffer (
-			GTK_TEXT_VIEW (source_view));
-	char *source_default_text = "\\documentclass[a4paper,11pt]{article}\n"
-		"\\begin{document}\n"
-		"\\end{document}";
-	gtk_text_buffer_set_text (source_buffer, source_default_text, -1);
+	/* source view with tabs */
+	GtkWidget *notebook = gtk_notebook_new ();
+	g_signal_connect (G_OBJECT (notebook), "switch-page",
+			G_CALLBACK (cb_page_change), NULL);
+	gtk_paned_pack1 (GTK_PANED (vpaned), notebook, TRUE, TRUE);
+	docs.notebook = GTK_NOTEBOOK (notebook);
 
-	// when the text is modified, the "saved" field of document_t must be FALSE
-	g_signal_connect (G_OBJECT (source_buffer), "changed",
-			G_CALLBACK (cb_text_changed), NULL);
-
-	// with a scrollbar
-	GtkWidget *sw = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
-			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_paned_pack1 (GTK_PANED (vpaned), sw, TRUE, TRUE);
-	gtk_container_add (GTK_CONTAINER (sw), source_view);
-
-	// initialize the extern structure docs
-	document_t first_document = {NULL, FALSE, GTK_TEXT_VIEW (source_view)};
-	docs.active = &first_document;
-	
 	/* log zone */
+	//TODO set a default height
 	GtkWidget *log_view = gtk_text_view_new ();
 	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (
 			GTK_TEXT_VIEW (log_view));
@@ -147,7 +128,7 @@ main (int argc, char *argv[])
 	gtk_text_view_set_editable (GTK_TEXT_VIEW(log_view), FALSE);
 	
 	// with a scrollbar
-	sw = gtk_scrolled_window_new (NULL, NULL);
+	GtkWidget *sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_paned_pack2 (GTK_PANED (vpaned), sw, TRUE, TRUE);

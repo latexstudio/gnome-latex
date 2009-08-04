@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -W -Wall -std=c99 $(shell pkg-config --cflags gtk+-2.0) -DGTK_DISABLE_DEPRECATED=1
+CFLAGS = -g -Wall -std=c99 $(shell pkg-config --cflags gtk+-2.0) -DGTK_DISABLE_DEPRECATED=1
 LDFLAGS = $(shell pkg-config --libs gtk+-2.0)
 OBJ = main.o callbacks.o error.o
 

@@ -6,12 +6,6 @@
 #define PROGRAM_NAME "LaTeXila"
 #define PROGRAM_VERSION "0.0.1"
 
-// used for data callbacks
-typedef struct
-{
-	GtkWidget *window;
-} widgets_t;
-
 // each document opened is represented by a document_t structure
 typedef struct
 {
@@ -24,6 +18,8 @@ typedef struct
 {
 	GList *all;
 	document_t *active;
+	GtkWindow *main_window;
+	GtkNotebook *notebook;
 } docs_t;
 
 // all the documents are accessible by the docs variable
