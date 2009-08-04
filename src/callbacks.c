@@ -12,6 +12,7 @@ static void create_document_in_new_tab (gchar *path, gchar *text, GtkWidget *lab
 static void save_as_dialog (void);
 static void file_save (void);
 static gboolean close_all (void);
+static void set_title (void);
 
 void
 cb_new (void)
@@ -69,7 +70,8 @@ cb_save (void)
 			if (docs.active->path == NULL)
 				save_as_dialog ();
 
-			file_save();
+			file_save ();
+			set_title ();
 		}
 	}
 
@@ -210,14 +212,16 @@ void
 cb_text_changed (GtkWidget *widget, gpointer user_data)
 {
 	if (docs.active != NULL)
+	{
 		docs.active->saved = FALSE;
+		set_title ();
+	}
 }
 
 void
 cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, gpointer user_data)
 {
 	docs.active = g_list_nth_data (docs.all, page_num);
-	print_info ("switch-page: %d (%s)", page_num, docs.active->path);
 }
 
 /*****************************
@@ -325,4 +329,33 @@ close_all (void)
 	}
 
 	return TRUE;
+}
+
+static void
+set_title (void)
+{
+	if (docs.active)
+	{
+		gchar *tmp;
+		gchar *title;
+
+		if (docs.active->path != NULL)
+			tmp = g_path_get_basename (docs.active->path);
+		else
+			tmp = g_strdup (_("New document"));
+
+		if (docs.active->saved)
+			title = g_strdup (tmp);
+		else
+			title = g_strdup_printf ("*%s", tmp);
+
+		g_free (tmp);
+
+		gint index = gtk_notebook_get_current_page (docs.notebook);
+		GtkWidget *child = gtk_notebook_get_nth_page (docs.notebook, index);
+		GtkLabel *label = GTK_LABEL (gtk_notebook_get_tab_label (docs.notebook, child));
+		gtk_label_set_text (label, title);
+
+		g_free (title);
+	}
 }

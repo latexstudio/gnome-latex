@@ -11,7 +11,7 @@ Jul 31, 2009 to Aug 7, 2009
 	x new
 	x close
 	x tabs
-	- change title of tabs
+	x change title of tabs
 	- tabs with close buttons
 
 [-] GtkSourceView
