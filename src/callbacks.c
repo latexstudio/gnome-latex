@@ -183,6 +183,22 @@ cb_delete_event (GtkWidget *widget, GdkEvent *event, gpointer data)
 }
 
 void
+cb_line_numbers (GtkToggleAction *action, gpointer user_data)
+{
+	gboolean show = gtk_toggle_action_get_active (action);
+
+	//TODO optimisation?
+	guint nb_docs = g_list_length (docs.all);
+	for (guint i = 0 ; i < nb_docs ; i++)
+	{
+		document_t *doc = g_list_nth_data (docs.all, i);
+		gtk_source_view_set_show_line_numbers (
+				GTK_SOURCE_VIEW (doc->source_view), show);
+	}
+}
+
+
+void
 cb_about_dialog (void)
 {
 	gchar *comments = _(PROGRAM_NAME " is a LaTeX development environment for the GNOME Desktop");
@@ -269,6 +285,9 @@ create_document_in_new_tab (gchar *path, gchar *text, GtkWidget *label)
 				docs.lm, "latex");
 		gtk_source_buffer_set_language (new_doc->source_buffer, lang);
 	}
+
+	// set auto indentation
+	gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (new_doc->source_view), TRUE);
 
 	// put the text into the buffer
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (new_doc->source_buffer), text, -1);

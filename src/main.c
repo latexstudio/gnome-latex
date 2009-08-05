@@ -66,6 +66,8 @@ main (int argc, char *argv[])
 			_("Undo the last action"), NULL},
 		{"EditRedo", GTK_STOCK_REDO, _("Redo"), "<Shift><Control>Z",
 			_("Redo the last undone action"), NULL},
+
+		{"View", NULL, _("View"), NULL, NULL, NULL},
 		
 		{"LaTeX", NULL, "LaTeX", NULL, NULL, NULL},
 		{"compile_latex", GTK_STOCK_EXECUTE, _("Compile (latex)"), "<Release>F5",
@@ -82,11 +84,20 @@ main (int argc, char *argv[])
 			_("About LaTeXila"), G_CALLBACK (cb_about_dialog)}
 	};
 
+	// name, stock_id, label, accelerator, tooltip, callback
+	GtkToggleActionEntry toggle_entries[] =
+	{
+		{"ViewLineNumbers", NULL, _("Line numbers"), NULL,
+			_("Display line numbers"), G_CALLBACK (cb_line_numbers)}
+	};
+
 	guint nb_entries = G_N_ELEMENTS (entries);
+	guint nb_toggle_entries = G_N_ELEMENTS (toggle_entries);
 
 	// create the action group and the ui manager
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
+	gtk_action_group_add_toggle_actions (action_group, toggle_entries, nb_toggle_entries, NULL);
 	GtkUIManager *ui_manager = gtk_ui_manager_new ();
 	gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
 
