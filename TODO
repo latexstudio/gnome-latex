@@ -14,8 +14,8 @@ Jul 31, 2009 to Aug 7, 2009
 	x change title of tabs
 	- tabs with close buttons
 
-[-] GtkSourceView
+[x] GtkSourceView
 	x syntaxic color
 	x show/hide line numbers
-	- undo/redo
+	x undo/redo
 

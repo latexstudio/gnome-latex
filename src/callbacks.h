@@ -7,6 +7,8 @@ void cb_save (void);
 void cb_save_as (void);
 void cb_close (void);
 void cb_quit (void);
+void cb_undo (void);
+void cb_redo (void);
 void cb_about_dialog (void);
 void cb_text_changed (GtkWidget *widget, gpointer user_data);
 void cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, gpointer user_data);

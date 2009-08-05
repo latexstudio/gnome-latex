@@ -16,6 +16,7 @@ static void save_as_dialog (void);
 static void file_save (void);
 static gboolean close_all (void);
 static void set_title (void);
+static void set_undo_redo_sensitivity (void);
 
 void
 cb_new (void)
@@ -157,6 +158,8 @@ cb_close (void)
 			docs.active = g_list_nth_data (docs.all, gtk_notebook_get_current_page (docs.notebook));
 		else
 			docs.active = NULL;
+
+		set_undo_redo_sensitivity ();
 	}
 
 	else
@@ -171,6 +174,24 @@ cb_quit (void)
 		print_info ("Bye bye");
 		gtk_main_quit ();
 	}
+}
+
+void
+cb_undo (void)
+{
+	if (gtk_source_buffer_can_undo (docs.active->source_buffer))
+		gtk_source_buffer_undo (docs.active->source_buffer);
+
+	set_undo_redo_sensitivity ();
+}
+
+void
+cb_redo (void)
+{
+	if (gtk_source_buffer_can_redo (docs.active->source_buffer))
+		gtk_source_buffer_redo (docs.active->source_buffer);
+
+	set_undo_redo_sensitivity ();
 }
 
 gboolean
@@ -238,6 +259,7 @@ cb_text_changed (GtkWidget *widget, gpointer user_data)
 	{
 		docs.active->saved = FALSE;
 		set_title ();
+		set_undo_redo_sensitivity ();
 	}
 }
 
@@ -245,6 +267,7 @@ void
 cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, gpointer user_data)
 {
 	docs.active = g_list_nth_data (docs.all, page_num);
+	set_undo_redo_sensitivity ();
 }
 
 /*****************************
@@ -290,7 +313,9 @@ create_document_in_new_tab (gchar *path, gchar *text, GtkWidget *label)
 	gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (new_doc->source_view), TRUE);
 
 	// put the text into the buffer
+	gtk_source_buffer_begin_not_undoable_action (new_doc->source_buffer);
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (new_doc->source_buffer), text, -1);
+	gtk_source_buffer_end_not_undoable_action (new_doc->source_buffer);
 
 	// when the text is modified
 	g_signal_connect (G_OBJECT (new_doc->source_buffer), "changed",
@@ -306,6 +331,8 @@ create_document_in_new_tab (gchar *path, gchar *text, GtkWidget *label)
 	// add the new document in a new tab
 	gint index = gtk_notebook_append_page (docs.notebook, sw, label);
 	gtk_notebook_set_current_page (docs.notebook, index);
+
+	set_undo_redo_sensitivity ();
 }
 
 static void
@@ -404,4 +431,20 @@ set_title (void)
 
 		g_free (title);
 	}
+}
+
+static void
+set_undo_redo_sensitivity (void)
+{
+	gboolean can_undo = FALSE;
+	gboolean can_redo = FALSE;
+
+	if (docs.active != NULL)
+	{
+		can_undo = gtk_source_buffer_can_undo (docs.active->source_buffer);
+		can_redo = gtk_source_buffer_can_redo (docs.active->source_buffer);
+	}
+
+	gtk_action_set_sensitive (docs.undo, can_undo);
+	gtk_action_set_sensitive (docs.redo, can_redo);
 }

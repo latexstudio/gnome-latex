@@ -63,9 +63,9 @@ main (int argc, char *argv[])
 		
 		{"Edit", NULL, _("Edit"), NULL, NULL, NULL},
 		{"EditUndo", GTK_STOCK_UNDO, _("Undo"), "<Control>Z",
-			_("Undo the last action"), NULL},
+			_("Undo the last action"), G_CALLBACK (cb_undo)},
 		{"EditRedo", GTK_STOCK_REDO, _("Redo"), "<Shift><Control>Z",
-			_("Redo the last undone action"), NULL},
+			_("Redo the last undone action"), G_CALLBACK (cb_redo)},
 
 		{"View", NULL, _("View"), NULL, NULL, NULL},
 		
@@ -120,6 +120,10 @@ main (int argc, char *argv[])
 	// accelerators
 	gtk_window_add_accel_group (GTK_WINDOW (window), 
 			gtk_ui_manager_get_accel_group (ui_manager));
+
+	// get actions
+	docs.undo = gtk_ui_manager_get_action (ui_manager, "/MainMenu/Edit/Undo");
+	docs.redo = gtk_ui_manager_get_action (ui_manager, "/MainMenu/Edit/Redo");
 
 
 	/* vertical pane for the source view and the log zone */

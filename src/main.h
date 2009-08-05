@@ -22,6 +22,8 @@ typedef struct
 	GtkWindow *main_window;
 	GtkNotebook *notebook;
 	GtkSourceLanguageManager *lm;
+	GtkAction *undo;
+	GtkAction *redo;
 } docs_t;
 
 // all the documents are accessible by the docs variable

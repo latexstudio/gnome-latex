@@ -16,9 +16,9 @@ In the code, GtkUIManager is used to construct them.
       <menuitem action="FileQuit" />
     </menu>
     
-    <menu action="Edit">
-      <menuitem action="EditUndo" />
-      <menuitem action="EditRedo" />
+    <menu name="Edit" action="Edit">
+      <menuitem name="Undo" action="EditUndo" />
+      <menuitem name="Redo" action="EditRedo" />
     </menu>
 
     <menu action="View">
