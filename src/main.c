@@ -3,12 +3,15 @@
 #include <locale.h>
 #include <libintl.h>
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourceview.h>
+#include <gtksourceview/gtksourcelanguage.h>
+#include <gtksourceview/gtksourcelanguagemanager.h>
 
 #include "main.h"
 #include "callbacks.h"
 #include "error.h"
 
-docs_t docs = {NULL, NULL, NULL, NULL}; 
+docs_t docs = {NULL, NULL, NULL, NULL, NULL}; 
 
 int
 main (int argc, char *argv[])
@@ -118,6 +121,9 @@ main (int argc, char *argv[])
 			G_CALLBACK (cb_page_change), NULL);
 	gtk_paned_pack1 (GTK_PANED (vpaned), notebook, TRUE, TRUE);
 	docs.notebook = GTK_NOTEBOOK (notebook);
+
+	GtkSourceLanguageManager *lm = gtk_source_language_manager_get_default ();
+	docs.lm = lm;
 
 	/* log zone */
 	//TODO set a default height

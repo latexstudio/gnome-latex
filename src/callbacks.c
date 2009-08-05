@@ -3,6 +3,9 @@
 #include <locale.h>
 #include <libintl.h>
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourceview.h>
+#include <gtksourceview/gtksourcelanguage.h>
+#include <gtksourceview/gtksourcelanguagemanager.h>
 
 #include "main.h"
 #include "callbacks.h"
@@ -143,7 +146,11 @@ cb_close (void)
 
 		/* close the tab */
 		docs.all = g_list_remove (docs.all, docs.active);
-		g_free (docs.active->path);
+		if (docs.active->path != NULL)
+		{
+			print_info ("close the file \"%s\"", docs.active->path);
+			g_free (docs.active->path);
+		}
 		g_free (docs.active);
 		gtk_notebook_remove_page (docs.notebook, gtk_notebook_get_current_page (docs.notebook));
 		if (gtk_notebook_get_n_pages (docs.notebook) > 0)
@@ -235,26 +242,46 @@ create_document_in_new_tab (gchar *path, gchar *text, GtkWidget *label)
 	// if path = NULL, this is a new document
 	// else, the user opened a document
 	document_t *new_doc = g_malloc (sizeof (document_t));
-	new_doc->path = path;
-	new_doc->saved = (path == NULL) ? FALSE : TRUE;
-	new_doc->text_view = GTK_TEXT_VIEW (gtk_text_view_new ());
+	new_doc->path = g_strdup (path);
+	//new_doc->saved = (path == NULL) ? FALSE : TRUE;
+	new_doc->saved = TRUE;
+	new_doc->source_buffer = gtk_source_buffer_new (NULL);
+	new_doc->source_view = gtk_source_view_new_with_buffer (new_doc->source_buffer);
 
 	docs.all = g_list_append (docs.all, new_doc);
 	docs.active = new_doc;
 
+	// set the language for the syntaxic color
+	if (path != NULL)
+	{
+		GtkSourceLanguage *lang = gtk_source_language_manager_guess_language (
+				docs.lm, path, NULL);
+		if (lang != NULL)
+			gtk_source_buffer_set_language (new_doc->source_buffer, lang);
+		else
+			print_info ("language of the file unknown ==> no syntaxic color");
+	}
+
+	// the default file is a LaTeX document
+	else
+	{
+		GtkSourceLanguage *lang = gtk_source_language_manager_get_language (
+				docs.lm, "latex");
+		gtk_source_buffer_set_language (new_doc->source_buffer, lang);
+	}
+
 	// put the text into the buffer
-	GtkTextBuffer *text_buffer = gtk_text_view_get_buffer (new_doc->text_view);
-	gtk_text_buffer_set_text (text_buffer, text, -1);
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (new_doc->source_buffer), text, -1);
 
 	// when the text is modified
-	g_signal_connect (G_OBJECT (text_buffer), "changed",
+	g_signal_connect (G_OBJECT (new_doc->source_buffer), "changed",
 			G_CALLBACK (cb_text_changed), NULL);
 
 	// with a scrollbar
 	GtkWidget *sw = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (new_doc->text_view));
+	gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (new_doc->source_view));
 	gtk_widget_show_all (sw);
 
 	// add the new document in a new tab
@@ -290,7 +317,7 @@ file_save (void)
 		FILE* file = fopen (docs.active->path, "w");
 		if (file != NULL)
 		{
-			GtkTextBuffer *text_buffer = gtk_text_view_get_buffer (docs.active->text_view);
+			GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (docs.active->source_buffer);
 			GtkTextIter start;
 			GtkTextIter end;
 			gtk_text_buffer_get_bounds (text_buffer, &start, &end);

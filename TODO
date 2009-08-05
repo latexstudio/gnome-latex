@@ -15,7 +15,7 @@ Jul 31, 2009 to Aug 7, 2009
 	- tabs with close buttons
 
 [-] GtkSourceView
-	- syntaxic color
+	x syntaxic color
 	- show/hide line numbers
 	- undo/redo
 

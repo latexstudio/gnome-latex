@@ -11,7 +11,8 @@ typedef struct
 {
 	gchar *path;
 	gboolean saved;
-	GtkTextView *text_view;
+	GtkWidget *source_view;
+	GtkSourceBuffer *source_buffer;
 } document_t;
 
 typedef struct
@@ -20,6 +21,7 @@ typedef struct
 	document_t *active;
 	GtkWindow *main_window;
 	GtkNotebook *notebook;
+	GtkSourceLanguageManager *lm;
 } docs_t;
 
 // all the documents are accessible by the docs variable
