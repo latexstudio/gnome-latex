@@ -218,6 +218,32 @@ cb_line_numbers (GtkToggleAction *action, gpointer user_data)
 	}
 }
 
+void
+cb_pdflatex (void)
+{
+	if (docs.active != NULL)
+	{
+		gchar *command = g_strdup_printf ("pdflatex -interaction=nonstopmode %s",
+				docs.active->path);
+		gchar *output;
+		GError *error = NULL;
+		
+		g_spawn_command_line_sync (command, &output, NULL, NULL, &error);
+		
+		// an error occured
+		if (error != NULL)
+		{
+			print_warning ("execution failed: %s", error->message);
+			return;
+		}
+
+		GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (docs.log);
+		gtk_text_buffer_set_text (log_buffer, output, -1);
+
+		g_free (command);
+		g_free (output);
+	}
+}
 
 void
 cb_about_dialog (void)
@@ -311,6 +337,10 @@ create_document_in_new_tab (gchar *path, gchar *text, GtkWidget *label)
 
 	// set auto indentation
 	gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (new_doc->source_view), TRUE);
+
+	// set the font
+	PangoFontDescription *font_desc = pango_font_description_from_string (FONT);
+	gtk_widget_modify_font (new_doc->source_view, font_desc);
 
 	// put the text into the buffer
 	gtk_source_buffer_begin_not_undoable_action (new_doc->source_buffer);

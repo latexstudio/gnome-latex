@@ -11,7 +11,7 @@
 #include "callbacks.h"
 #include "error.h"
 
-docs_t docs = {NULL, NULL, NULL, NULL, NULL}; 
+docs_t docs = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}; 
 
 int
 main (int argc, char *argv[])
@@ -75,7 +75,7 @@ main (int argc, char *argv[])
 		{"viewDVI", GTK_STOCK_FILE, _("View DVI"), "<Release>F6",
 			_("View the DVI file"), NULL},
 		{"compile_pdflatex", GTK_STOCK_EXECUTE, _("Compile (pdflatex)"), "<Release>F7",
-			_("Produce the document in PDF format"), NULL},
+			_("Produce the document in PDF format"), G_CALLBACK (cb_pdflatex)},
 		{"viewPDF", GTK_STOCK_FILE, _("View PDF"), "<Release>F8",
 			_("View the PDF file"), NULL},
 		
@@ -154,6 +154,8 @@ main (int argc, char *argv[])
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_paned_pack2 (GTK_PANED (vpaned), sw, TRUE, TRUE);
 	gtk_container_add (GTK_CONTAINER (sw), log_view);
+
+	docs.log = GTK_TEXT_VIEW (log_view);
 
 	/* statusbar */
 	GtkWidget *statusbar = gtk_statusbar_new ();

@@ -6,6 +6,8 @@
 #define PROGRAM_NAME "LaTeXila"
 #define PROGRAM_VERSION "0.0.1"
 
+#define FONT "Monospace"
+
 // each document opened is represented by a document_t structure
 typedef struct
 {
@@ -21,6 +23,7 @@ typedef struct
 	document_t *active;
 	GtkWindow *main_window;
 	GtkNotebook *notebook;
+	GtkTextView *log;
 	GtkSourceLanguageManager *lm;
 	GtkAction *undo;
 	GtkAction *redo;
