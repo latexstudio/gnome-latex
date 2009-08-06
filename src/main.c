@@ -77,7 +77,7 @@ main (int argc, char *argv[])
 		{"compile_pdflatex", GTK_STOCK_EXECUTE, _("Compile (pdflatex)"), "<Release>F7",
 			_("Produce the document in PDF format"), G_CALLBACK (cb_pdflatex)},
 		{"viewPDF", GTK_STOCK_FILE, _("View PDF"), "<Release>F8",
-			_("View the PDF file"), NULL},
+			_("View the PDF file"), G_CALLBACK (cb_view_pdf)},
 		
 		{"Help", NULL, _("Help"), NULL, NULL, NULL},
 		{"HelpAbout", GTK_STOCK_ABOUT, _("About"), NULL,

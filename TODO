@@ -20,3 +20,8 @@ Jul 31, 2009 to Aug 7, 2009
 	x undo/redo
 	x font monospace
 
+[-] compile and view
+	x compile (pdflatex)
+	x view PDF
+	- compile (latex)
+	- view DVI
