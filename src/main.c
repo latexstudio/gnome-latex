@@ -71,9 +71,9 @@ main (int argc, char *argv[])
 		
 		{"LaTeX", NULL, "LaTeX", NULL, NULL, NULL},
 		{"compile_latex", GTK_STOCK_EXECUTE, _("Compile (latex)"), "<Release>F5",
-			_("Produce the document in DVI format"), NULL},
+			_("Produce the document in DVI format"), G_CALLBACK (cb_latex)},
 		{"viewDVI", GTK_STOCK_FILE, _("View DVI"), "<Release>F6",
-			_("View the DVI file"), NULL},
+			_("View the DVI file"), G_CALLBACK (cb_view_dvi)},
 		{"compile_pdflatex", GTK_STOCK_EXECUTE, _("Compile (pdflatex)"), "<Release>F7",
 			_("Produce the document in PDF format"), G_CALLBACK (cb_pdflatex)},
 		{"viewPDF", GTK_STOCK_FILE, _("View PDF"), "<Release>F8",

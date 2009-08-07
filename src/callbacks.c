@@ -19,6 +19,8 @@ static void file_save (void);
 static gboolean close_all (void);
 static void set_title (void);
 static void set_undo_redo_sensitivity (void);
+static void run_compilation (gchar *command);
+static void view_document (gchar *doc_type, gchar *doc_extension);
 
 void
 cb_new (void)
@@ -221,112 +223,27 @@ cb_line_numbers (GtkToggleAction *action, gpointer user_data)
 }
 
 void
+cb_latex (void)
+{
+	run_compilation ("latex -interaction=nonstopmode");
+}
+
+void
 cb_pdflatex (void)
 {
-	if (docs.active != NULL)
-	{
-		GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (docs.log);
+	run_compilation ("pdflatex -interaction=nonstopmode");
+}
 
-		// the current document is a *.tex file?
-		gboolean tex_file = g_regex_match_simple ("\\.tex$", docs.active->path, 0, 0);
-		if (! tex_file)
-		{
-			gchar *text = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
-					g_path_get_basename (docs.active->path));
-
-			gtk_text_buffer_set_text (log_buffer, text, -1);
-			g_free (text);
-			return;
-		}
-
-		// run the command in the directory where the .tex is
-		gchar *dir_backup = g_get_current_dir ();
-		gchar *dir = g_path_get_dirname (docs.active->path);
-		g_chdir (dir);
-		gchar *command = g_strdup_printf ("pdflatex -interaction=nonstopmode %s",
-				docs.active->path);
-		gchar *output;
-		GError *error = NULL;
-
-		print_info ("execution of the command: %s", command);
-		
-		g_spawn_command_line_sync (command, &output, NULL, NULL, &error);
-		g_chdir (dir_backup);
-		
-		// an error occured
-		if (error != NULL)
-		{
-			print_warning ("execution failed: %s", error->message);
-			g_error_free (error);
-			return;
-		}
-
-		// show the message of the command
-		gtk_text_buffer_set_text (log_buffer, output, -1);
-
-		g_free (dir_backup);
-		g_free (dir);
-		g_free (command);
-		g_free (output);
-	}
+void
+cb_view_dvi (void)
+{
+	view_document ("DVI", ".dvi");
 }
 
 void
 cb_view_pdf (void)
 {
-	if (docs.active != NULL)
-	{
-		GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (docs.log);
-
-		GError *error = NULL;
-		GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
-
-		// the current document is a *.tex file?
-		gboolean tex_file = g_regex_match (regex, docs.active->path, 0, NULL);
-		if (! tex_file)
-		{
-			gchar *text = g_strdup_printf (_("view PDF failed: %s is not a *.tex file"),
-					g_path_get_basename (docs.active->path));
-
-			gtk_text_buffer_set_text (log_buffer, text, -1);
-			g_free (text);
-			g_regex_unref (regex);
-			return;
-		}
-
-		// replace .tex by .pdf
-		gchar *pdf_path = g_regex_replace_literal (regex, docs.active->path,
-				-1, 0, ".pdf", 0, NULL);
-
-		// the PDF file exist?
-		if (! g_file_test (pdf_path, G_FILE_TEST_IS_REGULAR))
-		{
-			gchar *text = g_strdup_printf (
-					_("%s does not exist. If this is not already made, compile the document with pdflatex."),
-					g_path_get_basename (pdf_path));
-			
-			gtk_text_buffer_set_text (log_buffer, text, -1);
-			g_free (text);
-			g_free (pdf_path);
-			g_regex_unref (regex);
-			return;
-		}
-
-		// run the command
-		gchar *command = g_strdup_printf ("evince %s", pdf_path);
-		print_info ("execution of the command: %s", command);
-		g_spawn_command_line_async (command, &error);
-
-		if (error != NULL)
-		{
-			print_warning ("execution failed: %s", error->message);
-			g_error_free (error);
-		}
-
-		g_regex_unref (regex);
-		g_free (pdf_path);
-		g_free (command);
-	}
+	view_document ("PDF", ".pdf");
 }
 
 void
@@ -562,3 +479,112 @@ set_undo_redo_sensitivity (void)
 	gtk_action_set_sensitive (docs.undo, can_undo);
 	gtk_action_set_sensitive (docs.redo, can_redo);
 }
+
+static void
+run_compilation (gchar *command)
+{
+	if (docs.active != NULL)
+	{
+		GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (docs.log);
+
+		// the current document is a *.tex file?
+		gboolean tex_file = g_regex_match_simple ("\\.tex$", docs.active->path, 0, 0);
+		if (! tex_file)
+		{
+			gchar *text = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
+					g_path_get_basename (docs.active->path));
+
+			gtk_text_buffer_set_text (log_buffer, text, -1);
+			g_free (text);
+			return;
+		}
+
+		// run the command in the directory where the .tex is
+		gchar *dir_backup = g_get_current_dir ();
+		gchar *dir = g_path_get_dirname (docs.active->path);
+		g_chdir (dir);
+		gchar *full_command = g_strdup_printf ("%s %s", command, docs.active->path);
+		gchar *output;
+		GError *error = NULL;
+
+		print_info ("execution of the command: %s", full_command);
+		
+		g_spawn_command_line_sync (full_command, &output, NULL, NULL, &error);
+		g_chdir (dir_backup);
+		
+		// an error occured
+		if (error != NULL)
+		{
+			print_warning ("execution failed: %s", error->message);
+			g_error_free (error);
+		}
+
+		// show the message of the command
+		else
+			gtk_text_buffer_set_text (log_buffer, output, -1);
+
+		g_free (dir_backup);
+		g_free (dir);
+		g_free (full_command);
+		g_free (output);
+	}
+}
+
+static void
+view_document (gchar *doc_type, gchar *doc_extension)
+{
+	if (docs.active != NULL)
+	{
+		GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (docs.log);
+
+		GError *error = NULL;
+		GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
+
+		// the current document is a *.tex file?
+		gboolean tex_file = g_regex_match (regex, docs.active->path, 0, NULL);
+		if (! tex_file)
+		{
+			gchar *text = g_strdup_printf (_("view %s failed: %s is not a *.tex file"),
+					doc_type, g_path_get_basename (docs.active->path));
+
+			gtk_text_buffer_set_text (log_buffer, text, -1);
+			g_free (text);
+			g_regex_unref (regex);
+			return;
+		}
+
+		// replace .tex by .pdf
+		gchar *doc_path = g_regex_replace_literal (regex, docs.active->path,
+				-1, 0, doc_extension, 0, NULL);
+
+		// the document (PDF, DVI, ...) file exist?
+		if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
+		{
+			gchar *text = g_strdup_printf (
+					_("%s does not exist. If this is not already made, compile the document with the right command."),
+					g_path_get_basename (doc_path));
+			
+			gtk_text_buffer_set_text (log_buffer, text, -1);
+			g_free (text);
+			g_free (doc_path);
+			g_regex_unref (regex);
+			return;
+		}
+
+		// run the command
+		gchar *command = g_strdup_printf ("evince %s", doc_path);
+		print_info ("execution of the command: %s", command);
+		g_spawn_command_line_async (command, &error);
+
+		if (error != NULL)
+		{
+			print_warning ("execution failed: %s", error->message);
+			g_error_free (error);
+		}
+
+		g_regex_unref (regex);
+		g_free (doc_path);
+		g_free (command);
+	}
+}
+
