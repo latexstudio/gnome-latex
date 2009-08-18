@@ -11,7 +11,7 @@
 
 #include "main.h"
 #include "callbacks.h"
-#include "error.h"
+#include "print.h"
 
 static void create_document_in_new_tab (gchar *path, gchar *text, gchar *title);
 static void close_document (gint index);
@@ -20,8 +20,9 @@ static void file_save (void);
 static gboolean close_all (void);
 static void set_title (void);
 static void set_undo_redo_sensitivity (void);
-static void run_compilation (gchar *command);
-static void view_document (gchar *doc_type, gchar *doc_extension);
+static void run_compilation (action_t *action);
+static void view_document (action_t *action, gchar *doc_extension);
+static void free_actions (void);
 
 void
 cb_new (void)
@@ -38,7 +39,7 @@ cb_open (void)
 {
 	GtkWidget *dialog = gtk_file_chooser_dialog_new (
 			_("Open File"),
-			docs.main_window,
+			latexila.main_window,
 			GTK_FILE_CHOOSER_ACTION_OPEN,
 			GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 			GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
@@ -71,11 +72,11 @@ cb_open (void)
 void
 cb_save (void)
 {
-	if (docs.active != NULL)
+	if (latexila.active_doc != NULL)
 	{
-		if (! docs.active->saved)
+		if (! latexila.active_doc->saved)
 		{
-			if (docs.active->path == NULL)
+			if (latexila.active_doc->path == NULL)
 				save_as_dialog ();
 
 			file_save ();
@@ -90,17 +91,17 @@ cb_save (void)
 void
 cb_save_as (void)
 {
-	if (docs.active != NULL)
+	if (latexila.active_doc != NULL)
 	{
-		document_t doc_backup = *docs.active;
+		document_t doc_backup = *latexila.active_doc;
 
-		docs.active->path = NULL;
-		docs.active->saved = FALSE;
+		latexila.active_doc->path = NULL;
+		latexila.active_doc->saved = FALSE;
 		cb_save ();
 
 		// if the user click on cancel
-		if (! docs.active->saved)
-			(*docs.active) = doc_backup;
+		if (! latexila.active_doc->saved)
+			(*latexila.active_doc) = doc_backup;
 	}
 
 	else
@@ -110,15 +111,16 @@ cb_save_as (void)
 void
 cb_close (void)
 {
-	if (docs.active != NULL)
+	if (latexila.active_doc != NULL)
 	{
-		gint index = gtk_notebook_get_current_page (docs.notebook);
+		gint index = gtk_notebook_get_current_page (latexila.notebook);
 		close_document (index);
 
-		if (gtk_notebook_get_n_pages (docs.notebook) > 0)
-			docs.active = g_list_nth_data (docs.all, gtk_notebook_get_current_page (docs.notebook));
+		if (gtk_notebook_get_n_pages (latexila.notebook) > 0)
+			latexila.active_doc = g_list_nth_data (latexila.all_docs,
+					gtk_notebook_get_current_page (latexila.notebook));
 		else
-			docs.active = NULL;
+			latexila.active_doc = NULL;
 
 		set_undo_redo_sensitivity ();
 	}
@@ -130,19 +132,19 @@ cb_close (void)
 void
 cb_close_tab (GtkWidget *widget, GtkWidget *child)
 {
-	document_t *doc_backup = docs.active;
-	gint page_to_close = gtk_notebook_page_num (docs.notebook, child);
-	docs.active = g_list_nth_data (docs.all, page_to_close);
+	document_t *doc_backup = latexila.active_doc;
+	gint page_to_close = gtk_notebook_page_num (latexila.notebook, child);
+	latexila.active_doc = g_list_nth_data (latexila.all_docs, page_to_close);
 
 	// the document to close is the current document
-	if (docs.active == doc_backup)
+	if (latexila.active_doc == doc_backup)
 	{
 		close_document (page_to_close);
 
-		if (gtk_notebook_get_n_pages (docs.notebook) > 0)
-			docs.active = g_list_nth_data (docs.all, gtk_notebook_get_current_page (docs.notebook));
+		if (gtk_notebook_get_n_pages (latexila.notebook) > 0)
+			latexila.active_doc = g_list_nth_data (latexila.all_docs, gtk_notebook_get_current_page (latexila.notebook));
 		else
-			docs.active = NULL;
+			latexila.active_doc = NULL;
 
 		set_undo_redo_sensitivity ();
 	}
@@ -151,7 +153,7 @@ cb_close_tab (GtkWidget *widget, GtkWidget *child)
 	else
 	{
 		close_document (page_to_close);
-		docs.active = doc_backup;
+		latexila.active_doc = doc_backup;
 	}
 }
 
@@ -160,6 +162,7 @@ cb_quit (void)
 {
 	if (close_all ())
 	{
+		free_actions ();
 		print_info ("Bye bye");
 		gtk_main_quit ();
 	}
@@ -168,8 +171,8 @@ cb_quit (void)
 void
 cb_undo (void)
 {
-	if (gtk_source_buffer_can_undo (docs.active->source_buffer))
-		gtk_source_buffer_undo (docs.active->source_buffer);
+	if (gtk_source_buffer_can_undo (latexila.active_doc->source_buffer))
+		gtk_source_buffer_undo (latexila.active_doc->source_buffer);
 
 	set_undo_redo_sensitivity ();
 }
@@ -177,8 +180,8 @@ cb_undo (void)
 void
 cb_redo (void)
 {
-	if (gtk_source_buffer_can_redo (docs.active->source_buffer))
-		gtk_source_buffer_redo (docs.active->source_buffer);
+	if (gtk_source_buffer_can_redo (latexila.active_doc->source_buffer))
+		gtk_source_buffer_redo (latexila.active_doc->source_buffer);
 
 	set_undo_redo_sensitivity ();
 }
@@ -198,10 +201,10 @@ cb_line_numbers (GtkToggleAction *action, gpointer user_data)
 	gboolean show = gtk_toggle_action_get_active (action);
 
 	//TODO optimisation?
-	guint nb_docs = g_list_length (docs.all);
+	guint nb_docs = g_list_length (latexila.all_docs);
 	for (guint i = 0 ; i < nb_docs ; i++)
 	{
-		document_t *doc = g_list_nth_data (docs.all, i);
+		document_t *doc = g_list_nth_data (latexila.all_docs, i);
 		gtk_source_view_set_show_line_numbers (
 				GTK_SOURCE_VIEW (doc->source_view), show);
 	}
@@ -210,25 +213,59 @@ cb_line_numbers (GtkToggleAction *action, gpointer user_data)
 void
 cb_latex (void)
 {
-	run_compilation ("latex -interaction=nonstopmode");
+	action_t *action = g_malloc (sizeof (action_t));
+	action->title = g_strdup (_("Compile (latex)"));
+	action->command = g_strdup_printf ("latex -interaction=nonstopmode %s",
+			latexila.active_doc->path);
+	action->command_output = NULL;
+
+	latexila.all_actions = g_list_append (latexila.all_actions, action);
+	latexila.active_action = action;
+
+	run_compilation (action);
 }
 
 void
 cb_pdflatex (void)
 {
-	run_compilation ("pdflatex -interaction=nonstopmode");
+	action_t *action = g_malloc (sizeof (action_t));
+	action->title = g_strdup (_("Compile (pdflatex)"));
+	action->command = g_strdup_printf ("pdflatex -interaction=nonstopmode %s",
+			latexila.active_doc->path);
+	action->command_output = NULL;
+
+	latexila.all_actions = g_list_append (latexila.all_actions, action);
+	latexila.active_action = action;
+
+	run_compilation (action);
 }
 
 void
 cb_view_dvi (void)
 {
-	view_document ("DVI", ".dvi");
+	action_t *action = g_malloc (sizeof (action_t));
+	action->title = g_strdup (_("View DVI"));
+	action->command = NULL;
+	action->command_output = NULL;
+
+	latexila.all_actions = g_list_append (latexila.all_actions, action);
+	latexila.active_action = action;
+
+	view_document (action, ".dvi");
 }
 
 void
 cb_view_pdf (void)
 {
-	view_document ("PDF", ".pdf");
+	action_t *action = g_malloc (sizeof (action_t));
+	action->title = g_strdup (_("View PDF"));
+	action->command = NULL;
+	action->command_output = NULL;
+
+	latexila.all_actions = g_list_append (latexila.all_actions, action);
+	latexila.active_action = action;
+
+	view_document (action, ".pdf");
 }
 
 void
@@ -250,7 +287,7 @@ cb_about_dialog (void)
 	};
 
 	gtk_show_about_dialog (
-			docs.main_window,
+			latexila.main_window,
 			"program-name", PROGRAM_NAME,
 			"authors", authors,
 			"comments", comments,
@@ -267,9 +304,9 @@ cb_about_dialog (void)
 void
 cb_text_changed (GtkWidget *widget, gpointer user_data)
 {
-	if (docs.active != NULL)
+	if (latexila.active_doc != NULL)
 	{
-		docs.active->saved = FALSE;
+		latexila.active_doc->saved = FALSE;
 		set_title ();
 		set_undo_redo_sensitivity ();
 	}
@@ -278,7 +315,7 @@ cb_text_changed (GtkWidget *widget, gpointer user_data)
 void
 cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, gpointer user_data)
 {
-	docs.active = g_list_nth_data (docs.all, page_num);
+	latexila.active_doc = g_list_nth_data (latexila.all_docs, page_num);
 	set_undo_redo_sensitivity ();
 }
 
@@ -299,14 +336,16 @@ create_document_in_new_tab (gchar *path, gchar *text, gchar *title)
 	new_doc->source_buffer = gtk_source_buffer_new (NULL);
 	new_doc->source_view = gtk_source_view_new_with_buffer (new_doc->source_buffer);
 
-	docs.all = g_list_append (docs.all, new_doc);
-	docs.active = new_doc;
+	latexila.all_docs = g_list_append (latexila.all_docs, new_doc);
+	latexila.active_doc = new_doc;
+
+	GtkSourceLanguageManager *lm = gtk_source_language_manager_get_default ();
 
 	// set the language for the syntaxic color
 	if (path != NULL)
 	{
 		GtkSourceLanguage *lang = gtk_source_language_manager_guess_language (
-				docs.lm, path, NULL);
+				lm, path, NULL);
 		if (lang != NULL)
 			gtk_source_buffer_set_language (new_doc->source_buffer, lang);
 		else
@@ -317,7 +356,7 @@ create_document_in_new_tab (gchar *path, gchar *text, gchar *title)
 	else
 	{
 		GtkSourceLanguage *lang = gtk_source_language_manager_get_language (
-				docs.lm, "latex");
+				lm, "latex");
 		gtk_source_buffer_set_language (new_doc->source_buffer, lang);
 	}
 
@@ -362,8 +401,8 @@ create_document_in_new_tab (gchar *path, gchar *text, gchar *title)
 	gtk_box_pack_start (GTK_BOX (hbox), close_button, FALSE, FALSE, 0);
 	gtk_widget_show_all (hbox);
 
-	gint index = gtk_notebook_append_page (docs.notebook, sw, hbox);
-	gtk_notebook_set_current_page (docs.notebook, index);
+	gint index = gtk_notebook_append_page (latexila.notebook, sw, hbox);
+	gtk_notebook_set_current_page (latexila.notebook, index);
 	
 	set_undo_redo_sensitivity ();
 }
@@ -371,15 +410,15 @@ create_document_in_new_tab (gchar *path, gchar *text, gchar *title)
 static void
 close_document (gint index)
 {
-	if (docs.active != NULL)
+	if (latexila.active_doc != NULL)
 	{
 		/* if the document is not saved, ask the user for saving changes before
 		 * closing */
-		if (! docs.active->saved)
+		if (! latexila.active_doc->saved)
 		{
 			GtkWidget *dialog = gtk_dialog_new_with_buttons (
 					_("Close the document"),
-					docs.main_window,
+					latexila.main_window,
 					GTK_DIALOG_MODAL,
 					GTK_STOCK_YES, GTK_RESPONSE_YES,
 					GTK_STOCK_NO, GTK_RESPONSE_NO,
@@ -411,15 +450,15 @@ close_document (gint index)
 		}
 
 		/* close the tab */
-		docs.all = g_list_remove (docs.all, docs.active);
-		if (docs.active->path != NULL)
+		latexila.all_docs = g_list_remove (latexila.all_docs, latexila.active_doc);
+		if (latexila.active_doc->path != NULL)
 		{
-			print_info ("close the file \"%s\"", docs.active->path);
-			g_free (docs.active->path);
+			print_info ("close the file \"%s\"", latexila.active_doc->path);
+			g_free (latexila.active_doc->path);
 		}
-		g_free (docs.active);
+		g_free (latexila.active_doc);
 
-		gtk_notebook_remove_page (docs.notebook, index);
+		gtk_notebook_remove_page (latexila.notebook, index);
 	}
 
 	else
@@ -431,7 +470,7 @@ save_as_dialog (void)
 {
 	GtkWidget *dialog = gtk_file_chooser_dialog_new (
 			_("Save File"),
-			docs.main_window,
+			latexila.main_window,
 			GTK_FILE_CHOOSER_ACTION_SAVE,
 			GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 			GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
@@ -439,7 +478,7 @@ save_as_dialog (void)
 	);
 
 	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
-		docs.active->path = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+		latexila.active_doc->path = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
 
 	gtk_widget_destroy (dialog);
 }
@@ -447,14 +486,14 @@ save_as_dialog (void)
 static void
 file_save (void)
 {
-	if (docs.active->path != NULL)
+	if (latexila.active_doc->path != NULL)
 	{
-		print_info ("save current buffer to \"%s\"", docs.active->path);
+		print_info ("save current buffer to \"%s\"", latexila.active_doc->path);
 
-		FILE* file = fopen (docs.active->path, "w");
+		FILE* file = fopen (latexila.active_doc->path, "w");
 		if (file != NULL)
 		{
-			GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (docs.active->source_buffer);
+			GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
 			GtkTextIter start;
 			GtkTextIter end;
 			gtk_text_buffer_get_bounds (text_buffer, &start, &end);
@@ -468,14 +507,14 @@ file_save (void)
 			g_free (contents);
 			g_free (locale);
 
-			docs.active->saved = TRUE;
+			latexila.active_doc->saved = TRUE;
 		}
 
 		// error with fopen
 		else
 		{
 			print_warning ("impossible to save the file \"%s\"",
-					docs.active->path);
+					latexila.active_doc->path);
 		}
 	}
 }
@@ -483,12 +522,12 @@ file_save (void)
 static gboolean
 close_all (void)
 {
-	while (docs.active != NULL)
+	while (latexila.active_doc != NULL)
 	{
-		int tmp = gtk_notebook_get_n_pages (docs.notebook);
-		gtk_notebook_set_current_page (docs.notebook, 0);
+		int tmp = gtk_notebook_get_n_pages (latexila.notebook);
+		gtk_notebook_set_current_page (latexila.notebook, 0);
 		cb_close ();
-		if (gtk_notebook_get_n_pages (docs.notebook) >= tmp)
+		if (gtk_notebook_get_n_pages (latexila.notebook) >= tmp)
 			return FALSE;
 	}
 
@@ -498,22 +537,22 @@ close_all (void)
 static void
 set_title (void)
 {
-	if (docs.active)
+	if (latexila.active_doc)
 	{
 		gchar *tmp;
 		gchar *title;
 
-		if (docs.active->path != NULL)
-			tmp = g_path_get_basename (docs.active->path);
+		if (latexila.active_doc->path != NULL)
+			tmp = g_path_get_basename (latexila.active_doc->path);
 		else
 			tmp = g_strdup (_("New document"));
 
-		if (docs.active->saved)
+		if (latexila.active_doc->saved)
 			title = g_strdup (tmp);
 		else
 			title = g_strdup_printf ("*%s", tmp);
 
-		gtk_label_set_text (GTK_LABEL (docs.active->title), title);
+		gtk_label_set_text (GTK_LABEL (latexila.active_doc->title), title);
 
 		g_free (tmp);
 		g_free (title);
@@ -526,121 +565,134 @@ set_undo_redo_sensitivity (void)
 	gboolean can_undo = FALSE;
 	gboolean can_redo = FALSE;
 
-	if (docs.active != NULL)
+	if (latexila.active_doc != NULL)
 	{
-		can_undo = gtk_source_buffer_can_undo (docs.active->source_buffer);
-		can_redo = gtk_source_buffer_can_redo (docs.active->source_buffer);
+		can_undo = gtk_source_buffer_can_undo (latexila.active_doc->source_buffer);
+		can_redo = gtk_source_buffer_can_redo (latexila.active_doc->source_buffer);
 	}
 
-	gtk_action_set_sensitive (docs.undo, can_undo);
-	gtk_action_set_sensitive (docs.redo, can_redo);
+	gtk_action_set_sensitive (latexila.undo, can_undo);
+	gtk_action_set_sensitive (latexila.redo, can_redo);
 }
 
 static void
-run_compilation (gchar *command)
+run_compilation (action_t *action)
 {
-	if (docs.active != NULL)
+	if (latexila.active_doc != NULL)
 	{
-		GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (docs.log);
-
 		// the current document is a *.tex file?
-		gboolean tex_file = g_regex_match_simple ("\\.tex$", docs.active->path, 0, 0);
+		gboolean tex_file = g_regex_match_simple ("\\.tex$", latexila.active_doc->path, 0, 0);
 		if (! tex_file)
 		{
-			gchar *text = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
-					g_path_get_basename (docs.active->path));
-
-			gtk_text_buffer_set_text (log_buffer, text, -1);
-			g_free (text);
+			action->command_output = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
+					g_path_get_basename (latexila.active_doc->path));
+			print_log (action);
 			return;
 		}
 
 		// run the command in the directory where the .tex is
 		gchar *dir_backup = g_get_current_dir ();
-		gchar *dir = g_path_get_dirname (docs.active->path);
+		gchar *dir = g_path_get_dirname (latexila.active_doc->path);
 		g_chdir (dir);
-		gchar *full_command = g_strdup_printf ("%s %s", command, docs.active->path);
-		gchar *output;
+		//gchar *full_command = g_strdup_printf ("%s %s", command, latexila.active_doc->path);
 		GError *error = NULL;
 
-		print_info ("execution of the command: %s", full_command);
+		print_info ("execution of the command: %s", action->command);
 		
-		g_spawn_command_line_sync (full_command, &output, NULL, NULL, &error);
+		g_spawn_command_line_sync (action->command, &(action->command_output), NULL, NULL, &error);
 		g_chdir (dir_backup);
 		
 		// an error occured
 		if (error != NULL)
 		{
-			print_warning ("execution failed: %s", error->message);
+			action->command_output = g_strdup_printf (_("execution failed: %s"),
+					error->message);
 			g_error_free (error);
 		}
 
-		// show the message of the command
-		else
-			gtk_text_buffer_set_text (log_buffer, output, -1);
+		print_log (action);
 
 		g_free (dir_backup);
 		g_free (dir);
-		g_free (full_command);
-		g_free (output);
 	}
 }
 
 static void
-view_document (gchar *doc_type, gchar *doc_extension)
+view_document (action_t *action, gchar *doc_extension)
 {
-	if (docs.active != NULL)
+	if (latexila.active_doc != NULL)
 	{
-		GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (docs.log);
-
 		GError *error = NULL;
 		GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
 
+		// replace .tex by .pdf
+		gchar *doc_path = g_regex_replace_literal (regex, latexila.active_doc->path,
+				-1, 0, doc_extension, 0, NULL);
+
+		action->command = g_strdup_printf ("evince %s", doc_path);
+
 		// the current document is a *.tex file?
-		gboolean tex_file = g_regex_match (regex, docs.active->path, 0, NULL);
+		gboolean tex_file = g_regex_match (regex, latexila.active_doc->path, 0, NULL);
 		if (! tex_file)
 		{
-			gchar *text = g_strdup_printf (_("view %s failed: %s is not a *.tex file"),
-					doc_type, g_path_get_basename (docs.active->path));
+			action->command_output = g_strdup_printf (_("failed: %s is not a *.tex file"),
+					g_path_get_basename (latexila.active_doc->path));
 
-			gtk_text_buffer_set_text (log_buffer, text, -1);
-			g_free (text);
+			print_log (action);
 			g_regex_unref (regex);
 			return;
 		}
 
-		// replace .tex by .pdf
-		gchar *doc_path = g_regex_replace_literal (regex, docs.active->path,
-				-1, 0, doc_extension, 0, NULL);
-
 		// the document (PDF, DVI, ...) file exist?
 		if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
 		{
-			gchar *text = g_strdup_printf (
+			action->command_output = g_strdup_printf (
 					_("%s does not exist. If this is not already made, compile the document with the right command."),
 					g_path_get_basename (doc_path));
-			
-			gtk_text_buffer_set_text (log_buffer, text, -1);
-			g_free (text);
+
+			print_log (action);
 			g_free (doc_path);
 			g_regex_unref (regex);
 			return;
 		}
 
 		// run the command
-		gchar *command = g_strdup_printf ("evince %s", doc_path);
-		print_info ("execution of the command: %s", command);
-		g_spawn_command_line_async (command, &error);
+		print_info ("execution of the command: %s", action->command);
+		g_spawn_command_line_async (action->command, &error);
 
 		if (error != NULL)
 		{
-			print_warning ("execution failed: %s", error->message);
+			action->command_output = g_strdup_printf (_("execution failed: %s"),
+					error->message);
 			g_error_free (error);
 		}
+		else
+			action->command_output = g_strdup ("OK");
+
+		print_log (action);
 
 		g_regex_unref (regex);
 		g_free (doc_path);
-		g_free (command);
+	}
+}
+
+void
+free_actions (void)
+{
+	while (latexila.active_action != NULL)
+	{
+		action_t *action = latexila.active_action;
+		latexila.all_actions = g_list_remove (latexila.all_actions, action);
+
+		if (action->title != NULL)
+			g_free (action->title);
+		if (action->command != NULL)
+			g_free (action->command);
+		if (action->command_output != NULL)
+			g_free (action->command_output);
+		g_free (action);
+		
+		latexila.active_action = g_list_nth_data (latexila.all_actions, 0);
 	}
 }
 

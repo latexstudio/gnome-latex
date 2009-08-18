@@ -9,9 +9,9 @@
 
 #include "main.h"
 #include "callbacks.h"
-#include "error.h"
+#include "print.h"
 
-docs_t docs = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}; 
+latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}; 
 
 int
 main (int argc, char *argv[])
@@ -31,7 +31,7 @@ main (int argc, char *argv[])
 	gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
 
-	docs.main_window = GTK_WINDOW (window);
+	latexila.main_window = GTK_WINDOW (window);
 
 	/* boxes */
 	GtkWidget *main_vbox = gtk_vbox_new (FALSE, 0);
@@ -122,12 +122,13 @@ main (int argc, char *argv[])
 			gtk_ui_manager_get_accel_group (ui_manager));
 
 	// get actions
-	docs.undo = gtk_ui_manager_get_action (ui_manager, "/MainMenu/Edit/Undo");
-	docs.redo = gtk_ui_manager_get_action (ui_manager, "/MainMenu/Edit/Redo");
+	latexila.undo = gtk_ui_manager_get_action (ui_manager, "/MainMenu/Edit/Undo");
+	latexila.redo = gtk_ui_manager_get_action (ui_manager, "/MainMenu/Edit/Redo");
 
 
 	/* vertical pane for the source view and the log zone */
 	GtkWidget *vpaned = gtk_vpaned_new ();
+	gtk_paned_set_position (GTK_PANED (vpaned), 380);
 	gtk_box_pack_start (GTK_BOX (main_vbox), vpaned, TRUE, TRUE, 0);
 
 	/* source view with tabs */
@@ -135,12 +136,33 @@ main (int argc, char *argv[])
 	g_signal_connect (G_OBJECT (notebook), "switch-page",
 			G_CALLBACK (cb_page_change), NULL);
 	gtk_paned_pack1 (GTK_PANED (vpaned), notebook, TRUE, TRUE);
-	docs.notebook = GTK_NOTEBOOK (notebook);
-
-	docs.lm = gtk_source_language_manager_get_default ();
+	latexila.notebook = GTK_NOTEBOOK (notebook);
 
 	/* log zone */
-	//TODO set a default height
+	//TODO set default height and width
+	GtkWidget *hpaned = gtk_hpaned_new ();
+	gtk_paned_set_position (GTK_PANED (hpaned), 190);
+	gtk_paned_pack2 (GTK_PANED (vpaned), hpaned, TRUE, TRUE);
+
+	// actions list
+	GtkListStore *list_store = gtk_list_store_new (N_COLUMNS, G_TYPE_STRING);
+	latexila.list_store = list_store;
+	
+	GtkWidget *list_view = gtk_tree_view_new_with_model (
+			GTK_TREE_MODEL (list_store));
+	GtkCellRenderer *renderer = gtk_cell_renderer_text_new ();
+	GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes (
+			"Actions", renderer, "text", COLUMN_ACTION_TITLE, NULL);	
+	gtk_tree_view_append_column (GTK_TREE_VIEW (list_view), column);
+
+	// with a scrollbar
+	GtkWidget *sw1 = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw1),
+			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_paned_pack1 (GTK_PANED (hpaned), sw1, TRUE, TRUE);
+	gtk_container_add (GTK_CONTAINER (sw1), list_view);
+	
+	// log details
 	GtkWidget *log_view = gtk_text_view_new ();
 	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (
 			GTK_TEXT_VIEW (log_view));
@@ -148,13 +170,16 @@ main (int argc, char *argv[])
 	gtk_text_view_set_editable (GTK_TEXT_VIEW(log_view), FALSE);
 	
 	// with a scrollbar
-	GtkWidget *sw = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+	GtkWidget *sw2 = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw2),
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_paned_pack2 (GTK_PANED (vpaned), sw, TRUE, TRUE);
-	gtk_container_add (GTK_CONTAINER (sw), log_view);
+	gtk_paned_pack2 (GTK_PANED (hpaned), sw2, TRUE, TRUE);
+	gtk_container_add (GTK_CONTAINER (sw2), log_view);
 
-	docs.log = GTK_TEXT_VIEW (log_view);
+	latexila.log = GTK_TEXT_VIEW (log_view);
+
+	// tags
+	gtk_text_buffer_create_tag (log_buffer, "bold", "font", "bold", NULL);
 
 	/* statusbar */
 	GtkWidget *statusbar = gtk_statusbar_new ();
