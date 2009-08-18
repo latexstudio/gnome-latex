@@ -15,6 +15,7 @@ typedef struct
 	gboolean saved;
 	GtkWidget *source_view;
 	GtkSourceBuffer *source_buffer;
+	GtkWidget *title;
 } document_t;
 
 typedef struct

@@ -13,7 +13,8 @@
 #include "callbacks.h"
 #include "error.h"
 
-static void create_document_in_new_tab (gchar *path, gchar *text, GtkWidget *label);
+static void create_document_in_new_tab (gchar *path, gchar *text, gchar *title);
+static void close_document (gint index);
 static void save_as_dialog (void);
 static void file_save (void);
 static gboolean close_all (void);
@@ -28,9 +29,8 @@ cb_new (void)
 	char *default_text = "\\documentclass[a4paper,11pt]{article}\n"
 		"\\begin{document}\n"
 		"\\end{document}";
-	GtkWidget *label = gtk_label_new (_("New document"));
 
-	create_document_in_new_tab (NULL, default_text, label);
+	create_document_in_new_tab (NULL, default_text, _("New document"));
 }
 
 void
@@ -55,8 +55,8 @@ cb_open (void)
 			// convert the text to UTF-8
 			gchar *text_utf8 = g_locale_to_utf8 (contents, -1, NULL, NULL, NULL);
 
-			GtkWidget *label = gtk_label_new (g_path_get_basename (filename));
-			create_document_in_new_tab (filename, text_utf8, label);
+			create_document_in_new_tab (filename, text_utf8,
+					g_path_get_basename (filename));
 			g_free (contents);
 			g_free (text_utf8);
 		}
@@ -112,52 +112,9 @@ cb_close (void)
 {
 	if (docs.active != NULL)
 	{
-		/* if the document is not saved, ask the user for saving changes before
-		 * closing */
-		if (! docs.active->saved)
-		{
-			GtkWidget *dialog = gtk_dialog_new_with_buttons (
-					_("Close the document"),
-					docs.main_window,
-					GTK_DIALOG_MODAL,
-					GTK_STOCK_YES, GTK_RESPONSE_YES,
-					GTK_STOCK_NO, GTK_RESPONSE_NO,
-					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-					NULL
-			);
-			GtkWidget *label = gtk_label_new (_("Save changes to document before closing?"));
-			gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), label, TRUE, FALSE, 10);
-			gtk_widget_show_all (GTK_DIALOG (dialog)->vbox);
+		gint index = gtk_notebook_get_current_page (docs.notebook);
+		close_document (index);
 
-			switch (gtk_dialog_run (GTK_DIALOG (dialog)))
-			{
-				// save changes before closing
-				case GTK_RESPONSE_YES:
-					cb_save ();
-					break;
-
-				// close the document without saving changes
-				case GTK_RESPONSE_NO:
-					break;
-				
-				// do nothing, the document is not closed
-				case GTK_RESPONSE_CANCEL:
-					gtk_widget_destroy (dialog);
-					return;
-			}
-
-			gtk_widget_destroy (dialog);
-		}
-
-		/* close the tab */
-		docs.all = g_list_remove (docs.all, docs.active);
-		if (docs.active->path != NULL)
-		{
-			print_info ("close the file \"%s\"", docs.active->path);
-			g_free (docs.active->path);
-		}
-		g_free (docs.active);
-		gtk_notebook_remove_page (docs.notebook, gtk_notebook_get_current_page (docs.notebook));
 		if (gtk_notebook_get_n_pages (docs.notebook) > 0)
 			docs.active = g_list_nth_data (docs.all, gtk_notebook_get_current_page (docs.notebook));
 		else
@@ -168,6 +125,34 @@ cb_close (void)
 
 	else
 		print_warning ("no document opened");
+}
+
+void
+cb_close_tab (GtkWidget *widget, GtkWidget *child)
+{
+	document_t *doc_backup = docs.active;
+	gint page_to_close = gtk_notebook_page_num (docs.notebook, child);
+	docs.active = g_list_nth_data (docs.all, page_to_close);
+
+	// the document to close is the current document
+	if (docs.active == doc_backup)
+	{
+		close_document (page_to_close);
+
+		if (gtk_notebook_get_n_pages (docs.notebook) > 0)
+			docs.active = g_list_nth_data (docs.all, gtk_notebook_get_current_page (docs.notebook));
+		else
+			docs.active = NULL;
+
+		set_undo_redo_sensitivity ();
+	}
+
+	// the document to close is not the current document
+	else
+	{
+		close_document (page_to_close);
+		docs.active = doc_backup;
+	}
 }
 
 void
@@ -302,7 +287,7 @@ cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, gp
  *****************************/
 
 static void
-create_document_in_new_tab (gchar *path, gchar *text, GtkWidget *label)
+create_document_in_new_tab (gchar *path, gchar *text, gchar *title)
 {
 	// create a new document_t structure
 	// if path = NULL, this is a new document
@@ -360,10 +345,85 @@ create_document_in_new_tab (gchar *path, gchar *text, GtkWidget *label)
 	gtk_widget_show_all (sw);
 
 	// add the new document in a new tab
-	gint index = gtk_notebook_append_page (docs.notebook, sw, label);
-	gtk_notebook_set_current_page (docs.notebook, index);
+	// TODO set height
+	GtkWidget *hbox = gtk_hbox_new (FALSE, 3);
 
+	GtkWidget *label = gtk_label_new (title);
+	new_doc->title = label;
+	gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
+
+	GtkWidget *close_button = gtk_button_new ();
+	gtk_button_set_relief (GTK_BUTTON (close_button), GTK_RELIEF_NONE);
+	GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
+	gtk_container_add (GTK_CONTAINER (close_button), image);
+	g_signal_connect (G_OBJECT (close_button), "clicked",
+			G_CALLBACK (cb_close_tab), sw);
+
+	gtk_box_pack_start (GTK_BOX (hbox), close_button, FALSE, FALSE, 0);
+	gtk_widget_show_all (hbox);
+
+	gint index = gtk_notebook_append_page (docs.notebook, sw, hbox);
+	gtk_notebook_set_current_page (docs.notebook, index);
+	
 	set_undo_redo_sensitivity ();
+}
+
+static void
+close_document (gint index)
+{
+	if (docs.active != NULL)
+	{
+		/* if the document is not saved, ask the user for saving changes before
+		 * closing */
+		if (! docs.active->saved)
+		{
+			GtkWidget *dialog = gtk_dialog_new_with_buttons (
+					_("Close the document"),
+					docs.main_window,
+					GTK_DIALOG_MODAL,
+					GTK_STOCK_YES, GTK_RESPONSE_YES,
+					GTK_STOCK_NO, GTK_RESPONSE_NO,
+					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+					NULL
+			);
+			GtkWidget *label = gtk_label_new (_("Save changes to document before closing?"));
+			gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), label, TRUE, FALSE, 10);
+			gtk_widget_show_all (GTK_DIALOG (dialog)->vbox);
+
+			switch (gtk_dialog_run (GTK_DIALOG (dialog)))
+			{
+				// save changes before closing
+				case GTK_RESPONSE_YES:
+					cb_save ();
+					break;
+
+				// close the document without saving changes
+				case GTK_RESPONSE_NO:
+					break;
+				
+				// do nothing, the document is not closed
+				case GTK_RESPONSE_CANCEL:
+					gtk_widget_destroy (dialog);
+					return;
+			}
+
+			gtk_widget_destroy (dialog);
+		}
+
+		/* close the tab */
+		docs.all = g_list_remove (docs.all, docs.active);
+		if (docs.active->path != NULL)
+		{
+			print_info ("close the file \"%s\"", docs.active->path);
+			g_free (docs.active->path);
+		}
+		g_free (docs.active);
+
+		gtk_notebook_remove_page (docs.notebook, index);
+	}
+
+	else
+		print_warning ("no document opened");
 }
 
 static void
@@ -453,13 +513,9 @@ set_title (void)
 		else
 			title = g_strdup_printf ("*%s", tmp);
 
+		gtk_label_set_text (GTK_LABEL (docs.active->title), title);
+
 		g_free (tmp);
-
-		gint index = gtk_notebook_get_current_page (docs.notebook);
-		GtkWidget *child = gtk_notebook_get_nth_page (docs.notebook, index);
-		GtkLabel *label = GTK_LABEL (gtk_notebook_get_tab_label (docs.notebook, child));
-		gtk_label_set_text (label, title);
-
 		g_free (title);
 	}
 }

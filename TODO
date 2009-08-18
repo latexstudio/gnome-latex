@@ -1,27 +1,39 @@
 TODO LaTeXila
 
-Jul 31, 2009 to Aug 7, 2009
+Tue Aug 18, 2009 to Mon Aug 24, 2009
 
-[x] about dialog
+[x] tabs with close buttons
 
-[-] files
-	x open
-	x save 
-	x save as
-	x new
-	x close
-	x tabs
-	x change title of tabs
-	- tabs with close buttons
+[-] log zone
+	- horizontal pane
+	  left: list with an history of the actions numbered
+	  right: details of the action selected
+	- function print_log ()
+	- default height and width
 
-[x] GtkSourceView
-	x syntaxic color
-	x show/hide line numbers
-	x undo/redo
-	x font monospace
+[-] statusbar
+	- function print_statusbar ()
+	- write some text in the statusbar
+	- show which line and which column the cursor is
 
-[x] compile and view
-	x compile (pdflatex)
-	x view PDF
-	x compile (latex)
-	x view DVI
+[-] icons: PDF, DVI, ...
+
+[-] DVI to PDF, DVI to PS
+
+
+Tue Aug 25, 2009 to Mon Aug 31, 2009
+
+[-] files recently opened (in the File menu)
+
+[-] search and replace
+
+[-] CMake
+
+[-] French translation
+
+[-] apply the GPL
+
+[-] GNOME integration
+	- open *.tex file with LaTeXila
+
+[-] ubuntu package

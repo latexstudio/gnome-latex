@@ -6,6 +6,7 @@ void cb_open (void);
 void cb_save (void);
 void cb_save_as (void);
 void cb_close (void);
+void cb_close_tab (GtkWidget *widget, GtkWidget *child);
 void cb_quit (void);
 void cb_undo (void);
 void cb_redo (void);

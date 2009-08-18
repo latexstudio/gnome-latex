@@ -43,8 +43,8 @@ main (int argc, char *argv[])
 	// name, stock_id, label, accelerator, tooltip, callback
 	// the names come from the XML file
 	//
-	//TODO try to place "entries" out of the main function without errors
-	//because of gettext (the _() macro)
+	// TODO try to place "entries" out of the main function without errors
+	// because of gettext (the _() macro)
 	GtkActionEntry entries[] =
 	{
 		{"File", NULL, _("File"), NULL, NULL, NULL},
@@ -137,8 +137,7 @@ main (int argc, char *argv[])
 	gtk_paned_pack1 (GTK_PANED (vpaned), notebook, TRUE, TRUE);
 	docs.notebook = GTK_NOTEBOOK (notebook);
 
-	GtkSourceLanguageManager *lm = gtk_source_language_manager_get_default ();
-	docs.lm = lm;
+	docs.lm = gtk_source_language_manager_get_default ();
 
 	/* log zone */
 	//TODO set a default height
