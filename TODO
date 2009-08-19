@@ -5,11 +5,14 @@ Tue Aug 18, 2009 to Mon Aug 24, 2009
 [x] tabs with close buttons
 
 [-] log zone
-	- horizontal pane
+	x horizontal pane
 	  left: list with an history of the actions numbered
 	  right: details of the action selected
 	x function print_log ()
 	x default height and width
+	- text in red when it's an error
+
+[-] files recently opened (in the File menu)
 
 [-] statusbar
 	- function print_statusbar ()
@@ -23,9 +26,11 @@ Tue Aug 18, 2009 to Mon Aug 24, 2009
 
 Tue Aug 25, 2009 to Mon Aug 31, 2009
 
-[-] files recently opened (in the File menu)
-
 [-] search and replace
+
+[-] Preferences
+	- commands
+	- source code font
 
 [-] CMake
 

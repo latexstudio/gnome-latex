@@ -2,21 +2,12 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourceview.h>
-
-#include "main.h"
 
 void
-print_log (action_t *action)
+print_log (GtkTextView *log, gchar *title, gchar *command,
+		gchar *command_output)
 {
-	/* append an entry to the action list */
-	GtkTreeIter iter;
-	gtk_list_store_append (latexila.list_store, &iter);
-	gtk_list_store_set (latexila.list_store, &iter, COLUMN_ACTION_TITLE,
-			action->title, -1);
-
-	/* show the details */
-	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (latexila.log);
+	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (log);
 	gtk_text_buffer_set_text (log_buffer, "", -1);
 
 	GtkTextIter end;
@@ -24,17 +15,17 @@ print_log (action_t *action)
 	// title (in bold)
 	gtk_text_buffer_get_end_iter (log_buffer, &end);
 	gtk_text_buffer_insert_with_tags_by_name (log_buffer, &end,
-			action->title, -1, "bold", NULL);
+			title, -1, "bold", NULL);
 
 	// command
 	gtk_text_buffer_get_end_iter (log_buffer, &end);
-	gchar *command = g_strdup_printf ("\n$ %s\n", action->command);
-	gtk_text_buffer_insert (log_buffer, &end, command, -1);
-	g_free (command);
+	gchar *command2 = g_strdup_printf ("\n$ %s\n", command);
+	gtk_text_buffer_insert (log_buffer, &end, command2, -1);
+	g_free (command2);
 
 	// command output
 	gtk_text_buffer_get_end_iter (log_buffer, &end);
-	gtk_text_buffer_insert (log_buffer, &end, action->command_output, -1);
+	gtk_text_buffer_insert (log_buffer, &end, command_output, -1);
 }
 
 void

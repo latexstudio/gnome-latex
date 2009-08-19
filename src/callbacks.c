@@ -20,9 +20,10 @@ static void file_save (void);
 static gboolean close_all (void);
 static void set_title (void);
 static void set_undo_redo_sensitivity (void);
-static void run_compilation (action_t *action);
-static void view_document (action_t *action, gchar *doc_extension);
-static void free_actions (void);
+static void run_compilation (gchar *title, gchar *command);
+static void view_document (gchar *title, gchar *doc_extension);
+static void add_action (gchar *title, gchar *command, gchar *command_output);
+//static void free_actions (void);
 
 void
 cb_new (void)
@@ -162,7 +163,7 @@ cb_quit (void)
 {
 	if (close_all ())
 	{
-		free_actions ();
+		//free_actions ();
 		print_info ("Bye bye");
 		gtk_main_quit ();
 	}
@@ -187,7 +188,7 @@ cb_redo (void)
 }
 
 gboolean
-cb_delete_event (GtkWidget *widget, GdkEvent *event, gpointer data)
+cb_delete_event (GtkWidget *widget, GdkEvent *event, gpointer user_data)
 {
 	cb_quit ();
 
@@ -213,59 +214,52 @@ cb_line_numbers (GtkToggleAction *action, gpointer user_data)
 void
 cb_latex (void)
 {
-	action_t *action = g_malloc (sizeof (action_t));
-	action->title = g_strdup (_("Compile (latex)"));
-	action->command = g_strdup_printf ("latex -interaction=nonstopmode %s",
+	gchar *title = _("Compile (latex)");
+	gchar *command = g_strdup_printf ("latex -interaction=nonstopmode %s",
 			latexila.active_doc->path);
-	action->command_output = NULL;
 
-	latexila.all_actions = g_list_append (latexila.all_actions, action);
-	latexila.active_action = action;
-
-	run_compilation (action);
+	run_compilation (title, command);
+	g_free (command);
 }
 
 void
 cb_pdflatex (void)
 {
-	action_t *action = g_malloc (sizeof (action_t));
-	action->title = g_strdup (_("Compile (pdflatex)"));
-	action->command = g_strdup_printf ("pdflatex -interaction=nonstopmode %s",
+	gchar *title = _("Compile (pdflatex)");
+	gchar *command = g_strdup_printf ("pdflatex -interaction=nonstopmode %s",
 			latexila.active_doc->path);
-	action->command_output = NULL;
 
-	latexila.all_actions = g_list_append (latexila.all_actions, action);
-	latexila.active_action = action;
-
-	run_compilation (action);
+	run_compilation (title, command);
+	g_free (command);
 }
 
 void
 cb_view_dvi (void)
 {
-	action_t *action = g_malloc (sizeof (action_t));
-	action->title = g_strdup (_("View DVI"));
-	action->command = NULL;
-	action->command_output = NULL;
-
-	latexila.all_actions = g_list_append (latexila.all_actions, action);
-	latexila.active_action = action;
-
-	view_document (action, ".dvi");
+	view_document (_("View DVI"), ".dvi");
 }
 
 void
 cb_view_pdf (void)
 {
-	action_t *action = g_malloc (sizeof (action_t));
-	action->title = g_strdup (_("View PDF"));
-	action->command = NULL;
-	action->command_output = NULL;
+	view_document (_("View PDF"), ".pdf");
+}
 
-	latexila.all_actions = g_list_append (latexila.all_actions, action);
-	latexila.active_action = action;
-
-	view_document (action, ".pdf");
+void
+cb_action_list_changed (GtkTreeSelection *selection, gpointer user_data)
+{
+	GtkTreeIter iter;
+	GtkTreeModel *model;
+	if (gtk_tree_selection_get_selected (selection, &model, &iter))
+	{
+		gchar *title, *command, *command_output;
+		gtk_tree_model_get (model, &iter,
+				COLUMN_ACTION_TITLE, &title,
+				COLUMN_ACTION_COMMAND, &command,
+				COLUMN_ACTION_COMMAND_OUTPUT, &command_output,
+				-1);
+		print_log (latexila.log, title, command, command_output);
+	}
 }
 
 void
@@ -576,17 +570,21 @@ set_undo_redo_sensitivity (void)
 }
 
 static void
-run_compilation (action_t *action)
+run_compilation (gchar *title, gchar *command)
 {
 	if (latexila.active_doc != NULL)
 	{
+		gchar *command_output;
+
 		// the current document is a *.tex file?
 		gboolean tex_file = g_regex_match_simple ("\\.tex$", latexila.active_doc->path, 0, 0);
 		if (! tex_file)
 		{
-			action->command_output = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
+			command_output = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
 					g_path_get_basename (latexila.active_doc->path));
-			print_log (action);
+
+			add_action (title, command, command_output);
+			g_free (command_output);
 			return;
 		}
 
@@ -597,31 +595,34 @@ run_compilation (action_t *action)
 		//gchar *full_command = g_strdup_printf ("%s %s", command, latexila.active_doc->path);
 		GError *error = NULL;
 
-		print_info ("execution of the command: %s", action->command);
+		print_info ("execution of the command: %s", command);
 		
-		g_spawn_command_line_sync (action->command, &(action->command_output), NULL, NULL, &error);
+		g_spawn_command_line_sync (command, &command_output, NULL, NULL, &error);
 		g_chdir (dir_backup);
 		
 		// an error occured
 		if (error != NULL)
 		{
-			action->command_output = g_strdup_printf (_("execution failed: %s"),
+			command_output = g_strdup_printf (_("execution failed: %s"),
 					error->message);
 			g_error_free (error);
 		}
 
-		print_log (action);
+		add_action (title, command, command_output);
 
+		g_free (command_output);
 		g_free (dir_backup);
 		g_free (dir);
 	}
 }
 
 static void
-view_document (action_t *action, gchar *doc_extension)
+view_document (gchar *title, gchar *doc_extension)
 {
 	if (latexila.active_doc != NULL)
 	{
+		gchar *command, *command_output;
+
 		GError *error = NULL;
 		GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
 
@@ -629,16 +630,19 @@ view_document (action_t *action, gchar *doc_extension)
 		gchar *doc_path = g_regex_replace_literal (regex, latexila.active_doc->path,
 				-1, 0, doc_extension, 0, NULL);
 
-		action->command = g_strdup_printf ("evince %s", doc_path);
+		command = g_strdup_printf ("evince %s", doc_path);
 
 		// the current document is a *.tex file?
 		gboolean tex_file = g_regex_match (regex, latexila.active_doc->path, 0, NULL);
 		if (! tex_file)
 		{
-			action->command_output = g_strdup_printf (_("failed: %s is not a *.tex file"),
+			command_output = g_strdup_printf (_("failed: %s is not a *.tex file"),
 					g_path_get_basename (latexila.active_doc->path));
 
-			print_log (action);
+			add_action (title, command, command_output);
+			g_free (command);
+			g_free (command_output);
+			g_free (doc_path);
 			g_regex_unref (regex);
 			return;
 		}
@@ -646,36 +650,41 @@ view_document (action_t *action, gchar *doc_extension)
 		// the document (PDF, DVI, ...) file exist?
 		if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
 		{
-			action->command_output = g_strdup_printf (
+			command_output = g_strdup_printf (
 					_("%s does not exist. If this is not already made, compile the document with the right command."),
 					g_path_get_basename (doc_path));
 
-			print_log (action);
+			add_action (title, command, command_output);
+			g_free (command);
+			g_free (command_output);
 			g_free (doc_path);
 			g_regex_unref (regex);
 			return;
 		}
 
 		// run the command
-		print_info ("execution of the command: %s", action->command);
-		g_spawn_command_line_async (action->command, &error);
+		print_info ("execution of the command: %s", command);
+		g_spawn_command_line_async (command, &error);
 
 		if (error != NULL)
 		{
-			action->command_output = g_strdup_printf (_("execution failed: %s"),
+			command_output = g_strdup_printf (_("execution failed: %s"),
 					error->message);
 			g_error_free (error);
 		}
 		else
-			action->command_output = g_strdup ("OK");
+			command_output = g_strdup ("OK");
 
-		print_log (action);
+		add_action (title, command, command_output);
 
-		g_regex_unref (regex);
+		g_free (command);
+		g_free (command_output);
 		g_free (doc_path);
+		g_regex_unref (regex);
 	}
 }
 
+/*
 void
 free_actions (void)
 {
@@ -694,5 +703,34 @@ free_actions (void)
 		
 		latexila.active_action = g_list_nth_data (latexila.all_actions, 0);
 	}
+}
+*/
+
+static void
+add_action (gchar *title, gchar *command, gchar *command_output)
+{
+	static gint num = 1;
+	gchar *title2 = g_strdup_printf ("%d. %s", num, title);
+
+	// append an new entry to the action list
+	GtkTreeIter iter;
+	gtk_list_store_append (latexila.list_store, &iter);
+	gtk_list_store_set (latexila.list_store, &iter,
+			COLUMN_ACTION_TITLE, title2,
+			COLUMN_ACTION_COMMAND, command,
+			COLUMN_ACTION_COMMAND_OUTPUT, command_output,
+			-1);
+
+	// the new entry is selected
+	// cb_action_list_changed () is called, so the details are showed
+	gtk_tree_selection_select_iter (latexila.list_selection, &iter);
+
+	// scroll to the end
+	GtkTreePath *path = gtk_tree_model_get_path (
+			GTK_TREE_MODEL (latexila.list_store), &iter);
+	gtk_tree_view_scroll_to_cell (latexila.list_view, path, NULL, FALSE, 0, 0);
+
+	num++;
+	g_free (title2);
 }
 

@@ -11,32 +11,25 @@
 // each document opened is represented by a document_t structure
 typedef struct
 {
-	gchar		*path;
-	gboolean	saved;
-	GtkWidget	*source_view;
+	gchar			*path;
+	gboolean		saved;
+	GtkWidget		*source_view;
 	GtkSourceBuffer	*source_buffer;
-	GtkWidget	*title;
+	GtkWidget		*title;
 } document_t;
 
 typedef struct
 {
-	gchar *title;
-	gchar *command;
-	gchar *command_output;
-} action_t;
-
-typedef struct
-{
-	GList		*all_docs;
-	document_t	*active_doc;
-	GList		*all_actions;
-	action_t	*active_action;
-	GtkWindow	*main_window;
-	GtkNotebook	*notebook;
-	GtkListStore	*list_store;
-	GtkTextView	*log;
-	GtkAction	*undo;
-	GtkAction	*redo;
+	GList			*all_docs;
+	document_t		*active_doc;
+	GtkWindow		*main_window;
+	GtkNotebook		*notebook;
+	GtkListStore		*list_store;
+	GtkTreeView		*list_view;
+	GtkTreeSelection	*list_selection;
+	GtkTextView		*log;
+	GtkAction		*undo;
+	GtkAction		*redo;
 } latexila_t;
 
 // all the documents are accessible by the docs variable
@@ -46,7 +39,9 @@ extern latexila_t latexila;
 enum
 {
 	COLUMN_ACTION_TITLE,
-	N_COLUMNS
+	COLUMN_ACTION_COMMAND,
+	COLUMN_ACTION_COMMAND_OUTPUT,
+	N_COLUMNS_ACTION
 };
 
 #endif /* MAIN_H */
