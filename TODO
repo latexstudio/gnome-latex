@@ -12,7 +12,7 @@ Tue Aug 18, 2009 to Mon Aug 24, 2009
 	x default height and width
 	- text in red when it's an error
 
-[-] files recently opened (in the File menu)
+[x] files recently opened (in the File menu)
 
 [-] statusbar
 	- function print_statusbar ()
@@ -27,6 +27,8 @@ Tue Aug 18, 2009 to Mon Aug 24, 2009
 Tue Aug 25, 2009 to Mon Aug 31, 2009
 
 [-] search and replace
+
+[-] copy/cut/paste
 
 [-] Preferences
 	- commands

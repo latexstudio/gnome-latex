@@ -23,5 +23,6 @@ void cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page,
 gboolean cb_delete_event (GtkWidget *widget, GdkEvent *event,
 		gpointer user_data);
 void cb_line_numbers (GtkToggleAction *action, gpointer user_data);
+void cb_recent_item_activated (GtkRecentAction *action, gpointer user_data);
 
 #endif /* CALLBACKS_H */

@@ -94,10 +94,21 @@ main (int argc, char *argv[])
 	guint nb_entries = G_N_ELEMENTS (entries);
 	guint nb_toggle_entries = G_N_ELEMENTS (toggle_entries);
 
+	// recent document
+	GtkAction *recent = gtk_recent_action_new ("FileOpenRecent",
+			_("Open Recent"), _("Open recently used files"), NULL);
+	g_signal_connect (G_OBJECT (recent), "item-activated",
+			G_CALLBACK (cb_recent_item_activated), NULL);
+
+	GtkRecentFilter *filter = gtk_recent_filter_new ();
+	gtk_recent_filter_add_application (filter, "latexila");
+	gtk_recent_chooser_add_filter (GTK_RECENT_CHOOSER (recent), filter);
+
 	// create the action group and the ui manager
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
 	gtk_action_group_add_toggle_actions (action_group, toggle_entries, nb_toggle_entries, NULL);
+	gtk_action_group_add_action (action_group, recent);
 	GtkUIManager *ui_manager = gtk_ui_manager_new ();
 	gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
 

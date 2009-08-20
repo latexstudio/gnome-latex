@@ -13,7 +13,9 @@
 #include "callbacks.h"
 #include "print.h"
 
-static void create_document_in_new_tab (gchar *path, gchar *text, gchar *title);
+static void document_get_content (const gchar *filename, const gchar *uri);
+static void create_document_in_new_tab (const gchar *path, const gchar *text,
+		const gchar *title);
 static void close_document (gint index);
 static void save_as_dialog (void);
 static void file_save (void);
@@ -23,7 +25,6 @@ static void set_undo_redo_sensitivity (void);
 static void run_compilation (gchar *title, gchar *command);
 static void view_document (gchar *title, gchar *doc_extension);
 static void add_action (gchar *title, gchar *command, gchar *command_output);
-//static void free_actions (void);
 
 void
 cb_new (void)
@@ -49,23 +50,15 @@ cb_open (void)
 
 	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
 	{
-		gchar *filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-		print_info ("Open file: \"%s\"", filename);
-		gchar *contents = NULL;
-		if (g_file_get_contents (filename, &contents, NULL, NULL))
-		{
-			// convert the text to UTF-8
-			gchar *text_utf8 = g_locale_to_utf8 (contents, -1, NULL, NULL, NULL);
+		gchar *filename = gtk_file_chooser_get_filename (
+				GTK_FILE_CHOOSER (dialog));
+		gchar *uri = gtk_file_chooser_get_uri (
+				GTK_FILE_CHOOSER (dialog));
 
-			create_document_in_new_tab (filename, text_utf8,
-					g_path_get_basename (filename));
-			g_free (contents);
-			g_free (text_utf8);
-		}
-		else
-			print_warning ("impossible to open the file \"%s\"", filename);
+		document_get_content (filename, uri);
 
 		g_free (filename);
+		g_free (uri);
 	}
 	gtk_widget_destroy (dialog);
 }
@@ -163,7 +156,6 @@ cb_quit (void)
 {
 	if (close_all ())
 	{
-		//free_actions ();
 		print_info ("Bye bye");
 		gtk_main_quit ();
 	}
@@ -313,19 +305,53 @@ cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, gp
 	set_undo_redo_sensitivity ();
 }
 
+void
+cb_recent_item_activated (GtkRecentAction *action, gpointer user_data)
+{
+	GtkRecentChooser *chooser = GTK_RECENT_CHOOSER (action);
+	GtkRecentInfo *info = gtk_recent_chooser_get_current_item (chooser);
+	const gchar *filename = gtk_recent_info_get_uri_display (info);
+	const gchar *uri = gtk_recent_info_get_uri (info);
+
+	document_get_content (filename, uri);
+}
+
 /*****************************
  * local functions
  *****************************/
 
 static void
-create_document_in_new_tab (gchar *path, gchar *text, gchar *title)
+document_get_content (const gchar *filename, const gchar *uri)
+{
+	print_info ("Open file: \"%s\"", filename);
+
+	gchar *contents = NULL;
+	if (g_file_get_contents (filename, &contents, NULL, NULL))
+	{
+		// convert the text to UTF-8
+		gchar *text_utf8 = g_locale_to_utf8 (contents, -1, NULL, NULL, NULL);
+
+		create_document_in_new_tab (filename, text_utf8,
+				g_path_get_basename (filename));
+
+		GtkRecentManager *manager = gtk_recent_manager_get_default ();
+		gtk_recent_manager_add_item (manager, uri);
+
+		g_free (contents);
+		g_free (text_utf8);
+	}
+	else
+		print_warning ("impossible to open the file \"%s\"", filename);
+}
+
+static void
+create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *title)
 {
 	// create a new document_t structure
 	// if path = NULL, this is a new document
 	// else, the user opened a document
 	document_t *new_doc = g_malloc (sizeof (document_t));
 	new_doc->path = g_strdup (path);
-	//new_doc->saved = (path == NULL) ? FALSE : TRUE;
 	new_doc->saved = TRUE;
 	new_doc->source_buffer = gtk_source_buffer_new (NULL);
 	new_doc->source_view = gtk_source_view_new_with_buffer (new_doc->source_buffer);
@@ -684,28 +710,6 @@ view_document (gchar *title, gchar *doc_extension)
 	}
 }
 
-/*
-void
-free_actions (void)
-{
-	while (latexila.active_action != NULL)
-	{
-		action_t *action = latexila.active_action;
-		latexila.all_actions = g_list_remove (latexila.all_actions, action);
-
-		if (action->title != NULL)
-			g_free (action->title);
-		if (action->command != NULL)
-			g_free (action->command);
-		if (action->command_output != NULL)
-			g_free (action->command_output);
-		g_free (action);
-		
-		latexila.active_action = g_list_nth_data (latexila.all_actions, 0);
-	}
-}
-*/
-
 static void
 add_action (gchar *title, gchar *command, gchar *command_output)
 {
@@ -733,4 +737,5 @@ add_action (gchar *title, gchar *command, gchar *command_output)
 	num++;
 	g_free (title2);
 }
+
 
