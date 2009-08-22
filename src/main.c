@@ -13,6 +13,37 @@
 
 latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}; 
 
+static struct {     
+	gchar *filename;     
+	gchar *stock_id;     
+} stock_icons[] = {     
+	{DATA_DIR "/icons/compile_latex.png", "compile_latex"},
+	{DATA_DIR "/icons/compile_pdflatex.png", "compile_pdflatex"},
+	{DATA_DIR "/icons/view_dvi.png", "view_dvi"},
+	{DATA_DIR "/icons/view_pdf.png", "view_pdf"}
+};
+
+static gint n_stock_icons = G_N_ELEMENTS (stock_icons);
+
+static void     
+register_my_stock_icons (void)     
+{     
+	GtkIconFactory *icon_factory = gtk_icon_factory_new ();     
+
+	for (gint i = 0; i < n_stock_icons; i++)     
+	{     
+		GtkIconSet *icon_set = gtk_icon_set_new ();     
+		GtkIconSource *icon_source = gtk_icon_source_new ();     
+		gtk_icon_source_set_filename (icon_source, stock_icons[i].filename);     
+		gtk_icon_set_add_source (icon_set, icon_source);     
+		gtk_icon_source_free (icon_source);     
+		gtk_icon_factory_add (icon_factory, stock_icons[i].stock_id, icon_set);     
+		gtk_icon_set_unref (icon_set);     
+	}     
+	gtk_icon_factory_add_default (icon_factory);     
+	g_object_unref (icon_factory);     
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -22,6 +53,20 @@ main (int argc, char *argv[])
 	setlocale (LC_ALL, "");
 	bindtextdomain ("latexila", "/usr/share/locale");
 	textdomain ("latexila");
+
+	/* personal style */
+	// make the close buttons in tabs smaller
+	// we use gtk_widget_set_name (widget, "my-close-button") to apply this
+	// style
+	gtk_rc_parse_string (
+		"style \"my-button-style\"\n"
+		"{\n"
+		"  GtkWidget::focus-padding = 0\n"
+		"  GtkWidget::focus-line-width = 0\n"
+		"  xthickness = 0\n"
+		"  ythickness = 0\n"
+		"}\n"
+		"widget \"*.my-close-button\" style \"my-button-style\"");
 
 	/* main window */
 	GtkWidget *window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -38,6 +83,7 @@ main (int argc, char *argv[])
 	gtk_container_add (GTK_CONTAINER (window), main_vbox);
 
 	/* menubar and toolbar */
+	register_my_stock_icons ();
 	
 	// all the actions (for the menu and the toolbar)
 	// name, stock_id, label, accelerator, tooltip, callback
@@ -70,14 +116,16 @@ main (int argc, char *argv[])
 		{"View", NULL, _("View"), NULL, NULL, NULL},
 		
 		{"LaTeX", NULL, "LaTeX", NULL, NULL, NULL},
-		{"compile_latex", GTK_STOCK_EXECUTE, _("Compile (latex)"), "<Release>F5",
+		{"compile_latex", "compile_latex", _("Compile (latex)"), "<Release>F5",
 			_("Produce the document in DVI format"), G_CALLBACK (cb_latex)},
-		{"viewDVI", GTK_STOCK_FILE, _("View DVI"), "<Release>F6",
+		{"viewDVI", "view_dvi", _("View DVI"), "<Release>F6",
 			_("View the DVI file"), G_CALLBACK (cb_view_dvi)},
-		{"compile_pdflatex", GTK_STOCK_EXECUTE, _("Compile (pdflatex)"), "<Release>F7",
+		{"compile_pdflatex", "compile_pdflatex", _("Compile (pdflatex)"), "<Release>F7",
 			_("Produce the document in PDF format"), G_CALLBACK (cb_pdflatex)},
-		{"viewPDF", GTK_STOCK_FILE, _("View PDF"), "<Release>F8",
+		{"viewPDF", "view_pdf", _("View PDF"), "<Release>F8",
 			_("View the PDF file"), G_CALLBACK (cb_view_pdf)},
+		{"DVItoPDF", NULL, _("DVI to PDF"), NULL,
+			_("Convert the DVI document to the PDF format"), G_CALLBACK (cb_dvi_to_pdf)},
 		
 		{"Help", NULL, _("Help"), NULL, NULL, NULL},
 		{"HelpAbout", GTK_STOCK_ABOUT, _("About"), NULL,

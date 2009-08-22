@@ -32,6 +32,8 @@ In the code, GtkUIManager is used to construct them.
       <separator />
       <menuitem action="compile_pdflatex" />
       <menuitem action="viewPDF" />
+      <separator />
+      <menuitem action="DVItoPDF" />
     </menu>
     
     <menu action="Help">

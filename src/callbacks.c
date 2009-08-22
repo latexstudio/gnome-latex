@@ -238,6 +238,11 @@ cb_view_pdf (void)
 }
 
 void
+cb_dvi_to_pdf (void)
+{
+}
+
+void
 cb_action_list_changed (GtkTreeSelection *selection, gpointer user_data)
 {
 	GtkTreeIter iter;
@@ -412,6 +417,11 @@ create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *t
 	gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 
 	GtkWidget *close_button = gtk_button_new ();
+
+	// apply the style defined with gtk_rc_parse_string
+	// the button will be smaller
+	gtk_widget_set_name (close_button, "my-close-button");
+
 	gtk_button_set_relief (GTK_BUTTON (close_button), GTK_RELIEF_NONE);
 	GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
 	gtk_container_add (GTK_CONTAINER (close_button), image);
@@ -708,6 +718,11 @@ view_document (gchar *title, gchar *doc_extension)
 		g_free (doc_path);
 		g_regex_unref (regex);
 	}
+}
+
+static void
+convert_document (gchar *title, gchar *command)
+{
 }
 
 static void
