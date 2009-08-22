@@ -20,7 +20,10 @@ static struct {
 	{DATA_DIR "/icons/compile_latex.png", "compile_latex"},
 	{DATA_DIR "/icons/compile_pdflatex.png", "compile_pdflatex"},
 	{DATA_DIR "/icons/view_dvi.png", "view_dvi"},
-	{DATA_DIR "/icons/view_pdf.png", "view_pdf"}
+	{DATA_DIR "/icons/view_pdf.png", "view_pdf"},
+	{DATA_DIR "/icons/view_ps.png", "view_ps"},
+	{DATA_DIR "/icons/dvi_to_pdf.png", "dvi_to_pdf"},
+	{DATA_DIR "/icons/dvi_to_ps.png", "dvi_to_ps"}
 };
 
 static gint n_stock_icons = G_N_ELEMENTS (stock_icons);
@@ -124,8 +127,12 @@ main (int argc, char *argv[])
 			_("Produce the document in PDF format"), G_CALLBACK (cb_pdflatex)},
 		{"viewPDF", "view_pdf", _("View PDF"), "<Release>F8",
 			_("View the PDF file"), G_CALLBACK (cb_view_pdf)},
-		{"DVItoPDF", NULL, _("DVI to PDF"), NULL,
+		{"DVItoPDF", "dvi_to_pdf", _("DVI to PDF"), NULL,
 			_("Convert the DVI document to the PDF format"), G_CALLBACK (cb_dvi_to_pdf)},
+		{"DVItoPS", "dvi_to_ps", _("DVI to PS"), NULL,
+			_("Convert the DVI document to the PostScript format"), G_CALLBACK (cb_dvi_to_ps)},
+		{"viewPS", "view_ps", _("View PS"), NULL,
+			_("View the PostScript file"), G_CALLBACK (cb_view_ps)},
 		
 		{"Help", NULL, _("Help"), NULL, NULL, NULL},
 		{"HelpAbout", GTK_STOCK_ABOUT, _("About"), NULL,

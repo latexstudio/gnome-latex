@@ -24,6 +24,8 @@ static void set_title (void);
 static void set_undo_redo_sensitivity (void);
 static void run_compilation (gchar *title, gchar *command);
 static void view_document (gchar *title, gchar *doc_extension);
+static void convert_document (gchar *title, gchar *doc_extension,
+		gchar *command);
 static void add_action (gchar *title, gchar *command, gchar *command_output);
 
 void
@@ -238,8 +240,21 @@ cb_view_pdf (void)
 }
 
 void
+cb_view_ps (void)
+{
+	view_document (_("View PS"), ".ps");
+}
+
+void
 cb_dvi_to_pdf (void)
 {
+	convert_document (_("DVI to PDF"), ".dvi", "dvipdf");
+}
+
+void
+cb_dvi_to_ps (void)
+{
+	convert_document (_("DVI to PS"), ".dvi", "dvips");
 }
 
 void
@@ -628,11 +643,10 @@ run_compilation (gchar *title, gchar *command)
 		gchar *dir_backup = g_get_current_dir ();
 		gchar *dir = g_path_get_dirname (latexila.active_doc->path);
 		g_chdir (dir);
-		//gchar *full_command = g_strdup_printf ("%s %s", command, latexila.active_doc->path);
-		GError *error = NULL;
 
 		print_info ("execution of the command: %s", command);
 		
+		GError *error = NULL;
 		g_spawn_command_line_sync (command, &command_output, NULL, NULL, &error);
 		g_chdir (dir_backup);
 		
@@ -662,7 +676,7 @@ view_document (gchar *title, gchar *doc_extension)
 		GError *error = NULL;
 		GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
 
-		// replace .tex by .pdf
+		// replace .tex by doc_extension (.pdf, .dvi, ...)
 		gchar *doc_path = g_regex_replace_literal (regex, latexila.active_doc->path,
 				-1, 0, doc_extension, 0, NULL);
 
@@ -721,8 +735,61 @@ view_document (gchar *title, gchar *doc_extension)
 }
 
 static void
-convert_document (gchar *title, gchar *command)
+convert_document (gchar *title, gchar *doc_extension, gchar *command)
 {
+	if (latexila.active_doc != NULL)
+	{
+		gchar *full_command, *command_output;
+
+		GError *error = NULL;
+		GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
+
+		// replace .tex by doc_extension (.pdf, .dvi, ...)
+		gchar *doc_path = g_regex_replace_literal (regex,
+				latexila.active_doc->path, -1, 0, doc_extension, 0, NULL);
+
+		full_command = g_strdup_printf ("%s %s", command, doc_path);
+
+		// the document to convert exist?
+		if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
+		{
+			command_output = g_strdup_printf (
+					_("%s does not exist. If this is not already made, compile the document with the right command."),
+					g_path_get_basename (doc_path));
+
+			add_action (title, full_command, command_output);
+			g_free (full_command);
+			g_free (command_output);
+			g_free (doc_path);
+			g_regex_unref (regex);
+			return;
+		}
+
+		// run the command in the directory where the .tex is
+		print_info ("execution of the command: %s", full_command);
+
+		gchar *dir_backup = g_get_current_dir ();
+		gchar *dir = g_path_get_dirname (latexila.active_doc->path);
+		g_chdir (dir);
+		g_spawn_command_line_sync (full_command, &command_output, NULL, NULL, &error);
+		g_chdir (dir_backup);
+
+		
+		// an error occured
+		if (error != NULL)
+		{
+			command_output = g_strdup_printf (_("execution failed: %s"),
+					error->message);
+			g_error_free (error);
+		}
+
+		add_action (title, full_command, command_output);
+
+		g_free (full_command);
+		g_free (command_output);
+		g_free (doc_path);
+		g_regex_unref (regex);
+	}
 }
 
 static void

@@ -14,7 +14,9 @@ void cb_latex (void);
 void cb_pdflatex (void);
 void cb_view_dvi (void);
 void cb_view_pdf (void);
+void cb_view_ps (void);
 void cb_dvi_to_pdf (void);
+void cb_dvi_to_ps (void);
 void cb_action_list_changed (GtkTreeSelection *selection,
 		gpointer user_data);
 void cb_about_dialog (void);

@@ -3,6 +3,8 @@
 #include <stdarg.h>
 #include <gtk/gtk.h>
 
+#include "print.h"
+
 void
 print_log (GtkTextView *log, gchar *title, gchar *command,
 		gchar *command_output)
