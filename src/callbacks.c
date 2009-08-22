@@ -97,7 +97,10 @@ cb_save_as (void)
 
 		// if the user click on cancel
 		if (! latexila.active_doc->saved)
+		{
 			(*latexila.active_doc) = doc_backup;
+			set_title ();
+		}
 	}
 
 	else
@@ -406,6 +409,10 @@ create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *t
 	// set the font
 	PangoFontDescription *font_desc = pango_font_description_from_string (FONT);
 	gtk_widget_modify_font (new_doc->source_view, font_desc);
+
+	// enable text wrapping (between words only)
+	gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (new_doc->source_view),
+			GTK_WRAP_WORD);
 
 	// put the text into the buffer
 	gtk_source_buffer_begin_not_undoable_action (new_doc->source_buffer);
