@@ -27,6 +27,7 @@ static void view_document (gchar *title, gchar *doc_extension);
 static void convert_document (gchar *title, gchar *doc_extension,
 		gchar *command);
 static void add_action (gchar *title, gchar *command, gchar *command_output);
+static void update_cursor_position_statusbar ();
 
 void
 cb_new (void)
@@ -146,6 +147,7 @@ cb_close_tab (GtkWidget *widget, GtkWidget *child)
 			latexila.active_doc = NULL;
 
 		set_undo_redo_sensitivity ();
+		update_cursor_position_statusbar ();
 	}
 
 	// the document to close is not the current document
@@ -318,7 +320,19 @@ cb_text_changed (GtkWidget *widget, gpointer user_data)
 		latexila.active_doc->saved = FALSE;
 		set_title ();
 		set_undo_redo_sensitivity ();
+
+		update_cursor_position_statusbar ();
 	}
+}
+
+void
+cb_cursor_moved (GtkTextBuffer *text_buffer, GtkTextIter *location,
+		GtkTextMark *mark, gpointer user_data)
+{
+	if (mark != gtk_text_buffer_get_insert (text_buffer))
+		return;
+
+	update_cursor_position_statusbar ();
 }
 
 void
@@ -326,6 +340,7 @@ cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num, gp
 {
 	latexila.active_doc = g_list_nth_data (latexila.all_docs, page_num);
 	set_undo_redo_sensitivity ();
+	update_cursor_position_statusbar ();
 }
 
 void
@@ -419,9 +434,18 @@ create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *t
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (new_doc->source_buffer), text, -1);
 	gtk_source_buffer_end_not_undoable_action (new_doc->source_buffer);
 
+	// move the cursor at the start
+	GtkTextIter start;
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (new_doc->source_buffer), &start);
+	gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (new_doc->source_buffer), &start);
+
 	// when the text is modified
 	g_signal_connect (G_OBJECT (new_doc->source_buffer), "changed",
 			G_CALLBACK (cb_text_changed), NULL);
+
+	// when the cursor is moved
+	g_signal_connect (G_OBJECT (new_doc->source_buffer), "mark-set",
+			G_CALLBACK (cb_cursor_moved), NULL);
 
 	// with a scrollbar
 	GtkWidget *sw = gtk_scrolled_window_new (NULL, NULL);
@@ -457,6 +481,7 @@ create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *t
 	gtk_notebook_set_current_page (latexila.notebook, index);
 	
 	set_undo_redo_sensitivity ();
+	update_cursor_position_statusbar ();
 }
 
 static void
@@ -634,8 +659,8 @@ run_compilation (gchar *title, gchar *command)
 	{
 		gchar *command_output;
 
-		// the current document is a *.tex file?
-		gboolean tex_file = g_regex_match_simple ("\\.tex$", latexila.active_doc->path, 0, 0);
+		/* the current document is a *.tex file? */
+		gboolean tex_file = g_str_has_suffix (latexila.active_doc->path, ".tex");
 		if (! tex_file)
 		{
 			command_output = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
@@ -646,7 +671,17 @@ run_compilation (gchar *title, gchar *command)
 			return;
 		}
 
-		// run the command in the directory where the .tex is
+		/* print a message in the statusbar */
+		guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
+				"running-action");
+		gtk_statusbar_push (latexila.statusbar, context_id,
+				_("Compilation in progress. Please wait..."));
+
+		// without do that, the message in the statusbar does not appear
+		while (gtk_events_pending ())
+			gtk_main_iteration ();
+
+		/* run the command in the directory where the .tex is */
 		gchar *dir_backup = g_get_current_dir ();
 		gchar *dir = g_path_get_dirname (latexila.active_doc->path);
 		g_chdir (dir);
@@ -667,6 +702,8 @@ run_compilation (gchar *title, gchar *command)
 
 		add_action (title, command, command_output);
 
+		gtk_statusbar_pop (latexila.statusbar, context_id);
+
 		g_free (command_output);
 		g_free (dir_backup);
 		g_free (dir);
@@ -683,13 +720,13 @@ view_document (gchar *title, gchar *doc_extension)
 		GError *error = NULL;
 		GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
 
-		// replace .tex by doc_extension (.pdf, .dvi, ...)
+		/* replace .tex by doc_extension (.pdf, .dvi, ...) */
 		gchar *doc_path = g_regex_replace_literal (regex, latexila.active_doc->path,
 				-1, 0, doc_extension, 0, NULL);
 
 		command = g_strdup_printf ("evince %s", doc_path);
 
-		// the current document is a *.tex file?
+		/* the current document is a *.tex file? */
 		gboolean tex_file = g_regex_match (regex, latexila.active_doc->path, 0, NULL);
 		if (! tex_file)
 		{
@@ -704,7 +741,7 @@ view_document (gchar *title, gchar *doc_extension)
 			return;
 		}
 
-		// the document (PDF, DVI, ...) file exist?
+		/* the document (PDF, DVI, ...) file exist? */
 		if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
 		{
 			command_output = g_strdup_printf (
@@ -719,7 +756,7 @@ view_document (gchar *title, gchar *doc_extension)
 			return;
 		}
 
-		// run the command
+		/* run the command */
 		print_info ("execution of the command: %s", command);
 		g_spawn_command_line_async (command, &error);
 
@@ -730,7 +767,7 @@ view_document (gchar *title, gchar *doc_extension)
 			g_error_free (error);
 		}
 		else
-			command_output = g_strdup ("OK");
+			command_output = g_strdup (_("Viewing in progress. Please wait..."));
 
 		add_action (title, command, command_output);
 
@@ -751,13 +788,13 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 		GError *error = NULL;
 		GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
 
-		// replace .tex by doc_extension (.pdf, .dvi, ...)
+		/* replace .tex by doc_extension (.pdf, .dvi, ...) */
 		gchar *doc_path = g_regex_replace_literal (regex,
 				latexila.active_doc->path, -1, 0, doc_extension, 0, NULL);
 
 		full_command = g_strdup_printf ("%s %s", command, doc_path);
 
-		// the document to convert exist?
+		/* the document to convert exist? */
 		if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
 		{
 			command_output = g_strdup_printf (
@@ -772,7 +809,17 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 			return;
 		}
 
-		// run the command in the directory where the .tex is
+		/* print a message in the statusbar */
+		guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
+				"running-action");
+		gtk_statusbar_push (latexila.statusbar, context_id,
+				_("Converting in progress. Please wait..."));
+
+		// without do that, the message in the statusbar does not appear
+		while (gtk_events_pending ())
+			gtk_main_iteration ();
+
+		/* run the command in the directory where the .tex is */
 		print_info ("execution of the command: %s", full_command);
 
 		gchar *dir_backup = g_get_current_dir ();
@@ -780,7 +827,6 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 		g_chdir (dir);
 		g_spawn_command_line_sync (full_command, &command_output, NULL, NULL, &error);
 		g_chdir (dir_backup);
-
 		
 		// an error occured
 		if (error != NULL)
@@ -791,6 +837,8 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 		}
 
 		add_action (title, full_command, command_output);
+
+		gtk_statusbar_pop (latexila.statusbar, context_id);
 
 		g_free (full_command);
 		g_free (command_output);
@@ -827,4 +875,42 @@ add_action (gchar *title, gchar *command, gchar *command_output)
 	g_free (title2);
 }
 
+static void
+update_cursor_position_statusbar ()
+{
+	/* get the cursor location */
+	GtkTextIter location;
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+	gtk_text_buffer_get_iter_at_mark (buffer, &location,
+			gtk_text_buffer_get_insert (buffer));
+
+	/* get row */
+	gint row = gtk_text_iter_get_line (&location) + 1;
+
+	/* get column */
+	gint tabwidth = gtk_source_view_get_tab_width (
+			GTK_SOURCE_VIEW (latexila.active_doc->source_view));
+	GtkTextIter start = location;
+    gtk_text_iter_set_line_offset (&start, 0);
+    gint col = 1;
+
+    while (!gtk_text_iter_equal (&start, &location))
+    {
+		// take into acount the tabulation width
+        if (gtk_text_iter_get_char (&start) == '\t')
+        {
+            col += (tabwidth - (col % tabwidth));
+        }
+        else
+            col++;
+
+        gtk_text_iter_forward_char (&start);
+    }
+
+	/* print the cursor position in the statusbar */
+	gtk_statusbar_pop (latexila.cursor_position, 0);
+	gchar *text = g_strdup_printf ("Ln %d, Col %d", row, col);
+	gtk_statusbar_push (latexila.cursor_position, 0, text);
+	g_free (text);
+}
 

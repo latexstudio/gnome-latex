@@ -11,7 +11,8 @@
 #include "callbacks.h"
 #include "print.h"
 
-latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}; 
+latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+	NULL, NULL, NULL}; 
 
 static struct {     
 	gchar *filename;     
@@ -260,7 +261,16 @@ main (int argc, char *argv[])
 
 	/* statusbar */
 	GtkWidget *statusbar = gtk_statusbar_new ();
+	latexila.statusbar = GTK_STATUSBAR (statusbar);
 	gtk_box_pack_start (GTK_BOX (main_vbox), statusbar, FALSE, FALSE, 0);
+
+	GtkWidget *cursor_position_statusbar = gtk_statusbar_new ();
+	latexila.cursor_position = GTK_STATUSBAR (cursor_position_statusbar);
+	gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (cursor_position_statusbar),
+			FALSE);
+	gtk_widget_set_size_request (cursor_position_statusbar, 150, -1);
+	gtk_box_pack_end (GTK_BOX (statusbar), cursor_position_statusbar,
+			FALSE, TRUE, 0);
 
 
 	gtk_widget_show_all (window);

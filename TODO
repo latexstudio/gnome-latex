@@ -14,10 +14,9 @@ Tue Aug 18, 2009 to Mon Aug 24, 2009
 
 [x] files recently opened (in the File menu)
 
-[-] statusbar
-	- function print_statusbar ()
-	- write some text in the statusbar
-	- show which line and which column the cursor is
+[x] statusbar
+	x write some text in the statusbar
+	x show which line and which column the cursor is
 
 [x] icons: PDF, DVI, ...
 

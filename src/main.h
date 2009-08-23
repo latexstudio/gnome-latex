@@ -30,6 +30,8 @@ typedef struct
 	GtkTreeView		*list_view;
 	GtkTreeSelection	*list_selection;
 	GtkTextView		*log;
+	GtkStatusbar	*statusbar;
+	GtkStatusbar	*cursor_position;
 	GtkAction		*undo;
 	GtkAction		*redo;
 } latexila_t;

@@ -21,6 +21,8 @@ void cb_action_list_changed (GtkTreeSelection *selection,
 		gpointer user_data);
 void cb_about_dialog (void);
 void cb_text_changed (GtkWidget *widget, gpointer user_data);
+void cb_cursor_moved (GtkTextBuffer *text_buffer, GtkTextIter *location,
+		GtkTextMark *mark, gpointer user_data);
 void cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page,
 		guint page_num, gpointer user_data);
 gboolean cb_delete_event (GtkWidget *widget, GdkEvent *event,
