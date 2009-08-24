@@ -1,42 +1,23 @@
 TODO LaTeXila
 
-Tue Aug 18, 2009 to Mon Aug 24, 2009
-
-[x] tabs with close buttons
-
-[-] log zone
-	x horizontal pane
-	  left: list with an history of the actions numbered
-	  right: details of the action selected
-	x function print_log ()
-	x default height and width
-	- text in red when it's an error
-
-[x] files recently opened (in the File menu)
-
-[x] statusbar
-	x write some text in the statusbar
-	x show which line and which column the cursor is
-
-[x] icons: PDF, DVI, ...
-
-[x] DVI to PDF, DVI to PS, view PS
-
-[-] bugs correction
-	- sometimes command output is not UTF-8:
-	  Gtk-CRITICAL **: gtk_text_buffer_emit_insert: assertion `g_utf8_validate (text, len, NULL)' failed
-	x bad title with save as -> cancel
-
-
-Tue Aug 25, 2009 to Mon Aug 31, 2009
+Mon Aug 24, 2009 to Mon Aug 31, 2009
 
 [-] search and replace
 
 [-] copy/cut/paste
 
+[-] printing
+
+[-] enlarge/shrink font
+
 [-] Preferences
+	- show line numbers
 	- commands
 	- source code font
+
+[-] bugs correction
+	- sometimes command output is not UTF-8:
+	  Gtk-CRITICAL **: gtk_text_buffer_emit_insert: assertion `g_utf8_validate (text, len, NULL)' failed
 
 [-] CMake
 

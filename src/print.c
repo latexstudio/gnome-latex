@@ -7,7 +7,7 @@
 
 void
 print_log (GtkTextView *log, gchar *title, gchar *command,
-		gchar *command_output)
+		gchar *command_output, gboolean error)
 {
 	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (log);
 	gtk_text_buffer_set_text (log_buffer, "", -1);
@@ -27,7 +27,11 @@ print_log (GtkTextView *log, gchar *title, gchar *command,
 
 	// command output
 	gtk_text_buffer_get_end_iter (log_buffer, &end);
-	gtk_text_buffer_insert (log_buffer, &end, command_output, -1);
+	if (error)
+		gtk_text_buffer_insert_with_tags_by_name (log_buffer, &end,
+				command_output, -1, "error", NULL);
+	else
+		gtk_text_buffer_insert (log_buffer, &end, command_output, -1);
 }
 
 void

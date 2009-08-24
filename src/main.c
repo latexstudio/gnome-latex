@@ -213,7 +213,7 @@ main (int argc, char *argv[])
 
 	// actions list
 	GtkListStore *list_store = gtk_list_store_new (N_COLUMNS_ACTION,
-			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
 	latexila.list_store = list_store;
 	
 	GtkWidget *list_view = gtk_tree_view_new_with_model (
@@ -257,7 +257,12 @@ main (int argc, char *argv[])
 	latexila.log = GTK_TEXT_VIEW (log_view);
 
 	// tags
-	gtk_text_buffer_create_tag (log_buffer, "bold", "font", "bold", NULL);
+	gtk_text_buffer_create_tag (log_buffer, "bold",
+			"weight", PANGO_WEIGHT_BOLD,
+			NULL);
+	gtk_text_buffer_create_tag (log_buffer, "error",
+			"foreground", "red",
+			NULL);
 
 	/* statusbar */
 	GtkWidget *statusbar = gtk_statusbar_new ();

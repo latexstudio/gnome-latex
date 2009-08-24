@@ -26,7 +26,8 @@ static void run_compilation (gchar *title, gchar *command);
 static void view_document (gchar *title, gchar *doc_extension);
 static void convert_document (gchar *title, gchar *doc_extension,
 		gchar *command);
-static void add_action (gchar *title, gchar *command, gchar *command_output);
+static void add_action (gchar *title, gchar *command, gchar *command_output,
+		gboolean error);
 static void update_cursor_position_statusbar ();
 
 void
@@ -270,12 +271,14 @@ cb_action_list_changed (GtkTreeSelection *selection, gpointer user_data)
 	if (gtk_tree_selection_get_selected (selection, &model, &iter))
 	{
 		gchar *title, *command, *command_output;
+		gboolean error;
 		gtk_tree_model_get (model, &iter,
 				COLUMN_ACTION_TITLE, &title,
 				COLUMN_ACTION_COMMAND, &command,
 				COLUMN_ACTION_COMMAND_OUTPUT, &command_output,
+				COLUMN_ACTION_ERROR, &error,
 				-1);
-		print_log (latexila.log, title, command, command_output);
+		print_log (latexila.log, title, command, command_output, error);
 	}
 }
 
@@ -658,6 +661,7 @@ run_compilation (gchar *title, gchar *command)
 	if (latexila.active_doc != NULL)
 	{
 		gchar *command_output;
+		gboolean is_error = TRUE;
 
 		/* the current document is a *.tex file? */
 		gboolean tex_file = g_str_has_suffix (latexila.active_doc->path, ".tex");
@@ -666,7 +670,7 @@ run_compilation (gchar *title, gchar *command)
 			command_output = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
 					g_path_get_basename (latexila.active_doc->path));
 
-			add_action (title, command, command_output);
+			add_action (title, command, command_output, is_error);
 			g_free (command_output);
 			return;
 		}
@@ -699,8 +703,10 @@ run_compilation (gchar *title, gchar *command)
 					error->message);
 			g_error_free (error);
 		}
+		else
+			is_error = FALSE;
 
-		add_action (title, command, command_output);
+		add_action (title, command, command_output, is_error);
 
 		gtk_statusbar_pop (latexila.statusbar, context_id);
 
@@ -716,6 +722,7 @@ view_document (gchar *title, gchar *doc_extension)
 	if (latexila.active_doc != NULL)
 	{
 		gchar *command, *command_output;
+		gboolean is_error = TRUE;
 
 		GError *error = NULL;
 		GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
@@ -733,7 +740,7 @@ view_document (gchar *title, gchar *doc_extension)
 			command_output = g_strdup_printf (_("failed: %s is not a *.tex file"),
 					g_path_get_basename (latexila.active_doc->path));
 
-			add_action (title, command, command_output);
+			add_action (title, command, command_output, is_error);
 			g_free (command);
 			g_free (command_output);
 			g_free (doc_path);
@@ -748,7 +755,7 @@ view_document (gchar *title, gchar *doc_extension)
 					_("%s does not exist. If this is not already made, compile the document with the right command."),
 					g_path_get_basename (doc_path));
 
-			add_action (title, command, command_output);
+			add_action (title, command, command_output, is_error);
 			g_free (command);
 			g_free (command_output);
 			g_free (doc_path);
@@ -767,9 +774,12 @@ view_document (gchar *title, gchar *doc_extension)
 			g_error_free (error);
 		}
 		else
+		{
 			command_output = g_strdup (_("Viewing in progress. Please wait..."));
+			is_error = FALSE;
+		}
 
-		add_action (title, command, command_output);
+		add_action (title, command, command_output, is_error);
 
 		g_free (command);
 		g_free (command_output);
@@ -784,6 +794,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 	if (latexila.active_doc != NULL)
 	{
 		gchar *full_command, *command_output;
+		gboolean is_error = TRUE;
 
 		GError *error = NULL;
 		GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
@@ -801,7 +812,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 					_("%s does not exist. If this is not already made, compile the document with the right command."),
 					g_path_get_basename (doc_path));
 
-			add_action (title, full_command, command_output);
+			add_action (title, full_command, command_output, is_error);
 			g_free (full_command);
 			g_free (command_output);
 			g_free (doc_path);
@@ -835,8 +846,10 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 					error->message);
 			g_error_free (error);
 		}
+		else
+			is_error = FALSE;
 
-		add_action (title, full_command, command_output);
+		add_action (title, full_command, command_output, is_error);
 
 		gtk_statusbar_pop (latexila.statusbar, context_id);
 
@@ -848,7 +861,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 }
 
 static void
-add_action (gchar *title, gchar *command, gchar *command_output)
+add_action (gchar *title, gchar *command, gchar *command_output, gboolean error)
 {
 	static gint num = 1;
 	gchar *title2 = g_strdup_printf ("%d. %s", num, title);
@@ -860,6 +873,7 @@ add_action (gchar *title, gchar *command, gchar *command_output)
 			COLUMN_ACTION_TITLE, title2,
 			COLUMN_ACTION_COMMAND, command,
 			COLUMN_ACTION_COMMAND_OUTPUT, command_output,
+			COLUMN_ACTION_ERROR, error,
 			-1);
 
 	// the new entry is selected
