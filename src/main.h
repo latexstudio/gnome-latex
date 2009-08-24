@@ -22,18 +22,18 @@ typedef struct
 
 typedef struct
 {
-	GList			*all_docs;
-	document_t		*active_doc;
-	GtkWindow		*main_window;
-	GtkNotebook		*notebook;
+	GList				*all_docs;
+	document_t			*active_doc;
+	GtkWindow			*main_window;
+	GtkNotebook			*notebook;
 	GtkListStore		*list_store;
-	GtkTreeView		*list_view;
+	GtkTreeView			*list_view;
 	GtkTreeSelection	*list_selection;
-	GtkTextView		*log;
-	GtkStatusbar	*statusbar;
-	GtkStatusbar	*cursor_position;
-	GtkAction		*undo;
-	GtkAction		*redo;
+	GtkTextView			*log;
+	GtkStatusbar		*statusbar;
+	GtkStatusbar		*cursor_position;
+	GtkAction			*undo;
+	GtkAction			*redo;
 } latexila_t;
 
 // all the documents are accessible by the docs variable

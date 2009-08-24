@@ -10,6 +10,8 @@ void cb_close_tab (GtkWidget *widget, GtkWidget *child);
 void cb_quit (void);
 void cb_undo (void);
 void cb_redo (void);
+void cb_find (void);
+void cb_replace (void);
 void cb_latex (void);
 void cb_pdflatex (void);
 void cb_view_dvi (void);

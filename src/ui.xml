@@ -25,6 +25,11 @@ In the code, GtkUIManager is used to construct them.
     <menu action="View">
       <menuitem action="ViewLineNumbers" />
     </menu>
+
+    <menu action="Search">
+      <menuitem action="SearchFind" />
+      <menuitem action="SearchReplace" />
+    </menu>
     
     <menu action="LaTeX">
       <menuitem action="compile_latex" />
@@ -49,6 +54,9 @@ In the code, GtkUIManager is used to construct them.
     <toolitem action="FileSave" />
     <toolitem action="EditUndo" />
     <toolitem action="EditRedo" />
+    <separator />
+    <toolitem action="SearchFind" />
+    <toolitem action="SearchReplace" />
     <separator />
     <toolitem action="compile_latex" />
     <toolitem action="viewDVI" />

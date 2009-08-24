@@ -118,6 +118,12 @@ main (int argc, char *argv[])
 			_("Redo the last undone action"), G_CALLBACK (cb_redo)},
 
 		{"View", NULL, _("View"), NULL, NULL, NULL},
+
+		{"Search", NULL, _("Search"), NULL, NULL, NULL},
+		{"SearchFind", GTK_STOCK_FIND, _("Find..."), "<Control>F",
+			_("Search for text"), G_CALLBACK (cb_find)},
+		{"SearchReplace", GTK_STOCK_FIND_AND_REPLACE, _("Replace..."), "<Control>H",
+			_("Search for and replace text"), G_CALLBACK (cb_replace)},
 		
 		{"LaTeX", NULL, "LaTeX", NULL, NULL, NULL},
 		{"compile_latex", "compile_latex", _("Compile (latex)"), "<Release>F5",
