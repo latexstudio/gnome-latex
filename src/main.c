@@ -116,6 +116,16 @@ main (int argc, char *argv[])
 			_("Undo the last action"), G_CALLBACK (cb_undo)},
 		{"EditRedo", GTK_STOCK_REDO, _("Redo"), "<Shift><Control>Z",
 			_("Redo the last undone action"), G_CALLBACK (cb_redo)},
+		{"EditCut", GTK_STOCK_CUT, _("Cut"), "<Control>X",
+			_("Cut the selection"), G_CALLBACK (cb_cut)},
+		{"EditCopy", GTK_STOCK_COPY, _("Copy"), "<Control>C",
+			_("Copy the selection"), G_CALLBACK (cb_copy)},
+		{"EditPaste", GTK_STOCK_PASTE, _("Paste"), "<Control>V",
+			_("Paste the clipboard"), G_CALLBACK (cb_paste)},
+		{"EditDelete", GTK_STOCK_DELETE, _("Delete"), NULL,
+			_("Delete the selected text"), G_CALLBACK (cb_delete)},
+		{"EditSelectAll", GTK_STOCK_SELECT_ALL, _("Select All"), "<Control>A",
+			_("Select the entire document"), G_CALLBACK (cb_select_all)},
 
 		{"View", NULL, _("View"), NULL, NULL, NULL},
 

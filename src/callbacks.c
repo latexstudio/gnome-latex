@@ -196,6 +196,67 @@ cb_redo (void)
 }
 
 void
+cb_cut (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	GtkClipboard *clipboard = gtk_widget_get_clipboard (
+			latexila.active_doc->source_view, GDK_SELECTION_CLIPBOARD);
+	gtk_text_buffer_cut_clipboard (
+			GTK_TEXT_BUFFER (latexila.active_doc->source_buffer),
+			clipboard, TRUE);
+}
+
+void
+cb_copy (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	GtkClipboard *clipboard = gtk_widget_get_clipboard (
+			latexila.active_doc->source_view, GDK_SELECTION_CLIPBOARD);
+	gtk_text_buffer_copy_clipboard (
+			GTK_TEXT_BUFFER (latexila.active_doc->source_buffer), clipboard);
+}
+
+void
+cb_paste (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	GtkClipboard *clipboard = gtk_widget_get_clipboard (
+			latexila.active_doc->source_view, GDK_SELECTION_CLIPBOARD);
+	gtk_text_buffer_paste_clipboard (
+			GTK_TEXT_BUFFER (latexila.active_doc->source_buffer),
+			clipboard, NULL, TRUE);
+}
+
+void
+cb_delete (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+	gtk_text_buffer_delete_selection (buffer, TRUE, TRUE);
+}
+
+void
+cb_select_all (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+	GtkTextIter start, end;
+	gtk_text_buffer_get_start_iter (buffer, &start);
+	gtk_text_buffer_get_end_iter (buffer, &end);
+	gtk_text_buffer_select_range (buffer, &start, &end);
+}
+
+void
 cb_find (void)
 {
 	if (latexila.active_doc == NULL)
@@ -228,6 +289,9 @@ cb_find (void)
 
 	gtk_widget_show_all (content_area);
 
+	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
+			"searching");
+
 	while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK)
 	{
 		const gchar *what = gtk_entry_get_text (GTK_ENTRY (entry));
@@ -239,8 +303,16 @@ cb_find (void)
 				GTK_TOGGLE_BUTTON (backward_search));
 
 		GtkTextIter match_start, match_end;
-		find_next_match (what, flags, backward, &match_start, &match_end);
+		if (! find_next_match (what, flags, backward, &match_start, &match_end))
+		{
+			// print a message in the statusbar
+			gtk_statusbar_pop (latexila.statusbar, context_id);
+			gtk_statusbar_push (latexila.statusbar, context_id,
+					_("Phrase not found"));
+		}
 	}
+
+	gtk_statusbar_pop (latexila.statusbar, context_id);
 
 	gtk_widget_destroy (dialog);
 }
@@ -302,6 +374,9 @@ cb_replace (void)
 	 */
 	gboolean backward = FALSE;
 
+	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
+			"searching");
+
 	gboolean stop = FALSE;
 	gboolean match_found = FALSE;
 	GtkTextIter match_start, match_end, iter;
@@ -329,6 +404,7 @@ cb_replace (void)
 
 				// begin at the start of the buffer
 				gtk_text_buffer_get_start_iter (buffer, &iter);
+				gint i = 0;
 				while (gtk_source_iter_forward_search (&iter, what, flags,
 							&match_start, &match_end, NULL))
 				{
@@ -338,9 +414,25 @@ cb_replace (void)
 
 					// iter points to the end of the inserted text
 					iter = match_start;
+
+					i++;
 				}
 
 				gtk_text_buffer_end_user_action (buffer);
+
+				// print a message in the statusbar
+				gchar *msg;
+				if (i == 0)
+					msg = g_strdup (_("Phrase not found"));
+				else if (i == 1)
+					msg = g_strdup (_("Found and replaced one occurence"));
+				else
+					msg = g_strdup_printf (_("Found and replaced %d occurences"), i);
+
+				gtk_statusbar_pop (latexila.statusbar, context_id);
+				gtk_statusbar_push (latexila.statusbar, context_id, msg);
+				g_free (msg);
+
 				break;
 
 			/* replace */
@@ -362,6 +454,12 @@ cb_replace (void)
 			case GTK_RESPONSE_OK:
 				match_found = find_next_match (what, flags, backward,
 						&match_start, &match_end);
+				if (! match_found)
+				{
+					gtk_statusbar_pop (latexila.statusbar, context_id);
+					gtk_statusbar_push (latexila.statusbar, context_id,
+							_("Phrase not found"));
+				}
 				break;
 
 			default:
@@ -370,6 +468,7 @@ cb_replace (void)
 		}
 	}
 
+	gtk_statusbar_pop (latexila.statusbar, context_id);
 	gtk_widget_destroy (dialog);
 }
 
@@ -891,7 +990,7 @@ run_compilation (gchar *title, gchar *command)
 	gtk_statusbar_push (latexila.statusbar, context_id,
 			_("Compilation in progress. Please wait..."));
 
-	// without do that, the message in the statusbar does not appear
+	// without that, the message in the statusbar does not appear
 	while (gtk_events_pending ())
 		gtk_main_iteration ();
 
@@ -1036,7 +1135,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 	gtk_statusbar_push (latexila.statusbar, context_id,
 			_("Converting in progress. Please wait..."));
 
-	// without do that, the message in the statusbar does not appear
+	// without that, the message in the statusbar does not appear
 	while (gtk_events_pending ())
 		gtk_main_iteration ();
 
@@ -1191,12 +1290,8 @@ find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 			}
 			
 			// match not found
-			// TODO message in the statusbar
 			else
-			{
-				print_info ("\"%s\" not found.", what);
 				return FALSE;
-			}
 		}
 	}
 
@@ -1226,12 +1321,8 @@ find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 			}
 			
 			// match not found
-			// TODO message dialog
 			else
-			{
-				print_info ("\"%s\" not found.", what);
 				return FALSE;
-			}
 		}
 	}
 }

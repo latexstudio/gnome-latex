@@ -20,6 +20,13 @@ In the code, GtkUIManager is used to construct them.
     <menu name="Edit" action="Edit">
       <menuitem name="Undo" action="EditUndo" />
       <menuitem name="Redo" action="EditRedo" />
+      <separator />
+      <menuitem action="EditCut" />
+      <menuitem action="EditCopy" />
+      <menuitem action="EditPaste" />
+      <menuitem action="EditDelete" />
+      <separator />
+      <menuitem action="EditSelectAll" />
     </menu>
 
     <menu action="View">
@@ -52,8 +59,13 @@ In the code, GtkUIManager is used to construct them.
     <toolitem action="FileNew" />
     <toolitem action="FileOpen" />
     <toolitem action="FileSave" />
+    <separator />
     <toolitem action="EditUndo" />
     <toolitem action="EditRedo" />
+    <separator />
+    <toolitem action="EditCut" />
+    <toolitem action="EditCopy" />
+    <toolitem action="EditPaste" />
     <separator />
     <toolitem action="SearchFind" />
     <toolitem action="SearchReplace" />
