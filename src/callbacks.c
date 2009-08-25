@@ -33,7 +33,7 @@ static void add_action (gchar *title, gchar *command, gchar *command_output,
 static void update_cursor_position_statusbar (void);
 static void scroll_to_cursor (void);
 static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
-		GtkTextIter *match_start, GtkTextIter *match_end);
+		gboolean backward, GtkTextIter *match_start, GtkTextIter *match_end);
 
 void
 cb_new (void)
@@ -168,8 +168,14 @@ cb_quit (void)
 void
 cb_undo (void)
 {
+	if (latexila.active_doc == NULL)
+		return;
+
 	if (gtk_source_buffer_can_undo (latexila.active_doc->source_buffer))
+	{
 		gtk_source_buffer_undo (latexila.active_doc->source_buffer);
+		scroll_to_cursor ();
+	}
 
 	set_undo_redo_sensitivity ();
 }
@@ -177,8 +183,14 @@ cb_undo (void)
 void
 cb_redo (void)
 {
+	if (latexila.active_doc == NULL)
+		return;
+
 	if (gtk_source_buffer_can_redo (latexila.active_doc->source_buffer))
+	{
 		gtk_source_buffer_redo (latexila.active_doc->source_buffer);
+		scroll_to_cursor ();
+	}
 
 	set_undo_redo_sensitivity ();
 }
@@ -197,22 +209,37 @@ cb_find (void)
 			GTK_STOCK_FIND, GTK_RESPONSE_OK,
 			NULL);
 
+	GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+
 	GtkWidget *hbox = gtk_hbox_new (FALSE, 10);
 	GtkWidget *label = gtk_label_new (_("Search for:"));
 	GtkWidget *entry = gtk_entry_new ();
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
-	GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
-	gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 10);
-	gtk_widget_show_all (content_area);
+	gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 5);
 
-	GtkSourceSearchFlags flags = GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
+	GtkWidget *case_sensitive = gtk_check_button_new_with_label (
+			_("Case sensitive"));
+	gtk_box_pack_start (GTK_BOX (content_area), case_sensitive, TRUE, TRUE, 5);
+
+	GtkWidget *backward_search = gtk_check_button_new_with_label (
+			_("Search backwards"));
+	gtk_box_pack_start (GTK_BOX (content_area), backward_search, TRUE, TRUE, 5);
+
+	gtk_widget_show_all (content_area);
 
 	while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK)
 	{
 		const gchar *what = gtk_entry_get_text (GTK_ENTRY (entry));
+		gboolean tmp = gtk_toggle_button_get_active (
+				GTK_TOGGLE_BUTTON (case_sensitive));
+		GtkSourceSearchFlags flags = tmp ? 0 : GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
+
+		gboolean backward = gtk_toggle_button_get_active (
+				GTK_TOGGLE_BUTTON (backward_search));
+
 		GtkTextIter match_start, match_end;
-		find_next_match (what, flags, &match_start, &match_end);
+		find_next_match (what, flags, backward, &match_start, &match_end);
 	}
 
 	gtk_widget_destroy (dialog);
@@ -224,59 +251,71 @@ cb_replace (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	GtkWidget *dialog = gtk_dialog_new_with_buttons (
-			_("Replace"),
-			latexila.main_window,
-			GTK_DIALOG_MODAL,
-			GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-			_("Replace All"), GTK_RESPONSE_APPLY,
-			_("Replace"), GTK_RESPONSE_YES,
-			GTK_STOCK_FIND, GTK_RESPONSE_OK,
-			NULL);
-
-	/* more flexible :
 	GtkWidget *dialog = gtk_dialog_new ();
 	gtk_window_set_title (GTK_WINDOW (dialog), _("Replace"));
 	gtk_dialog_add_buttons (GTK_DIALOG (dialog),
 			GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 			_("Replace All"), GTK_RESPONSE_APPLY,
-			_("Replace"), GTK_RESPONSE_YES,
-			GTK_STOCK_FIND, GTK_RESPONSE_OK,
 			NULL);
-	*/
+
+	// button replace
+	// we must set the sensitivity of this button so we create it by hand
+	GtkWidget *button_replace = gtk_button_new_with_label (_("Replace"));
+	GtkWidget *icon = gtk_image_new_from_stock (GTK_STOCK_FIND_AND_REPLACE,
+			GTK_ICON_SIZE_BUTTON);
+	gtk_button_set_image (GTK_BUTTON (button_replace), icon);
+	gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button_replace,
+			GTK_RESPONSE_YES);
+
+	gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_FIND, GTK_RESPONSE_OK);
+
 
 	GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+	GtkWidget *table = gtk_table_new (2, 2, FALSE);
 
-	GtkWidget *hbox = gtk_hbox_new (FALSE, 10);
 	GtkWidget *label = gtk_label_new (_("Search for:"));
+	// align the label to the left
+	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	GtkWidget *entry_search = gtk_entry_new ();
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), entry_search, TRUE, TRUE, 0);
-	gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 5);
+	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 0, 1);
+	gtk_table_attach_defaults (GTK_TABLE (table), entry_search, 1, 2, 0, 1);
 
-	hbox = gtk_hbox_new (FALSE, 10);
 	label = gtk_label_new (_("Replace with:"));
+	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	GtkWidget *entry_replace = gtk_entry_new ();
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), entry_replace, TRUE, TRUE, 0);
-	gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 5);
+	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 1, 2);
+	gtk_table_attach_defaults (GTK_TABLE (table), entry_replace, 1, 2, 1, 2);
+
+	gtk_box_pack_start (GTK_BOX (content_area), table, TRUE, TRUE, 5);
+
+	GtkWidget *case_sensitive = gtk_check_button_new_with_label (
+			_("Case sensitive"));
+	gtk_box_pack_start (GTK_BOX (content_area), case_sensitive, TRUE, TRUE, 5);
 
 	gtk_widget_show_all (content_area);
 
 	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
 
-	GtkSourceSearchFlags flags = GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
+	/* backward desactivated because there is a little problem with the position
+	 * of the insert mark after making a replacement... The insert mark should
+	 * be at the beginning of the replacement and not at the end.
+	 */
+	gboolean backward = FALSE;
 
 	gboolean stop = FALSE;
 	gboolean match_found = FALSE;
 	GtkTextIter match_start, match_end, iter;
-	GtkTextMark *mark;
 	while (! stop)
 	{
+		gtk_widget_set_sensitive (button_replace, match_found);
 		gint result = gtk_dialog_run (GTK_DIALOG (dialog));
 
 		const gchar *what = gtk_entry_get_text (GTK_ENTRY (entry_search));
 		const gchar *replacement = gtk_entry_get_text (GTK_ENTRY (entry_replace));
+
+		gboolean tmp = gtk_toggle_button_get_active (
+				GTK_TOGGLE_BUTTON (case_sensitive));
+		GtkSourceSearchFlags flags = tmp ? 0 : GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
 
 		switch (result)
 		{
@@ -286,23 +325,22 @@ cb_replace (void)
 
 			/* replace all */
 			case GTK_RESPONSE_APPLY:
+				gtk_text_buffer_begin_user_action (buffer);
+
 				// begin at the start of the buffer
 				gtk_text_buffer_get_start_iter (buffer, &iter);
 				while (gtk_source_iter_forward_search (&iter, what, flags,
 							&match_start, &match_end, NULL))
 				{
-					// TODO comparate this method with the method used in GEdit
-					// save the position of the end of the replacement in the buffer
-					iter = match_start;
-					gtk_text_iter_forward_chars (&iter, strlen (replacement));
-					mark = gtk_text_buffer_create_mark (buffer, NULL, &iter, FALSE);
-
 					// make the replacement
 					gtk_text_buffer_delete (buffer, &match_start, &match_end);
 					gtk_text_buffer_insert (buffer, &match_start, replacement, -1);
 
-					gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
+					// iter points to the end of the inserted text
+					iter = match_start;
 				}
+
+				gtk_text_buffer_end_user_action (buffer);
 				break;
 
 			/* replace */
@@ -311,16 +349,19 @@ cb_replace (void)
 				if (! match_found)
 					break;
 
+				gtk_text_buffer_begin_user_action (buffer);
 				gtk_text_buffer_delete (buffer, &match_start, &match_end);
 				gtk_text_buffer_insert (buffer, &match_start, replacement, -1);
-				match_found = find_next_match (what, flags, &match_start,
-						&match_end);
+				gtk_text_buffer_end_user_action (buffer);
+
+				match_found = find_next_match (what, flags, backward,
+						&match_start, &match_end);
 				break;
 
 			/* just find the next match */
 			case GTK_RESPONSE_OK:
-				match_found = find_next_match (what, flags, &match_start,
-						&match_end);
+				match_found = find_next_match (what, flags, backward,
+						&match_start, &match_end);
 				break;
 
 			default:
@@ -330,54 +371,6 @@ cb_replace (void)
 	}
 
 	gtk_widget_destroy (dialog);
-}
-
-static gboolean
-find_next_match (const gchar *what, GtkSourceSearchFlags flags,
-		GtkTextIter *match_start, GtkTextIter *match_end)
-{
-	if (latexila.active_doc == NULL)
-		return FALSE;
-
-	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
-
-	GtkTextIter iter;
-
-	gtk_text_buffer_get_iter_at_mark (buffer, &iter,
-			gtk_text_buffer_get_insert (buffer));
-
-	// if a match is found
-	if (gtk_source_iter_forward_search (&iter, what, flags, match_start,
-				match_end, NULL))
-	{
-		// the insert mark is set to match_end, so for the next search it
-		// begins after the match, otherwise it would find the same match
-		// (an other solution would be building an AI which find directly what the
-		// user want, but in 2009 I don't think it's possible...)
-		gtk_text_buffer_select_range (buffer, match_end, match_start);
-		scroll_to_cursor ();
-		return TRUE;
-	}
-
-	else
-	{
-		GtkTextIter insert = iter;
-		gtk_text_buffer_get_start_iter (buffer, &iter);
-		if (gtk_source_iter_forward_search (&iter, what, flags, match_start, match_end, &insert))
-		{
-			gtk_text_buffer_select_range (buffer, match_end, match_start);
-			scroll_to_cursor ();
-			return TRUE;
-		}
-		
-		// match not found
-		// TODO message dialog
-		else
-		{
-			print_info ("\"%s\" not found.", what);
-			return FALSE;
-		}
-	}
 }
 
 gboolean
@@ -407,6 +400,9 @@ cb_line_numbers (GtkToggleAction *action, gpointer user_data)
 void
 cb_latex (void)
 {
+	if (latexila.active_doc == NULL)
+		return;
+
 	gchar *title = _("Compile (latex)");
 	gchar *command = g_strdup_printf ("latex -interaction=nonstopmode %s",
 			latexila.active_doc->path);
@@ -418,6 +414,9 @@ cb_latex (void)
 void
 cb_pdflatex (void)
 {
+	if (latexila.active_doc == NULL)
+		return;
+
 	gchar *title = _("Compile (pdflatex)");
 	gchar *command = g_strdup_printf ("pdflatex -interaction=nonstopmode %s",
 			latexila.active_doc->path);
@@ -429,30 +428,45 @@ cb_pdflatex (void)
 void
 cb_view_dvi (void)
 {
+	if (latexila.active_doc == NULL)
+		return;
+
 	view_document (_("View DVI"), ".dvi");
 }
 
 void
 cb_view_pdf (void)
 {
+	if (latexila.active_doc == NULL)
+		return;
+
 	view_document (_("View PDF"), ".pdf");
 }
 
 void
 cb_view_ps (void)
 {
+	if (latexila.active_doc == NULL)
+		return;
+
 	view_document (_("View PS"), ".ps");
 }
 
 void
 cb_dvi_to_pdf (void)
 {
+	if (latexila.active_doc == NULL)
+		return;
+
 	convert_document (_("DVI to PDF"), ".dvi", "dvipdf");
 }
 
 void
 cb_dvi_to_ps (void)
 {
+	if (latexila.active_doc == NULL)
+		return;
+
 	convert_document (_("DVI to PS"), ".dvi", "dvips");
 }
 
@@ -1137,5 +1151,88 @@ scroll_to_cursor (void)
 			gtk_text_buffer_get_insert (
 				GTK_TEXT_BUFFER (latexila.active_doc->source_buffer)),
 			0.25, FALSE, 0, 0);
+}
+
+static gboolean
+find_next_match (const gchar *what, GtkSourceSearchFlags flags,
+		gboolean backward, GtkTextIter *match_start, GtkTextIter *match_end)
+{
+	if (latexila.active_doc == NULL)
+		return FALSE;
+
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+
+	GtkTextIter iter;
+
+	gtk_text_buffer_get_iter_at_mark (buffer, &iter,
+			gtk_text_buffer_get_insert (buffer));
+
+	if (backward)
+	{
+		// if a match is found
+		if (gtk_source_iter_backward_search (&iter, what, flags, match_start,
+					match_end, NULL))
+		{
+			gtk_text_buffer_select_range (buffer, match_start, match_end);
+			scroll_to_cursor ();
+			return TRUE;
+		}
+
+		else
+		{
+			GtkTextIter insert = iter;
+			gtk_text_buffer_get_end_iter (buffer, &iter);
+			if (gtk_source_iter_backward_search (&iter, what, flags,
+						match_start, match_end, &insert))
+			{
+				gtk_text_buffer_select_range (buffer, match_start, match_end);
+				scroll_to_cursor ();
+				return TRUE;
+			}
+			
+			// match not found
+			// TODO message in the statusbar
+			else
+			{
+				print_info ("\"%s\" not found.", what);
+				return FALSE;
+			}
+		}
+	}
+
+	else
+	{
+		// if a match is found
+		if (gtk_source_iter_forward_search (&iter, what, flags, match_start,
+					match_end, NULL))
+		{
+			// the insert mark is set to match_end, so for the next search it
+			// begins after the match, otherwise it would find the same match
+			gtk_text_buffer_select_range (buffer, match_end, match_start);
+			scroll_to_cursor ();
+			return TRUE;
+		}
+
+		else
+		{
+			GtkTextIter insert = iter;
+			gtk_text_buffer_get_start_iter (buffer, &iter);
+			if (gtk_source_iter_forward_search (&iter, what, flags,
+						match_start, match_end, &insert))
+			{
+				gtk_text_buffer_select_range (buffer, match_end, match_start);
+				scroll_to_cursor ();
+				return TRUE;
+			}
+			
+			// match not found
+			// TODO message dialog
+			else
+			{
+				print_info ("\"%s\" not found.", what);
+				return FALSE;
+			}
+		}
+	}
 }
 

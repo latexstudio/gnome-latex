@@ -3,6 +3,10 @@ TODO LaTeXila
 Mon Aug 24, 2009 to Mon Aug 31, 2009
 
 [x] search and replace
+	x make the basis
+	x options: case sensitive, search backward, ...
+	x button replace sensitivity
+	x same width for entries
 
 [-] copy/cut/paste
 
@@ -18,7 +22,7 @@ Mon Aug 24, 2009 to Mon Aug 31, 2009
 [-] bugs correction
 	- sometimes command output is not UTF-8:
 	  Gtk-CRITICAL **: gtk_text_buffer_emit_insert: assertion `g_utf8_validate (text, len, NULL)' failed
-	- sometimes after making a replacement and then undo:
+	x sometimes after making a replacement and then undo:
 	  GtkSourceView-CRITICAL **: gtk_source_undo_manager_undo: assertion `undo_action != NULL' failed
 
 [-] CMake
