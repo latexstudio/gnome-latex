@@ -12,7 +12,7 @@ Mon Aug 24, 2009 to Mon Aug 31, 2009
 
 [-] printing
 
-[-] enlarge/shrink font
+[x] enlarge/shrink font
 
 [-] Preferences
 	- show line numbers
@@ -24,6 +24,7 @@ Mon Aug 24, 2009 to Mon Aug 31, 2009
 	  Gtk-CRITICAL **: gtk_text_buffer_emit_insert: assertion `g_utf8_validate (text, len, NULL)' failed
 	x sometimes after making a replacement and then undo:
 	  GtkSourceView-CRITICAL **: gtk_source_undo_manager_undo: assertion `undo_action != NULL' failed
+	x show line numbers and new document...
 
 [-] CMake
 

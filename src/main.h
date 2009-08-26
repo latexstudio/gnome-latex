@@ -34,6 +34,8 @@ typedef struct
 	GtkStatusbar		*cursor_position;
 	GtkAction			*undo;
 	GtkAction			*redo;
+	gint				font_size;
+	gboolean			show_line_numbers;
 } latexila_t;
 
 // all the documents are accessible by the docs variable

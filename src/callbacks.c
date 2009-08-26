@@ -34,6 +34,7 @@ static void update_cursor_position_statusbar (void);
 static void scroll_to_cursor (void);
 static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 		gboolean backward, GtkTextIter *match_start, GtkTextIter *match_end);
+static void change_font_source_view (void);
 
 void
 cb_new (void)
@@ -254,6 +255,27 @@ cb_select_all (void)
 	gtk_text_buffer_get_start_iter (buffer, &start);
 	gtk_text_buffer_get_end_iter (buffer, &end);
 	gtk_text_buffer_select_range (buffer, &start, &end);
+}
+
+void
+cb_zoom_in (void)
+{
+	latexila.font_size++;
+	change_font_source_view ();
+}
+
+void
+cb_zoom_out (void)
+{
+	latexila.font_size--;
+	change_font_source_view ();
+}
+
+void
+cb_zoom_reset (void)
+{
+	latexila.font_size = 10;
+	change_font_source_view ();
 }
 
 void
@@ -484,7 +506,7 @@ cb_delete_event (GtkWidget *widget, GdkEvent *event, gpointer user_data)
 void
 cb_line_numbers (GtkToggleAction *action, gpointer user_data)
 {
-	gboolean show = gtk_toggle_action_get_active (action);
+	latexila.show_line_numbers = gtk_toggle_action_get_active (action);
 
 	//TODO optimisation?
 	guint nb_docs = g_list_length (latexila.all_docs);
@@ -492,7 +514,7 @@ cb_line_numbers (GtkToggleAction *action, gpointer user_data)
 	{
 		document_t *doc = g_list_nth_data (latexila.all_docs, i);
 		gtk_source_view_set_show_line_numbers (
-				GTK_SOURCE_VIEW (doc->source_view), show);
+				GTK_SOURCE_VIEW (doc->source_view), latexila.show_line_numbers);
 	}
 }
 
@@ -732,12 +754,18 @@ create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *t
 	gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (new_doc->source_view), TRUE);
 
 	// set the font
-	PangoFontDescription *font_desc = pango_font_description_from_string (FONT);
+	gchar *font_string = g_strdup_printf ("%s %d", FONT, latexila.font_size);
+	PangoFontDescription *font_desc;
+	font_desc = pango_font_description_from_string (font_string);
 	gtk_widget_modify_font (new_doc->source_view, font_desc);
 
 	// enable text wrapping (between words only)
 	gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (new_doc->source_view),
 			GTK_WRAP_WORD);
+
+	// show line numbers?
+	gtk_source_view_set_show_line_numbers (
+			GTK_SOURCE_VIEW (new_doc->source_view), latexila.show_line_numbers);
 
 	// put the text into the buffer
 	gtk_source_buffer_begin_not_undoable_action (new_doc->source_buffer);
@@ -1324,6 +1352,20 @@ find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 			else
 				return FALSE;
 		}
+	}
+}
+
+static void
+change_font_source_view (void)
+{
+	guint nb_docs = g_list_length (latexila.all_docs);
+	for (guint i = 0 ; i < nb_docs ; i++)
+	{
+		document_t *doc = g_list_nth_data (latexila.all_docs, i);
+		gchar *font_string = g_strdup_printf ("%s %d", FONT, latexila.font_size);
+		PangoFontDescription *font_desc;
+		font_desc = pango_font_description_from_string (font_string);
+		gtk_widget_modify_font (doc->source_view, font_desc);
 	}
 }
 

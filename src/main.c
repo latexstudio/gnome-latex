@@ -128,6 +128,12 @@ main (int argc, char *argv[])
 			_("Select the entire document"), G_CALLBACK (cb_select_all)},
 
 		{"View", NULL, _("View"), NULL, NULL, NULL},
+		{"ViewZoomIn", GTK_STOCK_ZOOM_IN, _("Zoom In"), "<Control>plus",
+			_("Enlarge the font"), G_CALLBACK (cb_zoom_in)},
+		{"ViewZoomOut", GTK_STOCK_ZOOM_OUT, _("Zoom Out"), "<Control>minus",
+			_("Shrink the font"), G_CALLBACK (cb_zoom_out)},
+		{"ViewZoomReset", GTK_STOCK_ZOOM_100, _("Reset Zoom"), "<Control>0",
+			_("Reset the size of the font"), G_CALLBACK (cb_zoom_reset)},
 
 		{"Search", NULL, _("Search"), NULL, NULL, NULL},
 		{"SearchFind", GTK_STOCK_FIND, _("Find..."), "<Control>F",
@@ -198,6 +204,8 @@ main (int argc, char *argv[])
 	GtkWidget *menubar = gtk_ui_manager_get_widget (ui_manager, "/MainMenu");
 	gtk_box_pack_start (GTK_BOX (main_vbox), menubar, FALSE, FALSE, 0);
 	GtkWidget *toolbar = gtk_ui_manager_get_widget (ui_manager, "/MainToolbar");
+	// toolbar with icons only
+	gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), GTK_TOOLBAR_ICONS);
 	gtk_box_pack_start (GTK_BOX (main_vbox), toolbar, FALSE, FALSE, 0);
 
 	// accelerators
@@ -220,6 +228,9 @@ main (int argc, char *argv[])
 			G_CALLBACK (cb_page_change), NULL);
 	gtk_paned_pack1 (GTK_PANED (vpaned), notebook, TRUE, TRUE);
 	latexila.notebook = GTK_NOTEBOOK (notebook);
+
+	latexila.font_size = 10;
+	latexila.show_line_numbers = FALSE;
 
 	/* log zone */
 	//TODO set default height and width
