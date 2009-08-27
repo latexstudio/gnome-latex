@@ -306,6 +306,16 @@ main (int argc, char *argv[])
 
 
 	gtk_widget_show_all (window);
+
+	for (int i = 1 ; i < argc ; i++)
+	{
+		gchar *uri = g_filename_to_uri (argv[i], NULL, NULL);
+		if (uri != NULL)
+			open_new_document (argv[i], uri);
+		else
+			print_warning ("can not open the file \"%s\"", argv[i]);
+	}
+
 	gtk_main ();
 
 	return EXIT_SUCCESS;

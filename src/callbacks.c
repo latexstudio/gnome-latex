@@ -15,7 +15,6 @@
 #include "callbacks.h"
 #include "print.h"
 
-static void document_get_content (const gchar *filename, const gchar *uri);
 static void create_document_in_new_tab (const gchar *path, const gchar *text,
 		const gchar *title);
 static void close_document (gint index);
@@ -65,7 +64,7 @@ cb_open (void)
 		gchar *uri = gtk_file_chooser_get_uri (
 				GTK_FILE_CHOOSER (dialog));
 
-		document_get_content (filename, uri);
+		open_new_document (filename, uri);
 
 		g_free (filename);
 		g_free (uri);
@@ -683,17 +682,13 @@ cb_recent_item_activated (GtkRecentAction *action, gpointer user_data)
 	const gchar *filename = gtk_recent_info_get_uri_display (info);
 	const gchar *uri = gtk_recent_info_get_uri (info);
 
-	document_get_content (filename, uri);
+	open_new_document (filename, uri);
 }
 
-/******************************************************************************
- * local functions
- *****************************************************************************/
-
-static void
-document_get_content (const gchar *filename, const gchar *uri)
+void
+open_new_document (const gchar *filename, const gchar *uri)
 {
-	print_info ("Open file: \"%s\"", filename);
+	print_info ("open file: \"%s\"", filename);
 
 	gchar *contents = NULL;
 	if (g_file_get_contents (filename, &contents, NULL, NULL))
@@ -713,6 +708,10 @@ document_get_content (const gchar *filename, const gchar *uri)
 	else
 		print_warning ("impossible to open the file \"%s\"", filename);
 }
+
+/******************************************************************************
+ * local functions
+ *****************************************************************************/
 
 static void
 create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *title)

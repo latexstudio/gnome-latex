@@ -40,4 +40,6 @@ gboolean cb_delete_event (GtkWidget *widget, GdkEvent *event,
 void cb_line_numbers (GtkToggleAction *action, gpointer user_data);
 void cb_recent_item_activated (GtkRecentAction *action, gpointer user_data);
 
+void open_new_document (const gchar *filename, const gchar *uri);
+
 #endif /* CALLBACKS_H */
