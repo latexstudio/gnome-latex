@@ -1,0 +1,37 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+
+PROJECT(latexila)
+
+# version
+SET(latexila_MAJOR 0)
+SET(latexila_MINOR 0)
+SET(latexila_PATCH 1)
+SET(latexila_VERSION ${latexila_MAJOR}.${latexila_MINOR}.${latexila_PATCH})
+
+MESSAGE(STATUS "*** Building LaTeXila ${latexila_VERSION} ***")
+
+IF(NOT DATA_DIR)
+  SET(DATA_DIR "${CMAKE_INSTALL_PREFIX}/share/latexila" CACHE PATH "The directory where the data is")
+ENDIF(NOT DATA_DIR)
+
+FIND_PACKAGE(PkgConfig REQUIRED)
+PKG_CHECK_MODULES(GTK2 REQUIRED gtk+-2.0 gtksourceview-2.0)
+
+INCLUDE_DIRECTORIES(${GTK2_INCLUDE_DIRS} ${latexila_BINARY_DIR}/src)
+
+SET(CMAKE_C_FLAGS "-Wall -std=c99 -DGTK_DISABLE_DEPRECATED=1")
+
+CONFIGURE_FILE(${latexila_SOURCE_DIR}/src/config.h.cmake ${latexila_BINARY_DIR}/src/config.h)
+
+ADD_SUBDIRECTORY(src)
+
+# packages
+SET(CPACK_GENERATOR "TGZ")
+SET(CPACK_PACKAGE_VERSION_MAJOR ${latexila_MAJOR})
+SET(CPACK_PACKAGE_VERSION_MINOR ${latexila_MINOR})
+SET(CPACK_PACKAGE_VERSION_PATCH ${latexila_PATCH})
+SET(CPACK_SOURCE_GENERATOR "TGZ")
+SET(CPACK_SOURCE_PACKAGE_FILE_NAME latexila-${latexila_VERSION})
+SET(CPACK_SOURCE_IGNORE_FILES "~$" ".gz$")
+
+INCLUDE(CPack)

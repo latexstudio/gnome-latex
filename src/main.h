@@ -3,13 +3,6 @@
 
 #define _(STRING) gettext(STRING)
 
-#define PROGRAM_NAME "LaTeXila"
-#define PROGRAM_VERSION "0.0.1"
-
-#define DATA_DIR "/home/seb/dev/latexila/src"
-
-#define FONT "Monospace"
-
 // each document opened is represented by a document_t structure
 typedef struct
 {

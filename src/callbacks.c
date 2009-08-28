@@ -12,6 +12,7 @@
 #include <gtksourceview/gtksourceiter.h>
 
 #include "main.h"
+#include "config.h"
 #include "callbacks.h"
 #include "print.h"
 

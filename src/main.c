@@ -8,6 +8,7 @@
 #include <gtksourceview/gtksourcelanguagemanager.h>
 
 #include "main.h"
+#include "config.h"
 #include "callbacks.h"
 #include "print.h"
 
@@ -191,7 +192,7 @@ main (int argc, char *argv[])
 	gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
 
 	// load the xml file
-	char *xml_file = "ui.xml";
+	gchar *xml_file = DATA_DIR "/ui.xml";
 	GError *error = NULL;
 	gtk_ui_manager_add_ui_from_file (ui_manager, xml_file, &error);
 	if (error)
