@@ -14,12 +14,29 @@ IF(NOT DATA_DIR)
   SET(DATA_DIR "${CMAKE_INSTALL_PREFIX}/share/latexila" CACHE PATH "The directory where the data is")
 ENDIF(NOT DATA_DIR)
 
+OPTION(ENABLE_NLS "Native Language Support" ON)
+
+IF(ENABLE_NLS)
+  SET(LATEXILA_NLS_ENABLED TRUE)
+  SET(LATEXILA_NLS_PACKAGE "latexila")
+  SET(LATEXILA_NLS_LOCALEDIR "${CMAKE_INSTALL_PREFIX}/share/locale")
+  MESSAGE(STATUS "Native language support enabled.")
+  FIND_PACKAGE(Gettext REQUIRED)
+  FILE(GLOB latexila_PO_FILES ${latexila_SOURCE_DIR}/po/*.po)
+  GETTEXT_CREATE_TRANSLATIONS(po/latexila.pot ${latexila_PO_FILES})
+  # with ALL it doesn't work, wait the new version of FindGettext module...
+  # so we must run "make translations"
+  #GETTEXT_CREATE_TRANSLATIONS(po/latexila.pot ALL ${latexila_PO_FILES})
+ELSE(ENABLE_NLS)
+  MESSAGE(STATUS "Native language support disabled.")
+ENDIF(ENABLE_NLS)
+
+SET(CMAKE_C_FLAGS "-Wall -std=c99 -DGTK_DISABLE_DEPRECATED=1")
+
 FIND_PACKAGE(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(GTK2 REQUIRED gtk+-2.0 gtksourceview-2.0)
 
 INCLUDE_DIRECTORIES(${GTK2_INCLUDE_DIRS} ${latexila_BINARY_DIR}/src)
-
-SET(CMAKE_C_FLAGS "-Wall -std=c99 -DGTK_DISABLE_DEPRECATED=1")
 
 CONFIGURE_FILE(${latexila_SOURCE_DIR}/src/config.h.cmake ${latexila_BINARY_DIR}/src/config.h)
 

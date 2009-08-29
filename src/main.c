@@ -54,10 +54,13 @@ main (int argc, char *argv[])
 {
 	gtk_init (&argc, &argv);
 
-	/* localisation */
+#ifdef LATEXILA_NLS_ENABLED
+	/* i18n, l10n */
 	setlocale (LC_ALL, "");
-	bindtextdomain ("latexila", "/usr/share/locale");
-	textdomain ("latexila");
+	bindtextdomain (LATEXILA_NLS_PACKAGE, LATEXILA_NLS_LOCALEDIR);
+	bind_textdomain_codeset (LATEXILA_NLS_PACKAGE, "UTF-8");
+	textdomain (LATEXILA_NLS_PACKAGE);
+#endif
 
 	/* personal style */
 	// make the close buttons in tabs smaller

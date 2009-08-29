@@ -1,0 +1,391 @@
+# French translations for latexila package.
+# Copyright (C) 2009 Sébastien Wilmet
+# This file is distributed under the same license as the latexila package.
+# Sébastien Wilmet <sebastien.wilmet@gmail.com>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: latexila\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-08-29 15:32+0200\n"
+"PO-Revision-Date: 2009-08-29 16:08+0100\n"
+"Last-Translator: Sébastien Wilmet <sebastien.wilmet@gmail.com>\n"
+"Language-Team: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/callbacks.c:1092
+#: src/callbacks.c:1149
+#, c-format
+msgid "%s does not exist. If this is not already made, compile the document with the right command."
+msgstr "%s n'existe pas. Si ce n'est pas déjà fait, compilez le document avec la bonne commande."
+
+#: src/main.c:165
+msgid "About"
+msgstr "À propos"
+
+#: src/callbacks.c:639
+msgid "About "
+msgstr "À propos"
+
+#: src/main.c:166
+msgid "About LaTeXila"
+msgstr "À propos de LaTeXila"
+
+#: src/main.c:255
+msgid "Action history"
+msgstr "Historique des actions"
+
+#: src/callbacks.c:305
+#: src/callbacks.c:386
+msgid "Case sensitive"
+msgstr "Respecter la casse"
+
+#: src/main.c:113
+msgid "Close"
+msgstr "Fermer"
+
+#: src/main.c:114
+msgid "Close the current file"
+msgstr "Fermer le document courant"
+
+#: src/callbacks.c:836
+msgid "Close the document"
+msgstr "Fermer le document"
+
+#: src/callbacks.c:1019
+msgid "Compilation in progress. Please wait..."
+msgstr "Compilation en cours. Veuillez patienter..."
+
+#: src/callbacks.c:527
+#: src/main.c:149
+msgid "Compile (latex)"
+msgstr "Compiler (latex)"
+
+#: src/callbacks.c:541
+#: src/main.c:153
+msgid "Compile (pdflatex)"
+msgstr "Compiler (pdflatex)"
+
+#: src/main.c:158
+msgid "Convert the DVI document to the PDF format"
+msgstr "Converti le document DVI au format PDF"
+
+#: src/main.c:160
+msgid "Convert the DVI document to the PostScript format"
+msgstr "Converti le document DVI au format PostScript"
+
+#: src/callbacks.c:1164
+msgid "Converting in progress. Please wait..."
+msgstr "Conversion en cours. Veuillez patienter..."
+
+#: src/main.c:125
+msgid "Copy"
+msgstr "Copier"
+
+#: src/main.c:126
+msgid "Copy the selection"
+msgstr "Copie la sélection"
+
+#: src/main.c:123
+msgid "Cut"
+msgstr "Couper"
+
+#: src/main.c:124
+msgid "Cut the selection"
+msgstr "Coupe la sélection"
+
+#: src/callbacks.c:582
+#: src/main.c:157
+msgid "DVI to PDF"
+msgstr "DVI -> PDF"
+
+#: src/callbacks.c:591
+#: src/main.c:159
+msgid "DVI to PS"
+msgstr "DVI -> PS"
+
+#: src/main.c:129
+msgid "Delete"
+msgstr "Supprimer"
+
+#: src/main.c:130
+msgid "Delete the selected text"
+msgstr "Supprime le texte sélectionné"
+
+#: src/main.c:173
+msgid "Display line numbers"
+msgstr "Afficher les numéros de ligne"
+
+#: src/main.c:118
+msgid "Edit"
+msgstr "Édition"
+
+#: src/main.c:136
+msgid "Enlarge the font"
+msgstr "Agrandir la police"
+
+#: src/main.c:104
+msgid "File"
+msgstr "Fichier"
+
+#: src/callbacks.c:288
+msgid "Find"
+msgstr "Rechercher"
+
+#: src/main.c:143
+msgid "Find..."
+msgstr "Rechercher..."
+
+#: src/callbacks.c:452
+#, c-format
+msgid "Found and replaced %d occurences"
+msgstr "%d occurrences trouvées et remplacées"
+
+#: src/callbacks.c:450
+msgid "Found and replaced one occurence"
+msgstr "Une occurrence trouvée et remplacée"
+
+#: src/main.c:164
+msgid "Help"
+msgstr "Aide"
+
+#: src/callbacks.c:616
+msgid "LaTeXila is a LaTeX development environment for the GNOME Desktop"
+msgstr "LaTeXila est un environnement de développement pour LaTeX, prévu pour le bureau GNOME. À consommer avec modération."
+
+#: src/main.c:172
+msgid "Line numbers"
+msgstr "Numéros de ligne"
+
+#: src/main.c:105
+msgid "New"
+msgstr "Nouveau"
+
+#: src/callbacks.c:46
+#: src/callbacks.c:965
+msgid "New document"
+msgstr "Nouveau document"
+
+#: src/main.c:106
+msgid "New file"
+msgstr "Nouveau fichier"
+
+#: src/callbacks.c:53
+msgid "Open File"
+msgstr "Ouvre un fichier"
+
+#: src/main.c:181
+msgid "Open Recent"
+msgstr "Ouvrir récent"
+
+#: src/main.c:108
+msgid "Open a file"
+msgstr "Ouvre un fichier"
+
+#: src/main.c:181
+msgid "Open recently used files"
+msgstr "Ouvre un fichier récemment utilisé"
+
+#: src/main.c:107
+msgid "Open..."
+msgstr "Ouvrir..."
+
+#: src/main.c:127
+msgid "Paste"
+msgstr "Coller"
+
+#: src/main.c:128
+msgid "Paste the clipboard"
+msgstr "Colle le contenu du presse-papiers"
+
+#: src/callbacks.c:333
+#: src/callbacks.c:448
+#: src/callbacks.c:483
+msgid "Phrase not found"
+msgstr "Phrase non trouvée"
+
+#: src/main.c:150
+msgid "Produce the document in DVI format"
+msgstr "Produit le document au format DVI"
+
+#: src/main.c:154
+msgid "Produce the document in PDF format"
+msgstr "Produit le document au format PDF"
+
+#: src/main.c:115
+msgid "Quit"
+msgstr "Quitter"
+
+#: src/main.c:116
+msgid "Quit the program"
+msgstr "Quitte le programme"
+
+#: src/main.c:121
+msgid "Redo"
+msgstr "Rétablir"
+
+#: src/main.c:122
+msgid "Redo the last undone action"
+msgstr "Refait la dernière opération annulée"
+
+#: src/callbacks.c:349
+#: src/callbacks.c:357
+msgid "Replace"
+msgstr "Remplacer"
+
+#: src/callbacks.c:352
+msgid "Replace All"
+msgstr "Tout remplacer"
+
+#: src/callbacks.c:377
+msgid "Replace with:"
+msgstr "Remplacer par :"
+
+#: src/main.c:145
+msgid "Replace..."
+msgstr "Remplacer..."
+
+#: src/main.c:139
+msgid "Reset Zoom"
+msgstr "Zoom normal"
+
+#: src/main.c:140
+msgid "Reset the size of the font"
+msgstr "Rétabli la taille de la police"
+
+#: src/callbacks.c:888
+msgid "Save File"
+msgstr "Enregistre le fichier"
+
+#: src/main.c:111
+msgid "Save as..."
+msgstr "Enregistrer sous..."
+
+#: src/callbacks.c:845
+msgid "Save changes to document before closing?"
+msgstr "Enregistrer les changements du document avant de le fermer ?"
+
+#: src/main.c:110
+msgid "Save the current file"
+msgstr "Enregistre le fichier actuel"
+
+#: src/main.c:112
+msgid "Save the current file with a different name"
+msgstr "Enregistrer le fichier actuel sous un nom différent"
+
+#: src/main.c:109
+msgid "Save..."
+msgstr "Enregistrer..."
+
+#: src/main.c:142
+msgid "Search"
+msgstr "Rechercher"
+
+#: src/callbacks.c:309
+msgid "Search backwards"
+msgstr "Rechercher en arrière"
+
+#: src/main.c:146
+msgid "Search for and replace text"
+msgstr "Recherche un texte et le remplace"
+
+#: src/main.c:144
+msgid "Search for text"
+msgstr "Recherche un texte"
+
+#: src/callbacks.c:298
+#: src/callbacks.c:370
+msgid "Search for:"
+msgstr "Rechercher :"
+
+#: src/main.c:131
+msgid "Select All"
+msgstr "Tout sélectionner"
+
+#: src/main.c:132
+msgid "Select the entire document"
+msgstr "Sélectionne le document entier"
+
+#: src/main.c:138
+msgid "Shrink the font"
+msgstr "Rétréci la police"
+
+#: src/main.c:119
+msgid "Undo"
+msgstr "Annuler"
+
+#: src/main.c:120
+msgid "Undo the last action"
+msgstr "Annule la dernière action"
+
+#: src/main.c:134
+msgid "View"
+msgstr "Affichage"
+
+#: src/callbacks.c:555
+#: src/main.c:151
+msgid "View DVI"
+msgstr "Visionner DVI"
+
+#: src/callbacks.c:564
+#: src/main.c:155
+msgid "View PDF"
+msgstr "Visionner PDF"
+
+#: src/callbacks.c:573
+#: src/main.c:161
+msgid "View PS"
+msgstr "Visionner PS"
+
+#: src/main.c:152
+msgid "View the DVI file"
+msgstr "Visionner le fichier DVI"
+
+#: src/main.c:156
+msgid "View the PDF file"
+msgstr "Visionner le fichier PDF"
+
+#: src/main.c:162
+msgid "View the PostScript file"
+msgstr "Visionner le fichier PostScript"
+
+#: src/callbacks.c:1115
+msgid "Viewing in progress. Please wait..."
+msgstr "Vision en cours. Veuillez patienter..."
+
+#: src/main.c:278
+msgid "Welcome to LaTeXila!"
+msgstr "Bienvenue sur LaTeXila !"
+
+#: src/main.c:135
+msgid "Zoom In"
+msgstr "Agrandir le zoom"
+
+#: src/main.c:137
+msgid "Zoom Out"
+msgstr "Réduire le zoom"
+
+#: src/callbacks.c:1007
+#, c-format
+msgid "compilation failed: %s is not a *.tex file"
+msgstr "échec de la compilation : %s n'est pas un fichier *.tex"
+
+#: src/callbacks.c:1039
+#: src/callbacks.c:1109
+#: src/callbacks.c:1182
+#, c-format
+msgid "execution failed: %s"
+msgstr "échec de l'exécution : %s"
+
+#: src/callbacks.c:1077
+#, c-format
+msgid "failed: %s is not a *.tex file"
+msgstr "échec : %s n'est pas un fichier *.tex"
+
+#: src/callbacks.c:640
+msgid "translator-credits"
+msgstr "Sébastien Wilmet <sebastien.wilmet@gmail.com>"
+

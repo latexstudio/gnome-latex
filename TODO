@@ -24,9 +24,9 @@ Mon Aug 24, 2009 to Mon Aug 31, 2009
 	  GtkSourceView-CRITICAL **: gtk_source_undo_manager_undo: assertion `undo_action != NULL' failed
 	x show line numbers and new document...
 
-[-] CMake
+[x] CMake
 
-[-] French translation
+[x] French translation
 
 [-] apply the GPL
 

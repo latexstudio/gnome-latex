@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-29 23:53+0200\n"
+"POT-Creation-Date: 2009-08-29 15:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,114 +16,361 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: main.c:32
-msgid "File"
+#: src/callbacks.c:1092 src/callbacks.c:1149
+#, c-format
+msgid ""
+"%s does not exist. If this is not already made, compile the document with "
+"the right command."
 msgstr ""
 
-#: main.c:33
-msgid "New"
-msgstr ""
-
-#: main.c:33
-msgid "New file"
-msgstr ""
-
-#: main.c:35
-msgid "Open..."
-msgstr ""
-
-#: main.c:36
-msgid "Open a file"
-msgstr ""
-
-#: main.c:37
-msgid "Save..."
-msgstr ""
-
-#: main.c:38
-msgid "Save the current file"
-msgstr ""
-
-#: main.c:39
-msgid "Save as..."
-msgstr ""
-
-#: main.c:40
-msgid "Save the current file with a different name"
-msgstr ""
-
-#: main.c:41
-msgid "Quit"
-msgstr ""
-
-#: main.c:42
-msgid "Quit the program"
-msgstr ""
-
-#: main.c:44
-msgid "Edit"
-msgstr ""
-
-#: main.c:45
-msgid "Undo"
-msgstr ""
-
-#: main.c:46
-msgid "Undo the last action"
-msgstr ""
-
-#: main.c:47
-msgid "Redo"
-msgstr ""
-
-#: main.c:48
-msgid "Redo the last undone action"
-msgstr ""
-
-#: main.c:51
-msgid "Compile (latex)"
-msgstr ""
-
-#: main.c:52
-msgid "Produce the document in DVI format"
-msgstr ""
-
-#: main.c:53
-msgid "View DVI"
-msgstr ""
-
-#: main.c:54
-msgid "View the DVI file"
-msgstr ""
-
-#: main.c:55
-msgid "Compile (pdflatex)"
-msgstr ""
-
-#: main.c:56
-msgid "Produce the document in PDF format"
-msgstr ""
-
-#: main.c:57
-msgid "View PDF"
-msgstr ""
-
-#: main.c:58
-msgid "View the PDF file"
-msgstr ""
-
-#: main.c:60
-msgid "Help"
-msgstr ""
-
-#: main.c:61
+#: src/main.c:165
 msgid "About"
 msgstr ""
 
-#: main.c:61
+#: src/callbacks.c:639
+msgid "About "
+msgstr ""
+
+#: src/main.c:166
 msgid "About LaTeXila"
 msgstr ""
 
-#: main.c:123
+#: src/main.c:255
+msgid "Action history"
+msgstr ""
+
+#: src/callbacks.c:305 src/callbacks.c:386
+msgid "Case sensitive"
+msgstr ""
+
+#: src/main.c:113
+msgid "Close"
+msgstr ""
+
+#: src/main.c:114
+msgid "Close the current file"
+msgstr ""
+
+#: src/callbacks.c:836
+msgid "Close the document"
+msgstr ""
+
+#: src/callbacks.c:1019
+msgid "Compilation in progress. Please wait..."
+msgstr ""
+
+#: src/callbacks.c:527 src/main.c:149
+msgid "Compile (latex)"
+msgstr ""
+
+#: src/callbacks.c:541 src/main.c:153
+msgid "Compile (pdflatex)"
+msgstr ""
+
+#: src/main.c:158
+msgid "Convert the DVI document to the PDF format"
+msgstr ""
+
+#: src/main.c:160
+msgid "Convert the DVI document to the PostScript format"
+msgstr ""
+
+#: src/callbacks.c:1164
+msgid "Converting in progress. Please wait..."
+msgstr ""
+
+#: src/main.c:125
+msgid "Copy"
+msgstr ""
+
+#: src/main.c:126
+msgid "Copy the selection"
+msgstr ""
+
+#: src/main.c:123
+msgid "Cut"
+msgstr ""
+
+#: src/main.c:124
+msgid "Cut the selection"
+msgstr ""
+
+#: src/callbacks.c:582 src/main.c:157
+msgid "DVI to PDF"
+msgstr ""
+
+#: src/callbacks.c:591 src/main.c:159
+msgid "DVI to PS"
+msgstr ""
+
+#: src/main.c:129
+msgid "Delete"
+msgstr ""
+
+#: src/main.c:130
+msgid "Delete the selected text"
+msgstr ""
+
+#: src/main.c:173
+msgid "Display line numbers"
+msgstr ""
+
+#: src/main.c:118
+msgid "Edit"
+msgstr ""
+
+#: src/main.c:136
+msgid "Enlarge the font"
+msgstr ""
+
+#: src/main.c:104
+msgid "File"
+msgstr ""
+
+#: src/callbacks.c:288
+msgid "Find"
+msgstr ""
+
+#: src/main.c:143
+msgid "Find..."
+msgstr ""
+
+#: src/callbacks.c:452
+#, c-format
+msgid "Found and replaced %d occurences"
+msgstr ""
+
+#: src/callbacks.c:450
+msgid "Found and replaced one occurence"
+msgstr ""
+
+#: src/main.c:164
+msgid "Help"
+msgstr ""
+
+#: src/callbacks.c:616
+msgid "LaTeXila is a LaTeX development environment for the GNOME Desktop"
+msgstr ""
+
+#: src/main.c:172
+msgid "Line numbers"
+msgstr ""
+
+#: src/main.c:105
+msgid "New"
+msgstr ""
+
+#: src/callbacks.c:46 src/callbacks.c:965
+msgid "New document"
+msgstr ""
+
+#: src/main.c:106
+msgid "New file"
+msgstr ""
+
+#: src/callbacks.c:53
+msgid "Open File"
+msgstr ""
+
+#: src/main.c:181
+msgid "Open Recent"
+msgstr ""
+
+#: src/main.c:108
+msgid "Open a file"
+msgstr ""
+
+#: src/main.c:181
+msgid "Open recently used files"
+msgstr ""
+
+#: src/main.c:107
+msgid "Open..."
+msgstr ""
+
+#: src/main.c:127
+msgid "Paste"
+msgstr ""
+
+#: src/main.c:128
+msgid "Paste the clipboard"
+msgstr ""
+
+#: src/callbacks.c:333 src/callbacks.c:448 src/callbacks.c:483
+msgid "Phrase not found"
+msgstr ""
+
+#: src/main.c:150
+msgid "Produce the document in DVI format"
+msgstr ""
+
+#: src/main.c:154
+msgid "Produce the document in PDF format"
+msgstr ""
+
+#: src/main.c:115
+msgid "Quit"
+msgstr ""
+
+#: src/main.c:116
+msgid "Quit the program"
+msgstr ""
+
+#: src/main.c:121
+msgid "Redo"
+msgstr ""
+
+#: src/main.c:122
+msgid "Redo the last undone action"
+msgstr ""
+
+#: src/callbacks.c:349 src/callbacks.c:357
+msgid "Replace"
+msgstr ""
+
+#: src/callbacks.c:352
+msgid "Replace All"
+msgstr ""
+
+#: src/callbacks.c:377
+msgid "Replace with:"
+msgstr ""
+
+#: src/main.c:145
+msgid "Replace..."
+msgstr ""
+
+#: src/main.c:139
+msgid "Reset Zoom"
+msgstr ""
+
+#: src/main.c:140
+msgid "Reset the size of the font"
+msgstr ""
+
+#: src/callbacks.c:888
+msgid "Save File"
+msgstr ""
+
+#: src/main.c:111
+msgid "Save as..."
+msgstr ""
+
+#: src/callbacks.c:845
+msgid "Save changes to document before closing?"
+msgstr ""
+
+#: src/main.c:110
+msgid "Save the current file"
+msgstr ""
+
+#: src/main.c:112
+msgid "Save the current file with a different name"
+msgstr ""
+
+#: src/main.c:109
+msgid "Save..."
+msgstr ""
+
+#: src/main.c:142
+msgid "Search"
+msgstr ""
+
+#: src/callbacks.c:309
+msgid "Search backwards"
+msgstr ""
+
+#: src/main.c:146
+msgid "Search for and replace text"
+msgstr ""
+
+#: src/main.c:144
+msgid "Search for text"
+msgstr ""
+
+#: src/callbacks.c:298 src/callbacks.c:370
+msgid "Search for:"
+msgstr ""
+
+#: src/main.c:131
+msgid "Select All"
+msgstr ""
+
+#: src/main.c:132
+msgid "Select the entire document"
+msgstr ""
+
+#: src/main.c:138
+msgid "Shrink the font"
+msgstr ""
+
+#: src/main.c:119
+msgid "Undo"
+msgstr ""
+
+#: src/main.c:120
+msgid "Undo the last action"
+msgstr ""
+
+#: src/main.c:134
+msgid "View"
+msgstr ""
+
+#: src/callbacks.c:555 src/main.c:151
+msgid "View DVI"
+msgstr ""
+
+#: src/callbacks.c:564 src/main.c:155
+msgid "View PDF"
+msgstr ""
+
+#: src/callbacks.c:573 src/main.c:161
+msgid "View PS"
+msgstr ""
+
+#: src/main.c:152
+msgid "View the DVI file"
+msgstr ""
+
+#: src/main.c:156
+msgid "View the PDF file"
+msgstr ""
+
+#: src/main.c:162
+msgid "View the PostScript file"
+msgstr ""
+
+#: src/callbacks.c:1115
+msgid "Viewing in progress. Please wait..."
+msgstr ""
+
+#: src/main.c:278
 msgid "Welcome to LaTeXila!"
+msgstr ""
+
+#: src/main.c:135
+msgid "Zoom In"
+msgstr ""
+
+#: src/main.c:137
+msgid "Zoom Out"
+msgstr ""
+
+#: src/callbacks.c:1007
+#, c-format
+msgid "compilation failed: %s is not a *.tex file"
+msgstr ""
+
+#: src/callbacks.c:1039 src/callbacks.c:1109 src/callbacks.c:1182
+#, c-format
+msgid "execution failed: %s"
+msgstr ""
+
+#: src/callbacks.c:1077
+#, c-format
+msgid "failed: %s is not a *.tex file"
+msgstr ""
+
+#: src/callbacks.c:640
+msgid "translator-credits"
 msgstr ""

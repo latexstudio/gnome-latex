@@ -613,7 +613,7 @@ cb_action_list_changed (GtkTreeSelection *selection, gpointer user_data)
 void
 cb_about_dialog (void)
 {
-	gchar *comments = _(PROGRAM_NAME " is a LaTeX development environment for the GNOME Desktop");
+	gchar *comments = _("LaTeXila is a LaTeX development environment for the GNOME Desktop");
 	gchar *copyright = "Copyright © 2009 Sébastien Wilmet";
 
 	//TODO show the appropriate text for the GPL 3 licence

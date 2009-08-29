@@ -1,7 +1,13 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include "config.h"
+
+#ifdef LATEXILA_NLS_ENABLED
 #define _(STRING) gettext(STRING)
+#else
+#define _(STRING) STRING
+#endif
 
 // each document opened is represented by a document_t structure
 typedef struct
