@@ -1,3 +1,22 @@
+/*
+ * This file is part of LaTeXila.
+ *
+ * Copyright © 2009 Sébastien Wilmet
+ *
+ * LaTeXila is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * LaTeXila is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -616,8 +635,18 @@ cb_about_dialog (void)
 	gchar *comments = _("LaTeXila is a LaTeX development environment for the GNOME Desktop");
 	gchar *copyright = "Copyright © 2009 Sébastien Wilmet";
 
-	//TODO show the appropriate text for the GPL 3 licence
-	gchar *licence = "GNU General Public Licence version 3 or later";
+	gchar *licence = "LaTeXila is free software: you can redistribute it and/or modify"
+			"it under the terms of the GNU General Public License as published by"
+			"the Free Software Foundation, either version 3 of the License, or"
+			"(at your option) any later version.\n\n"
+
+			"LaTeXila is distributed in the hope that it will be useful,"
+			"but WITHOUT ANY WARRANTY; without even the implied warranty of"
+			"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the"
+			"GNU General Public License for more details.\n\n"
+
+			"You should have received a copy of the GNU General Public License"
+			"along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.";
 
 	//TODO set the url hook
 	gchar *website = "http://latexila.sourceforge.net/";
