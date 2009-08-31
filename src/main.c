@@ -32,7 +32,7 @@
 #include "print.h"
 
 latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-	NULL, NULL, NULL}; 
+	NULL, NULL, NULL, NULL, NULL, NULL}; 
 
 static struct {     
 	gchar *filename;     
@@ -149,6 +149,8 @@ main (int argc, char *argv[])
 			_("Delete the selected text"), G_CALLBACK (cb_delete)},
 		{"EditSelectAll", GTK_STOCK_SELECT_ALL, _("Select All"), "<Control>A",
 			_("Select the entire document"), G_CALLBACK (cb_select_all)},
+		{"EditPreferences", GTK_STOCK_PREFERENCES, _("Preferences"), NULL,
+			_("Configure the application"), G_CALLBACK (cb_preferences)},
 
 		{"View", NULL, _("View"), NULL, NULL, NULL},
 		{"ViewZoomIn", GTK_STOCK_ZOOM_IN, _("Zoom In"), "<Control>plus",
@@ -185,15 +187,7 @@ main (int argc, char *argv[])
 			_("About LaTeXila"), G_CALLBACK (cb_about_dialog)}
 	};
 
-	// name, stock_id, label, accelerator, tooltip, callback
-	GtkToggleActionEntry toggle_entries[] =
-	{
-		{"ViewLineNumbers", NULL, _("Line numbers"), NULL,
-			_("Display line numbers"), G_CALLBACK (cb_line_numbers)}
-	};
-
 	guint nb_entries = G_N_ELEMENTS (entries);
-	guint nb_toggle_entries = G_N_ELEMENTS (toggle_entries);
 
 	// recent document
 	GtkAction *recent = gtk_recent_action_new ("FileOpenRecent",
@@ -208,7 +202,6 @@ main (int argc, char *argv[])
 	// create the action group and the ui manager
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
-	gtk_action_group_add_toggle_actions (action_group, toggle_entries, nb_toggle_entries, NULL);
 	gtk_action_group_add_action (action_group, recent);
 	GtkUIManager *ui_manager = gtk_ui_manager_new ();
 	gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
@@ -251,9 +244,6 @@ main (int argc, char *argv[])
 			G_CALLBACK (cb_page_change), NULL);
 	gtk_paned_pack1 (GTK_PANED (vpaned), notebook, TRUE, TRUE);
 	latexila.notebook = GTK_NOTEBOOK (notebook);
-
-	latexila.font_size = 10;
-	latexila.show_line_numbers = FALSE;
 
 	/* log zone */
 	//TODO set default height and width
@@ -327,9 +317,92 @@ main (int argc, char *argv[])
 	gtk_box_pack_end (GTK_BOX (statusbar), cursor_position_statusbar,
 			FALSE, TRUE, 0);
 
+	/* user preferences */
+	gboolean default_value_show_line_numbers = FALSE;
+	gchar *default_value_font = "Monospace 10";
+	gchar *default_value_command_view = "evince";
+
+	gchar *pref_file = g_strdup_printf ("%s/.latexila", g_get_home_dir ());
+	latexila.pref_file = pref_file;
+	latexila.key_file = g_key_file_new ();
+	gboolean prefs_loaded = FALSE;
+	error = NULL;
+
+	if (g_file_test (pref_file, G_FILE_TEST_IS_REGULAR))
+	{
+		g_key_file_load_from_file (latexila.key_file, pref_file,
+				G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &error);
+		if (error != NULL)
+		{
+			print_warning ("load user preferences failed: %s", error->message);
+			g_error_free (error);
+		}
+		else
+		{
+			/* check if all keys exist
+			 * if not, set the default value for that key
+			 */
+			gboolean prefs_saved = TRUE;
+			g_key_file_get_boolean (latexila.key_file, PROGRAM_NAME,
+					"show_line_numbers", &error);
+			if (error != NULL)
+			{
+				g_key_file_set_boolean (latexila.key_file, PROGRAM_NAME,
+						"show_line_numbers", default_value_show_line_numbers);
+				g_error_free (error);
+				prefs_saved = FALSE;
+			}
+
+			g_key_file_get_string (latexila.key_file, PROGRAM_NAME,
+					"font", &error);
+			if (error != NULL)
+			{
+				g_key_file_set_string (latexila.key_file, PROGRAM_NAME,
+						"font", default_value_font);
+				g_error_free (error);
+				prefs_saved = FALSE;
+			}
+
+			g_key_file_get_string (latexila.key_file, PROGRAM_NAME,
+					"command_view", &error);
+			if (error != NULL)
+			{
+				g_key_file_set_string (latexila.key_file, PROGRAM_NAME,
+						"command_view", default_value_command_view);
+				g_error_free (error);
+				prefs_saved = FALSE;
+			}
+
+			if (! prefs_saved)
+				save_preferences ();
+
+			print_info ("load user preferences: OK");
+			prefs_loaded = TRUE;
+		}
+	}
+
+	if (! prefs_loaded)
+	{
+		// set default values
+		g_key_file_set_boolean (latexila.key_file, PROGRAM_NAME,
+				"show_line_numbers", default_value_show_line_numbers);
+		g_key_file_set_string (latexila.key_file, PROGRAM_NAME,
+				"font", default_value_font);
+		g_key_file_set_string (latexila.key_file, PROGRAM_NAME,
+				"command_view", default_value_command_view);
+
+		save_preferences ();
+	}
+
+	gchar *font_string = g_key_file_get_string (latexila.key_file,
+			PROGRAM_NAME, "font", NULL);
+	latexila.font_desc = pango_font_description_from_string (font_string);
+	latexila.font_size = pango_font_description_get_size (latexila.font_desc);
+
 
 	gtk_widget_show_all (window);
 
+	/* open documents given in arguments */
 	for (int i = 1 ; i < argc ; i++)
 	{
 		gchar *uri = g_filename_to_uri (argv[i], NULL, NULL);

@@ -52,8 +52,10 @@ typedef struct
 	GtkStatusbar		*cursor_position;
 	GtkAction			*undo;
 	GtkAction			*redo;
+	GKeyFile			*key_file;
+	gchar				*pref_file;
+	PangoFontDescription *font_desc;
 	gint				font_size;
-	gboolean			show_line_numbers;
 } latexila_t;
 
 // all the documents are accessible by the docs variable

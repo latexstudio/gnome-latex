@@ -29,6 +29,4 @@
 
 #define DATA_DIR "${DATA_DIR}"
 
-#define FONT "Monospace"
-
 #endif /* CONFIG_H */

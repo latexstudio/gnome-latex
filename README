@@ -16,24 +16,24 @@ Installation
 
 LaTeXila requires GTK+-2.16.x and GtkSourceView 2.6.x.
 Maybe it will work with older versions of GTK and GtkSourceView but it's not
-supported.
+tested.
 
 Simple install procedure:
 
 	$ tar xvf latexila-0.0.1.tar.gz		# unpack the sources
-	$ cd latexila-0.0.1/build_directory/	# go to the build directory
-	$ cmake ../				# run the Makefile generator
+	$ cd latexila-0.0.1/
+	$ cmake .				# run the Makefile generator
 	$ make					# build LaTeXila
+	$ make translations			# build the *.mo files
 	[ Become root if necessary ]
 	$ make install				# install LaTeXila
 
 Simple uninstall procedure:
 
-	All the files installed are listed in the "install_manifest.txt" file
-	located in the build directory. So you can uninstall LaTeXila by doing
-	this:
+	All the files installed are listed in the "install_manifest.txt" file.
+	So you can uninstall LaTeXila by doing this:
 
-	$ cd latexila-0.0.1/build_directory/
+	$ cd latexila-0.0.1/
 	[ Become root if necessary ]
 	$ xargs rm < install_manifest.txt
 

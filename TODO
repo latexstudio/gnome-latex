@@ -12,10 +12,10 @@ Mon Aug 24, 2009 to Mon Aug 31, 2009
 
 [x] enlarge/shrink font
 
-[-] Preferences
-	- show line numbers
-	- commands
-	- source code font
+[x] Preferences
+	x show line numbers
+	x commands
+	x source code font
 
 [-] bugs correction
 	- sometimes command output is not UTF-8:
