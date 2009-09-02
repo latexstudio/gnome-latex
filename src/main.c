@@ -166,7 +166,7 @@ main (int argc, char *argv[])
 		{"SearchReplace", GTK_STOCK_FIND_AND_REPLACE, _("Replace..."), "<Control>H",
 			_("Search for and replace text"), G_CALLBACK (cb_replace)},
 		
-		{"LaTeX", NULL, "LaTeX", NULL, NULL, NULL},
+		{"Build", NULL, _("Build"), NULL, NULL, NULL},
 		{"compile_latex", "compile_latex", _("Compile (latex)"), "<Release>F5",
 			_("Produce the document in DVI format"), G_CALLBACK (cb_latex)},
 		{"viewDVI", "view_dvi", _("View DVI"), "<Release>F6",

@@ -637,18 +637,18 @@ cb_about_dialog (void)
 	gchar *comments = _("LaTeXila is a LaTeX development environment for the GNOME Desktop");
 	gchar *copyright = "Copyright © 2009 Sébastien Wilmet";
 
-	gchar *licence = "LaTeXila is free software: you can redistribute it and/or modify"
-			"it under the terms of the GNU General Public License as published by"
-			"the Free Software Foundation, either version 3 of the License, or"
+	gchar *licence = "LaTeXila is free software: you can redistribute it and/or modify\n"
+			"it under the terms of the GNU General Public License as published by\n"
+			"the Free Software Foundation, either version 3 of the License, or\n"
 			"(at your option) any later version.\n\n"
 
-			"LaTeXila is distributed in the hope that it will be useful,"
-			"but WITHOUT ANY WARRANTY; without even the implied warranty of"
-			"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the"
+			"LaTeXila is distributed in the hope that it will be useful,\n"
+			"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+			"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
 			"GNU General Public License for more details.\n\n"
 
-			"You should have received a copy of the GNU General Public License"
-			"along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.";
+			"You should have received a copy of the GNU General Public License\n"
+			"along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.\n";
 
 	//TODO set the url hook
 	gchar *website = "http://latexila.sourceforge.net/";

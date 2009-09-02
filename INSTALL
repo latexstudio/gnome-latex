@@ -34,3 +34,8 @@ Configuration
 	run cmake with this option:
 	-DCMAKE_INSTALL_PREFIX=/path/to/install/directory/
 
+* Building in an other directory
+	$ tar xvf latexila-0.0.1.tar.gz
+	$ mkdir build_dir && cd build_dir
+	$ cmake ../latexila-0.0.1/
+	...

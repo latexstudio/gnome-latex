@@ -2,35 +2,8 @@ TODO LaTeXila
 
 Mon Aug 24, 2009 to Mon Aug 31, 2009
 
-[x] search and replace
-	x make the basis
-	x options: case sensitive, search backward, ...
-	x button replace sensitivity
-	x same width for entries
-
-[x] copy, cut, paste, delete and select all
-
-[x] enlarge/shrink font
-
-[x] Preferences
-	x show line numbers
-	x commands
-	x source code font
-
 [-] bugs correction
 	- sometimes command output is not UTF-8:
 	  Gtk-CRITICAL **: gtk_text_buffer_emit_insert: assertion `g_utf8_validate (text, len, NULL)' failed
-	x sometimes after making a replacement and then undo:
-	  GtkSourceView-CRITICAL **: gtk_source_undo_manager_undo: assertion `undo_action != NULL' failed
-	x show line numbers and new document...
-
-[x] CMake
-
-[x] French translation
-
-[x] apply the GPL
-
-[-] GNOME integration
-	- open *.tex file with LaTeXila
 
 [-] ubuntu package
