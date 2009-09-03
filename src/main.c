@@ -38,13 +38,13 @@ static struct {
 	gchar *filename;     
 	gchar *stock_id;     
 } stock_icons[] = {     
-	{DATA_DIR "/icons/compile_latex.png", "compile_latex"},
-	{DATA_DIR "/icons/compile_pdflatex.png", "compile_pdflatex"},
-	{DATA_DIR "/icons/view_dvi.png", "view_dvi"},
-	{DATA_DIR "/icons/view_pdf.png", "view_pdf"},
-	{DATA_DIR "/icons/view_ps.png", "view_ps"},
-	{DATA_DIR "/icons/dvi_to_pdf.png", "dvi_to_pdf"},
-	{DATA_DIR "/icons/dvi_to_ps.png", "dvi_to_ps"}
+	{DATA_DIR "/images/icons/compile_latex.png", "compile_latex"},
+	{DATA_DIR "/images/icons/compile_pdflatex.png", "compile_pdflatex"},
+	{DATA_DIR "/images/icons/view_dvi.png", "view_dvi"},
+	{DATA_DIR "/images/icons/view_pdf.png", "view_pdf"},
+	{DATA_DIR "/images/icons/view_ps.png", "view_ps"},
+	{DATA_DIR "/images/icons/dvi_to_pdf.png", "dvi_to_pdf"},
+	{DATA_DIR "/images/icons/dvi_to_ps.png", "dvi_to_ps"}
 };
 
 static gint n_stock_icons = G_N_ELEMENTS (stock_icons);

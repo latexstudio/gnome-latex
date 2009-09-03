@@ -653,9 +653,15 @@ cb_about_dialog (void)
 	//TODO set the url hook
 	gchar *website = "http://latexila.sourceforge.net/";
 
-	const gchar * const authors[] =
+	const gchar *authors[] =
 	{
 		"Sébastien Wilmet <sebastien.wilmet@gmail.com>",
+		NULL
+	};
+
+	const gchar *artists[] =
+	{
+		"The Kile Team: http://kile.sourceforge.net/",
 		NULL
 	};
 
@@ -663,6 +669,7 @@ cb_about_dialog (void)
 			latexila.main_window,
 			"program-name", PROGRAM_NAME,
 			"authors", authors,
+			"artists", artists,
 			"comments", comments,
 			"copyright", copyright,
 			"license", licence,

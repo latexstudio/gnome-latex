@@ -4,4 +4,3 @@ TARGET_LINK_LIBRARIES(latexila ${GTK2_LIBRARIES})
 
 INSTALL(TARGETS latexila DESTINATION "bin")
 INSTALL(FILES ui.xml DESTINATION "share/latexila")
-INSTALL(DIRECTORY icons/ DESTINATION "share/latexila/icons")
