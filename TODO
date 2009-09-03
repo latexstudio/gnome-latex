@@ -1,9 +1,28 @@
 TODO LaTeXila
 
-Mon Aug 24, 2009 to Mon Aug 31, 2009
+Thu Sep 3, 2009 to Thu Sep 10, 2009
+
+[-] new toolbar
+	- structure: part, chapter, section, subsection, subsubsection, paragraph, subparagraph
+	- font styles
+	- size of characters
+	- bold, italic, typewriter, underline
+	- center
+	- lists: itemize, enumerate, description
+	- various: label, ref, pageref, cite, footnote, index
+
+[-] symbol tables
+	- Greek letters
+	- arrows
+	- relation
+	- operators
+	- miscellaneous math
+	- miscellaneous text
+	- delimiters
+	- ...
 
 [-] bugs correction
 	- sometimes command output is not UTF-8:
 	  Gtk-CRITICAL **: gtk_text_buffer_emit_insert: assertion `g_utf8_validate (text, len, NULL)' failed
-
-[-] ubuntu package
+	x open files from the command line:
+	  can not open relative path, only absolute

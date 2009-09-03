@@ -405,11 +405,24 @@ main (int argc, char *argv[])
 	/* open documents given in arguments */
 	for (int i = 1 ; i < argc ; i++)
 	{
-		gchar *uri = g_filename_to_uri (argv[i], NULL, NULL);
+		gchar *path;
+		if (g_path_is_absolute (argv[i]))
+			path = g_strdup (argv[i]);
+		else
+		{
+			gchar *current_dir = g_get_current_dir ();
+			path = g_strdup_printf ("%s/%s", current_dir, argv[i]);
+			g_free (current_dir);
+		}
+
+		gchar *uri = g_filename_to_uri (path, NULL, NULL);
 		if (uri != NULL)
-			open_new_document (argv[i], uri);
+			open_new_document (path, uri);
 		else
 			print_warning ("can not open the file \"%s\"", argv[i]);
+
+		g_free (path);
+		g_free (uri);
 	}
 
 	gtk_main ();
