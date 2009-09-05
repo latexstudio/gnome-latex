@@ -62,13 +62,30 @@ typedef struct
 extern latexila_t latexila;
 
 // for the actions list in the log zone
-enum
+enum action
 {
 	COLUMN_ACTION_TITLE,
 	COLUMN_ACTION_COMMAND,
 	COLUMN_ACTION_COMMAND_OUTPUT,
 	COLUMN_ACTION_ERROR,
 	N_COLUMNS_ACTION
+};
+
+// for the symbol tables
+struct symbols
+{
+	gchar *filename;
+	gchar *latex_command;
+	gchar *package_required;
+};
+
+// for the symbol lists
+enum symbol
+{
+	COLUMN_SYMBOL_PIXBUF,
+	COLUMN_SYMBOL_COMMAND,
+	COLUMN_SYMBOL_TOOLTIP,
+	N_COLUMNS_SYMBOL
 };
 
 #endif /* MAIN_H */

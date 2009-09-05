@@ -34,6 +34,74 @@
 latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 	NULL, NULL, NULL, NULL, NULL, NULL}; 
 
+static struct symbols symbols_greek[] = {
+	{DATA_DIR "/images/greek/01-alpha.png", "\\alpha", NULL},
+	{DATA_DIR "/images/greek/02-beta.png", "\\beta", NULL},
+	{DATA_DIR "/images/greek/03-gamma.png", "\\gamma", NULL},
+	{DATA_DIR "/images/greek/04-delta.png", "\\delta", NULL},
+	{DATA_DIR "/images/greek/05-epsilon.png", "\\epsilon", NULL},
+	{DATA_DIR "/images/greek/06-varepsilon.png", "\\varepsilon", NULL},
+	{DATA_DIR "/images/greek/07-zeta.png", "\\zeta", NULL},
+	{DATA_DIR "/images/greek/08-eta.png", "\\eta", NULL},
+	{DATA_DIR "/images/greek/09-theta.png", "\\theta", NULL},
+	{DATA_DIR "/images/greek/10-vartheta.png", "\\vartheta", NULL},
+	{DATA_DIR "/images/greek/11-iota.png", "\\iota", NULL},
+	{DATA_DIR "/images/greek/12-kappa.png", "\\kappa", NULL},
+	{DATA_DIR "/images/greek/13-lambda.png", "\\lambda", NULL},
+	{DATA_DIR "/images/greek/14-mu.png", "\\mu", NULL},
+	{DATA_DIR "/images/greek/15-nu.png", "\\nu", NULL},
+	{DATA_DIR "/images/greek/16-xi.png", "\\xi", NULL},
+	{DATA_DIR "/images/greek/17-o.png", "o", NULL},
+	{DATA_DIR "/images/greek/18-pi.png", "\\pi", NULL},
+	{DATA_DIR "/images/greek/19-varpi.png", "\\varpi", NULL},
+	{DATA_DIR "/images/greek/20-rho.png", "\\rho", NULL},
+	{DATA_DIR "/images/greek/21-varrho.png", "\\varrho", NULL},
+	{DATA_DIR "/images/greek/22-sigma.png", "\\sigma", NULL},
+	{DATA_DIR "/images/greek/23-varsigma.png", "\\varsigma", NULL},
+	{DATA_DIR "/images/greek/24-tau.png", "\\tau", NULL},
+	{DATA_DIR "/images/greek/25-upsilon.png", "\\upsilon", NULL},
+	{DATA_DIR "/images/greek/26-phi.png", "\\phi", NULL},
+	{DATA_DIR "/images/greek/27-varphi.png", "\\varphi", NULL},
+	{DATA_DIR "/images/greek/28-chi.png", "\\chi", NULL},
+	{DATA_DIR "/images/greek/29-psi.png", "\\psi", NULL},
+	{DATA_DIR "/images/greek/30-omega.png", "\\omega", NULL},
+	{DATA_DIR "/images/greek/31-A.png", "A", NULL},
+	{DATA_DIR "/images/greek/32-B.png", "B", NULL},
+	{DATA_DIR "/images/greek/33-Gamma.png", "\\Gamma", NULL},
+	{DATA_DIR "/images/greek/34-varGamma.png", "\\varGamma", "amsmath"},
+	{DATA_DIR "/images/greek/35-Delta.png", "\\Delta", NULL},
+	{DATA_DIR "/images/greek/36-varDelta.png", "\\varDelta", "amsmath"},
+	{DATA_DIR "/images/greek/37-E.png", "E", NULL},
+	{DATA_DIR "/images/greek/38-Z.png", "Z", NULL},
+	{DATA_DIR "/images/greek/39-H.png", "H", NULL},
+	{DATA_DIR "/images/greek/40-Theta.png", "\\Theta", NULL},
+	{DATA_DIR "/images/greek/41-varTheta.png", "\\varTheta", "amsmath"},
+	{DATA_DIR "/images/greek/42-I.png", "I", NULL},
+	{DATA_DIR "/images/greek/43-K.png", "K", NULL},
+	{DATA_DIR "/images/greek/44-Lambda.png", "\\Lambda", NULL},
+	{DATA_DIR "/images/greek/45-varLambda.png", "\\varLambda", "amsmath"},
+	{DATA_DIR "/images/greek/46-M.png", "M", NULL},
+	{DATA_DIR "/images/greek/47-N.png", "N", NULL},
+	{DATA_DIR "/images/greek/48-Xi.png", "\\Xi", NULL},
+	{DATA_DIR "/images/greek/49-varXi.png", "\\varXi", "amsmath"},
+	{DATA_DIR "/images/greek/50-O.png", "O", NULL},
+	{DATA_DIR "/images/greek/51-Pi.png", "\\Pi", NULL},
+	{DATA_DIR "/images/greek/52-varPi.png", "\\varPi", "amsmath"},
+	{DATA_DIR "/images/greek/53-P.png", "P", NULL},
+	{DATA_DIR "/images/greek/54-Sigma.png", "\\Sigma", NULL},
+	{DATA_DIR "/images/greek/55-varSigma.png", "\\varSigma", "amsmath"},
+	{DATA_DIR "/images/greek/56-T.png", "T", NULL},
+	{DATA_DIR "/images/greek/57-Upsilon.png", "\\Upsilon", NULL},
+	{DATA_DIR "/images/greek/58-varUpsilon.png", "\\varUpsilon", "amsmath"},
+	{DATA_DIR "/images/greek/59-Phi.png", "\\Phi", NULL},
+	{DATA_DIR "/images/greek/60-varPhi.png", "\\varPhi", "amsmath"},
+	{DATA_DIR "/images/greek/61-X.png", "X", NULL},
+	{DATA_DIR "/images/greek/62-Psi.png", "\\Psi", NULL},
+	{DATA_DIR "/images/greek/63-varPsi.png", "\\varPsi", "amsmath"},
+	{DATA_DIR "/images/greek/64-Omega.png", "\\Omega", NULL},
+	{DATA_DIR "/images/greek/65-varOmega.png", "\\varOmega", "amsmath"}
+};
+
 static struct {     
 	gchar *filename;     
 	gchar *stock_id;     
@@ -49,28 +117,31 @@ static struct {
 
 static gint n_stock_icons = G_N_ELEMENTS (stock_icons);
 
-static void     
-register_my_stock_icons (void)     
-{     
-	GtkIconFactory *icon_factory = gtk_icon_factory_new ();     
+static void
+register_my_stock_icons (void)
+{
+	GtkIconFactory *icon_factory = gtk_icon_factory_new ();
 
-	for (gint i = 0; i < n_stock_icons; i++)     
-	{     
-		GtkIconSet *icon_set = gtk_icon_set_new ();     
-		GtkIconSource *icon_source = gtk_icon_source_new ();     
-		gtk_icon_source_set_filename (icon_source, stock_icons[i].filename);     
-		gtk_icon_set_add_source (icon_set, icon_source);     
-		gtk_icon_source_free (icon_source);     
-		gtk_icon_factory_add (icon_factory, stock_icons[i].stock_id, icon_set);     
-		gtk_icon_set_unref (icon_set);     
-	}     
-	gtk_icon_factory_add_default (icon_factory);     
-	g_object_unref (icon_factory);     
+	for (gint i = 0; i < n_stock_icons; i++)
+	{
+		GtkIconSet *icon_set = gtk_icon_set_new ();
+		GtkIconSource *icon_source = gtk_icon_source_new ();
+		gtk_icon_source_set_filename (icon_source, stock_icons[i].filename);
+		gtk_icon_set_add_source (icon_set, icon_source);
+		gtk_icon_source_free (icon_source);
+		gtk_icon_factory_add (icon_factory, stock_icons[i].stock_id, icon_set);
+		gtk_icon_set_unref (icon_set);
+	}
+	gtk_icon_factory_add_default (icon_factory);
+	g_object_unref (icon_factory);
 }
 
 int
 main (int argc, char *argv[])
 {
+	GError *error = NULL;
+	GtkWidget *scrollbar;
+
 	gtk_init (&argc, &argv);
 
 #ifdef LATEXILA_NLS_ENABLED
@@ -113,7 +184,7 @@ main (int argc, char *argv[])
 	register_my_stock_icons ();
 	
 	// all the actions (for the menu and the toolbar)
-	// name, stock_id, label, accelerator, tooltip, callback
+	// {name, stock_id, label, accelerator, tooltip, callback}
 	// the names come from the XML file
 	//
 	// TODO try to place "entries" out of the main function without errors
@@ -208,9 +279,8 @@ main (int argc, char *argv[])
 
 	// load the xml file
 	gchar *xml_file = DATA_DIR "/ui.xml";
-	GError *error = NULL;
 	gtk_ui_manager_add_ui_from_file (ui_manager, xml_file, &error);
-	if (error)
+	if (error != NULL)
 	{
 		print_error ("building menubar and toolbar failed: %s", error->message);
 		g_error_free (error);
@@ -232,26 +302,102 @@ main (int argc, char *argv[])
 	latexila.undo = gtk_ui_manager_get_action (ui_manager, "/MainMenu/Edit/Undo");
 	latexila.redo = gtk_ui_manager_get_action (ui_manager, "/MainMenu/Edit/Redo");
 
+	/* horizontal pane
+	 * left: symbol tables
+	 * right: the source view and the log zone
+	 */
+	GtkWidget *main_hpaned = gtk_hpaned_new ();
+	gtk_paned_set_position (GTK_PANED (main_hpaned), 180);
+	gtk_box_pack_start (GTK_BOX (main_vbox), main_hpaned, TRUE, TRUE, 0);
 
-	/* vertical pane for the source view and the log zone */
+	/* symbol tables */
+	GtkWidget *symbol_tables = gtk_vbox_new (FALSE, 0);
+	gtk_paned_pack1 (GTK_PANED (main_hpaned), symbol_tables, TRUE, TRUE);
+
+	GtkListStore *greek_symbol_store = gtk_list_store_new (N_COLUMNS_SYMBOL,
+			GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
+
+	// store the data
+	gint nb_greek_letters = G_N_ELEMENTS (symbols_greek);
+	GtkTreeIter iter;
+	for (gint i = 0 ; i < nb_greek_letters ; i++)
+	{
+		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (symbols_greek[i].filename,
+				&error);
+		if (error != NULL)
+		{
+			print_warning ("impossible to load the symbol: %s", error->message);
+			g_error_free (error);
+		}
+		else
+		{
+			gchar *tooltip;
+			if (symbols_greek[i].package_required != NULL)
+			{
+				tooltip = g_strdup_printf ("%s (package %s)",
+						symbols_greek[i].latex_command,
+						symbols_greek[i].package_required);
+			}
+			else
+				tooltip = g_strdup (symbols_greek[i].latex_command);
+
+			gtk_list_store_append (greek_symbol_store, &iter);
+			gtk_list_store_set (greek_symbol_store, &iter,
+					COLUMN_SYMBOL_PIXBUF, pixbuf,
+					COLUMN_SYMBOL_COMMAND, symbols_greek[i].latex_command,
+					COLUMN_SYMBOL_TOOLTIP, tooltip,
+					-1);
+			g_free (tooltip);
+		}
+	}
+
+	// show the symbols
+	GtkWidget *symbol_view = gtk_icon_view_new_with_model (
+			GTK_TREE_MODEL (greek_symbol_store));
+	gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (symbol_view),
+			COLUMN_SYMBOL_PIXBUF);
+	gtk_icon_view_set_tooltip_column (GTK_ICON_VIEW (symbol_view),
+			COLUMN_SYMBOL_TOOLTIP);
+	gtk_icon_view_set_selection_mode (GTK_ICON_VIEW (symbol_view),
+			GTK_SELECTION_SINGLE);
+	gtk_icon_view_set_spacing (GTK_ICON_VIEW (symbol_view), 0);
+	gtk_icon_view_set_row_spacing (GTK_ICON_VIEW (symbol_view), 0);
+	gtk_icon_view_set_column_spacing (GTK_ICON_VIEW (symbol_view), 0);
+
+	g_signal_connect (G_OBJECT (symbol_view), "selection-changed",
+			G_CALLBACK (cb_symbol_selected), NULL);
+
+	// with a scrollbar
+	scrollbar = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
+			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_container_add (GTK_CONTAINER (scrollbar), symbol_view);
+	gtk_box_pack_start (GTK_BOX (symbol_tables), scrollbar, TRUE, TRUE, 5);
+
+	/* vertical pane
+	 * top: source view
+	 * bottom: log zone
+	 */
 	GtkWidget *vpaned = gtk_vpaned_new ();
 	gtk_paned_set_position (GTK_PANED (vpaned), 380);
-	gtk_box_pack_start (GTK_BOX (main_vbox), vpaned, TRUE, TRUE, 0);
+	gtk_paned_pack2 (GTK_PANED (main_hpaned), vpaned, TRUE, TRUE);
 
 	/* source view with tabs */
 	GtkWidget *notebook = gtk_notebook_new ();
+	latexila.notebook = GTK_NOTEBOOK (notebook);
 	g_signal_connect (G_OBJECT (notebook), "switch-page",
 			G_CALLBACK (cb_page_change), NULL);
 	gtk_paned_pack1 (GTK_PANED (vpaned), notebook, TRUE, TRUE);
-	latexila.notebook = GTK_NOTEBOOK (notebook);
 
 	/* log zone */
-	//TODO set default height and width
+	// horizontal pane:
+	// left: action history
+	// right: details
 	GtkWidget *hpaned = gtk_hpaned_new ();
 	gtk_paned_set_position (GTK_PANED (hpaned), 190);
 	gtk_paned_pack2 (GTK_PANED (vpaned), hpaned, TRUE, TRUE);
 
-	// actions list
+	// action history
 	GtkListStore *list_store = gtk_list_store_new (N_COLUMNS_ACTION,
 			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
 	latexila.list_store = list_store;
@@ -274,11 +420,11 @@ main (int argc, char *argv[])
 			G_CALLBACK (cb_action_list_changed), NULL);
 
 	// with a scrollbar
-	GtkWidget *sw1 = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw1),
+	scrollbar = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_paned_pack1 (GTK_PANED (hpaned), sw1, TRUE, TRUE);
-	gtk_container_add (GTK_CONTAINER (sw1), list_view);
+	gtk_paned_pack1 (GTK_PANED (hpaned), scrollbar, TRUE, TRUE);
+	gtk_container_add (GTK_CONTAINER (scrollbar), list_view);
 	
 	// log details
 	GtkWidget *log_view = gtk_text_view_new ();
@@ -288,11 +434,11 @@ main (int argc, char *argv[])
 	gtk_text_view_set_editable (GTK_TEXT_VIEW(log_view), FALSE);
 	
 	// with a scrollbar
-	GtkWidget *sw2 = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw2),
+	scrollbar = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_paned_pack2 (GTK_PANED (hpaned), sw2, TRUE, TRUE);
-	gtk_container_add (GTK_CONTAINER (sw2), log_view);
+	gtk_paned_pack2 (GTK_PANED (hpaned), scrollbar, TRUE, TRUE);
+	gtk_container_add (GTK_CONTAINER (scrollbar), log_view);
 
 	latexila.log = GTK_TEXT_VIEW (log_view);
 

@@ -12,7 +12,7 @@ Thu Sep 3, 2009 to Thu Sep 10, 2009
 	- various: label, ref, pageref, cite, footnote, index
 
 [-] symbol tables
-	- Greek letters
+	x Greek alphabet
 	- arrows
 	- relation
 	- operators
@@ -20,6 +20,11 @@ Thu Sep 3, 2009 to Thu Sep 10, 2009
 	- miscellaneous text
 	- delimiters
 	- ...
+
+[-] save and load dimensions
+	- size of the window
+	- position of the panes
+	- sceen position (center by default)
 
 [-] bugs correction
 	- sometimes command output is not UTF-8:

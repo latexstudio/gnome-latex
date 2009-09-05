@@ -63,6 +63,7 @@ void cb_pref_dialog_close (GtkDialog *dialog, gint response_id,
 void cb_line_numbers (GtkToggleButton *toggle_button, gpointer user_data);
 void cb_command_view (GtkButton *button, gpointer user_data);
 void cb_font_set (GtkFontButton *font_button, gpointer user_data);
+void cb_symbol_selected (GtkIconView *icon_view, gpointer user_data);
 
 void open_new_document (const gchar *filename, const gchar *uri);
 void save_preferences (void);

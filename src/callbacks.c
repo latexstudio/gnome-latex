@@ -775,6 +775,46 @@ cb_font_set (GtkFontButton *font_button, gpointer user_data)
 }
 
 void
+cb_symbol_selected (GtkIconView *icon_view, gpointer user_data)
+{
+	if (latexila.active_doc == NULL)
+	{
+		gtk_icon_view_unselect_all (icon_view);
+		return;
+	}
+
+	GList *selected_items = gtk_icon_view_get_selected_items (icon_view);
+	// unselect the symbol, so the user can insert several times the same symbol
+	gtk_icon_view_unselect_all (icon_view);
+	GtkTreePath *path = g_list_nth_data (selected_items, 0);
+	GtkTreeModel *model = gtk_icon_view_get_model (icon_view);
+	GtkTreeIter iter;
+
+	if (path != NULL && gtk_tree_model_get_iter (model, &iter, path))
+	{
+		gchar *latex_command;
+		gtk_tree_model_get (model, &iter,
+				COLUMN_SYMBOL_COMMAND, &latex_command,
+				-1);
+
+		// insert the symbol in the current document
+		GtkTextBuffer *buffer =
+			GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+		gtk_text_buffer_begin_user_action (buffer);
+		gtk_text_buffer_insert_at_cursor (
+				GTK_TEXT_BUFFER (latexila.active_doc->source_buffer),
+				latex_command, -1);
+		gtk_text_buffer_end_user_action (buffer);
+
+		g_free (latex_command);
+	}
+
+	// free the GList
+	g_list_foreach (selected_items, (GFunc) gtk_tree_path_free, NULL);
+	g_list_free (selected_items);
+}
+
+void
 open_new_document (const gchar *filename, const gchar *uri)
 {
 	print_info ("open file: \"%s\"", filename);

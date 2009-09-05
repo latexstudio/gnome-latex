@@ -5,7 +5,7 @@ PROJECT(latexila)
 # version
 SET(latexila_MAJOR 0)
 SET(latexila_MINOR 0)
-SET(latexila_PATCH 2)
+SET(latexila_PATCH "1.99")
 SET(latexila_VERSION ${latexila_MAJOR}.${latexila_MINOR}.${latexila_PATCH})
 
 MESSAGE(STATUS "*** Building LaTeXila ${latexila_VERSION} ***")
@@ -41,8 +41,7 @@ INCLUDE_DIRECTORIES(${GTK2_INCLUDE_DIRS} ${latexila_BINARY_DIR}/src)
 CONFIGURE_FILE(${latexila_SOURCE_DIR}/src/config.h.cmake ${latexila_BINARY_DIR}/src/config.h)
 
 ADD_SUBDIRECTORY(src)
-
-INSTALL(DIRECTORY images/ DESTINATION "share/latexila/images")
+ADD_SUBDIRECTORY(images)
 
 # packages
 SET(CPACK_GENERATOR "TGZ")
