@@ -775,6 +775,40 @@ cb_font_set (GtkFontButton *font_button, gpointer user_data)
 }
 
 void
+cb_category_symbols_selected (GtkIconView *icon_view, gpointer user_data)
+{
+	GList *selected_items = gtk_icon_view_get_selected_items (icon_view);
+	GtkTreePath *path = g_list_nth_data (selected_items, 0);
+	GtkTreeModel *model = gtk_icon_view_get_model (icon_view);
+	GtkTreeIter iter;
+
+	if (path != NULL && gtk_tree_model_get_iter (model, &iter, path))
+	{
+		gint num;
+		gtk_tree_model_get (model, &iter, COLUMN_CAT_NUM, &num, -1);
+
+		// change the model
+		gtk_icon_view_set_model (latexila.symbol_view,
+				GTK_TREE_MODEL (latexila.symbol_stores[num]));
+
+		// TODO scroll to the start
+		/* this doesn't work...
+		GtkTreePath *first_path = gtk_icon_view_get_path_at_pos (
+				latexila.symbol_view, 0, 0);
+		if (first_path != NULL)
+		{
+			gtk_icon_view_scroll_to_path (latexila.symbol_view, first_path,
+					TRUE, 0.0, 0.0);
+		}
+		*/
+	}
+
+	// free the GList
+	g_list_foreach (selected_items, (GFunc) gtk_tree_path_free, NULL);
+	g_list_free (selected_items);
+}
+
+void
 cb_symbol_selected (GtkIconView *icon_view, gpointer user_data)
 {
 	if (latexila.active_doc == NULL)

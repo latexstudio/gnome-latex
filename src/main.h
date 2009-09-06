@@ -24,9 +24,9 @@
 
 // if Native Language Support is enabled
 #ifdef LATEXILA_NLS_ENABLED
-#define _(STRING) gettext(STRING)
+#	define _(STRING) gettext(STRING)
 #else
-#define _(STRING) STRING
+#	define _(STRING) STRING
 #endif
 
 // if GTK+ version is < 2.14.0
@@ -67,9 +67,11 @@ typedef struct
 	gchar				*pref_file;
 	PangoFontDescription *font_desc;
 	gint				font_size;
+	GtkListStore		*symbol_stores[2];
+	GtkIconView			*symbol_view;
 } latexila_t;
 
-// all the documents are accessible by the docs variable
+// all the documents are accessible by the "latexila" variable
 extern latexila_t latexila;
 
 // for the actions list in the log zone
@@ -83,7 +85,7 @@ enum action
 };
 
 // for the symbol tables
-struct symbols
+struct symbol
 {
 	gchar *filename;
 	gchar *latex_command;
@@ -91,12 +93,20 @@ struct symbols
 };
 
 // for the symbol lists
-enum symbol
+enum symbols
 {
 	COLUMN_SYMBOL_PIXBUF,
 	COLUMN_SYMBOL_COMMAND,
 	COLUMN_SYMBOL_TOOLTIP,
 	N_COLUMNS_SYMBOL
+};
+
+enum category_symbols
+{
+	COLUMN_CAT_ICON,
+	COLUMN_CAT_NAME,
+	COLUMN_CAT_NUM,
+	N_COLUMNS_CAT
 };
 
 #endif /* MAIN_H */

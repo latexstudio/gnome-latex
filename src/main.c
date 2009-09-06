@@ -31,10 +31,13 @@
 #include "callbacks.h"
 #include "print.h"
 
+static void register_my_stock_icons (void);
+static GtkListStore * get_symbol_store (const struct symbol symbols[]);
+
 latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 	NULL, NULL, NULL, NULL, NULL, NULL}; 
 
-static struct symbols symbols_greek[] = {
+static struct symbol symbols_greek[] = {
 	{DATA_DIR "/images/greek/01-alpha.png", "\\alpha", NULL},
 	{DATA_DIR "/images/greek/02-beta.png", "\\beta", NULL},
 	{DATA_DIR "/images/greek/03-gamma.png", "\\gamma", NULL},
@@ -99,13 +102,87 @@ static struct symbols symbols_greek[] = {
 	{DATA_DIR "/images/greek/62-Psi.png", "\\Psi", NULL},
 	{DATA_DIR "/images/greek/63-varPsi.png", "\\varPsi", "amsmath"},
 	{DATA_DIR "/images/greek/64-Omega.png", "\\Omega", NULL},
-	{DATA_DIR "/images/greek/65-varOmega.png", "\\varOmega", "amsmath"}
+	{DATA_DIR "/images/greek/65-varOmega.png", "\\varOmega", "amsmath"},
+	{NULL, NULL, NULL}
 };
 
-static struct {     
-	gchar *filename;     
-	gchar *stock_id;     
-} stock_icons[] = {     
+static struct symbol symbols_arrows[] = {
+	{DATA_DIR "/images/arrows/01.png", "\\leftarrow", NULL},
+	{DATA_DIR "/images/arrows/02.png", "\\leftrightarrow", NULL},
+	{DATA_DIR "/images/arrows/03.png", "\\rightarrow", NULL},
+	{DATA_DIR "/images/arrows/04.png", "\\mapsto", NULL},
+	{DATA_DIR "/images/arrows/05.png", "\\longleftarrow", NULL},
+	{DATA_DIR "/images/arrows/06.png", "\\longleftrightarrow", NULL},
+	{DATA_DIR "/images/arrows/07.png", "\\longrightarrow", NULL},
+	{DATA_DIR "/images/arrows/08.png", "\\longmapsto", NULL},
+	{DATA_DIR "/images/arrows/09.png", "\\downarrow", NULL},
+	{DATA_DIR "/images/arrows/10.png", "\\updownarrow", NULL},
+	{DATA_DIR "/images/arrows/11.png", "\\uparrow", NULL},
+	{DATA_DIR "/images/arrows/12.png", "\\nwarrow", NULL},
+	{DATA_DIR "/images/arrows/13.png", "\\searrow", NULL},
+	{DATA_DIR "/images/arrows/14.png", "\\nearrow", NULL},
+	{DATA_DIR "/images/arrows/15.png", "\\swarrow", NULL},
+	{DATA_DIR "/images/arrows/16.png", "\\textdownarrow", "textcomp"},
+	{DATA_DIR "/images/arrows/17.png", "\\textuparrow", "textcomp"},
+	{DATA_DIR "/images/arrows/18.png", "\\textleftarrow", "textcomp"},
+	{DATA_DIR "/images/arrows/19.png", "\\textrightarrow", "textcomp"},
+	{DATA_DIR "/images/arrows/20.png", "\\nleftarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/21.png", "\\nleftrightarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/22.png", "\\nrightarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/23.png", "\\hookleftarrow", NULL},
+	{DATA_DIR "/images/arrows/24.png", "\\hookrightarrow", NULL},
+	{DATA_DIR "/images/arrows/25.png", "\\twoheadleftarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/26.png", "\\twoheadrightarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/27.png", "\\leftarrowtail", "amssymb"},
+	{DATA_DIR "/images/arrows/28.png", "\\rightarrowtail", "amssymb"},
+	{DATA_DIR "/images/arrows/29.png", "\\Leftarrow", NULL},
+	{DATA_DIR "/images/arrows/30.png", "\\Leftrightarrow", NULL},
+	{DATA_DIR "/images/arrows/31.png", "\\Rightarrow", NULL},
+	{DATA_DIR "/images/arrows/32.png", "\\Longleftarrow", NULL},
+	{DATA_DIR "/images/arrows/33.png", "\\Longleftrightarrow", NULL},
+	{DATA_DIR "/images/arrows/34.png", "\\Longrightarrow", NULL},
+	{DATA_DIR "/images/arrows/35.png", "\\Updownarrow", NULL},
+	{DATA_DIR "/images/arrows/36.png", "\\Uparrow", NULL},
+	{DATA_DIR "/images/arrows/37.png", "\\Downarrow", NULL},
+	{DATA_DIR "/images/arrows/38.png", "\\nLeftarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/39.png", "\\nLeftrightarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/40.png", "\\nRightarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/41.png", "\\leftleftarrows", "amssymb"},
+	{DATA_DIR "/images/arrows/42.png", "\\leftrightarrows", "amssymb"},
+	{DATA_DIR "/images/arrows/43.png", "\\rightleftarrows", "amssymb"},
+	{DATA_DIR "/images/arrows/44.png", "\\rightrightarrows", "amssymb"},
+	{DATA_DIR "/images/arrows/45.png", "\\downdownarrows", "amssymb"},
+	{DATA_DIR "/images/arrows/46.png", "\\upuparrows", "amssymb"},
+	{DATA_DIR "/images/arrows/47.png", "\\circlearrowleft", "amssymb"},
+	{DATA_DIR "/images/arrows/48.png", "\\circlearrowright", "amssymb"},
+	{DATA_DIR "/images/arrows/49.png", "\\curvearrowleft", "amssymb"},
+	{DATA_DIR "/images/arrows/50.png", "\\curvearrowright", "amssymb"},
+	{DATA_DIR "/images/arrows/51.png", "\\Lsh", "amssymb"},
+	{DATA_DIR "/images/arrows/52.png", "\\Rsh", "amssymb"},
+	{DATA_DIR "/images/arrows/53.png", "\\looparrowleft", "amssymb"},
+	{DATA_DIR "/images/arrows/54.png", "\\looparrowright", "amssymb"},
+	{DATA_DIR "/images/arrows/55.png", "\\dashleftarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/56.png", "\\dashrightarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/57.png", "\\leftrightsquigarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/58.png", "\\rightsquigarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/59.png", "\\Lleftarrow", "amssymb"},
+	{DATA_DIR "/images/arrows/60.png", "\\leftharpoondown", NULL},
+	{DATA_DIR "/images/arrows/61.png", "\\rightharpoondown", NULL},
+	{DATA_DIR "/images/arrows/62.png", "\\leftharpoonup", NULL},
+	{DATA_DIR "/images/arrows/63.png", "\\rightharpoonup", NULL},
+	{DATA_DIR "/images/arrows/64.png", "\\rightleftharpoons", NULL},
+	{DATA_DIR "/images/arrows/65.png", "\\leftrightharpoons", "amssymb"},
+	{DATA_DIR "/images/arrows/66.png", "\\downharpoonleft", "amssymb"},
+	{DATA_DIR "/images/arrows/67.png", "\\upharpoonleft", "amssymb"},
+	{DATA_DIR "/images/arrows/68.png", "\\downharpoonright", "amssymb"},
+	{DATA_DIR "/images/arrows/69.png", "\\upharpoonright", "amssymb"},
+	{NULL, NULL, NULL}
+};
+
+static struct {
+	gchar *filename;
+	gchar *stock_id;
+} stock_icons[] = {
 	{DATA_DIR "/images/icons/compile_latex.png", "compile_latex"},
 	{DATA_DIR "/images/icons/compile_pdflatex.png", "compile_pdflatex"},
 	{DATA_DIR "/images/icons/view_dvi.png", "view_dvi"},
@@ -132,8 +209,53 @@ register_my_stock_icons (void)
 		gtk_icon_factory_add (icon_factory, stock_icons[i].stock_id, icon_set);
 		gtk_icon_set_unref (icon_set);
 	}
+
 	gtk_icon_factory_add_default (icon_factory);
 	g_object_unref (icon_factory);
+}
+
+// symbols must be NULL-terminated
+static GtkListStore *
+get_symbol_store (const struct symbol symbols[])
+{
+	GError *error = NULL;
+	GtkListStore *symbol_store = gtk_list_store_new (N_COLUMNS_SYMBOL,
+			GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
+
+	for (gint i = 0 ; symbols[i].filename != NULL ; i++)
+	{
+		struct symbol current_symbol = symbols[i];
+
+		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (current_symbol.filename,
+				&error);
+		if (error != NULL)
+		{
+			print_warning ("impossible to load the symbol: %s", error->message);
+			g_error_free (error);
+			continue;
+		}
+
+		gchar *tooltip;
+		if (current_symbol.package_required != NULL)
+		{
+			tooltip = g_strdup_printf ("%s (package %s)",
+					current_symbol.latex_command,
+					current_symbol.package_required);
+		}
+		else
+			tooltip = g_strdup (current_symbol.latex_command);
+
+		GtkTreeIter iter;
+		gtk_list_store_append (symbol_store, &iter);
+		gtk_list_store_set (symbol_store, &iter,
+				COLUMN_SYMBOL_PIXBUF, pixbuf,
+				COLUMN_SYMBOL_COMMAND, current_symbol.latex_command,
+				COLUMN_SYMBOL_TOOLTIP, tooltip,
+				-1);
+		g_free (tooltip);
+	}
+
+	return symbol_store;
 }
 
 int
@@ -141,6 +263,8 @@ main (int argc, char *argv[])
 {
 	GError *error = NULL;
 	GtkWidget *scrollbar;
+	GtkCellRenderer *renderer;
+	GtkTreeViewColumn *column;
 
 	gtk_init (&argc, &argv);
 
@@ -311,58 +435,84 @@ main (int argc, char *argv[])
 	gtk_box_pack_start (GTK_BOX (main_vbox), main_hpaned, TRUE, TRUE, 0);
 
 	/* symbol tables */
-	GtkWidget *symbol_tables = gtk_vbox_new (FALSE, 0);
-	gtk_paned_pack1 (GTK_PANED (main_hpaned), symbol_tables, TRUE, TRUE);
+	GtkWidget *vbox_symbols = gtk_vbox_new (FALSE, 0);
+	gtk_paned_pack1 (GTK_PANED (main_hpaned), vbox_symbols, TRUE, TRUE);
 
-	GtkListStore *greek_symbol_store = gtk_list_store_new (N_COLUMNS_SYMBOL,
-			GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
+	// store the categories
+	struct {
+		gchar *name;
+		gchar *icon;
+	} categories[] = {
+		{"Greek", DATA_DIR "/images/greek/18-pi.png"},
+		{"Arrows", DATA_DIR "/images/arrows/58.png"}
+	};
 
-	// store the data
-	gint nb_greek_letters = G_N_ELEMENTS (symbols_greek);
-	GtkTreeIter iter;
-	for (gint i = 0 ; i < nb_greek_letters ; i++)
+	GtkListStore *categories_store = gtk_list_store_new (N_COLUMNS_CAT,
+			GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_INT);
+
+	gint nb_categories = G_N_ELEMENTS (categories);
+	for (gint i = 0 ; i < nb_categories ; i++)
 	{
-		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (symbols_greek[i].filename,
+		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (categories[i].icon,
 				&error);
 		if (error != NULL)
 		{
 			print_warning ("impossible to load the symbol: %s", error->message);
 			g_error_free (error);
+			continue;
 		}
-		else
-		{
-			gchar *tooltip;
-			if (symbols_greek[i].package_required != NULL)
-			{
-				tooltip = g_strdup_printf ("%s (package %s)",
-						symbols_greek[i].latex_command,
-						symbols_greek[i].package_required);
-			}
-			else
-				tooltip = g_strdup (symbols_greek[i].latex_command);
 
-			gtk_list_store_append (greek_symbol_store, &iter);
-			gtk_list_store_set (greek_symbol_store, &iter,
-					COLUMN_SYMBOL_PIXBUF, pixbuf,
-					COLUMN_SYMBOL_COMMAND, symbols_greek[i].latex_command,
-					COLUMN_SYMBOL_TOOLTIP, tooltip,
-					-1);
-			g_free (tooltip);
-		}
+		GtkTreeIter iter;
+		gtk_list_store_append (categories_store, &iter);
+		gtk_list_store_set (categories_store, &iter,
+				COLUMN_CAT_ICON, pixbuf,
+				COLUMN_CAT_NAME, categories[i].name,
+				COLUMN_CAT_NUM, i,
+				-1);
 	}
+
+	// show the categories
+	GtkWidget *categories_view = gtk_icon_view_new_with_model (
+			GTK_TREE_MODEL (categories_store));
+	gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (categories_view),
+			COLUMN_CAT_ICON);
+	gtk_icon_view_set_text_column (GTK_ICON_VIEW (categories_view),
+			COLUMN_CAT_NAME);
+	gtk_icon_view_set_selection_mode (GTK_ICON_VIEW (categories_view),
+			GTK_SELECTION_SINGLE);
+	/*
+	gtk_icon_view_set_orientation (GTK_ICON_VIEW (categories_view),
+			GTK_ORIENTATION_HORIZONTAL);
+	gtk_icon_view_set_columns (GTK_ICON_VIEW (categories_view), 1);
+	*/
+	gtk_icon_view_set_spacing (GTK_ICON_VIEW (categories_view), 0);
+	gtk_icon_view_set_row_spacing (GTK_ICON_VIEW (categories_view), 0);
+	gtk_icon_view_set_column_spacing (GTK_ICON_VIEW (categories_view), 0);
+
+	g_signal_connect (G_OBJECT (categories_view), "selection-changed",
+			G_CALLBACK (cb_category_symbols_selected), NULL);
+
+	gtk_box_pack_start (GTK_BOX (vbox_symbols), categories_view, FALSE, FALSE, 0);
+
+	// store all the symbols
+	// Attention, we must save the GtkListStore in latexila.symbol_stores in
+	// the same order than the structure "categories" above
+	latexila.symbol_stores[0] = get_symbol_store (symbols_greek);
+	latexila.symbol_stores[1] = get_symbol_store (symbols_arrows);
 
 	// show the symbols
 	GtkWidget *symbol_view = gtk_icon_view_new_with_model (
-			GTK_TREE_MODEL (greek_symbol_store));
-	gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (symbol_view),
+			GTK_TREE_MODEL (latexila.symbol_stores[0]));
+	latexila.symbol_view = GTK_ICON_VIEW (symbol_view);
+	gtk_icon_view_set_pixbuf_column (latexila.symbol_view,
 			COLUMN_SYMBOL_PIXBUF);
-	gtk_icon_view_set_tooltip_column (GTK_ICON_VIEW (symbol_view),
+	gtk_icon_view_set_tooltip_column (latexila.symbol_view,
 			COLUMN_SYMBOL_TOOLTIP);
-	gtk_icon_view_set_selection_mode (GTK_ICON_VIEW (symbol_view),
+	gtk_icon_view_set_selection_mode (latexila.symbol_view,
 			GTK_SELECTION_SINGLE);
-	gtk_icon_view_set_spacing (GTK_ICON_VIEW (symbol_view), 0);
-	gtk_icon_view_set_row_spacing (GTK_ICON_VIEW (symbol_view), 0);
-	gtk_icon_view_set_column_spacing (GTK_ICON_VIEW (symbol_view), 0);
+	gtk_icon_view_set_spacing (latexila.symbol_view, 0);
+	gtk_icon_view_set_row_spacing (latexila.symbol_view, 0);
+	gtk_icon_view_set_column_spacing (latexila.symbol_view, 0);
 
 	g_signal_connect (G_OBJECT (symbol_view), "selection-changed",
 			G_CALLBACK (cb_symbol_selected), NULL);
@@ -372,7 +522,7 @@ main (int argc, char *argv[])
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_container_add (GTK_CONTAINER (scrollbar), symbol_view);
-	gtk_box_pack_start (GTK_BOX (symbol_tables), scrollbar, TRUE, TRUE, 5);
+	gtk_box_pack_start (GTK_BOX (vbox_symbols), scrollbar, TRUE, TRUE, 0);
 
 	/* vertical pane
 	 * top: source view
@@ -405,8 +555,8 @@ main (int argc, char *argv[])
 	GtkWidget *list_view = gtk_tree_view_new_with_model (
 			GTK_TREE_MODEL (list_store));
 	latexila.list_view = GTK_TREE_VIEW (list_view);
-	GtkCellRenderer *renderer = gtk_cell_renderer_text_new ();
-	GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes (
+	renderer = gtk_cell_renderer_text_new ();
+	column = gtk_tree_view_column_new_with_attributes (
 			_("Action history"), renderer, "text", COLUMN_ACTION_TITLE, NULL);	
 	gtk_tree_view_append_column (latexila.list_view, column);
 	
