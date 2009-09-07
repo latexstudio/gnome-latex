@@ -12,6 +12,7 @@ Thu Sep 3, 2009 to Thu Sep 10, 2009
 	- various: label, ref, pageref, cite, footnote, index
 
 [-] symbol tables
+	x show/hide symbol tables
 	x Greek alphabet
 	x arrows
 	- relation
@@ -21,7 +22,8 @@ Thu Sep 3, 2009 to Thu Sep 10, 2009
 	- miscellaneous text
 	- ...
 
-[-] save and load dimensions
+[-] save and load
+	- show/hide symbol tables
 	- size of the window
 	- position of the panes
 	- sceen position (center by default)
@@ -31,3 +33,5 @@ Thu Sep 3, 2009 to Thu Sep 10, 2009
 	  Gtk-CRITICAL **: gtk_text_buffer_emit_insert: assertion `g_utf8_validate (text, len, NULL)' failed
 	x open files from the command line:
 	  can not open relative path, only absolute
+
+[-] update French translation

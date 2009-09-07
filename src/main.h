@@ -67,6 +67,7 @@ typedef struct
 	gchar				*pref_file;
 	PangoFontDescription *font_desc;
 	gint				font_size;
+	GtkWidget			*symbol_tables;
 	GtkListStore		*symbol_stores[2];
 	GtkIconView			*symbol_view;
 } latexila_t;

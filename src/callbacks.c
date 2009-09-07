@@ -849,6 +849,18 @@ cb_symbol_selected (GtkIconView *icon_view, gpointer user_data)
 }
 
 void
+cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data)
+{
+	if (latexila.symbol_tables == NULL)
+		return;
+
+	if (gtk_toggle_action_get_active (toggle_action))
+		gtk_widget_show_all (latexila.symbol_tables);
+	else
+		gtk_widget_hide (latexila.symbol_tables);
+}
+
+void
 open_new_document (const gchar *filename, const gchar *uri)
 {
 	print_info ("open file: \"%s\"", filename);

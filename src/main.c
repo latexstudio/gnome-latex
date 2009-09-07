@@ -313,8 +313,7 @@ main (int argc, char *argv[])
 	//
 	// TODO try to place "entries" out of the main function without errors
 	// because of gettext (the _() macro)
-	GtkActionEntry entries[] =
-	{
+	GtkActionEntry entries[] = {
 		{"File", NULL, _("File"), NULL, NULL, NULL},
 		{"FileNew", GTK_STOCK_NEW, _("New"), "<Control>N",
 			_("New file"), G_CALLBACK (cb_new)},
@@ -382,7 +381,15 @@ main (int argc, char *argv[])
 			_("About LaTeXila"), G_CALLBACK (cb_about_dialog)}
 	};
 
+	// {name, stock_id, label, accelerator, tooltip, callback}
+	GtkToggleActionEntry toggle_entries[] = {
+		{"ViewSymbols", NULL, _("Symbol tables"), NULL,
+			_("Show or hide the symbol tables in the current window"),
+			G_CALLBACK (cb_show_symbol_tables)}
+	};
+
 	guint nb_entries = G_N_ELEMENTS (entries);
+	guint nb_toggle_entries = G_N_ELEMENTS (toggle_entries);
 
 	// recent document
 	GtkAction *recent = gtk_recent_action_new ("FileOpenRecent",
@@ -397,6 +404,8 @@ main (int argc, char *argv[])
 	// create the action group and the ui manager
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
+	gtk_action_group_add_toggle_actions (action_group, toggle_entries,
+			nb_toggle_entries, NULL);
 	gtk_action_group_add_action (action_group, recent);
 	GtkUIManager *ui_manager = gtk_ui_manager_new ();
 	gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
@@ -423,8 +432,11 @@ main (int argc, char *argv[])
 			gtk_ui_manager_get_accel_group (ui_manager));
 
 	// get actions
-	latexila.undo = gtk_ui_manager_get_action (ui_manager, "/MainMenu/Edit/Undo");
-	latexila.redo = gtk_ui_manager_get_action (ui_manager, "/MainMenu/Edit/Redo");
+	latexila.undo = gtk_action_group_get_action (action_group, "EditUndo");
+	latexila.redo = gtk_action_group_get_action (action_group, "EditRedo");
+	GtkToggleAction *show_symbol_tables = GTK_TOGGLE_ACTION (
+			gtk_action_group_get_action (action_group, "ViewSymbols"));
+	gtk_toggle_action_set_active (show_symbol_tables, TRUE);
 
 	/* horizontal pane
 	 * left: symbol tables
@@ -436,6 +448,7 @@ main (int argc, char *argv[])
 
 	/* symbol tables */
 	GtkWidget *vbox_symbols = gtk_vbox_new (FALSE, 0);
+	latexila.symbol_tables = vbox_symbols;
 	gtk_paned_pack1 (GTK_PANED (main_hpaned), vbox_symbols, TRUE, TRUE);
 
 	// store the categories
