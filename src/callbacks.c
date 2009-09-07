@@ -1230,6 +1230,7 @@ run_compilation (gchar *title, gchar *command)
 		command_output = g_strdup_printf (_("execution failed: %s"),
 				error->message);
 		g_error_free (error);
+		error = NULL;
 	}
 	else
 		is_error = FALSE;
@@ -1302,6 +1303,7 @@ view_document (gchar *title, gchar *doc_extension)
 		command_output = g_strdup_printf (_("execution failed: %s"),
 				error->message);
 		g_error_free (error);
+		error = NULL;
 	}
 	else
 	{
@@ -1375,6 +1377,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 		command_output = g_strdup_printf (_("execution failed: %s"),
 				error->message);
 		g_error_free (error);
+		error = NULL;
 	}
 	else
 		is_error = FALSE;

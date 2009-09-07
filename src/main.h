@@ -26,7 +26,11 @@
 #ifdef LATEXILA_NLS_ENABLED
 #	define _(STRING) gettext(STRING)
 #else
-#	define _(STRING) STRING
+#	define _(STRING) (STRING)
+#endif
+
+#ifndef N_
+#	define N_(STRING) (STRING)
 #endif
 
 // if GTK+ version is < 2.14.0
@@ -68,7 +72,7 @@ typedef struct
 	PangoFontDescription *font_desc;
 	gint				font_size;
 	GtkWidget			*symbol_tables;
-	GtkListStore		*symbol_stores[2];
+	GtkListStore		*symbol_stores[7];
 	GtkIconView			*symbol_view;
 } latexila_t;
 
