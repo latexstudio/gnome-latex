@@ -6,8 +6,8 @@ Simple install procedure
 ========================
 
 $ tar xvf latexila-0.0.1.tar.gz		# unpack the sources
-$ cd latexila-0.0.1/
-$ cmake .				# run the Makefile generator
+$ cd latexila-0.0.1/build/		# go to the build directory
+$ cmake ../				# run the Makefile generator
 $ make					# build LaTeXila
 $ make translations			# build the *.mo files
 [ Become root if necessary ]
@@ -33,9 +33,3 @@ Configuration
 * Change the install directory
 	run cmake with this option:
 	-DCMAKE_INSTALL_PREFIX=/path/to/install/directory/
-
-* Building in an other directory
-	$ tar xvf latexila-0.0.1.tar.gz
-	$ mkdir build_dir && cd build_dir
-	$ cmake ../latexila-0.0.1/
-	...
