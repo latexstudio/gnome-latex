@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009 Sébastien Wilmet, Stéphane Roy
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,6 +33,8 @@
 #include "print.h"
 
 static void register_my_stock_icons (void);
+static gboolean option_version (const gchar *option_name, const gchar *value,
+		gpointer data, GError **error);
 
 latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 	NULL, NULL, NULL, NULL, NULL, NULL}; 
@@ -72,6 +74,36 @@ register_my_stock_icons (void)
 	g_object_unref (icon_factory);
 }
 
+static gboolean
+option_version (const gchar *option_name, const gchar *value, gpointer data,
+		GError **error)
+{
+	print_info ("%s %s", PROGRAM_NAME, PROGRAM_VERSION);
+	print_info ("\tGTK+ %d.%d.%d", GTK_MAJOR_VERSION, GTK_MINOR_VERSION,
+			GTK_MICRO_VERSION);
+	print_info ("\tGLib %d.%d.%d", GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION,
+			GLIB_MICRO_VERSION);
+	print_info ("\tGtkSourceView %s", GTKSOURCEVIEW_VERSION);
+
+	/*
+	// more information
+	print_info ("\t%s GTK+ %s %d.%d.%d (%s %d.%d.%d)",
+			_("using"), _("version"),
+			gtk_major_version, gtk_minor_version, gtk_micro_version,
+			_("compiled against version"),
+			GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
+
+	print_info ("\t%s GLib %s %d.%d.%d (%s %d.%d.%d)",
+			_("using"), _("version"),
+			glib_major_version, glib_minor_version, glib_micro_version,
+			_("compiled against version"),
+			GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION, GLIB_MICRO_VERSION);
+	*/
+
+	exit (EXIT_SUCCESS);
+	return TRUE;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -80,10 +112,35 @@ main (int argc, char *argv[])
 	GtkCellRenderer *renderer;
 	GtkTreeViewColumn *column;
 
-	gtk_init (&argc, &argv);
+	/* command line options */
+	GOptionEntry options[] = {
+		{ "version", 'v', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_NO_ARG,
+			G_OPTION_ARG_CALLBACK, (gpointer) option_version,
+			N_("Display version informations"), NULL },
+		{NULL}
+	};
+
+	GOptionContext *context = g_option_context_new ("[FILES]");
+#ifdef LATEXILA_NLS_ENABLED
+	g_option_context_add_main_entries (context, options, LATEXILA_NLS_PACKAGE);
+#else
+	g_option_context_add_main_entries (context, options, NULL);
+#endif
+	g_option_context_add_group (context, gtk_get_option_group (TRUE));
+	if (! g_option_context_parse (context, &argc, &argv, &error))
+		print_error ("option parsing failed: %s\n", error->message);
 
 #ifdef LATEXILA_NLS_ENABLED
-	/* i18n, l10n */
+	gtk_init_with_args (&argc, &argv, NULL, options, LATEXILA_NLS_PACKAGE,
+			&error);
+#else
+	gtk_init_with_args (&argc, &argv, NULL, options, NULL, &error);
+#endif
+	if (error != NULL)
+		print_error ("%s", error->message);
+
+	/* localisation */
+#ifdef LATEXILA_NLS_ENABLED
 	setlocale (LC_ALL, "");
 	bindtextdomain (LATEXILA_NLS_PACKAGE, LATEXILA_NLS_LOCALEDIR);
 	bind_textdomain_codeset (LATEXILA_NLS_PACKAGE, "UTF-8");
