@@ -1221,7 +1221,8 @@ run_compilation (gchar *title, gchar *command)
 	print_info ("execution of the command: %s", command);
 	
 	GError *error = NULL;
-	g_spawn_command_line_sync (command, &command_output, NULL, NULL, &error);
+	gchar *command_output_iso;
+	g_spawn_command_line_sync (command, &command_output_iso, NULL, NULL, &error);
 	g_chdir (dir_backup);
 	
 	// an error occured
@@ -1229,6 +1230,18 @@ run_compilation (gchar *title, gchar *command)
 	{
 		command_output = g_strdup_printf (_("execution failed: %s"),
 				error->message);
+		g_error_free (error);
+		error = NULL;
+	}
+
+	// convert the command output to UTF-8
+	command_output = g_convert (command_output_iso, -1, "UTF-8",
+			"ISO-8859-1", NULL, NULL, &error);
+	if (error != NULL)
+	{
+		print_warning ("conversion of the command output failed: %s",
+				error->message);
+		command_output = g_strdup (command_output_iso);
 		g_error_free (error);
 		error = NULL;
 	}

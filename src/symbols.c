@@ -799,6 +799,7 @@ init_symbols (void)
 {
 	GError *error = NULL;
 
+	// store the categories
 	GtkListStore *categories_store = gtk_list_store_new (N_COLUMNS_CAT,
 			GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_INT);
 

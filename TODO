@@ -27,8 +27,8 @@ Thu Sep 3, 2009 to Thu Sep 10, 2009
 	- position of the panes
 	- sceen position (center by default)
 
-[-] bugs correction
-	- sometimes command output is not UTF-8:
+[x] bugs correction
+	x sometimes command output is not UTF-8:
 	  Gtk-CRITICAL **: gtk_text_buffer_emit_insert: assertion `g_utf8_validate (text, len, NULL)' failed
 	x open files from the command line:
 	  can not open relative path, only absolute
