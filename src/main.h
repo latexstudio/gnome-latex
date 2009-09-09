@@ -62,7 +62,8 @@ typedef struct
 	GtkListStore		*list_store;
 	GtkTreeView			*list_view;
 	GtkTreeSelection	*list_selection;
-	GtkTextView			*log;
+	GtkTextView			*log_view;
+	GtkTextBuffer		*log_buffer;
 	GtkStatusbar		*statusbar;
 	GtkStatusbar		*cursor_position;
 	GtkAction			*undo;

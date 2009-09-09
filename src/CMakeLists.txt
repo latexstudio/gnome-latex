@@ -1,4 +1,8 @@
-SET(latexila_src main.c main.h callbacks.c callbacks.h print.c print.h symbols.c symbols.h)
+SET(latexila_src main.c main.h
+	         callbacks.c callbacks.h
+		 print.c print.h
+		 symbols.c symbols.h
+		 actions.c actions.h)
 ADD_EXECUTABLE(latexila ${latexila_src})
 TARGET_LINK_LIBRARIES(latexila ${GTK2_LIBRARIES})
 

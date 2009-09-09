@@ -381,8 +381,12 @@ main (int argc, char *argv[])
 	GtkWidget *log_view = gtk_text_view_new ();
 	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (
 			GTK_TEXT_VIEW (log_view));
+
+	latexila.log_view = GTK_TEXT_VIEW (log_view);
+	latexila.log_buffer = log_buffer;
+
 	gtk_text_buffer_set_text (log_buffer, _("Welcome to LaTeXila!"), -1);
-	gtk_text_view_set_editable (GTK_TEXT_VIEW(log_view), FALSE);
+	gtk_text_view_set_editable (GTK_TEXT_VIEW (log_view), FALSE);
 	
 	// with a scrollbar
 	scrollbar = gtk_scrolled_window_new (NULL, NULL);
@@ -390,8 +394,6 @@ main (int argc, char *argv[])
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_paned_pack2 (GTK_PANED (hpaned), scrollbar, TRUE, TRUE);
 	gtk_container_add (GTK_CONTAINER (scrollbar), log_view);
-
-	latexila.log = GTK_TEXT_VIEW (log_view);
 
 	// tags
 	gtk_text_buffer_create_tag (log_buffer, "bold",

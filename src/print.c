@@ -25,10 +25,9 @@
 #include "print.h"
 
 void
-print_log (GtkTextView *log, gchar *title, gchar *command,
+print_log (GtkTextBuffer *log_buffer, gchar *title, gchar *command,
 		gchar *command_output, gboolean error)
 {
-	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (log);
 	gtk_text_buffer_set_text (log_buffer, "", -1);
 
 	GtkTextIter end;
@@ -51,6 +50,25 @@ print_log (GtkTextView *log, gchar *title, gchar *command,
 				command_output, -1, "error", NULL);
 	else
 		gtk_text_buffer_insert (log_buffer, &end, command_output, -1);
+}
+
+void
+print_log_add (GtkTextView *log, gchar *text, gboolean error)
+{
+	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (log);
+	GtkTextIter end;
+
+	// insert the text to the end
+	gtk_text_buffer_get_end_iter (log_buffer, &end);
+	if (error)
+		gtk_text_buffer_insert_with_tags_by_name (log_buffer, &end, text, -1,
+				"error", NULL);
+	else
+		gtk_text_buffer_insert (log_buffer, &end, text, -1);
+
+	// scroll to the end
+	gtk_text_buffer_get_end_iter (log_buffer, &end);
+	gtk_text_view_scroll_to_iter (log, &end, 0.0, FALSE, 0.0, 1.0);
 }
 
 void

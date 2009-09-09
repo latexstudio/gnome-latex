@@ -34,6 +34,7 @@
 #include "config.h"
 #include "callbacks.h"
 #include "print.h"
+#include "actions.h"
 
 static void create_document_in_new_tab (const gchar *path, const gchar *text,
 		const gchar *title);
@@ -43,12 +44,6 @@ static void file_save (void);
 static gboolean close_all (void);
 static void set_title (void);
 static void set_undo_redo_sensitivity (void);
-static void run_compilation (gchar *title, gchar *command);
-static void view_document (gchar *title, gchar *doc_extension);
-static void convert_document (gchar *title, gchar *doc_extension,
-		gchar *command);
-static void add_action (gchar *title, gchar *command, gchar *command_output,
-		gboolean error);
 static void update_cursor_position_statusbar (void);
 static void scroll_to_cursor (void);
 static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
@@ -546,11 +541,14 @@ cb_latex (void)
 		return;
 
 	gchar *title = _("Compile (latex)");
-	gchar *command = g_strdup_printf ("latex -interaction=nonstopmode %s",
-			latexila.active_doc->path);
+	gchar *command[] = {
+		"latex",
+		"-interaction=nonstopmode",
+		g_strdup (latexila.active_doc->path),
+		NULL
+	};
 
 	run_compilation (title, command);
-	g_free (command);
 }
 
 void
@@ -560,11 +558,14 @@ cb_pdflatex (void)
 		return;
 
 	gchar *title = _("Compile (pdflatex)");
-	gchar *command = g_strdup_printf ("pdflatex -interaction=nonstopmode %s",
-			latexila.active_doc->path);
+	gchar *command[] = {
+		"pdflatex",
+		"-interaction=nonstopmode",
+		g_strdup (latexila.active_doc->path),
+		NULL
+	};
 
 	run_compilation (title, command);
-	g_free (command);
 }
 
 void
@@ -627,7 +628,7 @@ cb_action_list_changed (GtkTreeSelection *selection, gpointer user_data)
 				COLUMN_ACTION_COMMAND_OUTPUT, &command_output,
 				COLUMN_ACTION_ERROR, &error,
 				-1);
-		print_log (latexila.log, title, command, command_output, error);
+		print_log (latexila.log_buffer, title, command, command_output, error);
 	}
 }
 
@@ -1180,258 +1181,6 @@ set_undo_redo_sensitivity (void)
 
 	gtk_action_set_sensitive (latexila.undo, can_undo);
 	gtk_action_set_sensitive (latexila.redo, can_redo);
-}
-
-static void
-run_compilation (gchar *title, gchar *command)
-{
-	if (latexila.active_doc == NULL)
-		return;
-
-	gchar *command_output;
-	gboolean is_error = TRUE;
-
-	/* the current document is a *.tex file? */
-	gboolean tex_file = g_str_has_suffix (latexila.active_doc->path, ".tex");
-	if (! tex_file)
-	{
-		command_output = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
-				g_path_get_basename (latexila.active_doc->path));
-
-		add_action (title, command, command_output, is_error);
-		g_free (command_output);
-		return;
-	}
-
-	/* print a message in the statusbar */
-	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
-			"running-action");
-	gtk_statusbar_push (latexila.statusbar, context_id,
-			_("Compilation in progress. Please wait..."));
-
-	// without that, the message in the statusbar does not appear
-	while (gtk_events_pending ())
-		gtk_main_iteration ();
-
-	/* run the command in the directory where the .tex is */
-	gchar *dir_backup = g_get_current_dir ();
-	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
-	g_chdir (dir);
-
-	print_info ("execution of the command: %s", command);
-	
-	GError *error = NULL;
-	gchar *command_output_iso;
-	g_spawn_command_line_sync (command, &command_output_iso, NULL, NULL, &error);
-	g_chdir (dir_backup);
-	
-	// an error occured
-	if (error != NULL)
-	{
-		command_output = g_strdup_printf (_("execution failed: %s"),
-				error->message);
-		g_error_free (error);
-		error = NULL;
-	}
-
-	// convert the command output to UTF-8
-	command_output = g_convert (command_output_iso, -1, "UTF-8",
-			"ISO-8859-1", NULL, NULL, &error);
-	if (error != NULL)
-	{
-		print_warning ("conversion of the command output failed: %s",
-				error->message);
-		command_output = g_strdup (command_output_iso);
-		g_error_free (error);
-		error = NULL;
-	}
-	else
-		is_error = FALSE;
-
-	add_action (title, command, command_output, is_error);
-
-	gtk_statusbar_pop (latexila.statusbar, context_id);
-
-	g_free (command_output);
-	g_free (dir_backup);
-	g_free (dir);
-}
-
-static void
-view_document (gchar *title, gchar *doc_extension)
-{
-	if (latexila.active_doc == NULL)
-		return;
-
-	gchar *command, *command_output;
-	gboolean is_error = TRUE;
-
-	GError *error = NULL;
-	GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
-
-	/* replace .tex by doc_extension (.pdf, .dvi, ...) */
-	gchar *doc_path = g_regex_replace_literal (regex, latexila.active_doc->path,
-			-1, 0, doc_extension, 0, NULL);
-
-	gchar *command_view = g_key_file_get_string (latexila.key_file, PROGRAM_NAME,
-			"command_view", NULL);
-	command = g_strdup_printf ("%s %s", command_view, doc_path);
-
-	/* the current document is a *.tex file? */
-	gboolean tex_file = g_regex_match (regex, latexila.active_doc->path, 0, NULL);
-	if (! tex_file)
-	{
-		command_output = g_strdup_printf (_("failed: %s is not a *.tex file"),
-				g_path_get_basename (latexila.active_doc->path));
-
-		add_action (title, command, command_output, is_error);
-		g_free (command);
-		g_free (command_output);
-		g_free (doc_path);
-		g_regex_unref (regex);
-		return;
-	}
-
-	/* the document (PDF, DVI, ...) file exist? */
-	if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
-	{
-		command_output = g_strdup_printf (
-				_("%s does not exist. If this is not already made, compile the document with the right command."),
-				g_path_get_basename (doc_path));
-
-		add_action (title, command, command_output, is_error);
-		g_free (command);
-		g_free (command_output);
-		g_free (doc_path);
-		g_regex_unref (regex);
-		return;
-	}
-
-	/* run the command */
-	print_info ("execution of the command: %s", command);
-	g_spawn_command_line_async (command, &error);
-
-	if (error != NULL)
-	{
-		command_output = g_strdup_printf (_("execution failed: %s"),
-				error->message);
-		g_error_free (error);
-		error = NULL;
-	}
-	else
-	{
-		command_output = g_strdup (_("Viewing in progress. Please wait..."));
-		is_error = FALSE;
-	}
-
-	add_action (title, command, command_output, is_error);
-
-	g_free (command);
-	g_free (command_output);
-	g_free (doc_path);
-	g_regex_unref (regex);
-}
-
-static void
-convert_document (gchar *title, gchar *doc_extension, gchar *command)
-{
-	if (latexila.active_doc == NULL)
-		return;
-
-	gchar *full_command, *command_output;
-	gboolean is_error = TRUE;
-
-	GError *error = NULL;
-	GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
-
-	/* replace .tex by doc_extension (.pdf, .dvi, ...) */
-	gchar *doc_path = g_regex_replace_literal (regex,
-			latexila.active_doc->path, -1, 0, doc_extension, 0, NULL);
-
-	full_command = g_strdup_printf ("%s %s", command, doc_path);
-
-	/* the document to convert exist? */
-	if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
-	{
-		command_output = g_strdup_printf (
-				_("%s does not exist. If this is not already made, compile the document with the right command."),
-				g_path_get_basename (doc_path));
-
-		add_action (title, full_command, command_output, is_error);
-		g_free (full_command);
-		g_free (command_output);
-		g_free (doc_path);
-		g_regex_unref (regex);
-		return;
-	}
-
-	/* print a message in the statusbar */
-	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
-			"running-action");
-	gtk_statusbar_push (latexila.statusbar, context_id,
-			_("Converting in progress. Please wait..."));
-
-	// without that, the message in the statusbar does not appear
-	while (gtk_events_pending ())
-		gtk_main_iteration ();
-
-	/* run the command in the directory where the .tex is */
-	print_info ("execution of the command: %s", full_command);
-
-	gchar *dir_backup = g_get_current_dir ();
-	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
-	g_chdir (dir);
-	g_spawn_command_line_sync (full_command, &command_output, NULL, NULL, &error);
-	g_chdir (dir_backup);
-	
-	// an error occured
-	if (error != NULL)
-	{
-		command_output = g_strdup_printf (_("execution failed: %s"),
-				error->message);
-		g_error_free (error);
-		error = NULL;
-	}
-	else
-		is_error = FALSE;
-
-	add_action (title, full_command, command_output, is_error);
-
-	gtk_statusbar_pop (latexila.statusbar, context_id);
-
-	g_free (full_command);
-	g_free (command_output);
-	g_free (doc_path);
-	g_regex_unref (regex);
-}
-
-static void
-add_action (gchar *title, gchar *command, gchar *command_output, gboolean error)
-{
-	static gint num = 1;
-	gchar *title2 = g_strdup_printf ("%d. %s", num, title);
-
-	// append an new entry to the action list
-	GtkTreeIter iter;
-	gtk_list_store_append (latexila.list_store, &iter);
-	gtk_list_store_set (latexila.list_store, &iter,
-			COLUMN_ACTION_TITLE, title2,
-			COLUMN_ACTION_COMMAND, command,
-			COLUMN_ACTION_COMMAND_OUTPUT, command_output,
-			COLUMN_ACTION_ERROR, error,
-			-1);
-
-	// the new entry is selected
-	// cb_action_list_changed () is called, so the details are showed
-	gtk_tree_selection_select_iter (latexila.list_selection, &iter);
-
-	// scroll to the end
-	GtkTreePath *path = gtk_tree_model_get_path (
-			GTK_TREE_MODEL (latexila.list_store), &iter);
-	gtk_tree_view_scroll_to_cell (latexila.list_view, path, NULL, FALSE, 0, 0);
-
-	num++;
-	g_free (title2);
 }
 
 static void
