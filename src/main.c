@@ -37,7 +37,7 @@ static gboolean option_version (const gchar *option_name, const gchar *value,
 		gpointer data, GError **error);
 
 latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-	NULL, NULL, NULL, NULL, NULL, NULL}; 
+	NULL, NULL, NULL, NULL}; 
 
 static struct {
 	gchar *filename;
@@ -319,8 +319,9 @@ main (int argc, char *argv[])
 	gtk_box_pack_start (GTK_BOX (main_vbox), main_hpaned, TRUE, TRUE, 0);
 
 	/* symbol tables */
+	latexila.symbols = g_malloc (sizeof (symbols_t));
 	GtkWidget *vbox_symbols = gtk_vbox_new (FALSE, 0);
-	latexila.symbol_tables = vbox_symbols;
+	latexila.symbols->vbox = vbox_symbols;
 	gtk_paned_pack1 (GTK_PANED (main_hpaned), vbox_symbols, TRUE, TRUE);
 
 	init_symbols ();
@@ -341,6 +342,8 @@ main (int argc, char *argv[])
 	gtk_paned_pack1 (GTK_PANED (vpaned), notebook, TRUE, TRUE);
 
 	/* log zone */
+	latexila.action_log = g_malloc (sizeof (action_log_t));
+
 	// horizontal pane:
 	// left: action history
 	// right: details
@@ -351,21 +354,22 @@ main (int argc, char *argv[])
 	// action history
 	GtkListStore *list_store = gtk_list_store_new (N_COLUMNS_ACTION,
 			G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
-	latexila.list_store = list_store;
+	latexila.action_log->list_store = list_store;
 	
 	GtkWidget *list_view = gtk_tree_view_new_with_model (
 			GTK_TREE_MODEL (list_store));
-	latexila.list_view = GTK_TREE_VIEW (list_view);
+	latexila.action_log->list_view = GTK_TREE_VIEW (list_view);
 	renderer = gtk_cell_renderer_text_new ();
 	column = gtk_tree_view_column_new_with_attributes (
 			_("Action history"), renderer, "text", COLUMN_ACTION_TITLE, NULL);	
-	gtk_tree_view_append_column (latexila.list_view, column);
+	gtk_tree_view_append_column (latexila.action_log->list_view, column);
 	
 	// hide "Action history"
 	//gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list_view), FALSE);
 
-	GtkTreeSelection *select = gtk_tree_view_get_selection (latexila.list_view);
-	latexila.list_selection = select;
+	GtkTreeSelection *select =
+		gtk_tree_view_get_selection (latexila.action_log->list_view);
+	latexila.action_log->list_selection = select;
 	gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
 	g_signal_connect (G_OBJECT (select), "changed",
 			G_CALLBACK (cb_action_list_changed), NULL);
@@ -382,8 +386,8 @@ main (int argc, char *argv[])
 	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (
 			GTK_TEXT_VIEW (log_view));
 
-	latexila.log_view = GTK_TEXT_VIEW (log_view);
-	latexila.log_buffer = log_buffer;
+	latexila.action_log->text_view = GTK_TEXT_VIEW (log_view);
+	latexila.action_log->text_buffer = log_buffer;
 
 	gtk_text_buffer_set_text (log_buffer, _("Welcome to LaTeXila!"), -1);
 	gtk_text_view_set_editable (GTK_TEXT_VIEW (log_view), FALSE);

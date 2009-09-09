@@ -84,9 +84,10 @@ command_running_finished (void)
 	
 	// store the string to the action list store
 	GtkTreeIter iter;
-	if (gtk_tree_selection_get_selected (latexila.list_selection, NULL, &iter))
+	if (gtk_tree_selection_get_selected (latexila.action_log->list_selection,
+				NULL, &iter))
 	{
-		gtk_list_store_set (latexila.list_store, &iter,
+		gtk_list_store_set (latexila.action_log->list_store, &iter,
 				COLUMN_ACTION_COMMAND_OUTPUT, command_output_string,
 				-1);
 	}
@@ -94,7 +95,7 @@ command_running_finished (void)
 		print_warning ("no action selected in the list => the output command is not saved");
 
 	// unlock the action list
-	gtk_widget_set_sensitive (GTK_WIDGET (latexila.list_view), TRUE);
+	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log->list_view), TRUE);
 
 	// pop the message from the statusbar
 	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
@@ -130,7 +131,7 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 	}
 
 	// print the command output line to the log zone
-	print_log_add (latexila.log_view, line, FALSE);
+	print_log_add (latexila.action_log->text_view, line, FALSE);
 
 	// store temporarily the line to the GList
 	// We insert the line at the beginning of the list, so we avoid to traverse
@@ -145,7 +146,7 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 }
 
 void
-run_compilation (gchar *title, gchar **command)
+compile_document (gchar *title, gchar **command)
 {
 	if (latexila.active_doc == NULL)
 		return;
@@ -224,7 +225,8 @@ run_compilation (gchar *title, gchar **command)
 	// Lock the action list so the user can not view an other action while the
 	// compilation is running.
 	// It will be unlock when the compilation is finished.
-	gtk_widget_set_sensitive (GTK_WIDGET (latexila.list_view), FALSE);
+	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log->list_view),
+			FALSE);
 
 	add_action (title, command_line, "", is_error);
 
@@ -399,8 +401,8 @@ add_action (gchar *title, gchar *command, gchar *command_output, gboolean error)
 
 	// append an new entry to the action list
 	GtkTreeIter iter;
-	gtk_list_store_append (latexila.list_store, &iter);
-	gtk_list_store_set (latexila.list_store, &iter,
+	gtk_list_store_append (latexila.action_log->list_store, &iter);
+	gtk_list_store_set (latexila.action_log->list_store, &iter,
 			COLUMN_ACTION_TITLE, title2,
 			COLUMN_ACTION_COMMAND, command,
 			COLUMN_ACTION_COMMAND_OUTPUT, command_output,
@@ -409,12 +411,13 @@ add_action (gchar *title, gchar *command, gchar *command_output, gboolean error)
 
 	// the new entry is selected
 	// cb_action_list_changed () is called, so the details are showed
-	gtk_tree_selection_select_iter (latexila.list_selection, &iter);
+	gtk_tree_selection_select_iter (latexila.action_log->list_selection, &iter);
 
 	// scroll to the end
 	GtkTreePath *path = gtk_tree_model_get_path (
-			GTK_TREE_MODEL (latexila.list_store), &iter);
-	gtk_tree_view_scroll_to_cell (latexila.list_view, path, NULL, FALSE, 0, 0);
+			GTK_TREE_MODEL (latexila.action_log->list_store), &iter);
+	gtk_tree_view_scroll_to_cell (latexila.action_log->list_view, path, NULL,
+			FALSE, 0, 0);
 
 	num++;
 	g_free (title2);

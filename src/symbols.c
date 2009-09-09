@@ -846,32 +846,32 @@ init_symbols (void)
 	g_signal_connect (G_OBJECT (categories_view), "selection-changed",
 			G_CALLBACK (cb_category_symbols_selected), NULL);
 
-	gtk_box_pack_start (GTK_BOX (latexila.symbol_tables), categories_view, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (latexila.symbols->vbox), categories_view, FALSE, FALSE, 0);
 
 	// store all the symbols
-	// Attention, we must save the GtkListStore in latexila.symbol_stores in
-	// the same order than the structure "categories" above
-	latexila.symbol_stores[0] = get_symbol_store (symbols_greek);
-	latexila.symbol_stores[1] = get_symbol_store (symbols_arrows);
-	latexila.symbol_stores[2] = get_symbol_store (symbols_relations);
-	latexila.symbol_stores[3] = get_symbol_store (symbols_operators);
-	latexila.symbol_stores[4] = get_symbol_store (symbols_delimiters);
-	latexila.symbol_stores[5] = get_symbol_store (symbols_misc_math);
-	latexila.symbol_stores[6] = get_symbol_store (symbols_misc_text);
+	// Attention, we must save the GtkListStore in latexila.symbols->list_stores
+	// in the same order than the structure "categories" above
+	latexila.symbols->list_stores[0] = get_symbol_store (symbols_greek);
+	latexila.symbols->list_stores[1] = get_symbol_store (symbols_arrows);
+	latexila.symbols->list_stores[2] = get_symbol_store (symbols_relations);
+	latexila.symbols->list_stores[3] = get_symbol_store (symbols_operators);
+	latexila.symbols->list_stores[4] = get_symbol_store (symbols_delimiters);
+	latexila.symbols->list_stores[5] = get_symbol_store (symbols_misc_math);
+	latexila.symbols->list_stores[6] = get_symbol_store (symbols_misc_text);
 
 	// show the symbols
 	GtkWidget *symbol_view = gtk_icon_view_new_with_model (
-			GTK_TREE_MODEL (latexila.symbol_stores[0]));
-	latexila.symbol_view = GTK_ICON_VIEW (symbol_view);
-	gtk_icon_view_set_pixbuf_column (latexila.symbol_view,
+			GTK_TREE_MODEL (latexila.symbols->list_stores[0]));
+	latexila.symbols->icon_view = GTK_ICON_VIEW (symbol_view);
+	gtk_icon_view_set_pixbuf_column (latexila.symbols->icon_view,
 			COLUMN_SYMBOL_PIXBUF);
-	gtk_icon_view_set_tooltip_column (latexila.symbol_view,
+	gtk_icon_view_set_tooltip_column (latexila.symbols->icon_view,
 			COLUMN_SYMBOL_TOOLTIP);
-	gtk_icon_view_set_selection_mode (latexila.symbol_view,
+	gtk_icon_view_set_selection_mode (latexila.symbols->icon_view,
 			GTK_SELECTION_SINGLE);
-	gtk_icon_view_set_spacing (latexila.symbol_view, 0);
-	gtk_icon_view_set_row_spacing (latexila.symbol_view, 0);
-	gtk_icon_view_set_column_spacing (latexila.symbol_view, 0);
+	gtk_icon_view_set_spacing (latexila.symbols->icon_view, 0);
+	gtk_icon_view_set_row_spacing (latexila.symbols->icon_view, 0);
+	gtk_icon_view_set_column_spacing (latexila.symbols->icon_view, 0);
 
 	g_signal_connect (G_OBJECT (symbol_view), "selection-changed",
 			G_CALLBACK (cb_symbol_selected), NULL);
@@ -881,5 +881,5 @@ init_symbols (void)
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_container_add (GTK_CONTAINER (scrollbar), symbol_view);
-	gtk_box_pack_start (GTK_BOX (latexila.symbol_tables), scrollbar, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (latexila.symbols->vbox), scrollbar, TRUE, TRUE, 0);
 }

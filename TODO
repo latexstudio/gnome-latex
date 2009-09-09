@@ -1,6 +1,22 @@
 TODO LaTeXila
 
-Thu Sep 3, 2009 to Thu Sep 10, 2009
+Wed Sep 9, 2009 to Wed Sep 16, 2009
+
+[-] undo/redo and the "saved" document property
+	- detect when the buffer is the same as in the file currently saved
+
+[-] execution of the actions
+	- verify that the method used for compile_document () is correct
+	- optimisations?
+	- same behavior than compile_document () for:
+		* convert_document ()
+		* view_document ()
+
+[-] save and load
+	- show/hide symbol tables
+	- size of the window
+	- position of the panes
+	- sceen position (center by default)
 
 [-] new toolbar
 	- structure: part, chapter, section, subsection, subsubsection, paragraph, subparagraph
@@ -12,25 +28,13 @@ Thu Sep 3, 2009 to Thu Sep 10, 2009
 	- various: label, ref, pageref, cite, footnote, index
 
 [-] symbol tables
-	x show/hide symbol tables
-	x Greek alphabet
-	x arrows
-	x relation
-	x delimiters
-	x operators
-	x miscellaneous math
-	x miscellaneous text
+	- the categories must take the minimum place but the presentation must be nice
+		* homogeneous icons
+		* text under or to the right of the icons?
 
-[-] save and load
-	- show/hide symbol tables
-	- size of the window
-	- position of the panes
-	- sceen position (center by default)
+[-] document tabs
+	- arrows to navigate between tabs if there are a lot of documents opened
 
 [x] bugs correction
-	x sometimes command output is not UTF-8:
-	  Gtk-CRITICAL **: gtk_text_buffer_emit_insert: assertion `g_utf8_validate (text, len, NULL)' failed
-	x open files from the command line:
-	  can not open relative path, only absolute
 
 [-] update French translation

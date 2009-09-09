@@ -53,17 +53,32 @@ typedef struct
 	GtkWidget		*title;
 } document_t;
 
+// the log zone
+typedef struct
+{
+	GtkListStore		*list_store;
+	GtkTreeView			*list_view;
+	GtkTreeSelection	*list_selection;
+	GtkTextView			*text_view;
+	GtkTextBuffer		*text_buffer;
+} action_log_t;
+
+// symbols tables
+typedef struct
+{
+	GtkWidget			*vbox;
+	GtkListStore		*list_stores[7];
+	GtkIconView			*icon_view;
+} symbols_t;
+
 typedef struct
 {
 	GList				*all_docs;
 	document_t			*active_doc;
+	action_log_t		*action_log;
+	symbols_t			*symbols;
 	GtkWindow			*main_window;
 	GtkNotebook			*notebook;
-	GtkListStore		*list_store;
-	GtkTreeView			*list_view;
-	GtkTreeSelection	*list_selection;
-	GtkTextView			*log_view;
-	GtkTextBuffer		*log_buffer;
 	GtkStatusbar		*statusbar;
 	GtkStatusbar		*cursor_position;
 	GtkAction			*undo;
@@ -72,9 +87,6 @@ typedef struct
 	gchar				*pref_file;
 	PangoFontDescription *font_desc;
 	gint				font_size;
-	GtkWidget			*symbol_tables;
-	GtkListStore		*symbol_stores[7];
-	GtkIconView			*symbol_view;
 } latexila_t;
 
 // all the documents are accessible by the "latexila" variable

@@ -158,7 +158,8 @@ cb_close_tab (GtkWidget *widget, GtkWidget *child)
 		close_document (page_to_close);
 
 		if (gtk_notebook_get_n_pages (latexila.notebook) > 0)
-			latexila.active_doc = g_list_nth_data (latexila.all_docs, gtk_notebook_get_current_page (latexila.notebook));
+			latexila.active_doc = g_list_nth_data (latexila.all_docs,
+					gtk_notebook_get_current_page (latexila.notebook));
 		else
 			latexila.active_doc = NULL;
 
@@ -548,7 +549,7 @@ cb_latex (void)
 		NULL
 	};
 
-	run_compilation (title, command);
+	compile_document (title, command);
 }
 
 void
@@ -565,7 +566,7 @@ cb_pdflatex (void)
 		NULL
 	};
 
-	run_compilation (title, command);
+	compile_document (title, command);
 }
 
 void
@@ -628,7 +629,8 @@ cb_action_list_changed (GtkTreeSelection *selection, gpointer user_data)
 				COLUMN_ACTION_COMMAND_OUTPUT, &command_output,
 				COLUMN_ACTION_ERROR, &error,
 				-1);
-		print_log (latexila.log_buffer, title, command, command_output, error);
+		print_log (latexila.action_log->text_buffer, title, command,
+				command_output, error);
 	}
 }
 
@@ -789,16 +791,16 @@ cb_category_symbols_selected (GtkIconView *icon_view, gpointer user_data)
 		gtk_tree_model_get (model, &iter, COLUMN_CAT_NUM, &num, -1);
 
 		// change the model
-		gtk_icon_view_set_model (latexila.symbol_view,
-				GTK_TREE_MODEL (latexila.symbol_stores[num]));
+		gtk_icon_view_set_model (latexila.symbols->icon_view,
+				GTK_TREE_MODEL (latexila.symbols->list_stores[num]));
 
 		// TODO scroll to the start
 		/* this doesn't work...
 		GtkTreePath *first_path = gtk_icon_view_get_path_at_pos (
-				latexila.symbol_view, 0, 0);
+				latexila.symbols->icon_view, 0, 0);
 		if (first_path != NULL)
 		{
-			gtk_icon_view_scroll_to_path (latexila.symbol_view, first_path,
+			gtk_icon_view_scroll_to_path (latexila.symbols->icon_view, first_path,
 					TRUE, 0.0, 0.0);
 		}
 		*/
@@ -852,13 +854,13 @@ cb_symbol_selected (GtkIconView *icon_view, gpointer user_data)
 void
 cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data)
 {
-	if (latexila.symbol_tables == NULL)
+	if (latexila.symbols == NULL || latexila.symbols->vbox == NULL)
 		return;
 
 	if (gtk_toggle_action_get_active (toggle_action))
-		gtk_widget_show_all (latexila.symbol_tables);
+		gtk_widget_show_all (latexila.symbols->vbox);
 	else
-		gtk_widget_hide (latexila.symbol_tables);
+		gtk_widget_hide (latexila.symbols->vbox);
 }
 
 void
