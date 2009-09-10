@@ -2,21 +2,13 @@ TODO LaTeXila
 
 Wed Sep 9, 2009 to Wed Sep 16, 2009
 
-[-] undo/redo and the "saved" document property
-	- detect when the buffer is the same as in the file currently saved
-
-[-] execution of the actions
-	- verify that the method used for compile_document () is correct
-	- optimisations?
-	- same behavior than compile_document () for:
-		* convert_document ()
-		* view_document ()
+[x] document tabs
+	x arrows to navigate between tabs if there are a lot of documents opened
 
 [-] save and load
 	- show/hide symbol tables
 	- size of the window
 	- position of the panes
-	- sceen position (center by default)
 
 [-] new toolbar
 	- structure: part, chapter, section, subsection, subsubsection, paragraph, subparagraph
@@ -32,8 +24,15 @@ Wed Sep 9, 2009 to Wed Sep 16, 2009
 		* homogeneous icons
 		* text under or to the right of the icons?
 
-[-] document tabs
-	- arrows to navigate between tabs if there are a lot of documents opened
+[-] undo/redo and the "saved" document property
+	- detect when the buffer is the same as in the file currently saved
+
+[-] execution of the actions
+	- verify that the method used for compile_document () is correct
+	- optimisations?
+	- same behavior than compile_document () for:
+		* convert_document ()
+		* view_document ()
 
 [x] bugs correction
 

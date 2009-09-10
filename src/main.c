@@ -337,6 +337,7 @@ main (int argc, char *argv[])
 	/* source view with tabs */
 	GtkWidget *notebook = gtk_notebook_new ();
 	latexila.notebook = GTK_NOTEBOOK (notebook);
+	gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook), TRUE);
 	g_signal_connect (G_OBJECT (notebook), "switch-page",
 			G_CALLBACK (cb_page_change), NULL);
 	gtk_paned_pack1 (GTK_PANED (vpaned), notebook, TRUE, TRUE);

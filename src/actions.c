@@ -26,14 +26,10 @@
 #include <glib.h>
 #include <glib/gstdio.h>
 #include <gtksourceview/gtksourceview.h>
-#include <gtksourceview/gtksourcelanguage.h>
-#include <gtksourceview/gtksourcelanguagemanager.h>
-#include <gtksourceview/gtksourceiter.h>
 
 #include "main.h"
 #include "config.h"
 #include "actions.h"
-#include "callbacks.h"
 #include "print.h"
 
 static gchar * get_command_line (gchar **command);
