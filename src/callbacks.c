@@ -739,14 +739,16 @@ cb_line_numbers (GtkToggleButton *toggle_button, gpointer user_data)
 	gboolean show_line_numbers = gtk_toggle_button_get_active (toggle_button);
 	latexila.prefs->show_line_numbers = show_line_numbers;
 
-	//TODO optimisation?
-	guint nb_docs = g_list_length (latexila.all_docs);
-	for (guint i = 0 ; i < nb_docs ; i++)
+	// traverse the list
+	// an other solution is to call g_list_foreach ()
+	GList *current = latexila.all_docs;
+	do
 	{
-		document_t *doc = g_list_nth_data (latexila.all_docs, i);
+		document_t *doc = g_list_nth_data (current, 0);
 		gtk_source_view_set_show_line_numbers (
 				GTK_SOURCE_VIEW (doc->source_view), show_line_numbers);
 	}
+	while ((current = g_list_next (current)) != NULL);
 }
 
 void
@@ -959,7 +961,6 @@ create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *t
 	gtk_widget_show_all (sw);
 
 	// add the new document in a new tab
-	// TODO set height
 	GtkWidget *hbox = gtk_hbox_new (FALSE, 3);
 
 	GtkWidget *label = gtk_label_new (title);
@@ -1290,12 +1291,15 @@ find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 static void
 change_font_source_view (void)
 {
-	guint nb_docs = g_list_length (latexila.all_docs);
-	for (guint i = 0 ; i < nb_docs ; i++)
+	// traverse the list
+	// an other solution is to call g_list_foreach ()
+	GList *current = latexila.all_docs;
+	do
 	{
-		document_t *doc = g_list_nth_data (latexila.all_docs, i);
+		document_t *doc = g_list_nth_data (current, 0);
 		gtk_widget_modify_font (doc->source_view, latexila.prefs->font_desc);
 	}
+	while ((current = g_list_next (current)) != NULL);
 }
 
 static void

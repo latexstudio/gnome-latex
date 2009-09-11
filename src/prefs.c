@@ -75,6 +75,7 @@ load_preferences (preferences_t *prefs)
 			"show_line_numbers", &error);
 	if (error != NULL)
 	{
+		print_warning ("%s", error->message);
 		prefs->show_line_numbers = show_line_numbers_;
 		g_error_free (error);
 		error = NULL;
@@ -84,6 +85,7 @@ load_preferences (preferences_t *prefs)
 			"show_side_pane", &error);
 	if (error != NULL)
 	{
+		print_warning ("%s", error->message);
 		prefs->show_side_pane = show_side_pane_;
 		g_error_free (error);
 		error = NULL;
@@ -93,6 +95,7 @@ load_preferences (preferences_t *prefs)
 			"window_width", &error);
 	if (error != NULL)
 	{
+		print_warning ("%s", error->message);
 		prefs->window_width = window_width_;
 		g_error_free (error);
 		error = NULL;
@@ -102,6 +105,7 @@ load_preferences (preferences_t *prefs)
 			"window_height", &error);
 	if (error != NULL)
 	{
+		print_warning ("%s", error->message);
 		prefs->window_height = window_height_;
 		g_error_free (error);
 		error = NULL;
@@ -111,6 +115,7 @@ load_preferences (preferences_t *prefs)
 			"window_maximised", &error);
 	if (error != NULL)
 	{
+		print_warning ("%s", error->message);
 		prefs->window_maximised = window_maximised_;
 		g_error_free (error);
 		error = NULL;
@@ -122,6 +127,7 @@ load_preferences (preferences_t *prefs)
 			"main_hpaned_pos", &error);
 	if (error != NULL)
 	{
+		print_warning ("%s", error->message);
 		prefs->main_hpaned_pos = main_hpaned_pos_;
 		g_error_free (error);
 		error = NULL;
@@ -131,6 +137,7 @@ load_preferences (preferences_t *prefs)
 			"vpaned_pos", &error);
 	if (error != NULL)
 	{
+		print_warning ("%s", error->message);
 		prefs->vpaned_pos = vpaned_pos_;
 		g_error_free (error);
 		error = NULL;
@@ -140,6 +147,7 @@ load_preferences (preferences_t *prefs)
 			"log_hpaned_pos", &error);
 	if (error != NULL)
 	{
+		print_warning ("%s", error->message);
 		prefs->log_hpaned_pos = log_hpaned_pos_;
 		g_error_free (error);
 		error = NULL;
@@ -151,6 +159,7 @@ load_preferences (preferences_t *prefs)
 			"command_view", &error);
 	if (error != NULL)
 	{
+		print_warning ("%s", error->message);
 		prefs->command_view = g_strdup (command_view_);
 		g_error_free (error);
 		error = NULL;
@@ -159,6 +168,7 @@ load_preferences (preferences_t *prefs)
 	gchar *font = g_key_file_get_string (key_file, PROGRAM_NAME, "font", &error);
 	if (error != NULL)
 	{
+		print_warning ("%s", error->message);
 		prefs->font_str = g_strdup (font_);
 		set_current_font_prefs (prefs);
 		g_error_free (error);
