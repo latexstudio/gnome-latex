@@ -5,10 +5,11 @@ Wed Sep 9, 2009 to Wed Sep 16, 2009
 [x] document tabs
 	x arrows to navigate between tabs if there are a lot of documents opened
 
-[-] save and load
-	- show/hide symbol tables
-	- size of the window
-	- position of the panes
+[x] save and load
+	x show/hide symbol tables
+	x size of the window
+	x if the window is maximised
+	x position of the panes
 
 [-] new toolbar
 	- structure: part, chapter, section, subsection, subsubsection, paragraph, subparagraph

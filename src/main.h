@@ -71,25 +71,43 @@ typedef struct
 	GtkIconView			*icon_view;
 } symbols_t;
 
+// preferences, settings
 typedef struct
 {
-	GList				*all_docs;
-	document_t			*active_doc;
-	action_log_t		*action_log;
-	symbols_t			*symbols;
-	GtkWindow			*main_window;
-	GtkNotebook			*notebook;
-	GtkStatusbar		*statusbar;
-	GtkStatusbar		*cursor_position;
-	GtkAction			*undo;
-	GtkAction			*redo;
-	GKeyFile			*key_file;
-	gchar				*pref_file;
-	PangoFontDescription *font_desc;
-	gint				font_size;
+	gboolean				show_line_numbers;
+	gboolean				show_side_pane;
+	gint					window_width;
+	gint					window_height;
+	gboolean				window_maximised;
+	gint					main_hpaned_pos;
+	gint					vpaned_pos;
+	gint					log_hpaned_pos;
+	gchar					*command_view;
+	gchar					*font_str;
+	PangoFontDescription 	*font_desc;
+	gint					font_size;
+} preferences_t;
+
+typedef struct
+{
+	GList			*all_docs;
+	document_t		*active_doc;
+	action_log_t	*action_log;
+	symbols_t		*symbols;
+	preferences_t	*prefs;
+	GtkWindow		*main_window;
+	GtkNotebook		*notebook;
+	GtkStatusbar	*statusbar;
+	GtkStatusbar	*cursor_position;
+	GtkAction		*undo;
+	GtkAction		*redo;
+	GtkPaned		*main_hpaned;
+	GtkPaned		*vpaned;
+	GtkPaned		*log_hpaned;
 } latexila_t;
 
-// all the documents are accessible by the "latexila" variable
+// a lot of things are accessible by the "latexila" variable everywhere in the
+// sources (if this file is included)
 extern latexila_t latexila;
 
 // for the actions list in the log zone

@@ -31,13 +31,14 @@
 #include "callbacks.h"
 #include "symbols.h"
 #include "print.h"
+#include "prefs.h"
 
 static void register_my_stock_icons (void);
 static gboolean option_version (const gchar *option_name, const gchar *value,
 		gpointer data, GError **error);
 
 latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-	NULL, NULL, NULL, NULL}; 
+	NULL, NULL}; 
 
 static struct {
 	gchar *filename;
@@ -147,6 +148,10 @@ main (int argc, char *argv[])
 	textdomain (LATEXILA_NLS_PACKAGE);
 #endif
 
+	/* preferences */
+	latexila.prefs = g_malloc (sizeof (preferences_t));
+	load_preferences (latexila.prefs);
+
 	/* personal style */
 	// make the close buttons in tabs smaller
 	// we use gtk_widget_set_name (widget, "my-close-button") to apply this
@@ -163,13 +168,15 @@ main (int argc, char *argv[])
 
 	/* main window */
 	GtkWidget *window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	latexila.main_window = GTK_WINDOW (window);
 	g_signal_connect (G_OBJECT (window), "delete_event",
 			G_CALLBACK (cb_delete_event), NULL);
 	gtk_window_set_title (GTK_WINDOW (window), PROGRAM_NAME);
 	gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
-	gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
-
-	latexila.main_window = GTK_WINDOW (window);
+	gtk_window_set_default_size (GTK_WINDOW (window),
+			latexila.prefs->window_width, latexila.prefs->window_height);
+	if (latexila.prefs->window_maximised)
+		gtk_window_maximize (GTK_WINDOW (window));
 
 	/* boxes */
 	GtkWidget *main_vbox = gtk_vbox_new (FALSE, 0);
@@ -308,14 +315,17 @@ main (int argc, char *argv[])
 	latexila.redo = gtk_action_group_get_action (action_group, "EditRedo");
 	GtkToggleAction *show_symbol_tables = GTK_TOGGLE_ACTION (
 			gtk_action_group_get_action (action_group, "ViewSymbols"));
-	gtk_toggle_action_set_active (show_symbol_tables, TRUE);
+	gtk_toggle_action_set_active (show_symbol_tables,
+			latexila.prefs->show_side_pane);
 
 	/* horizontal pane
 	 * left: symbol tables
 	 * right: the source view and the log zone
 	 */
 	GtkWidget *main_hpaned = gtk_hpaned_new ();
-	gtk_paned_set_position (GTK_PANED (main_hpaned), 180);
+	latexila.main_hpaned = GTK_PANED (main_hpaned);
+	gtk_paned_set_position (GTK_PANED (main_hpaned),
+			latexila.prefs->main_hpaned_pos);
 	gtk_box_pack_start (GTK_BOX (main_vbox), main_hpaned, TRUE, TRUE, 0);
 
 	/* symbol tables */
@@ -331,7 +341,8 @@ main (int argc, char *argv[])
 	 * bottom: log zone
 	 */
 	GtkWidget *vpaned = gtk_vpaned_new ();
-	gtk_paned_set_position (GTK_PANED (vpaned), 380);
+	latexila.vpaned = GTK_PANED (vpaned);
+	gtk_paned_set_position (GTK_PANED (vpaned), latexila.prefs->vpaned_pos);
 	gtk_paned_pack2 (GTK_PANED (main_hpaned), vpaned, TRUE, TRUE);
 
 	/* source view with tabs */
@@ -349,7 +360,8 @@ main (int argc, char *argv[])
 	// left: action history
 	// right: details
 	GtkWidget *hpaned = gtk_hpaned_new ();
-	gtk_paned_set_position (GTK_PANED (hpaned), 190);
+	latexila.log_hpaned = GTK_PANED (hpaned);
+	gtk_paned_set_position (GTK_PANED (hpaned), latexila.prefs->log_hpaned_pos);
 	gtk_paned_pack2 (GTK_PANED (vpaned), hpaned, TRUE, TRUE);
 
 	// action history
@@ -421,93 +433,8 @@ main (int argc, char *argv[])
 	gtk_box_pack_end (GTK_BOX (statusbar), cursor_position_statusbar,
 			FALSE, TRUE, 0);
 
-	/* user preferences */
-	gboolean default_value_show_line_numbers = FALSE;
-	gchar *default_value_font = "Monospace 10";
-	gchar *default_value_command_view = "evince";
 
-	gchar *pref_file = g_strdup_printf ("%s/.latexila", g_get_home_dir ());
-	latexila.pref_file = pref_file;
-	latexila.key_file = g_key_file_new ();
-	gboolean prefs_loaded = FALSE;
-	error = NULL;
-
-	if (g_file_test (pref_file, G_FILE_TEST_IS_REGULAR))
-	{
-		g_key_file_load_from_file (latexila.key_file, pref_file,
-				G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS, &error);
-		if (error != NULL)
-		{
-			print_warning ("load user preferences failed: %s", error->message);
-			g_error_free (error);
-			error = NULL;
-		}
-		else
-		{
-			/* check if all keys exist
-			 * if not, set the default value for that key
-			 */
-			gboolean prefs_saved = TRUE;
-			g_key_file_get_boolean (latexila.key_file, PROGRAM_NAME,
-					"show_line_numbers", &error);
-			if (error != NULL)
-			{
-				g_key_file_set_boolean (latexila.key_file, PROGRAM_NAME,
-						"show_line_numbers", default_value_show_line_numbers);
-				g_error_free (error);
-				error = NULL;
-				prefs_saved = FALSE;
-			}
-
-			g_key_file_get_string (latexila.key_file, PROGRAM_NAME,
-					"font", &error);
-			if (error != NULL)
-			{
-				g_key_file_set_string (latexila.key_file, PROGRAM_NAME,
-						"font", default_value_font);
-				g_error_free (error);
-				error = NULL;
-				prefs_saved = FALSE;
-			}
-
-			g_key_file_get_string (latexila.key_file, PROGRAM_NAME,
-					"command_view", &error);
-			if (error != NULL)
-			{
-				g_key_file_set_string (latexila.key_file, PROGRAM_NAME,
-						"command_view", default_value_command_view);
-				g_error_free (error);
-				error = NULL;
-				prefs_saved = FALSE;
-			}
-
-			if (! prefs_saved)
-				save_preferences ();
-
-			print_info ("load user preferences: OK");
-			prefs_loaded = TRUE;
-		}
-	}
-
-	if (! prefs_loaded)
-	{
-		// set default values
-		g_key_file_set_boolean (latexila.key_file, PROGRAM_NAME,
-				"show_line_numbers", default_value_show_line_numbers);
-		g_key_file_set_string (latexila.key_file, PROGRAM_NAME,
-				"font", default_value_font);
-		g_key_file_set_string (latexila.key_file, PROGRAM_NAME,
-				"command_view", default_value_command_view);
-
-		save_preferences ();
-	}
-
-	gchar *font_string = g_key_file_get_string (latexila.key_file,
-			PROGRAM_NAME, "font", NULL);
-	latexila.font_desc = pango_font_description_from_string (font_string);
-	latexila.font_size = pango_font_description_get_size (latexila.font_desc);
-
-
+	/* show the window */
 	gtk_widget_show_all (window);
 
 	/* open documents given in arguments */
@@ -519,19 +446,25 @@ main (int argc, char *argv[])
 		else
 		{
 			gchar *current_dir = g_get_current_dir ();
-			path = g_strdup_printf ("%s/%s", current_dir, argv[i]);
+			path = g_build_filename (current_dir, argv[i], NULL);
 			g_free (current_dir);
 		}
 
-		gchar *uri = g_filename_to_uri (path, NULL, NULL);
-		if (uri != NULL)
-			open_new_document (path, uri);
+		gchar *uri = g_filename_to_uri (path, NULL, &error);
+		if (error != NULL)
+		{
+			print_warning ("can not open the file \"%s\": %s", argv[i],
+					error->message);
+			g_error_free (error);
+			error = NULL;
+		}
 		else
-			print_warning ("can not open the file \"%s\"", argv[i]);
+			open_new_document (path, uri);
 
 		g_free (path);
 		g_free (uri);
 	}
+
 
 	gtk_main ();
 

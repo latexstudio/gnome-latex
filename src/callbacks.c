@@ -35,6 +35,7 @@
 #include "callbacks.h"
 #include "print.h"
 #include "actions.h"
+#include "prefs.h"
 
 static void create_document_in_new_tab (const gchar *path, const gchar *text,
 		const gchar *title);
@@ -52,7 +53,6 @@ static void change_font_source_view (void);
 static void create_preferences (void);
 
 static GtkWidget *pref_dialog = NULL;
-static gboolean pref_changed = FALSE;
 
 void
 cb_new (void)
@@ -180,6 +180,7 @@ cb_quit (void)
 {
 	if (close_all ())
 	{
+		save_preferences (latexila.prefs);
 		print_info ("Bye bye");
 		gtk_main_quit ();
 	}
@@ -287,26 +288,25 @@ cb_preferences (void)
 void
 cb_zoom_in (void)
 {
-	latexila.font_size += PANGO_SCALE;
-	pango_font_description_set_size (latexila.font_desc, latexila.font_size);
+	latexila.prefs->font_size += PANGO_SCALE;
+	pango_font_description_set_size (latexila.prefs->font_desc,
+			latexila.prefs->font_size);
 	change_font_source_view ();
 }
 
 void
 cb_zoom_out (void)
 {
-	latexila.font_size -= PANGO_SCALE;
-	pango_font_description_set_size (latexila.font_desc, latexila.font_size);
+	latexila.prefs->font_size -= PANGO_SCALE;
+	pango_font_description_set_size (latexila.prefs->font_desc,
+			latexila.prefs->font_size);
 	change_font_source_view ();
 }
 
 void
 cb_zoom_reset (void)
 {
-	gchar *font_string = g_key_file_get_string (latexila.key_file,
-            PROGRAM_NAME, "font", NULL);
-    latexila.font_desc = pango_font_description_from_string (font_string);
-    latexila.font_size = pango_font_description_get_size (latexila.font_desc);
+	set_current_font_prefs (latexila.prefs);
 	change_font_source_view ();
 }
 
@@ -731,17 +731,13 @@ void
 cb_pref_dialog_close (GtkDialog *dialog, gint response_id, gpointer user_data)
 {
 	gtk_widget_hide (GTK_WIDGET (dialog));
-
-	if (pref_changed)
-		save_preferences ();
 }
 
 void
 cb_line_numbers (GtkToggleButton *toggle_button, gpointer user_data)
 {
 	gboolean show_line_numbers = gtk_toggle_button_get_active (toggle_button);
-	g_key_file_set_boolean (latexila.key_file, PROGRAM_NAME,
-			"show_line_numbers", show_line_numbers);
+	latexila.prefs->show_line_numbers = show_line_numbers;
 
 	//TODO optimisation?
 	guint nb_docs = g_list_length (latexila.all_docs);
@@ -751,8 +747,6 @@ cb_line_numbers (GtkToggleButton *toggle_button, gpointer user_data)
 		gtk_source_view_set_show_line_numbers (
 				GTK_SOURCE_VIEW (doc->source_view), show_line_numbers);
 	}
-
-	pref_changed = TRUE;
 }
 
 void
@@ -760,21 +754,18 @@ cb_command_view (GtkButton *button, gpointer user_data)
 {
 	GtkEntry *entry = (GtkEntry *) user_data;
 	const gchar *new_command_view = gtk_entry_get_text (entry);
-	g_key_file_set_string (latexila.key_file, PROGRAM_NAME,
-			"command_view", new_command_view);
-	pref_changed = TRUE;
+	g_free (latexila.prefs->command_view);
+	latexila.prefs->command_view = g_strdup (new_command_view);
 }
 
 void
 cb_font_set (GtkFontButton *font_button, gpointer user_data)
 {
 	const gchar *font_string = gtk_font_button_get_font_name (font_button);
-	g_key_file_set_string (latexila.key_file, PROGRAM_NAME,
-			"font", font_string);
-	latexila.font_desc = pango_font_description_from_string (font_string);
-	latexila.font_size = pango_font_description_get_size (latexila.font_desc);
+	g_free (latexila.prefs->font_str);
+	latexila.prefs->font_str = g_strdup (font_string);
+	set_current_font_prefs (latexila.prefs);
 	change_font_source_view ();
-	pref_changed = TRUE;
 }
 
 void
@@ -887,24 +878,6 @@ open_new_document (const gchar *filename, const gchar *uri)
 		print_warning ("impossible to open the file \"%s\"", filename);
 }
 
-void
-save_preferences (void)
-{
-	gchar *key_file_data = g_key_file_to_data (latexila.key_file, NULL, NULL);
-	FILE* file = fopen (latexila.pref_file, "w");
-	if (file != NULL)
-	{
-		fprintf (file, "%s", key_file_data);
-		fclose (file);
-	}
-	else
-	{
-		print_warning ("impossible to save user preferences to \"%s\"",
-				latexila.pref_file);
-	}
-	g_free (key_file_data);
-}
-
 /******************************************************************************
  * local functions
  *****************************************************************************/
@@ -949,17 +922,16 @@ create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *t
 	gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (new_doc->source_view), TRUE);
 
 	// set the font
-	gtk_widget_modify_font (new_doc->source_view, latexila.font_desc);
+	gtk_widget_modify_font (new_doc->source_view, latexila.prefs->font_desc);
 
 	// enable text wrapping (between words only)
 	gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (new_doc->source_view),
 			GTK_WRAP_WORD);
 
 	// show line numbers?
-	gboolean show_line_numbers = g_key_file_get_boolean (latexila.key_file,
-			PROGRAM_NAME, "show_line_numbers", NULL);
 	gtk_source_view_set_show_line_numbers (
-			GTK_SOURCE_VIEW (new_doc->source_view), show_line_numbers);
+			GTK_SOURCE_VIEW (new_doc->source_view),
+			latexila.prefs->show_line_numbers);
 
 	// put the text into the buffer
 	gtk_source_buffer_begin_not_undoable_action (new_doc->source_buffer);
@@ -1322,7 +1294,7 @@ change_font_source_view (void)
 	for (guint i = 0 ; i < nb_docs ; i++)
 	{
 		document_t *doc = g_list_nth_data (latexila.all_docs, i);
-		gtk_widget_modify_font (doc->source_view, latexila.font_desc);
+		gtk_widget_modify_font (doc->source_view, latexila.prefs->font_desc);
 	}
 }
 
@@ -1346,9 +1318,8 @@ create_preferences (void)
 	/* show line numbers */
 	GtkWidget *line_numbers = gtk_check_button_new_with_label (
 			_("Display line numbers"));
-	gboolean tmp = g_key_file_get_boolean (latexila.key_file, PROGRAM_NAME,
-			"show_line_numbers", NULL);
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (line_numbers), tmp);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (line_numbers),
+			latexila.prefs->show_line_numbers);
 	g_signal_connect (G_OBJECT (line_numbers), "toggled",
 			G_CALLBACK (cb_line_numbers), NULL);
 	gtk_box_pack_start (GTK_BOX (content_area), line_numbers, FALSE, FALSE, 0);
@@ -1356,9 +1327,8 @@ create_preferences (void)
 	/* font */
 	GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
 	GtkWidget *label = gtk_label_new (_("Font:"));
-	gchar *current_font = g_key_file_get_string (latexila.key_file, PROGRAM_NAME,
-			"font", NULL);
-	GtkWidget *font_button = gtk_font_button_new_with_font (current_font);
+	GtkWidget *font_button = gtk_font_button_new_with_font (
+			latexila.prefs->font_str);
 	g_signal_connect (G_OBJECT (font_button), "font-set",
 			G_CALLBACK (cb_font_set), NULL);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -1369,9 +1339,8 @@ create_preferences (void)
 	hbox = gtk_hbox_new (FALSE, 5);
 	label = gtk_label_new (_("Program for viewing documents:"));
 	GtkWidget *command_view_entry = gtk_entry_new ();
-	gchar *txt = g_key_file_get_string (latexila.key_file, PROGRAM_NAME,
-			"command_view", NULL);
-	gtk_entry_set_text (GTK_ENTRY (command_view_entry), txt);
+	gtk_entry_set_text (GTK_ENTRY (command_view_entry),
+			latexila.prefs->command_view);
 	GtkWidget *button = gtk_button_new_with_label (_("OK"));
 	g_signal_connect (G_OBJECT (button), "clicked",
 			G_CALLBACK (cb_command_view), GTK_ENTRY (command_view_entry));

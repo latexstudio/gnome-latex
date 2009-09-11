@@ -257,9 +257,7 @@ view_document (gchar *title, gchar *doc_extension)
 	gchar *doc_path = g_regex_replace_literal (regex, latexila.active_doc->path,
 			-1, 0, doc_extension, 0, NULL);
 
-	gchar *command_view = g_key_file_get_string (latexila.key_file, PROGRAM_NAME,
-			"command_view", NULL);
-	command = g_strdup_printf ("%s %s", command_view, doc_path);
+	command = g_strdup_printf ("%s %s", latexila.prefs->command_view, doc_path);
 
 	/* the current document is a *.tex file? */
 	gboolean tex_file = g_regex_match (regex, latexila.active_doc->path, 0, NULL);

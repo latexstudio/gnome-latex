@@ -68,6 +68,5 @@ void cb_symbol_selected (GtkIconView *icon_view, gpointer user_data);
 void cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data);
 
 void open_new_document (const gchar *filename, const gchar *uri);
-void save_preferences (void);
 
 #endif /* CALLBACKS_H */
