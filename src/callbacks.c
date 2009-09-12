@@ -1009,9 +1009,11 @@ close_document (gint index)
 				NULL
 		);
 
-		GtkWidget *label = gtk_label_new (_("Save changes to document before closing?"));
-		//gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), label, TRUE, FALSE, 10);
-		//gtk_widget_show_all (GTK_DIALOG (dialog)->vbox);
+		gchar *tmp = g_strdup_printf (
+				_("Save changes to \"%s\" before closing?"),
+				g_path_get_basename (latexila.active_doc->path));
+		GtkWidget *label = gtk_label_new (tmp);
+		g_free (tmp);
 		GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 		gtk_box_pack_start (GTK_BOX (content_area), label, TRUE, FALSE, 10);
 		gtk_widget_show_all (content_area);
@@ -1072,34 +1074,35 @@ file_save (void)
 	if (latexila.active_doc->path == NULL)
 		return;
 
+	GError *error = NULL;
 	print_info ("save current buffer to \"%s\"", latexila.active_doc->path);
 
-	FILE* file = fopen (latexila.active_doc->path, "w");
-	if (file != NULL)
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+	GtkTextIter start;
+	GtkTextIter end;
+	gtk_text_buffer_get_bounds (text_buffer, &start, &end);
+	gchar *contents = gtk_text_buffer_get_text (text_buffer, &start, &end, FALSE);
+	gchar *locale = g_locale_from_utf8 (contents, -1, NULL, NULL, &error);
+	g_free (contents);
+
+	if (error != NULL)
 	{
-		GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
-		GtkTextIter start;
-		GtkTextIter end;
-		gtk_text_buffer_get_bounds (text_buffer, &start, &end);
-		gchar *contents = gtk_text_buffer_get_text (text_buffer, &start, &end, FALSE);
-		gchar *locale = g_locale_from_utf8 (contents, -1, NULL, NULL, NULL);
-		
-		// write the contents into the file
-		fprintf (file, "%s\n", locale);
-
-		fclose (file);
-		g_free (contents);
-		g_free (locale);
-
-		latexila.active_doc->saved = TRUE;
+		print_warning ("impossible to convert the contents: %s", error->message);
+		g_error_free (error);
+		return;
 	}
 
-	// error with fopen
-	else
+	g_file_set_contents (latexila.active_doc->path, locale, -1, &error);
+
+	if (error != NULL)
 	{
-		print_warning ("impossible to save the file \"%s\"",
-				latexila.active_doc->path);
+		print_warning ("impossible to save the file: %s", error->message);
+		g_error_free (error);
+		return;
 	}
+
+	latexila.active_doc->saved = TRUE;
+	g_free (locale);
 }
 
 static gboolean
@@ -1107,7 +1110,7 @@ close_all (void)
 {
 	while (latexila.active_doc != NULL)
 	{
-		int tmp = gtk_notebook_get_n_pages (latexila.notebook);
+		gint tmp = gtk_notebook_get_n_pages (latexila.notebook);
 		gtk_notebook_set_current_page (latexila.notebook, 0);
 		cb_close ();
 		if (gtk_notebook_get_n_pages (latexila.notebook) >= tmp)
