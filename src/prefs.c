@@ -208,17 +208,6 @@ save_preferences (preferences_t *prefs)
 
 	gint window_width, window_height;
 	gtk_window_get_size (latexila.main_window, &window_width, &window_height);
-
-	/* generate bugs with the panes positions
-	// if the window is maximised, store sizes that are a bit smaller, else
-	// making window non-maximised will have no effect
-	if (window_maximised)
-	{
-		window_width -= window_width / 10;
-		window_height -= window_height / 10;
-	}
-	*/
-
 	g_key_file_set_integer (key_file, PROGRAM_NAME, "window_width",
 			window_width);
 	g_key_file_set_integer (key_file, PROGRAM_NAME, "window_height",

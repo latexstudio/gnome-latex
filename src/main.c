@@ -150,7 +150,15 @@ main (int argc, char *argv[])
 	gtk_window_set_default_size (GTK_WINDOW (window),
 			latexila.prefs->window_width, latexila.prefs->window_height);
 	if (latexila.prefs->window_maximised)
+	{
 		gtk_window_maximize (GTK_WINDOW (window));
+
+		// For the first unmaximisation, decrease a little the size of the
+		// window. Without that, the window would keep the same size.
+		g_signal_connect (G_OBJECT (window), "window-state-event",
+				G_CALLBACK (cb_window_unmaximized), NULL);
+	}
+
 
 	/* menubar and toolbar */
 	GtkWidget *main_vbox = gtk_vbox_new (FALSE, 0);
