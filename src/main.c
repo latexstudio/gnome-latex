@@ -149,15 +149,9 @@ main (int argc, char *argv[])
 	gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size (GTK_WINDOW (window),
 			latexila.prefs->window_width, latexila.prefs->window_height);
-	if (latexila.prefs->window_maximised)
-	{
-		gtk_window_maximize (GTK_WINDOW (window));
 
-		// For the first unmaximisation, decrease a little the size of the
-		// window. Without that, the window would keep the same size.
-		g_signal_connect (G_OBJECT (window), "window-state-event",
-				G_CALLBACK (cb_window_unmaximized), NULL);
-	}
+	if (latexila.prefs->window_maximised)
+		gtk_window_maximize (GTK_WINDOW (window));
 
 
 	/* menubar and toolbar */
@@ -180,7 +174,7 @@ main (int argc, char *argv[])
 	latexila.symbols = g_malloc (sizeof (symbols_t));
 	GtkWidget *vbox_symbols = gtk_vbox_new (FALSE, 0);
 	latexila.symbols->vbox = vbox_symbols;
-	gtk_paned_pack1 (GTK_PANED (main_hpaned), vbox_symbols, TRUE, TRUE);
+	gtk_paned_add1 (GTK_PANED (main_hpaned), vbox_symbols);
 
 	init_symbols ();
 
@@ -191,7 +185,7 @@ main (int argc, char *argv[])
 	GtkWidget *vpaned = gtk_vpaned_new ();
 	latexila.vpaned = GTK_PANED (vpaned);
 	gtk_paned_set_position (GTK_PANED (vpaned), latexila.prefs->vpaned_pos);
-	gtk_paned_pack2 (GTK_PANED (main_hpaned), vpaned, TRUE, TRUE);
+	gtk_paned_add2 (GTK_PANED (main_hpaned), vpaned);
 
 	/* source view with tabs */
 	GtkWidget *notebook = gtk_notebook_new ();
@@ -199,7 +193,7 @@ main (int argc, char *argv[])
 	gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook), TRUE);
 	g_signal_connect (G_OBJECT (notebook), "switch-page",
 			G_CALLBACK (cb_page_change), NULL);
-	gtk_paned_pack1 (GTK_PANED (vpaned), notebook, TRUE, TRUE);
+	gtk_paned_add1 (GTK_PANED (vpaned), notebook);
 
 	/* log zone */
 	latexila.action_log = g_malloc (sizeof (action_log_t));
@@ -210,7 +204,7 @@ main (int argc, char *argv[])
 	GtkWidget *hpaned = gtk_hpaned_new ();
 	latexila.log_hpaned = GTK_PANED (hpaned);
 	gtk_paned_set_position (GTK_PANED (hpaned), latexila.prefs->log_hpaned_pos);
-	gtk_paned_pack2 (GTK_PANED (vpaned), hpaned, TRUE, TRUE);
+	gtk_paned_add2 (GTK_PANED (vpaned), hpaned);
 
 	// action history
 	GtkListStore *list_store = gtk_list_store_new (N_COLUMNS_ACTION,
@@ -239,7 +233,7 @@ main (int argc, char *argv[])
 	scrollbar = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_paned_pack1 (GTK_PANED (hpaned), scrollbar, TRUE, TRUE);
+	gtk_paned_add1 (GTK_PANED (hpaned), scrollbar);
 	gtk_container_add (GTK_CONTAINER (scrollbar), list_view);
 	
 	// log details
@@ -257,7 +251,7 @@ main (int argc, char *argv[])
 	scrollbar = gtk_scrolled_window_new (NULL, NULL);
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_paned_pack2 (GTK_PANED (hpaned), scrollbar, TRUE, TRUE);
+	gtk_paned_add2 (GTK_PANED (hpaned), scrollbar);
 	gtk_container_add (GTK_CONTAINER (scrollbar), log_view);
 
 	// tags

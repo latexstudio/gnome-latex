@@ -859,41 +859,6 @@ cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data)
 		gtk_widget_hide (latexila.symbols->vbox);
 }
 
-gboolean
-cb_window_unmaximized (GtkWidget *widget, GdkEventWindowState *event,
-		gpointer user_data)
-{
-	// TODO is there an easier way to do that?
-	// TODO disconnect the signal instead of using a static bool?
-
-	static gboolean first_time = TRUE;
-
-	if (! first_time)
-		return FALSE;
-
-	if (event->changed_mask & GDK_WINDOW_STATE_MAXIMIZED)
-	{
-		if (! (event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED)
-				&& first_time)
-		{
-			// For the first unmaximisation, decrease a little the size of the
-			// window. Without that, the window would keep the same size.
-
-			gint width = latexila.prefs->window_width;
-			gint height = latexila.prefs->window_height;
-			width -= width / 10;
-			height -= height / 10;
-			gtk_window_resize (latexila.main_window, width, height);
-
-			first_time = FALSE;
-			return TRUE;
-		}
-	}
-
-	// let the event propagate further
-	return FALSE;
-}
-
 void
 open_new_document (const gchar *filename, const gchar *uri)
 {

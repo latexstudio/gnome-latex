@@ -66,8 +66,6 @@ void cb_font_set (GtkFontButton *font_button, gpointer user_data);
 void cb_category_symbols_selected (GtkIconView *icon_view, gpointer user_data);
 void cb_symbol_selected (GtkIconView *icon_view, gpointer user_data);
 void cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data);
-gboolean cb_window_unmaximized (GtkWidget *widget, GdkEventWindowState *event,
-		gpointer user_data);
 
 void open_new_document (const gchar *filename, const gchar *uri);
 
