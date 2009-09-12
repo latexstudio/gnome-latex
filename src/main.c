@@ -277,6 +277,9 @@ main (int argc, char *argv[])
 	/* show the window */
 	gtk_widget_show_all (window);
 
+	if (! latexila.prefs->show_side_pane)
+		gtk_widget_hide (latexila.symbols->vbox);
+
 	/* open documents given in arguments */
 	for (int i = 1 ; i < argc ; i++)
 	{

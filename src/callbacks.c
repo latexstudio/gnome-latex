@@ -852,7 +852,8 @@ cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data)
 	if (latexila.symbols == NULL || latexila.symbols->vbox == NULL)
 		return;
 
-	if (gtk_toggle_action_get_active (toggle_action))
+	latexila.prefs->show_side_pane = gtk_toggle_action_get_active (toggle_action);
+	if (latexila.prefs->show_side_pane)
 		gtk_widget_show_all (latexila.symbols->vbox);
 	else
 		gtk_widget_hide (latexila.symbols->vbox);
