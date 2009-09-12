@@ -11,7 +11,7 @@ Wed Sep 9, 2009 to Wed Sep 16, 2009
 	x if the window is maximised
 	x position of the panes
 
-[-] check memory leaks
+[x] check memory leaks
 
 [-] new toolbar
 	- structure: part, chapter, section, subsection, subsubsection, paragraph, subparagraph

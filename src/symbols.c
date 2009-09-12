@@ -789,6 +789,7 @@ get_symbol_store (const struct symbol symbols[])
 				COLUMN_SYMBOL_TOOLTIP, tooltip,
 				-1);
 		g_free (tooltip);
+		g_object_unref (pixbuf);
 	}
 
 	return symbol_store;

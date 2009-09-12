@@ -51,6 +51,7 @@ static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 		gboolean backward, GtkTextIter *match_start, GtkTextIter *match_end);
 static void change_font_source_view (void);
 static void create_preferences (void);
+static void free_latexila (void);
 
 static GtkWidget *pref_dialog = NULL;
 
@@ -181,6 +182,7 @@ cb_quit (void)
 	if (close_all ())
 	{
 		save_preferences (latexila.prefs);
+		free_latexila ();
 		print_info ("Bye bye");
 		gtk_main_quit ();
 	}
@@ -1009,10 +1011,16 @@ close_document (gint index)
 				NULL
 		);
 
+		gchar *doc_name;
+		if (latexila.active_doc->path == NULL)
+			doc_name = g_strdup (_("New document"));
+		else
+			doc_name = g_path_get_basename (latexila.active_doc->path);
+
 		gchar *tmp = g_strdup_printf (
-				_("Save changes to \"%s\" before closing?"),
-				g_path_get_basename (latexila.active_doc->path));
+				_("Save changes to \"%s\" before closing?"), doc_name);
 		GtkWidget *label = gtk_label_new (tmp);
+		g_free (doc_name);
 		g_free (tmp);
 		GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 		gtk_box_pack_start (GTK_BOX (content_area), label, TRUE, FALSE, 10);
@@ -1358,4 +1366,18 @@ create_preferences (void)
 
 
 	gtk_widget_show_all (content_area);
+}
+
+static void
+free_latexila (void)
+{
+	g_free (latexila.prefs->command_view);
+	g_free (latexila.prefs->font_str);
+	g_free (latexila.prefs);
+	g_free (latexila.action_log);
+
+	for (int i = 0 ; i < 7 ; i++)
+		g_object_unref (latexila.symbols->list_stores[i]);
+
+	g_free (latexila.symbols);
 }

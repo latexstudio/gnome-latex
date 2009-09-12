@@ -93,8 +93,15 @@ main (int argc, char *argv[])
 	g_option_context_add_main_entries (context, options, NULL);
 #endif
 	g_option_context_add_group (context, gtk_get_option_group (TRUE));
+
+	// TODO with valgrind there are a lot of memory leaks with this, can we do
+	// something?
 	if (! g_option_context_parse (context, &argc, &argv, &error))
+	{
 		print_error ("option parsing failed: %s\n", error->message);
+		g_error_free (error);
+		error = NULL;
+	}
 
 #ifdef LATEXILA_NLS_ENABLED
 	gtk_init_with_args (&argc, &argv, NULL, options, LATEXILA_NLS_PACKAGE,
@@ -104,6 +111,8 @@ main (int argc, char *argv[])
 #endif
 	if (error != NULL)
 		print_error ("%s", error->message);
+
+	g_option_context_free (context);
 
 	/* localisation */
 #ifdef LATEXILA_NLS_ENABLED

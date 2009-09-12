@@ -182,6 +182,7 @@ load_preferences (preferences_t *prefs)
 	}
 
 	print_info ("load user preferences: OK");
+	g_key_file_free (key_file);
 }
 
 void
@@ -252,6 +253,7 @@ save_preferences (preferences_t *prefs)
 	g_free (rc_file);
 	g_free (rc_path);
 	g_free (key_file_data);
+	g_key_file_free (key_file);
 }
 
 void
