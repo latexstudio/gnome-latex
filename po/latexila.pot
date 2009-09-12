@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-01 14:21+0200\n"
+"POT-Creation-Date: 2009-09-12 12:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,381 +16,421 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/callbacks.c:1192 src/callbacks.c:1249
+#: src/actions.c:281 src/actions.c:339
 #, c-format
 msgid ""
 "%s does not exist. If this is not already made, compile the document with "
 "the right command."
 msgstr ""
 
-#: src/main.c:186
+#: src/ui.c:114
 msgid "About"
 msgstr ""
 
-#: src/callbacks.c:670
+#: src/callbacks.c:680
 msgid "About "
 msgstr ""
 
-#: src/main.c:187
+#: src/ui.c:115
 msgid "About LaTeXila"
 msgstr ""
 
-#: src/main.c:264
+#: src/main.c:208
 msgid "Action history"
 msgstr ""
 
-#: src/main.c:169
+#: src/symbols.c:43
+msgid "Arrows"
+msgstr ""
+
+#: src/ui.c:97
 msgid "Build"
 msgstr ""
 
-#: src/callbacks.c:341 src/callbacks.c:422
+#: src/callbacks.c:337 src/callbacks.c:418
 msgid "Case sensitive"
 msgstr ""
 
-#: src/main.c:132
+#: src/ui.c:60
 msgid "Close"
 msgstr ""
 
-#: src/main.c:133
+#: src/ui.c:61
 msgid "Close the current file"
 msgstr ""
 
-#: src/callbacks.c:934
+#: src/callbacks.c:1003
 msgid "Close the document"
 msgstr ""
 
-#: src/callbacks.c:1117
+#: src/actions.c:171
 msgid "Compilation in progress. Please wait..."
 msgstr ""
 
-#: src/callbacks.c:548 src/main.c:170
+#: src/callbacks.c:544 src/ui.c:98
 msgid "Compile (latex)"
 msgstr ""
 
-#: src/callbacks.c:562 src/main.c:174
+#: src/callbacks.c:561 src/ui.c:102
 msgid "Compile (pdflatex)"
 msgstr ""
 
-#: src/main.c:153
+#: src/ui.c:81
 msgid "Configure the application"
 msgstr ""
 
-#: src/main.c:179
+#: src/ui.c:107
 msgid "Convert the DVI document to the PDF format"
 msgstr ""
 
-#: src/main.c:181
+#: src/ui.c:109
 msgid "Convert the DVI document to the PostScript format"
 msgstr ""
 
-#: src/callbacks.c:1264
+#: src/actions.c:354
 msgid "Converting in progress. Please wait..."
 msgstr ""
 
-#: src/main.c:144
+#: src/ui.c:72
 msgid "Copy"
 msgstr ""
 
-#: src/main.c:145
+#: src/ui.c:73
 msgid "Copy the selection"
 msgstr ""
 
-#: src/main.c:142
+#: src/ui.c:70
 msgid "Cut"
 msgstr ""
 
-#: src/main.c:143
+#: src/ui.c:71
 msgid "Cut the selection"
 msgstr ""
 
-#: src/callbacks.c:603 src/main.c:178
+#: src/callbacks.c:605 src/ui.c:106
 msgid "DVI to PDF"
 msgstr ""
 
-#: src/callbacks.c:612 src/main.c:180
+#: src/callbacks.c:614 src/ui.c:108
 msgid "DVI to PS"
 msgstr ""
 
-#: src/main.c:148
+#: src/ui.c:76
 msgid "Delete"
 msgstr ""
 
-#: src/main.c:149
+#: src/ui.c:77
 msgid "Delete the selected text"
 msgstr ""
 
-#: src/callbacks.c:1488
+#: src/symbols.c:46
+msgid "Delimiters"
+msgstr ""
+
+#: src/callbacks.c:1324
 msgid "Display line numbers"
 msgstr ""
 
-#: src/main.c:137
+#: src/main.c:85
+msgid "Display version informations"
+msgstr ""
+
+#: src/ui.c:65
 msgid "Edit"
 msgstr ""
 
-#: src/main.c:157
+#: src/ui.c:85
 msgid "Enlarge the font"
 msgstr ""
 
-#: src/main.c:123
+#: src/ui.c:51
 msgid "File"
 msgstr ""
 
-#: src/callbacks.c:324
+#: src/callbacks.c:320
 msgid "Find"
 msgstr ""
 
-#: src/main.c:164
+#: src/ui.c:92
 msgid "Find..."
 msgstr ""
 
-#: src/callbacks.c:1498
+#: src/callbacks.c:1333
 msgid "Font:"
 msgstr ""
 
-#: src/callbacks.c:488
+#: src/callbacks.c:484
 #, c-format
 msgid "Found and replaced %d occurences"
 msgstr ""
 
-#: src/callbacks.c:486
+#: src/callbacks.c:482
 msgid "Found and replaced one occurence"
 msgstr ""
 
-#: src/main.c:185
+#: src/symbols.c:41
+msgid "Greek"
+msgstr ""
+
+#: src/ui.c:113
 msgid "Help"
 msgstr ""
 
-#: src/callbacks.c:637
+#: src/callbacks.c:640
 msgid "LaTeXila is a LaTeX development environment for the GNOME Desktop"
 msgstr ""
 
-#: src/main.c:124
+#: src/symbols.c:47
+msgid "Misc math"
+msgstr ""
+
+#: src/symbols.c:48
+msgid "Misc text"
+msgstr ""
+
+#: src/ui.c:52
 msgid "New"
 msgstr ""
 
-#: src/callbacks.c:69 src/callbacks.c:1063
+#: src/callbacks.c:64 src/callbacks.c:1132
 msgid "New document"
 msgstr ""
 
-#: src/main.c:125
+#: src/ui.c:53
 msgid "New file"
 msgstr ""
 
-#: src/callbacks.c:1515
+#: src/callbacks.c:1348
 msgid "OK"
 msgstr ""
 
-#: src/callbacks.c:76
+#: src/callbacks.c:71
 msgid "Open File"
 msgstr ""
 
-#: src/main.c:194
+#: src/ui.c:158
 msgid "Open Recent"
 msgstr ""
 
-#: src/main.c:127
+#: src/ui.c:55
 msgid "Open a file"
 msgstr ""
 
-#: src/main.c:194
+#: src/ui.c:158
 msgid "Open recently used files"
 msgstr ""
 
-#: src/main.c:126
+#: src/ui.c:54
 msgid "Open..."
 msgstr ""
 
-#: src/main.c:146
+#: src/symbols.c:45
+msgid "Operators"
+msgstr ""
+
+#: src/ui.c:74
 msgid "Paste"
 msgstr ""
 
-#: src/main.c:147
+#: src/ui.c:75
 msgid "Paste the clipboard"
 msgstr ""
 
-#: src/callbacks.c:369 src/callbacks.c:484 src/callbacks.c:519
+#: src/callbacks.c:365 src/callbacks.c:480 src/callbacks.c:515
 msgid "Phrase not found"
 msgstr ""
 
-#: src/callbacks.c:1472 src/main.c:152
+#: src/callbacks.c:1308 src/ui.c:80
 msgid "Preferences"
 msgstr ""
 
-#: src/main.c:171
+#: src/ui.c:99
 msgid "Produce the document in DVI format"
 msgstr ""
 
-#: src/main.c:175
+#: src/ui.c:103
 msgid "Produce the document in PDF format"
 msgstr ""
 
-#: src/callbacks.c:1510
+#: src/callbacks.c:1344
 msgid "Program for viewing documents:"
 msgstr ""
 
-#: src/main.c:134
+#: src/ui.c:62
 msgid "Quit"
 msgstr ""
 
-#: src/main.c:135
+#: src/ui.c:63
 msgid "Quit the program"
 msgstr ""
 
-#: src/main.c:140
+#: src/ui.c:68
 msgid "Redo"
 msgstr ""
 
-#: src/main.c:141
+#: src/ui.c:69
 msgid "Redo the last undone action"
 msgstr ""
 
-#: src/callbacks.c:385 src/callbacks.c:393
+#: src/symbols.c:44
+msgid "Relations"
+msgstr ""
+
+#: src/callbacks.c:381 src/callbacks.c:389
 msgid "Replace"
 msgstr ""
 
-#: src/callbacks.c:388
+#: src/callbacks.c:384
 msgid "Replace All"
 msgstr ""
 
-#: src/callbacks.c:413
+#: src/callbacks.c:409
 msgid "Replace with:"
 msgstr ""
 
-#: src/main.c:166
+#: src/ui.c:94
 msgid "Replace..."
 msgstr ""
 
-#: src/main.c:160
+#: src/ui.c:88
 msgid "Reset Zoom"
 msgstr ""
 
-#: src/main.c:161
+#: src/ui.c:89
 msgid "Reset the size of the font"
 msgstr ""
 
-#: src/callbacks.c:986
+#: src/callbacks.c:1055
 msgid "Save File"
 msgstr ""
 
-#: src/main.c:130
+#: src/ui.c:58
 msgid "Save as..."
 msgstr ""
 
-#: src/callbacks.c:943
+#: src/callbacks.c:1012
 msgid "Save changes to document before closing?"
 msgstr ""
 
-#: src/main.c:129
+#: src/ui.c:57
 msgid "Save the current file"
 msgstr ""
 
-#: src/main.c:131
+#: src/ui.c:59
 msgid "Save the current file with a different name"
 msgstr ""
 
-#: src/main.c:128
+#: src/ui.c:56
 msgid "Save..."
 msgstr ""
 
-#: src/main.c:163
+#: src/ui.c:91
 msgid "Search"
 msgstr ""
 
-#: src/callbacks.c:345
+#: src/callbacks.c:341
 msgid "Search backwards"
 msgstr ""
 
-#: src/main.c:167
+#: src/ui.c:95
 msgid "Search for and replace text"
 msgstr ""
 
-#: src/main.c:165
+#: src/ui.c:93
 msgid "Search for text"
 msgstr ""
 
-#: src/callbacks.c:334 src/callbacks.c:406
+#: src/callbacks.c:330 src/callbacks.c:402
 msgid "Search for:"
 msgstr ""
 
-#: src/main.c:150
+#: src/ui.c:78
 msgid "Select All"
 msgstr ""
 
-#: src/main.c:151
+#: src/ui.c:79
 msgid "Select the entire document"
 msgstr ""
 
-#: src/main.c:159
+#: src/ui.c:121
+msgid "Show or hide the symbol tables in the current window"
+msgstr ""
+
+#: src/ui.c:87
 msgid "Shrink the font"
 msgstr ""
 
-#: src/main.c:138
+#: src/ui.c:120
+msgid "Symbol tables"
+msgstr ""
+
+#: src/ui.c:66
 msgid "Undo"
 msgstr ""
 
-#: src/main.c:139
+#: src/ui.c:67
 msgid "Undo the last action"
 msgstr ""
 
-#: src/main.c:155
+#: src/ui.c:83
 msgid "View"
 msgstr ""
 
-#: src/callbacks.c:576 src/main.c:172
+#: src/callbacks.c:578 src/ui.c:100
 msgid "View DVI"
 msgstr ""
 
-#: src/callbacks.c:585 src/main.c:176
+#: src/callbacks.c:587 src/ui.c:104
 msgid "View PDF"
 msgstr ""
 
-#: src/callbacks.c:594 src/main.c:182
+#: src/callbacks.c:596 src/ui.c:110
 msgid "View PS"
 msgstr ""
 
-#: src/main.c:173
+#: src/ui.c:101
 msgid "View the DVI file"
 msgstr ""
 
-#: src/main.c:177
+#: src/ui.c:105
 msgid "View the PDF file"
 msgstr ""
 
-#: src/main.c:183
+#: src/ui.c:111
 msgid "View the PostScript file"
 msgstr ""
 
-#: src/callbacks.c:1215
+#: src/actions.c:305
 msgid "Viewing in progress. Please wait..."
 msgstr ""
 
-#: src/main.c:287
+#: src/main.c:236
 msgid "Welcome to LaTeXila!"
 msgstr ""
 
-#: src/main.c:156
+#: src/ui.c:84
 msgid "Zoom In"
 msgstr ""
 
-#: src/main.c:158
+#: src/ui.c:86
 msgid "Zoom Out"
 msgstr ""
 
-#: src/callbacks.c:1105
+#: src/actions.c:158
 #, c-format
 msgid "compilation failed: %s is not a *.tex file"
 msgstr ""
 
-#: src/callbacks.c:1137 src/callbacks.c:1209 src/callbacks.c:1282
+#: src/actions.c:188 src/actions.c:298 src/actions.c:372
 #, c-format
 msgid "execution failed: %s"
 msgstr ""
 
-#: src/callbacks.c:1177
+#: src/actions.c:266
 #, c-format
 msgid "failed: %s is not a *.tex file"
 msgstr ""
 
-#: src/callbacks.c:671
+#: src/callbacks.c:681
 msgid "translator-credits"
 msgstr ""

@@ -165,6 +165,9 @@ init_ui (GtkWidget *box)
 
 	// create the action group and the ui manager
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
+#ifdef LATEXILA_NLS_ENABLED
+	gtk_action_group_set_translation_domain (action_group, LATEXILA_NLS_PACKAGE);
+#endif
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
 	gtk_action_group_add_toggle_actions (action_group, toggle_entries,
 			nb_toggle_entries, NULL);
