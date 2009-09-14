@@ -52,7 +52,8 @@ static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 static void change_font_source_view (void);
 static void create_preferences (void);
 static void free_latexila (void);
-static void text_buffer_insert (gchar *text_before, gchar *text_after);
+static void text_buffer_insert (gchar *text_before, gchar *text_after,
+		gchar *text_if_no_selection);
 
 static GtkWidget *pref_dialog = NULL;
 
@@ -861,7 +862,8 @@ cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data)
 }
 
 static void
-text_buffer_insert (gchar *text_before, gchar *text_after)
+text_buffer_insert (gchar *text_before, gchar *text_after,
+		gchar *text_if_no_selection)
 {
 	if (latexila.active_doc == NULL)
 		return;
@@ -892,7 +894,11 @@ text_buffer_insert (gchar *text_before, gchar *text_after)
 		gtk_text_buffer_select_range (buffer, &end, &end);
 	}
 
-	// no text is selected
+	// no selection
+	else if (text_if_no_selection != NULL)
+		gtk_text_buffer_insert_at_cursor (buffer, text_if_no_selection, -1);
+
+	// no selection
 	// move the cursor between the 2 texts inserted
 	else
 	{
@@ -916,25 +922,103 @@ text_buffer_insert (gchar *text_before, gchar *text_after)
 void
 cb_text_bold (void)
 {
-	text_buffer_insert ("\\textbf{", "}");
+	text_buffer_insert ("\\textbf{", "}", NULL);
 }
 
 void
 cb_text_italic (void)
 {
-	text_buffer_insert ("\\textit{", "}");
+	text_buffer_insert ("\\textit{", "}", NULL);
 }
 
 void
 cb_text_typewriter (void)
 {
-	text_buffer_insert ("\\texttt{", "}");
+	text_buffer_insert ("\\texttt{", "}", NULL);
 }
 
 void
 cb_text_underline (void)
 {
-	text_buffer_insert ("\\underline{", "}");
+	text_buffer_insert ("\\underline{", "}", NULL);
+}
+
+void
+cb_text_slanted (void)
+{
+	text_buffer_insert ("\\textsl{", "}", NULL);
+}
+
+void
+cb_text_small_caps (void)
+{
+	text_buffer_insert ("\\textsc{", "}", NULL);
+}
+
+void
+cb_text_emph (void)
+{
+	text_buffer_insert ("\\emph{", "}", NULL);
+}
+
+void
+cb_text_strong (void)
+{
+	text_buffer_insert ("\\strong{", "}", NULL);
+}
+
+void
+cb_text_font_family_roman (void)
+{
+	text_buffer_insert ("{\\rmfamily ", "}", "\\rmfamily ");
+}
+
+void
+cb_text_font_family_sans_serif (void)
+{
+	text_buffer_insert ("{\\sffamily ", "}", "\\sffamily ");
+}
+
+void
+cb_text_font_family_monospace (void)
+{
+	text_buffer_insert ("{\\ttfamily ", "}", "\\ttfamily ");
+}
+
+void
+cb_text_font_series_medium (void)
+{
+	text_buffer_insert ("{\\mdseries ", "}", "\\mdseries ");
+}
+
+void
+cb_text_font_series_bold (void)
+{
+	text_buffer_insert ("{\\bfseries ", "}", "\\bfseries ");
+}
+
+void
+cb_text_font_shape_upright (void)
+{
+	text_buffer_insert ("{\\upshape ", "}", "\\upshape ");
+}
+
+void
+cb_text_font_shape_italic (void)
+{
+	text_buffer_insert ("{\\itshape ", "}", "\\itshape ");
+}
+
+void
+cb_text_font_shape_slanted (void)
+{
+	text_buffer_insert ("{\\slshape ", "}", "\\slshape ");
+}
+
+void
+cb_text_font_shape_small_caps (void)
+{
+	text_buffer_insert ("{\\scshape ", "}", "\\scshape ");
 }
 
 void

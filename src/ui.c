@@ -121,6 +121,9 @@ static GtkActionEntry entries[] = {
 
 // {name, stock_id, label, accelerator, tooltip, callback}
 static GtkActionEntry edit_entries[] = {
+	{"Latex", NULL, N_("LaTeX"), NULL, NULL, NULL},
+
+	{"FontStyles", NULL, N_("Font Styles"), NULL, NULL, NULL},
 	{"Bold", "bold", N_("Bold - \\textbf{}"), NULL,
 		N_("Bold - \\textbf{}"), G_CALLBACK (cb_text_bold)},
 	{"Italic", "italic", N_("Italic - \\textit{}"), NULL,
@@ -128,7 +131,40 @@ static GtkActionEntry edit_entries[] = {
 	{"Typewriter", "typewriter", N_("Typewriter - \\texttt{}"), NULL,
 		N_("Typewriter - \\texttt{}"), G_CALLBACK (cb_text_typewriter)},
 	{"Underline", "underline", N_("Underline - \\underline{}"), NULL,
-		N_("Underline - \\underline{}"), G_CALLBACK (cb_text_underline)}
+		N_("Underline - \\underline{}"), G_CALLBACK (cb_text_underline)},
+	{"Slanted", NULL, N_("Slanted - \\textsl{}"), NULL,
+		N_("Slanted - \\textsl{}"), G_CALLBACK (cb_text_slanted)},
+	{"SmallCaps", NULL, N_("Small Capitals - \\textsc{}"), NULL,
+		N_("Small Capitals - \\textsc{}"), G_CALLBACK (cb_text_small_caps)},
+	{"Emph", NULL, N_("Emphasized - \\emph{}"), NULL,
+		N_("Emphasized - \\emph{}"), G_CALLBACK (cb_text_emph)},
+	{"Strong", NULL, N_("Strong - \\strong{}"), NULL,
+		N_("Strong - \\strong{}"), G_CALLBACK (cb_text_strong)},
+
+	{"FontFamily", NULL, N_("Font Family"), NULL, NULL, NULL},
+	{"FontFamilyRoman", NULL, N_("Roman - \\rmfamily"), NULL,
+		N_("Roman - \\rmfamily"), G_CALLBACK (cb_text_font_family_roman)},
+	{"FontFamilySansSerif", NULL, N_("Sans Serif - \\sffamily"), NULL,
+		N_("Sans Serif - \\sffamily"), G_CALLBACK (cb_text_font_family_sans_serif)},
+	{"FontFamilyMonospace", NULL, N_("Monospace - \\ttfamily"), NULL,
+		N_("Monospace - \\ttfamily"), G_CALLBACK (cb_text_font_family_monospace)},
+
+	{"FontSeries", NULL, N_("Font Series"), NULL, NULL, NULL},
+	{"FontSeriesMedium", NULL, N_("Medium - \\mdseries"), NULL,
+		N_("Medium - \\mdseries"), G_CALLBACK (cb_text_font_series_medium)},
+	{"FontSeriesBold", NULL, N_("Bold - \\bfseries"), NULL,
+		N_("Bold - \\bfseries"), G_CALLBACK (cb_text_font_series_bold)},
+
+	{"FontShape", NULL, N_("Font Shape"), NULL, NULL, NULL},
+	{"FontShapeUpright", NULL, N_("Upright - \\upshape"), NULL,
+		N_("Upright - \\upshape"), G_CALLBACK (cb_text_font_shape_upright)},
+	{"FontShapeItalic", NULL, N_("Italic - \\itshape"), NULL,
+		N_("Italic - \\itshape"), G_CALLBACK (cb_text_font_shape_italic)},
+	{"FontShapeSlanted", NULL, N_("Slanted - \\slshape"), NULL,
+		N_("Slanted - \\slshape"), G_CALLBACK (cb_text_font_shape_slanted)},
+	{"FontShapeSmallCaps", NULL, N_("Small Capitals - \\scshape"), NULL,
+		N_("Small Capitals - \\scshape"), G_CALLBACK (cb_text_font_shape_small_caps)}
+
 };
 
 // {name, stock_id, label, accelerator, tooltip, callback}

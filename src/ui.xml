@@ -46,7 +46,7 @@ In the code, GtkUIManager is used to construct them.
       <menuitem action="EditDelete" />
       <separator />
       <menuitem action="EditSelectAll" />
-	  <menuitem action="EditPreferences" />
+      <menuitem action="EditPreferences" />
     </menu>
 
     <menu action="View">
@@ -72,6 +72,36 @@ In the code, GtkUIManager is used to construct them.
       <menuitem action="DVItoPDF" />
       <menuitem action="DVItoPS" />
       <menuitem action="viewPS" />
+    </menu>
+
+    <menu action="Latex">
+      <menu action="FontStyles">
+        <menuitem action="Bold" />
+        <menuitem action="Italic" />
+        <menuitem action="Typewriter" />
+        <menuitem action="Underline" />
+        <menuitem action="Slanted" />
+        <menuitem action="SmallCaps" />
+        <separator />
+        <menuitem action="Emph" />
+        <menuitem action="Strong" />
+        <separator />
+        <menu action="FontFamily">
+          <menuitem action="FontFamilyRoman" />
+          <menuitem action="FontFamilySansSerif" />
+          <menuitem action="FontFamilyMonospace" />
+        </menu>
+        <menu action="FontSeries">
+          <menuitem action="FontSeriesMedium" />
+          <menuitem action="FontSeriesBold" />
+        </menu>
+        <menu action="FontShape">
+          <menuitem action="FontShapeUpright" />
+          <menuitem action="FontShapeItalic" />
+          <menuitem action="FontShapeSlanted" />
+          <menuitem action="FontShapeSmallCaps" />
+        </menu>
+      </menu>
     </menu>
     
     <menu action="Help">

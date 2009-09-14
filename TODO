@@ -15,8 +15,8 @@ Wed Sep 9, 2009 to Wed Sep 16, 2009
 
 [-] new toolbar
 	x bold, italic, typewriter, underline
+	x font styles
 	- structure: part, chapter, section, subsection, subsubsection, paragraph, subparagraph
-	- font styles
 	- size of characters
 	- center
 	- lists: itemize, enumerate, description
