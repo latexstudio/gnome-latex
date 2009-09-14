@@ -41,7 +41,11 @@ static struct {
 	{DATA_DIR "/images/icons/view_pdf.png", "view_pdf"},
 	{DATA_DIR "/images/icons/view_ps.png", "view_ps"},
 	{DATA_DIR "/images/icons/dvi_to_pdf.png", "dvi_to_pdf"},
-	{DATA_DIR "/images/icons/dvi_to_ps.png", "dvi_to_ps"}
+	{DATA_DIR "/images/icons/dvi_to_ps.png", "dvi_to_ps"},
+	{DATA_DIR "/images/icons/textbf.png", "bold"},
+	{DATA_DIR "/images/icons/textit.png", "italic"},
+	{DATA_DIR "/images/icons/texttt.png", "typewriter"},
+	{DATA_DIR "/images/icons/underline.png", "underline"}
 };
 
 // all the actions (for the menu and the toolbar)
@@ -116,6 +120,18 @@ static GtkActionEntry entries[] = {
 };
 
 // {name, stock_id, label, accelerator, tooltip, callback}
+static GtkActionEntry edit_entries[] = {
+	{"Bold", "bold", N_("Bold - \\textbf{}"), NULL,
+		N_("Bold - \\textbf{}"), G_CALLBACK (cb_text_bold)},
+	{"Italic", "italic", N_("Italic - \\textit{}"), NULL,
+		N_("Italic - \\textit{}"), G_CALLBACK (cb_text_italic)},
+	{"Typewriter", "typewriter", N_("Typewriter - \\texttt{}"), NULL,
+		N_("Typewriter - \\texttt{}"), G_CALLBACK (cb_text_typewriter)},
+	{"Underline", "underline", N_("Underline - \\underline{}"), NULL,
+		N_("Underline - \\underline{}"), G_CALLBACK (cb_text_underline)}
+};
+
+// {name, stock_id, label, accelerator, tooltip, callback}
 static GtkToggleActionEntry toggle_entries[] = {
 	{"ViewSymbols", NULL, N_("Symbol tables"), NULL,
 		N_("Show or hide the symbol tables in the current window"),
@@ -124,6 +140,7 @@ static GtkToggleActionEntry toggle_entries[] = {
 
 static guint n_stock_icons = G_N_ELEMENTS (stock_icons);
 static guint nb_entries = G_N_ELEMENTS (entries);
+static guint nb_edit_entries = G_N_ELEMENTS (edit_entries);
 static guint nb_toggle_entries = G_N_ELEMENTS (toggle_entries);
 
 static void
@@ -169,6 +186,8 @@ init_ui (GtkWidget *box)
 	gtk_action_group_set_translation_domain (action_group, LATEXILA_NLS_PACKAGE);
 #endif
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
+	gtk_action_group_add_actions (action_group, edit_entries, nb_edit_entries,
+			NULL);
 	gtk_action_group_add_toggle_actions (action_group, toggle_entries,
 			nb_toggle_entries, NULL);
 	gtk_action_group_add_action (action_group, recent);
@@ -186,12 +205,18 @@ init_ui (GtkWidget *box)
 	}
 
 	// get and put the menubar and the toolbar to the main vbox
+	// toolbars with icons only
 	GtkWidget *menubar = gtk_ui_manager_get_widget (ui_manager, "/MainMenu");
 	gtk_box_pack_start (GTK_BOX (box), menubar, FALSE, FALSE, 0);
+
 	GtkWidget *toolbar = gtk_ui_manager_get_widget (ui_manager, "/MainToolbar");
-	// toolbar with icons only
 	gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), GTK_TOOLBAR_ICONS);
 	gtk_box_pack_start (GTK_BOX (box), toolbar, FALSE, FALSE, 0);
+
+	GtkWidget *edit_toolbar = gtk_ui_manager_get_widget (ui_manager,
+			"/EditToolbar");
+	gtk_toolbar_set_style (GTK_TOOLBAR (edit_toolbar), GTK_TOOLBAR_ICONS);
+	gtk_box_pack_start (GTK_BOX (box), edit_toolbar, FALSE, FALSE, 0);
 
 	// accelerators
 	gtk_window_add_accel_group (latexila.main_window, 

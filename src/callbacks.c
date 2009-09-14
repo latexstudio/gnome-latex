@@ -52,6 +52,7 @@ static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 static void change_font_source_view (void);
 static void create_preferences (void);
 static void free_latexila (void);
+static void text_buffer_insert (gchar *text_before, gchar *text_after);
 
 static GtkWidget *pref_dialog = NULL;
 
@@ -857,6 +858,83 @@ cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data)
 		gtk_widget_show_all (latexila.symbols->vbox);
 	else
 		gtk_widget_hide (latexila.symbols->vbox);
+}
+
+static void
+text_buffer_insert (gchar *text_before, gchar *text_after)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	// we do not use the insert and selection_bound marks because the we don't
+	// know the order. With gtk_text_buffer_get_selection_bounds, we are certain
+	// that "start" points to the start of the selection, where we must insert
+	// "text_before".
+
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+	GtkTextIter start, end;
+	gboolean text_selected = gtk_text_buffer_get_selection_bounds (buffer,
+			&start, &end);
+
+	gtk_text_buffer_begin_user_action (buffer);
+
+	// insert around the selected text
+	// move the cursor to the end
+	if (text_selected)
+	{
+		GtkTextMark *mark_end = gtk_text_buffer_create_mark (buffer, NULL,
+				&end, FALSE);
+		gtk_text_buffer_insert (buffer, &start, text_before, -1);
+		gtk_text_buffer_get_iter_at_mark (buffer, &end, mark_end);
+		gtk_text_buffer_insert (buffer, &end, text_after, -1);
+
+		gtk_text_buffer_get_iter_at_mark (buffer, &end, mark_end);
+		gtk_text_buffer_select_range (buffer, &end, &end);
+	}
+
+	// no text is selected
+	// move the cursor between the 2 texts inserted
+	else
+	{
+		gtk_text_buffer_insert_at_cursor (buffer, text_before, -1);
+
+		GtkTextIter between;
+		gtk_text_buffer_get_iter_at_mark (buffer, &between,
+				gtk_text_buffer_get_insert (buffer));
+		GtkTextMark *mark = gtk_text_buffer_create_mark (buffer, NULL,
+				&between, TRUE);
+
+		gtk_text_buffer_insert_at_cursor (buffer, text_after, -1);
+
+		gtk_text_buffer_get_iter_at_mark (buffer, &between, mark);
+		gtk_text_buffer_select_range (buffer, &between, &between);
+	}
+
+	gtk_text_buffer_end_user_action (buffer);
+}
+
+void
+cb_text_bold (void)
+{
+	text_buffer_insert ("\\textbf{", "}");
+}
+
+void
+cb_text_italic (void)
+{
+	text_buffer_insert ("\\textit{", "}");
+}
+
+void
+cb_text_typewriter (void)
+{
+	text_buffer_insert ("\\texttt{", "}");
+}
+
+void
+cb_text_underline (void)
+{
+	text_buffer_insert ("\\underline{", "}");
 }
 
 void

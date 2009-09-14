@@ -210,7 +210,8 @@ save_preferences (preferences_t *prefs)
 	gtk_window_get_size (latexila.main_window, &window_width, &window_height);
 
 	// If window is maximized, store sizes that are a bit smaller than full
-	// screen, else making window non-fullscreen will have no effect.
+	// screen, else making window non-maximized the next time will have no
+	// effect.
 	// Attention, the left/top widgets must be packed in paned with
 	// gtk_paned_add1 () and not "gtk_paned_pack1 (paned, widget, TRUE, TRUE)",
 	// else the positions panes will inexplicably increase...

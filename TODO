@@ -14,13 +14,16 @@ Wed Sep 9, 2009 to Wed Sep 16, 2009
 [x] check memory leaks
 
 [-] new toolbar
+	x bold, italic, typewriter, underline
 	- structure: part, chapter, section, subsection, subsubsection, paragraph, subparagraph
 	- font styles
 	- size of characters
-	- bold, italic, typewriter, underline
 	- center
 	- lists: itemize, enumerate, description
 	- various: label, ref, pageref, cite, footnote, index
+
+[-] open recent
+	- when "save as", add the file to the recent manager
 
 [-] symbol tables
 	- the categories must take the minimum place but the presentation must be nice
