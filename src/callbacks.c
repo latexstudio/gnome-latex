@@ -1150,7 +1150,14 @@ save_as_dialog (void)
 	);
 
 	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
-		latexila.active_doc->path = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+	{
+		latexila.active_doc->path = gtk_file_chooser_get_filename (
+				GTK_FILE_CHOOSER (dialog));
+		gchar *uri = gtk_file_chooser_get_uri ( GTK_FILE_CHOOSER (dialog));
+
+		GtkRecentManager *manager = gtk_recent_manager_get_default ();
+		gtk_recent_manager_add_item (manager, uri);
+	}
 
 	gtk_widget_destroy (dialog);
 }

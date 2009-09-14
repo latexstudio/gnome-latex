@@ -22,8 +22,8 @@ Wed Sep 9, 2009 to Wed Sep 16, 2009
 	- lists: itemize, enumerate, description
 	- various: label, ref, pageref, cite, footnote, index
 
-[-] open recent
-	- when "save as", add the file to the recent manager
+[x] open recent
+	x when "save as", add the file to the recent manager
 
 [-] symbol tables
 	- the categories must take the minimum place but the presentation must be nice
