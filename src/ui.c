@@ -28,6 +28,7 @@
 #include "config.h"
 #include "print.h"
 #include "callbacks.h"
+#include "cb_latex.h"
 
 static void register_my_stock_icons (void);
 
@@ -45,7 +46,10 @@ static struct {
 	{DATA_DIR "/images/icons/textbf.png", "bold"},
 	{DATA_DIR "/images/icons/textit.png", "italic"},
 	{DATA_DIR "/images/icons/texttt.png", "typewriter"},
-	{DATA_DIR "/images/icons/underline.png", "underline"}
+	{DATA_DIR "/images/icons/underline.png", "underline"},
+	{DATA_DIR "/images/icons/justify-center.png", "justify_center"},
+	{DATA_DIR "/images/icons/justify-left.png", "justify_left"},
+	{DATA_DIR "/images/icons/justify-right.png", "justify_right"},
 };
 
 // all the actions (for the menu and the toolbar)
@@ -120,7 +124,7 @@ static GtkActionEntry entries[] = {
 };
 
 // {name, stock_id, label, accelerator, tooltip, callback}
-static GtkActionEntry edit_entries[] = {
+static GtkActionEntry latex_entries[] = {
 	{"Latex", NULL, N_("LaTeX"), NULL, NULL, NULL},
 
 	{"FontStyles", NULL, N_("Font Styles"), NULL, NULL, NULL},
@@ -163,8 +167,23 @@ static GtkActionEntry edit_entries[] = {
 	{"FontShapeSlanted", NULL, N_("Slanted - \\slshape"), NULL,
 		N_("Slanted - \\slshape"), G_CALLBACK (cb_text_font_shape_slanted)},
 	{"FontShapeSmallCaps", NULL, N_("Small Capitals - \\scshape"), NULL,
-		N_("Small Capitals - \\scshape"), G_CALLBACK (cb_text_font_shape_small_caps)}
+		N_("Small Capitals - \\scshape"), G_CALLBACK (cb_text_font_shape_small_caps)},
 
+	{"Environments", NULL, N_("Environments"), NULL, NULL, NULL},
+	{"EnvironmentCenter", "justify_center", N_("Center - \\begin{center}"), NULL,
+		N_("Center - \\begin{center}"), G_CALLBACK (cb_env_center)},
+	{"EnvironmentLeft", "justify_left", N_("Align Left - \\begin{flushleft}"), NULL,
+		N_("Align Left - \\begin{flushleft}"), G_CALLBACK (cb_env_left)},
+	{"EnvironmentRight", "justify_right", N_("Align Right - \\begin{flushright}"), NULL,
+		N_("Align Right - \\begin{flushright}"), G_CALLBACK (cb_env_right)},
+	{"EnvironmentMinipage", NULL, N_("Minipage - \\begin{minipage}"), NULL,
+		N_("Minipage - \\begin{minipage}"), G_CALLBACK (cb_env_minipage)},
+	{"EnvironmentQuote", NULL, N_("Quote - \\begin{quote}"), NULL,
+		N_("Quote - \\begin{quote}"), G_CALLBACK (cb_env_quote)},
+	{"EnvironmentQuotation", NULL, N_("Quotation - \\begin{quotation}"), NULL,
+		N_("Quotation - \\begin{quotation}"), G_CALLBACK (cb_env_quotation)},
+	{"EnvironmentVerse", NULL, N_("Verse - \\begin{verse}"), NULL,
+		N_("Verse - \\begin{verse}"), G_CALLBACK (cb_env_verse)}
 };
 
 // {name, stock_id, label, accelerator, tooltip, callback}
@@ -176,7 +195,7 @@ static GtkToggleActionEntry toggle_entries[] = {
 
 static guint n_stock_icons = G_N_ELEMENTS (stock_icons);
 static guint nb_entries = G_N_ELEMENTS (entries);
-static guint nb_edit_entries = G_N_ELEMENTS (edit_entries);
+static guint nb_latex_entries = G_N_ELEMENTS (latex_entries);
 static guint nb_toggle_entries = G_N_ELEMENTS (toggle_entries);
 
 static void
@@ -222,7 +241,7 @@ init_ui (GtkWidget *box)
 	gtk_action_group_set_translation_domain (action_group, LATEXILA_NLS_PACKAGE);
 #endif
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
-	gtk_action_group_add_actions (action_group, edit_entries, nb_edit_entries,
+	gtk_action_group_add_actions (action_group, latex_entries, nb_latex_entries,
 			NULL);
 	gtk_action_group_add_toggle_actions (action_group, toggle_entries,
 			nb_toggle_entries, NULL);

@@ -1,5 +1,6 @@
 SET(latexila_src main.c 	main.h
 	         callbacks.c	callbacks.h
+		 cb_latex.c	cb_latex.h
 		 print.c	print.h
 		 symbols.c	symbols.h
 		 actions.c	actions.h

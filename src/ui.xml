@@ -75,6 +75,18 @@ In the code, GtkUIManager is used to construct them.
     </menu>
 
     <menu action="Latex">
+      <menu action="Environments">
+        <menuitem action="EnvironmentCenter" />
+        <menuitem action="EnvironmentLeft" />
+        <menuitem action="EnvironmentRight" />
+        <separator />
+        <menuitem action="EnvironmentMinipage" />
+        <separator />
+        <menuitem action="EnvironmentQuote" />
+        <menuitem action="EnvironmentQuotation" />
+        <menuitem action="EnvironmentVerse" />
+      </menu>
+      
       <menu action="FontStyles">
         <menuitem action="Bold" />
         <menuitem action="Italic" />
@@ -137,5 +149,7 @@ In the code, GtkUIManager is used to construct them.
     <toolitem action="Italic" />
     <toolitem action="Typewriter" />
     <toolitem action="Underline" />
+    <separator />
+    <toolitem action="EnvironmentCenter" />
   </toolbar>
 </ui>

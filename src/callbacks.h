@@ -67,24 +67,6 @@ void cb_category_symbols_selected (GtkIconView *icon_view, gpointer user_data);
 void cb_symbol_selected (GtkIconView *icon_view, gpointer user_data);
 void cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data);
 
-void cb_text_bold (void);
-void cb_text_italic (void);
-void cb_text_typewriter (void);
-void cb_text_underline (void);
-void cb_text_slanted (void);
-void cb_text_small_caps (void);
-void cb_text_emph (void);
-void cb_text_strong (void);
-void cb_text_font_family_roman (void);
-void cb_text_font_family_sans_serif (void);
-void cb_text_font_family_monospace (void);
-void cb_text_font_series_medium (void);
-void cb_text_font_series_bold (void);
-void cb_text_font_shape_upright (void);
-void cb_text_font_shape_italic (void);
-void cb_text_font_shape_slanted (void);
-void cb_text_font_shape_small_caps (void);
-
 void open_new_document (const gchar *filename, const gchar *uri);
 
 #endif /* CALLBACKS_H */
