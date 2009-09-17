@@ -1,25 +1,11 @@
 TODO LaTeXila
 
-Wed Sep 9, 2009 to Wed Sep 16, 2009
-
-[x] document tabs
-	x arrows to navigate between tabs if there are a lot of documents opened
-
-[x] save and load
-	x show/hide symbol tables
-	x size of the window
-	x if the window is maximised
-	x position of the panes
-
-[x] check memory leaks
-
-[x] open recent
-	x when "save as", add the file to the recent manager
+Fri Sep 18, 2009 to Fri Sep 25, 2009
 
 [-] LaTeX menu + new toolbar
 	x font styles: bold, italic, ...
 	x environments: center, flushleft, ...
-	- sectioning: part, chapter, section, ...
+	x sectioning: part, chapter, section, ...
 	- size of characters
 	- lists: itemize, enumerate, description
 	- various: label, ref, pageref, cite, footnote, index

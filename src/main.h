@@ -33,16 +33,6 @@
 #	define N_(STRING) (STRING)
 #endif
 
-// if GTK+ version is < 2.14.0
-#if !GTK_CHECK_VERSION(2, 14, 0)
-#	if !defined(gtk_dialog_get_action_area)
-#		define gtk_dialog_get_action_area(dialog) GTK_DIALOG(dialog)->action_area
-#	endif
-#	if !defined(gtk_dialog_get_content_area)
-#		define gtk_dialog_get_content_area(dialog) GTK_DIALOG(dialog)->vbox
-#	endif
-#endif
-
 // each document opened is represented by a document_t structure
 typedef struct
 {
