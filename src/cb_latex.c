@@ -88,6 +88,90 @@ text_buffer_insert (gchar *text_before, gchar *text_after,
 }
 
 void
+cb_sectioning_part (void)
+{
+	text_buffer_insert ("\\part{", "}", NULL);
+}
+
+void
+cb_sectioning_chapter (void)
+{
+	text_buffer_insert ("\\chapter{", "}", NULL);
+}
+
+void
+cb_sectioning_section (void)
+{
+	text_buffer_insert ("\\section{", "}", NULL);
+}
+
+void
+cb_sectioning_subsection (void)
+{
+	text_buffer_insert ("\\subsection{", "}", NULL);
+}
+
+void
+cb_sectioning_subsubsection (void)
+{
+	text_buffer_insert ("\\subsubsection{", "}", NULL);
+}
+
+void
+cb_sectioning_paragraph (void)
+{
+	text_buffer_insert ("\\paragraph{", "}", NULL);
+}
+
+void
+cb_sectioning_subparagraph (void)
+{
+	text_buffer_insert ("\\subparagraph{", "}", NULL);
+}
+
+void
+cb_env_center (void)
+{
+	text_buffer_insert ("\\begin{center}\n", "\n\\end{center}", NULL);
+}
+
+void
+cb_env_left (void)
+{
+	text_buffer_insert ("\\begin{flushleft}\n", "\n\\end{flushleft}", NULL);
+}
+
+void
+cb_env_right (void)
+{
+	text_buffer_insert ("\\begin{flushright}\n", "\n\\end{flushright}", NULL);
+}
+
+void
+cb_env_minipage (void)
+{
+	text_buffer_insert ("\\begin{minipage}\n", "\n\\end{minipage}", NULL);
+}
+
+void
+cb_env_quote (void)
+{
+	text_buffer_insert ("\\begin{quote}\n", "\n\\end{quote}", NULL);
+}
+
+void
+cb_env_quotation (void)
+{
+	text_buffer_insert ("\\begin{quotation}\n", "\n\\end{quotation}", NULL);
+}
+
+void
+cb_env_verse (void)
+{
+	text_buffer_insert ("\\begin{verse}\n", "\n\\end{verse}", NULL);
+}
+
+void
 cb_text_bold (void)
 {
 	text_buffer_insert ("\\textbf{", "}", NULL);
@@ -187,47 +271,5 @@ void
 cb_text_font_shape_small_caps (void)
 {
 	text_buffer_insert ("{\\scshape ", "}", "\\scshape ");
-}
-
-void
-cb_env_center (void)
-{
-	text_buffer_insert ("\\begin{center}\n", "\n\\end{center}", NULL);
-}
-
-void
-cb_env_left (void)
-{
-	text_buffer_insert ("\\begin{flushleft}\n", "\n\\end{flushleft}", NULL);
-}
-
-void
-cb_env_right (void)
-{
-	text_buffer_insert ("\\begin{flushright}\n", "\n\\end{flushright}", NULL);
-}
-
-void
-cb_env_minipage (void)
-{
-	text_buffer_insert ("\\begin{minipage}\n", "\n\\end{minipage}", NULL);
-}
-
-void
-cb_env_quote (void)
-{
-	text_buffer_insert ("\\begin{quote}\n", "\n\\end{quote}", NULL);
-}
-
-void
-cb_env_quotation (void)
-{
-	text_buffer_insert ("\\begin{quotation}\n", "\n\\end{quotation}", NULL);
-}
-
-void
-cb_env_verse (void)
-{
-	text_buffer_insert ("\\begin{verse}\n", "\n\\end{verse}", NULL);
 }
 

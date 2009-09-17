@@ -29,6 +29,7 @@
 #include "print.h"
 #include "callbacks.h"
 #include "cb_latex.h"
+#include "tool_menu_action.h"
 
 static void register_my_stock_icons (void);
 
@@ -50,6 +51,12 @@ static struct {
 	{DATA_DIR "/images/icons/justify-center.png", "justify_center"},
 	{DATA_DIR "/images/icons/justify-left.png", "justify_left"},
 	{DATA_DIR "/images/icons/justify-right.png", "justify_right"},
+	{DATA_DIR "/images/icons/sectioning-part.png", "sectioning-part"},
+	{DATA_DIR "/images/icons/sectioning-chapter.png", "sectioning-chapter"},
+	{DATA_DIR "/images/icons/sectioning-section.png", "sectioning-section"},
+	{DATA_DIR "/images/icons/sectioning-subsection.png", "sectioning-subsection"},
+	{DATA_DIR "/images/icons/sectioning-subsubsection.png", "sectioning-subsubsection"},
+	{DATA_DIR "/images/icons/sectioning-paragraph.png", "sectioning-paragraph"},
 };
 
 // all the actions (for the menu and the toolbar)
@@ -127,6 +134,38 @@ static GtkActionEntry entries[] = {
 static GtkActionEntry latex_entries[] = {
 	{"Latex", NULL, N_("LaTeX"), NULL, NULL, NULL},
 
+	{"Sectioning", NULL, N_("Sectioning"), NULL, NULL, NULL},
+	{"SectioningPart", "sectioning-part", N_("part"), NULL,
+		N_("part"), G_CALLBACK (cb_sectioning_part)},
+	{"SectioningChapter", "sectioning-chapter", N_("chapter"), NULL,
+		N_("chapter"), G_CALLBACK (cb_sectioning_chapter)},
+	{"SectioningSection", "sectioning-section", N_("section"), NULL,
+		N_("section"), G_CALLBACK (cb_sectioning_section)},
+	{"SectioningSubsection", "sectioning-subsection", N_("subsection"), NULL,
+		N_("subsection"), G_CALLBACK (cb_sectioning_subsection)},
+	{"SectioningSubsubsection", "sectioning-subsubsection", N_("subsubsection"), NULL,
+		N_("subsubsection"), G_CALLBACK (cb_sectioning_subsubsection)},
+	{"SectioningParagraph", "sectioning-paragraph", N_("paragraph"), NULL,
+		N_("paragraph"), G_CALLBACK (cb_sectioning_paragraph)},
+	{"SectioningSubparagraph", "sectioning-paragraph", N_("subparagraph"), NULL,
+		N_("subparagraph"), G_CALLBACK (cb_sectioning_subparagraph)},
+
+	{"Environments", NULL, N_("Environments"), NULL, NULL, NULL},
+	{"EnvironmentCenter", "justify_center", N_("Center - \\begin{center}"), NULL,
+		N_("Center - \\begin{center}"), G_CALLBACK (cb_env_center)},
+	{"EnvironmentLeft", "justify_left", N_("Align Left - \\begin{flushleft}"), NULL,
+		N_("Align Left - \\begin{flushleft}"), G_CALLBACK (cb_env_left)},
+	{"EnvironmentRight", "justify_right", N_("Align Right - \\begin{flushright}"), NULL,
+		N_("Align Right - \\begin{flushright}"), G_CALLBACK (cb_env_right)},
+	{"EnvironmentMinipage", NULL, N_("Minipage - \\begin{minipage}"), NULL,
+		N_("Minipage - \\begin{minipage}"), G_CALLBACK (cb_env_minipage)},
+	{"EnvironmentQuote", NULL, N_("Quote - \\begin{quote}"), NULL,
+		N_("Quote - \\begin{quote}"), G_CALLBACK (cb_env_quote)},
+	{"EnvironmentQuotation", NULL, N_("Quotation - \\begin{quotation}"), NULL,
+		N_("Quotation - \\begin{quotation}"), G_CALLBACK (cb_env_quotation)},
+	{"EnvironmentVerse", NULL, N_("Verse - \\begin{verse}"), NULL,
+		N_("Verse - \\begin{verse}"), G_CALLBACK (cb_env_verse)},
+
 	{"FontStyles", NULL, N_("Font Styles"), NULL, NULL, NULL},
 	{"Bold", "bold", N_("Bold - \\textbf{}"), NULL,
 		N_("Bold - \\textbf{}"), G_CALLBACK (cb_text_bold)},
@@ -144,7 +183,6 @@ static GtkActionEntry latex_entries[] = {
 		N_("Emphasized - \\emph{}"), G_CALLBACK (cb_text_emph)},
 	{"Strong", NULL, N_("Strong - \\strong{}"), NULL,
 		N_("Strong - \\strong{}"), G_CALLBACK (cb_text_strong)},
-
 	{"FontFamily", NULL, N_("Font Family"), NULL, NULL, NULL},
 	{"FontFamilyRoman", NULL, N_("Roman - \\rmfamily"), NULL,
 		N_("Roman - \\rmfamily"), G_CALLBACK (cb_text_font_family_roman)},
@@ -152,13 +190,11 @@ static GtkActionEntry latex_entries[] = {
 		N_("Sans Serif - \\sffamily"), G_CALLBACK (cb_text_font_family_sans_serif)},
 	{"FontFamilyMonospace", NULL, N_("Monospace - \\ttfamily"), NULL,
 		N_("Monospace - \\ttfamily"), G_CALLBACK (cb_text_font_family_monospace)},
-
 	{"FontSeries", NULL, N_("Font Series"), NULL, NULL, NULL},
 	{"FontSeriesMedium", NULL, N_("Medium - \\mdseries"), NULL,
 		N_("Medium - \\mdseries"), G_CALLBACK (cb_text_font_series_medium)},
 	{"FontSeriesBold", NULL, N_("Bold - \\bfseries"), NULL,
 		N_("Bold - \\bfseries"), G_CALLBACK (cb_text_font_series_bold)},
-
 	{"FontShape", NULL, N_("Font Shape"), NULL, NULL, NULL},
 	{"FontShapeUpright", NULL, N_("Upright - \\upshape"), NULL,
 		N_("Upright - \\upshape"), G_CALLBACK (cb_text_font_shape_upright)},
@@ -168,22 +204,6 @@ static GtkActionEntry latex_entries[] = {
 		N_("Slanted - \\slshape"), G_CALLBACK (cb_text_font_shape_slanted)},
 	{"FontShapeSmallCaps", NULL, N_("Small Capitals - \\scshape"), NULL,
 		N_("Small Capitals - \\scshape"), G_CALLBACK (cb_text_font_shape_small_caps)},
-
-	{"Environments", NULL, N_("Environments"), NULL, NULL, NULL},
-	{"EnvironmentCenter", "justify_center", N_("Center - \\begin{center}"), NULL,
-		N_("Center - \\begin{center}"), G_CALLBACK (cb_env_center)},
-	{"EnvironmentLeft", "justify_left", N_("Align Left - \\begin{flushleft}"), NULL,
-		N_("Align Left - \\begin{flushleft}"), G_CALLBACK (cb_env_left)},
-	{"EnvironmentRight", "justify_right", N_("Align Right - \\begin{flushright}"), NULL,
-		N_("Align Right - \\begin{flushright}"), G_CALLBACK (cb_env_right)},
-	{"EnvironmentMinipage", NULL, N_("Minipage - \\begin{minipage}"), NULL,
-		N_("Minipage - \\begin{minipage}"), G_CALLBACK (cb_env_minipage)},
-	{"EnvironmentQuote", NULL, N_("Quote - \\begin{quote}"), NULL,
-		N_("Quote - \\begin{quote}"), G_CALLBACK (cb_env_quote)},
-	{"EnvironmentQuotation", NULL, N_("Quotation - \\begin{quotation}"), NULL,
-		N_("Quotation - \\begin{quotation}"), G_CALLBACK (cb_env_quotation)},
-	{"EnvironmentVerse", NULL, N_("Verse - \\begin{verse}"), NULL,
-		N_("Verse - \\begin{verse}"), G_CALLBACK (cb_env_verse)}
 };
 
 // {name, stock_id, label, accelerator, tooltip, callback}
@@ -235,11 +255,21 @@ init_ui (GtkWidget *box)
 	gtk_recent_filter_add_application (filter, "latexila");
 	gtk_recent_chooser_add_filter (GTK_RECENT_CHOOSER (recent), filter);
 
+	// menus under toolitems
+	GtkAction *sectioning = tool_menu_action_new ("SectioningToolItem",
+			_("Sectioning"), _("Sectioning"), "sectioning-section");
+	GtkToolItem *sectioning_menu_tool_button = gtk_menu_tool_button_new (NULL,
+			NULL);
+	gtk_activatable_set_related_action (
+			GTK_ACTIVATABLE (sectioning_menu_tool_button),
+			sectioning);
+
 	// create the action group and the ui manager
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
 #ifdef LATEXILA_NLS_ENABLED
 	gtk_action_group_set_translation_domain (action_group, LATEXILA_NLS_PACKAGE);
 #endif
+	gtk_action_group_add_action (action_group, sectioning);
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
 	gtk_action_group_add_actions (action_group, latex_entries, nb_latex_entries,
 			NULL);

@@ -75,6 +75,17 @@ In the code, GtkUIManager is used to construct them.
     </menu>
 
     <menu action="Latex">
+      <menu action="Sectioning">
+        <menuitem action="SectioningPart" />
+        <menuitem action="SectioningChapter" />
+        <separator />
+        <menuitem action="SectioningSection" />
+        <menuitem action="SectioningSubsection" />
+        <menuitem action="SectioningSubsubsection" />
+        <menuitem action="SectioningParagraph" />
+        <menuitem action="SectioningSubparagraph" />
+      </menu>
+    
       <menu action="Environments">
         <menuitem action="EnvironmentCenter" />
         <menuitem action="EnvironmentLeft" />
@@ -151,5 +162,18 @@ In the code, GtkUIManager is used to construct them.
     <toolitem action="Underline" />
     <separator />
     <toolitem action="EnvironmentCenter" />
+    <separator />
+    <toolitem action="SectioningToolItem">
+      <menu action="Sectioning">
+        <menuitem action="SectioningPart" />
+        <menuitem action="SectioningChapter" />
+        <separator />
+        <menuitem action="SectioningSection" />
+        <menuitem action="SectioningSubsection" />
+        <menuitem action="SectioningSubsubsection" />
+        <menuitem action="SectioningParagraph" />
+        <menuitem action="SectioningSubparagraph" />
+      </menu>
+    </toolitem>
   </toolbar>
 </ui>
