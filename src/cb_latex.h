@@ -9,6 +9,13 @@ void cb_sectioning_subsubsection (void);
 void cb_sectioning_paragraph (void);
 void cb_sectioning_subparagraph (void);
 
+void cb_ref_label (void);
+void cb_ref_ref (void);
+void cb_ref_pageref (void);
+void cb_ref_index (void);
+void cb_ref_footnote (void);
+void cb_ref_cite (void);
+
 void cb_env_center (void);
 void cb_env_left (void);
 void cb_env_right (void);

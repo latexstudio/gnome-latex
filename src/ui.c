@@ -155,6 +155,14 @@ static GtkActionEntry latex_entries[] = {
 	{"SectioningSubparagraph", "sectioning-paragraph", N_("subparagraph"), NULL,
 		N_("subparagraph"), G_CALLBACK (cb_sectioning_subparagraph)},
 
+	{"References", NULL, N_("References"), NULL, NULL, NULL},
+	{"ReferencesLabel", NULL, "label", NULL, "label", G_CALLBACK (cb_ref_label)},
+	{"ReferencesRef", NULL, "ref", NULL, "ref", G_CALLBACK (cb_ref_ref)},
+	{"ReferencesPageref", NULL, "pageref", NULL, "pageref", G_CALLBACK (cb_ref_pageref)},
+	{"ReferencesIndex", NULL, "index", NULL, "index", G_CALLBACK (cb_ref_index)},
+	{"ReferencesFootnote", NULL, "footnote", NULL, "footnote", G_CALLBACK (cb_ref_footnote)},
+	{"ReferencesCite", NULL, "cite", NULL, "cite", G_CALLBACK (cb_ref_cite)},
+
 	{"Environments", NULL, N_("Environments"), NULL, NULL, NULL},
 	{"EnvironmentCenter", "justify_center", N_("Center - \\begin{center}"), NULL,
 		N_("Center - \\begin{center}"), G_CALLBACK (cb_env_center)},
@@ -305,7 +313,14 @@ init_ui (GtkWidget *box)
 			_("Characters Sizes"), _("Characters Sizes"), "character-size");
 	GtkToolItem *sizes_menu_tool_button = gtk_menu_tool_button_new (NULL, NULL);
 	gtk_activatable_set_related_action (
-		GTK_ACTIVATABLE (sizes_menu_tool_button), sizes);
+			GTK_ACTIVATABLE (sizes_menu_tool_button), sizes);
+
+	GtkAction *references = tool_menu_action_new ("ReferencesToolItem",
+			_("References"), _("References"), NULL);
+	GtkToolItem *references_menu_tool_button = gtk_menu_tool_button_new (NULL,
+			NULL);
+	gtk_activatable_set_related_action (
+			GTK_ACTIVATABLE (references_menu_tool_button), references);
 
 	// create the action group and the ui manager
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
@@ -314,6 +329,7 @@ init_ui (GtkWidget *box)
 #endif
 	gtk_action_group_add_action (action_group, sectioning);
 	gtk_action_group_add_action (action_group, sizes);
+	gtk_action_group_add_action (action_group, references);
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
 	gtk_action_group_add_actions (action_group, latex_entries, nb_latex_entries,
 			NULL);

@@ -131,6 +131,44 @@ cb_sectioning_subparagraph (void)
 	text_buffer_insert ("\\subparagraph{", "}", NULL);
 }
 
+/* References */
+
+void
+cb_ref_label (void)
+{
+	text_buffer_insert ("\\label{", "} ", NULL);
+}
+
+void
+cb_ref_ref (void)
+{
+	text_buffer_insert ("\\ref{", "} ", NULL);
+}
+
+void
+cb_ref_pageref (void)
+{
+	text_buffer_insert ("\\pageref{", "} ", NULL);
+}
+
+void
+cb_ref_index (void)
+{
+	text_buffer_insert ("\\index{", "} ", NULL);
+}
+
+void
+cb_ref_footnote (void)
+{
+	text_buffer_insert ("\\footnote{", "} ", NULL);
+}
+
+void
+cb_ref_cite (void)
+{
+	text_buffer_insert ("\\cite{", "} ", NULL);
+}
+
 /* environments */
 
 void

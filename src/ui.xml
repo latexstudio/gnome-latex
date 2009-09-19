@@ -85,6 +85,17 @@ In the code, GtkUIManager is used to construct them.
         <menuitem action="SectioningParagraph" />
         <menuitem action="SectioningSubparagraph" />
       </menu>
+      
+      <menu action="References">
+        <menuitem action="ReferencesLabel" />
+        <menuitem action="ReferencesRef" />
+        <menuitem action="ReferencesPageref" />
+        <separator />
+        <menuitem action="ReferencesIndex" />
+        <menuitem action="ReferencesFootnote" />
+        <separator />
+        <menuitem action="ReferencesCite" />
+      </menu>
     
       <menu action="Environments">
         <menuitem action="EnvironmentCenter" />
@@ -187,6 +198,17 @@ In the code, GtkUIManager is used to construct them.
         <menuitem action="SectioningSubsubsection" />
         <menuitem action="SectioningParagraph" />
         <menuitem action="SectioningSubparagraph" />
+      </menu>
+    </toolitem>
+    
+    <toolitem action="ReferencesToolItem">
+      <menu action="References">
+        <menuitem action="ReferencesLabel" />
+        <menuitem action="ReferencesRef" />
+        <menuitem action="ReferencesPageref" />
+        <menuitem action="ReferencesIndex" />
+        <menuitem action="ReferencesFootnote" />
+        <menuitem action="ReferencesCite" />
       </menu>
     </toolitem>
     
