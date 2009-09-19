@@ -139,7 +139,7 @@ static GtkActionEntry entries[] = {
 static GtkActionEntry latex_entries[] = {
 	{"Latex", NULL, N_("LaTeX"), NULL, NULL, NULL},
 
-	{"Sectioning", NULL, N_("Sectioning"), NULL, NULL, NULL},
+	{"Sectioning", "sectioning-section", N_("Sectioning"), NULL, NULL, NULL},
 	{"SectioningPart", "sectioning-part", N_("part"), NULL,
 		N_("part"), G_CALLBACK (cb_sectioning_part)},
 	{"SectioningChapter", "sectioning-chapter", N_("chapter"), NULL,
@@ -163,7 +163,7 @@ static GtkActionEntry latex_entries[] = {
 	{"ReferencesFootnote", NULL, "footnote", NULL, "footnote", G_CALLBACK (cb_ref_footnote)},
 	{"ReferencesCite", NULL, "cite", NULL, "cite", G_CALLBACK (cb_ref_cite)},
 
-	{"Environments", NULL, N_("Environments"), NULL, NULL, NULL},
+	{"Environments", "justify_center", N_("Environments"), NULL, NULL, NULL},
 	{"EnvironmentCenter", "justify_center", N_("Center - \\begin{center}"), NULL,
 		N_("Center - \\begin{center}"), G_CALLBACK (cb_env_center)},
 	{"EnvironmentLeft", "justify_left", N_("Align Left - \\begin{flushleft}"), NULL,
@@ -179,7 +179,7 @@ static GtkActionEntry latex_entries[] = {
 	{"EnvironmentVerse", NULL, N_("Verse - \\begin{verse}"), NULL,
 		N_("Verse - \\begin{verse}"), G_CALLBACK (cb_env_verse)},
 
-	{"ListEnvironments", NULL, N_("List Environments"), NULL, NULL, NULL},
+	{"ListEnvironments", "list-enumerate", N_("List Environments"), NULL, NULL, NULL},
 	{"ListEnvItemize", "list-itemize", N_("Bulleted List - \\begin{itemize}"), NULL,
 		N_("Bulleted List - \\begin{itemize}"), G_CALLBACK (cb_list_env_itemize)},
 	{"ListEnvEnumerate", "list-enumerate", N_("Enumeration - \\begin{enumeration}"), NULL,
@@ -190,7 +190,7 @@ static GtkActionEntry latex_entries[] = {
 		N_("\\item"), G_CALLBACK (cb_list_env_item)},
 	
 
-	{"CharacterSize", NULL, N_("Characters Sizes"), NULL, NULL, NULL},
+	{"CharacterSize", "character-size", N_("Characters Sizes"), NULL, NULL, NULL},
 	{"CharacterSizeTiny", NULL, "tiny", NULL,
 		"\\tiny", G_CALLBACK (cb_size_tiny)},
 	{"CharacterSizeScriptsize", NULL, "scriptsize", NULL,
@@ -212,7 +212,7 @@ static GtkActionEntry latex_entries[] = {
 	{"CharacterSizeHuge", NULL, "Huge", NULL,
 		"\\Huge", G_CALLBACK (cb_size_Huge)},
 
-	{"FontStyles", NULL, N_("Font Styles"), NULL, NULL, NULL},
+	{"FontStyles", "bold", N_("Font Styles"), NULL, NULL, NULL},
 	{"Bold", "bold", N_("Bold - \\textbf{}"), NULL,
 		N_("Bold - \\textbf{}"), G_CALLBACK (cb_text_bold)},
 	{"Italic", "italic", N_("Italic - \\textit{}"), NULL,
