@@ -175,6 +175,36 @@ cb_env_verse (void)
 	text_buffer_insert ("\\begin{verse}\n", "\n\\end{verse}", NULL);
 }
 
+/* List Environments */
+
+void
+cb_list_env_itemize (void)
+{
+	text_buffer_insert ("\\begin{itemize}\n  \\item ", "\n\\end{itemize}",
+			NULL);
+}
+
+void
+cb_list_env_enumerate (void)
+{
+	text_buffer_insert ("\\begin{enumerate}\n  \\item ", "\n\\end{enumerate}",
+			NULL);
+}
+
+void
+cb_list_env_description (void)
+{
+	text_buffer_insert ("\\begin{description}\n  \\item[",
+			"] \n\\end{description}", NULL);
+}
+
+void
+cb_list_env_item (void)
+{
+	text_buffer_insert ("\\item ", "", NULL);
+}
+
+
 /* Characters sizes */
 
 void

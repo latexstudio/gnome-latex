@@ -6,8 +6,8 @@ Fri Sep 18, 2009 to Fri Sep 25, 2009
 	x font styles: bold, italic, ...
 	x environments: center, flushleft, ...
 	x sectioning: part, chapter, section, ...
-	- size of characters
-	- lists: itemize, enumerate, description
+	x size of characters
+	x list environments: itemize, enumerate, description
 	- various: label, ref, pageref, cite, footnote, index
 
 [-] symbol tables

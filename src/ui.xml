@@ -97,6 +97,14 @@ In the code, GtkUIManager is used to construct them.
         <menuitem action="EnvironmentQuotation" />
         <menuitem action="EnvironmentVerse" />
       </menu>
+
+      <menu action="ListEnvironments">
+        <menuitem action="ListEnvItemize" />
+        <menuitem action="ListEnvEnumerate" />
+        <menuitem action="ListEnvDescription" />
+        <separator />
+        <menuitem action="ListEnvItem" />
+      </menu>
       
       <menu action="CharacterSize">
         <menuitem action="CharacterSizeTiny" />
@@ -169,17 +177,6 @@ In the code, GtkUIManager is used to construct them.
   </toolbar>
 
   <toolbar name="EditToolbar">
-    <toolitem action="Bold" />
-    <toolitem action="Italic" />
-    <toolitem action="Typewriter" />
-    <toolitem action="Underline" />
-    
-    <separator />
-    
-    <toolitem action="EnvironmentCenter" />
-    
-    <separator />
-    
     <toolitem action="SectioningToolItem">
       <menu action="Sectioning">
         <menuitem action="SectioningPart" />
@@ -207,5 +204,23 @@ In the code, GtkUIManager is used to construct them.
         <menuitem action="CharacterSizeHuge" />
       </menu>
     </toolitem>
+
+    <separator />
+
+    <toolitem action="Bold" />
+    <toolitem action="Italic" />
+    <toolitem action="Typewriter" />
+    <toolitem action="Underline" />
+    
+    <separator />
+    
+    <toolitem action="EnvironmentCenter" />
+    
+    <separator />
+    
+    <toolitem action="ListEnvItemize" />
+    <toolitem action="ListEnvEnumerate" />
+    <toolitem action="ListEnvDescription" />
+    <toolitem action="ListEnvItem" />
   </toolbar>
 </ui>

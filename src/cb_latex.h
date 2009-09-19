@@ -17,6 +17,11 @@ void cb_env_quote (void);
 void cb_env_quotation (void);
 void cb_env_verse (void);
 
+void cb_list_env_itemize (void);
+void cb_list_env_enumerate (void);
+void cb_list_env_description (void);
+void cb_list_env_item (void);
+
 void cb_size_tiny (void);
 void cb_size_scriptsize (void);
 void cb_size_footnotesize (void);

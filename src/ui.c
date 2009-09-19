@@ -58,6 +58,10 @@ static struct {
 	{DATA_DIR "/images/icons/sectioning-subsubsection.png", "sectioning-subsubsection"},
 	{DATA_DIR "/images/icons/sectioning-paragraph.png", "sectioning-paragraph"},
 	{DATA_DIR "/images/icons/character-size.png", "character-size"},
+	{DATA_DIR "/images/icons/list-itemize.png", "list-itemize"},
+	{DATA_DIR "/images/icons/list-enumerate.png", "list-enumerate"},
+	{DATA_DIR "/images/icons/list-description.png", "list-description"},
+	{DATA_DIR "/images/icons/list-item.png", "list-item"},
 };
 
 // all the actions (for the menu and the toolbar)
@@ -166,6 +170,17 @@ static GtkActionEntry latex_entries[] = {
 		N_("Quotation - \\begin{quotation}"), G_CALLBACK (cb_env_quotation)},
 	{"EnvironmentVerse", NULL, N_("Verse - \\begin{verse}"), NULL,
 		N_("Verse - \\begin{verse}"), G_CALLBACK (cb_env_verse)},
+
+	{"ListEnvironments", NULL, N_("List Environments"), NULL, NULL, NULL},
+	{"ListEnvItemize", "list-itemize", N_("Bulleted List - \\begin{itemize}"), NULL,
+		N_("Bulleted List - \\begin{itemize}"), G_CALLBACK (cb_list_env_itemize)},
+	{"ListEnvEnumerate", "list-enumerate", N_("Enumeration - \\begin{enumeration}"), NULL,
+		N_("Enumeration - \\begin{enumerate}"), G_CALLBACK (cb_list_env_enumerate)},
+	{"ListEnvDescription", "list-description", N_("Description - \\begin{description}"), NULL,
+		N_("Description - \\begin{description}"), G_CALLBACK (cb_list_env_description)},
+	{"ListEnvItem", "list-item", N_("\\item"), NULL,
+		N_("\\item"), G_CALLBACK (cb_list_env_item)},
+	
 
 	{"CharacterSize", NULL, N_("Characters Sizes"), NULL, NULL, NULL},
 	{"CharacterSizeTiny", NULL, "tiny", NULL,
