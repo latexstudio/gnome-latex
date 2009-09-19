@@ -66,6 +66,7 @@ typedef struct
 {
 	gboolean				show_line_numbers;
 	gboolean				show_side_pane;
+	gboolean				show_edit_toolbar;
 	gint					window_width;
 	gint					window_height;
 	gboolean				window_maximised;
@@ -94,6 +95,7 @@ typedef struct
 	GtkPaned		*main_hpaned;
 	GtkPaned		*vpaned;
 	GtkPaned		*log_hpaned;
+	GtkWidget		*edit_toolbar;
 } latexila_t;
 
 // a lot of things are accessible by the "latexila" variable everywhere in the

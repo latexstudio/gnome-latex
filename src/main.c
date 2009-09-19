@@ -38,7 +38,7 @@ static gboolean option_version (const gchar *option_name, const gchar *value,
 		gpointer data, GError **error);
 
 latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-	NULL, NULL, NULL, NULL, NULL}; 
+	NULL, NULL, NULL, NULL, NULL, NULL}; 
 
 static gboolean
 option_version (const gchar *option_name, const gchar *value, gpointer data,
@@ -281,6 +281,9 @@ main (int argc, char *argv[])
 
 	if (! latexila.prefs->show_side_pane)
 		gtk_widget_hide (latexila.symbols->vbox);
+
+	if (! latexila.prefs->show_edit_toolbar)
+		gtk_widget_hide (latexila.edit_toolbar);
 
 	/* open documents given in arguments */
 	for (int i = 1 ; i < argc ; i++)

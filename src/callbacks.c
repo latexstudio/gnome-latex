@@ -853,11 +853,28 @@ cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data)
 	if (latexila.symbols == NULL || latexila.symbols->vbox == NULL)
 		return;
 
-	latexila.prefs->show_side_pane = gtk_toggle_action_get_active (toggle_action);
+	latexila.prefs->show_side_pane =
+		gtk_toggle_action_get_active (toggle_action);
+
 	if (latexila.prefs->show_side_pane)
 		gtk_widget_show_all (latexila.symbols->vbox);
 	else
 		gtk_widget_hide (latexila.symbols->vbox);
+}
+
+void
+cb_show_edit_toolbar (GtkToggleAction *toggle_action, gpointer user_data)
+{
+	if (latexila.edit_toolbar == NULL)
+		return;
+
+	latexila.prefs->show_edit_toolbar =
+		gtk_toggle_action_get_active (toggle_action);
+
+	if (latexila.prefs->show_edit_toolbar)
+		gtk_widget_show_all (latexila.edit_toolbar);
+	else
+		gtk_widget_hide (latexila.edit_toolbar);
 }
 
 void

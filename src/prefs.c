@@ -35,6 +35,7 @@ static gchar * get_rc_file (void);
 // there is an underscore in the end of each variable name
 static gboolean	show_line_numbers_	= FALSE;
 static gboolean	show_side_pane_		= TRUE;
+static gboolean show_edit_toolbar_	= TRUE;
 static gint		window_width_		= 800;
 static gint		window_height_		= 600;
 static gboolean	window_maximised_	= FALSE;
@@ -87,6 +88,16 @@ load_preferences (preferences_t *prefs)
 	{
 		print_warning ("%s", error->message);
 		prefs->show_side_pane = show_side_pane_;
+		g_error_free (error);
+		error = NULL;
+	}
+
+	prefs->show_edit_toolbar = g_key_file_get_boolean (key_file, PROGRAM_NAME,
+			"show_edit_toolbar", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->show_edit_toolbar = show_edit_toolbar_;
 		g_error_free (error);
 		error = NULL;
 	}
@@ -195,6 +206,8 @@ save_preferences (preferences_t *prefs)
 			prefs->show_line_numbers);
 	g_key_file_set_boolean (key_file, PROGRAM_NAME, "show_side_pane",
 			prefs->show_side_pane);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "show_edit_toolbar",
+			prefs->show_edit_toolbar);
 	g_key_file_set_string (key_file, PROGRAM_NAME, "command_view",
 			prefs->command_view);
 	g_key_file_set_string (key_file, PROGRAM_NAME, "font", prefs->font_str);
@@ -272,6 +285,7 @@ load_default_preferences (preferences_t *prefs)
 {
 	prefs->show_line_numbers = show_line_numbers_;
 	prefs->show_side_pane = show_side_pane_;
+	prefs->show_edit_toolbar = show_edit_toolbar_;
 	prefs->window_width = window_width_;
 	prefs->window_height = window_height_;
 	prefs->window_maximised = window_maximised_;

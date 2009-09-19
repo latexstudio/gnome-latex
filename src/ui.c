@@ -253,8 +253,9 @@ static GtkActionEntry latex_entries[] = {
 // {name, stock_id, label, accelerator, tooltip, callback}
 static GtkToggleActionEntry toggle_entries[] = {
 	{"ViewSymbols", NULL, N_("Symbol tables"), NULL,
-		N_("Show or hide the symbol tables in the current window"),
-		G_CALLBACK (cb_show_symbol_tables)}
+		N_("Show or hide the symbol tables"), G_CALLBACK (cb_show_symbol_tables)},
+	{"ViewEditToolbar", NULL, N_("Edit Toolbar"), NULL,
+		N_("Show or hide the edit toolbar"), G_CALLBACK (cb_show_edit_toolbar)},
 };
 
 static guint n_stock_icons = G_N_ELEMENTS (stock_icons);
@@ -358,6 +359,7 @@ init_ui (GtkWidget *box)
 
 	GtkWidget *edit_toolbar = gtk_ui_manager_get_widget (ui_manager,
 			"/EditToolbar");
+	latexila.edit_toolbar = edit_toolbar;
 	gtk_toolbar_set_style (GTK_TOOLBAR (edit_toolbar), GTK_TOOLBAR_ICONS);
 	gtk_box_pack_start (GTK_BOX (box), edit_toolbar, FALSE, FALSE, 0);
 
@@ -368,8 +370,14 @@ init_ui (GtkWidget *box)
 	// get actions
 	latexila.undo = gtk_action_group_get_action (action_group, "EditUndo");
 	latexila.redo = gtk_action_group_get_action (action_group, "EditRedo");
+
 	GtkToggleAction *show_symbol_tables = GTK_TOGGLE_ACTION (
 			gtk_action_group_get_action (action_group, "ViewSymbols"));
 	gtk_toggle_action_set_active (show_symbol_tables,
 			latexila.prefs->show_side_pane);
+
+	GtkToggleAction *show_edit_toolbar = GTK_TOGGLE_ACTION (
+			gtk_action_group_get_action (action_group, "ViewEditToolbar"));
+	gtk_toggle_action_set_active (show_edit_toolbar,
+			latexila.prefs->show_edit_toolbar);
 }
