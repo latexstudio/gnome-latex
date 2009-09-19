@@ -87,6 +87,8 @@ text_buffer_insert (gchar *text_before, gchar *text_after,
 	gtk_text_buffer_end_user_action (buffer);
 }
 
+/* sectioning */
+
 void
 cb_sectioning_part (void)
 {
@@ -129,6 +131,8 @@ cb_sectioning_subparagraph (void)
 	text_buffer_insert ("\\subparagraph{", "}", NULL);
 }
 
+/* environments */
+
 void
 cb_env_center (void)
 {
@@ -170,6 +174,70 @@ cb_env_verse (void)
 {
 	text_buffer_insert ("\\begin{verse}\n", "\n\\end{verse}", NULL);
 }
+
+/* Characters sizes */
+
+void
+cb_size_tiny (void)
+{
+	text_buffer_insert ("{\\tiny ", "}", "\\tiny ");
+}
+
+void
+cb_size_scriptsize (void)
+{
+	text_buffer_insert ("{\\scriptsize ", "}", "\\scriptsize ");
+}
+
+void
+cb_size_footnotesize (void)
+{
+	text_buffer_insert ("{\\footnotesize ", "}", "\\footnotesize ");
+}
+
+void
+cb_size_small (void)
+{
+	text_buffer_insert ("{\\small ", "}", "\\small ");
+}
+
+void
+cb_size_normalsize (void)
+{
+	text_buffer_insert ("{\\normalsize ", "}", "\\normalsize ");
+}
+
+void
+cb_size_large (void)
+{
+	text_buffer_insert ("{\\large ", "}", "\\large ");
+}
+
+void
+cb_size_Large (void)
+{
+	text_buffer_insert ("{\\Large ", "}", "\\Large ");
+}
+
+void
+cb_size_LARGE (void)
+{
+	text_buffer_insert ("{\\LARGE ", "}", "\\LARGE ");
+}
+
+void
+cb_size_huge (void)
+{
+	text_buffer_insert ("{\\huge ", "}", "\\huge ");
+}
+
+void
+cb_size_Huge (void)
+{
+	text_buffer_insert ("{\\Huge ", "}", "\\Huge ");
+}
+
+/* Font styles */
 
 void
 cb_text_bold (void)

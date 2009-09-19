@@ -98,6 +98,19 @@ In the code, GtkUIManager is used to construct them.
         <menuitem action="EnvironmentVerse" />
       </menu>
       
+      <menu action="CharacterSize">
+        <menuitem action="CharacterSizeTiny" />
+        <menuitem action="CharacterSizeScriptsize" />
+        <menuitem action="CharacterSizeFootnotesize" />
+        <menuitem action="CharacterSizeSmall" />
+        <menuitem action="CharacterSizeNormalsize" />
+        <menuitem action="CharacterSizelarge" />
+        <menuitem action="CharacterSizeLarge" />
+        <menuitem action="CharacterSizeLARGE" />
+        <menuitem action="CharacterSizehuge" />
+        <menuitem action="CharacterSizeHuge" />
+      </menu>
+      
       <menu action="FontStyles">
         <menuitem action="Bold" />
         <menuitem action="Italic" />
@@ -135,7 +148,7 @@ In the code, GtkUIManager is used to construct them.
   <toolbar name="MainToolbar">
     <toolitem action="FileNew" />
     <toolitem action="FileOpen" />
-    <!-- TODO add FileOpenRecent with only the arrow -->
+    <!-- TODO add FileOpenRecent with the arrow only -->
     <toolitem action="FileSave" />
     <separator />
     <toolitem action="EditUndo" />
@@ -160,9 +173,13 @@ In the code, GtkUIManager is used to construct them.
     <toolitem action="Italic" />
     <toolitem action="Typewriter" />
     <toolitem action="Underline" />
+    
     <separator />
+    
     <toolitem action="EnvironmentCenter" />
+    
     <separator />
+    
     <toolitem action="SectioningToolItem">
       <menu action="Sectioning">
         <menuitem action="SectioningPart" />
@@ -173,6 +190,21 @@ In the code, GtkUIManager is used to construct them.
         <menuitem action="SectioningSubsubsection" />
         <menuitem action="SectioningParagraph" />
         <menuitem action="SectioningSubparagraph" />
+      </menu>
+    </toolitem>
+    
+    <toolitem action="CharacterSizeToolItem">
+      <menu action="CharacterSize">
+        <menuitem action="CharacterSizeTiny" />
+        <menuitem action="CharacterSizeScriptsize" />
+        <menuitem action="CharacterSizeFootnotesize" />
+        <menuitem action="CharacterSizeSmall" />
+        <menuitem action="CharacterSizeNormalsize" />
+        <menuitem action="CharacterSizelarge" />
+        <menuitem action="CharacterSizeLarge" />
+        <menuitem action="CharacterSizeLARGE" />
+        <menuitem action="CharacterSizehuge" />
+        <menuitem action="CharacterSizeHuge" />
       </menu>
     </toolitem>
   </toolbar>

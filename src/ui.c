@@ -57,6 +57,7 @@ static struct {
 	{DATA_DIR "/images/icons/sectioning-subsection.png", "sectioning-subsection"},
 	{DATA_DIR "/images/icons/sectioning-subsubsection.png", "sectioning-subsubsection"},
 	{DATA_DIR "/images/icons/sectioning-paragraph.png", "sectioning-paragraph"},
+	{DATA_DIR "/images/icons/character-size.png", "character-size"},
 };
 
 // all the actions (for the menu and the toolbar)
@@ -166,6 +167,28 @@ static GtkActionEntry latex_entries[] = {
 	{"EnvironmentVerse", NULL, N_("Verse - \\begin{verse}"), NULL,
 		N_("Verse - \\begin{verse}"), G_CALLBACK (cb_env_verse)},
 
+	{"CharacterSize", NULL, N_("Characters Sizes"), NULL, NULL, NULL},
+	{"CharacterSizeTiny", NULL, "tiny", NULL,
+		"\\tiny", G_CALLBACK (cb_size_tiny)},
+	{"CharacterSizeScriptsize", NULL, "scriptsize", NULL,
+		"\\scriptsize", G_CALLBACK (cb_size_scriptsize)},
+	{"CharacterSizeFootnotesize", NULL, "footnotesize", NULL,
+		"\\footnotesize", G_CALLBACK (cb_size_footnotesize)},
+	{"CharacterSizeSmall", NULL, "small", NULL,
+		"\\small", G_CALLBACK (cb_size_small)},
+	{"CharacterSizeNormalsize", NULL, "normalsize", NULL,
+		"\\normalsize", G_CALLBACK (cb_size_normalsize)},
+	{"CharacterSizelarge", NULL, "large", NULL,
+		"\\large", G_CALLBACK (cb_size_large)},
+	{"CharacterSizeLarge", NULL, "Large", NULL,
+		"\\Large", G_CALLBACK (cb_size_Large)},
+	{"CharacterSizeLARGE", NULL, "LARGE", NULL,
+		"\\LARGE", G_CALLBACK (cb_size_LARGE)},
+	{"CharacterSizehuge", NULL, "huge", NULL,
+		"\\huge", G_CALLBACK (cb_size_huge)},
+	{"CharacterSizeHuge", NULL, "Huge", NULL,
+		"\\Huge", G_CALLBACK (cb_size_Huge)},
+
 	{"FontStyles", NULL, N_("Font Styles"), NULL, NULL, NULL},
 	{"Bold", "bold", N_("Bold - \\textbf{}"), NULL,
 		N_("Bold - \\textbf{}"), G_CALLBACK (cb_text_bold)},
@@ -261,8 +284,13 @@ init_ui (GtkWidget *box)
 	GtkToolItem *sectioning_menu_tool_button = gtk_menu_tool_button_new (NULL,
 			NULL);
 	gtk_activatable_set_related_action (
-			GTK_ACTIVATABLE (sectioning_menu_tool_button),
-			sectioning);
+			GTK_ACTIVATABLE (sectioning_menu_tool_button), sectioning);
+
+	GtkAction *sizes = tool_menu_action_new ("CharacterSizeToolItem",
+			_("Characters Sizes"), _("Characters Sizes"), "character-size");
+	GtkToolItem *sizes_menu_tool_button = gtk_menu_tool_button_new (NULL, NULL);
+	gtk_activatable_set_related_action (
+		GTK_ACTIVATABLE (sizes_menu_tool_button), sizes);
 
 	// create the action group and the ui manager
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
@@ -270,6 +298,7 @@ init_ui (GtkWidget *box)
 	gtk_action_group_set_translation_domain (action_group, LATEXILA_NLS_PACKAGE);
 #endif
 	gtk_action_group_add_action (action_group, sectioning);
+	gtk_action_group_add_action (action_group, sizes);
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
 	gtk_action_group_add_actions (action_group, latex_entries, nb_latex_entries,
 			NULL);

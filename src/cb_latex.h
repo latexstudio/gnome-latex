@@ -17,6 +17,17 @@ void cb_env_quote (void);
 void cb_env_quotation (void);
 void cb_env_verse (void);
 
+void cb_size_tiny (void);
+void cb_size_scriptsize (void);
+void cb_size_footnotesize (void);
+void cb_size_small (void);
+void cb_size_normalsize (void);
+void cb_size_large (void);
+void cb_size_Large (void);
+void cb_size_LARGE (void);
+void cb_size_huge (void);
+void cb_size_Huge (void);
+
 void cb_text_bold (void);
 void cb_text_italic (void);
 void cb_text_typewriter (void);
