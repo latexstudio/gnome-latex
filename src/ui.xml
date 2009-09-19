@@ -134,13 +134,13 @@ In the code, GtkUIManager is used to construct them.
         <menuitem action="Bold" />
         <menuitem action="Italic" />
         <menuitem action="Typewriter" />
-        <menuitem action="Underline" />
         <menuitem action="Slanted" />
         <menuitem action="SmallCaps" />
         <separator />
         <menuitem action="Emph" />
-        <menuitem action="Strong" />
         <separator />
+        <menuitem action="Underline" />
+	<separator />
         <menu action="FontFamily">
           <menuitem action="FontFamilyRoman" />
           <menuitem action="FontFamilySansSerif" />

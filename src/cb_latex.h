@@ -47,7 +47,6 @@ void cb_text_underline (void);
 void cb_text_slanted (void);
 void cb_text_small_caps (void);
 void cb_text_emph (void);
-void cb_text_strong (void);
 void cb_text_font_family_roman (void);
 void cb_text_font_family_sans_serif (void);
 void cb_text_font_family_monospace (void);

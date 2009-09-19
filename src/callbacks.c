@@ -667,6 +667,7 @@ cb_about_dialog (void)
 	const gchar *artists[] =
 	{
 		"The Kile Team: http://kile.sourceforge.net/",
+		"Gedit LaTeX Plugin: http://www.michaels-website.de/gedit-latex-plugin/",
 		NULL
 	};
 

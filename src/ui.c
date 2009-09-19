@@ -227,8 +227,6 @@ static GtkActionEntry latex_entries[] = {
 		N_("Small Capitals - \\textsc{}"), G_CALLBACK (cb_text_small_caps)},
 	{"Emph", NULL, N_("Emphasized - \\emph{}"), NULL,
 		N_("Emphasized - \\emph{}"), G_CALLBACK (cb_text_emph)},
-	{"Strong", NULL, N_("Strong - \\strong{}"), NULL,
-		N_("Strong - \\strong{}"), G_CALLBACK (cb_text_strong)},
 	{"FontFamily", NULL, N_("Font Family"), NULL, NULL, NULL},
 	{"FontFamilyRoman", NULL, N_("Roman - \\rmfamily"), NULL,
 		N_("Roman - \\rmfamily"), G_CALLBACK (cb_text_font_family_roman)},

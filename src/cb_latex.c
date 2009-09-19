@@ -350,12 +350,6 @@ cb_text_emph (void)
 }
 
 void
-cb_text_strong (void)
-{
-	text_buffer_insert ("\\strong{", "}", NULL);
-}
-
-void
 cb_text_font_family_roman (void)
 {
 	text_buffer_insert ("{\\rmfamily ", "}", "\\rmfamily ");
