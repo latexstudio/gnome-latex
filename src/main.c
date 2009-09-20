@@ -79,6 +79,12 @@ main (int argc, char *argv[])
 	GtkTreeViewColumn *column;
 
 	/* command line options */
+
+	gchar *latexila_nls_package = NULL;
+#ifdef LATEXILA_NLS_ENABLED
+	latexila_nls_package = LATEXILA_NLS_PACKAGE;
+#endif
+
 	GOptionEntry options[] = {
 		{ "version", 'v', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_NO_ARG,
 			G_OPTION_ARG_CALLBACK, (gpointer) option_version,
@@ -87,28 +93,16 @@ main (int argc, char *argv[])
 	};
 
 	GOptionContext *context = g_option_context_new ("[FILES]");
-#ifdef LATEXILA_NLS_ENABLED
-	g_option_context_add_main_entries (context, options, LATEXILA_NLS_PACKAGE);
-#else
-	g_option_context_add_main_entries (context, options, NULL);
-#endif
+	g_option_context_add_main_entries (context, options, latexila_nls_package);
 	g_option_context_add_group (context, gtk_get_option_group (TRUE));
 
 	// TODO with valgrind there are a lot of memory leaks with this, can we do
 	// something?
 	if (! g_option_context_parse (context, &argc, &argv, &error))
-	{
 		print_error ("option parsing failed: %s\n", error->message);
-		g_error_free (error);
-		error = NULL;
-	}
 
-#ifdef LATEXILA_NLS_ENABLED
-	gtk_init_with_args (&argc, &argv, NULL, options, LATEXILA_NLS_PACKAGE,
+	gtk_init_with_args (&argc, &argv, NULL, options, latexila_nls_package,
 			&error);
-#else
-	gtk_init_with_args (&argc, &argv, NULL, options, NULL, &error);
-#endif
 	if (error != NULL)
 		print_error ("%s", error->message);
 
