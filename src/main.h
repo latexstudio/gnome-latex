@@ -73,10 +73,14 @@ typedef struct
 	gint					main_hpaned_pos;
 	gint					vpaned_pos;
 	gint					log_hpaned_pos;
-	gchar					*command_view;
 	gchar					*font_str;
 	PangoFontDescription 	*font_desc;
 	gint					font_size;
+	gchar					*command_view;
+	gchar					*command_latex;
+	gchar					*command_pdflatex;
+	gchar					*command_dvipdf;
+	gchar					*command_dvips;
 } preferences_t;
 
 typedef struct

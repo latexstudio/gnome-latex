@@ -16,7 +16,7 @@ Fri Sep 18, 2009 to Fri Sep 25, 2009
 		* text under or to the right of the icons?
 
 [-] latex, pdflatex, dvips, dvipdf, ... commands
-	- CMake: use FindLATEX module
+	x CMake: use FindLATEX module
 	- preferences
 
 [-] command line option

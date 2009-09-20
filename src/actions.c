@@ -69,6 +69,8 @@ command_running_finished (void)
 	gchar *command_output_string = g_strdup ("");
 	gchar *tmp;
 	command_output_list = g_slist_reverse (command_output_list);
+
+	// TODO optimisation
 	guint nb_lines = g_slist_length (command_output_list);
 	for (gint i = 0 ; i < nb_lines ; i++)
 	{

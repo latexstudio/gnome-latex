@@ -545,13 +545,15 @@ cb_latex (void)
 
 	gchar *title = _("Compile (latex)");
 	gchar *command[] = {
-		"latex",
+		g_strdup (latexila.prefs->command_latex),
 		"-interaction=nonstopmode",
 		g_strdup (latexila.active_doc->path),
 		NULL
 	};
 
 	compile_document (title, command);
+
+	// TODO free command
 }
 
 void
@@ -562,13 +564,15 @@ cb_pdflatex (void)
 
 	gchar *title = _("Compile (pdflatex)");
 	gchar *command[] = {
-		"pdflatex",
+		g_strdup (latexila.prefs->command_pdflatex),
 		"-interaction=nonstopmode",
 		g_strdup (latexila.active_doc->path),
 		NULL
 	};
 
 	compile_document (title, command);
+
+	// TODO free command
 }
 
 void
@@ -604,7 +608,7 @@ cb_dvi_to_pdf (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	convert_document (_("DVI to PDF"), ".dvi", "dvipdf");
+	convert_document (_("DVI to PDF"), ".dvi", latexila.prefs->command_dvipdf);
 }
 
 void
@@ -613,7 +617,7 @@ cb_dvi_to_ps (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	convert_document (_("DVI to PS"), ".dvi", "dvips");
+	convert_document (_("DVI to PS"), ".dvi", latexila.prefs->command_dvips);
 }
 
 void
@@ -1397,8 +1401,12 @@ create_preferences (void)
 static void
 free_latexila (void)
 {
-	g_free (latexila.prefs->command_view);
 	g_free (latexila.prefs->font_str);
+	g_free (latexila.prefs->command_view);
+	g_free (latexila.prefs->command_latex);
+	g_free (latexila.prefs->command_pdflatex);
+	g_free (latexila.prefs->command_dvipdf);
+	g_free (latexila.prefs->command_dvips);
 	g_free (latexila.prefs);
 	g_free (latexila.action_log);
 

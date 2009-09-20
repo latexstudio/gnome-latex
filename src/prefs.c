@@ -42,8 +42,12 @@ static gboolean	window_maximised_	= FALSE;
 static gint		main_hpaned_pos_	= 180;
 static gint		vpaned_pos_			= 380;
 static gint		log_hpaned_pos_		= 190;
-static gchar	*command_view_		= "evince";
 static gchar	*font_				= "Monospace 10";
+static gchar	*command_view_		= "evince";
+static gchar	*command_latex_		= COMMAND_LATEX;
+static gchar	*command_pdflatex_	= COMMAND_PDFLATEX;
+static gchar	*command_dvipdf_	= COMMAND_DVIPDF;
+static gchar	*command_dvips_		= COMMAND_DVIPS;
 
 void
 load_preferences (preferences_t *prefs)
@@ -164,18 +168,6 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
-	// look, I see light, we are close to the exit!
-	
-	prefs->command_view = g_key_file_get_string (key_file, PROGRAM_NAME,
-			"command_view", &error);
-	if (error != NULL)
-	{
-		print_warning ("%s", error->message);
-		prefs->command_view = g_strdup (command_view_);
-		g_error_free (error);
-		error = NULL;
-	}
-
 	gchar *font = g_key_file_get_string (key_file, PROGRAM_NAME, "font", &error);
 	if (error != NULL)
 	{
@@ -190,6 +182,58 @@ load_preferences (preferences_t *prefs)
 		prefs->font_str = g_strdup (font);
 		set_current_font_prefs (prefs);
 		g_free (font);
+	}
+
+	prefs->command_view = g_key_file_get_string (key_file, PROGRAM_NAME,
+			"command_view", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->command_view = g_strdup (command_view_);
+		g_error_free (error);
+		error = NULL;
+	}
+
+	prefs->command_latex = g_key_file_get_string (key_file, PROGRAM_NAME,
+			"command_latex", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->command_latex = g_strdup (command_latex_);
+		g_error_free (error);
+		error = NULL;
+	}
+
+	// look, I see light, we are close to the exit!
+	
+	prefs->command_pdflatex = g_key_file_get_string (key_file, PROGRAM_NAME,
+			"command_pdflatex", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->command_pdflatex = g_strdup (command_pdflatex_);
+		g_error_free (error);
+		error = NULL;
+	}
+
+	prefs->command_dvipdf = g_key_file_get_string (key_file, PROGRAM_NAME,
+			"command_dvipdf", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->command_dvipdf = g_strdup (command_dvipdf_);
+		g_error_free (error);
+		error = NULL;
+	}
+
+	prefs->command_dvips = g_key_file_get_string (key_file, PROGRAM_NAME,
+			"command_dvips", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->command_dvips = g_strdup (command_dvips_);
+		g_error_free (error);
+		error = NULL;
 	}
 
 	print_info ("load user preferences: OK");
@@ -208,9 +252,17 @@ save_preferences (preferences_t *prefs)
 			prefs->show_side_pane);
 	g_key_file_set_boolean (key_file, PROGRAM_NAME, "show_edit_toolbar",
 			prefs->show_edit_toolbar);
+	g_key_file_set_string (key_file, PROGRAM_NAME, "font", prefs->font_str);
 	g_key_file_set_string (key_file, PROGRAM_NAME, "command_view",
 			prefs->command_view);
-	g_key_file_set_string (key_file, PROGRAM_NAME, "font", prefs->font_str);
+	g_key_file_set_string (key_file, PROGRAM_NAME, "command_latex",
+			prefs->command_latex);
+	g_key_file_set_string (key_file, PROGRAM_NAME, "command_pdflatex",
+			prefs->command_pdflatex);
+	g_key_file_set_string (key_file, PROGRAM_NAME, "command_dvipdf",
+			prefs->command_dvipdf);
+	g_key_file_set_string (key_file, PROGRAM_NAME, "command_dvips",
+			prefs->command_dvips);
 
 	/* set the keys that must be taken from the widgets */
 	GdkWindowState flag = gdk_window_get_state (gtk_widget_get_window (
@@ -292,8 +344,12 @@ load_default_preferences (preferences_t *prefs)
 	prefs->main_hpaned_pos = main_hpaned_pos_;
 	prefs->vpaned_pos = vpaned_pos_;
 	prefs->log_hpaned_pos = log_hpaned_pos_;
-	prefs->command_view = g_strdup (command_view_);
 	prefs->font_str = g_strdup (font_);
+	prefs->command_view = g_strdup (command_view_);
+	prefs->command_latex = g_strdup (command_latex_);
+	prefs->command_pdflatex = g_strdup (command_pdflatex_);
+	prefs->command_dvipdf = g_strdup (command_dvipdf_);
+	prefs->command_dvips = g_strdup (command_dvips_);
 
 	set_current_font_prefs (prefs);
 }
