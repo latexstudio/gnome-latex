@@ -70,15 +70,15 @@ command_running_finished (void)
 	gchar *tmp;
 	command_output_list = g_slist_reverse (command_output_list);
 
-	// TODO optimisation
-	guint nb_lines = g_slist_length (command_output_list);
-	for (gint i = 0 ; i < nb_lines ; i++)
+	GSList *current = command_output_list;
+	do
 	{
-		gchar *line = g_slist_nth_data (command_output_list, i);
+		gchar *line = g_slist_nth_data (current, 0);
 		tmp = g_strdup_printf ("%s%s", command_output_string, line);
 		g_free (command_output_string);
 		command_output_string = tmp;
 	}
+	while ((current = g_slist_next (current)) != NULL);
 	
 	// store the string to the action list store
 	GtkTreeIter iter;

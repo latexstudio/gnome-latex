@@ -553,7 +553,8 @@ cb_latex (void)
 
 	compile_document (title, command);
 
-	// TODO free command
+	g_free (command[0]);
+	g_free (command[2]);
 }
 
 void
@@ -572,7 +573,8 @@ cb_pdflatex (void)
 
 	compile_document (title, command);
 
-	// TODO free command
+	g_free (command[0]);
+	g_free (command[2]);
 }
 
 void
