@@ -38,17 +38,6 @@ static struct {
 	gchar *name;
 	gchar *icon;
 } categories[] = {
-	{N_("Greek"), DATA_DIR "/images/greek/18.png"},
-	// when we drink too much tequila we walk like this arrow...
-	{N_("Arrows"), DATA_DIR "/images/arrows/58.png"},
-	{N_("Relations"), DATA_DIR "/images/relations/100.png"},
-	{N_("Operators"), DATA_DIR "/images/operators/070.png"},
-	{N_("Delimiters"), DATA_DIR "/images/delimiters/19.png"},
-	{N_("Misc math"), DATA_DIR "/images/misc-math/63.png"},
-	{N_("Misc text"), DATA_DIR "/images/misc-text/057.png"}
-
-	/*
-	// TODO scale the icons to 20x15
 	{N_("Greek"), DATA_DIR "/images/icons/symbol_greek.png"},
 	// when we drink too much tequila we walk like this arrow...
 	{N_("Arrows"), DATA_DIR "/images/icons/symbol_arrows.png"},
@@ -57,7 +46,6 @@ static struct {
 	{N_("Delimiters"), DATA_DIR "/images/icons/symbol_delimiters.png"},
 	{N_("Misc math"), DATA_DIR "/images/icons/symbol_misc_math.png"},
 	{N_("Misc text"), DATA_DIR "/images/icons/symbol_misc_text.png"}
-	*/
 };
 
 static struct symbol symbols_greek[] = {
@@ -840,7 +828,7 @@ init_symbols (void)
 			GTK_ORIENTATION_HORIZONTAL);
 	//gtk_icon_view_set_columns (GTK_ICON_VIEW (categories_view), -1);
 
-	gtk_icon_view_set_spacing (GTK_ICON_VIEW (categories_view), 0);
+	gtk_icon_view_set_spacing (GTK_ICON_VIEW (categories_view), 5);
 	gtk_icon_view_set_row_spacing (GTK_ICON_VIEW (categories_view), 0);
 	gtk_icon_view_set_column_spacing (GTK_ICON_VIEW (categories_view), 0);
 

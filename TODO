@@ -10,8 +10,8 @@ Fri Sep 18, 2009 to Fri Sep 25, 2009
 	x list environments: itemize, enumerate, description
 	x various: label, ref, pageref, cite, footnote, index
 
-[-] symbol tables
-	- the categories must take the minimum place but the presentation must be nice
+[x] symbol tables
+	x the categories must take the minimum place but the presentation must be nice
 		* homogeneous icons
 		* text under or to the right of the icons?
 
