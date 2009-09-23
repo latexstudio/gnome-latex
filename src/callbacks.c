@@ -49,11 +49,7 @@ static void update_cursor_position_statusbar (void);
 static void scroll_to_cursor (void);
 static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 		gboolean backward, GtkTextIter *match_start, GtkTextIter *match_end);
-static void change_font_source_view (void);
-static void create_preferences (void);
 static void free_latexila (void);
-
-static GtkWidget *pref_dialog = NULL;
 
 void
 cb_new (void)
@@ -277,14 +273,6 @@ cb_select_all (void)
 	gtk_text_buffer_get_start_iter (buffer, &start);
 	gtk_text_buffer_get_end_iter (buffer, &end);
 	gtk_text_buffer_select_range (buffer, &start, &end);
-}
-
-void
-cb_preferences (void)
-{
-	if (pref_dialog == NULL)
-		create_preferences ();
-	gtk_window_present (GTK_WINDOW (pref_dialog));
 }
 
 void
@@ -737,49 +725,6 @@ cb_recent_item_activated (GtkRecentAction *action, gpointer user_data)
 }
 
 void
-cb_pref_dialog_close (GtkDialog *dialog, gint response_id, gpointer user_data)
-{
-	gtk_widget_hide (GTK_WIDGET (dialog));
-}
-
-void
-cb_line_numbers (GtkToggleButton *toggle_button, gpointer user_data)
-{
-	gboolean show_line_numbers = gtk_toggle_button_get_active (toggle_button);
-	latexila.prefs->show_line_numbers = show_line_numbers;
-
-	// traverse the list
-	// an other solution is to call g_list_foreach ()
-	GList *current = latexila.all_docs;
-	do
-	{
-		document_t *doc = g_list_nth_data (current, 0);
-		gtk_source_view_set_show_line_numbers (
-				GTK_SOURCE_VIEW (doc->source_view), show_line_numbers);
-	}
-	while ((current = g_list_next (current)) != NULL);
-}
-
-void
-cb_command_view (GtkButton *button, gpointer user_data)
-{
-	GtkEntry *entry = (GtkEntry *) user_data;
-	const gchar *new_command_view = gtk_entry_get_text (entry);
-	g_free (latexila.prefs->command_view);
-	latexila.prefs->command_view = g_strdup (new_command_view);
-}
-
-void
-cb_font_set (GtkFontButton *font_button, gpointer user_data)
-{
-	const gchar *font_string = gtk_font_button_get_font_name (font_button);
-	g_free (latexila.prefs->font_str);
-	latexila.prefs->font_str = g_strdup (font_string);
-	set_current_font_prefs (latexila.prefs);
-	change_font_source_view ();
-}
-
-void
 cb_category_symbols_selected (GtkIconView *icon_view, gpointer user_data)
 {
 	GList *selected_items = gtk_icon_view_get_selected_items (icon_view);
@@ -906,6 +851,21 @@ open_new_document (const gchar *filename, const gchar *uri)
 	else
 		print_warning ("impossible to open the file \"%s\"", filename);
 }
+
+void
+change_font_source_view (void)
+{
+	// traverse the list
+	// an other solution is to call g_list_foreach ()
+	GList *current = latexila.all_docs;
+	do
+	{
+		document_t *doc = g_list_nth_data (current, 0);
+		gtk_widget_modify_font (doc->source_view, latexila.prefs->font_desc);
+	}
+	while ((current = g_list_next (current)) != NULL);
+}
+
 
 /******************************************************************************
  * local functions
@@ -1329,75 +1289,6 @@ find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 				return FALSE;
 		}
 	}
-}
-
-static void
-change_font_source_view (void)
-{
-	// traverse the list
-	// an other solution is to call g_list_foreach ()
-	GList *current = latexila.all_docs;
-	do
-	{
-		document_t *doc = g_list_nth_data (current, 0);
-		gtk_widget_modify_font (doc->source_view, latexila.prefs->font_desc);
-	}
-	while ((current = g_list_next (current)) != NULL);
-}
-
-static void
-create_preferences (void)
-{
-	pref_dialog = gtk_dialog_new_with_buttons (_("Preferences"),
-			latexila.main_window, 0,
-			GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
-	gtk_dialog_set_has_separator (GTK_DIALOG (pref_dialog), FALSE);
-
-	g_signal_connect (G_OBJECT (pref_dialog), "response",
-			G_CALLBACK (cb_pref_dialog_close), NULL);
-	g_signal_connect (G_OBJECT (pref_dialog), "destroy",
-			G_CALLBACK (gtk_widget_destroyed), &pref_dialog);
-
-	GtkWidget *content_area = gtk_dialog_get_content_area (
-			GTK_DIALOG (pref_dialog));
-	gtk_box_set_spacing (GTK_BOX (content_area), 3);
-
-	/* show line numbers */
-	GtkWidget *line_numbers = gtk_check_button_new_with_label (
-			_("Display line numbers"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (line_numbers),
-			latexila.prefs->show_line_numbers);
-	g_signal_connect (G_OBJECT (line_numbers), "toggled",
-			G_CALLBACK (cb_line_numbers), NULL);
-	gtk_box_pack_start (GTK_BOX (content_area), line_numbers, FALSE, FALSE, 0);
-
-	/* font */
-	GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
-	GtkWidget *label = gtk_label_new (_("Font:"));
-	GtkWidget *font_button = gtk_font_button_new_with_font (
-			latexila.prefs->font_str);
-	g_signal_connect (G_OBJECT (font_button), "font-set",
-			G_CALLBACK (cb_font_set), NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), font_button, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (content_area), hbox, FALSE, FALSE, 0);
-
-	/* command view entry */
-	hbox = gtk_hbox_new (FALSE, 5);
-	label = gtk_label_new (_("Program for viewing documents:"));
-	GtkWidget *command_view_entry = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_view_entry),
-			latexila.prefs->command_view);
-	GtkWidget *button = gtk_button_new_with_label (_("OK"));
-	g_signal_connect (G_OBJECT (button), "clicked",
-			G_CALLBACK (cb_command_view), GTK_ENTRY (command_view_entry));
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), command_view_entry, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (content_area), hbox, FALSE, FALSE, 0);
-
-
-	gtk_widget_show_all (content_area);
 }
 
 static void

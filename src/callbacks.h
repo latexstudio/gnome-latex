@@ -34,7 +34,6 @@ void cb_copy (void);
 void cb_paste (void);
 void cb_delete (void);
 void cb_select_all (void);
-void cb_preferences (void);
 void cb_zoom_in (void);
 void cb_zoom_out (void);
 void cb_zoom_reset (void);
@@ -58,16 +57,12 @@ void cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page,
 gboolean cb_delete_event (GtkWidget *widget, GdkEvent *event,
 		gpointer user_data);
 void cb_recent_item_activated (GtkRecentAction *action, gpointer user_data);
-void cb_pref_dialog_close (GtkDialog *dialog, gint response_id,
-		gpointer user_data);
-void cb_line_numbers (GtkToggleButton *toggle_button, gpointer user_data);
-void cb_command_view (GtkButton *button, gpointer user_data);
-void cb_font_set (GtkFontButton *font_button, gpointer user_data);
 void cb_category_symbols_selected (GtkIconView *icon_view, gpointer user_data);
 void cb_symbol_selected (GtkIconView *icon_view, gpointer user_data);
 void cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data);
 void cb_show_edit_toolbar (GtkToggleAction *toggle_action, gpointer user_data);
 
 void open_new_document (const gchar *filename, const gchar *uri);
+void change_font_source_view (void);
 
 #endif /* CALLBACKS_H */

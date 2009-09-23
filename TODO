@@ -15,9 +15,9 @@ Fri Sep 18, 2009 to Fri Sep 25, 2009
 		* homogeneous icons
 		* text under or to the right of the icons?
 
-[-] latex, pdflatex, dvips, dvipdf, ... commands
+[x] latex, pdflatex, dvips, dvipdf, ... commands
 	x CMake: use FindLATEX module
-	- preferences
+	x preferences
 
 [-] command line option
 	- new document (--new-document)

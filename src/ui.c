@@ -30,6 +30,7 @@
 #include "callbacks.h"
 #include "cb_latex.h"
 #include "tool_menu_action.h"
+#include "prefs.h"
 
 static void register_my_stock_icons (void);
 

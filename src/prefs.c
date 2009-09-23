@@ -19,6 +19,8 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <locale.h>
+#include <libintl.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourceview.h>
 #include <sys/stat.h> // for S_IRWXU
@@ -27,9 +29,21 @@
 #include "prefs.h"
 #include "config.h"
 #include "print.h"
+#include "callbacks.h"
 
 static void load_default_preferences (preferences_t *prefs);
 static gchar * get_rc_file (void);
+static void create_preferences (void);
+static void cb_pref_dialog_close (GtkDialog *dialog, gint response_id,
+		gpointer user_data);
+static void cb_pref_line_numbers (GtkToggleButton *toggle_button,
+		gpointer user_data);
+static void cb_pref_font_set (GtkFontButton *font_button, gpointer user_data);
+static void cb_pref_command_view (GtkEditable *editable, gpointer user_data);
+static void cb_pref_command_latex (GtkEditable *editable, gpointer user_data);
+static void cb_pref_command_pdflatex (GtkEditable *editable, gpointer user_data);
+static void cb_pref_command_dvipdf (GtkEditable *editable, gpointer user_data);
+static void cb_pref_command_dvips (GtkEditable *editable, gpointer user_data);
 
 /* default values */
 // there is an underscore in the end of each variable name
@@ -361,3 +375,195 @@ get_rc_file (void)
 			"latexilarc", NULL);
 	return rc_file;
 }
+
+
+/******************************************
+ * Menu: Edit -> Preferences
+ *****************************************/
+
+static GtkWidget *pref_dialog = NULL;
+
+void
+cb_preferences (void)
+{
+	if (pref_dialog == NULL)
+		create_preferences ();
+	gtk_window_present (GTK_WINDOW (pref_dialog));
+}
+
+static void
+cb_pref_dialog_close (GtkDialog *dialog, gint response_id, gpointer user_data)
+{
+	gtk_widget_hide (GTK_WIDGET (dialog));
+}
+
+static void
+cb_pref_line_numbers (GtkToggleButton *toggle_button, gpointer user_data)
+{
+	gboolean show_line_numbers = gtk_toggle_button_get_active (toggle_button);
+	latexila.prefs->show_line_numbers = show_line_numbers;
+
+	// traverse the list
+	// an other solution is to call g_list_foreach ()
+	GList *current = latexila.all_docs;
+	do
+	{
+		document_t *doc = g_list_nth_data (current, 0);
+		gtk_source_view_set_show_line_numbers (
+				GTK_SOURCE_VIEW (doc->source_view), show_line_numbers);
+	}
+	while ((current = g_list_next (current)) != NULL);
+}
+
+static void
+cb_pref_font_set (GtkFontButton *font_button, gpointer user_data)
+{
+	const gchar *font_string = gtk_font_button_get_font_name (font_button);
+	g_free (latexila.prefs->font_str);
+	latexila.prefs->font_str = g_strdup (font_string);
+	set_current_font_prefs (latexila.prefs);
+	change_font_source_view ();
+}
+
+static void
+cb_pref_command_view (GtkEditable *editable, gpointer user_data)
+{
+	GtkEntry *entry = GTK_ENTRY (editable);
+	const gchar *new_command_view = gtk_entry_get_text (entry);
+	g_free (latexila.prefs->command_view);
+	latexila.prefs->command_view = g_strdup (new_command_view);
+}
+
+static void
+cb_pref_command_latex (GtkEditable *editable, gpointer user_data)
+{
+	GtkEntry *entry = GTK_ENTRY (editable);
+	const gchar *new_command = gtk_entry_get_text (entry);
+	g_free (latexila.prefs->command_latex);
+	latexila.prefs->command_latex = g_strdup (new_command);
+}
+
+static void
+cb_pref_command_pdflatex (GtkEditable *editable, gpointer user_data)
+{
+	GtkEntry *entry = GTK_ENTRY (editable);
+	const gchar *new_command = gtk_entry_get_text (entry);
+	g_free (latexila.prefs->command_pdflatex);
+	latexila.prefs->command_pdflatex = g_strdup (new_command);
+}
+
+static void
+cb_pref_command_dvipdf (GtkEditable *editable, gpointer user_data)
+{
+	GtkEntry *entry = GTK_ENTRY (editable);
+	const gchar *new_command = gtk_entry_get_text (entry);
+	g_free (latexila.prefs->command_dvipdf);
+	latexila.prefs->command_dvipdf = g_strdup (new_command);
+}
+
+static void
+cb_pref_command_dvips (GtkEditable *editable, gpointer user_data)
+{
+	GtkEntry *entry = GTK_ENTRY (editable);
+	const gchar *new_command = gtk_entry_get_text (entry);
+	g_free (latexila.prefs->command_dvips);
+	latexila.prefs->command_dvips = g_strdup (new_command);
+}
+
+static void
+create_preferences (void)
+{
+	pref_dialog = gtk_dialog_new_with_buttons (_("Preferences"),
+			latexila.main_window, 0,
+			GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
+	gtk_dialog_set_has_separator (GTK_DIALOG (pref_dialog), FALSE);
+
+	g_signal_connect (G_OBJECT (pref_dialog), "response",
+			G_CALLBACK (cb_pref_dialog_close), NULL);
+	g_signal_connect (G_OBJECT (pref_dialog), "destroy",
+			G_CALLBACK (gtk_widget_destroyed), &pref_dialog);
+
+	GtkWidget *content_area = gtk_dialog_get_content_area (
+			GTK_DIALOG (pref_dialog));
+	gtk_box_set_spacing (GTK_BOX (content_area), 3);
+
+	/* show line numbers */
+	GtkWidget *line_numbers = gtk_check_button_new_with_label (
+			_("Display line numbers"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (line_numbers),
+			latexila.prefs->show_line_numbers);
+	g_signal_connect (G_OBJECT (line_numbers), "toggled",
+			G_CALLBACK (cb_pref_line_numbers), NULL);
+	gtk_box_pack_start (GTK_BOX (content_area), line_numbers, FALSE, FALSE, 0);
+
+	/* font */
+	GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
+	GtkWidget *label = gtk_label_new (_("Font:"));
+	GtkWidget *font_button = gtk_font_button_new_with_font (
+			latexila.prefs->font_str);
+	g_signal_connect (G_OBJECT (font_button), "font-set",
+			G_CALLBACK (cb_pref_font_set), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), font_button, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (content_area), hbox, FALSE, FALSE, 0);
+
+	/* command view entry */
+	hbox = gtk_hbox_new (FALSE, 5);
+	label = gtk_label_new (_("Program for viewing documents:"));
+	GtkWidget *command_view_entry = gtk_entry_new ();
+	gtk_entry_set_text (GTK_ENTRY (command_view_entry),
+			latexila.prefs->command_view);
+	g_signal_connect (G_OBJECT (command_view_entry), "changed",
+			G_CALLBACK (cb_pref_command_view), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), command_view_entry, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (content_area), hbox, FALSE, FALSE, 0);
+
+	/* commands (latex, pdflatex, dvipdf, dvips) */
+	GtkWidget *table = gtk_table_new (4, 2, FALSE);
+
+	label = gtk_label_new (_("latex command:"));
+	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+	GtkWidget *command_latex = gtk_entry_new ();
+	gtk_entry_set_text (GTK_ENTRY (command_latex),
+			latexila.prefs->command_latex);
+	g_signal_connect (G_OBJECT (command_latex), "changed",
+			G_CALLBACK (cb_pref_command_latex), NULL);
+	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 0, 1);
+	gtk_table_attach_defaults (GTK_TABLE (table), command_latex, 1, 2, 0, 1);
+
+	label = gtk_label_new (_("pdflatex command:"));
+	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+	GtkWidget *command_pdflatex = gtk_entry_new ();
+	gtk_entry_set_text (GTK_ENTRY (command_pdflatex),
+			latexila.prefs->command_pdflatex);
+	g_signal_connect (G_OBJECT (command_pdflatex), "changed",
+			G_CALLBACK (cb_pref_command_pdflatex), NULL);
+	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 1, 2);
+	gtk_table_attach_defaults (GTK_TABLE (table), command_pdflatex, 1, 2, 1, 2);
+
+	label = gtk_label_new (_("DVI to PDF command:"));
+	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+	GtkWidget *command_dvipdf = gtk_entry_new ();
+	gtk_entry_set_text (GTK_ENTRY (command_dvipdf),
+			latexila.prefs->command_dvipdf);
+	g_signal_connect (G_OBJECT (command_dvipdf), "changed",
+			G_CALLBACK (cb_pref_command_dvipdf), NULL);
+	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 2, 3);
+	gtk_table_attach_defaults (GTK_TABLE (table), command_dvipdf, 1, 2, 2, 3);
+
+	label = gtk_label_new (_("DVI to PS command:"));
+	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+	GtkWidget *command_dvips = gtk_entry_new ();
+	gtk_entry_set_text (GTK_ENTRY (command_dvips),
+			latexila.prefs->command_dvips);
+	g_signal_connect (G_OBJECT (command_dvips), "changed",
+			G_CALLBACK (cb_pref_command_dvips), NULL);
+	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 3, 4);
+	gtk_table_attach_defaults (GTK_TABLE (table), command_dvips, 1, 2, 3, 4);
+
+	gtk_box_pack_start (GTK_BOX (content_area), table, TRUE, TRUE, 5);
+
+	gtk_widget_show_all (content_area);
+}
+
