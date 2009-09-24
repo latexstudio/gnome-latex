@@ -19,8 +19,8 @@ Fri Sep 18, 2009 to Fri Sep 25, 2009
 	x CMake: use FindLATEX module
 	x preferences
 
-[-] command line option
-	- new document (--new-document)
+[x] command line option
+	x new document (--new-document)
 
 [-] document tabs
 	- possibility to move the tabs

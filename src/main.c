@@ -79,6 +79,7 @@ main (int argc, char *argv[])
 	GtkTreeViewColumn *column;
 
 	/* command line options */
+	gboolean option_new_document = FALSE;
 
 	gchar *latexila_nls_package = NULL;
 #ifdef LATEXILA_NLS_ENABLED
@@ -89,6 +90,9 @@ main (int argc, char *argv[])
 		{ "version", 'v', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_NO_ARG,
 			G_OPTION_ARG_CALLBACK, (gpointer) option_version,
 			N_("Display version informations"), NULL },
+		{ "new-document", 'n', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_NO_ARG,
+			G_OPTION_ARG_NONE, &option_new_document,
+			N_("Create new document"), NULL },
 		{NULL}
 	};
 
@@ -278,6 +282,10 @@ main (int argc, char *argv[])
 
 	if (! latexila.prefs->show_edit_toolbar)
 		gtk_widget_hide (latexila.edit_toolbar);
+
+	/* if --new-document option is used */
+	if (option_new_document)
+		cb_new ();
 
 	/* open documents given in arguments */
 	for (int i = 1 ; i < argc ; i++)
