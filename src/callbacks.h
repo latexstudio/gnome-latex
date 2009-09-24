@@ -54,6 +54,8 @@ void cb_cursor_moved (GtkTextBuffer *text_buffer, GtkTextIter *location,
 		GtkTextMark *mark, gpointer user_data);
 void cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page,
 		guint page_num, gpointer user_data);
+void cb_page_reordered (GtkNotebook *notebook, GtkWidget *child, guint page_num,
+		gpointer user_data);
 gboolean cb_delete_event (GtkWidget *widget, GdkEvent *event,
 		gpointer user_data);
 void cb_recent_item_activated (GtkRecentAction *action, gpointer user_data);

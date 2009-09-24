@@ -22,8 +22,8 @@ Fri Sep 18, 2009 to Fri Sep 25, 2009
 [x] command line option
 	x new document (--new-document)
 
-[-] document tabs
-	- possibility to move the tabs
+[x] document tabs
+	x possibility to move the tabs
 
 [-] undo/redo and the "saved" document property
 	- detect when the buffer is the same as in the file currently saved

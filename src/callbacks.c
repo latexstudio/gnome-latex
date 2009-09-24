@@ -711,10 +711,16 @@ cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num,
 	latexila.active_doc = g_list_nth_data (latexila.all_docs, page_num);
 	set_undo_redo_sensitivity ();
 	update_cursor_position_statusbar ();
-	/*
-	print_info ("page_num: %d", page_num);
-	print_info ("doc: %s", latexila.active_doc->path);
-	*/
+}
+
+void
+cb_page_reordered (GtkNotebook *notebook, GtkWidget *child, guint page_num,
+		gpointer user_data)
+{
+	// keep the same order in the GList all_docs than the tabs
+	latexila.all_docs = g_list_remove (latexila.all_docs, latexila.active_doc);
+	latexila.all_docs = g_list_insert (latexila.all_docs, latexila.active_doc,
+			page_num);
 }
 
 void
@@ -977,7 +983,7 @@ create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *t
 	gtk_widget_show_all (hbox);
 
 	gint index = gtk_notebook_append_page (latexila.notebook, sw, hbox);
-	//gtk_notebook_set_tab_reorderable (latexila.notebook, sw, TRUE);
+	gtk_notebook_set_tab_reorderable (latexila.notebook, sw, TRUE);
 	gtk_notebook_set_current_page (latexila.notebook, index);
 	
 	set_undo_redo_sensitivity ();

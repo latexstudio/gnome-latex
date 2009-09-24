@@ -191,6 +191,8 @@ main (int argc, char *argv[])
 	gtk_notebook_set_scrollable (GTK_NOTEBOOK (notebook), TRUE);
 	g_signal_connect (G_OBJECT (notebook), "switch-page",
 			G_CALLBACK (cb_page_change), NULL);
+	g_signal_connect (G_OBJECT (notebook), "page-reordered",
+			G_CALLBACK (cb_page_reordered), NULL);
 	gtk_paned_add1 (GTK_PANED (vpaned), notebook);
 
 	/* log zone */
