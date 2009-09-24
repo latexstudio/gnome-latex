@@ -36,5 +36,6 @@ Fri Sep 18, 2009 to Fri Sep 25, 2009
 		* view_document ()
 
 [x] bugs correction
+	x segfault when changing preferences if no document opened (line numbers and font)
 
 [-] update French translation

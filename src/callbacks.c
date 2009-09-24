@@ -711,6 +711,10 @@ cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num,
 	latexila.active_doc = g_list_nth_data (latexila.all_docs, page_num);
 	set_undo_redo_sensitivity ();
 	update_cursor_position_statusbar ();
+	/*
+	print_info ("page_num: %d", page_num);
+	print_info ("doc: %s", latexila.active_doc->path);
+	*/
 }
 
 void
@@ -855,6 +859,9 @@ open_new_document (const gchar *filename, const gchar *uri)
 void
 change_font_source_view (void)
 {
+	if (latexila.active_doc == NULL)
+		return;
+
 	// traverse the list
 	// an other solution is to call g_list_foreach ()
 	GList *current = latexila.all_docs;
@@ -970,6 +977,7 @@ create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *t
 	gtk_widget_show_all (hbox);
 
 	gint index = gtk_notebook_append_page (latexila.notebook, sw, hbox);
+	//gtk_notebook_set_tab_reorderable (latexila.notebook, sw, TRUE);
 	gtk_notebook_set_current_page (latexila.notebook, index);
 	
 	set_undo_redo_sensitivity ();

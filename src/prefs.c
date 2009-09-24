@@ -403,6 +403,9 @@ cb_pref_line_numbers (GtkToggleButton *toggle_button, gpointer user_data)
 	gboolean show_line_numbers = gtk_toggle_button_get_active (toggle_button);
 	latexila.prefs->show_line_numbers = show_line_numbers;
 
+	if (latexila.active_doc == NULL)
+		return;
+
 	// traverse the list
 	// an other solution is to call g_list_foreach ()
 	GList *current = latexila.all_docs;
