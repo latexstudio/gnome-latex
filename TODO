@@ -1,29 +1,6 @@
 TODO LaTeXila
 
-Fri Sep 18, 2009 to Fri Sep 25, 2009
-
-[x] LaTeX menu + new toolbar
-	x font styles: bold, italic, ...
-	x environments: center, flushleft, ...
-	x sectioning: part, chapter, section, ...
-	x size of characters
-	x list environments: itemize, enumerate, description
-	x various: label, ref, pageref, cite, footnote, index
-
-[x] symbol tables
-	x the categories must take the minimum place but the presentation must be nice
-		* homogeneous icons
-		* text under or to the right of the icons?
-
-[x] latex, pdflatex, dvips, dvipdf, ... commands
-	x CMake: use FindLATEX module
-	x preferences
-
-[x] command line option
-	x new document (--new-document)
-
-[x] document tabs
-	x possibility to move the tabs
+Fri Oct 2, 2009 to Fri Oct 9, 2009
 
 [-] undo/redo and the "saved" document property
 	- detect when the buffer is the same as in the file currently saved
@@ -35,7 +12,9 @@ Fri Sep 18, 2009 to Fri Sep 25, 2009
 		* convert_document ()
 		* view_document ()
 
+[-] symbol tables
+	- mathematical sets (N, Z, Q, R, C) in misc math
+
 [x] bugs correction
-	x segfault when changing preferences if no document opened (line numbers and font)
 
 [-] update French translation

@@ -27,11 +27,14 @@
 #include <glib/gstdio.h>
 #include <gtksourceview/gtksourceview.h>
 
+#include <sys/time.h>
+
 #include "main.h"
 #include "config.h"
 #include "actions.h"
 #include "print.h"
 
+static double difftimeval (struct timeval start, struct timeval end);
 static gchar * get_command_line (gchar **command);
 static void command_running_finished (void);
 static gboolean cb_watch_output_command (GIOChannel *channel,
@@ -40,6 +43,16 @@ static void add_action (gchar *title, gchar *command, gchar *command_output,
 		gboolean error);
 
 static GSList *command_output_list = NULL;
+static struct timeval time_start;
+static int nb_lines = 0;
+
+static double
+difftimeval (struct timeval start, struct timeval end)
+{
+    double seconds = end.tv_sec - start.tv_sec;
+    double microsec = end.tv_usec - start.tv_usec;
+    return seconds + microsec / 1000000.0;
+}
 
 static gchar *
 get_command_line (gchar **command)
@@ -104,6 +117,7 @@ command_running_finished (void)
 	g_slist_foreach (command_output_list, (GFunc) g_free, NULL);
 	g_slist_free (command_output_list);
 	command_output_list = NULL;
+	nb_lines = 0;
 }
 
 static gboolean
@@ -112,6 +126,14 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 {
 	if (condition == G_IO_HUP)
 	{
+		struct timeval time_end;
+		gettimeofday (&time_end, NULL);
+		print_info ("time: %f", difftimeval (time_start, time_end));
+
+		// the magic formula
+		while (gtk_events_pending ())
+			gtk_main_iteration ();
+
 		g_io_channel_unref (channel);
 		command_running_finished ();
 		return FALSE;
@@ -119,7 +141,7 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 	
 	GError *error = NULL;
 	gchar *line;
-	g_io_channel_read_line(channel, &line, NULL, NULL, &error);
+	g_io_channel_read_line (channel, &line, NULL, NULL, &error);
 
 	if (error != NULL)
 	{
@@ -128,17 +150,31 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 		return FALSE;
 	}
 
-	// print the command output line to the log zone
-	print_log_add (latexila.action_log->text_view, line, FALSE);
+	if (line != NULL)
+	{
+		// print the command output line to the log zone
+		print_log_add (latexila.action_log->text_view, line, FALSE);
 
-	// store temporarily the line to the GList
-	// We insert the line at the beginning of the list, so we avoid to traverse
-	// the entire list. The list is reversed when all elements have been added.
-	command_output_list = g_slist_prepend (command_output_list, line);
+		// store temporarily the line to the GList
+		// We insert the line at the beginning of the list, so we avoid to traverse
+		// the entire list. The list is reversed when all elements have been added.
+		command_output_list = g_slist_prepend (command_output_list, line);
+	}
 	
-	// the magic formula
-	while (gtk_events_pending ())
-		gtk_main_iteration ();
+	/* Apply the magic formula for the 200 first lines and then every 20 lines.
+	 * This is for the fluidity of the output, without that the lines do not
+	 * appear directly and it's ugly. But it is very slow, for a command that
+	 * execute for example in 10 seconds, it could take 250 seconds (!) if we
+	 * apply the magic formula for each line... But with commands that take 1
+	 * second or so there is not a big difference.
+	 */
+	if (nb_lines < 200 || nb_lines % 20 == 0)
+	{
+		while (gtk_events_pending ())
+			gtk_main_iteration ();
+	}
+
+	nb_lines++;
 
 	return TRUE;
 }
@@ -177,6 +213,10 @@ compile_document (gchar *title, gchar **command)
 		gtk_main_iteration ();
 
 	/* run the command */
+
+	// time
+	gettimeofday (&time_start, NULL);
+
 	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
 	GError *error = NULL;
 	GPid pid;
@@ -204,6 +244,8 @@ compile_document (gchar *title, gchar **command)
 	// the encoding of the output of the latex and the pdflatex commands is not
 	// UTF-8...
 	g_io_channel_set_encoding (out_channel, "ISO-8859-1", &error);
+
+	//g_io_channel_set_flags (out_channel, G_IO_FLAG_NONBLOCK, NULL);
 
 	if (error != NULL)
 	{
