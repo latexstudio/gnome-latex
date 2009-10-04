@@ -31,7 +31,7 @@
 
 #include "main.h"
 #include "config.h"
-#include "actions.h"
+#include "external_commands.h"
 #include "print.h"
 
 static double difftimeval (struct timeval start, struct timeval end);
@@ -39,12 +39,9 @@ static gchar * get_command_line (gchar **command);
 static void command_running_finished (void);
 static gboolean cb_watch_output_command (GIOChannel *channel,
 		GIOCondition condition, gpointer user_data);
-static void add_action (gchar *title, gchar *command, gchar *command_output,
-		gboolean error);
+static void add_action (gchar *title, gchar *command);
 
-static GSList *command_output_list = NULL;
 static struct timeval time_start;
-static int nb_lines = 0;
 
 static double
 difftimeval (struct timeval start, struct timeval end)
@@ -78,32 +75,14 @@ get_command_line (gchar **command)
 static void
 command_running_finished (void)
 {
-	// build the string containing all the lines of the command output
-	gchar *command_output_string = g_strdup ("");
-	gchar *tmp;
-	command_output_list = g_slist_reverse (command_output_list);
+	// the magic formula
+	while (gtk_events_pending ())
+		gtk_main_iteration ();
 
-	GSList *current = command_output_list;
-	do
-	{
-		gchar *line = g_slist_nth_data (current, 0);
-		tmp = g_strdup_printf ("%s%s", command_output_string, line);
-		g_free (command_output_string);
-		command_output_string = tmp;
-	}
-	while ((current = g_slist_next (current)) != NULL);
-	
-	// store the string to the action list store
-	GtkTreeIter iter;
-	if (gtk_tree_selection_get_selected (latexila.action_log->list_selection,
-				NULL, &iter))
-	{
-		gtk_list_store_set (latexila.action_log->list_store, &iter,
-				COLUMN_ACTION_COMMAND_OUTPUT, command_output_string,
-				-1);
-	}
-	else
-		print_warning ("no action selected in the list => the output command is not saved");
+	// measure the time
+	struct timeval time_end;
+	gettimeofday (&time_end, NULL);
+	print_info ("execution time: %f", difftimeval (time_start, time_end));
 
 	// unlock the action list
 	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log->list_view), TRUE);
@@ -112,30 +91,19 @@ command_running_finished (void)
 	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
 			"running-action");
 	gtk_statusbar_pop (latexila.statusbar, context_id);
-
-	g_free (command_output_string);
-	g_slist_foreach (command_output_list, (GFunc) g_free, NULL);
-	g_slist_free (command_output_list);
-	command_output_list = NULL;
-	nb_lines = 0;
 }
 
 static gboolean
 cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 		gpointer user_data)
 {
+	static int nb_lines = 0;
+
 	if (condition == G_IO_HUP)
 	{
-		struct timeval time_end;
-		gettimeofday (&time_end, NULL);
-		print_info ("time: %f", difftimeval (time_start, time_end));
-
-		// the magic formula
-		while (gtk_events_pending ())
-			gtk_main_iteration ();
-
 		g_io_channel_unref (channel);
 		command_running_finished ();
+		nb_lines = 0;
 		return FALSE;
 	}
 	
@@ -154,11 +122,6 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 	{
 		// print the command output line to the log zone
 		print_log_add (latexila.action_log->text_view, line, FALSE);
-
-		// store temporarily the line to the GList
-		// We insert the line at the beginning of the list, so we avoid to traverse
-		// the entire list. The list is reversed when all elements have been added.
-		command_output_list = g_slist_prepend (command_output_list, line);
 	}
 	
 	/* Apply the magic formula for the 200 first lines and then every 20 lines.
@@ -185,9 +148,11 @@ compile_document (gchar *title, gchar **command)
 	if (latexila.active_doc == NULL)
 		return;
 
-	gchar *command_line = get_command_line (command);
 	gchar *command_output;
-	gboolean is_error = TRUE;
+
+	gchar *command_line = get_command_line (command);
+	add_action (title, command_line);
+	g_free (command_line);
 
 	/* the current document is a *.tex file? */
 	gboolean tex_file = g_str_has_suffix (latexila.active_doc->path, ".tex");
@@ -195,10 +160,8 @@ compile_document (gchar *title, gchar **command)
 	{
 		command_output = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
 				g_path_get_basename (latexila.active_doc->path));
-
-		add_action (title, command_line, command_output, is_error);
+		print_log_add (latexila.action_log->text_view, command_output, TRUE);
 		g_free (command_output);
-		g_free (command_line);
 		return;
 	}
 
@@ -212,9 +175,10 @@ compile_document (gchar *title, gchar **command)
 	while (gtk_events_pending ())
 		gtk_main_iteration ();
 
+
 	/* run the command */
 
-	// time
+	// measure the time
 	gettimeofday (&time_start, NULL);
 
 	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
@@ -223,18 +187,17 @@ compile_document (gchar *title, gchar **command)
 	gint out;
 	g_spawn_async_with_pipes (dir, command, NULL, G_SPAWN_SEARCH_PATH, NULL,
 			NULL, &pid, NULL, &out, NULL, &error);
+	g_free (dir);
 
 	// an error occured
 	if (error != NULL)
 	{
 		command_output = g_strdup_printf (_("execution failed: %s"),
 				error->message);
-		add_action (title, command_line, command_output, is_error);
+		print_log_add (latexila.action_log->text_view, command_output, TRUE);
 
 		g_free (command_output);
-		g_free (command_line);
 		g_error_free (error);
-		error = NULL;
 		return;
 	}
 
@@ -251,16 +214,12 @@ compile_document (gchar *title, gchar **command)
 	{
 		command_output = g_strdup_printf (
 				"conversion of the command output failed: %s", error->message);
-		add_action (title, command_line, command_output, is_error);
+		print_log_add (latexila.action_log->text_view, command_output, TRUE);
 
 		g_free (command_output);
-		g_free (command_line);
 		g_error_free (error);
-		error = NULL;
 		return;
 	}
-
-	is_error = FALSE;
 
 	// Lock the action list so the user can not view an other action while the
 	// compilation is running.
@@ -268,21 +227,9 @@ compile_document (gchar *title, gchar **command)
 	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log->list_view),
 			FALSE);
 
-	add_action (title, command_line, "", is_error);
-
-	// All the lines of the command output will be store temporarily in a GSList.
-	// When the command is finished, the GSList is traversed and the full string
-	// is store to the action list.
-	// We use here a GSList and not a GArray or a GList because insertions
-	// of new elements must be as fast as possible, and the list is iterated in
-	// only one direction.
-
 	// add watches to channels
 	g_io_add_watch (out_channel, G_IO_IN | G_IO_HUP,
 			(GIOFunc) cb_watch_output_command, NULL);
-
-	g_free (command_line);
-	g_free (dir);
 }
 
 void
@@ -291,30 +238,32 @@ view_document (gchar *title, gchar *doc_extension)
 	if (latexila.active_doc == NULL)
 		return;
 
-	gchar *command, *command_output;
-	gboolean is_error = TRUE;
-
 	GError *error = NULL;
+	gchar *command_output;
+
 	GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
 
 	/* replace .tex by doc_extension (.pdf, .dvi, ...) */
 	gchar *doc_path = g_regex_replace_literal (regex, latexila.active_doc->path,
 			-1, 0, doc_extension, 0, NULL);
 
-	command = g_strdup_printf ("%s %s", latexila.prefs->command_view, doc_path);
+	gchar *command = g_strdup_printf ("%s %s", latexila.prefs->command_view,
+			doc_path);
+	add_action (title, command);
 
 	/* the current document is a *.tex file? */
 	gboolean tex_file = g_regex_match (regex, latexila.active_doc->path, 0, NULL);
+	g_regex_unref (regex);
+
 	if (! tex_file)
 	{
 		command_output = g_strdup_printf (_("failed: %s is not a *.tex file"),
 				g_path_get_basename (latexila.active_doc->path));
+		print_log_add (latexila.action_log->text_view, command_output, TRUE);
 
-		add_action (title, command, command_output, is_error);
 		g_free (command);
 		g_free (command_output);
 		g_free (doc_path);
-		g_regex_unref (regex);
 		return;
 	}
 
@@ -324,18 +273,19 @@ view_document (gchar *title, gchar *doc_extension)
 		command_output = g_strdup_printf (
 				_("%s does not exist. If this is not already made, compile the document with the right command."),
 				g_path_get_basename (doc_path));
+		print_log_add (latexila.action_log->text_view, command_output, TRUE);
 
-		add_action (title, command, command_output, is_error);
 		g_free (command);
 		g_free (command_output);
 		g_free (doc_path);
-		g_regex_unref (regex);
 		return;
 	}
 
 	/* run the command */
 	print_info ("execution of the command: %s", command);
 	g_spawn_command_line_async (command, &error);
+
+	gboolean is_error = TRUE;
 
 	if (error != NULL)
 	{
@@ -350,12 +300,11 @@ view_document (gchar *title, gchar *doc_extension)
 		is_error = FALSE;
 	}
 
-	add_action (title, command, command_output, is_error);
+	print_log_add (latexila.action_log->text_view, command_output, is_error);
 
 	g_free (command);
 	g_free (command_output);
 	g_free (doc_path);
-	g_regex_unref (regex);
 }
 
 void
@@ -364,17 +313,19 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 	if (latexila.active_doc == NULL)
 		return;
 
+	GError *error = NULL;
 	gchar *full_command, *command_output;
 	gboolean is_error = TRUE;
 
-	GError *error = NULL;
 	GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
 
 	/* replace .tex by doc_extension (.pdf, .dvi, ...) */
 	gchar *doc_path = g_regex_replace_literal (regex,
 			latexila.active_doc->path, -1, 0, doc_extension, 0, NULL);
+	g_regex_unref (regex);
 
 	full_command = g_strdup_printf ("%s %s", command, doc_path);
+	add_action (title, full_command);
 
 	/* the document to convert exist? */
 	if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
@@ -382,12 +333,11 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 		command_output = g_strdup_printf (
 				_("%s does not exist. If this is not already made, compile the document with the right command."),
 				g_path_get_basename (doc_path));
+		print_log_add (latexila.action_log->text_view, command_output, is_error);
 
-		add_action (title, full_command, command_output, is_error);
 		g_free (full_command);
 		g_free (command_output);
 		g_free (doc_path);
-		g_regex_unref (regex);
 		return;
 	}
 
@@ -421,34 +371,48 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 	else
 		is_error = FALSE;
 
-	add_action (title, full_command, command_output, is_error);
+	print_log_add (latexila.action_log->text_view, command_output, is_error);
 
 	gtk_statusbar_pop (latexila.statusbar, context_id);
 
 	g_free (full_command);
 	g_free (command_output);
 	g_free (doc_path);
-	g_regex_unref (regex);
 }
 
 static void
-add_action (gchar *title, gchar *command, gchar *command_output, gboolean error)
+add_action (gchar *title, gchar *command)
 {
 	static gint num = 1;
 	gchar *title2 = g_strdup_printf ("%d. %s", num, title);
+
+	// create a new text buffer
+	GtkTextBuffer *new_text_buffer = gtk_text_buffer_new (
+			latexila.action_log->tag_table);
+	latexila.action_log->text_buffer = new_text_buffer;
+	gtk_text_view_set_buffer (latexila.action_log->text_view, new_text_buffer);
+
+	// title
+	GtkTextIter end;
+	gtk_text_buffer_get_end_iter (new_text_buffer, &end);
+	gtk_text_buffer_insert_with_tags_by_name (new_text_buffer, &end, title2, -1,
+			"bold", NULL);
+
+	// command
+    gtk_text_buffer_get_end_iter (new_text_buffer, &end);
+    gchar *command2 = g_strdup_printf ("\n$ %s\n", command);
+    gtk_text_buffer_insert (new_text_buffer, &end, command2, -1);
+    g_free (command2);
 
 	// append an new entry to the action list
 	GtkTreeIter iter;
 	gtk_list_store_append (latexila.action_log->list_store, &iter);
 	gtk_list_store_set (latexila.action_log->list_store, &iter,
 			COLUMN_ACTION_TITLE, title2,
-			COLUMN_ACTION_COMMAND, command,
-			COLUMN_ACTION_COMMAND_OUTPUT, command_output,
-			COLUMN_ACTION_ERROR, error,
+			COLUMN_ACTION_TEXTBUFFER, new_text_buffer,
 			-1);
 
-	// the new entry is selected
-	// cb_action_list_changed () is called, so the details are showed
+	// select the new entry
 	gtk_tree_selection_select_iter (latexila.action_log->list_selection, &iter);
 
 	// scroll to the end
@@ -460,4 +424,3 @@ add_action (gchar *title, gchar *command, gchar *command_output, gboolean error)
 	num++;
 	g_free (title2);
 }
-

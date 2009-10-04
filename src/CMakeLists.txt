@@ -3,7 +3,7 @@ SET(latexila_src main.c			main.h
 		 cb_latex.c		cb_latex.h
 		 print.c		print.h
 		 symbols.c		symbols.h
-		 actions.c		actions.h
+		 external_commands.c	external_commands.h
 		 prefs.c		prefs.h
 		 ui.c			ui.h
 		 tool_menu_action.c	tool_menu_action.h)

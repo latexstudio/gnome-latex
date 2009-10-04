@@ -51,6 +51,7 @@ typedef struct
 	GtkTreeSelection	*list_selection;
 	GtkTextView			*text_view;
 	GtkTextBuffer		*text_buffer;
+	GtkTextTagTable		*tag_table;
 } action_log_t;
 
 // symbols tables
@@ -110,9 +111,7 @@ extern latexila_t latexila;
 enum action
 {
 	COLUMN_ACTION_TITLE,
-	COLUMN_ACTION_COMMAND,
-	COLUMN_ACTION_COMMAND_OUTPUT,
-	COLUMN_ACTION_ERROR,
+	COLUMN_ACTION_TEXTBUFFER,
 	N_COLUMNS_ACTION
 };
 

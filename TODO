@@ -7,7 +7,7 @@ Fri Oct 2, 2009 to Fri Oct 9, 2009
 
 [-] execution of the actions
 	- verify that the method used for compile_document () is correct
-	- optimisations?
+	- optimizations?
 	- same behavior than compile_document () for:
 		* convert_document ()
 		* view_document ()

@@ -34,7 +34,7 @@
 #include "config.h"
 #include "callbacks.h"
 #include "print.h"
-#include "actions.h"
+#include "external_commands.h"
 #include "prefs.h"
 
 static void create_document_in_new_tab (const gchar *path, const gchar *text,
@@ -617,16 +617,12 @@ cb_action_list_changed (GtkTreeSelection *selection, gpointer user_data)
 	GtkTreeModel *model;
 	if (gtk_tree_selection_get_selected (selection, &model, &iter))
 	{
-		gchar *title, *command, *command_output;
-		gboolean error;
+		GtkTextBuffer *text_buffer;
 		gtk_tree_model_get (model, &iter,
-				COLUMN_ACTION_TITLE, &title,
-				COLUMN_ACTION_COMMAND, &command,
-				COLUMN_ACTION_COMMAND_OUTPUT, &command_output,
-				COLUMN_ACTION_ERROR, &error,
+				COLUMN_ACTION_TEXTBUFFER, &text_buffer,
 				-1);
-		print_log (latexila.action_log->text_buffer, title, command,
-				command_output, error);
+
+		gtk_text_view_set_buffer (latexila.action_log->text_view, text_buffer);
 	}
 }
 
