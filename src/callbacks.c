@@ -531,18 +531,15 @@ cb_latex (void)
 	if (latexila.active_doc == NULL)
 		return;
 
+	// TODO save document if not saved
+
 	gchar *title = _("Compile (latex)");
-	gchar *command[] = {
-		g_strdup (latexila.prefs->command_latex),
-		"-interaction=nonstopmode",
-		g_strdup (latexila.active_doc->path),
-		NULL
-	};
+	gchar *command = g_strdup_printf ("%s -interaction=nonstopmode %s", 
+			latexila.prefs->command_latex, latexila.active_doc->path);
 
 	compile_document (title, command);
-
-	g_free (command[0]);
-	g_free (command[2]);
+	
+	g_free (command);
 }
 
 void
@@ -552,17 +549,12 @@ cb_pdflatex (void)
 		return;
 
 	gchar *title = _("Compile (pdflatex)");
-	gchar *command[] = {
-		g_strdup (latexila.prefs->command_pdflatex),
-		"-interaction=nonstopmode",
-		g_strdup (latexila.active_doc->path),
-		NULL
-	};
+	gchar *command = g_strdup_printf ("%s -interaction=nonstopmode %s", 
+			latexila.prefs->command_pdflatex, latexila.active_doc->path);
 
 	compile_document (title, command);
 
-	g_free (command[0]);
-	g_free (command[2]);
+	g_free (command);
 }
 
 void

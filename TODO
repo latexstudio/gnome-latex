@@ -5,12 +5,13 @@ Fri Oct 2, 2009 to Fri Oct 9, 2009
 [-] undo/redo and the "saved" document property
 	- detect when the buffer is the same as in the file currently saved
 
-[-] execution of the actions
-	- verify that the method used for compile_document () is correct
-	- optimizations?
-	- same behavior than compile_document () for:
+[x] execution of the actions
+	~ verify that the method used for compile_document () is correct
+	x same behavior than compile_document () for:
 		* convert_document ()
-		* view_document ()
+
+[-] log zone
+	- keep only the 5 last actions
 
 [-] symbol tables
 	- mathematical sets (N, Z, Q, R, C) in misc math

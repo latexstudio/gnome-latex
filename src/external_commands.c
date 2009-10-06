@@ -27,50 +27,15 @@
 #include <glib/gstdio.h>
 #include <gtksourceview/gtksourceview.h>
 
-#include <sys/time.h>
-
 #include "main.h"
 #include "config.h"
 #include "external_commands.h"
 #include "print.h"
 
-static double difftimeval (struct timeval start, struct timeval end);
-static gchar * get_command_line (gchar **command);
 static void command_running_finished (void);
 static gboolean cb_watch_output_command (GIOChannel *channel,
 		GIOCondition condition, gpointer user_data);
 static void add_action (gchar *title, gchar *command);
-
-static struct timeval time_start;
-
-static double
-difftimeval (struct timeval start, struct timeval end)
-{
-    double seconds = end.tv_sec - start.tv_sec;
-    double microsec = end.tv_usec - start.tv_usec;
-    return seconds + microsec / 1000000.0;
-}
-
-static gchar *
-get_command_line (gchar **command)
-{
-	if (command[0] == NULL)
-		return NULL;
-
-	gchar *command_line = g_strdup (command[0]);
-	gchar *tmp;
-	gchar **arg = command;
-	arg++;
-	while (*arg != NULL)
-	{
-		tmp = g_strdup_printf ("%s %s", command_line, *arg);
-		g_free (command_line);
-		command_line = tmp;
-		arg++;
-	}
-	
-	return command_line;
-}
 
 static void
 command_running_finished (void)
@@ -78,11 +43,6 @@ command_running_finished (void)
 	// the magic formula
 	while (gtk_events_pending ())
 		gtk_main_iteration ();
-
-	// measure the time
-	struct timeval time_end;
-	gettimeofday (&time_end, NULL);
-	print_info ("execution time: %f", difftimeval (time_start, time_end));
 
 	// unlock the action list
 	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log->list_view), TRUE);
@@ -143,16 +103,14 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 }
 
 void
-compile_document (gchar *title, gchar **command)
+compile_document (gchar *title, gchar *command)
 {
 	if (latexila.active_doc == NULL)
 		return;
 
 	gchar *command_output;
 
-	gchar *command_line = get_command_line (command);
-	add_action (title, command_line);
-	g_free (command_line);
+	add_action (title, command);
 
 	/* the current document is a *.tex file? */
 	gboolean tex_file = g_str_has_suffix (latexila.active_doc->path, ".tex");
@@ -177,16 +135,21 @@ compile_document (gchar *title, gchar **command)
 
 
 	/* run the command */
+	print_info ("execution of the command: %s", command);
 
-	// measure the time
-	gettimeofday (&time_start, NULL);
+	gchar *argv[] = {
+		"/bin/sh",
+		"-c",
+		command,
+		NULL
+	};
 
 	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
 	GError *error = NULL;
 	GPid pid;
-	gint out;
-	g_spawn_async_with_pipes (dir, command, NULL, G_SPAWN_SEARCH_PATH, NULL,
-			NULL, &pid, NULL, &out, NULL, &error);
+	gint out, err;
+	g_spawn_async_with_pipes (dir, argv, NULL, G_SPAWN_SEARCH_PATH, NULL,
+			NULL, &pid, NULL, &out, &err, &error);
 	g_free (dir);
 
 	// an error occured
@@ -203,12 +166,12 @@ compile_document (gchar *title, gchar **command)
 
 	// create the channels
 	GIOChannel *out_channel = g_io_channel_unix_new (out);
+	GIOChannel *err_channel = g_io_channel_unix_new (err);
 
 	// the encoding of the output of the latex and the pdflatex commands is not
 	// UTF-8...
 	g_io_channel_set_encoding (out_channel, "ISO-8859-1", &error);
-
-	//g_io_channel_set_flags (out_channel, G_IO_FLAG_NONBLOCK, NULL);
+	g_io_channel_set_encoding (err_channel, "ISO-8859-1", &error);
 
 	if (error != NULL)
 	{
@@ -229,6 +192,8 @@ compile_document (gchar *title, gchar **command)
 
 	// add watches to channels
 	g_io_add_watch (out_channel, G_IO_IN | G_IO_HUP,
+			(GIOFunc) cb_watch_output_command, NULL);
+	g_io_add_watch (err_channel, G_IO_IN | G_IO_HUP,
 			(GIOFunc) cb_watch_output_command, NULL);
 }
 
@@ -313,9 +278,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 	if (latexila.active_doc == NULL)
 		return;
 
-	GError *error = NULL;
-	gchar *full_command, *command_output;
-	gboolean is_error = TRUE;
+	gchar *command_output;
 
 	GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
 
@@ -324,7 +287,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 			latexila.active_doc->path, -1, 0, doc_extension, 0, NULL);
 	g_regex_unref (regex);
 
-	full_command = g_strdup_printf ("%s %s", command, doc_path);
+	gchar *full_command = g_strdup_printf ("%s %s", command, doc_path);
 	add_action (title, full_command);
 
 	/* the document to convert exist? */
@@ -333,13 +296,15 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 		command_output = g_strdup_printf (
 				_("%s does not exist. If this is not already made, compile the document with the right command."),
 				g_path_get_basename (doc_path));
-		print_log_add (latexila.action_log->text_view, command_output, is_error);
+		print_log_add (latexila.action_log->text_view, command_output, TRUE);
 
-		g_free (full_command);
 		g_free (command_output);
+		g_free (full_command);
 		g_free (doc_path);
 		return;
 	}
+
+	g_free (doc_path);
 
 	/* print a message in the statusbar */
 	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
@@ -351,33 +316,71 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 	while (gtk_events_pending ())
 		gtk_main_iteration ();
 
-	/* run the command in the directory where the .tex is */
+	/* run the command */
 	print_info ("execution of the command: %s", full_command);
 
-	gchar *dir_backup = g_get_current_dir ();
+	gchar *argv[] = {
+		"/bin/sh",
+		"-c",
+		full_command,
+		NULL
+	};
+
+	GError *error = NULL;
 	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
-	g_chdir (dir);
-	g_spawn_command_line_sync (full_command, &command_output, NULL, NULL, &error);
-	g_chdir (dir_backup);
-	
+	GPid pid;
+	gint out, err;
+	g_spawn_async_with_pipes (dir, argv, NULL, G_SPAWN_SEARCH_PATH, NULL,
+			NULL, &pid, NULL, &out, &err, &error);
+
+	g_free (dir);
+	g_free (full_command);
+
 	// an error occured
 	if (error != NULL)
 	{
 		command_output = g_strdup_printf (_("execution failed: %s"),
 				error->message);
+		print_log_add (latexila.action_log->text_view, command_output, TRUE);
+
+		g_free (command_output);
 		g_error_free (error);
-		error = NULL;
+		return;
 	}
-	else
-		is_error = FALSE;
 
-	print_log_add (latexila.action_log->text_view, command_output, is_error);
+	// create the channels
+	GIOChannel *out_channel = g_io_channel_unix_new (out);
+	GIOChannel *err_channel = g_io_channel_unix_new (err);
 
-	gtk_statusbar_pop (latexila.statusbar, context_id);
+	/*
+	// the encoding of the output of the latex and the pdflatex commands is not
+	// UTF-8...
+	g_io_channel_set_encoding (out_channel, "ISO-8859-1", &error);
+	g_io_channel_set_encoding (err_channel, "ISO-8859-1", &error);
+	
+	if (error != NULL)
+	{
+		command_output = g_strdup_printf (
+				"conversion of the command output failed: %s", error->message);
+		print_log_add (latexila.action_log->text_view, command_output, TRUE);
 
-	g_free (full_command);
-	g_free (command_output);
-	g_free (doc_path);
+		g_free (command_output);
+		g_error_free (error);
+		return;
+	}
+	*/
+
+	// Lock the action list so the user can not view an other action while the
+	// compilation is running.
+	// It will be unlock when the compilation is finished.
+	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log->list_view),
+			FALSE);
+
+	// add watches to channels
+	g_io_add_watch (out_channel, G_IO_IN | G_IO_HUP,
+			(GIOFunc) cb_watch_output_command, NULL);
+	g_io_add_watch (err_channel, G_IO_IN | G_IO_HUP,
+			(GIOFunc) cb_watch_output_command, NULL);
 }
 
 static void
