@@ -18,6 +18,7 @@ Fri Oct 2, 2009 to Fri Oct 9, 2009
 	x add a space after the symbols
 	x set the focus on the text after inserting a symbol
 
-[x] bugs correction
+[-] bugs correction
+	- external commands: the commands must run even if the path of the file contains spaces
 
 [-] update French translation
