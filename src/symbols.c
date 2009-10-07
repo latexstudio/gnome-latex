@@ -941,6 +941,8 @@ cb_symbol_selected (GtkIconView *icon_view, gpointer user_data)
 				GTK_TEXT_BUFFER (latexila.active_doc->source_buffer), " ", -1);
 		gtk_text_buffer_end_user_action (buffer);
 
+		gtk_widget_grab_focus (latexila.active_doc->source_view);
+
 		g_free (latex_command);
 	}
 
