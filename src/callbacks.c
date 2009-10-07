@@ -534,12 +534,17 @@ cb_latex (void)
 	// TODO save document if not saved
 
 	gchar *title = _("Compile (latex)");
-	gchar *command = g_strdup_printf ("%s -interaction=nonstopmode %s", 
-			latexila.prefs->command_latex, latexila.active_doc->path);
+	gchar *command[] = {
+        g_strdup (latexila.prefs->command_latex),
+        "-interaction=nonstopmode",
+        g_strdup (latexila.active_doc->path),
+        NULL
+    };
 
-	compile_document (title, command);
-	
-	g_free (command);
+    compile_document (title, command);
+
+    g_free (command[0]);
+    g_free (command[2]);
 }
 
 void
@@ -549,12 +554,17 @@ cb_pdflatex (void)
 		return;
 
 	gchar *title = _("Compile (pdflatex)");
-	gchar *command = g_strdup_printf ("%s -interaction=nonstopmode %s", 
-			latexila.prefs->command_pdflatex, latexila.active_doc->path);
+	gchar *command[] = {
+        g_strdup (latexila.prefs->command_pdflatex),
+        "-interaction=nonstopmode",
+        g_strdup (latexila.active_doc->path),
+        NULL
+    };
 
-	compile_document (title, command);
+    compile_document (title, command);
 
-	g_free (command);
+    g_free (command[0]);
+    g_free (command[2]);
 }
 
 void
@@ -590,6 +600,7 @@ cb_dvi_to_pdf (void)
 	if (latexila.active_doc == NULL)
 		return;
 
+	// TODO delete ".dvi"
 	convert_document (_("DVI to PDF"), ".dvi", latexila.prefs->command_dvipdf);
 }
 

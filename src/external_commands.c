@@ -32,10 +32,32 @@
 #include "external_commands.h"
 #include "print.h"
 
+static gchar * get_command_line (gchar **command);
 static void command_running_finished (void);
 static gboolean cb_watch_output_command (GIOChannel *channel,
 		GIOCondition condition, gpointer user_data);
 static void add_action (gchar *title, gchar *command);
+
+static gchar *
+get_command_line (gchar **command)
+{
+	if (command[0] == NULL)
+		return NULL;
+
+	gchar *command_line = g_strdup (command[0]);
+	gchar *tmp;
+	gchar **arg = command;
+	arg++;
+	while (*arg != NULL)
+	{
+		tmp = g_strdup_printf ("%s %s", command_line, *arg);
+		g_free (command_line);
+		command_line = tmp;
+		arg++;
+	}
+
+	return command_line;
+}
 
 static void
 command_running_finished (void)
@@ -103,14 +125,17 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 }
 
 void
-compile_document (gchar *title, gchar *command)
+compile_document (gchar *title, gchar **command)
 {
 	if (latexila.active_doc == NULL)
 		return;
 
 	gchar *command_output;
 
-	add_action (title, command);
+	gchar *command_line = get_command_line (command);
+	add_action (title, command_line);
+	print_info ("execution of the command: %s", command_line);
+	g_free (command_line);
 
 	/* the current document is a *.tex file? */
 	gboolean tex_file = g_str_has_suffix (latexila.active_doc->path, ".tex");
@@ -135,20 +160,11 @@ compile_document (gchar *title, gchar *command)
 
 
 	/* run the command */
-	print_info ("execution of the command: %s", command);
-
-	gchar *argv[] = {
-		"/bin/sh",
-		"-c",
-		command,
-		NULL
-	};
-
 	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
 	GError *error = NULL;
 	GPid pid;
 	gint out, err;
-	g_spawn_async_with_pipes (dir, argv, NULL, G_SPAWN_SEARCH_PATH, NULL,
+	g_spawn_async_with_pipes (dir, command, NULL, G_SPAWN_SEARCH_PATH, NULL,
 			NULL, &pid, NULL, &out, &err, &error);
 	g_free (dir);
 
@@ -203,7 +219,6 @@ view_document (gchar *title, gchar *doc_extension)
 	if (latexila.active_doc == NULL)
 		return;
 
-	GError *error = NULL;
 	gchar *command_output;
 
 	GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
@@ -212,9 +227,11 @@ view_document (gchar *title, gchar *doc_extension)
 	gchar *doc_path = g_regex_replace_literal (regex, latexila.active_doc->path,
 			-1, 0, doc_extension, 0, NULL);
 
-	gchar *command = g_strdup_printf ("%s %s", latexila.prefs->command_view,
+	gchar *command_line = g_strdup_printf ("%s %s", latexila.prefs->command_view,
 			doc_path);
-	add_action (title, command);
+	add_action (title, command_line);
+	print_info ("execution of the command: %s", command_line);
+	g_free (command_line);
 
 	/* the current document is a *.tex file? */
 	gboolean tex_file = g_regex_match (regex, latexila.active_doc->path, 0, NULL);
@@ -226,7 +243,6 @@ view_document (gchar *title, gchar *doc_extension)
 				g_path_get_basename (latexila.active_doc->path));
 		print_log_add (latexila.action_log->text_view, command_output, TRUE);
 
-		g_free (command);
 		g_free (command_output);
 		g_free (doc_path);
 		return;
@@ -240,15 +256,19 @@ view_document (gchar *title, gchar *doc_extension)
 				g_path_get_basename (doc_path));
 		print_log_add (latexila.action_log->text_view, command_output, TRUE);
 
-		g_free (command);
 		g_free (command_output);
 		g_free (doc_path);
 		return;
 	}
 
 	/* run the command */
-	print_info ("execution of the command: %s", command);
-	g_spawn_command_line_async (command, &error);
+	// we use here g_spawn_async () and not g_spawn_command_line_async ()
+	// because the spaces in doc_path are not escaped, so with the command line
+	// it doesn't work fine...
+	
+	GError *error = NULL;
+	gchar *argv[] = {latexila.prefs->command_view, doc_path, NULL};
+	g_spawn_async (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, &error);
 
 	gboolean is_error = TRUE;
 
@@ -267,7 +287,6 @@ view_document (gchar *title, gchar *doc_extension)
 
 	print_log_add (latexila.action_log->text_view, command_output, is_error);
 
-	g_free (command);
 	g_free (command_output);
 	g_free (doc_path);
 }
@@ -289,6 +308,8 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 
 	gchar *full_command = g_strdup_printf ("%s %s", command, doc_path);
 	add_action (title, full_command);
+	print_info ("execution of the command: %s", full_command);
+	g_free (full_command);
 
 	/* the document to convert exist? */
 	if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
@@ -299,12 +320,9 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 		print_log_add (latexila.action_log->text_view, command_output, TRUE);
 
 		g_free (command_output);
-		g_free (full_command);
 		g_free (doc_path);
 		return;
 	}
-
-	g_free (doc_path);
 
 	/* print a message in the statusbar */
 	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
@@ -317,14 +335,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 		gtk_main_iteration ();
 
 	/* run the command */
-	print_info ("execution of the command: %s", full_command);
-
-	gchar *argv[] = {
-		"/bin/sh",
-		"-c",
-		full_command,
-		NULL
-	};
+	gchar *argv[] = {command, doc_path, NULL};
 
 	GError *error = NULL;
 	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
@@ -334,7 +345,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 			NULL, &pid, NULL, &out, &err, &error);
 
 	g_free (dir);
-	g_free (full_command);
+	g_free (doc_path);
 
 	// an error occured
 	if (error != NULL)
@@ -351,24 +362,6 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 	// create the channels
 	GIOChannel *out_channel = g_io_channel_unix_new (out);
 	GIOChannel *err_channel = g_io_channel_unix_new (err);
-
-	/*
-	// the encoding of the output of the latex and the pdflatex commands is not
-	// UTF-8...
-	g_io_channel_set_encoding (out_channel, "ISO-8859-1", &error);
-	g_io_channel_set_encoding (err_channel, "ISO-8859-1", &error);
-	
-	if (error != NULL)
-	{
-		command_output = g_strdup_printf (
-				"conversion of the command output failed: %s", error->message);
-		print_log_add (latexila.action_log->text_view, command_output, TRUE);
-
-		g_free (command_output);
-		g_error_free (error);
-		return;
-	}
-	*/
 
 	// Lock the action list so the user can not view an other action while the
 	// compilation is running.
