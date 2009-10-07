@@ -15,7 +15,7 @@ Fri Oct 2, 2009 to Fri Oct 9, 2009
 
 [-] symbol tables
 	- mathematical sets (N, Z, Q, R, C) in misc math
-	- add a space after the symbols
+	x add a space after the symbols
 	- set the focus on the text after inserting a symbol
 
 [x] bugs correction
