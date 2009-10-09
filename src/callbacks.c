@@ -531,7 +531,7 @@ cb_latex (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	// TODO save document if not saved
+	cb_save ();
 
 	gchar *title = _("Compile (latex)");
 	gchar *command[] = {
@@ -552,6 +552,8 @@ cb_pdflatex (void)
 {
 	if (latexila.active_doc == NULL)
 		return;
+
+	cb_save ();
 
 	gchar *title = _("Compile (pdflatex)");
 	gchar *command[] = {
