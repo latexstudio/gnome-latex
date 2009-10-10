@@ -86,17 +86,29 @@ typedef struct
 
 typedef struct
 {
+	GtkAction *undo;
+	GtkAction *redo;
+	GtkAction *compile_latex;
+	GtkAction *compile_pdflatex;
+	GtkAction *dvi_to_pdf;
+	GtkAction *dvi_to_ps;
+	GtkAction *view_dvi;
+	GtkAction *view_pdf;
+	GtkAction *view_ps;
+} actions_t;
+
+typedef struct
+{
 	GList			*all_docs;
 	document_t		*active_doc;
 	action_log_t	action_log;
 	symbols_t		symbols;
 	preferences_t	prefs;
+	actions_t		actions;
 	GtkWindow		*main_window;
 	GtkNotebook		*notebook;
 	GtkStatusbar	*statusbar;
 	GtkStatusbar	*cursor_position;
-	GtkAction		*undo;
-	GtkAction		*redo;
 	GtkPaned		*main_hpaned;
 	GtkPaned		*vpaned;
 	GtkPaned		*log_hpaned;

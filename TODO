@@ -2,8 +2,8 @@ TODO LaTeXila
 
 Sat Oct 10, 2009 to Fri Oct 16, 2009
 
-[-] execution of the actions
-	- sensitivity of the actions when an action is running
+[x] execution of the actions
+	x sensitivity of the actions when an action is running
 
 [-] log zone
 	- keep only the 5 last actions

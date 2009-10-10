@@ -1097,8 +1097,8 @@ set_undo_redo_sensitivity (void)
 		can_redo = gtk_source_buffer_can_redo (latexila.active_doc->source_buffer);
 	}
 
-	gtk_action_set_sensitive (latexila.undo, can_undo);
-	gtk_action_set_sensitive (latexila.redo, can_redo);
+	gtk_action_set_sensitive (latexila.actions.undo, can_undo);
+	gtk_action_set_sensitive (latexila.actions.redo, can_redo);
 }
 
 static void

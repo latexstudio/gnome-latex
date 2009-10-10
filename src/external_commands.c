@@ -37,6 +37,7 @@ static void command_running_finished (void);
 static gboolean cb_watch_output_command (GIOChannel *channel,
 		GIOCondition condition, gpointer user_data);
 static void add_action (gchar *title, gchar *command);
+static void set_action_sensitivity (gboolean sensitive);
 
 static gchar *
 get_command_line (gchar **command)
@@ -66,8 +67,8 @@ command_running_finished (void)
 	while (gtk_events_pending ())
 		gtk_main_iteration ();
 
-	// unlock the action list
-	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log.list_view), TRUE);
+	// unlock the action list and all the build actions
+	set_action_sensitivity (TRUE);
 
 	// pop the message from the statusbar
 	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
@@ -80,14 +81,25 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 		gpointer user_data)
 {
 	static int nb_lines = 0;
+	static int nb_channels_active = 2;
 
 	if (condition == G_IO_HUP)
 	{
+		print_info ("G_IO_HUP");
 		g_io_channel_unref (channel);
-		command_running_finished ();
-		nb_lines = 0;
+		nb_channels_active--;
+		
+		if (nb_channels_active == 0)
+		{
+			command_running_finished ();
+			nb_lines = 0;
+			nb_channels_active = 2;
+		}
+
 		return FALSE;
 	}
+
+	print_info ("cb_watch_output_command ()");
 	
 	GError *error = NULL;
 	gchar *line;
@@ -200,11 +212,8 @@ compile_document (gchar *title, gchar **command)
 		return;
 	}
 
-	// Lock the action list so the user can not view an other action while the
-	// compilation is running.
-	// It will be unlock when the compilation is finished.
-	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log.list_view),
-			FALSE);
+	// lock the action list and all the build actions
+	set_action_sensitivity (FALSE);
 
 	// add watches to channels
 	g_io_add_watch (out_channel, G_IO_IN | G_IO_HUP,
@@ -363,11 +372,8 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 	GIOChannel *out_channel = g_io_channel_unix_new (out);
 	GIOChannel *err_channel = g_io_channel_unix_new (err);
 
-	// Lock the action list so the user can not view an other action while the
-	// compilation is running.
-	// It will be unlock when the compilation is finished.
-	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log.list_view),
-			FALSE);
+	// lock the action list and all the build actions
+	set_action_sensitivity (FALSE);
 
 	// add watches to channels
 	g_io_add_watch (out_channel, G_IO_IN | G_IO_HUP,
@@ -419,4 +425,20 @@ add_action (gchar *title, gchar *command)
 
 	num++;
 	g_free (title2);
+}
+
+static void
+set_action_sensitivity (gboolean sensitive)
+{
+	// Lock the action list when a command is running so the user can not view
+	// an other action.
+	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log.list_view), sensitive);
+
+	gtk_action_set_sensitive (latexila.actions.compile_latex, sensitive);
+	gtk_action_set_sensitive (latexila.actions.compile_pdflatex, sensitive);
+	gtk_action_set_sensitive (latexila.actions.dvi_to_pdf, sensitive);
+	gtk_action_set_sensitive (latexila.actions.dvi_to_ps, sensitive);
+	gtk_action_set_sensitive (latexila.actions.view_dvi, sensitive);
+	gtk_action_set_sensitive (latexila.actions.view_pdf, sensitive);
+	gtk_action_set_sensitive (latexila.actions.view_ps, sensitive);
 }

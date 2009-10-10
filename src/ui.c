@@ -369,8 +369,25 @@ init_ui (GtkWidget *box)
 			gtk_ui_manager_get_accel_group (ui_manager));
 
 	// get actions
-	latexila.undo = gtk_action_group_get_action (action_group, "EditUndo");
-	latexila.redo = gtk_action_group_get_action (action_group, "EditRedo");
+	latexila.actions.undo = gtk_action_group_get_action (action_group,
+			"EditUndo");
+	latexila.actions.redo = gtk_action_group_get_action (action_group,
+			"EditRedo");
+	latexila.actions.compile_latex = gtk_action_group_get_action (action_group,
+			"compile_latex");
+	latexila.actions.compile_pdflatex = gtk_action_group_get_action (action_group,
+			"compile_pdflatex");
+	latexila.actions.dvi_to_pdf = gtk_action_group_get_action (action_group,
+			"DVItoPDF");
+	latexila.actions.dvi_to_ps = gtk_action_group_get_action (action_group,
+			"DVItoPS");
+	latexila.actions.view_dvi = gtk_action_group_get_action (action_group,
+			"viewDVI");
+	latexila.actions.view_pdf = gtk_action_group_get_action (action_group,
+			"viewPDF");
+	latexila.actions.view_ps = gtk_action_group_get_action (action_group,
+			"viewPS");
+
 
 	GtkToggleAction *show_symbol_tables = GTK_TOGGLE_ACTION (
 			gtk_action_group_get_action (action_group, "ViewSymbols"));
