@@ -5,8 +5,8 @@ Sat Oct 10, 2009 to Fri Oct 16, 2009
 [x] execution of the actions
 	x sensitivity of the actions when an action is running
 
-[-] log zone
-	- keep only the 5 last actions
+[x] log zone
+	x keep only the 5 last actions
 
 [-] symbol tables
 	- mathematical sets (N, Z, Q, R, C) in misc math

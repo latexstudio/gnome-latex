@@ -85,7 +85,6 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 
 	if (condition == G_IO_HUP)
 	{
-		print_info ("G_IO_HUP");
 		g_io_channel_unref (channel);
 		nb_channels_active--;
 		
@@ -99,8 +98,6 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 		return FALSE;
 	}
 
-	print_info ("cb_watch_output_command ()");
-	
 	GError *error = NULL;
 	gchar *line;
 	g_io_channel_read_line (channel, &line, NULL, NULL, &error);
@@ -422,6 +419,15 @@ add_action (gchar *title, gchar *command)
 			GTK_TREE_MODEL (latexila.action_log.list_store), &iter);
 	gtk_tree_view_scroll_to_cell (latexila.action_log.list_view, path, NULL,
 			FALSE, 0, 0);
+
+	// delete the first entry
+	if (num > 5)
+	{
+		GtkTreeIter first;
+		gtk_tree_model_get_iter_first (
+				GTK_TREE_MODEL (latexila.action_log.list_store), &first);
+		gtk_list_store_remove (latexila.action_log.list_store, &first);
+	}
 
 	num++;
 	g_free (title2);
