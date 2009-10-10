@@ -37,8 +37,7 @@
 static gboolean option_version (const gchar *option_name, const gchar *value,
 		gpointer data, GError **error);
 
-latexila_t latexila = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-	NULL, NULL, NULL, NULL, NULL, NULL}; 
+latexila_t latexila = {NULL};
 
 static gboolean
 option_version (const gchar *option_name, const gchar *value, gpointer data,
@@ -121,8 +120,7 @@ main (int argc, char *argv[])
 #endif
 
 	/* preferences */
-	latexila.prefs = g_malloc (sizeof (preferences_t));
-	load_preferences (latexila.prefs);
+	load_preferences (&latexila.prefs);
 
 	/* personal style */
 	// make the close buttons in tabs smaller
@@ -146,9 +144,9 @@ main (int argc, char *argv[])
 	gtk_window_set_title (GTK_WINDOW (window), PROGRAM_NAME);
 	gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size (GTK_WINDOW (window),
-			latexila.prefs->window_width, latexila.prefs->window_height);
+			latexila.prefs.window_width, latexila.prefs.window_height);
 
-	if (latexila.prefs->window_maximised)
+	if (latexila.prefs.window_maximised)
 		gtk_window_maximize (GTK_WINDOW (window));
 
 
@@ -165,13 +163,12 @@ main (int argc, char *argv[])
 	GtkWidget *main_hpaned = gtk_hpaned_new ();
 	latexila.main_hpaned = GTK_PANED (main_hpaned);
 	gtk_paned_set_position (GTK_PANED (main_hpaned),
-			latexila.prefs->main_hpaned_pos);
+			latexila.prefs.main_hpaned_pos);
 	gtk_box_pack_start (GTK_BOX (main_vbox), main_hpaned, TRUE, TRUE, 0);
 
 	/* symbol tables */
-	latexila.symbols = g_malloc (sizeof (symbols_t));
 	GtkWidget *vbox_symbols = gtk_vbox_new (FALSE, 0);
-	latexila.symbols->vbox = vbox_symbols;
+	latexila.symbols.vbox = vbox_symbols;
 	gtk_paned_add1 (GTK_PANED (main_hpaned), vbox_symbols);
 
 	init_symbols ();
@@ -182,7 +179,7 @@ main (int argc, char *argv[])
 	 */
 	GtkWidget *vpaned = gtk_vpaned_new ();
 	latexila.vpaned = GTK_PANED (vpaned);
-	gtk_paned_set_position (GTK_PANED (vpaned), latexila.prefs->vpaned_pos);
+	gtk_paned_set_position (GTK_PANED (vpaned), latexila.prefs.vpaned_pos);
 	gtk_paned_add2 (GTK_PANED (main_hpaned), vpaned);
 
 	/* source view with tabs */
@@ -196,35 +193,33 @@ main (int argc, char *argv[])
 	gtk_paned_add1 (GTK_PANED (vpaned), notebook);
 
 	/* log zone */
-	latexila.action_log = g_malloc (sizeof (action_log_t));
-
 	// horizontal pane:
 	// left: action history
 	// right: details
 	GtkWidget *hpaned = gtk_hpaned_new ();
 	latexila.log_hpaned = GTK_PANED (hpaned);
-	gtk_paned_set_position (GTK_PANED (hpaned), latexila.prefs->log_hpaned_pos);
+	gtk_paned_set_position (GTK_PANED (hpaned), latexila.prefs.log_hpaned_pos);
 	gtk_paned_add2 (GTK_PANED (vpaned), hpaned);
 
 	// action history
 	GtkListStore *list_store = gtk_list_store_new (N_COLUMNS_ACTION,
 			G_TYPE_STRING, G_TYPE_POINTER);
-	latexila.action_log->list_store = list_store;
+	latexila.action_log.list_store = list_store;
 	
 	GtkWidget *list_view = gtk_tree_view_new_with_model (
 			GTK_TREE_MODEL (list_store));
-	latexila.action_log->list_view = GTK_TREE_VIEW (list_view);
+	latexila.action_log.list_view = GTK_TREE_VIEW (list_view);
 	renderer = gtk_cell_renderer_text_new ();
 	column = gtk_tree_view_column_new_with_attributes (
 			_("Action history"), renderer, "text", COLUMN_ACTION_TITLE, NULL);	
-	gtk_tree_view_append_column (latexila.action_log->list_view, column);
+	gtk_tree_view_append_column (latexila.action_log.list_view, column);
 	
 	// hide "Action history"
 	//gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list_view), FALSE);
 
 	GtkTreeSelection *select =
-		gtk_tree_view_get_selection (latexila.action_log->list_view);
-	latexila.action_log->list_selection = select;
+		gtk_tree_view_get_selection (latexila.action_log.list_view);
+	latexila.action_log.list_selection = select;
 	gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
 	g_signal_connect (G_OBJECT (select), "changed",
 			G_CALLBACK (cb_action_list_changed), NULL);
@@ -241,8 +236,8 @@ main (int argc, char *argv[])
 	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (
 			GTK_TEXT_VIEW (log_view));
 
-	latexila.action_log->text_view = GTK_TEXT_VIEW (log_view);
-	latexila.action_log->text_buffer = log_buffer;
+	latexila.action_log.text_view = GTK_TEXT_VIEW (log_view);
+	latexila.action_log.text_buffer = log_buffer;
 
 	gtk_text_buffer_set_text (log_buffer, _("Welcome to LaTeXila!"), -1);
 	gtk_text_view_set_editable (GTK_TEXT_VIEW (log_view), FALSE);
@@ -261,7 +256,7 @@ main (int argc, char *argv[])
 	gtk_text_buffer_create_tag (log_buffer, "error",
 			"foreground", "red",
 			NULL);
-	latexila.action_log->tag_table = gtk_text_buffer_get_tag_table (log_buffer);
+	latexila.action_log.tag_table = gtk_text_buffer_get_tag_table (log_buffer);
 
 	/* statusbar */
 	GtkWidget *statusbar = gtk_statusbar_new ();
@@ -280,10 +275,10 @@ main (int argc, char *argv[])
 	/* show the window */
 	gtk_widget_show_all (window);
 
-	if (! latexila.prefs->show_side_pane)
-		gtk_widget_hide (latexila.symbols->vbox);
+	if (! latexila.prefs.show_side_pane)
+		gtk_widget_hide (latexila.symbols.vbox);
 
-	if (! latexila.prefs->show_edit_toolbar)
+	if (! latexila.prefs.show_edit_toolbar)
 		gtk_widget_hide (latexila.edit_toolbar);
 
 	/* if --new-document option is used */

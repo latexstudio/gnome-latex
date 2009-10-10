@@ -401,7 +401,7 @@ static void
 cb_pref_line_numbers (GtkToggleButton *toggle_button, gpointer user_data)
 {
 	gboolean show_line_numbers = gtk_toggle_button_get_active (toggle_button);
-	latexila.prefs->show_line_numbers = show_line_numbers;
+	latexila.prefs.show_line_numbers = show_line_numbers;
 
 	if (latexila.active_doc == NULL)
 		return;
@@ -422,9 +422,9 @@ static void
 cb_pref_font_set (GtkFontButton *font_button, gpointer user_data)
 {
 	const gchar *font_string = gtk_font_button_get_font_name (font_button);
-	g_free (latexila.prefs->font_str);
-	latexila.prefs->font_str = g_strdup (font_string);
-	set_current_font_prefs (latexila.prefs);
+	g_free (latexila.prefs.font_str);
+	latexila.prefs.font_str = g_strdup (font_string);
+	set_current_font_prefs (&latexila.prefs);
 	change_font_source_view ();
 }
 
@@ -433,8 +433,8 @@ cb_pref_command_view (GtkEditable *editable, gpointer user_data)
 {
 	GtkEntry *entry = GTK_ENTRY (editable);
 	const gchar *new_command_view = gtk_entry_get_text (entry);
-	g_free (latexila.prefs->command_view);
-	latexila.prefs->command_view = g_strdup (new_command_view);
+	g_free (latexila.prefs.command_view);
+	latexila.prefs.command_view = g_strdup (new_command_view);
 }
 
 static void
@@ -442,8 +442,8 @@ cb_pref_command_latex (GtkEditable *editable, gpointer user_data)
 {
 	GtkEntry *entry = GTK_ENTRY (editable);
 	const gchar *new_command = gtk_entry_get_text (entry);
-	g_free (latexila.prefs->command_latex);
-	latexila.prefs->command_latex = g_strdup (new_command);
+	g_free (latexila.prefs.command_latex);
+	latexila.prefs.command_latex = g_strdup (new_command);
 }
 
 static void
@@ -451,8 +451,8 @@ cb_pref_command_pdflatex (GtkEditable *editable, gpointer user_data)
 {
 	GtkEntry *entry = GTK_ENTRY (editable);
 	const gchar *new_command = gtk_entry_get_text (entry);
-	g_free (latexila.prefs->command_pdflatex);
-	latexila.prefs->command_pdflatex = g_strdup (new_command);
+	g_free (latexila.prefs.command_pdflatex);
+	latexila.prefs.command_pdflatex = g_strdup (new_command);
 }
 
 static void
@@ -460,8 +460,8 @@ cb_pref_command_dvipdf (GtkEditable *editable, gpointer user_data)
 {
 	GtkEntry *entry = GTK_ENTRY (editable);
 	const gchar *new_command = gtk_entry_get_text (entry);
-	g_free (latexila.prefs->command_dvipdf);
-	latexila.prefs->command_dvipdf = g_strdup (new_command);
+	g_free (latexila.prefs.command_dvipdf);
+	latexila.prefs.command_dvipdf = g_strdup (new_command);
 }
 
 static void
@@ -469,8 +469,8 @@ cb_pref_command_dvips (GtkEditable *editable, gpointer user_data)
 {
 	GtkEntry *entry = GTK_ENTRY (editable);
 	const gchar *new_command = gtk_entry_get_text (entry);
-	g_free (latexila.prefs->command_dvips);
-	latexila.prefs->command_dvips = g_strdup (new_command);
+	g_free (latexila.prefs.command_dvips);
+	latexila.prefs.command_dvips = g_strdup (new_command);
 }
 
 static void
@@ -494,7 +494,7 @@ create_preferences (void)
 	GtkWidget *line_numbers = gtk_check_button_new_with_label (
 			_("Display line numbers"));
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (line_numbers),
-			latexila.prefs->show_line_numbers);
+			latexila.prefs.show_line_numbers);
 	g_signal_connect (G_OBJECT (line_numbers), "toggled",
 			G_CALLBACK (cb_pref_line_numbers), NULL);
 	gtk_box_pack_start (GTK_BOX (content_area), line_numbers, FALSE, FALSE, 0);
@@ -503,7 +503,7 @@ create_preferences (void)
 	GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
 	GtkWidget *label = gtk_label_new (_("Font:"));
 	GtkWidget *font_button = gtk_font_button_new_with_font (
-			latexila.prefs->font_str);
+			latexila.prefs.font_str);
 	g_signal_connect (G_OBJECT (font_button), "font-set",
 			G_CALLBACK (cb_pref_font_set), NULL);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -515,7 +515,7 @@ create_preferences (void)
 	label = gtk_label_new (_("Program for viewing documents:"));
 	GtkWidget *command_view_entry = gtk_entry_new ();
 	gtk_entry_set_text (GTK_ENTRY (command_view_entry),
-			latexila.prefs->command_view);
+			latexila.prefs.command_view);
 	g_signal_connect (G_OBJECT (command_view_entry), "changed",
 			G_CALLBACK (cb_pref_command_view), NULL);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -529,7 +529,7 @@ create_preferences (void)
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	GtkWidget *command_latex = gtk_entry_new ();
 	gtk_entry_set_text (GTK_ENTRY (command_latex),
-			latexila.prefs->command_latex);
+			latexila.prefs.command_latex);
 	g_signal_connect (G_OBJECT (command_latex), "changed",
 			G_CALLBACK (cb_pref_command_latex), NULL);
 	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 0, 1);
@@ -539,7 +539,7 @@ create_preferences (void)
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	GtkWidget *command_pdflatex = gtk_entry_new ();
 	gtk_entry_set_text (GTK_ENTRY (command_pdflatex),
-			latexila.prefs->command_pdflatex);
+			latexila.prefs.command_pdflatex);
 	g_signal_connect (G_OBJECT (command_pdflatex), "changed",
 			G_CALLBACK (cb_pref_command_pdflatex), NULL);
 	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 1, 2);
@@ -549,7 +549,7 @@ create_preferences (void)
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	GtkWidget *command_dvipdf = gtk_entry_new ();
 	gtk_entry_set_text (GTK_ENTRY (command_dvipdf),
-			latexila.prefs->command_dvipdf);
+			latexila.prefs.command_dvipdf);
 	g_signal_connect (G_OBJECT (command_dvipdf), "changed",
 			G_CALLBACK (cb_pref_command_dvipdf), NULL);
 	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 2, 3);
@@ -559,7 +559,7 @@ create_preferences (void)
 	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
 	GtkWidget *command_dvips = gtk_entry_new ();
 	gtk_entry_set_text (GTK_ENTRY (command_dvips),
-			latexila.prefs->command_dvips);
+			latexila.prefs.command_dvips);
 	g_signal_connect (G_OBJECT (command_dvips), "changed",
 			G_CALLBACK (cb_pref_command_dvips), NULL);
 	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 3, 4);

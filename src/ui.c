@@ -375,10 +375,10 @@ init_ui (GtkWidget *box)
 	GtkToggleAction *show_symbol_tables = GTK_TOGGLE_ACTION (
 			gtk_action_group_get_action (action_group, "ViewSymbols"));
 	gtk_toggle_action_set_active (show_symbol_tables,
-			latexila.prefs->show_side_pane);
+			latexila.prefs.show_side_pane);
 
 	GtkToggleAction *show_edit_toolbar = GTK_TOGGLE_ACTION (
 			gtk_action_group_get_action (action_group, "ViewEditToolbar"));
 	gtk_toggle_action_set_active (show_edit_toolbar,
-			latexila.prefs->show_edit_toolbar);
+			latexila.prefs.show_edit_toolbar);
 }

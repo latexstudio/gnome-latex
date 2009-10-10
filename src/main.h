@@ -88,9 +88,9 @@ typedef struct
 {
 	GList			*all_docs;
 	document_t		*active_doc;
-	action_log_t	*action_log;
-	symbols_t		*symbols;
-	preferences_t	*prefs;
+	action_log_t	action_log;
+	symbols_t		symbols;
+	preferences_t	prefs;
 	GtkWindow		*main_window;
 	GtkNotebook		*notebook;
 	GtkStatusbar	*statusbar;

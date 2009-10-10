@@ -177,7 +177,7 @@ cb_quit (void)
 {
 	if (close_all ())
 	{
-		save_preferences (latexila.prefs);
+		save_preferences (&latexila.prefs);
 		free_latexila ();
 		print_info ("Bye bye");
 		gtk_main_quit ();
@@ -278,25 +278,25 @@ cb_select_all (void)
 void
 cb_zoom_in (void)
 {
-	latexila.prefs->font_size += PANGO_SCALE;
-	pango_font_description_set_size (latexila.prefs->font_desc,
-			latexila.prefs->font_size);
+	latexila.prefs.font_size += PANGO_SCALE;
+	pango_font_description_set_size (latexila.prefs.font_desc,
+			latexila.prefs.font_size);
 	change_font_source_view ();
 }
 
 void
 cb_zoom_out (void)
 {
-	latexila.prefs->font_size -= PANGO_SCALE;
-	pango_font_description_set_size (latexila.prefs->font_desc,
-			latexila.prefs->font_size);
+	latexila.prefs.font_size -= PANGO_SCALE;
+	pango_font_description_set_size (latexila.prefs.font_desc,
+			latexila.prefs.font_size);
 	change_font_source_view ();
 }
 
 void
 cb_zoom_reset (void)
 {
-	set_current_font_prefs (latexila.prefs);
+	set_current_font_prefs (&latexila.prefs);
 	change_font_source_view ();
 }
 
@@ -535,7 +535,7 @@ cb_latex (void)
 
 	gchar *title = _("Compile (latex)");
 	gchar *command[] = {
-        g_strdup (latexila.prefs->command_latex),
+        g_strdup (latexila.prefs.command_latex),
         "-interaction=nonstopmode",
         g_strdup (latexila.active_doc->path),
         NULL
@@ -557,7 +557,7 @@ cb_pdflatex (void)
 
 	gchar *title = _("Compile (pdflatex)");
 	gchar *command[] = {
-        g_strdup (latexila.prefs->command_pdflatex),
+        g_strdup (latexila.prefs.command_pdflatex),
         "-interaction=nonstopmode",
         g_strdup (latexila.active_doc->path),
         NULL
@@ -602,8 +602,7 @@ cb_dvi_to_pdf (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	// TODO delete ".dvi"
-	convert_document (_("DVI to PDF"), ".dvi", latexila.prefs->command_dvipdf);
+	convert_document (_("DVI to PDF"), ".dvi", latexila.prefs.command_dvipdf);
 }
 
 void
@@ -612,7 +611,7 @@ cb_dvi_to_ps (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	convert_document (_("DVI to PS"), ".dvi", latexila.prefs->command_dvips);
+	convert_document (_("DVI to PS"), ".dvi", latexila.prefs.command_dvips);
 }
 
 void
@@ -627,7 +626,7 @@ cb_action_list_changed (GtkTreeSelection *selection, gpointer user_data)
 				COLUMN_ACTION_TEXTBUFFER, &text_buffer,
 				-1);
 
-		gtk_text_view_set_buffer (latexila.action_log->text_view, text_buffer);
+		gtk_text_view_set_buffer (latexila.action_log.text_view, text_buffer);
 	}
 }
 
@@ -738,16 +737,16 @@ cb_recent_item_activated (GtkRecentAction *action, gpointer user_data)
 void
 cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data)
 {
-	if (latexila.symbols == NULL || latexila.symbols->vbox == NULL)
+	if (latexila.symbols.vbox == NULL)
 		return;
 
-	latexila.prefs->show_side_pane =
+	latexila.prefs.show_side_pane =
 		gtk_toggle_action_get_active (toggle_action);
 
-	if (latexila.prefs->show_side_pane)
-		gtk_widget_show_all (latexila.symbols->vbox);
+	if (latexila.prefs.show_side_pane)
+		gtk_widget_show_all (latexila.symbols.vbox);
 	else
-		gtk_widget_hide (latexila.symbols->vbox);
+		gtk_widget_hide (latexila.symbols.vbox);
 }
 
 void
@@ -756,10 +755,10 @@ cb_show_edit_toolbar (GtkToggleAction *toggle_action, gpointer user_data)
 	if (latexila.edit_toolbar == NULL)
 		return;
 
-	latexila.prefs->show_edit_toolbar =
+	latexila.prefs.show_edit_toolbar =
 		gtk_toggle_action_get_active (toggle_action);
 
-	if (latexila.prefs->show_edit_toolbar)
+	if (latexila.prefs.show_edit_toolbar)
 		gtk_widget_show_all (latexila.edit_toolbar);
 	else
 		gtk_widget_hide (latexila.edit_toolbar);
@@ -801,7 +800,7 @@ change_font_source_view (void)
 	do
 	{
 		document_t *doc = g_list_nth_data (current, 0);
-		gtk_widget_modify_font (doc->source_view, latexila.prefs->font_desc);
+		gtk_widget_modify_font (doc->source_view, latexila.prefs.font_desc);
 	}
 	while ((current = g_list_next (current)) != NULL);
 }
@@ -851,7 +850,7 @@ create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *t
 	gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (new_doc->source_view), TRUE);
 
 	// set the font
-	gtk_widget_modify_font (new_doc->source_view, latexila.prefs->font_desc);
+	gtk_widget_modify_font (new_doc->source_view, latexila.prefs.font_desc);
 
 	// enable text wrapping (between words only)
 	gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (new_doc->source_view),
@@ -860,7 +859,7 @@ create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *t
 	// show line numbers?
 	gtk_source_view_set_show_line_numbers (
 			GTK_SOURCE_VIEW (new_doc->source_view),
-			latexila.prefs->show_line_numbers);
+			latexila.prefs.show_line_numbers);
 
 	// put the text into the buffer
 	gtk_source_buffer_begin_not_undoable_action (new_doc->source_buffer);
@@ -1235,17 +1234,13 @@ find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 static void
 free_latexila (void)
 {
-	g_free (latexila.prefs->font_str);
-	g_free (latexila.prefs->command_view);
-	g_free (latexila.prefs->command_latex);
-	g_free (latexila.prefs->command_pdflatex);
-	g_free (latexila.prefs->command_dvipdf);
-	g_free (latexila.prefs->command_dvips);
-	g_free (latexila.prefs);
-	g_free (latexila.action_log);
+	g_free (latexila.prefs.font_str);
+	g_free (latexila.prefs.command_view);
+	g_free (latexila.prefs.command_latex);
+	g_free (latexila.prefs.command_pdflatex);
+	g_free (latexila.prefs.command_dvipdf);
+	g_free (latexila.prefs.command_dvips);
 
 	for (int i = 0 ; i < 7 ; i++)
-		g_object_unref (latexila.symbols->list_stores[i]);
-
-	g_free (latexila.symbols);
+		g_object_unref (latexila.symbols.list_stores[i]);
 }

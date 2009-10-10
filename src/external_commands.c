@@ -67,7 +67,7 @@ command_running_finished (void)
 		gtk_main_iteration ();
 
 	// unlock the action list
-	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log->list_view), TRUE);
+	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log.list_view), TRUE);
 
 	// pop the message from the statusbar
 	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
@@ -103,7 +103,7 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 	if (line != NULL)
 	{
 		// print the command output line to the log zone
-		print_log_add (latexila.action_log->text_view, line, FALSE);
+		print_log_add (latexila.action_log.text_view, line, FALSE);
 	}
 	
 	/* Apply the magic formula for the 200 first lines and then every 20 lines.
@@ -143,7 +143,7 @@ compile_document (gchar *title, gchar **command)
 	{
 		command_output = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
 				g_path_get_basename (latexila.active_doc->path));
-		print_log_add (latexila.action_log->text_view, command_output, TRUE);
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
 		g_free (command_output);
 		return;
 	}
@@ -173,7 +173,7 @@ compile_document (gchar *title, gchar **command)
 	{
 		command_output = g_strdup_printf (_("execution failed: %s"),
 				error->message);
-		print_log_add (latexila.action_log->text_view, command_output, TRUE);
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
 
 		g_free (command_output);
 		g_error_free (error);
@@ -193,7 +193,7 @@ compile_document (gchar *title, gchar **command)
 	{
 		command_output = g_strdup_printf (
 				"conversion of the command output failed: %s", error->message);
-		print_log_add (latexila.action_log->text_view, command_output, TRUE);
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
 
 		g_free (command_output);
 		g_error_free (error);
@@ -203,7 +203,7 @@ compile_document (gchar *title, gchar **command)
 	// Lock the action list so the user can not view an other action while the
 	// compilation is running.
 	// It will be unlock when the compilation is finished.
-	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log->list_view),
+	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log.list_view),
 			FALSE);
 
 	// add watches to channels
@@ -227,7 +227,7 @@ view_document (gchar *title, gchar *doc_extension)
 	gchar *doc_path = g_regex_replace_literal (regex, latexila.active_doc->path,
 			-1, 0, doc_extension, 0, NULL);
 
-	gchar *command_line = g_strdup_printf ("%s %s", latexila.prefs->command_view,
+	gchar *command_line = g_strdup_printf ("%s %s", latexila.prefs.command_view,
 			doc_path);
 	add_action (title, command_line);
 	print_info ("execution of the command: %s", command_line);
@@ -241,7 +241,7 @@ view_document (gchar *title, gchar *doc_extension)
 	{
 		command_output = g_strdup_printf (_("failed: %s is not a *.tex file"),
 				g_path_get_basename (latexila.active_doc->path));
-		print_log_add (latexila.action_log->text_view, command_output, TRUE);
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
 
 		g_free (command_output);
 		g_free (doc_path);
@@ -254,7 +254,7 @@ view_document (gchar *title, gchar *doc_extension)
 		command_output = g_strdup_printf (
 				_("%s does not exist. If this is not already made, compile the document with the right command."),
 				g_path_get_basename (doc_path));
-		print_log_add (latexila.action_log->text_view, command_output, TRUE);
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
 
 		g_free (command_output);
 		g_free (doc_path);
@@ -267,7 +267,7 @@ view_document (gchar *title, gchar *doc_extension)
 	// it doesn't work fine...
 	
 	GError *error = NULL;
-	gchar *argv[] = {latexila.prefs->command_view, doc_path, NULL};
+	gchar *argv[] = {latexila.prefs.command_view, doc_path, NULL};
 	g_spawn_async (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, &error);
 
 	gboolean is_error = TRUE;
@@ -285,7 +285,7 @@ view_document (gchar *title, gchar *doc_extension)
 		is_error = FALSE;
 	}
 
-	print_log_add (latexila.action_log->text_view, command_output, is_error);
+	print_log_add (latexila.action_log.text_view, command_output, is_error);
 
 	g_free (command_output);
 	g_free (doc_path);
@@ -317,7 +317,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 		command_output = g_strdup_printf (
 				_("%s does not exist. If this is not already made, compile the document with the right command."),
 				g_path_get_basename (doc_path));
-		print_log_add (latexila.action_log->text_view, command_output, TRUE);
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
 
 		g_free (command_output);
 		g_free (doc_path);
@@ -352,7 +352,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 	{
 		command_output = g_strdup_printf (_("execution failed: %s"),
 				error->message);
-		print_log_add (latexila.action_log->text_view, command_output, TRUE);
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
 
 		g_free (command_output);
 		g_error_free (error);
@@ -366,7 +366,7 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 	// Lock the action list so the user can not view an other action while the
 	// compilation is running.
 	// It will be unlock when the compilation is finished.
-	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log->list_view),
+	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log.list_view),
 			FALSE);
 
 	// add watches to channels
@@ -384,9 +384,9 @@ add_action (gchar *title, gchar *command)
 
 	// create a new text buffer
 	GtkTextBuffer *new_text_buffer = gtk_text_buffer_new (
-			latexila.action_log->tag_table);
-	latexila.action_log->text_buffer = new_text_buffer;
-	gtk_text_view_set_buffer (latexila.action_log->text_view, new_text_buffer);
+			latexila.action_log.tag_table);
+	latexila.action_log.text_buffer = new_text_buffer;
+	gtk_text_view_set_buffer (latexila.action_log.text_view, new_text_buffer);
 
 	// title
 	GtkTextIter end;
@@ -402,19 +402,19 @@ add_action (gchar *title, gchar *command)
 
 	// append an new entry to the action list
 	GtkTreeIter iter;
-	gtk_list_store_append (latexila.action_log->list_store, &iter);
-	gtk_list_store_set (latexila.action_log->list_store, &iter,
+	gtk_list_store_append (latexila.action_log.list_store, &iter);
+	gtk_list_store_set (latexila.action_log.list_store, &iter,
 			COLUMN_ACTION_TITLE, title2,
 			COLUMN_ACTION_TEXTBUFFER, new_text_buffer,
 			-1);
 
 	// select the new entry
-	gtk_tree_selection_select_iter (latexila.action_log->list_selection, &iter);
+	gtk_tree_selection_select_iter (latexila.action_log.list_selection, &iter);
 
 	// scroll to the end
 	GtkTreePath *path = gtk_tree_model_get_path (
-			GTK_TREE_MODEL (latexila.action_log->list_store), &iter);
-	gtk_tree_view_scroll_to_cell (latexila.action_log->list_view, path, NULL,
+			GTK_TREE_MODEL (latexila.action_log.list_store), &iter);
+	gtk_tree_view_scroll_to_cell (latexila.action_log.list_view, path, NULL,
 			FALSE, 0, 0);
 
 	num++;

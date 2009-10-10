@@ -1,14 +1,8 @@
 TODO LaTeXila
 
-Fri Oct 2, 2009 to Fri Oct 9, 2009
-
-[-] undo/redo and the "saved" document property
-	- detect when the buffer is the same as in the file currently saved
+Sat Oct 10, 2009 to Fri Oct 16, 2009
 
 [-] execution of the actions
-	~ verify that the method used for compile_document () is correct
-	x same behavior than compile_document () for:
-		* convert_document ()
 	- sensitivity of the actions when an action is running
 
 [-] log zone
@@ -16,10 +10,11 @@ Fri Oct 2, 2009 to Fri Oct 9, 2009
 
 [-] symbol tables
 	- mathematical sets (N, Z, Q, R, C) in misc math
-	x add a space after the symbols
-	x set the focus on the text after inserting a symbol
 
 [x] bugs correction
-	x external commands: the commands must run even if the path of the file contains spaces
 
 [-] update French translation
+
+[-] undo/redo and the "saved" document property
+	- detect when the buffer is the same as in the file currently saved
+
