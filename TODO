@@ -8,8 +8,11 @@ Sat Oct 10, 2009 to Fri Oct 16, 2009
 [x] log zone
 	x keep only the 5 last actions
 
-[-] symbol tables
-	- mathematical sets (N, Z, Q, R, C) in misc math
+[x] symbol tables
+	x mathematical sets (N, Z, Q, R, C) in misc math
+
+[-] save as
+	- confirmation before replacing a file which already exists
 
 [x] bugs correction
 
