@@ -119,7 +119,7 @@ cb_save_as (void)
 	// if the user click on cancel
 	if (! latexila.active_doc->saved)
 	{
-		(*latexila.active_doc) = doc_backup;
+		*latexila.active_doc = doc_backup;
 		set_title ();
 	}
 }
@@ -995,14 +995,52 @@ save_as_dialog (void)
 			NULL
 	);
 
-	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+	while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
 	{
-		latexila.active_doc->path = gtk_file_chooser_get_filename (
-				GTK_FILE_CHOOSER (dialog));
-		gchar *uri = gtk_file_chooser_get_uri ( GTK_FILE_CHOOSER (dialog));
+		gchar *filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+		
+		if (g_file_test (filename, G_FILE_TEST_EXISTS))
+		{
+			GtkWidget *confirmation = gtk_message_dialog_new (
+					latexila.main_window,
+					GTK_DIALOG_MODAL,
+					GTK_MESSAGE_QUESTION,
+					GTK_BUTTONS_NONE,
+					_("A file named \"%s\" already exists. Do you want to replace it?"),
+					g_path_get_basename (filename));
+
+			gtk_dialog_add_button (GTK_DIALOG (confirmation),
+					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+
+			// button replace created by hand because we use the icon "save as"
+			// with the text "replace"
+			GtkWidget *button_replace = gtk_button_new_with_label (_("Replace"));
+			GtkWidget *icon = gtk_image_new_from_stock (GTK_STOCK_SAVE_AS,
+					GTK_ICON_SIZE_BUTTON);
+			gtk_button_set_image (GTK_BUTTON (button_replace), icon);
+			gtk_dialog_add_action_widget (GTK_DIALOG (confirmation),
+					button_replace, GTK_RESPONSE_YES);
+			gtk_widget_show (button_replace);
+
+			gint response = gtk_dialog_run (GTK_DIALOG (confirmation));
+			gtk_widget_destroy (confirmation);
+
+			// return to the file chooser dialog so the user can choose an other
+			// file
+			if (response != GTK_RESPONSE_YES)
+			{
+				g_free (filename);
+				continue;
+			}
+		}
+
+		latexila.active_doc->path = filename;
+		gchar *uri = gtk_file_chooser_get_uri (GTK_FILE_CHOOSER (dialog));
 
 		GtkRecentManager *manager = gtk_recent_manager_get_default ();
 		gtk_recent_manager_add_item (manager, uri);
+
+		break;
 	}
 
 	gtk_widget_destroy (dialog);

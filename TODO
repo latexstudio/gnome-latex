@@ -11,8 +11,8 @@ Sat Oct 10, 2009 to Fri Oct 16, 2009
 [x] symbol tables
 	x mathematical sets (N, Z, Q, R, C) in misc math
 
-[-] save as
-	- confirmation before replacing a file which already exists
+[x] save as
+	x confirmation before replacing a file which already exists
 
 [x] bugs correction
 
