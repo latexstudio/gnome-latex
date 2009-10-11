@@ -926,30 +926,26 @@ close_document (gint index)
 	 * closing */
 	if (! latexila.active_doc->saved)
 	{
-		GtkWidget *dialog = gtk_dialog_new_with_buttons (
-				_("Close the document"),
-				latexila.main_window,
-				GTK_DIALOG_MODAL,
-				GTK_STOCK_YES, GTK_RESPONSE_YES,
-				GTK_STOCK_NO, GTK_RESPONSE_NO,
-				GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-				NULL
-		);
-
 		gchar *doc_name;
 		if (latexila.active_doc->path == NULL)
 			doc_name = g_strdup (_("New document"));
 		else
 			doc_name = g_path_get_basename (latexila.active_doc->path);
 
-		gchar *tmp = g_strdup_printf (
-				_("Save changes to \"%s\" before closing?"), doc_name);
-		GtkWidget *label = gtk_label_new (tmp);
+		GtkWidget *dialog = gtk_message_dialog_new (
+				latexila.main_window,
+				GTK_DIALOG_MODAL,
+				GTK_MESSAGE_QUESTION,
+				GTK_BUTTONS_NONE,
+				_("Save changes to \"%s\" before closing?"),
+				doc_name);
 		g_free (doc_name);
-		g_free (tmp);
-		GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
-		gtk_box_pack_start (GTK_BOX (content_area), label, TRUE, FALSE, 10);
-		gtk_widget_show_all (content_area);
+
+		gtk_dialog_add_buttons (GTK_DIALOG (dialog),
+				GTK_STOCK_YES, GTK_RESPONSE_YES,
+				GTK_STOCK_NO, GTK_RESPONSE_NO,
+				GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+				NULL);
 
 		switch (gtk_dialog_run (GTK_DIALOG (dialog)))
 		{
