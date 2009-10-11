@@ -480,6 +480,7 @@ create_preferences (void)
 			latexila.main_window, 0,
 			GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
 	gtk_dialog_set_has_separator (GTK_DIALOG (pref_dialog), FALSE);
+	gtk_container_set_border_width (GTK_CONTAINER (pref_dialog), 5);
 
 	g_signal_connect (G_OBJECT (pref_dialog), "response",
 			G_CALLBACK (cb_pref_dialog_close), NULL);

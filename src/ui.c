@@ -63,6 +63,7 @@ static struct {
 	{DATA_DIR "/images/icons/list-enumerate.png", "list-enumerate"},
 	{DATA_DIR "/images/icons/list-description.png", "list-description"},
 	{DATA_DIR "/images/icons/list-item.png", "list-item"},
+	{DATA_DIR "/images/icons/references.png", "references"},
 };
 
 // all the actions (for the menu and the toolbar)
@@ -156,7 +157,7 @@ static GtkActionEntry latex_entries[] = {
 	{"SectioningSubparagraph", "sectioning-paragraph", N_("subparagraph"), NULL,
 		N_("subparagraph"), G_CALLBACK (cb_sectioning_subparagraph)},
 
-	{"References", NULL, N_("References"), NULL, NULL, NULL},
+	{"References", "references", N_("References"), NULL, NULL, NULL},
 	{"ReferencesLabel", NULL, "label", NULL, "label", G_CALLBACK (cb_ref_label)},
 	{"ReferencesRef", NULL, "ref", NULL, "ref", G_CALLBACK (cb_ref_ref)},
 	{"ReferencesPageref", NULL, "pageref", NULL, "pageref", G_CALLBACK (cb_ref_pageref)},
@@ -316,7 +317,7 @@ init_ui (GtkWidget *box)
 			GTK_ACTIVATABLE (sizes_menu_tool_button), sizes);
 
 	GtkAction *references = tool_menu_action_new ("ReferencesToolItem",
-			_("References"), _("References"), NULL);
+			_("References"), _("References"), "references");
 	GtkToolItem *references_menu_tool_button = gtk_menu_tool_button_new (NULL,
 			NULL);
 	gtk_activatable_set_related_action (
