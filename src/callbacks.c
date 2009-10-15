@@ -784,8 +784,20 @@ open_new_document (const gchar *filename, const gchar *uri)
 		g_free (contents);
 		g_free (text_utf8);
 	}
+
 	else
+	{
 		print_warning ("impossible to open the file \"%s\"", filename);
+
+		GtkWidget *dialog = gtk_message_dialog_new (
+				latexila.main_window,
+				GTK_DIALOG_MODAL,
+				GTK_MESSAGE_WARNING,
+				GTK_BUTTONS_CLOSE,
+				_("Impossible to open the file \"%s\"."), filename);
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+	}
 }
 
 void

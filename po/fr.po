@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: latexila\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-15 18:06+0200\n"
-"PO-Revision-Date: 2009-10-15 18:15+0100\n"
+"POT-Creation-Date: 2009-10-15 18:41+0200\n"
+"PO-Revision-Date: 2009-10-15 18:42+0100\n"
 "Last-Translator: Sébastien Wilmet <sebastien.wilmet@gmail.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "%s does not exist. If this is not already made, compile the document with the right command."
 msgstr "%s n'existe pas. Si ce n'est pas déjà fait, compilez le document avec la bonne commande."
 
-#: src/callbacks.c:1006
+#: src/callbacks.c:1017
 #, c-format
 msgid "A file named \"%s\" already exists. Do you want to replace it?"
 msgstr "Un fichier nommé \"%s\" existe déjà. Voulez-vous le remplacer ?"
@@ -267,6 +267,11 @@ msgstr "Grec"
 msgid "Help"
 msgstr "Aide"
 
+#: src/callbacks.c:796
+#, c-format
+msgid "Impossible to open the file \"%s\"."
+msgstr "Impossible d'ouvrir le fichier \"%s\"."
+
 #: src/ui.c:247
 #: src/ui.c:248
 msgid "Italic - \\itshape"
@@ -313,8 +318,8 @@ msgid "New"
 msgstr "Nouveau"
 
 #: src/callbacks.c:61
-#: src/callbacks.c:932
-#: src/callbacks.c:1110
+#: src/callbacks.c:943
+#: src/callbacks.c:1121
 msgid "New document"
 msgstr "Nouveau document"
 
@@ -414,7 +419,7 @@ msgstr "Relations"
 
 #: src/callbacks.c:371
 #: src/callbacks.c:379
-#: src/callbacks.c:1014
+#: src/callbacks.c:1025
 msgid "Replace"
 msgstr "Remplacer"
 
@@ -448,7 +453,7 @@ msgstr "Romains - \\rmfamily"
 msgid "Sans Serif - \\sffamily"
 msgstr "Linéaux (sans serif) - \\sffamily"
 
-#: src/callbacks.c:987
+#: src/callbacks.c:998
 msgid "Save File"
 msgstr "Enregistre le fichier"
 
@@ -456,7 +461,7 @@ msgstr "Enregistre le fichier"
 msgid "Save as..."
 msgstr "Enregistrer sous..."
 
-#: src/callbacks.c:941
+#: src/callbacks.c:952
 #, c-format
 msgid "Save changes to \"%s\" before closing?"
 msgstr "Enregistrer les changements de \"%s\" avant de le fermer ?"
