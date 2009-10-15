@@ -811,7 +811,8 @@ change_font_source_view (void)
  *****************************************************************************/
 
 static void
-create_document_in_new_tab (const gchar *path, const gchar *text, const gchar *title)
+create_document_in_new_tab (const gchar *path, const gchar *text,
+		const gchar *title)
 {
 	// create a new document_t structure
 	// if path = NULL, this is a new document

@@ -139,7 +139,7 @@ static GtkActionEntry entries[] = {
 
 // {name, stock_id, label, accelerator, tooltip, callback}
 static GtkActionEntry latex_entries[] = {
-	{"Latex", NULL, N_("LaTeX"), NULL, NULL, NULL},
+	{"Latex", NULL, "LaTeX", NULL, NULL, NULL},
 
 	{"Sectioning", "sectioning-section", N_("Sectioning"), NULL, NULL, NULL},
 	{"SectioningPart", "sectioning-part", N_("part"), NULL,
@@ -184,12 +184,12 @@ static GtkActionEntry latex_entries[] = {
 	{"ListEnvironments", "list-enumerate", N_("List Environments"), NULL, NULL, NULL},
 	{"ListEnvItemize", "list-itemize", N_("Bulleted List - \\begin{itemize}"), NULL,
 		N_("Bulleted List - \\begin{itemize}"), G_CALLBACK (cb_list_env_itemize)},
-	{"ListEnvEnumerate", "list-enumerate", N_("Enumeration - \\begin{enumeration}"), NULL,
+	{"ListEnvEnumerate", "list-enumerate", N_("Enumeration - \\begin{enumerate}"), NULL,
 		N_("Enumeration - \\begin{enumerate}"), G_CALLBACK (cb_list_env_enumerate)},
 	{"ListEnvDescription", "list-description", N_("Description - \\begin{description}"), NULL,
 		N_("Description - \\begin{description}"), G_CALLBACK (cb_list_env_description)},
-	{"ListEnvItem", "list-item", N_("\\item"), NULL,
-		N_("\\item"), G_CALLBACK (cb_list_env_item)},
+	{"ListEnvItem", "list-item", "\\item", NULL,
+		"\\item", G_CALLBACK (cb_list_env_item)},
 	
 
 	{"CharacterSize", "character-size", N_("Characters Sizes"), NULL, NULL, NULL},

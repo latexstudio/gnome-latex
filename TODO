@@ -16,7 +16,7 @@ Sat Oct 10, 2009 to Fri Oct 16, 2009
 
 [x] bugs correction
 
-[-] update French translation
+[x] update French translation
 
 [-] undo/redo and the "saved" document property
 	- detect when the buffer is the same as in the file currently saved
