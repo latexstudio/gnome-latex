@@ -1,5 +1,22 @@
 ChangeLog LaTeXila
 
+* Release 0.0.2 (Oct 17, 2009)
+	Added:
+	- Symbol tables: Greek letters, arrows, relations, operators,
+	delimiters, misc math, misc text (661 symbols)
+	- Edit toolbar and the LaTeX menu: sectioning, references,
+	environments, list environments, characters sizes and font styles
+	- Possibility to reorder the document tabs
+	- Command line options: --new-document, --version and --help
+	- A lot of little improvements
+	- Bug corrections
+
+	Updated:
+	- Nicer display of output commands when compiling or converting a
+	document (the output is showed progressivly line per line)
+	- Log zone: keep only the five last actions
+	- French translation
+
 * Release 0.0.1 (Sept 2, 2009)
 	Added:
 	- Syntaxic color
