@@ -1,23 +1,5 @@
 TODO LaTeXila
 
-Sat Oct 10, 2009 to Fri Oct 16, 2009
-
-[x] execution of the actions
-	x sensitivity of the actions when an action is running
-
-[x] log zone
-	x keep only the 5 last actions
-
-[x] symbol tables
-	x mathematical sets (N, Z, Q, R, C) in misc math
-
-[x] save as
-	x confirmation before replacing a file which already exists
-
-[x] bugs correction
-
-[x] update French translation
-
 [-] undo/redo and the "saved" document property
 	- detect when the buffer is the same as in the file currently saved
 

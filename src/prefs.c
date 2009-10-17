@@ -250,6 +250,19 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->file_chooser_dir = g_key_file_get_string (key_file, PROGRAM_NAME,
+			"file_chooser_directory", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->file_chooser_dir_is_empty = TRUE;
+		prefs->file_chooser_dir = NULL;
+		g_error_free (error);
+		error = NULL;
+	}
+	else
+		prefs->file_chooser_dir_is_empty = FALSE;
+
 	print_info ("load user preferences: OK");
 	g_key_file_free (key_file);
 }
@@ -277,6 +290,10 @@ save_preferences (preferences_t *prefs)
 			prefs->command_dvipdf);
 	g_key_file_set_string (key_file, PROGRAM_NAME, "command_dvips",
 			prefs->command_dvips);
+
+	if (! prefs->file_chooser_dir_is_empty)
+		g_key_file_set_string (key_file, PROGRAM_NAME, "file_chooser_directory",
+				prefs->file_chooser_dir);
 
 	/* set the keys that must be taken from the widgets */
 	GdkWindowState flag = gdk_window_get_state (gtk_widget_get_window (
@@ -364,6 +381,8 @@ load_default_preferences (preferences_t *prefs)
 	prefs->command_pdflatex = g_strdup (command_pdflatex_);
 	prefs->command_dvipdf = g_strdup (command_dvipdf_);
 	prefs->command_dvips = g_strdup (command_dvips_);
+	prefs->file_chooser_dir_is_empty = TRUE;
+	prefs->file_chooser_dir = NULL;
 
 	set_current_font_prefs (prefs);
 }
@@ -371,6 +390,7 @@ load_default_preferences (preferences_t *prefs)
 static gchar *
 get_rc_file (void)
 {
+	// rc_file must be freed
 	gchar *rc_file = g_build_filename (g_get_home_dir (), ".config", "latexila",
 			"latexilarc", NULL);
 	return rc_file;

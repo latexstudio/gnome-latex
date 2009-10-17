@@ -82,6 +82,8 @@ typedef struct
 	gchar					*command_pdflatex;
 	gchar					*command_dvipdf;
 	gchar					*command_dvips;
+	gboolean				file_chooser_dir_is_empty;
+	gchar					*file_chooser_dir;
 } preferences_t;
 
 typedef struct

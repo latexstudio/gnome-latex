@@ -73,6 +73,10 @@ cb_open (void)
 			NULL
 	);
 
+	if (! latexila.prefs.file_chooser_dir_is_empty)
+		gtk_file_chooser_set_current_folder_uri (GTK_FILE_CHOOSER (dialog),
+				latexila.prefs.file_chooser_dir);
+
 	if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
 	{
 		gchar *filename = gtk_file_chooser_get_filename (
@@ -85,6 +89,17 @@ cb_open (void)
 		g_free (filename);
 		g_free (uri);
 	}
+
+	/* save the current folder */
+	if (! latexila.prefs.file_chooser_dir_is_empty)
+		g_free (latexila.prefs.file_chooser_dir);
+
+	latexila.prefs.file_chooser_dir = gtk_file_chooser_get_current_folder_uri (
+			GTK_FILE_CHOOSER (dialog));
+
+	if (latexila.prefs.file_chooser_dir != NULL)
+		latexila.prefs.file_chooser_dir_is_empty = FALSE;
+
 	gtk_widget_destroy (dialog);
 }
 
@@ -1004,10 +1019,16 @@ save_as_dialog (void)
 			NULL
 	);
 
+	if (! latexila.prefs.file_chooser_dir_is_empty)
+		gtk_file_chooser_set_current_folder_uri (GTK_FILE_CHOOSER (dialog),
+				latexila.prefs.file_chooser_dir);
+
 	while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
 	{
-		gchar *filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+		gchar *filename = gtk_file_chooser_get_filename (
+				GTK_FILE_CHOOSER (dialog));
 		
+		/* if the file exists, ask the user whether the file can be replaced */
 		if (g_file_test (filename, G_FILE_TEST_EXISTS))
 		{
 			GtkWidget *confirmation = gtk_message_dialog_new (
@@ -1051,6 +1072,16 @@ save_as_dialog (void)
 
 		break;
 	}
+
+	/* save the current folder */
+	if (! latexila.prefs.file_chooser_dir_is_empty)
+		g_free (latexila.prefs.file_chooser_dir);
+
+	latexila.prefs.file_chooser_dir = gtk_file_chooser_get_current_folder_uri (
+			GTK_FILE_CHOOSER (dialog));
+
+	if (latexila.prefs.file_chooser_dir != NULL)
+		latexila.prefs.file_chooser_dir_is_empty = FALSE;
 
 	gtk_widget_destroy (dialog);
 }
@@ -1287,6 +1318,9 @@ free_latexila (void)
 	g_free (latexila.prefs.command_pdflatex);
 	g_free (latexila.prefs.command_dvipdf);
 	g_free (latexila.prefs.command_dvips);
+
+	if (! latexila.prefs.file_chooser_dir_is_empty)
+		g_free (latexila.prefs.file_chooser_dir);
 
 	for (int i = 0 ; i < 7 ; i++)
 		g_object_unref (latexila.symbols.list_stores[i]);
