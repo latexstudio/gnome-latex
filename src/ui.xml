@@ -50,7 +50,7 @@ In the code, GtkUIManager is used to construct them.
     </menu>
 
     <menu action="View">
-      <menuitem action="ViewSymbols" />
+      <menuitem action="ViewSidePane" />
       <menuitem action="ViewEditToolbar" />
       <separator />
       <menuitem action="ViewZoomIn" />

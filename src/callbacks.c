@@ -750,18 +750,18 @@ cb_recent_item_activated (GtkRecentAction *action, gpointer user_data)
 }
 
 void
-cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data)
+cb_show_side_pane (GtkToggleAction *toggle_action, gpointer user_data)
 {
-	if (latexila.symbols.vbox == NULL)
+	if (latexila.side_pane == NULL)
 		return;
 
 	latexila.prefs.show_side_pane =
 		gtk_toggle_action_get_active (toggle_action);
 
 	if (latexila.prefs.show_side_pane)
-		gtk_widget_show_all (latexila.symbols.vbox);
+		gtk_widget_show_all (latexila.side_pane);
 	else
-		gtk_widget_hide (latexila.symbols.vbox);
+		gtk_widget_hide (latexila.side_pane);
 }
 
 void
@@ -928,7 +928,8 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 	gtk_widget_set_name (close_button, "my-close-button");
 
 	gtk_button_set_relief (GTK_BUTTON (close_button), GTK_RELIEF_NONE);
-	GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
+	GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_CLOSE,
+			GTK_ICON_SIZE_MENU);
 	gtk_container_add (GTK_CONTAINER (close_button), image);
 	g_signal_connect (G_OBJECT (close_button), "clicked",
 			G_CALLBACK (cb_close_tab), sw);

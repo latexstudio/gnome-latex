@@ -157,7 +157,7 @@ main (int argc, char *argv[])
 	init_ui (main_vbox);
 	
 	/* horizontal pane
-	 * left: symbol tables
+	 * left: side pane (symbol tables and the file navigator)
 	 * right: the source view and the log zone
 	 */
 	GtkWidget *main_hpaned = gtk_hpaned_new ();
@@ -166,12 +166,40 @@ main (int argc, char *argv[])
 			latexila.prefs.main_hpaned_pos);
 	gtk_box_pack_start (GTK_BOX (main_vbox), main_hpaned, TRUE, TRUE, 0);
 
-	/* symbol tables */
+	/* side pane */
+	GtkWidget *side_pane_notebook = gtk_notebook_new ();
+	latexila.side_pane = side_pane_notebook;
+	gtk_notebook_set_scrollable (GTK_NOTEBOOK (side_pane_notebook), TRUE);
+	gtk_paned_add1 (GTK_PANED (main_hpaned), side_pane_notebook);
+
+	// symbol tables
 	GtkWidget *vbox_symbols = gtk_vbox_new (FALSE, 0);
 	latexila.symbols.vbox = vbox_symbols;
-	gtk_paned_add1 (GTK_PANED (main_hpaned), vbox_symbols);
 
+	GtkWidget *tab_label = gtk_hbox_new (FALSE, 3);
+	GtkWidget *label = gtk_label_new (_("Symbols"));
+	GtkWidget *image = gtk_image_new_from_file (DATA_DIR "/images/greek/01.png");
+	gtk_box_pack_start (GTK_BOX (tab_label), image, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (tab_label), label, TRUE, TRUE, 0);
+	gtk_widget_show_all (tab_label);
+
+	gtk_notebook_append_page (GTK_NOTEBOOK (side_pane_notebook), vbox_symbols,
+			tab_label);
 	init_symbols ();
+
+	// file navigator
+	GtkWidget *vbox_file_navigator = gtk_vbox_new (FALSE, 0);
+
+	tab_label = gtk_hbox_new (FALSE, 3);
+	label = gtk_label_new (_("File Browser"));
+	image = gtk_image_new_from_stock (GTK_STOCK_OPEN,
+			GTK_ICON_SIZE_MENU);
+	gtk_box_pack_start (GTK_BOX (tab_label), image, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (tab_label), label, TRUE, TRUE, 0);
+	gtk_widget_show_all (tab_label);
+
+	gtk_notebook_append_page (GTK_NOTEBOOK (side_pane_notebook),
+			vbox_file_navigator, tab_label);
 
 	/* vertical pane
 	 * top: source view
@@ -276,7 +304,7 @@ main (int argc, char *argv[])
 	gtk_widget_show_all (window);
 
 	if (! latexila.prefs.show_side_pane)
-		gtk_widget_hide (latexila.symbols.vbox);
+		gtk_widget_hide (latexila.side_pane);
 
 	if (! latexila.prefs.show_edit_toolbar)
 		gtk_widget_hide (latexila.edit_toolbar);

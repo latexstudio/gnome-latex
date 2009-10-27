@@ -59,7 +59,7 @@ void cb_page_reordered (GtkNotebook *notebook, GtkWidget *child, guint page_num,
 gboolean cb_delete_event (GtkWidget *widget, GdkEvent *event,
 		gpointer user_data);
 void cb_recent_item_activated (GtkRecentAction *action, gpointer user_data);
-void cb_show_symbol_tables (GtkToggleAction *toggle_action, gpointer user_data);
+void cb_show_side_pane (GtkToggleAction *toggle_action, gpointer user_data);
 void cb_show_edit_toolbar (GtkToggleAction *toggle_action, gpointer user_data);
 
 void open_new_document (const gchar *filename, const gchar *uri);

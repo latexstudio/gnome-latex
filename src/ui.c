@@ -254,8 +254,8 @@ static GtkActionEntry latex_entries[] = {
 
 // {name, stock_id, label, accelerator, tooltip, callback}
 static GtkToggleActionEntry toggle_entries[] = {
-	{"ViewSymbols", NULL, N_("Symbol tables"), NULL,
-		N_("Show or hide the symbol tables"), G_CALLBACK (cb_show_symbol_tables)},
+	{"ViewSidePane", NULL, N_("Side pane"), NULL,
+		N_("Show or hide the side pane"), G_CALLBACK (cb_show_side_pane)},
 	{"ViewEditToolbar", NULL, N_("Edit Toolbar"), NULL,
 		N_("Show or hide the edit toolbar"), G_CALLBACK (cb_show_edit_toolbar)},
 };
@@ -390,9 +390,9 @@ init_ui (GtkWidget *box)
 			"viewPS");
 
 
-	GtkToggleAction *show_symbol_tables = GTK_TOGGLE_ACTION (
-			gtk_action_group_get_action (action_group, "ViewSymbols"));
-	gtk_toggle_action_set_active (show_symbol_tables,
+	GtkToggleAction *show_side_pane = GTK_TOGGLE_ACTION (
+			gtk_action_group_get_action (action_group, "ViewSidePane"));
+	gtk_toggle_action_set_active (show_side_pane,
 			latexila.prefs.show_side_pane);
 
 	GtkToggleAction *show_edit_toolbar = GTK_TOGGLE_ACTION (

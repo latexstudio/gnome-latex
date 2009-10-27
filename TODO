@@ -1,5 +1,17 @@
 TODO LaTeXila
 
+[-] File browser in the side bar
+	x tabs to switch between "Symbols" and "File Browser"
+	- file browser integrated
+
+[-] Templates
+	- create a few default templates
+	- on the action "new file", possibility to select a template
+	- possibility to create new templates
+	- possibility to delete templates (not the defaults)
+
+[-] BibTeX support
+
 [-] undo/redo and the "saved" document property
 	- detect when the buffer is the same as in the file currently saved
 
