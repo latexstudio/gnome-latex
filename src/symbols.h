@@ -22,8 +22,4 @@
 
 void init_symbols (void);
 
-//TODO this callbacks are used only in symbols.c => static
-void cb_category_symbols_selected (GtkIconView *icon_view, gpointer user_data);
-void cb_symbol_selected (GtkIconView *icon_view, gpointer user_data);
-
 #endif /* SYMBOLS_H */

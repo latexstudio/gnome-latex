@@ -31,6 +31,9 @@
 #include "symbols.h"
 
 static GtkListStore * get_symbol_store (const struct symbol symbols[]);
+static void cb_category_symbols_selected (GtkIconView *icon_view,
+		gpointer user_data);
+static void cb_symbol_selected (GtkIconView *icon_view, gpointer user_data);
 
 static struct {
 	gchar *name;
@@ -877,7 +880,7 @@ init_symbols (void)
 	gtk_box_pack_start (GTK_BOX (latexila.symbols.vbox), scrollbar, TRUE, TRUE, 0);
 }
 
-void
+static void
 cb_category_symbols_selected (GtkIconView *icon_view, gpointer user_data)
 {
 	GList *selected_items = gtk_icon_view_get_selected_items (icon_view);
@@ -911,7 +914,7 @@ cb_category_symbols_selected (GtkIconView *icon_view, gpointer user_data)
 	g_list_free (selected_items);
 }
 
-void
+static void
 cb_symbol_selected (GtkIconView *icon_view, gpointer user_data)
 {
 	if (latexila.active_doc == NULL)
