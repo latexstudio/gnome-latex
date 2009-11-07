@@ -1310,6 +1310,7 @@ free_latexila (void)
 	g_free (latexila.prefs.command_dvipdf);
 	g_free (latexila.prefs.command_dvips);
 	g_free (latexila.prefs.file_chooser_dir);
+	g_free (latexila.prefs.file_browser_dir);
 
 	for (int i = 0 ; i < 7 ; i++)
 		g_object_unref (latexila.symbols.list_stores[i]);

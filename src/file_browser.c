@@ -42,7 +42,6 @@ init_file_browser (void)
 	GtkListStore *store = gtk_list_store_new (N_COLUMNS_FILE_BROWSER,
 			GDK_TYPE_PIXBUF, G_TYPE_STRING);
 	latexila.file_browser.list_store = store;
-	latexila.file_browser.current_dir = g_strdup (g_get_home_dir ());
 
 	fill_list_store_with_current_dir ();
 
@@ -78,7 +77,7 @@ static void
 fill_list_store_with_current_dir (void)
 {
 	GError *error = NULL;
-	GDir *dir = g_dir_open (latexila.file_browser.current_dir, 0, &error);
+	GDir *dir = g_dir_open (latexila.prefs.file_browser_dir, 0, &error);
 	if (error != NULL)
 	{
 		print_warning ("File browser: %s", error->message);
@@ -113,7 +112,7 @@ fill_list_store_with_current_dir (void)
 		if (read_name[0] == '.')
 			continue;
 
-		gchar *full_path = g_build_filename (latexila.file_browser.current_dir,
+		gchar *full_path = g_build_filename (latexila.prefs.file_browser_dir,
 				read_name, NULL);
 
 		if (g_file_test (full_path, G_FILE_TEST_IS_DIR))
@@ -184,14 +183,14 @@ cb_file_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
 	gchar *file = NULL;
 	gtk_tree_model_get (model, &iter, COLUMN_FILE_BROWSER_FILE, &file, -1);
 
-	gchar *full_path = g_build_filename (latexila.file_browser.current_dir,
+	gchar *full_path = g_build_filename (latexila.prefs.file_browser_dir,
 			file, NULL);
 
 	// open the directory
 	if (g_file_test (full_path, G_FILE_TEST_IS_DIR))
 	{
-		g_free (latexila.file_browser.current_dir);
-		latexila.file_browser.current_dir = full_path;
+		g_free (latexila.prefs.file_browser_dir);
+		latexila.prefs.file_browser_dir = full_path;
 		fill_list_store_with_current_dir ();
 	}
 

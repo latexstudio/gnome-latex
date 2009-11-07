@@ -67,7 +67,6 @@ typedef struct
 {
 	GtkWidget		*vbox;
 	GtkListStore	*list_store;
-	gchar			*current_dir;
 } file_browser_t;
 
 // preferences, settings
@@ -91,6 +90,7 @@ typedef struct
 	gchar					*command_dvipdf;
 	gchar					*command_dvips;
 	gchar					*file_chooser_dir;
+	gchar					*file_browser_dir;
 } preferences_t;
 
 typedef struct
