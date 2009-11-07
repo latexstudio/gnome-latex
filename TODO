@@ -2,7 +2,8 @@ TODO LaTeXila
 
 [-] File browser in the side bar
 	x tabs to switch between "Symbols" and "File Browser"
-	- file browser integrated
+	x file browser integrated
+	- sort the files in alphabetical order
 
 [-] Templates
 	- create a few default templates

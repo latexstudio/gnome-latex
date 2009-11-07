@@ -30,6 +30,7 @@
 #include "config.h"
 #include "callbacks.h"
 #include "symbols.h"
+#include "file_browser.h"
 #include "print.h"
 #include "prefs.h"
 #include "ui.h"
@@ -157,7 +158,7 @@ main (int argc, char *argv[])
 	init_ui (main_vbox);
 	
 	/* horizontal pane
-	 * left: side pane (symbol tables and the file navigator)
+	 * left: side pane (symbol tables and the file browser)
 	 * right: the source view and the log zone
 	 */
 	GtkWidget *main_hpaned = gtk_hpaned_new ();
@@ -187,8 +188,9 @@ main (int argc, char *argv[])
 			tab_label);
 	init_symbols ();
 
-	// file navigator
-	GtkWidget *vbox_file_navigator = gtk_vbox_new (FALSE, 0);
+	// file browser
+	GtkWidget *vbox_file_browser = gtk_vbox_new (FALSE, 0);
+	latexila.file_browser.vbox = vbox_file_browser;
 
 	tab_label = gtk_hbox_new (FALSE, 3);
 	label = gtk_label_new (_("File Browser"));
@@ -199,7 +201,8 @@ main (int argc, char *argv[])
 	gtk_widget_show_all (tab_label);
 
 	gtk_notebook_append_page (GTK_NOTEBOOK (side_pane_notebook),
-			vbox_file_navigator, tab_label);
+			vbox_file_browser, tab_label);
+	init_file_browser ();
 
 	/* vertical pane
 	 * top: source view

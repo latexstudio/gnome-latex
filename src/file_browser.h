@@ -17,13 +17,16 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SYMBOLS_H
-#define SYMBOLS_H
+#ifndef FILE_BROWSER_H
+#define FILE_BROWSER_H
 
-void init_symbols (void);
+void init_file_browser (void);
 
-//TODO this callbacks are used only in symbols.c => static
-void cb_category_symbols_selected (GtkIconView *icon_view, gpointer user_data);
-void cb_symbol_selected (GtkIconView *icon_view, gpointer user_data);
+enum
+{
+	COLUMN_FILE_BROWSER_PIXBUF,
+	COLUMN_FILE_BROWSER_FILE,
+	N_COLUMNS_FILE_BROWSER
+};
 
-#endif /* SYMBOLS_H */
+#endif /* FILE_BROWSER_H */

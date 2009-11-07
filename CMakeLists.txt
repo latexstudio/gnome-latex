@@ -1,11 +1,11 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6.2)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6.4)
 
 PROJECT(latexila)
 
 # version
 SET(latexila_MAJOR 0)
 SET(latexila_MINOR 0)
-SET(latexila_PATCH 2)
+SET(latexila_PATCH "2.99")
 SET(latexila_VERSION ${latexila_MAJOR}.${latexila_MINOR}.${latexila_PATCH})
 
 MESSAGE(STATUS "*** Building LaTeXila ${latexila_VERSION} ***")
@@ -24,10 +24,7 @@ IF(ENABLE_NLS)
   MESSAGE(STATUS "Native language support enabled.")
   FIND_PACKAGE(Gettext REQUIRED)
   FILE(GLOB latexila_PO_FILES ${latexila_SOURCE_DIR}/po/*.po)
-  GETTEXT_CREATE_TRANSLATIONS(po/latexila.pot ${latexila_PO_FILES})
-  # with ALL it doesn't work, wait the new version of FindGettext module...
-  # so we must run "make translations"
-  #GETTEXT_CREATE_TRANSLATIONS(po/latexila.pot ALL ${latexila_PO_FILES})
+  GETTEXT_CREATE_TRANSLATIONS(po/latexila.pot ALL ${latexila_PO_FILES})
 ELSE(ENABLE_NLS)
   MESSAGE(STATUS "Native language support disabled.")
 ENDIF(ENABLE_NLS)

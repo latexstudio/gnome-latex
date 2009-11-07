@@ -25,6 +25,7 @@
 #include "main.h"
 #include "config.h"
 #include "print.h"
+#include "cb_latex.h"
 
 static void text_buffer_insert (gchar *text_before, gchar *text_after,
 		gchar *text_if_no_selection);

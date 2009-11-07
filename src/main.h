@@ -57,10 +57,18 @@ typedef struct
 // symbols tables
 typedef struct
 {
-	GtkWidget			*vbox;
-	GtkListStore		*list_stores[7];
-	GtkIconView			*icon_view;
+	GtkWidget		*vbox;
+	GtkListStore	*list_stores[7];
+	GtkIconView		*icon_view;
 } symbols_t;
+
+// file browser
+typedef struct
+{
+	GtkWidget		*vbox;
+	GtkListStore	*list_store;
+	gchar			*current_dir;
+} file_browser_t;
 
 // preferences, settings
 typedef struct
@@ -105,6 +113,7 @@ typedef struct
 	document_t		*active_doc;
 	action_log_t	action_log;
 	symbols_t		symbols;
+	file_browser_t	file_browser;
 	preferences_t	prefs;
 	actions_t		actions;
 	GtkWindow		*main_window;
