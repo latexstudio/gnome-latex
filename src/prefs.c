@@ -46,7 +46,7 @@ static void cb_pref_command_dvipdf (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_dvips (GtkEditable *editable, gpointer user_data);
 
 /* default values */
-// there is an underscore in the end of each variable name
+// there is an underscore in the end for each variable name
 static gboolean	show_line_numbers_	= FALSE;
 static gboolean	show_side_pane_		= TRUE;
 static gboolean show_edit_toolbar_	= TRUE;
@@ -255,13 +255,10 @@ load_preferences (preferences_t *prefs)
 	if (error != NULL)
 	{
 		print_warning ("%s", error->message);
-		prefs->file_chooser_dir_is_empty = TRUE;
 		prefs->file_chooser_dir = NULL;
 		g_error_free (error);
 		error = NULL;
 	}
-	else
-		prefs->file_chooser_dir_is_empty = FALSE;
 
 	print_info ("load user preferences: OK");
 	g_key_file_free (key_file);
@@ -291,7 +288,7 @@ save_preferences (preferences_t *prefs)
 	g_key_file_set_string (key_file, PROGRAM_NAME, "command_dvips",
 			prefs->command_dvips);
 
-	if (! prefs->file_chooser_dir_is_empty)
+	if (prefs->file_chooser_dir != NULL)
 		g_key_file_set_string (key_file, PROGRAM_NAME, "file_chooser_directory",
 				prefs->file_chooser_dir);
 
@@ -381,7 +378,6 @@ load_default_preferences (preferences_t *prefs)
 	prefs->command_pdflatex = g_strdup (command_pdflatex_);
 	prefs->command_dvipdf = g_strdup (command_dvipdf_);
 	prefs->command_dvips = g_strdup (command_dvips_);
-	prefs->file_chooser_dir_is_empty = TRUE;
 	prefs->file_chooser_dir = NULL;
 
 	set_current_font_prefs (prefs);

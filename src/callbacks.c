@@ -73,7 +73,7 @@ cb_open (void)
 			NULL
 	);
 
-	if (! latexila.prefs.file_chooser_dir_is_empty)
+	if (latexila.prefs.file_chooser_dir != NULL)
 		gtk_file_chooser_set_current_folder_uri (GTK_FILE_CHOOSER (dialog),
 				latexila.prefs.file_chooser_dir);
 
@@ -91,14 +91,9 @@ cb_open (void)
 	}
 
 	/* save the current folder */
-	if (! latexila.prefs.file_chooser_dir_is_empty)
-		g_free (latexila.prefs.file_chooser_dir);
-
+	g_free (latexila.prefs.file_chooser_dir);
 	latexila.prefs.file_chooser_dir = gtk_file_chooser_get_current_folder_uri (
 			GTK_FILE_CHOOSER (dialog));
-
-	if (latexila.prefs.file_chooser_dir != NULL)
-		latexila.prefs.file_chooser_dir_is_empty = FALSE;
 
 	gtk_widget_destroy (dialog);
 }
@@ -1020,7 +1015,7 @@ save_as_dialog (void)
 			NULL
 	);
 
-	if (! latexila.prefs.file_chooser_dir_is_empty)
+	if (latexila.prefs.file_chooser_dir != NULL)
 		gtk_file_chooser_set_current_folder_uri (GTK_FILE_CHOOSER (dialog),
 				latexila.prefs.file_chooser_dir);
 
@@ -1075,14 +1070,9 @@ save_as_dialog (void)
 	}
 
 	/* save the current folder */
-	if (! latexila.prefs.file_chooser_dir_is_empty)
-		g_free (latexila.prefs.file_chooser_dir);
-
+	g_free (latexila.prefs.file_chooser_dir);
 	latexila.prefs.file_chooser_dir = gtk_file_chooser_get_current_folder_uri (
 			GTK_FILE_CHOOSER (dialog));
-
-	if (latexila.prefs.file_chooser_dir != NULL)
-		latexila.prefs.file_chooser_dir_is_empty = FALSE;
 
 	gtk_widget_destroy (dialog);
 }
@@ -1319,9 +1309,7 @@ free_latexila (void)
 	g_free (latexila.prefs.command_pdflatex);
 	g_free (latexila.prefs.command_dvipdf);
 	g_free (latexila.prefs.command_dvips);
-
-	if (! latexila.prefs.file_chooser_dir_is_empty)
-		g_free (latexila.prefs.file_chooser_dir);
+	g_free (latexila.prefs.file_chooser_dir);
 
 	for (int i = 0 ; i < 7 ; i++)
 		g_object_unref (latexila.symbols.list_stores[i]);
