@@ -34,6 +34,7 @@
 static void fill_list_store_with_current_dir (void);
 static void cb_file_browser_row_activated (GtkTreeView *tree_view,
 		GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
+gint sort_list_alphabetical_order (gconstpointer a, gconstpointer b);
 
 void
 init_file_browser (void)
@@ -82,14 +83,6 @@ fill_list_store_with_current_dir (void)
 	{
 		print_warning ("File browser: %s", error->message);
 		g_error_free (error);
-
-		// avoid infinite loop
-		if (strcmp (latexila.file_browser.current_dir, g_get_home_dir ()) == 0)
-			return;
-
-		g_free (latexila.file_browser.current_dir);
-		latexila.file_browser.current_dir = g_strdup (g_get_home_dir ());
-		fill_list_store_with_current_dir ();
 		return;
 	}
 
@@ -110,8 +103,10 @@ fill_list_store_with_current_dir (void)
 			COLUMN_FILE_BROWSER_FILE, "..",
 			-1);
 
-	// append all the files contained in the directory
+	/* append all the files contained in the directory */
 	const gchar *read_name = NULL;
+	GList *directory_list = NULL;
+	GList *file_list = NULL;
 	while ((read_name = g_dir_read_name (dir)) != NULL)
 	{
 		// not show hidden files
@@ -121,24 +116,61 @@ fill_list_store_with_current_dir (void)
 		gchar *full_path = g_build_filename (latexila.file_browser.current_dir,
 				read_name, NULL);
 
-		GdkPixbuf *pixbuf;
 		if (g_file_test (full_path, G_FILE_TEST_IS_DIR))
-			pixbuf = pixbuf_dir;
+			directory_list = g_list_prepend (directory_list, (gpointer) read_name);
 		else
-			pixbuf = pixbuf_file;
-
-		gtk_list_store_append (latexila.file_browser.list_store, &iter);
-		gtk_list_store_set (latexila.file_browser.list_store, &iter,
-				COLUMN_FILE_BROWSER_PIXBUF, pixbuf,
-				COLUMN_FILE_BROWSER_FILE, read_name,
-				-1);
+			file_list = g_list_prepend (file_list, (gpointer) read_name);
 
 		g_free (full_path);
 	}
 
+	g_dir_close (dir);
+
+	directory_list = g_list_sort (directory_list, sort_list_alphabetical_order);
+	file_list = g_list_sort (file_list, sort_list_alphabetical_order);
+
+	// traverse the directory list
+	GList *current = directory_list;
+	while (TRUE)
+	{
+		if (current == NULL)
+			break;
+
+		gchar *directory = g_list_nth_data (current, 0);
+
+		// append the directory to the list store
+		gtk_list_store_append (latexila.file_browser.list_store, &iter);
+		gtk_list_store_set (latexila.file_browser.list_store, &iter,
+				COLUMN_FILE_BROWSER_PIXBUF, pixbuf_dir,
+				COLUMN_FILE_BROWSER_FILE, directory,
+				-1);
+
+		current = g_list_next (current);
+	}
+
+	// traverse the file list
+	current = file_list;
+	while (TRUE)
+	{
+		if (current == NULL)
+			break;
+
+		gchar *file = g_list_nth_data (current, 0);
+
+		// append the file to the list store
+		gtk_list_store_append (latexila.file_browser.list_store, &iter);
+		gtk_list_store_set (latexila.file_browser.list_store, &iter,
+				COLUMN_FILE_BROWSER_PIXBUF, pixbuf_file,
+				COLUMN_FILE_BROWSER_FILE, file,
+				-1);
+
+		current = g_list_next (current);
+	}
+
 	g_object_unref (pixbuf_dir);
 	g_object_unref (pixbuf_file);
-	g_dir_close (dir);
+	g_list_free (directory_list);
+	g_list_free (file_list);
 }
 
 static void
@@ -181,4 +213,10 @@ cb_file_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
 		g_free (full_path);
 		g_free (uri);
 	}
+}
+
+gint
+sort_list_alphabetical_order (gconstpointer a, gconstpointer b)
+{
+	return strcmp ((char *) a, (char *) b);
 }

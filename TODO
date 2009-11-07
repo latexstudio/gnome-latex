@@ -3,7 +3,11 @@ TODO LaTeXila
 [-] File browser in the side bar
 	x tabs to switch between "Symbols" and "File Browser"
 	x file browser integrated
-	- sort the files in alphabetical order
+	x sort the files in alphabetical order
+	- save the current folder in the prefs
+	- other pixbuf for *.pdf, *.dvi and *.ps files
+	- if clicking on a *.pdf, *.dvi or *.ps file, show the document (add a new action)
+	- add an option in the preferences: show only *.tex, *.pdf, *.dvi and *.ps files
 
 [-] Templates
 	- create a few default templates
