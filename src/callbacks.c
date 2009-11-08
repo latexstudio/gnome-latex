@@ -659,7 +659,6 @@ cb_about_dialog (void)
 			"You should have received a copy of the GNU General Public License\n"
 			"along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.\n";
 
-	//TODO set the url hook
 	gchar *website = "http://latexila.sourceforge.net/";
 
 	const gchar *authors[] =
@@ -675,6 +674,9 @@ cb_about_dialog (void)
 		NULL
 	};
 
+	GdkPixbuf *logo = gdk_pixbuf_new_from_file (DATA_DIR "/images/logo.png",
+			NULL);
+
 	gtk_show_about_dialog (
 			latexila.main_window,
 			"program-name", PROGRAM_NAME,
@@ -687,6 +689,7 @@ cb_about_dialog (void)
 			"title", _("About " PROGRAM_NAME),
 			"translator-credits", _("translator-credits"),
 			"website", website,
+			"logo", logo,
 			NULL
 	);
 }

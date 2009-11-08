@@ -6,3 +6,6 @@ ADD_SUBDIRECTORY(operators)
 ADD_SUBDIRECTORY(delimiters)
 ADD_SUBDIRECTORY(misc-math)
 ADD_SUBDIRECTORY(misc-text)
+
+FILE(GLOB images *.png)
+INSTALL(FILES ${images} DESTINATION ${DATA_DIR}/images)

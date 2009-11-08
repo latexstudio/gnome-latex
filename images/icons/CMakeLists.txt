@@ -1,2 +1,2 @@
-FILE(GLOB symbols *.png)
-INSTALL(FILES ${symbols} DESTINATION ${DATA_DIR}/images/icons)
+FILE(GLOB icons *.png)
+INSTALL(FILES ${icons} DESTINATION ${DATA_DIR}/images/icons)
