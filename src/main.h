@@ -138,29 +138,4 @@ enum action
 	N_COLUMNS_ACTION
 };
 
-// for the symbol tables
-struct symbol
-{
-	gchar *filename;
-	gchar *latex_command;
-	gchar *package_required;
-};
-
-// for the symbol lists
-enum symbols
-{
-	COLUMN_SYMBOL_PIXBUF,
-	COLUMN_SYMBOL_COMMAND,
-	COLUMN_SYMBOL_TOOLTIP,
-	N_COLUMNS_SYMBOL
-};
-
-enum category_symbols
-{
-	COLUMN_CAT_ICON,
-	COLUMN_CAT_NAME,
-	COLUMN_CAT_NUM,
-	N_COLUMNS_CAT
-};
-
 #endif /* MAIN_H */
