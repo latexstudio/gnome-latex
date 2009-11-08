@@ -32,13 +32,41 @@
 #include "callbacks.h"
 
 static void fill_list_store_with_current_dir (void);
+static void cb_go_to_home_dir (GtkButton *button, gpointer user_data);
+static void cb_go_to_parent_dir (GtkButton *button, gpointer user_data);
 static void cb_file_browser_row_activated (GtkTreeView *tree_view,
 		GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
-gint sort_list_alphabetical_order (gconstpointer a, gconstpointer b);
+static gint sort_list_alphabetical_order (gconstpointer a, gconstpointer b);
 
 void
 init_file_browser (void)
 {
+	/* mini-toolbar */
+	// go to the home user directory
+	GtkWidget *home_button = gtk_button_new ();
+	gtk_button_set_relief (GTK_BUTTON (home_button), GTK_RELIEF_NONE);
+	GtkWidget *home_icon = gtk_image_new_from_stock (GTK_STOCK_HOME,
+			GTK_ICON_SIZE_BUTTON);
+	gtk_container_add (GTK_CONTAINER (home_button), home_icon);
+	g_signal_connect (G_OBJECT (home_button), "clicked",
+			G_CALLBACK (cb_go_to_home_dir), NULL);
+
+	// go to the parent directory
+	GtkWidget *parent_dir_button = gtk_button_new ();
+	gtk_button_set_relief (GTK_BUTTON (parent_dir_button), GTK_RELIEF_NONE);
+	GtkWidget *parent_dir_icon = gtk_image_new_from_stock (GTK_STOCK_GO_UP,
+			GTK_ICON_SIZE_BUTTON);
+	gtk_container_add (GTK_CONTAINER (parent_dir_button), parent_dir_icon);
+	g_signal_connect (G_OBJECT (parent_dir_button), "clicked",
+			G_CALLBACK (cb_go_to_parent_dir), NULL);
+
+	GtkWidget *hbox = gtk_hbox_new (TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), home_button, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), parent_dir_button, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (latexila.file_browser.vbox), hbox,
+			FALSE, FALSE, 0);
+
+	/* list of files and directories */
 	GtkListStore *store = gtk_list_store_new (N_COLUMNS_FILE_BROWSER,
 			GDK_TYPE_PIXBUF, G_TYPE_STRING);
 	latexila.file_browser.list_store = store;
@@ -46,17 +74,20 @@ init_file_browser (void)
 	fill_list_store_with_current_dir ();
 
 	GtkWidget *tree_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
+	// dubble-click on a row will open the file
 	g_signal_connect (G_OBJECT (tree_view), "row-activated",
 			G_CALLBACK (cb_file_browser_row_activated), NULL);
 	
 	GtkCellRenderer *renderer;
 	GtkTreeViewColumn *column;
 
+	// show the icon
 	renderer = gtk_cell_renderer_pixbuf_new ();
 	column = gtk_tree_view_column_new_with_attributes (NULL, renderer, "pixbuf",
 			COLUMN_FILE_BROWSER_PIXBUF, NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
 
+	// show the file name
 	renderer = gtk_cell_renderer_text_new ();
 	column = gtk_tree_view_column_new_with_attributes (NULL, renderer, "text",
 			COLUMN_FILE_BROWSER_FILE, NULL);
@@ -69,6 +100,7 @@ init_file_browser (void)
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
 			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_container_add (GTK_CONTAINER (scrollbar), tree_view);
+
 	gtk_box_pack_start (GTK_BOX (latexila.file_browser.vbox), scrollbar,
 			TRUE, TRUE, 0);
 }
@@ -86,21 +118,6 @@ fill_list_store_with_current_dir (void)
 	}
 
 	gtk_list_store_clear (latexila.file_browser.list_store);
-
-	GtkTreeIter iter;
-
-	// get the pixbufs
-	GdkPixbuf *pixbuf_dir = gtk_widget_render_icon (latexila.side_pane,
-			GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_MENU, NULL);
-	GdkPixbuf *pixbuf_file = gtk_widget_render_icon (latexila.side_pane,
-			GTK_STOCK_FILE, GTK_ICON_SIZE_MENU, NULL);
-
-	// append first the parent directory
-	gtk_list_store_append (latexila.file_browser.list_store, &iter);
-	gtk_list_store_set (latexila.file_browser.list_store, &iter,
-			COLUMN_FILE_BROWSER_PIXBUF, pixbuf_dir,
-			COLUMN_FILE_BROWSER_FILE, "..",
-			-1);
 
 	/* append all the files contained in the directory */
 	const gchar *read_name = NULL;
@@ -123,10 +140,18 @@ fill_list_store_with_current_dir (void)
 		g_free (full_path);
 	}
 
-	g_dir_close (dir);
 
+	// sort the lists in alphabetical order
 	directory_list = g_list_sort (directory_list, sort_list_alphabetical_order);
 	file_list = g_list_sort (file_list, sort_list_alphabetical_order);
+
+	// get the pixbufs
+	GdkPixbuf *pixbuf_dir = gtk_widget_render_icon (latexila.side_pane,
+			GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_MENU, NULL);
+	GdkPixbuf *pixbuf_file = gtk_widget_render_icon (latexila.side_pane,
+			GTK_STOCK_FILE, GTK_ICON_SIZE_MENU, NULL);
+
+	GtkTreeIter iter;
 
 	// traverse the directory list
 	GList *current = directory_list;
@@ -166,10 +191,28 @@ fill_list_store_with_current_dir (void)
 		current = g_list_next (current);
 	}
 
+	g_dir_close (dir);
 	g_object_unref (pixbuf_dir);
 	g_object_unref (pixbuf_file);
 	g_list_free (directory_list);
 	g_list_free (file_list);
+}
+
+static void
+cb_go_to_home_dir (GtkButton *button, gpointer user_data)
+{
+	g_free (latexila.prefs.file_browser_dir);
+	latexila.prefs.file_browser_dir = g_strdup (g_get_home_dir ());
+	fill_list_store_with_current_dir ();
+}
+
+static void
+cb_go_to_parent_dir (GtkButton *button, gpointer user_data)
+{
+	gchar *path = g_build_filename (latexila.prefs.file_browser_dir, "..", NULL);
+	g_free (latexila.prefs.file_browser_dir);
+	latexila.prefs.file_browser_dir = path;
+	fill_list_store_with_current_dir ();
 }
 
 static void
@@ -214,7 +257,7 @@ cb_file_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
 	}
 }
 
-gint
+static gint
 sort_list_alphabetical_order (gconstpointer a, gconstpointer b)
 {
 	return strcmp ((char *) a, (char *) b);

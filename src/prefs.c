@@ -399,7 +399,7 @@ static gchar *
 get_rc_file (void)
 {
 	// rc_file must be freed
-	gchar *rc_file = g_build_filename (g_get_home_dir (), ".config", "latexila",
+	gchar *rc_file = g_build_filename (g_get_user_config_dir (), "latexila",
 			"latexilarc", NULL);
 	return rc_file;
 }
