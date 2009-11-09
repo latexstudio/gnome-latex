@@ -155,6 +155,14 @@ fill_list_store_with_current_dir (void)
 			GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_MENU, NULL);
 	GdkPixbuf *pixbuf_file = gtk_widget_render_icon (latexila.side_pane,
 			GTK_STOCK_FILE, GTK_ICON_SIZE_MENU, NULL);
+	GdkPixbuf *pixbuf_tex = gtk_widget_render_icon (latexila.side_pane,
+			GTK_STOCK_EDIT, GTK_ICON_SIZE_MENU, NULL);
+	GdkPixbuf *pixbuf_pdf = gtk_widget_render_icon (latexila.side_pane,
+			"view_pdf", GTK_ICON_SIZE_MENU, NULL);
+	GdkPixbuf *pixbuf_dvi = gtk_widget_render_icon (latexila.side_pane,
+			"view_dvi", GTK_ICON_SIZE_MENU, NULL);
+	GdkPixbuf *pixbuf_ps = gtk_widget_render_icon (latexila.side_pane,
+			"view_ps", GTK_ICON_SIZE_MENU, NULL);
 
 	GtkTreeIter iter;
 
@@ -187,10 +195,23 @@ fill_list_store_with_current_dir (void)
 
 		gchar *file = g_list_nth_data (current, 0);
 
+		GdkPixbuf *pixbuf;
+		if (g_str_has_suffix (file, ".tex"))
+			pixbuf = pixbuf_tex;
+		else if (g_str_has_suffix (file, ".pdf"))
+			pixbuf = pixbuf_pdf;
+		else if (g_str_has_suffix (file, ".dvi"))
+			pixbuf = pixbuf_dvi;
+		else if (g_str_has_suffix (file, ".ps"))
+			pixbuf = pixbuf_ps;
+		else
+			pixbuf = pixbuf_file;
+
+
 		// append the file to the list store
 		gtk_list_store_append (latexila.file_browser.list_store, &iter);
 		gtk_list_store_set (latexila.file_browser.list_store, &iter,
-				COLUMN_FILE_BROWSER_PIXBUF, pixbuf_file,
+				COLUMN_FILE_BROWSER_PIXBUF, pixbuf,
 				COLUMN_FILE_BROWSER_FILE, file,
 				-1);
 
@@ -200,6 +221,10 @@ fill_list_store_with_current_dir (void)
 
 	g_object_unref (pixbuf_dir);
 	g_object_unref (pixbuf_file);
+	g_object_unref (pixbuf_tex);
+	g_object_unref (pixbuf_pdf);
+	g_object_unref (pixbuf_dvi);
+	g_object_unref (pixbuf_ps);
 	g_list_free (directory_list);
 	g_list_free (file_list);
 }
