@@ -215,7 +215,7 @@ cb_go_to_home_dir (GtkButton *button, gpointer user_data)
 static void
 cb_go_to_parent_dir (GtkButton *button, gpointer user_data)
 {
-	gchar *path = g_build_filename (latexila.prefs.file_browser_dir, "..", NULL);
+	gchar *path = g_path_get_dirname (latexila.prefs.file_browser_dir);
 	g_free (latexila.prefs.file_browser_dir);
 	latexila.prefs.file_browser_dir = path;
 	fill_list_store_with_current_dir ();
