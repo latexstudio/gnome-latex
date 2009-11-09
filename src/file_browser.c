@@ -132,14 +132,19 @@ fill_list_store_with_current_dir (void)
 		gchar *full_path = g_build_filename (latexila.prefs.file_browser_dir,
 				read_name, NULL);
 
+		// make a copy of read_name, else there are memory errors if the
+		// directory is very big (/usr/bin for example)
+		gchar *tmp = g_strdup (read_name);
+
 		if (g_file_test (full_path, G_FILE_TEST_IS_DIR))
-			directory_list = g_list_prepend (directory_list, (gpointer) read_name);
+			directory_list = g_list_prepend (directory_list, (gpointer) tmp);
 		else
-			file_list = g_list_prepend (file_list, (gpointer) read_name);
+			file_list = g_list_prepend (file_list, (gpointer) tmp);
 
 		g_free (full_path);
 	}
 
+	g_dir_close (dir);
 
 	// sort the lists in alphabetical order
 	directory_list = g_list_sort (directory_list, sort_list_alphabetical_order);
@@ -169,6 +174,7 @@ fill_list_store_with_current_dir (void)
 				COLUMN_FILE_BROWSER_FILE, directory,
 				-1);
 
+		g_free (directory);
 		current = g_list_next (current);
 	}
 
@@ -188,10 +194,10 @@ fill_list_store_with_current_dir (void)
 				COLUMN_FILE_BROWSER_FILE, file,
 				-1);
 
+		g_free (file);
 		current = g_list_next (current);
 	}
 
-	g_dir_close (dir);
 	g_object_unref (pixbuf_dir);
 	g_object_unref (pixbuf_file);
 	g_list_free (directory_list);
