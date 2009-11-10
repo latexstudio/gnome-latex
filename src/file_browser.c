@@ -49,6 +49,7 @@ init_file_browser (void)
 	GtkWidget *home_icon = gtk_image_new_from_stock (GTK_STOCK_HOME,
 			GTK_ICON_SIZE_BUTTON);
 	gtk_container_add (GTK_CONTAINER (home_button), home_icon);
+	gtk_widget_set_tooltip_text (home_button, _("Go to the home directory"));
 	g_signal_connect (G_OBJECT (home_button), "clicked",
 			G_CALLBACK (cb_go_to_home_dir), NULL);
 
@@ -58,6 +59,7 @@ init_file_browser (void)
 	GtkWidget *parent_dir_icon = gtk_image_new_from_stock (GTK_STOCK_GO_UP,
 			GTK_ICON_SIZE_BUTTON);
 	gtk_container_add (GTK_CONTAINER (parent_dir_button), parent_dir_icon);
+	gtk_widget_set_tooltip_text (parent_dir_button, _("Go to the parent directory"));
 	g_signal_connect (G_OBJECT (parent_dir_button), "clicked",
 			G_CALLBACK (cb_go_to_parent_dir), NULL);
 
@@ -67,6 +69,7 @@ init_file_browser (void)
 	GtkWidget *refresh_icon = gtk_image_new_from_stock (GTK_STOCK_REFRESH,
 			GTK_ICON_SIZE_BUTTON);
 	gtk_container_add (GTK_CONTAINER (refresh_button), refresh_icon);
+	gtk_widget_set_tooltip_text (refresh_button, _("Refresh"));
 	g_signal_connect (G_OBJECT (refresh_button), "clicked",
 			G_CALLBACK (cb_refresh), NULL);
 
