@@ -782,6 +782,28 @@ open_new_document (const gchar *filename, const gchar *uri)
 {
 	print_info ("open file: \"%s\"", filename);
 
+	/* check if the document is not already opened */
+	GList *current = latexila.all_docs;
+	gint n = 0;
+	while (TRUE)
+	{
+		if (current == NULL)
+			break;
+
+		document_t *current_doc = g_list_nth_data (current, 0);
+
+		// if the filename is the same, just go to that tab on the notebook
+		if (strcmp (filename, current_doc->path) == 0)
+		{
+			gtk_notebook_set_current_page (latexila.notebook, n);
+			return;
+		}
+
+		current = g_list_next (current);
+		n++;
+	}
+
+	/* get the contents */
 	gchar *contents = NULL;
 	if (g_file_get_contents (filename, &contents, NULL, NULL))
 	{
