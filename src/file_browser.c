@@ -34,6 +34,7 @@
 static void fill_list_store_with_current_dir (void);
 static void cb_go_to_home_dir (GtkButton *button, gpointer user_data);
 static void cb_go_to_parent_dir (GtkButton *button, gpointer user_data);
+static void cb_refresh (GtkButton *button, gpointer user_data);
 static void cb_file_browser_row_activated (GtkTreeView *tree_view,
 		GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 static gint sort_list_alphabetical_order (gconstpointer a, gconstpointer b);
@@ -60,9 +61,19 @@ init_file_browser (void)
 	g_signal_connect (G_OBJECT (parent_dir_button), "clicked",
 			G_CALLBACK (cb_go_to_parent_dir), NULL);
 
+	// refresh
+	GtkWidget *refresh_button = gtk_button_new ();
+	gtk_button_set_relief (GTK_BUTTON (refresh_button), GTK_RELIEF_NONE);
+	GtkWidget *refresh_icon = gtk_image_new_from_stock (GTK_STOCK_REFRESH,
+			GTK_ICON_SIZE_BUTTON);
+	gtk_container_add (GTK_CONTAINER (refresh_button), refresh_icon);
+	g_signal_connect (G_OBJECT (refresh_button), "clicked",
+			G_CALLBACK (cb_refresh), NULL);
+
 	GtkWidget *hbox = gtk_hbox_new (TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), home_button, TRUE, TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), parent_dir_button, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), refresh_button, TRUE, TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (latexila.file_browser.vbox), hbox,
 			FALSE, FALSE, 0);
 
@@ -243,6 +254,12 @@ cb_go_to_parent_dir (GtkButton *button, gpointer user_data)
 	gchar *path = g_path_get_dirname (latexila.prefs.file_browser_dir);
 	g_free (latexila.prefs.file_browser_dir);
 	latexila.prefs.file_browser_dir = path;
+	fill_list_store_with_current_dir ();
+}
+
+static void
+cb_refresh (GtkButton *button, gpointer user_data)
+{
 	fill_list_store_with_current_dir ();
 }
 

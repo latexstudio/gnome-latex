@@ -21,3 +21,5 @@ TODO LaTeXila
 [-] undo/redo and the "saved" document property
 	- detect when the buffer is the same as in the file currently saved
 
+[-] open document
+	- verify if the document is not already opened
