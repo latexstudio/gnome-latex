@@ -38,6 +38,7 @@ static gboolean cb_watch_output_command (GIOChannel *channel,
 		GIOCondition condition, gpointer user_data);
 static void add_action (gchar *title, gchar *command);
 static void set_action_sensitivity (gboolean sensitive);
+static void view_document_run (gchar *filename);
 
 static gchar *
 get_command_line (gchar **command)
@@ -220,7 +221,7 @@ compile_document (gchar *title, gchar **command)
 }
 
 void
-view_document (gchar *title, gchar *doc_extension)
+view_current_document (gchar *title, gchar *doc_extension)
 {
 	if (latexila.active_doc == NULL)
 		return;
@@ -267,16 +268,35 @@ view_document (gchar *title, gchar *doc_extension)
 		return;
 	}
 
-	/* run the command */
+	view_document_run (doc_path);
+	g_free (doc_path);
+}
+
+void
+view_document (gchar *title, gchar *filename)
+{
+	gchar *command_line = g_strdup_printf ("%s %s", latexila.prefs.command_view,
+			filename);
+	add_action (title, command_line);
+	print_info ("execution of the command: %s", command_line);
+	g_free (command_line);
+
+	view_document_run (filename);
+}
+
+static void
+view_document_run (gchar *filename)
+{
 	// we use here g_spawn_async () and not g_spawn_command_line_async ()
 	// because the spaces in doc_path are not escaped, so with the command line
 	// it doesn't work fine...
 	
 	GError *error = NULL;
-	gchar *argv[] = {latexila.prefs.command_view, doc_path, NULL};
+	gchar *argv[] = {latexila.prefs.command_view, filename, NULL};
 	g_spawn_async (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, &error);
 
 	gboolean is_error = TRUE;
+	gchar *command_output;
 
 	if (error != NULL)
 	{
@@ -294,7 +314,6 @@ view_document (gchar *title, gchar *doc_extension)
 	print_log_add (latexila.action_log.text_view, command_output, is_error);
 
 	g_free (command_output);
-	g_free (doc_path);
 }
 
 void

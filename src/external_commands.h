@@ -21,7 +21,8 @@
 #define EXTERNAL_COMMANDS_H
 
 void compile_document (gchar *title, gchar **command);
-void view_document (gchar *title, gchar *doc_extension);
+void view_current_document (gchar *title, gchar *doc_extension);
+void view_document (gchar *title, gchar *filename);
 void convert_document (gchar *title, gchar *doc_extension, gchar *command);
 
 #endif /* EXTERNAL_COMMANDS_H */

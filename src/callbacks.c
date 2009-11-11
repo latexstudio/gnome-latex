@@ -585,7 +585,7 @@ cb_view_dvi (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	view_document (_("View DVI"), ".dvi");
+	view_current_document (_("View DVI"), ".dvi");
 }
 
 void
@@ -594,7 +594,7 @@ cb_view_pdf (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	view_document (_("View PDF"), ".pdf");
+	view_current_document (_("View PDF"), ".pdf");
 }
 
 void
@@ -603,7 +603,7 @@ cb_view_ps (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	view_document (_("View PS"), ".ps");
+	view_current_document (_("View PS"), ".ps");
 }
 
 void

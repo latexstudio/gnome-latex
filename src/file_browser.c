@@ -30,6 +30,7 @@
 #include "print.h"
 #include "file_browser.h"
 #include "callbacks.h"
+#include "external_commands.h"
 
 static void fill_list_store_with_current_dir (void);
 static void cb_go_to_home_dir (GtkButton *button, gpointer user_data);
@@ -287,6 +288,14 @@ cb_file_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
 		latexila.prefs.file_browser_dir = full_path;
 		fill_list_store_with_current_dir ();
 	}
+
+	// view the document
+	else if (g_str_has_suffix (full_path, ".pdf"))
+		view_document (_("View PDF"), full_path);
+	else if (g_str_has_suffix (full_path, ".dvi"))
+		view_document (_("View DVI"), full_path);
+	else if (g_str_has_suffix (full_path, ".ps"))
+		view_document (_("View PS"), full_path);
 
 	// open the file
 	else
