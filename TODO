@@ -18,6 +18,17 @@ TODO LaTeXila
 
 [-] BibTeX support
 
+[-] delete auxiliaries files on exit (*.aux, *.log, *.out, *.toc, ...)
+
+[-] remember the files opened at exit and reopen them at starting
+	x do the main work
+	- add an option in the preferences
+
+[-] Documents menu
+	- close all
+	- save all
+	- previous/next document
+
 [-] undo/redo and the "saved" document property
 	- detect when the buffer is the same as in the file currently saved
 

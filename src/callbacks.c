@@ -51,6 +51,9 @@ static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 		gboolean backward, GtkTextIter *match_start, GtkTextIter *match_end);
 static void free_latexila (void);
 
+static gboolean save_list_opened_docs = FALSE;
+static GList *list_opened_docs = NULL;
+
 void
 cb_new (void)
 {
@@ -185,12 +188,53 @@ cb_close_tab (GtkWidget *widget, GtkWidget *child)
 void
 cb_quit (void)
 {
+	// remember the files opened at exit for reopening them at next starting
+	// list_opened_docs (a GList) is filled in the close_document () function
+	// (wich is called indirectly by calling close_all ())
+	save_list_opened_docs = TRUE;
+	list_opened_docs = NULL;
+
 	if (close_all ())
 	{
+		g_strfreev (latexila.prefs.list_opened_docs);
+
+		// convert the GList into an array
+		guint nb_opened_docs = g_list_length (list_opened_docs);
+		latexila.prefs.nb_opened_docs = nb_opened_docs;
+		latexila.prefs.list_opened_docs = g_malloc (
+				(nb_opened_docs + 1) * sizeof (gchar *));
+
+		gint i = 0;
+		GList *current = list_opened_docs;
+		while (TRUE)
+		{
+			if (current == NULL)
+			{
+				// NULL-terminate the array so we can call g_strfreev () to free the
+				// list
+				latexila.prefs.list_opened_docs[i] = NULL;
+				break;
+			}
+
+			latexila.prefs.list_opened_docs[i] = g_list_nth_data (current, 0);
+			
+			current = g_list_next (current);
+			i++;
+		}
+
 		save_preferences (&latexila.prefs);
 		free_latexila ();
 		print_info ("Bye bye");
 		gtk_main_quit ();
+	}
+
+	// free the list of opened documents
+	else
+	{
+		save_list_opened_docs = FALSE;
+		g_list_foreach (list_opened_docs, (GFunc) g_free, NULL);
+		g_list_free (list_opened_docs);
+		list_opened_docs = NULL;
 	}
 }
 
@@ -1020,6 +1064,10 @@ close_document (gint index)
 	latexila.all_docs = g_list_remove (latexila.all_docs, latexila.active_doc);
 	if (latexila.active_doc->path != NULL)
 	{
+		if (save_list_opened_docs)
+			list_opened_docs = g_list_append (list_opened_docs,
+					g_strdup (latexila.active_doc->path));
+
 		print_info ("close the file \"%s\"", latexila.active_doc->path);
 		g_free (latexila.active_doc->path);
 	}
@@ -1336,6 +1384,8 @@ free_latexila (void)
 	g_free (latexila.prefs.command_dvips);
 	g_free (latexila.prefs.file_chooser_dir);
 	g_free (latexila.prefs.file_browser_dir);
+	g_strfreev (latexila.prefs.list_opened_docs);
+	g_list_free (list_opened_docs);
 
 	for (int i = 0 ; i < 7 ; i++)
 		g_object_unref (latexila.symbols.list_stores[i]);

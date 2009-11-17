@@ -312,6 +312,24 @@ main (int argc, char *argv[])
 	if (! latexila.prefs.show_edit_toolbar)
 		gtk_widget_hide (latexila.edit_toolbar);
 
+	/* open documents opened the last time */
+	for (int i = 0 ; i < latexila.prefs.nb_opened_docs ; i++)
+	{
+		gchar *path = latexila.prefs.list_opened_docs[i];
+		gchar *uri = g_filename_to_uri (path, NULL, &error);
+		if (error != NULL)
+		{
+			print_warning ("can not open the file \"%s\": %s", path,
+					error->message);
+			g_error_free (error);
+			error = NULL;
+		}
+		else
+			open_new_document (path, uri);
+
+		g_free (uri);
+	}
+
 	/* if --new-document option is used */
 	if (option_new_document)
 		cb_new ();
