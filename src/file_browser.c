@@ -285,7 +285,7 @@ cb_file_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
 	if (g_file_test (full_path, G_FILE_TEST_IS_DIR))
 	{
 		g_free (latexila.prefs.file_browser_dir);
-		latexila.prefs.file_browser_dir = full_path;
+		latexila.prefs.file_browser_dir = g_strdup (full_path);
 		fill_list_store_with_current_dir ();
 	}
 
@@ -299,22 +299,9 @@ cb_file_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
 
 	// open the file
 	else
-	{
-		GError *error = NULL;
-		gchar *uri = g_filename_to_uri (full_path, NULL, &error);
-		if (error != NULL)
-		{
-			print_warning ("can not open the file \"%s\": %s", full_path,
-					error->message);
-			g_error_free (error);
-			error = NULL;
-		}
-		else
-			open_new_document (full_path, uri);
+		open_new_document_without_uri (full_path);
 
-		g_free (full_path);
-		g_free (uri);
-	}
+	g_free (full_path);
 }
 
 static gint

@@ -317,18 +317,7 @@ main (int argc, char *argv[])
 			&& latexila.prefs.reopen_files_on_startup ; i++)
 	{
 		gchar *path = latexila.prefs.list_opened_docs[i];
-		gchar *uri = g_filename_to_uri (path, NULL, &error);
-		if (error != NULL)
-		{
-			print_warning ("can not open the file \"%s\": %s", path,
-					error->message);
-			g_error_free (error);
-			error = NULL;
-		}
-		else
-			open_new_document (path, uri);
-
-		g_free (uri);
+		open_new_document_without_uri (path);
 	}
 
 	/* if --new-document option is used */
@@ -348,19 +337,8 @@ main (int argc, char *argv[])
 			g_free (current_dir);
 		}
 
-		gchar *uri = g_filename_to_uri (path, NULL, &error);
-		if (error != NULL)
-		{
-			print_warning ("can not open the file \"%s\": %s", argv[i],
-					error->message);
-			g_error_free (error);
-			error = NULL;
-		}
-		else
-			open_new_document (path, uri);
-
+		open_new_document_without_uri (path);
 		g_free (path);
-		g_free (uri);
 	}
 
 

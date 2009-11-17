@@ -822,6 +822,24 @@ cb_show_edit_toolbar (GtkToggleAction *toggle_action, gpointer user_data)
 }
 
 void
+open_new_document_without_uri (const gchar *filename)
+{
+	GError *error = NULL;
+
+	gchar *uri = g_filename_to_uri (filename, NULL, &error);
+	if (error != NULL)
+	{
+		print_warning ("can not open the file \"%s\": %s", filename,
+				error->message);
+		g_error_free (error);
+	}
+	else
+		open_new_document (filename, uri);
+
+	g_free (uri);
+}
+
+void
 open_new_document (const gchar *filename, const gchar *uri)
 {
 	print_info ("open file: \"%s\"", filename);
