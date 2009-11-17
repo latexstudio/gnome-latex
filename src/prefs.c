@@ -62,6 +62,7 @@ static gchar	*command_latex_		= COMMAND_LATEX;
 static gchar	*command_pdflatex_	= COMMAND_PDFLATEX;
 static gchar	*command_dvipdf_	= COMMAND_DVIPDF;
 static gchar	*command_dvips_		= COMMAND_DVIPS;
+static gboolean reopen_files_on_startup_ = TRUE;
 
 void
 load_preferences (preferences_t *prefs)
@@ -284,6 +285,16 @@ load_preferences (preferences_t *prefs)
 	else
 		prefs->nb_opened_docs = (guint) nb_opened_docs;
 
+	prefs->reopen_files_on_startup = g_key_file_get_boolean (key_file,
+			PROGRAM_NAME, "reopen_files_on_startup", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->reopen_files_on_startup = reopen_files_on_startup_;
+		g_error_free (error);
+		error = NULL;
+	}
+
 	print_info ("load user preferences: OK");
 	g_key_file_free (key_file);
 }
@@ -318,6 +329,8 @@ save_preferences (preferences_t *prefs)
 			prefs->file_browser_dir);
 	g_key_file_set_string_list (key_file, PROGRAM_NAME, "list_opened_documents",
 			(const gchar **) prefs->list_opened_docs, prefs->nb_opened_docs);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "reopen_files_on_startup",
+			prefs->reopen_files_on_startup);
 
 	/* set the keys that must be taken from the widgets */
 	GdkWindowState flag = gdk_window_get_state (gtk_widget_get_window (
@@ -409,6 +422,7 @@ load_default_preferences (preferences_t *prefs)
 	prefs->file_browser_dir = g_strdup (g_get_home_dir ());
 	prefs->list_opened_docs = NULL;
 	prefs->nb_opened_docs = 0;
+	prefs->reopen_files_on_startup = reopen_files_on_startup_;
 
 	set_current_font_prefs (prefs);
 }
@@ -520,6 +534,13 @@ cb_pref_command_dvips (GtkEditable *editable, gpointer user_data)
 }
 
 static void
+cb_reopen_files_on_startup (GtkToggleButton *toggle_button, gpointer user_data)
+{
+	latexila.prefs.reopen_files_on_startup = gtk_toggle_button_get_active (toggle_button);
+}
+
+
+static void
 create_preferences (void)
 {
 	pref_dialog = gtk_dialog_new_with_buttons (_("Preferences"),
@@ -613,6 +634,16 @@ create_preferences (void)
 	gtk_table_attach_defaults (GTK_TABLE (table), command_dvips, 1, 2, 3, 4);
 
 	gtk_box_pack_start (GTK_BOX (content_area), table, TRUE, TRUE, 5);
+
+	/* reopen files on startup */
+	GtkWidget *reopen = gtk_check_button_new_with_label (
+			_("Reopen files on startup"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (reopen),
+			latexila.prefs.reopen_files_on_startup);
+	g_signal_connect (G_OBJECT (reopen), "toggled",
+			G_CALLBACK (cb_reopen_files_on_startup), NULL);
+	gtk_box_pack_start (GTK_BOX (content_area), reopen, FALSE, FALSE, 5);
+
 
 	gtk_widget_show_all (content_area);
 }

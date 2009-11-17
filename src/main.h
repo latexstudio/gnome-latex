@@ -93,6 +93,7 @@ typedef struct
 	gchar					*file_browser_dir;
 	gchar					**list_opened_docs;
 	guint					nb_opened_docs;
+	gboolean				reopen_files_on_startup;
 } preferences_t;
 
 typedef struct
