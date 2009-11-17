@@ -271,19 +271,27 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
-	gsize nb_opened_docs;
-	prefs->list_opened_docs = g_key_file_get_string_list (key_file, PROGRAM_NAME,
-			"list_opened_documents", &nb_opened_docs, &error);
+	gchar **list_opened_docs = g_key_file_get_string_list (key_file, PROGRAM_NAME,
+			"list_opened_documents", NULL, &error);
+	prefs->list_opened_docs = g_ptr_array_new ();
 	if (error != NULL)
 	{
 		print_warning ("%s", error->message);
-		prefs->nb_opened_docs = 0;
-		prefs->list_opened_docs = NULL;
 		g_error_free (error);
 		error = NULL;
 	}
 	else
-		prefs->nb_opened_docs = (guint) nb_opened_docs;
+	{
+		gchar **current = list_opened_docs;
+		while (*current != NULL)
+		{
+			g_ptr_array_add (prefs->list_opened_docs,
+					(gpointer) g_strdup (*current));
+			current++;
+		}
+
+		g_strfreev (list_opened_docs);
+	}
 
 	prefs->reopen_files_on_startup = g_key_file_get_boolean (key_file,
 			PROGRAM_NAME, "reopen_files_on_startup", &error);
@@ -328,7 +336,9 @@ save_preferences (preferences_t *prefs)
 	g_key_file_set_string (key_file, PROGRAM_NAME, "file_browser_directory",
 			prefs->file_browser_dir);
 	g_key_file_set_string_list (key_file, PROGRAM_NAME, "list_opened_documents",
-			(const gchar **) prefs->list_opened_docs, prefs->nb_opened_docs);
+			(const gchar **) prefs->list_opened_docs->pdata,
+			prefs->list_opened_docs->len);
+
 	g_key_file_set_boolean (key_file, PROGRAM_NAME, "reopen_files_on_startup",
 			prefs->reopen_files_on_startup);
 
@@ -420,8 +430,7 @@ load_default_preferences (preferences_t *prefs)
 	prefs->command_dvips = g_strdup (command_dvips_);
 	prefs->file_chooser_dir = NULL;
 	prefs->file_browser_dir = g_strdup (g_get_home_dir ());
-	prefs->list_opened_docs = NULL;
-	prefs->nb_opened_docs = 0;
+	prefs->list_opened_docs = g_ptr_array_new ();
 	prefs->reopen_files_on_startup = reopen_files_on_startup_;
 
 	set_current_font_prefs (prefs);

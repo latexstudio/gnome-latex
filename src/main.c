@@ -313,12 +313,14 @@ main (int argc, char *argv[])
 		gtk_widget_hide (latexila.edit_toolbar);
 
 	/* reopen files on startup */
-	for (int i = 0 ; i < latexila.prefs.nb_opened_docs
+	gchar ** list_opened_docs = (gchar **) latexila.prefs.list_opened_docs->pdata;
+	for (int i = 0 ; i < latexila.prefs.list_opened_docs->len
 			&& latexila.prefs.reopen_files_on_startup ; i++)
 	{
-		gchar *path = latexila.prefs.list_opened_docs[i];
-		open_new_document_without_uri (path);
+		open_new_document_without_uri (list_opened_docs[i]);
 	}
+	g_ptr_array_free (latexila.prefs.list_opened_docs, TRUE);
+	latexila.prefs.list_opened_docs = g_ptr_array_new ();
 
 	/* if --new-document option is used */
 	if (option_new_document)
