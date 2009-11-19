@@ -30,6 +30,7 @@
 #include "config.h"
 #include "print.h"
 #include "callbacks.h"
+#include "file_browser.h"
 
 static void load_default_preferences (preferences_t *prefs);
 static gchar * get_rc_file (void);
@@ -62,7 +63,8 @@ static gchar	*command_latex_		= COMMAND_LATEX;
 static gchar	*command_pdflatex_	= COMMAND_PDFLATEX;
 static gchar	*command_dvipdf_	= COMMAND_DVIPDF;
 static gchar	*command_dvips_		= COMMAND_DVIPS;
-static gboolean reopen_files_on_startup_ = TRUE;
+static gboolean reopen_files_on_startup_		= TRUE;
+static gboolean file_browser_show_all_files_	= FALSE;
 
 void
 load_preferences (preferences_t *prefs)
@@ -219,8 +221,6 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
-	// look, I see light, we are close to the exit!
-	
 	prefs->command_pdflatex = g_key_file_get_string (key_file, PROGRAM_NAME,
 			"command_pdflatex", &error);
 	if (error != NULL)
@@ -261,6 +261,8 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	// look, I see light, we are close to the exit!
+	
 	prefs->file_browser_dir = g_key_file_get_string (key_file, PROGRAM_NAME,
 			"file_browser_directory", &error);
 	if (error != NULL)
@@ -303,6 +305,16 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->file_browser_show_all_files = g_key_file_get_boolean (key_file,
+			PROGRAM_NAME, "file_browser_show_all_files", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->file_browser_show_all_files = file_browser_show_all_files_;
+		g_error_free (error);
+		error = NULL;
+	}
+
 	print_info ("load user preferences: OK");
 	g_key_file_free (key_file);
 }
@@ -338,9 +350,10 @@ save_preferences (preferences_t *prefs)
 	g_key_file_set_string_list (key_file, PROGRAM_NAME, "list_opened_documents",
 			(const gchar **) prefs->list_opened_docs->pdata,
 			prefs->list_opened_docs->len);
-
 	g_key_file_set_boolean (key_file, PROGRAM_NAME, "reopen_files_on_startup",
 			prefs->reopen_files_on_startup);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "file_browser_show_all_files",
+			prefs->file_browser_show_all_files);
 
 	/* set the keys that must be taken from the widgets */
 	GdkWindowState flag = gdk_window_get_state (gtk_widget_get_window (
@@ -432,6 +445,7 @@ load_default_preferences (preferences_t *prefs)
 	prefs->file_browser_dir = g_strdup (g_get_home_dir ());
 	prefs->list_opened_docs = g_ptr_array_new ();
 	prefs->reopen_files_on_startup = reopen_files_on_startup_;
+	prefs->file_browser_show_all_files = file_browser_show_all_files_;
 
 	set_current_font_prefs (prefs);
 }
@@ -545,7 +559,17 @@ cb_pref_command_dvips (GtkEditable *editable, gpointer user_data)
 static void
 cb_reopen_files_on_startup (GtkToggleButton *toggle_button, gpointer user_data)
 {
-	latexila.prefs.reopen_files_on_startup = gtk_toggle_button_get_active (toggle_button);
+	latexila.prefs.reopen_files_on_startup =
+		gtk_toggle_button_get_active (toggle_button);
+}
+
+static void
+cb_file_browser_show_all_files (GtkToggleButton *toggle_button,
+		gpointer user_data)
+{
+	latexila.prefs.file_browser_show_all_files =
+		gtk_toggle_button_get_active (toggle_button);
+	cb_file_browser_refresh (NULL, NULL);
 }
 
 
@@ -652,6 +676,15 @@ create_preferences (void)
 	g_signal_connect (G_OBJECT (reopen), "toggled",
 			G_CALLBACK (cb_reopen_files_on_startup), NULL);
 	gtk_box_pack_start (GTK_BOX (content_area), reopen, FALSE, FALSE, 5);
+
+	/* file browser: show all files */
+	GtkWidget *fb_show_all_files = gtk_check_button_new_with_label (
+			_("File browser: show all files"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fb_show_all_files),
+			latexila.prefs.file_browser_show_all_files);
+	g_signal_connect (G_OBJECT (fb_show_all_files), "toggled",
+			G_CALLBACK (cb_file_browser_show_all_files), NULL);
+	gtk_box_pack_start (GTK_BOX (content_area), fb_show_all_files, FALSE, FALSE, 5);
 
 
 	gtk_widget_show_all (content_area);

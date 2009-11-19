@@ -8,7 +8,8 @@ TODO LaTeXila
 	x add a link to the home user directory
 	x other pixbuf for *.pdf, *.dvi and *.ps files
 	x if clicking on a *.pdf, *.dvi or *.ps file, show the document (add a new action)
-	- add an option in the preferences: show only *.tex, *.pdf, *.dvi and *.ps files
+	x add an option in the preferences: show only *.tex, *.pdf, *.dvi, *.ps and *.bib files
+	- add a button to jump to the directory of the current document
 
 [-] Templates
 	- create a few default templates

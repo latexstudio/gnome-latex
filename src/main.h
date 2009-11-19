@@ -91,6 +91,7 @@ typedef struct
 	gchar					*command_dvips;
 	gchar					*file_chooser_dir;
 	gchar					*file_browser_dir;
+	gboolean				file_browser_show_all_files;
 	GPtrArray				*list_opened_docs;
 	gboolean				reopen_files_on_startup;
 } preferences_t;

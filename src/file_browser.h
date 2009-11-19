@@ -21,6 +21,7 @@
 #define FILE_BROWSER_H
 
 void init_file_browser (void);
+void cb_file_browser_refresh (GtkButton *button, gpointer user_data);
 
 enum
 {

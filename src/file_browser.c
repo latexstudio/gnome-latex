@@ -35,7 +35,6 @@
 static void fill_list_store_with_current_dir (void);
 static void cb_go_to_home_dir (GtkButton *button, gpointer user_data);
 static void cb_go_to_parent_dir (GtkButton *button, gpointer user_data);
-static void cb_refresh (GtkButton *button, gpointer user_data);
 static void cb_file_browser_row_activated (GtkTreeView *tree_view,
 		GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 static gint sort_list_alphabetical_order (gconstpointer a, gconstpointer b);
@@ -72,7 +71,7 @@ init_file_browser (void)
 	gtk_container_add (GTK_CONTAINER (refresh_button), refresh_icon);
 	gtk_widget_set_tooltip_text (refresh_button, _("Refresh"));
 	g_signal_connect (G_OBJECT (refresh_button), "clicked",
-			G_CALLBACK (cb_refresh), NULL);
+			G_CALLBACK (cb_file_browser_refresh), NULL);
 
 	GtkWidget *hbox = gtk_hbox_new (TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), home_button, TRUE, TRUE, 0);
@@ -120,6 +119,13 @@ init_file_browser (void)
 			TRUE, TRUE, 0);
 }
 
+void
+cb_file_browser_refresh (GtkButton *button, gpointer user_data)
+{
+	fill_list_store_with_current_dir ();
+}
+
+
 static void
 fill_list_store_with_current_dir (void)
 {
@@ -153,8 +159,17 @@ fill_list_store_with_current_dir (void)
 
 		if (g_file_test (full_path, G_FILE_TEST_IS_DIR))
 			directory_list = g_list_prepend (directory_list, (gpointer) tmp);
-		else
+
+		// show all files or only *.tex, *.pdf, *.dvi, *.ps and *.bib
+		else if (latexila.prefs.file_browser_show_all_files
+				|| g_str_has_suffix (full_path, ".tex")
+				|| g_str_has_suffix (full_path, ".pdf")
+				|| g_str_has_suffix (full_path, ".dvi")
+				|| g_str_has_suffix (full_path, ".ps")
+				|| g_str_has_suffix (full_path, ".bib"))
+		{
 			file_list = g_list_prepend (file_list, (gpointer) tmp);
+		}
 
 		g_free (full_path);
 	}
@@ -258,12 +273,6 @@ cb_go_to_parent_dir (GtkButton *button, gpointer user_data)
 	gchar *path = g_path_get_dirname (latexila.prefs.file_browser_dir);
 	g_free (latexila.prefs.file_browser_dir);
 	latexila.prefs.file_browser_dir = path;
-	fill_list_store_with_current_dir ();
-}
-
-static void
-cb_refresh (GtkButton *button, gpointer user_data)
-{
 	fill_list_store_with_current_dir ();
 }
 
