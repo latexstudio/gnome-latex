@@ -31,6 +31,7 @@
 #include "config.h"
 #include "external_commands.h"
 #include "print.h"
+#include "file_browser.h"
 
 static gchar * get_command_line (gchar **command);
 static void command_running_finished (void);
@@ -75,6 +76,8 @@ command_running_finished (void)
 	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
 			"running-action");
 	gtk_statusbar_pop (latexila.statusbar, context_id);
+
+	cb_file_browser_refresh (NULL, NULL);
 }
 
 static gboolean

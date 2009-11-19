@@ -94,6 +94,7 @@ typedef struct
 	gboolean				file_browser_show_all_files;
 	GPtrArray				*list_opened_docs;
 	gboolean				reopen_files_on_startup;
+	gboolean				delete_aux_files;
 } preferences_t;
 
 typedef struct

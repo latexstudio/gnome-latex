@@ -63,6 +63,7 @@ static gchar	*command_latex_		= COMMAND_LATEX;
 static gchar	*command_pdflatex_	= COMMAND_PDFLATEX;
 static gchar	*command_dvipdf_	= COMMAND_DVIPDF;
 static gchar	*command_dvips_		= COMMAND_DVIPS;
+static gboolean delete_aux_files_	= FALSE;
 static gboolean reopen_files_on_startup_		= TRUE;
 static gboolean file_browser_show_all_files_	= FALSE;
 
@@ -315,6 +316,16 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->delete_aux_files = g_key_file_get_boolean (key_file,
+			PROGRAM_NAME, "delete_auxiliaries_files", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->delete_aux_files = delete_aux_files_;
+		g_error_free (error);
+		error = NULL;
+	}
+
 	print_info ("load user preferences: OK");
 	g_key_file_free (key_file);
 }
@@ -354,6 +365,8 @@ save_preferences (preferences_t *prefs)
 			prefs->reopen_files_on_startup);
 	g_key_file_set_boolean (key_file, PROGRAM_NAME, "file_browser_show_all_files",
 			prefs->file_browser_show_all_files);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "delete_auxiliaries_files",
+			prefs->delete_aux_files);
 
 	/* set the keys that must be taken from the widgets */
 	GdkWindowState flag = gdk_window_get_state (gtk_widget_get_window (
@@ -446,6 +459,7 @@ load_default_preferences (preferences_t *prefs)
 	prefs->list_opened_docs = g_ptr_array_new ();
 	prefs->reopen_files_on_startup = reopen_files_on_startup_;
 	prefs->file_browser_show_all_files = file_browser_show_all_files_;
+	prefs->delete_aux_files = delete_aux_files_;
 
 	set_current_font_prefs (prefs);
 }
@@ -572,6 +586,12 @@ cb_file_browser_show_all_files (GtkToggleButton *toggle_button,
 	cb_file_browser_refresh (NULL, NULL);
 }
 
+static void
+cb_delete_aux_files (GtkToggleButton *toggle_button, gpointer user_data)
+{
+	latexila.prefs.delete_aux_files =
+		gtk_toggle_button_get_active (toggle_button);
+}
 
 static void
 create_preferences (void)
@@ -685,6 +705,17 @@ create_preferences (void)
 	g_signal_connect (G_OBJECT (fb_show_all_files), "toggled",
 			G_CALLBACK (cb_file_browser_show_all_files), NULL);
 	gtk_box_pack_start (GTK_BOX (content_area), fb_show_all_files, FALSE, FALSE, 5);
+
+	/* delete auxiliaries files on exit */
+	GtkWidget *delete_aux_files = gtk_check_button_new_with_label (
+			_("Clean-up auxiliaries files after close (*.aux, *.log, *.out, *.toc, etc)"));
+	gtk_widget_set_tooltip_text (delete_aux_files,
+			".aux .bit .blg .bbl .lof .log .lot .glo .glx .gxg .gxs .idx .ilg .ind .out .url .svn .toc");
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (delete_aux_files),
+			latexila.prefs.delete_aux_files);
+	g_signal_connect (G_OBJECT (delete_aux_files), "toggled",
+			G_CALLBACK (cb_delete_aux_files), NULL);
+	gtk_box_pack_start (GTK_BOX (content_area), delete_aux_files, FALSE, FALSE, 5);
 
 
 	gtk_widget_show_all (content_area);

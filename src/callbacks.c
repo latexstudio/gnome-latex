@@ -36,6 +36,7 @@
 #include "print.h"
 #include "external_commands.h"
 #include "prefs.h"
+#include "file_browser.h"
 
 static void create_document_in_new_tab (const gchar *path, const gchar *text,
 		const gchar *title);
@@ -50,6 +51,7 @@ static void scroll_to_cursor (void);
 static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 		gboolean backward, GtkTextIter *match_start, GtkTextIter *match_end);
 static void free_latexila (void);
+static void delete_auxiliaries_files (const gchar *filename);
 
 static gboolean save_list_opened_docs = FALSE;
 
@@ -1057,6 +1059,8 @@ close_document (gint index)
 			g_ptr_array_add (latexila.prefs.list_opened_docs,
 					(gpointer) g_strdup (latexila.active_doc->path));
 
+		delete_auxiliaries_files (latexila.active_doc->path);
+
 		print_info ("close the file \"%s\"", latexila.active_doc->path);
 		g_free (latexila.active_doc->path);
 	}
@@ -1377,4 +1381,29 @@ free_latexila (void)
 
 	for (int i = 0 ; i < 7 ; i++)
 		g_object_unref (latexila.symbols.list_stores[i]);
+}
+
+static void
+delete_auxiliaries_files (const gchar *filename)
+{
+	if (! g_str_has_suffix (filename, ".tex"))
+		return;
+
+	gchar *extensions[] = {".aux", ".bit", ".blg", ".bbl", ".lof", ".log", ".lot",
+		".glo", ".glx", ".gxg", ".gxs", ".idx", ".ilg", ".ind", ".out", ".url",
+		".svn", ".toc"};
+	gint nb_extensions = G_N_ELEMENTS (extensions);
+
+	gchar *filename_without_ext = g_strndup (filename, strlen (filename) - 4);
+
+	for (int i = 0 ; i < nb_extensions ; i++)
+	{
+		gchar *tmp = g_strdup_printf ("%s%s", filename_without_ext,
+				extensions[i]);
+		g_remove (tmp);
+		g_free (tmp);
+	}
+
+	g_free (filename_without_ext);
+	cb_file_browser_refresh (NULL, NULL);
 }
