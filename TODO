@@ -1,6 +1,6 @@
 TODO LaTeXila
 
-[-] File browser in the side bar
+[x] File browser in the side bar
 	x tabs to switch between "Symbols" and "File Browser"
 	x file browser integrated
 	x sort the files in alphabetical order
@@ -9,7 +9,7 @@ TODO LaTeXila
 	x other pixbuf for *.pdf, *.dvi and *.ps files
 	x if clicking on a *.pdf, *.dvi or *.ps file, show the document (add a new action)
 	x add an option in the preferences: show only *.tex, *.pdf, *.dvi, *.ps and *.bib files
-	- add a button to jump to the directory of the current document
+	x add a button to jump to the directory of the current document
 
 [-] Templates
 	- create a few default templates

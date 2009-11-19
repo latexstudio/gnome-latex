@@ -35,6 +35,7 @@
 static void fill_list_store_with_current_dir (void);
 static void cb_go_to_home_dir (GtkButton *button, gpointer user_data);
 static void cb_go_to_parent_dir (GtkButton *button, gpointer user_data);
+static void cb_jump_dir_current_doc (GtkButton *button, gpointer user_data);
 static void cb_file_browser_row_activated (GtkTreeView *tree_view,
 		GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 static gint sort_list_alphabetical_order (gconstpointer a, gconstpointer b);
@@ -63,6 +64,16 @@ init_file_browser (void)
 	g_signal_connect (G_OBJECT (parent_dir_button), "clicked",
 			G_CALLBACK (cb_go_to_parent_dir), NULL);
 
+	// jump to the directory of the current document
+	GtkWidget *jump_button = gtk_button_new ();
+	gtk_button_set_relief (GTK_BUTTON (jump_button), GTK_RELIEF_NONE);
+	GtkWidget *jump_icon = gtk_image_new_from_stock (GTK_STOCK_JUMP_TO,
+			GTK_ICON_SIZE_BUTTON);
+	gtk_container_add (GTK_CONTAINER (jump_button), jump_icon);
+	gtk_widget_set_tooltip_text (jump_button, _("Go to the directory of the current document"));
+	g_signal_connect (G_OBJECT (jump_button), "clicked",
+			G_CALLBACK (cb_jump_dir_current_doc), NULL);
+
 	// refresh
 	GtkWidget *refresh_button = gtk_button_new ();
 	gtk_button_set_relief (GTK_BUTTON (refresh_button), GTK_RELIEF_NONE);
@@ -76,6 +87,7 @@ init_file_browser (void)
 	GtkWidget *hbox = gtk_hbox_new (TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), home_button, TRUE, TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), parent_dir_button, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), jump_button, TRUE, TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), refresh_button, TRUE, TRUE, 0);
 	gtk_box_pack_start (GTK_BOX (latexila.file_browser.vbox), hbox,
 			FALSE, FALSE, 0);
@@ -271,6 +283,18 @@ static void
 cb_go_to_parent_dir (GtkButton *button, gpointer user_data)
 {
 	gchar *path = g_path_get_dirname (latexila.prefs.file_browser_dir);
+	g_free (latexila.prefs.file_browser_dir);
+	latexila.prefs.file_browser_dir = path;
+	fill_list_store_with_current_dir ();
+}
+
+static void
+cb_jump_dir_current_doc (GtkButton *button, gpointer user_data)
+{
+	if (latexila.active_doc == NULL || latexila.active_doc->path == NULL)
+		return;
+
+	gchar *path = g_path_get_dirname (latexila.active_doc->path);
 	g_free (latexila.prefs.file_browser_dir);
 	latexila.prefs.file_browser_dir = path;
 	fill_list_store_with_current_dir ();
