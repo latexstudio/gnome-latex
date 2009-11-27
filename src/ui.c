@@ -131,6 +131,16 @@ static GtkActionEntry entries[] = {
 		N_("Convert the DVI document to the PostScript format"), G_CALLBACK (cb_dvi_to_ps)},
 	{"viewPS", "view_ps", N_("View PS"), NULL,
 		N_("View the PostScript file"), G_CALLBACK (cb_view_ps)},
+
+	{"Documents", NULL, N_("Documents"), NULL, NULL, NULL},
+	{"DocumentsSaveAll", GTK_STOCK_SAVE, N_("Save All"), "<Shift><Control>L",
+		N_("Save all open files"), G_CALLBACK (cb_documents_save_all)},
+	{"DocumentsCloseAll", GTK_STOCK_CLOSE, N_("Close All"), "<Shift><Control>W",
+		N_("Close all open files"), G_CALLBACK (cb_documents_close_all)},
+	{"DocumentsPrevious", GTK_STOCK_GO_BACK, N_("Previous Document"), "<Control><Alt>Page_Up",
+		N_("Activate previous document"), G_CALLBACK (cb_documents_previous)},
+	{"DocumentsNext", GTK_STOCK_GO_FORWARD, N_("Next Document"), "<Control><Alt>Page_Down",
+		N_("Activate next document"), G_CALLBACK (cb_documents_next)},
 	
 	{"Help", NULL, N_("Help"), NULL, NULL, NULL},
 	{"HelpAbout", GTK_STOCK_ABOUT, N_("About"), NULL,

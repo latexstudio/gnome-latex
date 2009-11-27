@@ -1,7 +1,5 @@
 TODO LaTeXila
 
-[x] clean-up auxiliaries files after close (*.aux, *.log, *.out, *.toc, ...)
-
 [-] Templates
 	- create a few default templates
 	- on the action "new file", possibility to select a template
@@ -10,10 +8,9 @@ TODO LaTeXila
 
 [-] BibTeX support
 
-[-] Documents menu
-	- close all
-	- save all
-	- previous/next document
+[x] Documents menu
+	x close all
+	x save all
+	x previous/next document
 
-[-] undo/redo and the "saved" document property
-	- detect when the buffer is the same as in the file currently saved
+[-] Search -> Goto line

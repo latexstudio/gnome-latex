@@ -46,6 +46,10 @@ void cb_view_pdf (void);
 void cb_view_ps (void);
 void cb_dvi_to_pdf (void);
 void cb_dvi_to_ps (void);
+void cb_documents_save_all (void);
+void cb_documents_close_all (void);
+void cb_documents_previous (void);
+void cb_documents_next (void);
 void cb_action_list_changed (GtkTreeSelection *selection,
 		gpointer user_data);
 void cb_about_dialog (void);

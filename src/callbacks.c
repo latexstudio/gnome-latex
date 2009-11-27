@@ -124,7 +124,7 @@ cb_save_as (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	document_t doc_backup = *latexila.active_doc;
+	document_t *doc_backup = latexila.active_doc;
 
 	latexila.active_doc->path = NULL;
 	latexila.active_doc->saved = FALSE;
@@ -133,7 +133,7 @@ cb_save_as (void)
 	// if the user click on cancel
 	if (! latexila.active_doc->saved)
 	{
-		*latexila.active_doc = doc_backup;
+		latexila.active_doc = doc_backup;
 		set_title ();
 	}
 }
@@ -639,6 +639,63 @@ cb_dvi_to_ps (void)
 		return;
 
 	convert_document (_("DVI to PS"), ".dvi", latexila.prefs.command_dvips);
+}
+
+void
+cb_documents_save_all (void)
+{
+	GList *current = latexila.all_docs;
+	while (TRUE)
+	{
+		if (current == NULL)
+			break;
+
+		document_t *current_doc = g_list_nth_data (current, 0);
+		document_t *active_doc = latexila.active_doc;
+		latexila.active_doc = current_doc;
+		cb_save ();
+		latexila.active_doc = active_doc;
+
+		current = g_list_next (current);
+	}
+}
+
+void
+cb_documents_close_all (void)
+{
+	close_all ();
+}
+
+void
+cb_documents_previous (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	gint current_page = gtk_notebook_get_current_page (latexila.notebook);
+	gint nb_pages = gtk_notebook_get_n_pages (latexila.notebook);
+
+	// if first page, go to the last
+	if (current_page == 0)
+		gtk_notebook_set_current_page (latexila.notebook, nb_pages - 1);
+	else
+		gtk_notebook_set_current_page (latexila.notebook, current_page - 1);
+}
+
+void
+cb_documents_next (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	gint current_page = gtk_notebook_get_current_page (latexila.notebook);
+	gint nb_pages = gtk_notebook_get_n_pages (latexila.notebook);
+
+	// if last page, go to the first
+	if (current_page == nb_pages - 1)
+		gtk_notebook_set_current_page (latexila.notebook, 0);
+	else
+		gtk_notebook_set_current_page (latexila.notebook, current_page + 1);
 }
 
 void
