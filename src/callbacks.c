@@ -543,6 +543,38 @@ cb_replace (void)
 	gtk_widget_destroy (dialog);
 }
 
+void
+cb_go_to_line (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	gtk_widget_show_all (latexila.go_to_line);
+	gtk_widget_grab_focus (latexila.go_to_line_entry);
+}
+
+void
+cb_close_go_to_line (GtkWidget *widget, GtkWidget *child)
+{
+	gtk_widget_hide (latexila.go_to_line);
+}
+
+void
+cb_go_to_line_entry (GtkEntry *entry, gpointer user_data)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	const gchar *txt = gtk_entry_get_text (entry);
+	gint num = strtol (txt, NULL, 10);
+	GtkTextIter iter;
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+	gtk_text_buffer_get_iter_at_line (buffer, &iter, --num);
+	gtk_text_buffer_place_cursor (buffer, &iter);
+	scroll_to_cursor ();
+	gtk_widget_grab_focus (latexila.active_doc->source_view);
+}
+
 gboolean
 cb_delete_event (GtkWidget *widget, GdkEvent *event, gpointer user_data)
 {

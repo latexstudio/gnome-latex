@@ -8,9 +8,4 @@ TODO LaTeXila
 
 [-] BibTeX support
 
-[x] Documents menu
-	x close all
-	x save all
-	x previous/next document
-
-[-] Search -> Goto line
+[x] Search -> Goto line

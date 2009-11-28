@@ -115,6 +115,8 @@ static GtkActionEntry entries[] = {
 		N_("Search for text"), G_CALLBACK (cb_find)},
 	{"SearchReplace", GTK_STOCK_FIND_AND_REPLACE, N_("Replace..."), "<Control>H",
 		N_("Search for and replace text"), G_CALLBACK (cb_replace)},
+	{"SearchGoToLine", GTK_STOCK_JUMP_TO, N_("Go to Line..."), "<Control>I",
+		N_("Go to a specific line"), G_CALLBACK (cb_go_to_line)},
 	
 	{"Build", NULL, N_("Build"), NULL, NULL, NULL},
 	{"compile_latex", "compile_latex", N_("Compile (latex)"), "<Release>F5",

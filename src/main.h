@@ -128,6 +128,8 @@ typedef struct
 	GtkPaned		*log_hpaned;
 	GtkWidget		*edit_toolbar;
 	GtkWidget		*side_pane;
+	GtkWidget		*go_to_line;
+	GtkWidget		*go_to_line_entry;
 } latexila_t;
 
 // a lot of things are accessible by the "latexila" variable everywhere in the

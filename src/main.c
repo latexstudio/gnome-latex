@@ -205,13 +205,16 @@ main (int argc, char *argv[])
 	init_file_browser ();
 
 	/* vertical pane
-	 * top: source view
+	 * top: source view and go to line
 	 * bottom: log zone
 	 */
 	GtkWidget *vpaned = gtk_vpaned_new ();
 	latexila.vpaned = GTK_PANED (vpaned);
 	gtk_paned_set_position (GTK_PANED (vpaned), latexila.prefs.vpaned_pos);
 	gtk_paned_add2 (GTK_PANED (main_hpaned), vpaned);
+
+	GtkWidget *vbox_source_view = gtk_vbox_new (FALSE, 2);
+	gtk_paned_add1 (GTK_PANED (vpaned), vbox_source_view);
 
 	/* source view with tabs */
 	GtkWidget *notebook = gtk_notebook_new ();
@@ -221,7 +224,33 @@ main (int argc, char *argv[])
 			G_CALLBACK (cb_page_change), NULL);
 	g_signal_connect (G_OBJECT (notebook), "page-reordered",
 			G_CALLBACK (cb_page_reordered), NULL);
-	gtk_paned_add1 (GTK_PANED (vpaned), notebook);
+	gtk_box_pack_start (GTK_BOX (vbox_source_view), notebook, TRUE, TRUE, 0);
+
+	/* go to line */
+	GtkWidget *go_to_line = gtk_hbox_new (FALSE, 3);
+	latexila.go_to_line = go_to_line;
+	gtk_box_pack_start (GTK_BOX (vbox_source_view), go_to_line, FALSE, FALSE, 0);
+
+	GtkWidget *close_button = gtk_button_new ();
+	gtk_button_set_relief (GTK_BUTTON (close_button), GTK_RELIEF_NONE);
+	image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
+	gtk_container_add (GTK_CONTAINER (close_button), image);
+	g_signal_connect (G_OBJECT (close_button), "clicked",
+			G_CALLBACK (cb_close_go_to_line), NULL);
+	gtk_box_pack_start (GTK_BOX (go_to_line), close_button, FALSE, FALSE, 0);
+	
+	label = gtk_label_new (_("Go to Line:"));
+	gtk_box_pack_start (GTK_BOX (go_to_line), label, FALSE, FALSE, 2);
+
+	GtkWidget *entry_go_to_line = gtk_entry_new ();
+	latexila.go_to_line_entry = entry_go_to_line;
+	gtk_entry_set_icon_from_stock (GTK_ENTRY (entry_go_to_line),
+			GTK_ENTRY_ICON_SECONDARY, GTK_STOCK_JUMP_TO);
+	gtk_widget_set_tooltip_text (entry_go_to_line,
+			_("Line you want to move the cursor to"));
+	g_signal_connect (G_OBJECT (entry_go_to_line), "activate",
+			G_CALLBACK (cb_go_to_line_entry), NULL);
+	gtk_box_pack_start (GTK_BOX (go_to_line), entry_go_to_line, FALSE, FALSE, 0);
 
 	/* log zone */
 	// horizontal pane:
@@ -311,6 +340,8 @@ main (int argc, char *argv[])
 
 	if (! latexila.prefs.show_edit_toolbar)
 		gtk_widget_hide (latexila.edit_toolbar);
+
+	gtk_widget_hide (latexila.go_to_line);
 
 	/* reopen files on startup */
 	gchar ** list_opened_docs = (gchar **) latexila.prefs.list_opened_docs->pdata;

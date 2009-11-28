@@ -61,6 +61,8 @@ In the code, GtkUIManager is used to construct them.
     <menu action="Search">
       <menuitem action="SearchFind" />
       <menuitem action="SearchReplace" />
+      <separator />
+      <menuitem action="SearchGoToLine" />
     </menu>
     
     <menu action="Build">
