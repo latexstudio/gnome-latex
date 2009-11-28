@@ -221,6 +221,12 @@ cb_undo (void)
 	{
 		gtk_source_buffer_undo (latexila.active_doc->source_buffer);
 		scroll_to_cursor ();
+
+		if (! gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (latexila.active_doc->source_buffer)))
+		{
+			latexila.active_doc->saved = TRUE;
+			set_title ();
+		}
 	}
 
 	set_undo_redo_sensitivity ();
@@ -236,6 +242,12 @@ cb_redo (void)
 	{
 		gtk_source_buffer_redo (latexila.active_doc->source_buffer);
 		scroll_to_cursor ();
+
+		if (! gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (latexila.active_doc->source_buffer)))
+		{
+			latexila.active_doc->saved = TRUE;
+			set_title ();
+		}
 	}
 
 	set_undo_redo_sensitivity ();
@@ -1019,7 +1031,8 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 	}
 
 	// set auto indentation
-	gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (new_doc->source_view), TRUE);
+	gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (new_doc->source_view),
+			TRUE);
 
 	// set the font
 	gtk_widget_modify_font (new_doc->source_view, latexila.prefs.font_desc);
@@ -1035,13 +1048,16 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 
 	// put the text into the buffer
 	gtk_source_buffer_begin_not_undoable_action (new_doc->source_buffer);
-	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (new_doc->source_buffer), text, -1);
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (new_doc->source_buffer),
+			text, -1);
 	gtk_source_buffer_end_not_undoable_action (new_doc->source_buffer);
 
 	// move the cursor at the start
 	GtkTextIter start;
-	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (new_doc->source_buffer), &start);
-	gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (new_doc->source_buffer), &start);
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (new_doc->source_buffer),
+			&start);
+	gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (new_doc->source_buffer),
+			&start);
 
 	// when the text is modified
 	g_signal_connect (G_OBJECT (new_doc->source_buffer), "changed",
@@ -1050,6 +1066,10 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 	// when the cursor is moved
 	g_signal_connect (G_OBJECT (new_doc->source_buffer), "mark-set",
 			G_CALLBACK (cb_cursor_moved), NULL);
+
+	// the buffer is saved
+	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (new_doc->source_buffer),
+			FALSE);
 
 	// with a scrollbar
 	GtkWidget *sw = gtk_scrolled_window_new (NULL, NULL);
@@ -1266,6 +1286,8 @@ file_save (void)
 	}
 
 	latexila.active_doc->saved = TRUE;
+	gtk_text_buffer_set_modified (
+			GTK_TEXT_BUFFER (latexila.active_doc->source_buffer), FALSE);
 	g_free (locale);
 }
 
