@@ -210,11 +210,8 @@ fill_list_store_with_current_dir (void)
 
 	// traverse the directory list
 	GList *current = directory_list;
-	while (TRUE)
+	while (current != NULL)
 	{
-		if (current == NULL)
-			break;
-
 		gchar *directory = g_list_nth_data (current, 0);
 
 		// append the directory to the list store
@@ -230,11 +227,8 @@ fill_list_store_with_current_dir (void)
 
 	// traverse the file list
 	current = file_list;
-	while (TRUE)
+	while (current != NULL)
 	{
-		if (current == NULL)
-			break;
-
 		gchar *file = g_list_nth_data (current, 0);
 
 		GdkPixbuf *pixbuf;
@@ -340,5 +334,5 @@ cb_file_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
 static gint
 sort_list_alphabetical_order (gconstpointer a, gconstpointer b)
 {
-	return strcmp ((char *) a, (char *) b);
+	return g_utf8_collate ((char *) a, (char *) b);
 }

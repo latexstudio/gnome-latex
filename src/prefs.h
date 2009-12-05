@@ -25,4 +25,11 @@ void save_preferences (preferences_t *prefs);
 void set_current_font_prefs (preferences_t *prefs);
 void cb_preferences (void);
 
+enum style_schemes
+{
+	COLUMN_STYLE_SCHEME_ID,
+	COLUMN_STYLE_SCHEME_DESC,
+	N_COLUMNS_STYLE_SCHEMES
+};
+
 #endif /* PREFS_H */

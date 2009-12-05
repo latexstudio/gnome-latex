@@ -95,6 +95,7 @@ typedef struct
 	GPtrArray				*list_opened_docs;
 	gboolean				reopen_files_on_startup;
 	gboolean				delete_aux_files;
+	gchar					*style_scheme_id;
 } preferences_t;
 
 typedef struct

@@ -23,7 +23,10 @@
 #include <libintl.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourceview.h>
+#include <gtksourceview/gtksourcestylescheme.h>
+#include <gtksourceview/gtksourcestyleschememanager.h>
 #include <sys/stat.h> // for S_IRWXU
+#include <string.h>
 
 #include "main.h"
 #include "prefs.h"
@@ -45,6 +48,12 @@ static void cb_pref_command_latex (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_pdflatex (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_dvipdf (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_dvips (GtkEditable *editable, gpointer user_data);
+static void cb_style_scheme_changed (GtkTreeSelection *selection,
+		gpointer user_data);
+static gint style_schemes_compare (gconstpointer a, gconstpointer b);
+GSList * get_list_style_schemes_sorted (void);
+static void fill_style_schemes_list_store (GtkListStore *store,
+		GtkTreeSelection *selection);
 
 /* default values */
 // there is an underscore in the end for each variable name
@@ -66,6 +75,7 @@ static gchar	*command_dvips_		= COMMAND_DVIPS;
 static gboolean delete_aux_files_	= FALSE;
 static gboolean reopen_files_on_startup_		= TRUE;
 static gboolean file_browser_show_all_files_	= FALSE;
+static gchar	*style_scheme_id_	= "classic";
 
 void
 load_preferences (preferences_t *prefs)
@@ -326,6 +336,16 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->style_scheme_id = g_key_file_get_string (key_file,
+			PROGRAM_NAME, "style_scheme_id", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->style_scheme_id = g_strdup (style_scheme_id_);
+		g_error_free (error);
+		error = NULL;
+	}
+
 	print_info ("load user preferences: OK");
 	g_key_file_free (key_file);
 }
@@ -367,6 +387,8 @@ save_preferences (preferences_t *prefs)
 			prefs->file_browser_show_all_files);
 	g_key_file_set_boolean (key_file, PROGRAM_NAME, "delete_auxiliaries_files",
 			prefs->delete_aux_files);
+	g_key_file_set_string (key_file, PROGRAM_NAME, "style_scheme_id",
+			prefs->style_scheme_id);
 
 	/* set the keys that must be taken from the widgets */
 	GdkWindowState flag = gdk_window_get_state (gtk_widget_get_window (
@@ -460,6 +482,7 @@ load_default_preferences (preferences_t *prefs)
 	prefs->reopen_files_on_startup = reopen_files_on_startup_;
 	prefs->file_browser_show_all_files = file_browser_show_all_files_;
 	prefs->delete_aux_files = delete_aux_files_;
+	prefs->style_scheme_id = g_strdup (style_scheme_id_);
 
 	set_current_font_prefs (prefs);
 }
@@ -504,15 +527,14 @@ cb_pref_line_numbers (GtkToggleButton *toggle_button, gpointer user_data)
 		return;
 
 	// traverse the list
-	// an other solution is to call g_list_foreach ()
 	GList *current = latexila.all_docs;
-	do
+	while (current != NULL)
 	{
 		document_t *doc = g_list_nth_data (current, 0);
 		gtk_source_view_set_show_line_numbers (
 				GTK_SOURCE_VIEW (doc->source_view), show_line_numbers);
+		current = g_list_next (current);
 	}
-	while ((current = g_list_next (current)) != NULL);
 }
 
 static void
@@ -571,6 +593,34 @@ cb_pref_command_dvips (GtkEditable *editable, gpointer user_data)
 }
 
 static void
+cb_style_scheme_changed (GtkTreeSelection *selection, gpointer user_data)
+{
+	GtkTreeIter iter;
+	GtkTreeModel *model;
+
+	if (gtk_tree_selection_get_selected (selection, &model, &iter))
+	{
+		gchar *id;
+		gtk_tree_model_get (model, &iter, COLUMN_STYLE_SCHEME_ID, &id, -1);
+		latexila.prefs.style_scheme_id = id;
+
+		GtkSourceStyleSchemeManager *style_scheme_manager =
+			gtk_source_style_scheme_manager_get_default ();
+		GtkSourceStyleScheme *style_scheme =
+			gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, id);
+
+		// set the style scheme for all opened documents
+		GList *current = latexila.all_docs;
+		while (current != NULL)
+		{
+			document_t *doc = g_list_nth_data (current, 0);
+			gtk_source_buffer_set_style_scheme (doc->source_buffer, style_scheme);
+			current = g_list_next (current);
+		}
+	}
+}
+
+static void
 cb_reopen_files_on_startup (GtkToggleButton *toggle_button, gpointer user_data)
 {
 	latexila.prefs.reopen_files_on_startup =
@@ -593,6 +643,71 @@ cb_delete_aux_files (GtkToggleButton *toggle_button, gpointer user_data)
 		gtk_toggle_button_get_active (toggle_button);
 }
 
+static gint
+style_schemes_compare (gconstpointer a, gconstpointer b)
+{
+	GtkSourceStyleScheme *scheme_a = (GtkSourceStyleScheme *) a;
+	GtkSourceStyleScheme *scheme_b = (GtkSourceStyleScheme *) b;
+
+	const gchar *name_a = gtk_source_style_scheme_get_name (scheme_a);
+	const gchar *name_b = gtk_source_style_scheme_get_name (scheme_b);
+
+	return g_utf8_collate (name_a, name_b);
+}
+
+GSList *
+get_list_style_schemes_sorted (void)
+{
+	GtkSourceStyleSchemeManager *manager =
+		gtk_source_style_scheme_manager_get_default ();
+	const gchar * const * ids =
+		gtk_source_style_scheme_manager_get_scheme_ids (manager);
+
+	GSList *list = NULL;
+
+	while (*ids != NULL)
+	{
+		GtkSourceStyleScheme *style_scheme =
+			gtk_source_style_scheme_manager_get_scheme (manager, *ids);
+		list = g_slist_prepend (list, style_scheme);
+		++ids;
+	}
+
+	if (list != NULL)
+		list = g_slist_sort (list, (GCompareFunc) style_schemes_compare);
+
+	return list;
+}
+
+static void
+fill_style_schemes_list_store (GtkListStore *store, GtkTreeSelection *selection)
+{
+	GtkTreeIter iter;
+	GSList *list = get_list_style_schemes_sorted ();
+
+	while (list != NULL)
+	{
+		GtkSourceStyleScheme *style_scheme = g_slist_nth_data (list, 0);
+
+		const gchar *id = gtk_source_style_scheme_get_id (style_scheme);
+		gchar *desc = g_strdup_printf ("%s (%s)",
+				gtk_source_style_scheme_get_name (style_scheme),
+				gtk_source_style_scheme_get_description (style_scheme));
+
+		gtk_list_store_append (store, &iter);
+		gtk_list_store_set (store, &iter,
+			COLUMN_STYLE_SCHEME_ID, id,
+			COLUMN_STYLE_SCHEME_DESC, desc,
+			-1);
+
+		// select the style scheme selected
+		if (strcmp (id, latexila.prefs.style_scheme_id) == 0)
+			gtk_tree_selection_select_iter (selection, &iter);
+
+		list = g_slist_next (list);
+	}
+}
+
 static void
 create_preferences (void)
 {
@@ -609,7 +724,27 @@ create_preferences (void)
 
 	GtkWidget *content_area = gtk_dialog_get_content_area (
 			GTK_DIALOG (pref_dialog));
-	gtk_box_set_spacing (GTK_BOX (content_area), 3);
+
+	/* notebook */
+	GtkWidget *notebook = gtk_notebook_new ();
+	gtk_box_pack_start (GTK_BOX (content_area), notebook, TRUE, TRUE, 0);
+
+	GtkWidget *vbox_general = gtk_vbox_new (FALSE, 3);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox_general), 2);
+	GtkWidget *label_general = gtk_label_new (_("General"));
+	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_general,
+			label_general);
+
+	GtkWidget *vbox_font_and_colors = gtk_vbox_new (FALSE, 3);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox_font_and_colors), 2);
+	GtkWidget *label_font_and_colors = gtk_label_new (_("Font & Colors"));
+	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_font_and_colors,
+			label_font_and_colors);
+
+	GtkWidget *vbox_latex = gtk_vbox_new (FALSE, 3);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox_latex), 2);
+	GtkWidget *label_latex = gtk_label_new ("LaTeX");
+	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_latex, label_latex);
 
 	/* show line numbers */
 	GtkWidget *line_numbers = gtk_check_button_new_with_label (
@@ -618,7 +753,36 @@ create_preferences (void)
 			latexila.prefs.show_line_numbers);
 	g_signal_connect (G_OBJECT (line_numbers), "toggled",
 			G_CALLBACK (cb_pref_line_numbers), NULL);
-	gtk_box_pack_start (GTK_BOX (content_area), line_numbers, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_general), line_numbers, FALSE, FALSE, 0);
+
+	/* reopen files on startup */
+	GtkWidget *reopen = gtk_check_button_new_with_label (
+			_("Reopen files on startup"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (reopen),
+			latexila.prefs.reopen_files_on_startup);
+	g_signal_connect (G_OBJECT (reopen), "toggled",
+			G_CALLBACK (cb_reopen_files_on_startup), NULL);
+	gtk_box_pack_start (GTK_BOX (vbox_general), reopen, FALSE, FALSE, 5);
+
+	/* file browser: show all files */
+	GtkWidget *fb_show_all_files = gtk_check_button_new_with_label (
+			_("File browser: show all files"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fb_show_all_files),
+			latexila.prefs.file_browser_show_all_files);
+	g_signal_connect (G_OBJECT (fb_show_all_files), "toggled",
+			G_CALLBACK (cb_file_browser_show_all_files), NULL);
+	gtk_box_pack_start (GTK_BOX (vbox_general), fb_show_all_files, FALSE, FALSE, 5);
+
+	/* delete auxiliaries files on exit */
+	GtkWidget *delete_aux_files = gtk_check_button_new_with_label (
+			_("Clean-up auxiliaries files after close (*.aux, *.log, *.out, *.toc, etc)"));
+	gtk_widget_set_tooltip_text (delete_aux_files,
+			".aux .bit .blg .bbl .lof .log .lot .glo .glx .gxg .gxs .idx .ilg .ind .out .url .svn .toc");
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (delete_aux_files),
+			latexila.prefs.delete_aux_files);
+	g_signal_connect (G_OBJECT (delete_aux_files), "toggled",
+			G_CALLBACK (cb_delete_aux_files), NULL);
+	gtk_box_pack_start (GTK_BOX (vbox_general), delete_aux_files, FALSE, FALSE, 5);
 
 	/* font */
 	GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
@@ -629,7 +793,42 @@ create_preferences (void)
 			G_CALLBACK (cb_pref_font_set), NULL);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), font_button, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (content_area), hbox, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_font_and_colors), hbox, FALSE, FALSE, 0);
+
+	/* style schemes */
+	label = gtk_label_new (_("Color scheme:"));
+	gtk_box_pack_start (GTK_BOX (vbox_font_and_colors), label, FALSE, FALSE, 0);
+
+	GtkListStore *style_schemes_list_store = gtk_list_store_new (
+			N_COLUMNS_STYLE_SCHEMES, G_TYPE_STRING, G_TYPE_STRING);
+
+	GtkWidget *style_schemes_tree_view = gtk_tree_view_new_with_model (
+			GTK_TREE_MODEL (style_schemes_list_store));
+	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (style_schemes_tree_view),
+			FALSE);
+	GtkCellRenderer *renderer = gtk_cell_renderer_text_new ();
+	GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes (
+			"Name and description", renderer,
+			"text", COLUMN_STYLE_SCHEME_DESC,
+			NULL);
+	gtk_tree_view_append_column (GTK_TREE_VIEW (style_schemes_tree_view),
+			column);
+
+	GtkTreeSelection *select = gtk_tree_view_get_selection (
+			GTK_TREE_VIEW (style_schemes_tree_view));
+	gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
+	g_signal_connect (G_OBJECT (select), "changed",
+			G_CALLBACK (cb_style_scheme_changed), NULL);
+
+	fill_style_schemes_list_store (style_schemes_list_store, select);
+
+	// with a scrollbar
+	GtkWidget *scrollbar = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
+            GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+    gtk_container_add (GTK_CONTAINER (scrollbar), style_schemes_tree_view);
+	gtk_box_pack_start (GTK_BOX (vbox_font_and_colors), scrollbar, FALSE,
+			FALSE, 0);
 
 	/* command view entry */
 	hbox = gtk_hbox_new (FALSE, 5);
@@ -641,7 +840,7 @@ create_preferences (void)
 			G_CALLBACK (cb_pref_command_view), NULL);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (hbox), command_view_entry, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (content_area), hbox, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
 	/* commands (latex, pdflatex, dvipdf, dvips) */
 	GtkWidget *table = gtk_table_new (4, 2, FALSE);
@@ -686,37 +885,7 @@ create_preferences (void)
 	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 3, 4);
 	gtk_table_attach_defaults (GTK_TABLE (table), command_dvips, 1, 2, 3, 4);
 
-	gtk_box_pack_start (GTK_BOX (content_area), table, TRUE, TRUE, 5);
-
-	/* reopen files on startup */
-	GtkWidget *reopen = gtk_check_button_new_with_label (
-			_("Reopen files on startup"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (reopen),
-			latexila.prefs.reopen_files_on_startup);
-	g_signal_connect (G_OBJECT (reopen), "toggled",
-			G_CALLBACK (cb_reopen_files_on_startup), NULL);
-	gtk_box_pack_start (GTK_BOX (content_area), reopen, FALSE, FALSE, 5);
-
-	/* file browser: show all files */
-	GtkWidget *fb_show_all_files = gtk_check_button_new_with_label (
-			_("File browser: show all files"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fb_show_all_files),
-			latexila.prefs.file_browser_show_all_files);
-	g_signal_connect (G_OBJECT (fb_show_all_files), "toggled",
-			G_CALLBACK (cb_file_browser_show_all_files), NULL);
-	gtk_box_pack_start (GTK_BOX (content_area), fb_show_all_files, FALSE, FALSE, 5);
-
-	/* delete auxiliaries files on exit */
-	GtkWidget *delete_aux_files = gtk_check_button_new_with_label (
-			_("Clean-up auxiliaries files after close (*.aux, *.log, *.out, *.toc, etc)"));
-	gtk_widget_set_tooltip_text (delete_aux_files,
-			".aux .bit .blg .bbl .lof .log .lot .glo .glx .gxg .gxs .idx .ilg .ind .out .url .svn .toc");
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (delete_aux_files),
-			latexila.prefs.delete_aux_files);
-	g_signal_connect (G_OBJECT (delete_aux_files), "toggled",
-			G_CALLBACK (cb_delete_aux_files), NULL);
-	gtk_box_pack_start (GTK_BOX (content_area), delete_aux_files, FALSE, FALSE, 5);
-
+	gtk_box_pack_start (GTK_BOX (vbox_latex), table, FALSE, FALSE, 5);
 
 	gtk_widget_show_all (content_area);
 }

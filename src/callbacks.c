@@ -29,6 +29,8 @@
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcelanguagemanager.h>
 #include <gtksourceview/gtksourceiter.h>
+#include <gtksourceview/gtksourcestylescheme.h>
+#include <gtksourceview/gtksourcestyleschememanager.h>
 
 #include "main.h"
 #include "config.h"
@@ -569,6 +571,11 @@ void
 cb_close_go_to_line (GtkWidget *widget, GtkWidget *child)
 {
 	gtk_widget_hide (latexila.go_to_line);
+	
+	if (latexila.active_doc == NULL)
+		return;
+
+	gtk_widget_grab_focus (latexila.active_doc->source_view);
 }
 
 void
@@ -584,7 +591,7 @@ cb_go_to_line_entry (GtkEntry *entry, gpointer user_data)
 	gtk_text_buffer_get_iter_at_line (buffer, &iter, --num);
 	gtk_text_buffer_place_cursor (buffer, &iter);
 	scroll_to_cursor ();
-	gtk_widget_grab_focus (latexila.active_doc->source_view);
+	cb_close_go_to_line (NULL, NULL);
 }
 
 gboolean
@@ -689,11 +696,8 @@ void
 cb_documents_save_all (void)
 {
 	GList *current = latexila.all_docs;
-	while (TRUE)
+	while (current != NULL)
 	{
-		if (current == NULL)
-			break;
-
 		document_t *current_doc = g_list_nth_data (current, 0);
 		document_t *active_doc = latexila.active_doc;
 		latexila.active_doc = current_doc;
@@ -921,11 +925,8 @@ open_new_document (const gchar *filename, const gchar *uri)
 	/* check if the document is not already opened */
 	GList *current = latexila.all_docs;
 	gint n = 0;
-	while (TRUE)
+	while (current != NULL)
 	{
-		if (current == NULL)
-			break;
-
 		document_t *current_doc = g_list_nth_data (current, 0);
 
 		// if the filename is the same, just go to that tab on the notebook
@@ -980,12 +981,12 @@ change_font_source_view (void)
 	// traverse the list
 	// an other solution is to call g_list_foreach ()
 	GList *current = latexila.all_docs;
-	do
+	while (current != NULL)
 	{
 		document_t *doc = g_list_nth_data (current, 0);
 		gtk_widget_modify_font (doc->source_view, latexila.prefs.font_desc);
+		current = g_list_next (current);
 	}
-	while ((current = g_list_next (current)) != NULL);
 }
 
 
@@ -1045,6 +1046,14 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 	gtk_source_view_set_show_line_numbers (
 			GTK_SOURCE_VIEW (new_doc->source_view),
 			latexila.prefs.show_line_numbers);
+
+	// set the style scheme
+	GtkSourceStyleSchemeManager *style_scheme_manager =
+		gtk_source_style_scheme_manager_get_default ();
+	GtkSourceStyleScheme *style_scheme =
+		gtk_source_style_scheme_manager_get_scheme (style_scheme_manager,
+				latexila.prefs.style_scheme_id);
+	gtk_source_buffer_set_style_scheme (new_doc->source_buffer, style_scheme);
 
 	// put the text into the buffer
 	gtk_source_buffer_begin_not_undoable_action (new_doc->source_buffer);
@@ -1488,6 +1497,7 @@ free_latexila (void)
 	g_free (latexila.prefs.command_dvips);
 	g_free (latexila.prefs.file_chooser_dir);
 	g_free (latexila.prefs.file_browser_dir);
+	g_free (latexila.prefs.style_scheme_id);
 	g_ptr_array_free (latexila.prefs.list_opened_docs, TRUE);
 
 	for (int i = 0 ; i < 7 ; i++)

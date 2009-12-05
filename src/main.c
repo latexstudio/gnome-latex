@@ -374,7 +374,6 @@ main (int argc, char *argv[])
 		g_free (path);
 	}
 
-
 	gtk_main ();
 
 	return EXIT_SUCCESS;
