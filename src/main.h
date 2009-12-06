@@ -131,6 +131,9 @@ typedef struct
 	GtkWidget		*side_pane;
 	GtkWidget		*go_to_line;
 	GtkWidget		*go_to_line_entry;
+	GtkWidget		*find;
+	GtkWidget		*find_entry;
+	GtkWidget		*find_match_case;
 } latexila_t;
 
 // a lot of things are accessible by the "latexila" variable everywhere in the

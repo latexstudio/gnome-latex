@@ -205,7 +205,7 @@ main (int argc, char *argv[])
 	init_file_browser ();
 
 	/* vertical pane
-	 * top: source view and go to line
+	 * top: source view, go to line, search and replace
 	 * bottom: log zone
 	 */
 	GtkWidget *vpaned = gtk_vpaned_new ();
@@ -251,6 +251,48 @@ main (int argc, char *argv[])
 	g_signal_connect (G_OBJECT (entry_go_to_line), "activate",
 			G_CALLBACK (cb_go_to_line_entry), NULL);
 	gtk_box_pack_start (GTK_BOX (go_to_line), entry_go_to_line, FALSE, FALSE, 0);
+
+	/* find */
+	GtkWidget *find = gtk_hbox_new (FALSE, 3);
+	latexila.find = find;
+	gtk_box_pack_start (GTK_BOX (vbox_source_view), find, FALSE, FALSE, 0);
+
+	close_button = gtk_button_new ();
+	gtk_button_set_relief (GTK_BUTTON (close_button), GTK_RELIEF_NONE);
+	image = gtk_image_new_from_stock (GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
+	gtk_container_add (GTK_CONTAINER (close_button), image);
+	g_signal_connect (G_OBJECT (close_button), "clicked",
+			G_CALLBACK (cb_close_find), NULL);
+	gtk_box_pack_start (GTK_BOX (find), close_button, FALSE, FALSE, 0);
+	
+	label = gtk_label_new (_("Find:"));
+	gtk_box_pack_start (GTK_BOX (find), label, FALSE, FALSE, 2);
+
+	GtkWidget *find_entry = gtk_entry_new ();
+	latexila.find_entry = find_entry;
+	g_signal_connect (G_OBJECT (find_entry), "activate",
+			G_CALLBACK (cb_find_entry), NULL);
+	gtk_box_pack_start (GTK_BOX (find), find_entry, FALSE, FALSE, 0);
+
+	GtkWidget *previous_button = gtk_button_new_with_label (_("Previous"));
+	image = gtk_image_new_from_stock (GTK_STOCK_GO_BACK, GTK_ICON_SIZE_MENU);
+	gtk_button_set_image (GTK_BUTTON (previous_button), image);
+	gtk_button_set_relief (GTK_BUTTON (previous_button), GTK_RELIEF_NONE);
+	g_signal_connect (G_OBJECT (previous_button), "clicked",
+			G_CALLBACK (cb_find_previous), NULL);
+	gtk_box_pack_start (GTK_BOX (find), previous_button, FALSE, FALSE, 0);
+
+	GtkWidget *next_button = gtk_button_new_with_label (_("Next"));
+	image = gtk_image_new_from_stock (GTK_STOCK_GO_FORWARD, GTK_ICON_SIZE_MENU);
+	gtk_button_set_image (GTK_BUTTON (next_button), image);
+	gtk_button_set_relief (GTK_BUTTON (next_button), GTK_RELIEF_NONE);
+	g_signal_connect (G_OBJECT (next_button), "clicked",
+			G_CALLBACK (cb_find_next), NULL);
+	gtk_box_pack_start (GTK_BOX (find), next_button, FALSE, FALSE, 0);
+
+	GtkWidget *match_case = gtk_check_button_new_with_label (_("Match case"));
+	latexila.find_match_case = match_case;
+	gtk_box_pack_start (GTK_BOX (find), match_case, FALSE, FALSE, 0);
 
 	/* log zone */
 	// horizontal pane:
@@ -342,6 +384,7 @@ main (int argc, char *argv[])
 		gtk_widget_hide (latexila.edit_toolbar);
 
 	gtk_widget_hide (latexila.go_to_line);
+	gtk_widget_hide (latexila.find);
 
 	/* reopen files on startup */
 	gchar ** list_opened_docs = (gchar **) latexila.prefs.list_opened_docs->pdata;

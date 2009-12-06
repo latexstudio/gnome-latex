@@ -50,6 +50,7 @@ static void set_title (void);
 static void set_undo_redo_sensitivity (void);
 static void update_cursor_position_statusbar (void);
 static void scroll_to_cursor (void);
+static void find (gboolean backward);
 static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 		gboolean backward, GtkTextIter *match_start, GtkTextIter *match_end);
 static void free_latexila (void);
@@ -347,59 +348,40 @@ cb_find (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	GtkWidget *dialog = gtk_dialog_new_with_buttons (
-			_("Find"),
-			latexila.main_window,
-			GTK_DIALOG_MODAL,
-			GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-			GTK_STOCK_FIND, GTK_RESPONSE_OK,
-			NULL);
+	gtk_widget_show_all (latexila.find);
+	gtk_widget_grab_focus (latexila.find_entry);
+}
 
-	GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+void
+cb_close_find (GtkWidget *widget, gpointer user_data)
+{
+	gtk_widget_hide (latexila.find);
 
-	GtkWidget *hbox = gtk_hbox_new (FALSE, 10);
-	GtkWidget *label = gtk_label_new (_("Search for:"));
-	GtkWidget *entry = gtk_entry_new ();
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
-	gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 5);
-
-	GtkWidget *case_sensitive = gtk_check_button_new_with_label (
-			_("Case sensitive"));
-	gtk_box_pack_start (GTK_BOX (content_area), case_sensitive, TRUE, TRUE, 5);
-
-	GtkWidget *backward_search = gtk_check_button_new_with_label (
-			_("Search backwards"));
-	gtk_box_pack_start (GTK_BOX (content_area), backward_search, TRUE, TRUE, 5);
-
-	gtk_widget_show_all (content_area);
-
-	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
-			"searching");
-
-	while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK)
-	{
-		const gchar *what = gtk_entry_get_text (GTK_ENTRY (entry));
-		gboolean tmp = gtk_toggle_button_get_active (
-				GTK_TOGGLE_BUTTON (case_sensitive));
-		GtkSourceSearchFlags flags = tmp ? 0 : GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
-
-		gboolean backward = gtk_toggle_button_get_active (
-				GTK_TOGGLE_BUTTON (backward_search));
-
-		GtkTextIter match_start, match_end;
-		if (! find_next_match (what, flags, backward, &match_start, &match_end))
-		{
-			// print a message in the statusbar
-			gtk_statusbar_pop (latexila.statusbar, context_id);
-			gtk_statusbar_push (latexila.statusbar, context_id,
-					_("Phrase not found"));
-		}
-	}
-
+	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar, "find");
 	gtk_statusbar_pop (latexila.statusbar, context_id);
+	
+	if (latexila.active_doc == NULL)
+		return;
 
-	gtk_widget_destroy (dialog);
+	gtk_widget_grab_focus (latexila.active_doc->source_view);
+}
+
+void
+cb_find_entry (GtkEntry *entry, gpointer user_data)
+{
+	find (FALSE);
+}
+
+void
+cb_find_next (GtkWidget *widget, gpointer user_data)
+{
+	find (FALSE);
+}
+
+void
+cb_find_previous (GtkWidget *widget, gpointer user_data)
+{
+	find (TRUE);
 }
 
 void
@@ -568,7 +550,7 @@ cb_go_to_line (void)
 }
 
 void
-cb_close_go_to_line (GtkWidget *widget, GtkWidget *child)
+cb_close_go_to_line (GtkWidget *widget, gpointer user_data)
 {
 	gtk_widget_hide (latexila.go_to_line);
 	
@@ -1409,6 +1391,29 @@ scroll_to_cursor (void)
 			gtk_text_buffer_get_insert (
 				GTK_TEXT_BUFFER (latexila.active_doc->source_buffer)),
 			0.25, FALSE, 0, 0);
+}
+
+static void
+find (gboolean backward)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar, "find");
+
+	const gchar *what = gtk_entry_get_text (GTK_ENTRY (latexila.find_entry));
+	gboolean tmp = gtk_toggle_button_get_active (
+			GTK_TOGGLE_BUTTON (latexila.find_match_case));
+	GtkSourceSearchFlags flags = tmp ? 0 : GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
+
+	GtkTextIter match_start, match_end;
+	if (! find_next_match (what, flags, backward, &match_start, &match_end))
+	{
+		// print a message in the statusbar
+		gtk_statusbar_pop (latexila.statusbar, context_id);
+		gtk_statusbar_push (latexila.statusbar, context_id,
+				_("Phrase not found"));
+	}
 }
 
 static gboolean
