@@ -55,6 +55,7 @@ static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 		gboolean backward, GtkTextIter *match_start, GtkTextIter *match_end);
 static void free_latexila (void);
 static void delete_auxiliaries_files (const gchar *filename);
+static void set_entry_background (GtkWidget *entry, gboolean error);
 
 static gboolean save_list_opened_docs = FALSE;
 
@@ -348,14 +349,14 @@ cb_find (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	gtk_widget_show_all (latexila.find);
-	gtk_widget_grab_focus (latexila.find_entry);
+	gtk_widget_show_all (latexila.under_source_view.find);
+	gtk_widget_grab_focus (latexila.under_source_view.find_entry);
 }
 
 void
 cb_close_find (GtkWidget *widget, gpointer user_data)
 {
-	gtk_widget_hide (latexila.find);
+	gtk_widget_hide (latexila.under_source_view.find);
 
 	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar, "find");
 	gtk_statusbar_pop (latexila.statusbar, context_id);
@@ -545,14 +546,17 @@ cb_go_to_line (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	gtk_widget_show_all (latexila.go_to_line);
-	gtk_widget_grab_focus (latexila.go_to_line_entry);
+	// reset the background color
+	set_entry_background (latexila.under_source_view.go_to_line_entry, FALSE);
+
+	gtk_widget_show_all (latexila.under_source_view.go_to_line);
+	gtk_widget_grab_focus (latexila.under_source_view.go_to_line_entry);
 }
 
 void
 cb_close_go_to_line (GtkWidget *widget, gpointer user_data)
 {
-	gtk_widget_hide (latexila.go_to_line);
+	gtk_widget_hide (latexila.under_source_view.go_to_line);
 	
 	if (latexila.active_doc == NULL)
 		return;
@@ -570,6 +574,14 @@ cb_go_to_line_entry (GtkEntry *entry, gpointer user_data)
 	gint num = strtol (txt, NULL, 10);
 	GtkTextIter iter;
 	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+	gint nb_lines = gtk_text_buffer_get_line_count (buffer);
+	
+	if (nb_lines < num)
+	{
+		set_entry_background (GTK_WIDGET (entry), TRUE);
+		return;
+	}
+	
 	gtk_text_buffer_get_iter_at_line (buffer, &iter, --num);
 	gtk_text_buffer_place_cursor (buffer, &iter);
 	scroll_to_cursor ();
@@ -912,7 +924,8 @@ open_new_document (const gchar *filename, const gchar *uri)
 		document_t *current_doc = g_list_nth_data (current, 0);
 
 		// if the filename is the same, just go to that tab on the notebook
-		if (strcmp (filename, current_doc->path) == 0)
+		if (current_doc->path != NULL &&
+				strcmp (filename, current_doc->path) == 0)
 		{
 			gtk_notebook_set_current_page (latexila.notebook, n);
 			return;
@@ -1401,9 +1414,9 @@ find (gboolean backward)
 
 	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar, "find");
 
-	const gchar *what = gtk_entry_get_text (GTK_ENTRY (latexila.find_entry));
+	const gchar *what = gtk_entry_get_text (GTK_ENTRY (latexila.under_source_view.find_entry));
 	gboolean tmp = gtk_toggle_button_get_active (
-			GTK_TOGGLE_BUTTON (latexila.find_match_case));
+			GTK_TOGGLE_BUTTON (latexila.under_source_view.find_match_case));
 	GtkSourceSearchFlags flags = tmp ? 0 : GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
 
 	GtkTextIter match_start, match_end;
@@ -1413,6 +1426,18 @@ find (gboolean backward)
 		gtk_statusbar_pop (latexila.statusbar, context_id);
 		gtk_statusbar_push (latexila.statusbar, context_id,
 				_("Phrase not found"));
+
+		// red background
+		set_entry_background (latexila.under_source_view.find_entry, TRUE);
+	}
+
+	else
+	{
+		// we can possibly print a message, anyway we must pop the last message
+		gtk_statusbar_pop (latexila.statusbar, context_id);
+
+		// normal background
+		set_entry_background (latexila.under_source_view.find_entry, FALSE);
 	}
 }
 
@@ -1532,4 +1557,23 @@ delete_auxiliaries_files (const gchar *filename)
 
 	g_free (filename_without_ext);
 	cb_file_browser_refresh (NULL, NULL);
+}
+
+static void
+set_entry_background (GtkWidget *entry, gboolean error)
+{
+	if (error)
+	{
+		GdkColor red, white;
+		gdk_color_parse ("#FF6666", &red);
+		gdk_color_parse ("white", &white);
+		gtk_widget_modify_base (entry, GTK_STATE_NORMAL, &red);
+		gtk_widget_modify_text (entry, GTK_STATE_NORMAL, &white);
+	}
+
+	else
+	{
+		gtk_widget_modify_base (entry, GTK_STATE_NORMAL, NULL);
+		gtk_widget_modify_text (entry, GTK_STATE_NORMAL, NULL);
+	}
 }

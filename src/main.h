@@ -113,27 +113,32 @@ typedef struct
 
 typedef struct
 {
-	GList			*all_docs;
-	document_t		*active_doc;
-	action_log_t	action_log;
-	symbols_t		symbols;
-	file_browser_t	file_browser;
-	preferences_t	prefs;
-	actions_t		actions;
-	GtkWindow		*main_window;
-	GtkNotebook		*notebook;
-	GtkStatusbar	*statusbar;
-	GtkStatusbar	*cursor_position;
-	GtkPaned		*main_hpaned;
-	GtkPaned		*vpaned;
-	GtkPaned		*log_hpaned;
-	GtkWidget		*edit_toolbar;
-	GtkWidget		*side_pane;
-	GtkWidget		*go_to_line;
-	GtkWidget		*go_to_line_entry;
-	GtkWidget		*find;
-	GtkWidget		*find_entry;
-	GtkWidget		*find_match_case;
+	GtkWidget	*go_to_line;
+	GtkWidget	*go_to_line_entry;
+	GtkWidget	*find;
+	GtkWidget	*find_entry;
+	GtkWidget	*find_match_case;
+} under_source_view_t;
+
+typedef struct
+{
+	GList				*all_docs;
+	document_t			*active_doc;
+	action_log_t		action_log;
+	symbols_t			symbols;
+	file_browser_t		file_browser;
+	preferences_t		prefs;
+	actions_t			actions;
+	under_source_view_t under_source_view;
+	GtkWindow			*main_window;
+	GtkNotebook			*notebook;
+	GtkStatusbar		*statusbar;
+	GtkStatusbar		*cursor_position;
+	GtkPaned			*main_hpaned;
+	GtkPaned			*vpaned;
+	GtkPaned			*log_hpaned;
+	GtkWidget			*edit_toolbar;
+	GtkWidget			*side_pane;
 } latexila_t;
 
 // a lot of things are accessible by the "latexila" variable everywhere in the
