@@ -8,4 +8,4 @@ TODO LaTeXila
 
 [-] BibTeX support
 
-[-] search and replace like the Goto Line (under the source view)
+[x] search and replace like the Goto Line (under the source view)

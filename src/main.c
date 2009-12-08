@@ -42,6 +42,7 @@ static void init_side_pane (void);
 static void init_source_view (GtkWidget *vbox_source_view);
 static void init_go_to_line (GtkWidget *vbox_source_view);
 static void init_find (GtkWidget *vbox_source_view);
+static void init_replace (GtkWidget *vbox_source_view);
 static void init_log_zone (void);
 static void init_statusbar (GtkWidget *main_vbox);
 
@@ -222,6 +223,77 @@ init_find (GtkWidget *vbox_source_view)
 }
 
 static void
+init_replace (GtkWidget *vbox_source_view)
+{
+	GtkWidget *replace = gtk_hbox_new (FALSE, 3);
+	latexila.under_source_view.replace = replace;
+	gtk_box_pack_start (GTK_BOX (vbox_source_view), replace, FALSE, FALSE, 0);
+
+	// see the result to understand ;)
+	GtkWidget *vbox = gtk_vbox_new (FALSE, 2);
+	GtkWidget *hbox1 = gtk_hbox_new (FALSE, 3);
+	GtkWidget *hbox2 = gtk_hbox_new (FALSE, 3);
+	gtk_box_pack_start (GTK_BOX (vbox), hbox1, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox), hbox2, FALSE, FALSE, 0);
+
+	// left: close button
+	GtkWidget *close_button = gtk_button_new ();
+	gtk_button_set_relief (GTK_BUTTON (close_button), GTK_RELIEF_NONE);
+	GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_CLOSE,
+			GTK_ICON_SIZE_MENU);
+	gtk_container_add (GTK_CONTAINER (close_button), image);
+	g_signal_connect (G_OBJECT (close_button), "clicked",
+			G_CALLBACK (cb_close_replace), NULL);
+	gtk_box_pack_start (GTK_BOX (replace), close_button, FALSE, FALSE, 0);
+
+	// right: the two hbox
+	gtk_box_pack_start (GTK_BOX (replace), vbox, FALSE, FALSE, 0);
+	
+	/* first hbox */
+	GtkWidget *label = gtk_label_new (_("Search for:"));
+	gtk_box_pack_start (GTK_BOX (hbox1), label, FALSE, FALSE, 0);
+
+	GtkWidget *replace_entry_search = gtk_entry_new ();
+	latexila.under_source_view.replace_entry_search = replace_entry_search;
+	gtk_box_pack_start (GTK_BOX (hbox1), replace_entry_search, FALSE, FALSE, 5);
+
+	label = gtk_label_new (_("Replace with:"));
+	gtk_box_pack_start (GTK_BOX (hbox1), label, FALSE, FALSE, 0);
+
+	GtkWidget *replace_entry_replace = gtk_entry_new ();
+	latexila.under_source_view.replace_entry_replace = replace_entry_replace;
+	gtk_box_pack_start (GTK_BOX (hbox1), replace_entry_replace, FALSE, FALSE, 5);
+
+	GtkWidget *match_case = gtk_check_button_new_with_label (_("Match case"));
+	latexila.under_source_view.replace_match_case = match_case;
+	gtk_box_pack_start (GTK_BOX (hbox1), match_case, FALSE, FALSE, 0);
+
+	/* second hbox */
+	GtkWidget *button_replace_all = gtk_button_new_with_label (_("Replace All"));
+	gtk_button_set_relief (GTK_BUTTON (button_replace_all), GTK_RELIEF_NONE);
+	g_signal_connect (G_OBJECT (button_replace_all), "clicked",
+			G_CALLBACK (cb_replace_replace_all), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox2), button_replace_all, FALSE, FALSE, 0);
+
+	GtkWidget *button_replace = gtk_button_new_with_label (_("Replace"));
+	latexila.under_source_view.replace_button = button_replace;
+	image = gtk_image_new_from_stock (GTK_STOCK_FIND_AND_REPLACE, GTK_ICON_SIZE_MENU);
+	gtk_button_set_image (GTK_BUTTON (button_replace), image);
+	gtk_button_set_relief (GTK_BUTTON (button_replace), GTK_RELIEF_NONE);
+	// we can not make a replace before finding the first occurence
+	gtk_widget_set_sensitive (button_replace, FALSE);
+	g_signal_connect (G_OBJECT (button_replace), "clicked",
+			G_CALLBACK (cb_replace_replace), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox2), button_replace, FALSE, FALSE, 0);
+
+	GtkWidget *button_find = gtk_button_new_from_stock (GTK_STOCK_FIND);
+	gtk_button_set_relief (GTK_BUTTON (button_find), GTK_RELIEF_NONE);
+	g_signal_connect (G_OBJECT (button_find), "clicked",
+			G_CALLBACK (cb_replace_find), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox2), button_find, FALSE, FALSE, 0);
+}
+
+static void
 init_log_zone (void)
 {
 	// action history
@@ -397,6 +469,7 @@ main (int argc, char *argv[])
 	init_source_view (vbox_source_view);
 	init_go_to_line (vbox_source_view);
 	init_find (vbox_source_view);
+	init_replace (vbox_source_view);
 
 	/* log zone */
 	// horizontal pane:
@@ -423,6 +496,7 @@ main (int argc, char *argv[])
 
 	gtk_widget_hide (latexila.under_source_view.go_to_line);
 	gtk_widget_hide (latexila.under_source_view.find);
+	gtk_widget_hide (latexila.under_source_view.replace);
 
 	/* reopen files on startup */
 	gchar ** list_opened_docs = (gchar **) latexila.prefs.list_opened_docs->pdata;

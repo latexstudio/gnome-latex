@@ -118,6 +118,11 @@ typedef struct
 	GtkWidget	*find;
 	GtkWidget	*find_entry;
 	GtkWidget	*find_match_case;
+	GtkWidget	*replace;
+	GtkWidget	*replace_entry_search;
+	GtkWidget	*replace_entry_replace;
+	GtkWidget	*replace_match_case;
+	GtkWidget	*replace_button;
 } under_source_view_t;
 
 typedef struct

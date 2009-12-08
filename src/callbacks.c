@@ -349,6 +349,9 @@ cb_find (void)
 	if (latexila.active_doc == NULL)
 		return;
 
+	// reset the background color
+	set_entry_background (latexila.under_source_view.find_entry, FALSE);
+
 	gtk_widget_show_all (latexila.under_source_view.find);
 	gtk_widget_grab_focus (latexila.under_source_view.find_entry);
 }
@@ -386,158 +389,173 @@ cb_find_previous (GtkWidget *widget, gpointer user_data)
 }
 
 void
+cb_close_replace (GtkWidget *widget, gpointer user_data)
+{
+	gtk_widget_hide (latexila.under_source_view.replace);
+
+	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
+			"replace");
+	gtk_statusbar_pop (latexila.statusbar, context_id);
+	
+	if (latexila.active_doc == NULL)
+		return;
+
+	gtk_widget_grab_focus (latexila.active_doc->source_view);
+}
+
+void
+cb_replace_find (GtkWidget *widget, gpointer user_data)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
+			"replace");
+
+	const gchar *what = gtk_entry_get_text (
+			GTK_ENTRY (latexila.under_source_view.replace_entry_search));
+
+	gboolean tmp = gtk_toggle_button_get_active (
+			GTK_TOGGLE_BUTTON (latexila.under_source_view.replace_match_case));
+	GtkSourceSearchFlags flags = tmp ? 0 : GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
+
+	GtkTextIter match_start, match_end;
+
+	gboolean match_found = find_next_match (what, flags, FALSE, &match_start,
+			&match_end);
+	if (! match_found)
+	{
+		gtk_statusbar_pop (latexila.statusbar, context_id);
+		gtk_statusbar_push (latexila.statusbar, context_id,
+				_("Phrase not found"));
+
+		gtk_widget_set_sensitive (latexila.under_source_view.replace_button,
+				FALSE);
+
+		// red background
+		set_entry_background (latexila.under_source_view.replace_entry_search,
+				TRUE);
+	}
+	else
+	{
+		gtk_statusbar_pop (latexila.statusbar, context_id);
+
+		gtk_widget_set_sensitive (latexila.under_source_view.replace_button,
+				TRUE);
+
+		// normal background
+		set_entry_background (latexila.under_source_view.replace_entry_search,
+				FALSE);
+	}
+}
+
+void
+cb_replace_replace (GtkWidget *widget, gpointer user_data)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+
+	const gchar *replacement = gtk_entry_get_text (
+			GTK_ENTRY (latexila.under_source_view.replace_entry_replace));
+
+	GtkTextIter match_start, match_end;
+	gtk_text_buffer_get_selection_bounds (buffer, &match_start, &match_end);
+
+	gtk_text_buffer_begin_user_action (buffer);
+	gtk_text_buffer_delete (buffer, &match_start, &match_end);
+	gtk_text_buffer_insert (buffer, &match_start, replacement, -1);
+	gtk_text_buffer_end_user_action (buffer);
+
+	cb_replace_find (NULL, NULL);
+}
+
+void
+cb_replace_replace_all (GtkWidget *widget, gpointer user_data)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	const gchar *what = gtk_entry_get_text (
+			GTK_ENTRY (latexila.under_source_view.replace_entry_search));
+	const gchar *replacement = gtk_entry_get_text (
+			GTK_ENTRY (latexila.under_source_view.replace_entry_replace));
+
+	gboolean tmp = gtk_toggle_button_get_active (
+			GTK_TOGGLE_BUTTON (latexila.under_source_view.replace_match_case));
+	GtkSourceSearchFlags flags = tmp ? 0 : GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
+
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+
+	GtkTextIter match_start, match_end, iter;
+
+	gtk_text_buffer_begin_user_action (buffer);
+
+	// begin at the start of the buffer
+	gtk_text_buffer_get_start_iter (buffer, &iter);
+	gint i = 0;
+	while (gtk_source_iter_forward_search (&iter, what, flags, &match_start,
+				&match_end, NULL))
+	{
+		// make the replacement
+		gtk_text_buffer_delete (buffer, &match_start, &match_end);
+		gtk_text_buffer_insert (buffer, &match_start, replacement, -1);
+
+		// iter points to the end of the inserted text
+		iter = match_start;
+
+		i++;
+	}
+
+	gtk_text_buffer_end_user_action (buffer);
+
+	// normal background (overwritten if the phrase was not found)
+	set_entry_background (latexila.under_source_view.replace_entry_search,
+			FALSE);
+
+	// print a message in the statusbar
+	gchar *msg;
+	if (i == 0)
+	{
+		msg = g_strdup (_("Phrase not found"));
+
+		// red background
+		set_entry_background (latexila.under_source_view.replace_entry_search,
+				TRUE);
+	}
+	else if (i == 1)
+		msg = g_strdup (_("Found and replaced one occurence"));
+	else
+		msg = g_strdup_printf (_("Found and replaced %d occurences"), i);
+
+	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
+			"replace");
+	gtk_statusbar_pop (latexila.statusbar, context_id);
+	gtk_statusbar_push (latexila.statusbar, context_id, msg);
+	g_free (msg);
+
+	// the user must do a find before doing a replace
+	gtk_widget_set_sensitive (latexila.under_source_view.replace_button,
+			FALSE);
+}
+
+void
 cb_replace (void)
 {
 	if (latexila.active_doc == NULL)
 		return;
 
-	GtkWidget *dialog = gtk_dialog_new ();
-	gtk_window_set_title (GTK_WINDOW (dialog), _("Replace"));
-	gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-			GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-			_("Replace All"), GTK_RESPONSE_APPLY,
-			NULL);
+	// reset the background color
+	set_entry_background (latexila.under_source_view.replace_entry_search,
+			FALSE);
 
-	// button replace
-	// we must set the sensitivity of this button so we create it by hand
-	GtkWidget *button_replace = gtk_button_new_with_label (_("Replace"));
-	GtkWidget *icon = gtk_image_new_from_stock (GTK_STOCK_FIND_AND_REPLACE,
-			GTK_ICON_SIZE_BUTTON);
-	gtk_button_set_image (GTK_BUTTON (button_replace), icon);
-	gtk_dialog_add_action_widget (GTK_DIALOG (dialog), button_replace,
-			GTK_RESPONSE_YES);
+	// the user must do a find before doing a replace
+	gtk_widget_set_sensitive (latexila.under_source_view.replace_button,
+			FALSE);
 
-	gtk_dialog_add_button (GTK_DIALOG (dialog), GTK_STOCK_FIND, GTK_RESPONSE_OK);
-
-
-	GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
-	GtkWidget *table = gtk_table_new (2, 2, FALSE);
-
-	GtkWidget *label = gtk_label_new (_("Search for:"));
-	// align the label to the left
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-	GtkWidget *entry_search = gtk_entry_new ();
-	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 0, 1);
-	gtk_table_attach_defaults (GTK_TABLE (table), entry_search, 1, 2, 0, 1);
-
-	label = gtk_label_new (_("Replace with:"));
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-	GtkWidget *entry_replace = gtk_entry_new ();
-	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 1, 2);
-	gtk_table_attach_defaults (GTK_TABLE (table), entry_replace, 1, 2, 1, 2);
-
-	gtk_box_pack_start (GTK_BOX (content_area), table, TRUE, TRUE, 5);
-
-	GtkWidget *case_sensitive = gtk_check_button_new_with_label (
-			_("Case sensitive"));
-	gtk_box_pack_start (GTK_BOX (content_area), case_sensitive, TRUE, TRUE, 5);
-
-	gtk_widget_show_all (content_area);
-
-	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
-
-	/* backward desactivated because there is a little problem with the position
-	 * of the insert mark after making a replacement... The insert mark should
-	 * be at the beginning of the replacement and not at the end.
-	 */
-	gboolean backward = FALSE;
-
-	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
-			"searching");
-
-	gboolean stop = FALSE;
-	gboolean match_found = FALSE;
-	GtkTextIter match_start, match_end, iter;
-	while (! stop)
-	{
-		gtk_widget_set_sensitive (button_replace, match_found);
-		gint result = gtk_dialog_run (GTK_DIALOG (dialog));
-
-		const gchar *what = gtk_entry_get_text (GTK_ENTRY (entry_search));
-		const gchar *replacement = gtk_entry_get_text (GTK_ENTRY (entry_replace));
-
-		gboolean tmp = gtk_toggle_button_get_active (
-				GTK_TOGGLE_BUTTON (case_sensitive));
-		GtkSourceSearchFlags flags = tmp ? 0 : GTK_SOURCE_SEARCH_CASE_INSENSITIVE;
-
-		switch (result)
-		{
-			case GTK_RESPONSE_CLOSE:
-				stop = TRUE;
-				break;
-
-			/* replace all */
-			case GTK_RESPONSE_APPLY:
-				gtk_text_buffer_begin_user_action (buffer);
-
-				// begin at the start of the buffer
-				gtk_text_buffer_get_start_iter (buffer, &iter);
-				gint i = 0;
-				while (gtk_source_iter_forward_search (&iter, what, flags,
-							&match_start, &match_end, NULL))
-				{
-					// make the replacement
-					gtk_text_buffer_delete (buffer, &match_start, &match_end);
-					gtk_text_buffer_insert (buffer, &match_start, replacement, -1);
-
-					// iter points to the end of the inserted text
-					iter = match_start;
-
-					i++;
-				}
-
-				gtk_text_buffer_end_user_action (buffer);
-
-				// print a message in the statusbar
-				gchar *msg;
-				if (i == 0)
-					msg = g_strdup (_("Phrase not found"));
-				else if (i == 1)
-					msg = g_strdup (_("Found and replaced one occurence"));
-				else
-					msg = g_strdup_printf (_("Found and replaced %d occurences"), i);
-
-				gtk_statusbar_pop (latexila.statusbar, context_id);
-				gtk_statusbar_push (latexila.statusbar, context_id, msg);
-				g_free (msg);
-
-				break;
-
-			/* replace */
-			case GTK_RESPONSE_YES:
-				// the user must find the first match
-				if (! match_found)
-					break;
-
-				gtk_text_buffer_begin_user_action (buffer);
-				gtk_text_buffer_delete (buffer, &match_start, &match_end);
-				gtk_text_buffer_insert (buffer, &match_start, replacement, -1);
-				gtk_text_buffer_end_user_action (buffer);
-
-				match_found = find_next_match (what, flags, backward,
-						&match_start, &match_end);
-				break;
-
-			/* just find the next match */
-			case GTK_RESPONSE_OK:
-				match_found = find_next_match (what, flags, backward,
-						&match_start, &match_end);
-				if (! match_found)
-				{
-					gtk_statusbar_pop (latexila.statusbar, context_id);
-					gtk_statusbar_push (latexila.statusbar, context_id,
-							_("Phrase not found"));
-				}
-				break;
-
-			default:
-				stop = TRUE;
-				break;
-		}
-	}
-
-	gtk_statusbar_pop (latexila.statusbar, context_id);
-	gtk_widget_destroy (dialog);
+	gtk_widget_show_all (latexila.under_source_view.replace);
+	gtk_widget_grab_focus (latexila.under_source_view.replace_entry_search);
 }
 
 void
