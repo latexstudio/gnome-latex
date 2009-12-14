@@ -20,7 +20,6 @@
 #ifndef CALLBACKS_H
 #define CALLBACKS_H
 
-void cb_new (void);
 void cb_open (void);
 void cb_save (void);
 void cb_save_as (void);
@@ -80,5 +79,7 @@ void cb_show_edit_toolbar (GtkToggleAction *toggle_action, gpointer user_data);
 void open_new_document_without_uri (const gchar *filename);
 void open_new_document (const gchar *filename, const gchar *uri);
 void change_font_source_view (void);
+void create_document_in_new_tab (const gchar *path, const gchar *text,
+		const gchar *title);
 
 #endif /* CALLBACKS_H */

@@ -2,7 +2,7 @@ TODO LaTeXila
 
 [-] Templates
 	x create a few default templates
-	- on the action "new file", possibility to select a template
+	x on the action "new file", possibility to select a template
 	- possibility to create new templates
 	- possibility to delete templates (not the defaults)
 
@@ -11,3 +11,5 @@ TODO LaTeXila
 [-] toolbars: possibility to put the edit toolbar on the right of the first toolbar instead of bottom
 
 [-] comment/uncomment selected lines
+
+[-] replace the notebook in the side pane by a combo box with a close button

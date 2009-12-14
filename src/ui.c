@@ -31,6 +31,7 @@
 #include "cb_latex.h"
 #include "tool_menu_action.h"
 #include "prefs.h"
+#include "templates.h"
 
 static void register_my_stock_icons (void);
 

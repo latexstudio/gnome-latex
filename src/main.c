@@ -34,6 +34,7 @@
 #include "print.h"
 #include "prefs.h"
 #include "ui.h"
+#include "templates.h"
 
 static gboolean option_version (const gchar *option_name, const gchar *value,
 		gpointer data, GError **error);
@@ -528,6 +529,9 @@ main (int argc, char *argv[])
 	/* if --new-document option is used */
 	if (option_new_document)
 		cb_new ();
+
+	/* templates */
+	init_templates ();
 
 
 	gtk_main ();

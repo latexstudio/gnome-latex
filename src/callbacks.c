@@ -40,8 +40,6 @@
 #include "prefs.h"
 #include "file_browser.h"
 
-static void create_document_in_new_tab (const gchar *path, const gchar *text,
-		const gchar *title);
 static void close_document (gint index);
 static void save_as_dialog (void);
 static void file_save (void);
@@ -58,16 +56,6 @@ static void delete_auxiliaries_files (const gchar *filename);
 static void set_entry_background (GtkWidget *entry, gboolean error);
 
 static gboolean save_list_opened_docs = FALSE;
-
-void
-cb_new (void)
-{
-	char *default_text = "\\documentclass[a4paper,11pt]{article}\n"
-		"\\begin{document}\n"
-		"\\end{document}";
-
-	create_document_in_new_tab (NULL, default_text, _("New document"));
-}
 
 void
 cb_open (void)
@@ -1002,12 +990,7 @@ change_font_source_view (void)
 	}
 }
 
-
-/******************************************************************************
- * local functions
- *****************************************************************************/
-
-static void
+void
 create_document_in_new_tab (const gchar *path, const gchar *text,
 		const gchar *title)
 {
@@ -1130,6 +1113,11 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 	set_undo_redo_sensitivity ();
 	update_cursor_position_statusbar ();
 }
+
+
+/******************************************************************************
+ * local functions
+ *****************************************************************************/
 
 static void
 close_document (gint index)

@@ -7,7 +7,8 @@ SET(latexila_src main.c			main.h
 		 prefs.c		prefs.h
 		 ui.c			ui.h
 		 tool_menu_action.c	tool_menu_action.h
-		 file_browser.c		file_browser.h)
+		 file_browser.c		file_browser.h
+		 templates.c		templates.h)
 ADD_EXECUTABLE(latexila ${latexila_src})
 TARGET_LINK_LIBRARIES(latexila ${GTK2_LIBRARIES})
 
