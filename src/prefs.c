@@ -83,6 +83,7 @@ load_preferences (preferences_t *prefs)
 	gchar *rc_file = get_rc_file ();
 	if (! g_file_test (rc_file, G_FILE_TEST_EXISTS))
 	{
+		g_free (rc_file);
 		load_default_preferences (prefs);
 		return;
 	}
@@ -96,7 +97,6 @@ load_preferences (preferences_t *prefs)
 	{
 		print_warning ("load user preferences failed: %s", error->message);
 		g_error_free (error);
-		error = NULL;
 		load_default_preferences (prefs);
 		return;
 	}

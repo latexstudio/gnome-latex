@@ -1272,8 +1272,7 @@ file_save (void)
 	print_info ("save current buffer to \"%s\"", latexila.active_doc->path);
 
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
-	GtkTextIter start;
-	GtkTextIter end;
+	GtkTextIter start, end;
 	gtk_text_buffer_get_bounds (text_buffer, &start, &end);
 	gchar *contents = gtk_text_buffer_get_text (text_buffer, &start, &end, FALSE);
 	gchar *locale = g_locale_from_utf8 (contents, -1, NULL, NULL, &error);

@@ -32,6 +32,8 @@ In the code, GtkUIManager is used to construct them.
       <menuitem action="FileSave" />
       <menuitem action="FileSaveAs" />
       <separator />
+      <menuitem action="FileCreateTemplate" />
+      <separator />
       <menuitem action="FileClose" />
       <menuitem action="FileQuit" />
     </menu>
