@@ -82,6 +82,8 @@ static GtkActionEntry entries[] = {
 		N_("Save the current file with a different name"), G_CALLBACK (cb_save_as)},
 	{"FileCreateTemplate", NULL, N_("Create Template From Document..."), NULL,
 		N_("Create a new template from the current document"), G_CALLBACK (cb_create_template)},
+	{"FileDeleteTemplate", NULL, N_("Delete Template..."), NULL,
+		N_("Delete personnal template(s)"), G_CALLBACK (cb_delete_template)},
 	{"FileClose", GTK_STOCK_CLOSE, N_("Close"), "<Control>W",
 		N_("Close the current file"), G_CALLBACK (cb_close)},
 	{"FileQuit", GTK_STOCK_QUIT, N_("Quit"), "<Control>Q",

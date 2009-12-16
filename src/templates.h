@@ -22,6 +22,7 @@
 
 void cb_new (void);
 void cb_create_template (void);
+void cb_delete_template (void);
 void init_templates (void);
 
 enum templates

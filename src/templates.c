@@ -24,6 +24,7 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourceview.h>
 #include <sys/stat.h> // for S_IRWXU
+#include <glib/gstdio.h> // for g_remove()
 
 #include "main.h"
 #include "config.h"
@@ -39,7 +40,10 @@ static GtkWidget * create_icon_view (GtkListStore *store);
 static void cb_icon_view_selection_changed (GtkIconView *icon_view,
 		gpointer other_icon_view);
 static gchar * get_rc_file (void);
+static gchar * get_rc_dir (void);
 static void add_personnal_template (const gchar *name, const gchar *contents);
+static void save_rc_file (void);
+static void save_contents (void);
 
 static GtkListStore *default_store;
 static GtkListStore *personnal_store;
@@ -176,6 +180,8 @@ cb_create_template (void)
 		if (gtk_entry_get_text_length (GTK_ENTRY (entry)) == 0)
 			continue;
 
+		nb_personnal_templates++;
+
 		const gchar *name = gtk_entry_get_text (GTK_ENTRY (entry));
 
 		GtkTextBuffer *buffer =
@@ -192,6 +198,69 @@ cb_create_template (void)
 		g_free (contents);
 		break;
 	}
+
+	gtk_widget_destroy (dialog);
+}
+
+void
+cb_delete_template (void)
+{
+	GtkWidget *dialog = gtk_dialog_new_with_buttons (_("Delete Template(s)..."),
+			latexila.main_window,
+			GTK_DIALOG_NO_SEPARATOR,
+			GTK_STOCK_DELETE, GTK_RESPONSE_ACCEPT,
+			GTK_STOCK_OK, GTK_RESPONSE_REJECT,
+			NULL);
+
+	gtk_window_set_default_size (GTK_WINDOW (dialog), 400, 200);
+	
+	GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+
+	/* icon view for the personnal templates */
+	GtkWidget *icon_view = create_icon_view (personnal_store);
+	gtk_icon_view_set_selection_mode (GTK_ICON_VIEW (icon_view),
+			GTK_SELECTION_MULTIPLE);
+
+	// with a scrollbar (without that there is a problem for resizing the
+	// dialog, we can make it bigger but not smaller...)
+	GtkWidget *scrollbar = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
+			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_container_add (GTK_CONTAINER (scrollbar), icon_view);
+
+	// with a frame
+	GtkWidget *frame = gtk_frame_new (_("Personnal templates"));
+	gtk_container_add (GTK_CONTAINER (frame), scrollbar);
+
+	gtk_box_pack_start (GTK_BOX (content_area), frame, TRUE, TRUE, 10);
+
+	gtk_widget_show_all (content_area);
+
+	while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+	{
+		GList *selected_items = gtk_icon_view_get_selected_items (
+				GTK_ICON_VIEW (icon_view));
+		GtkTreeModel *model = GTK_TREE_MODEL (personnal_store);
+		
+		guint nb_selected_items = g_list_length (selected_items);
+
+		for (gint i = 0 ; i < nb_selected_items ; i++)
+		{
+			GtkTreePath *path = g_list_nth_data (selected_items, i);
+			GtkTreeIter iter;
+			gtk_tree_model_get_iter (model, &iter, path);
+			gtk_list_store_remove (personnal_store, &iter);
+		}
+
+		nb_personnal_templates -= nb_selected_items;
+
+		// free the GList
+		g_list_foreach (selected_items, (GFunc) gtk_tree_path_free, NULL);
+		g_list_free (selected_items);
+	}
+
+	save_rc_file ();
+	save_contents ();
 
 	gtk_widget_destroy (dialog);
 }
@@ -247,8 +316,6 @@ init_templates (void)
 		return;
 	}
 
-	gchar *rc_path = g_path_get_dirname (rc_file);
-
 	GKeyFile *key_file = g_key_file_new ();
 	GError *error = NULL;
 	g_key_file_load_from_file (key_file, rc_file, G_KEY_FILE_NONE, &error);
@@ -258,7 +325,6 @@ init_templates (void)
 	{
 		print_warning ("load templates failed: %s", error->message);
 		g_error_free (error);
-		g_free (rc_path);
 		return;
 	}
 
@@ -270,15 +336,16 @@ init_templates (void)
 		print_warning ("load templates failed: %s", error->message);
 		g_error_free (error);
 		g_key_file_free (key_file);
-		g_free (rc_path);
 		return;
 	}
 
 	nb_personnal_templates = length;
 
+	gchar *rc_dir = get_rc_dir ();
+
 	for (gint i = 0 ; i < length ; i++)
 	{
-		gchar *file = g_strdup_printf ("%s/%d.tex", rc_path, i);
+		gchar *file = g_strdup_printf ("%s/%d.tex", rc_dir, i);
 
 		if (! g_file_test (file, G_FILE_TEST_EXISTS))
 			continue;
@@ -289,6 +356,7 @@ init_templates (void)
 
 	g_strfreev (names);
 	g_key_file_free (key_file);
+	g_free (rc_dir);
 }
 
 static void
@@ -388,51 +456,25 @@ get_rc_file (void)
 	return rc_file;
 }
 
+static gchar *
+get_rc_dir (void)
+{
+	// rc_dir must be freed
+	gchar *rc_dir = g_build_filename (g_get_user_data_dir (), "latexila", NULL);
+	return rc_dir;
+}
+
 static void
 add_personnal_template (const gchar *name, const gchar *contents)
 {
-	nb_personnal_templates++;
+	save_rc_file ();
 
-	gchar **names = g_malloc (nb_personnal_templates * sizeof (gchar *));
-	gchar **names_i = names;
-	
-	GtkTreeIter iter;
-	gtk_tree_model_get_iter_first (GTK_TREE_MODEL (personnal_store), &iter);
-	do
-	{
-		gtk_tree_model_get (GTK_TREE_MODEL (personnal_store), &iter,
-				COLUMN_TEMPLATE_NAME, names_i, -1);
-		names_i++;
-	} while (gtk_tree_model_iter_next (GTK_TREE_MODEL (personnal_store), &iter));
+	gchar *rc_dir = get_rc_dir ();
 
-	GKeyFile *key_file = g_key_file_new ();
-	g_key_file_set_string_list (key_file, PROGRAM_NAME, "names",
-			(const gchar * const *) names,
-			nb_personnal_templates);
-
-	/* save the rc file */
-	gchar *rc_file = get_rc_file ();
-	gchar *rc_path = g_path_get_dirname (rc_file);
-	g_mkdir_with_parents(rc_path, S_IRWXU);
-	gchar *key_file_data = g_key_file_to_data (key_file, NULL, NULL);
+	gchar *file = g_strdup_printf ("%s/%d.tex", rc_dir,
+			nb_personnal_templates - 1);
 
 	GError *error = NULL;
-	g_file_set_contents (rc_file, key_file_data, -1, &error);
-
-	g_free (rc_file);
-	g_free (key_file_data);
-	g_key_file_free (key_file);
-
-	if (error != NULL)
-	{
-		print_warning ("impossible to save templates: %s", error->message);
-		g_error_free (error);
-		g_free (rc_path);
-		return;
-	}
-
-	gchar *file = g_strdup_printf ("%s/%d.tex", rc_path,
-			nb_personnal_templates - 1);
 	g_file_set_contents (file, contents, -1, &error);
 
 	if (error != NULL)
@@ -441,6 +483,103 @@ add_personnal_template (const gchar *name, const gchar *contents)
 		g_error_free (error);
 	}
 
-	g_free (rc_path);
+	g_free (rc_dir);
 	g_free (file);
+}
+
+static void
+save_rc_file (void)
+{
+	if (nb_personnal_templates == 0)
+	{
+		gchar *rc_file = get_rc_file ();
+		g_remove (rc_file);
+		g_free (rc_file);
+		return;
+	}
+
+	gchar **names = g_malloc ((nb_personnal_templates + 1) * sizeof (gchar *));
+	gchar **names_i = names;
+	
+	// traverse the list store
+	GtkTreeIter iter;
+	GtkTreeModel *model = GTK_TREE_MODEL (personnal_store);
+	gboolean valid_iter = gtk_tree_model_get_iter_first (model, &iter);
+	while (valid_iter)
+	{
+		gtk_tree_model_get (model, &iter, COLUMN_TEMPLATE_NAME, names_i, -1);
+		valid_iter = gtk_tree_model_iter_next (model, &iter);
+		names_i++;
+	}
+
+	// the last element is NULL so we can use g_strfreev()
+	*names_i = NULL;
+
+	GKeyFile *key_file = g_key_file_new ();
+	g_key_file_set_string_list (key_file, PROGRAM_NAME, "names",
+			(const gchar * const *) names,
+			nb_personnal_templates);
+
+	/* save the rc file */
+	gchar *rc_file = get_rc_file ();
+	gchar *rc_dir = get_rc_dir ();
+	g_mkdir_with_parents(rc_dir, S_IRWXU);
+	gchar *key_file_data = g_key_file_to_data (key_file, NULL, NULL);
+
+	GError *error = NULL;
+	g_file_set_contents (rc_file, key_file_data, -1, &error);
+
+	if (error != NULL)
+	{
+		print_warning ("impossible to save templates: %s", error->message);
+		g_error_free (error);
+	}
+
+	g_strfreev (names);
+	g_free (rc_file);
+	g_free (rc_dir);
+	g_free (key_file_data);
+	g_key_file_free (key_file);
+}
+
+static void
+save_contents (void)
+{
+	gchar *rc_dir = get_rc_dir ();
+
+	// delete all the *.tex files
+	gchar *command = g_strdup_printf ("rm -f %s/*.tex", rc_dir);
+	system (command);
+	g_free (command);
+
+	// traverse the list store
+	GtkTreeIter iter;
+	GtkTreeModel *model = GTK_TREE_MODEL (personnal_store);
+	gboolean valid_iter = gtk_tree_model_get_iter_first (model, &iter);
+	gint i = 0;
+	while (valid_iter)
+	{
+		gchar *contents;
+		gtk_tree_model_get (model, &iter, COLUMN_TEMPLATE_CONTENTS, &contents, -1);
+
+		gchar *file = g_strdup_printf ("%s/%d.tex", rc_dir, i);
+
+		GError *error = NULL;
+		g_file_set_contents (file, contents, -1, &error);
+
+		if (error != NULL)
+		{
+			print_warning ("impossible to save the template: %s", error->message);
+			g_error_free (error);
+			error = NULL;
+		}
+
+		g_free (contents);
+		g_free (file);
+
+		valid_iter = gtk_tree_model_iter_next (model, &iter);
+		i++;
+	}
+
+	g_free (rc_dir);
 }
