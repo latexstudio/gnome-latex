@@ -1,11 +1,5 @@
 TODO LaTeXila
 
-[x] Templates
-	x create a few default templates
-	x on the action "new file", possibility to select a template
-	x possibility to create new templates
-	x possibility to delete templates (not the defaults)
-
 [-] BibTeX support
 
 [-] toolbars: possibility to put the edit toolbar on the right of the first toolbar instead of bottom
@@ -23,5 +17,4 @@ TODO LaTeXila
 [-] replace the notebook in the side pane by a combo box with a close button
 
 [-] bug correction
-	- if new document, save must save as
 	- when there are too much recent documents, new documents are not visible in File/Open Recent

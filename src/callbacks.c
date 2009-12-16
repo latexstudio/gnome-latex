@@ -100,7 +100,7 @@ cb_save (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	if (! latexila.active_doc->saved)
+	if (! latexila.active_doc->saved || latexila.active_doc->path == NULL)
 	{
 		if (latexila.active_doc->path == NULL)
 			save_as_dialog ();
