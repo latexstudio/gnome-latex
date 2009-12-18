@@ -236,6 +236,8 @@ cb_delete_template (void)
 
 	gtk_widget_show_all (content_area);
 
+	gint nb_personnal_templates_before = nb_personnal_templates;
+
 	while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
 	{
 		GList *selected_items = gtk_icon_view_get_selected_items (
@@ -259,8 +261,11 @@ cb_delete_template (void)
 		g_list_free (selected_items);
 	}
 
-	save_rc_file ();
-	save_contents ();
+	if (nb_personnal_templates != nb_personnal_templates_before)
+	{
+		save_rc_file ();
+		save_contents ();
+	}
 
 	gtk_widget_destroy (dialog);
 }
