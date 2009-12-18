@@ -1027,10 +1027,6 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 		gtk_source_buffer_set_language (new_doc->source_buffer, lang);
 	}
 
-	// set auto indentation
-	gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (new_doc->source_view),
-			TRUE);
-
 	// set the font
 	gtk_widget_modify_font (new_doc->source_view, latexila.prefs.font_desc);
 
@@ -1050,6 +1046,22 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 		gtk_source_style_scheme_manager_get_scheme (style_scheme_manager,
 				latexila.prefs.style_scheme_id);
 	gtk_source_buffer_set_style_scheme (new_doc->source_buffer, style_scheme);
+
+	// indentation
+	gtk_source_view_set_auto_indent (GTK_SOURCE_VIEW (new_doc->source_view), TRUE);
+	gtk_source_view_set_indent_width (GTK_SOURCE_VIEW (new_doc->source_view), -1);
+	gtk_source_view_set_tab_width (GTK_SOURCE_VIEW (new_doc->source_view),
+			latexila.prefs.tab_width);
+	gtk_source_view_set_insert_spaces_instead_of_tabs (
+			GTK_SOURCE_VIEW (new_doc->source_view),
+			latexila.prefs.spaces_instead_of_tabs);
+
+	// highlight
+	gtk_source_view_set_highlight_current_line (
+			GTK_SOURCE_VIEW (new_doc->source_view),
+			latexila.prefs.highlight_current_line);
+	gtk_source_buffer_set_highlight_matching_brackets (new_doc->source_buffer,
+			latexila.prefs.highlight_matching_brackets);
 
 	// put the text into the buffer
 	gtk_source_buffer_begin_not_undoable_action (new_doc->source_buffer);

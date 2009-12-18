@@ -8,13 +8,11 @@ TODO LaTeXila
 
 [-] indent/unindent lines
 
-[-] more preferences for the source view
-	- style of indentation
-	- ...
-
 [-] documentation
 
 [-] replace the notebook in the side pane by a combo box with a close button
+
+[-] verbose option
 
 [-] bug correction
 	- when there are too much recent documents, new documents are not visible in File/Open Recent

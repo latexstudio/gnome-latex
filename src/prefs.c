@@ -42,6 +42,13 @@ static void cb_pref_dialog_close (GtkDialog *dialog, gint response_id,
 		gpointer user_data);
 static void cb_pref_line_numbers (GtkToggleButton *toggle_button,
 		gpointer user_data);
+static void cb_pref_tab_width (GtkSpinButton *spin_button, gpointer user_data);
+static void cb_pref_spaces_instead_of_tabs (GtkToggleButton *toggle_button,
+		gpointer user_data);
+static void cb_pref_highlight_current_line (GtkToggleButton *toggle_button,
+		gpointer user_data);
+static void cb_pref_highlight_matching_brackets (GtkToggleButton *toggle_button,
+		gpointer user_data);
 static void cb_pref_font_set (GtkFontButton *font_button, gpointer user_data);
 static void cb_pref_command_view (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_latex (GtkEditable *editable, gpointer user_data);
@@ -76,6 +83,10 @@ static gboolean delete_aux_files_	= FALSE;
 static gboolean reopen_files_on_startup_		= TRUE;
 static gboolean file_browser_show_all_files_	= FALSE;
 static gchar	*style_scheme_id_	= "classic";
+static gint		tab_width_			= 2;
+static gboolean	spaces_instead_of_tabs_			= TRUE;
+static gboolean	highlight_current_line_			= TRUE;
+static gboolean highlight_matching_brackets_	= TRUE;
 
 void
 load_preferences (preferences_t *prefs)
@@ -272,8 +283,6 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
-	// look, I see light, we are close to the exit!
-	
 	prefs->file_browser_dir = g_key_file_get_string (key_file, PROGRAM_NAME,
 			"file_browser_directory", &error);
 	if (error != NULL)
@@ -306,6 +315,8 @@ load_preferences (preferences_t *prefs)
 		g_strfreev (list_opened_docs);
 	}
 
+	// look, I see light, we are close to the exit!
+	
 	prefs->reopen_files_on_startup = g_key_file_get_boolean (key_file,
 			PROGRAM_NAME, "reopen_files_on_startup", &error);
 	if (error != NULL)
@@ -342,6 +353,46 @@ load_preferences (preferences_t *prefs)
 	{
 		print_warning ("%s", error->message);
 		prefs->style_scheme_id = g_strdup (style_scheme_id_);
+		g_error_free (error);
+		error = NULL;
+	}
+
+	prefs->tab_width = g_key_file_get_integer (key_file,
+			PROGRAM_NAME, "tab_width", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->tab_width = tab_width_;
+		g_error_free (error);
+		error = NULL;
+	}
+
+	prefs->spaces_instead_of_tabs = g_key_file_get_boolean (key_file,
+			PROGRAM_NAME, "spaces_instead_of_tabs", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->spaces_instead_of_tabs = spaces_instead_of_tabs_;
+		g_error_free (error);
+		error = NULL;
+	}
+
+	prefs->highlight_current_line = g_key_file_get_boolean (key_file,
+			PROGRAM_NAME, "highlight_current_line", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->highlight_current_line = highlight_current_line_;
+		g_error_free (error);
+		error = NULL;
+	}
+
+	prefs->highlight_matching_brackets = g_key_file_get_boolean (key_file,
+			PROGRAM_NAME, "highlight_matching_brackets", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->highlight_matching_brackets = highlight_matching_brackets_;
 		g_error_free (error);
 		error = NULL;
 	}
@@ -389,6 +440,14 @@ save_preferences (preferences_t *prefs)
 			prefs->delete_aux_files);
 	g_key_file_set_string (key_file, PROGRAM_NAME, "style_scheme_id",
 			prefs->style_scheme_id);
+	g_key_file_set_integer (key_file, PROGRAM_NAME, "tab_width",
+			prefs->tab_width);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "spaces_instead_of_tabs",
+			prefs->spaces_instead_of_tabs);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "highlight_current_line",
+			prefs->highlight_current_line);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "highlight_matching_brackets",
+			prefs->highlight_matching_brackets);
 
 	/* set the keys that must be taken from the widgets */
 	GdkWindowState flag = gdk_window_get_state (gtk_widget_get_window (
@@ -483,6 +542,10 @@ load_default_preferences (preferences_t *prefs)
 	prefs->file_browser_show_all_files = file_browser_show_all_files_;
 	prefs->delete_aux_files = delete_aux_files_;
 	prefs->style_scheme_id = g_strdup (style_scheme_id_);
+	prefs->tab_width = tab_width_;
+	prefs->spaces_instead_of_tabs = spaces_instead_of_tabs_;
+	prefs->highlight_current_line = highlight_current_line_;
+	prefs->highlight_matching_brackets = highlight_matching_brackets_;
 
 	set_current_font_prefs (prefs);
 }
@@ -523,9 +586,6 @@ cb_pref_line_numbers (GtkToggleButton *toggle_button, gpointer user_data)
 	gboolean show_line_numbers = gtk_toggle_button_get_active (toggle_button);
 	latexila.prefs.show_line_numbers = show_line_numbers;
 
-	if (latexila.active_doc == NULL)
-		return;
-
 	// traverse the list
 	GList *current = latexila.all_docs;
 	while (current != NULL)
@@ -533,6 +593,75 @@ cb_pref_line_numbers (GtkToggleButton *toggle_button, gpointer user_data)
 		document_t *doc = g_list_nth_data (current, 0);
 		gtk_source_view_set_show_line_numbers (
 				GTK_SOURCE_VIEW (doc->source_view), show_line_numbers);
+		current = g_list_next (current);
+	}
+}
+
+static void
+cb_pref_tab_width (GtkSpinButton *spin_button, gpointer user_data)
+{
+	gint value = gtk_spin_button_get_value_as_int (spin_button);
+	latexila.prefs.tab_width = value;
+
+	// traverse the list
+	GList *current = latexila.all_docs;
+	while (current != NULL)
+	{
+		document_t *doc = g_list_nth_data (current, 0);
+		gtk_source_view_set_tab_width (GTK_SOURCE_VIEW (doc->source_view), value);
+		current = g_list_next (current);
+	}
+}
+
+static void
+cb_pref_spaces_instead_of_tabs (GtkToggleButton *toggle_button,
+		gpointer user_data)
+{
+	gboolean tmp = gtk_toggle_button_get_active (toggle_button);
+	latexila.prefs.spaces_instead_of_tabs = tmp;
+
+	// traverse the list
+	GList *current = latexila.all_docs;
+	while (current != NULL)
+	{
+		document_t *doc = g_list_nth_data (current, 0);
+		gtk_source_view_set_insert_spaces_instead_of_tabs (
+				GTK_SOURCE_VIEW (doc->source_view), tmp);
+		current = g_list_next (current);
+	}
+}
+
+static void
+cb_pref_highlight_current_line (GtkToggleButton *toggle_button,
+		gpointer user_data)
+{
+	gboolean tmp = gtk_toggle_button_get_active (toggle_button);
+	latexila.prefs.highlight_current_line = tmp;
+
+	// traverse the list
+	GList *current = latexila.all_docs;
+	while (current != NULL)
+	{
+		document_t *doc = g_list_nth_data (current, 0);
+		gtk_source_view_set_highlight_current_line (
+				GTK_SOURCE_VIEW (doc->source_view), tmp);
+		current = g_list_next (current);
+	}
+}
+
+static void
+cb_pref_highlight_matching_brackets (GtkToggleButton *toggle_button,
+		gpointer user_data)
+{
+	gboolean tmp = gtk_toggle_button_get_active (toggle_button);
+	latexila.prefs.highlight_matching_brackets = tmp;
+
+	// traverse the list
+	GList *current = latexila.all_docs;
+	while (current != NULL)
+	{
+		document_t *doc = g_list_nth_data (current, 0);
+		gtk_source_buffer_set_highlight_matching_brackets (doc->source_buffer, tmp);
 		current = g_list_next (current);
 	}
 }
@@ -729,22 +858,26 @@ create_preferences (void)
 	GtkWidget *notebook = gtk_notebook_new ();
 	gtk_box_pack_start (GTK_BOX (content_area), notebook, TRUE, TRUE, 0);
 
-	GtkWidget *vbox_general = gtk_vbox_new (FALSE, 3);
-	gtk_container_set_border_width (GTK_CONTAINER (vbox_general), 2);
-	GtkWidget *label_general = gtk_label_new (_("General"));
-	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_general,
-			label_general);
+	GtkWidget *vbox_editor = gtk_vbox_new (FALSE, 3);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox_editor), 4);
+	GtkWidget *label_editor = gtk_label_new (_("Editor"));
+	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_editor, label_editor);
 
 	GtkWidget *vbox_font_and_colors = gtk_vbox_new (FALSE, 3);
-	gtk_container_set_border_width (GTK_CONTAINER (vbox_font_and_colors), 2);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox_font_and_colors), 4);
 	GtkWidget *label_font_and_colors = gtk_label_new (_("Font & Colors"));
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_font_and_colors,
 			label_font_and_colors);
 
 	GtkWidget *vbox_latex = gtk_vbox_new (FALSE, 3);
-	gtk_container_set_border_width (GTK_CONTAINER (vbox_latex), 2);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox_latex), 4);
 	GtkWidget *label_latex = gtk_label_new ("LaTeX");
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_latex, label_latex);
+
+	GtkWidget *vbox_other = gtk_vbox_new (FALSE, 3);
+	gtk_container_set_border_width (GTK_CONTAINER (vbox_other), 4);
+	GtkWidget *label_other = gtk_label_new (_("Other"));
+	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_other, label_other);
 
 	/* show line numbers */
 	GtkWidget *line_numbers = gtk_check_button_new_with_label (
@@ -753,40 +886,53 @@ create_preferences (void)
 			latexila.prefs.show_line_numbers);
 	g_signal_connect (G_OBJECT (line_numbers), "toggled",
 			G_CALLBACK (cb_pref_line_numbers), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_general), line_numbers, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_editor), line_numbers, FALSE, FALSE, 0);
 
-	/* reopen files on startup */
-	GtkWidget *reopen = gtk_check_button_new_with_label (
-			_("Reopen files on startup"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (reopen),
-			latexila.prefs.reopen_files_on_startup);
-	g_signal_connect (G_OBJECT (reopen), "toggled",
-			G_CALLBACK (cb_reopen_files_on_startup), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_general), reopen, FALSE, FALSE, 5);
+	/* tab width */
+	GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
+	GtkWidget *label = gtk_label_new (_("Tab width:"));
+	GtkAdjustment *spinner_adj = (GtkAdjustment *) gtk_adjustment_new (
+			(gdouble) latexila.prefs.tab_width, 1.0, 24.0, 1.0, 0.0, 0.0);
+	GtkWidget *tab_width = gtk_spin_button_new (spinner_adj, 1.0, 0);
+	g_signal_connect (G_OBJECT (tab_width), "value-changed",
+			G_CALLBACK (cb_pref_tab_width), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), tab_width, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_editor), hbox, FALSE, FALSE, 0);
+	
+	/* spaces instead of tabs */
+	GtkWidget *spaces_instead_of_tabs = gtk_check_button_new_with_label (
+			_("Insert spaces instead of tabs"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (spaces_instead_of_tabs),
+			latexila.prefs.spaces_instead_of_tabs);
+	g_signal_connect (G_OBJECT (spaces_instead_of_tabs), "toggled",
+			G_CALLBACK (cb_pref_spaces_instead_of_tabs), NULL);
+	gtk_box_pack_start (GTK_BOX (vbox_editor), spaces_instead_of_tabs, FALSE,
+			FALSE, 0);
 
-	/* file browser: show all files */
-	GtkWidget *fb_show_all_files = gtk_check_button_new_with_label (
-			_("File browser: show all files"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fb_show_all_files),
-			latexila.prefs.file_browser_show_all_files);
-	g_signal_connect (G_OBJECT (fb_show_all_files), "toggled",
-			G_CALLBACK (cb_file_browser_show_all_files), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_general), fb_show_all_files, FALSE, FALSE, 5);
+	/* highlight current line */
+	GtkWidget *highlight_current_line = gtk_check_button_new_with_label (
+			_("Highlight current line"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (highlight_current_line),
+			latexila.prefs.highlight_current_line);
+	g_signal_connect (G_OBJECT (highlight_current_line), "toggled",
+			G_CALLBACK (cb_pref_highlight_current_line), NULL);
+	gtk_box_pack_start (GTK_BOX (vbox_editor), highlight_current_line, FALSE,
+			FALSE, 0);
 
-	/* delete auxiliaries files on exit */
-	GtkWidget *delete_aux_files = gtk_check_button_new_with_label (
-			_("Clean-up auxiliaries files after close (*.aux, *.log, *.out, *.toc, etc)"));
-	gtk_widget_set_tooltip_text (delete_aux_files,
-			".aux .bit .blg .bbl .lof .log .lot .glo .glx .gxg .gxs .idx .ilg .ind .out .url .svn .toc");
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (delete_aux_files),
-			latexila.prefs.delete_aux_files);
-	g_signal_connect (G_OBJECT (delete_aux_files), "toggled",
-			G_CALLBACK (cb_delete_aux_files), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_general), delete_aux_files, FALSE, FALSE, 5);
+	/* highlight matching brackets */
+	GtkWidget *highlight_matching_brackets = gtk_check_button_new_with_label (
+			_("Highlight matching brackets"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (highlight_matching_brackets),
+			latexila.prefs.highlight_matching_brackets);
+	g_signal_connect (G_OBJECT (highlight_matching_brackets), "toggled",
+			G_CALLBACK (cb_pref_highlight_matching_brackets), NULL);
+	gtk_box_pack_start (GTK_BOX (vbox_editor), highlight_matching_brackets, FALSE,
+			FALSE, 0);
 
 	/* font */
-	GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
-	GtkWidget *label = gtk_label_new (_("Font:"));
+	hbox = gtk_hbox_new (FALSE, 5);
+	label = gtk_label_new (_("Font:"));
 	GtkWidget *font_button = gtk_font_button_new_with_font (
 			latexila.prefs.font_str);
 	g_signal_connect (G_OBJECT (font_button), "font-set",
@@ -885,8 +1031,37 @@ create_preferences (void)
 	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 3, 4);
 	gtk_table_attach_defaults (GTK_TABLE (table), command_dvips, 1, 2, 3, 4);
 
+	/* reopen files on startup */
+	GtkWidget *reopen = gtk_check_button_new_with_label (
+			_("Reopen files on startup"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (reopen),
+			latexila.prefs.reopen_files_on_startup);
+	g_signal_connect (G_OBJECT (reopen), "toggled",
+			G_CALLBACK (cb_reopen_files_on_startup), NULL);
+	gtk_box_pack_start (GTK_BOX (vbox_other), reopen, FALSE, FALSE, 5);
+
+	/* file browser: show all files */
+	GtkWidget *fb_show_all_files = gtk_check_button_new_with_label (
+			_("File browser: show all files"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fb_show_all_files),
+			latexila.prefs.file_browser_show_all_files);
+	g_signal_connect (G_OBJECT (fb_show_all_files), "toggled",
+			G_CALLBACK (cb_file_browser_show_all_files), NULL);
+	gtk_box_pack_start (GTK_BOX (vbox_other), fb_show_all_files, FALSE, FALSE, 5);
+
+	/* delete auxiliaries files on exit */
+	GtkWidget *delete_aux_files = gtk_check_button_new_with_label (
+			_("Clean-up auxiliaries files after close (*.aux, *.log, *.out, *.toc, etc)"));
+	gtk_widget_set_tooltip_text (delete_aux_files,
+			".aux .bit .blg .bbl .lof .log .lot .glo .glx .gxg .gxs .idx .ilg .ind .out .url .svn .toc");
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (delete_aux_files),
+			latexila.prefs.delete_aux_files);
+	g_signal_connect (G_OBJECT (delete_aux_files), "toggled",
+			G_CALLBACK (cb_delete_aux_files), NULL);
+	gtk_box_pack_start (GTK_BOX (vbox_other), delete_aux_files, FALSE, FALSE, 5);
+
+
 	gtk_box_pack_start (GTK_BOX (vbox_latex), table, FALSE, FALSE, 5);
 
 	gtk_widget_show_all (content_area);
 }
-

@@ -96,6 +96,10 @@ typedef struct
 	gboolean				reopen_files_on_startup;
 	gboolean				delete_aux_files;
 	gchar					*style_scheme_id;
+	gint					tab_width;
+	gboolean				spaces_instead_of_tabs;
+	gboolean				highlight_current_line;
+	gboolean				highlight_matching_brackets;
 } preferences_t;
 
 typedef struct
