@@ -139,6 +139,14 @@ static GtkActionEntry entries[] = {
 	{"viewPS", "view_ps", N_("View PS"), NULL,
 		N_("View the PostScript file"), G_CALLBACK (cb_view_ps)},
 
+	{"Tools", NULL, N_("Tools"), NULL, NULL, NULL},
+	{"ToolsComment", NULL, N_("Comment"), "<Control>D",
+		N_("Comment the selected lines (add the character \"%\")"),
+		G_CALLBACK (cb_tools_comment)},
+	{"ToolsUncomment", NULL, N_("Uncomment"), "<Shift><Control>D",
+		N_("Uncomment the selected lines (remove the character \"%\")"),
+		G_CALLBACK (cb_tools_uncomment)},
+
 	{"Documents", NULL, N_("Documents"), NULL, NULL, NULL},
 	{"DocumentsSaveAll", GTK_STOCK_SAVE, N_("Save All"), "<Shift><Control>L",
 		N_("Save all open files"), G_CALLBACK (cb_documents_save_all)},

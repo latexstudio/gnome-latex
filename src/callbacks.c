@@ -693,6 +693,82 @@ cb_dvi_to_ps (void)
 }
 
 void
+cb_tools_comment (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	GtkTextIter start, end;
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+	gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
+	
+	gint start_line = gtk_text_iter_get_line (&start);
+	gint end_line = gtk_text_iter_get_line (&end);
+
+	gtk_text_buffer_begin_user_action (buffer);
+	for (gint i = start_line ; i <= end_line ; i++)
+	{
+		GtkTextIter iter;
+		gtk_text_buffer_get_iter_at_line (buffer, &iter, i);
+		gtk_text_buffer_insert (buffer, &iter, "% ", -1);
+	}
+	gtk_text_buffer_end_user_action (buffer);
+}
+
+void
+cb_tools_uncomment (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	GtkTextIter start, end;
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+	gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
+	
+	gint start_line = gtk_text_iter_get_line (&start);
+	gint end_line = gtk_text_iter_get_line (&end);
+
+	gtk_text_buffer_begin_user_action (buffer);
+
+	for (gint i = start_line ; i <= end_line ; i++)
+	{
+		// get the text of the line
+		gtk_text_buffer_get_iter_at_line (buffer, &start, i);
+		gtk_text_buffer_get_iter_at_line (buffer, &end, i + 1);
+		gchar *text = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
+
+		// find the first '%' character
+		gint j = 0;
+		gint start_delete = -1;
+		gint stop_delete = -1;
+		while (text[j] != '\0')
+		{
+			if (text[j] == '%')
+			{
+				start_delete = j;
+				stop_delete = j + 1;
+				if (text[j + 1] == ' ')
+					stop_delete++;
+				break;
+			}
+			else if (text[j] != ' ' && text[j] != '\t')
+				break;
+
+			j++;
+		}
+
+		if (start_delete == -1)
+			continue;
+
+		gtk_text_buffer_get_iter_at_line_offset (buffer, &start, i, start_delete);
+		gtk_text_buffer_get_iter_at_line_offset (buffer, &end, i, stop_delete);
+		gtk_text_buffer_delete (buffer, &start, &end);
+	}
+
+	gtk_text_buffer_end_user_action (buffer);
+}
+
+void
 cb_documents_save_all (void)
 {
 	GList *current = latexila.all_docs;

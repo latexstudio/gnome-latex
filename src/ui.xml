@@ -165,6 +165,11 @@ In the code, GtkUIManager is used to construct them.
       </menu>
     </menu>
 
+    <menu action="Tools">
+      <menuitem action="ToolsComment" />
+      <menuitem action="ToolsUncomment" />
+    </menu>
+
     <menu action="Documents">
       <menuitem action="DocumentsSaveAll" />
       <menuitem action="DocumentsCloseAll" />

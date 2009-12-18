@@ -56,6 +56,8 @@ void cb_view_pdf (void);
 void cb_view_ps (void);
 void cb_dvi_to_pdf (void);
 void cb_dvi_to_ps (void);
+void cb_tools_comment (void);
+void cb_tools_uncomment (void);
 void cb_documents_save_all (void);
 void cb_documents_close_all (void);
 void cb_documents_previous (void);
