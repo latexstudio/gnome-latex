@@ -57,6 +57,10 @@ static void cb_pref_command_dvipdf (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_dvips (GtkEditable *editable, gpointer user_data);
 static void cb_style_scheme_changed (GtkTreeSelection *selection,
 		gpointer user_data);
+static void cb_delete_aux_files (GtkToggleButton *toggle_button,
+		gpointer user_data);
+static void cb_toolbars_horizontal (GtkToggleButton *toggle_button,
+		gpointer user_data);
 static gint style_schemes_compare (gconstpointer a, gconstpointer b);
 GSList * get_list_style_schemes_sorted (void);
 static void fill_style_schemes_list_store (GtkListStore *store,
@@ -87,6 +91,7 @@ static gint		tab_width_			= 2;
 static gboolean	spaces_instead_of_tabs_			= TRUE;
 static gboolean	highlight_current_line_			= TRUE;
 static gboolean highlight_matching_brackets_	= TRUE;
+static gboolean	toolbars_horizontal_			= FALSE;
 
 void
 load_preferences (preferences_t *prefs)
@@ -397,6 +402,16 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->toolbars_horizontal = g_key_file_get_boolean (key_file,
+			PROGRAM_NAME, "toolbars_horizontal", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->toolbars_horizontal = toolbars_horizontal_;
+		g_error_free (error);
+		error = NULL;
+	}
+
 	print_info ("load user preferences: OK");
 	g_key_file_free (key_file);
 }
@@ -448,6 +463,8 @@ save_preferences (preferences_t *prefs)
 			prefs->highlight_current_line);
 	g_key_file_set_boolean (key_file, PROGRAM_NAME, "highlight_matching_brackets",
 			prefs->highlight_matching_brackets);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "toolbars_horizontal",
+			prefs->toolbars_horizontal);
 
 	/* set the keys that must be taken from the widgets */
 	GdkWindowState flag = gdk_window_get_state (gtk_widget_get_window (
@@ -546,6 +563,7 @@ load_default_preferences (preferences_t *prefs)
 	prefs->spaces_instead_of_tabs = spaces_instead_of_tabs_;
 	prefs->highlight_current_line = highlight_current_line_;
 	prefs->highlight_matching_brackets = highlight_matching_brackets_;
+	prefs->toolbars_horizontal = toolbars_horizontal_;
 
 	set_current_font_prefs (prefs);
 }
@@ -772,6 +790,13 @@ cb_delete_aux_files (GtkToggleButton *toggle_button, gpointer user_data)
 		gtk_toggle_button_get_active (toggle_button);
 }
 
+static void
+cb_toolbars_horizontal (GtkToggleButton *toggle_button, gpointer user_data)
+{
+	latexila.prefs.toolbars_horizontal =
+		gtk_toggle_button_get_active (toggle_button);
+}
+
 static gint
 style_schemes_compare (gconstpointer a, gconstpointer b)
 {
@@ -858,23 +883,23 @@ create_preferences (void)
 	GtkWidget *notebook = gtk_notebook_new ();
 	gtk_box_pack_start (GTK_BOX (content_area), notebook, TRUE, TRUE, 0);
 
-	GtkWidget *vbox_editor = gtk_vbox_new (FALSE, 3);
+	GtkWidget *vbox_editor = gtk_vbox_new (FALSE, 10);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox_editor), 4);
 	GtkWidget *label_editor = gtk_label_new (_("Editor"));
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_editor, label_editor);
 
-	GtkWidget *vbox_font_and_colors = gtk_vbox_new (FALSE, 3);
+	GtkWidget *vbox_font_and_colors = gtk_vbox_new (FALSE, 10);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox_font_and_colors), 4);
 	GtkWidget *label_font_and_colors = gtk_label_new (_("Font & Colors"));
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_font_and_colors,
 			label_font_and_colors);
 
-	GtkWidget *vbox_latex = gtk_vbox_new (FALSE, 3);
+	GtkWidget *vbox_latex = gtk_vbox_new (FALSE, 10);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox_latex), 4);
 	GtkWidget *label_latex = gtk_label_new ("LaTeX");
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_latex, label_latex);
 
-	GtkWidget *vbox_other = gtk_vbox_new (FALSE, 3);
+	GtkWidget *vbox_other = gtk_vbox_new (FALSE, 10);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox_other), 4);
 	GtkWidget *label_other = gtk_label_new (_("Other"));
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_other, label_other);
@@ -1031,6 +1056,8 @@ create_preferences (void)
 	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 3, 4);
 	gtk_table_attach_defaults (GTK_TABLE (table), command_dvips, 1, 2, 3, 4);
 
+	gtk_box_pack_start (GTK_BOX (vbox_latex), table, FALSE, FALSE, 0);
+
 	/* reopen files on startup */
 	GtkWidget *reopen = gtk_check_button_new_with_label (
 			_("Reopen files on startup"));
@@ -1038,7 +1065,7 @@ create_preferences (void)
 			latexila.prefs.reopen_files_on_startup);
 	g_signal_connect (G_OBJECT (reopen), "toggled",
 			G_CALLBACK (cb_reopen_files_on_startup), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_other), reopen, FALSE, FALSE, 5);
+	gtk_box_pack_start (GTK_BOX (vbox_other), reopen, FALSE, FALSE, 0);
 
 	/* file browser: show all files */
 	GtkWidget *fb_show_all_files = gtk_check_button_new_with_label (
@@ -1047,7 +1074,7 @@ create_preferences (void)
 			latexila.prefs.file_browser_show_all_files);
 	g_signal_connect (G_OBJECT (fb_show_all_files), "toggled",
 			G_CALLBACK (cb_file_browser_show_all_files), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_other), fb_show_all_files, FALSE, FALSE, 5);
+	gtk_box_pack_start (GTK_BOX (vbox_other), fb_show_all_files, FALSE, FALSE, 0);
 
 	/* delete auxiliaries files on exit */
 	GtkWidget *delete_aux_files = gtk_check_button_new_with_label (
@@ -1058,10 +1085,17 @@ create_preferences (void)
 			latexila.prefs.delete_aux_files);
 	g_signal_connect (G_OBJECT (delete_aux_files), "toggled",
 			G_CALLBACK (cb_delete_aux_files), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_other), delete_aux_files, FALSE, FALSE, 5);
+	gtk_box_pack_start (GTK_BOX (vbox_other), delete_aux_files, FALSE, FALSE, 0);
 
+	/* toolbars horizontal */
+	GtkWidget *toolbars_horiz = gtk_check_button_new_with_label (
+			_("Show the edit toolbar on the same line as the main toolbar (restart needed)"));
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (toolbars_horiz),
+			latexila.prefs.toolbars_horizontal);
+	g_signal_connect (G_OBJECT (toolbars_horiz), "toggled",
+			G_CALLBACK (cb_toolbars_horizontal), NULL);
+	gtk_box_pack_start (GTK_BOX (vbox_other), toolbars_horiz, FALSE, FALSE, 0);
 
-	gtk_box_pack_start (GTK_BOX (vbox_latex), table, FALSE, FALSE, 5);
 
 	gtk_widget_show_all (content_area);
 }

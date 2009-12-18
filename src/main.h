@@ -100,6 +100,7 @@ typedef struct
 	gboolean				spaces_instead_of_tabs;
 	gboolean				highlight_current_line;
 	gboolean				highlight_matching_brackets;
+	gboolean				toolbars_horizontal;
 } preferences_t;
 
 typedef struct

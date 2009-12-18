@@ -367,20 +367,30 @@ init_ui (GtkWidget *box)
 		error = NULL;
 	}
 
-	// get and put the menubar and the toolbar to the main vbox
-	// toolbars with icons only
+	// get and put the menubar and the toolbars to the main vbox
 	GtkWidget *menubar = gtk_ui_manager_get_widget (ui_manager, "/MainMenu");
 	gtk_box_pack_start (GTK_BOX (box), menubar, FALSE, FALSE, 0);
 
 	GtkWidget *toolbar = gtk_ui_manager_get_widget (ui_manager, "/MainToolbar");
-	gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), GTK_TOOLBAR_ICONS);
-	gtk_box_pack_start (GTK_BOX (box), toolbar, FALSE, FALSE, 0);
-
-	GtkWidget *edit_toolbar = gtk_ui_manager_get_widget (ui_manager,
-			"/EditToolbar");
+	GtkWidget *edit_toolbar = gtk_ui_manager_get_widget (ui_manager, "/EditToolbar");
 	latexila.edit_toolbar = edit_toolbar;
+
+	// toolbars with icons only
+	gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), GTK_TOOLBAR_ICONS);
 	gtk_toolbar_set_style (GTK_TOOLBAR (edit_toolbar), GTK_TOOLBAR_ICONS);
-	gtk_box_pack_start (GTK_BOX (box), edit_toolbar, FALSE, FALSE, 0);
+
+	if (latexila.prefs.toolbars_horizontal)
+	{
+		GtkWidget *hbox_toolbars = gtk_hbox_new (FALSE, 10);
+		gtk_box_pack_start (GTK_BOX (box), hbox_toolbars, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox_toolbars), toolbar, TRUE, TRUE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox_toolbars), edit_toolbar, TRUE, TRUE, 0);
+	}
+	else
+	{
+		gtk_box_pack_start (GTK_BOX (box), toolbar, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (box), edit_toolbar, FALSE, FALSE, 0);
+	}
 
 	// accelerators
 	gtk_window_add_accel_group (latexila.main_window, 
