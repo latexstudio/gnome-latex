@@ -499,6 +499,9 @@ main (int argc, char *argv[])
 	gtk_widget_hide (latexila.under_source_view.find);
 	gtk_widget_hide (latexila.under_source_view.replace);
 
+	gtk_notebook_set_current_page (GTK_NOTEBOOK (latexila.side_pane),
+			latexila.prefs.side_pane_page);
+
 	/* reopen files on startup */
 	gchar ** list_opened_docs = (gchar **) latexila.prefs.list_opened_docs->pdata;
 	for (int i = 0 ; i < latexila.prefs.list_opened_docs->len

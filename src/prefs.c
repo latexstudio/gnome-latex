@@ -92,6 +92,7 @@ static gboolean	spaces_instead_of_tabs_			= TRUE;
 static gboolean	highlight_current_line_			= TRUE;
 static gboolean highlight_matching_brackets_	= TRUE;
 static gboolean	toolbars_horizontal_			= FALSE;
+static gint		side_pane_page_		= 0;
 
 void
 load_preferences (preferences_t *prefs)
@@ -412,6 +413,16 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->side_pane_page = g_key_file_get_integer (key_file,
+			PROGRAM_NAME, "side_pane_page", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->side_pane_page = side_pane_page_;
+		g_error_free (error);
+		error = NULL;
+	}
+
 	print_info ("load user preferences: OK");
 	g_key_file_free (key_file);
 }
@@ -503,6 +514,11 @@ save_preferences (preferences_t *prefs)
 	g_key_file_set_integer (key_file, PROGRAM_NAME, "log_hpaned_pos",
 			log_hpaned_pos);
 
+	gint side_pane_page = gtk_notebook_get_current_page (
+			GTK_NOTEBOOK (latexila.side_pane));
+	g_key_file_set_integer (key_file, PROGRAM_NAME, "side_pane_page",
+			side_pane_page);
+
 	/* save the rc file */
 	gchar *rc_file = get_rc_file ();
 	gchar *rc_path = g_path_get_dirname (rc_file);
@@ -564,6 +580,7 @@ load_default_preferences (preferences_t *prefs)
 	prefs->highlight_current_line = highlight_current_line_;
 	prefs->highlight_matching_brackets = highlight_matching_brackets_;
 	prefs->toolbars_horizontal = toolbars_horizontal_;
+	prefs->side_pane_page = side_pane_page_;
 
 	set_current_font_prefs (prefs);
 }

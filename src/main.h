@@ -101,6 +101,7 @@ typedef struct
 	gboolean				highlight_current_line;
 	gboolean				highlight_matching_brackets;
 	gboolean				toolbars_horizontal;
+	gint					side_pane_page;
 } preferences_t;
 
 typedef struct
