@@ -54,6 +54,7 @@ static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 static void free_latexila (void);
 static void delete_auxiliaries_files (const gchar *filename);
 static void set_entry_background (GtkWidget *entry, gboolean error);
+static void insert_text_at_beginning_of_selected_lines (gchar *text);
 
 static gboolean save_list_opened_docs = FALSE;
 
@@ -698,21 +699,7 @@ cb_tools_comment (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	GtkTextIter start, end;
-	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
-	gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
-	
-	gint start_line = gtk_text_iter_get_line (&start);
-	gint end_line = gtk_text_iter_get_line (&end);
-
-	gtk_text_buffer_begin_user_action (buffer);
-	for (gint i = start_line ; i <= end_line ; i++)
-	{
-		GtkTextIter iter;
-		gtk_text_buffer_get_iter_at_line (buffer, &iter, i);
-		gtk_text_buffer_insert (buffer, &iter, "% ", -1);
-	}
-	gtk_text_buffer_end_user_action (buffer);
+	insert_text_at_beginning_of_selected_lines ("% ");
 }
 
 void
@@ -728,34 +715,133 @@ cb_tools_uncomment (void)
 	gint start_line = gtk_text_iter_get_line (&start);
 	gint end_line = gtk_text_iter_get_line (&end);
 
+	gint nb_lines = gtk_text_buffer_get_line_count (buffer);
+
 	gtk_text_buffer_begin_user_action (buffer);
 
 	for (gint i = start_line ; i <= end_line ; i++)
 	{
-		// get the text of the line
+		/* get the text of the line */
 		gtk_text_buffer_get_iter_at_line (buffer, &start, i);
-		gtk_text_buffer_get_iter_at_line (buffer, &end, i + 1);
-		gchar *text = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
 
-		// find the first '%' character
+		// if last line
+		if (i == nb_lines - 1)
+			gtk_text_buffer_get_end_iter (buffer, &end);
+		else
+			gtk_text_buffer_get_iter_at_line (buffer, &end, i + 1);
+
+		gchar *line = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
+
+		/* find the first '%' character */
 		gint j = 0;
 		gint start_delete = -1;
 		gint stop_delete = -1;
-		while (text[j] != '\0')
+		while (line[j] != '\0')
 		{
-			if (text[j] == '%')
+			if (line[j] == '%')
 			{
 				start_delete = j;
 				stop_delete = j + 1;
-				if (text[j + 1] == ' ')
+				if (line[j + 1] == ' ')
 					stop_delete++;
 				break;
 			}
-			else if (text[j] != ' ' && text[j] != '\t')
+
+			else if (line[j] != ' ' && line[j] != '\t')
 				break;
 
 			j++;
 		}
+
+		g_free (line);
+
+		if (start_delete == -1)
+			continue;
+
+		gtk_text_buffer_get_iter_at_line_offset (buffer, &start, i, start_delete);
+		gtk_text_buffer_get_iter_at_line_offset (buffer, &end, i, stop_delete);
+		gtk_text_buffer_delete (buffer, &start, &end);
+	}
+
+	gtk_text_buffer_end_user_action (buffer);
+}
+
+void
+cb_tools_indent (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	if (latexila.prefs.spaces_instead_of_tabs)
+	{
+		gchar *spaces = g_strnfill (latexila.prefs.tab_width, ' ');
+		insert_text_at_beginning_of_selected_lines (spaces);
+		g_free (spaces);
+	}
+	else
+		insert_text_at_beginning_of_selected_lines ("\t");
+}
+
+void
+cb_tools_unindent (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	GtkTextIter start, end;
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+	gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
+	
+	gint start_line = gtk_text_iter_get_line (&start);
+	gint end_line = gtk_text_iter_get_line (&end);
+
+	gint nb_lines = gtk_text_buffer_get_line_count (buffer);
+
+	gtk_text_buffer_begin_user_action (buffer);
+
+	for (gint i = start_line ; i <= end_line ; i++)
+	{
+		/* get the text of the line */
+		gtk_text_buffer_get_iter_at_line (buffer, &start, i);
+
+		// if last line
+		if (i == nb_lines - 1)
+			gtk_text_buffer_get_end_iter (buffer, &end);
+		else
+			gtk_text_buffer_get_iter_at_line (buffer, &end, i + 1);
+
+		gchar *line = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
+
+		/* find the characters to delete */
+		gint j = 0;
+		gint start_delete = -1;
+		gint stop_delete = -1;
+		gint nb_spaces = 0;
+		while (line[j] != '\0')
+		{
+			if (line[j] == ' ')
+			{
+				if (nb_spaces == 0)
+					start_delete = j;
+				nb_spaces++;
+				if (nb_spaces % latexila.prefs.tab_width == 0)
+					nb_spaces = 0;
+			}
+			else if (line[j] == '\t')
+			{
+				start_delete = j;
+				nb_spaces = 0;
+			}
+			else
+			{
+				stop_delete = j;
+				break;
+			}
+
+			j++;
+		}
+
+		g_free (line);
 
 		if (start_delete == -1)
 			continue;
@@ -1669,4 +1755,27 @@ set_entry_background (GtkWidget *entry, gboolean error)
 		gtk_widget_modify_base (entry, GTK_STATE_NORMAL, NULL);
 		gtk_widget_modify_text (entry, GTK_STATE_NORMAL, NULL);
 	}
+}
+
+static void
+insert_text_at_beginning_of_selected_lines (gchar *text)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	GtkTextIter start, end;
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
+	gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
+	
+	gint start_line = gtk_text_iter_get_line (&start);
+	gint end_line = gtk_text_iter_get_line (&end);
+
+	gtk_text_buffer_begin_user_action (buffer);
+	for (gint i = start_line ; i <= end_line ; i++)
+	{
+		GtkTextIter iter;
+		gtk_text_buffer_get_iter_at_line (buffer, &iter, i);
+		gtk_text_buffer_insert (buffer, &iter, text, -1);
+	}
+	gtk_text_buffer_end_user_action (buffer);
 }

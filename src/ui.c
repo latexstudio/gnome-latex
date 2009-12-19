@@ -120,7 +120,7 @@ static GtkActionEntry entries[] = {
 		N_("Search for text"), G_CALLBACK (cb_find)},
 	{"SearchReplace", GTK_STOCK_FIND_AND_REPLACE, N_("Replace..."), "<Control>H",
 		N_("Search for and replace text"), G_CALLBACK (cb_replace)},
-	{"SearchGoToLine", GTK_STOCK_JUMP_TO, N_("Go to Line..."), "<Control>I",
+	{"SearchGoToLine", GTK_STOCK_JUMP_TO, N_("Go to Line..."), "<Control>G",
 		N_("Go to a specific line"), G_CALLBACK (cb_go_to_line)},
 	
 	{"Build", NULL, N_("Build"), NULL, NULL, NULL},
@@ -146,6 +146,10 @@ static GtkActionEntry entries[] = {
 	{"ToolsUncomment", NULL, N_("Uncomment"), "<Shift><Control>D",
 		N_("Uncomment the selected lines (remove the character \"%\")"),
 		G_CALLBACK (cb_tools_uncomment)},
+	{"ToolsIndent", GTK_STOCK_INDENT, N_("Indent"), "<Control>I",
+		N_("Indent the selected lines"), G_CALLBACK (cb_tools_indent)},
+	{"ToolsUnindent", GTK_STOCK_UNINDENT, N_("Unindent"), "<Shift><Control>I",
+		N_("Unindent the selected lines"), G_CALLBACK (cb_tools_unindent)},
 
 	{"Documents", NULL, N_("Documents"), NULL, NULL, NULL},
 	{"DocumentsSaveAll", GTK_STOCK_SAVE, N_("Save All"), "<Shift><Control>L",
