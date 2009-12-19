@@ -182,6 +182,7 @@ In the code, GtkUIManager is used to construct them.
     </menu>
     
     <menu action="Help">
+      <menuitem action="HelpLatexReference" />
       <menuitem action="HelpAbout" />
     </menu>
   </menubar>

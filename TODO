@@ -2,9 +2,5 @@ TODO LaTeXila
 
 [-] BibTeX support
 
-[-] documentation
-
-[-] verbose option
-
 [-] bug correction
 	- when there are too much recent documents, new documents are not visible in File/Open Recent

@@ -147,7 +147,6 @@ compile_document (gchar *title, gchar **command)
 
 	gchar *command_line = get_command_line (command);
 	add_action (title, command_line);
-	print_info ("execution of the command: %s", command_line);
 	g_free (command_line);
 
 	/* the current document is a *.tex file? */
@@ -240,7 +239,6 @@ view_current_document (gchar *title, gchar *doc_extension)
 	gchar *command_line = g_strdup_printf ("%s %s", latexila.prefs.command_view,
 			doc_path);
 	add_action (title, command_line);
-	print_info ("execution of the command: %s", command_line);
 	g_free (command_line);
 
 	/* the current document is a *.tex file? */
@@ -281,7 +279,6 @@ view_document (gchar *title, gchar *filename)
 	gchar *command_line = g_strdup_printf ("%s %s", latexila.prefs.command_view,
 			filename);
 	add_action (title, command_line);
-	print_info ("execution of the command: %s", command_line);
 	g_free (command_line);
 
 	view_document_run (filename);
@@ -336,7 +333,6 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 
 	gchar *full_command = g_strdup_printf ("%s %s", command, doc_path);
 	add_action (title, full_command);
-	print_info ("execution of the command: %s", full_command);
 	g_free (full_command);
 
 	/* the document to convert exist? */
@@ -401,6 +397,39 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 			(GIOFunc) cb_watch_output_command, NULL);
 }
 
+void
+view_in_web_browser (gchar *title, gchar *filename)
+{
+	gchar *command_line = g_strdup_printf ("%s %s",
+			latexila.prefs.command_web_browser, filename);
+	add_action (title, command_line);
+	g_free (command_line);
+
+	GError *error = NULL;
+	gchar *argv[] = {latexila.prefs.command_web_browser, filename, NULL};
+	g_spawn_async (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, &error);
+
+	gboolean is_error = TRUE;
+	gchar *command_output;
+
+	if (error != NULL)
+	{
+		command_output = g_strdup_printf (_("execution failed: %s"),
+				error->message);
+		g_error_free (error);
+		error = NULL;
+	}
+	else
+	{
+		command_output = g_strdup (_("Viewing in progress. Please wait..."));
+		is_error = FALSE;
+	}
+
+	print_log_add (latexila.action_log.text_view, command_output, is_error);
+
+	g_free (command_output);
+}
+
 static void
 add_action (gchar *title, gchar *command)
 {
@@ -425,7 +454,7 @@ add_action (gchar *title, gchar *command)
     gtk_text_buffer_insert (new_text_buffer, &end, command2, -1);
     g_free (command2);
 
-	// append an new entry to the action list
+	// append a new entry to the action list
 	GtkTreeIter iter;
 	gtk_list_store_append (latexila.action_log.list_store, &iter);
 	gtk_list_store_set (latexila.action_log.list_store, &iter,

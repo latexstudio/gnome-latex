@@ -70,8 +70,7 @@ CONFIGURE_FILE(${latexila_SOURCE_DIR}/src/config.h.cmake
 	${latexila_BINARY_DIR}/src/config.h)
 
 ADD_SUBDIRECTORY(src)
-ADD_SUBDIRECTORY(images)
-ADD_SUBDIRECTORY(templates)
+ADD_SUBDIRECTORY(data)
 
 # packages
 SET(CPACK_GENERATOR "TGZ")

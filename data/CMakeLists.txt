@@ -1,0 +1,4 @@
+ADD_SUBDIRECTORY(templates)
+ADD_SUBDIRECTORY(images)
+
+INSTALL(FILES "latexhelp.html" DESTINATION ${DATA_DIR})

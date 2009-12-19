@@ -89,6 +89,7 @@ typedef struct
 	gchar					*command_pdflatex;
 	gchar					*command_dvipdf;
 	gchar					*command_dvips;
+	gchar					*command_web_browser;
 	gchar					*file_chooser_dir;
 	gchar					*file_browser_dir;
 	gboolean				file_browser_show_all_files;

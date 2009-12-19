@@ -55,6 +55,7 @@ static void cb_pref_command_latex (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_pdflatex (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_dvipdf (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_dvips (GtkEditable *editable, gpointer user_data);
+static void cb_pref_web_browser (GtkEditable *editable, gpointer user_data);
 static void cb_style_scheme_changed (GtkTreeSelection *selection,
 		gpointer user_data);
 static void cb_delete_aux_files (GtkToggleButton *toggle_button,
@@ -68,31 +69,32 @@ static void fill_style_schemes_list_store (GtkListStore *store,
 
 /* default values */
 // there is an underscore in the end for each variable name
-static gboolean	show_line_numbers_	= FALSE;
-static gboolean	show_side_pane_		= TRUE;
-static gboolean show_edit_toolbar_	= TRUE;
-static gint		window_width_		= 800;
-static gint		window_height_		= 600;
-static gboolean	window_maximised_	= FALSE;
-static gint		main_hpaned_pos_	= 180;
-static gint		vpaned_pos_			= 380;
-static gint		log_hpaned_pos_		= 190;
-static gchar	*font_				= "Monospace 10";
-static gchar	*command_view_		= "evince";
-static gchar	*command_latex_		= COMMAND_LATEX;
-static gchar	*command_pdflatex_	= COMMAND_PDFLATEX;
-static gchar	*command_dvipdf_	= COMMAND_DVIPDF;
-static gchar	*command_dvips_		= COMMAND_DVIPS;
-static gboolean delete_aux_files_	= FALSE;
+static gboolean	show_line_numbers_				= FALSE;
+static gboolean	show_side_pane_					= TRUE;
+static gboolean show_edit_toolbar_				= TRUE;
+static gint		window_width_					= 800;
+static gint		window_height_					= 600;
+static gboolean	window_maximised_				= FALSE;
+static gint		main_hpaned_pos_				= 180;
+static gint		vpaned_pos_						= 380;
+static gint		log_hpaned_pos_					= 190;
+static gchar	*font_							= "Monospace 10";
+static gchar	*command_view_					= "evince";
+static gchar	*command_latex_					= COMMAND_LATEX;
+static gchar	*command_pdflatex_				= COMMAND_PDFLATEX;
+static gchar	*command_dvipdf_				= COMMAND_DVIPDF;
+static gchar	*command_dvips_					= COMMAND_DVIPS;
+static gchar	*command_web_browser_			= "gnome-open";
+static gboolean delete_aux_files_				= FALSE;
 static gboolean reopen_files_on_startup_		= TRUE;
 static gboolean file_browser_show_all_files_	= FALSE;
-static gchar	*style_scheme_id_	= "classic";
-static gint		tab_width_			= 2;
+static gchar	*style_scheme_id_				= "classic";
+static gint		tab_width_						= 2;
 static gboolean	spaces_instead_of_tabs_			= TRUE;
 static gboolean	highlight_current_line_			= TRUE;
 static gboolean highlight_matching_brackets_	= TRUE;
 static gboolean	toolbars_horizontal_			= FALSE;
-static gint		side_pane_page_		= 0;
+static gint		side_pane_page_					= 0;
 
 void
 load_preferences (preferences_t *prefs)
@@ -279,6 +281,16 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->command_web_browser = g_key_file_get_string (key_file, PROGRAM_NAME,
+			"command_web_browser", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->command_web_browser = g_strdup (command_web_browser_);
+		g_error_free (error);
+		error = NULL;
+	}
+
 	prefs->file_chooser_dir = g_key_file_get_string (key_file, PROGRAM_NAME,
 			"file_chooser_directory", &error);
 	if (error != NULL)
@@ -423,7 +435,6 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
-	print_info ("load user preferences: OK");
 	g_key_file_free (key_file);
 }
 
@@ -450,6 +461,8 @@ save_preferences (preferences_t *prefs)
 			prefs->command_dvipdf);
 	g_key_file_set_string (key_file, PROGRAM_NAME, "command_dvips",
 			prefs->command_dvips);
+	g_key_file_set_string (key_file, PROGRAM_NAME, "command_web_browser",
+			prefs->command_web_browser);
 	if (prefs->file_chooser_dir != NULL)
 		g_key_file_set_string (key_file, PROGRAM_NAME, "file_chooser_directory",
 				prefs->file_chooser_dir);
@@ -568,6 +581,7 @@ load_default_preferences (preferences_t *prefs)
 	prefs->command_pdflatex = g_strdup (command_pdflatex_);
 	prefs->command_dvipdf = g_strdup (command_dvipdf_);
 	prefs->command_dvips = g_strdup (command_dvips_);
+	prefs->command_web_browser = g_strdup (command_web_browser_);
 	prefs->file_chooser_dir = NULL;
 	prefs->file_browser_dir = g_strdup (g_get_home_dir ());
 	prefs->list_opened_docs = g_ptr_array_new ();
@@ -754,6 +768,15 @@ cb_pref_command_dvips (GtkEditable *editable, gpointer user_data)
 	const gchar *new_command = gtk_entry_get_text (entry);
 	g_free (latexila.prefs.command_dvips);
 	latexila.prefs.command_dvips = g_strdup (new_command);
+}
+
+static void
+cb_pref_web_browser (GtkEditable *editable, gpointer user_data)
+{
+	GtkEntry *entry = GTK_ENTRY (editable);
+	const gchar *new_command = gtk_entry_get_text (entry);
+	g_free (latexila.prefs.command_web_browser);
+	latexila.prefs.command_web_browser = g_strdup (new_command);
 }
 
 static void
@@ -1074,6 +1097,18 @@ create_preferences (void)
 	gtk_table_attach_defaults (GTK_TABLE (table), command_dvips, 1, 2, 3, 4);
 
 	gtk_box_pack_start (GTK_BOX (vbox_latex), table, FALSE, FALSE, 0);
+
+	/* web browser */
+	hbox = gtk_hbox_new (FALSE, 5);
+	label = gtk_label_new (_("Web browser:"));
+	GtkWidget *web_browser_entry = gtk_entry_new ();
+	gtk_entry_set_text (GTK_ENTRY (web_browser_entry),
+			latexila.prefs.command_web_browser);
+	g_signal_connect (G_OBJECT (web_browser_entry), "changed",
+			G_CALLBACK (cb_pref_web_browser), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), web_browser_entry, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_other), hbox, FALSE, FALSE, 0);
 
 	/* reopen files on startup */
 	GtkWidget *reopen = gtk_check_button_new_with_label (

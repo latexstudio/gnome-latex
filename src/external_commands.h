@@ -24,5 +24,6 @@ void compile_document (gchar *title, gchar **command);
 void view_current_document (gchar *title, gchar *doc_extension);
 void view_document (gchar *title, gchar *filename);
 void convert_document (gchar *title, gchar *doc_extension, gchar *command);
+void view_in_web_browser (gchar *title, gchar *filename);
 
 #endif /* EXTERNAL_COMMANDS_H */

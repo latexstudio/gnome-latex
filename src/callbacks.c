@@ -191,7 +191,6 @@ cb_quit (void)
 	{
 		save_preferences (&latexila.prefs);
 		free_latexila ();
-		print_info ("Bye bye");
 		gtk_main_quit ();
 	}
 
@@ -925,9 +924,15 @@ cb_action_list_changed (GtkTreeSelection *selection, gpointer user_data)
 }
 
 void
+cb_help_latex_reference (void)
+{
+	view_in_web_browser (_("View LaTeX Reference"), DATA_DIR "/latexhelp.html");
+}
+
+void
 cb_about_dialog (void)
 {
-	gchar *comments = _("LaTeXila is a LaTeX development environment for the GNOME Desktop");
+	gchar *comments = _("LaTeXila is a LaTeX editor for the GNOME Desktop");
 	gchar *copyright = "Copyright © 2009 Sébastien Wilmet";
 
 	gchar *licence = "LaTeXila is free software: you can redistribute it and/or modify\n"
@@ -953,6 +958,7 @@ cb_about_dialog (void)
 
 	const gchar *artists[] =
 	{
+		"Sébastien Wilmet <sebastien.wilmet@gmail.com>",
 		"The Kile Team: http://kile.sourceforge.net/",
 		"Gedit LaTeX Plugin: http://www.michaels-website.de/gedit-latex-plugin/",
 		NULL
@@ -1082,8 +1088,6 @@ open_new_document_without_uri (const gchar *filename)
 void
 open_new_document (const gchar *filename, const gchar *uri)
 {
-	print_info ("open file: \"%s\"", filename);
-
 	/* check if the document is not already opened */
 	GList *current = latexila.all_docs;
 	gint n = 0;
@@ -1177,8 +1181,6 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 				lm, path, NULL);
 		if (lang != NULL)
 			gtk_source_buffer_set_language (new_doc->source_buffer, lang);
-		else
-			print_info ("language of the file unknown ==> no syntaxic color");
 	}
 
 	// the default file is a LaTeX document
@@ -1354,7 +1356,6 @@ close_document (gint index)
 
 		delete_auxiliaries_files (latexila.active_doc->path);
 
-		print_info ("close the file \"%s\"", latexila.active_doc->path);
 		g_free (latexila.active_doc->path);
 	}
 	g_free (latexila.active_doc);
@@ -1443,8 +1444,6 @@ file_save (void)
 		return;
 
 	GError *error = NULL;
-	print_info ("save current buffer to \"%s\"", latexila.active_doc->path);
-
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
 	GtkTextIter start, end;
 	gtk_text_buffer_get_bounds (text_buffer, &start, &end);
@@ -1704,6 +1703,7 @@ free_latexila (void)
 	g_free (latexila.prefs.command_pdflatex);
 	g_free (latexila.prefs.command_dvipdf);
 	g_free (latexila.prefs.command_dvips);
+	g_free (latexila.prefs.command_web_browser);
 	g_free (latexila.prefs.file_chooser_dir);
 	g_free (latexila.prefs.file_browser_dir);
 	g_free (latexila.prefs.style_scheme_id);

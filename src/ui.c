@@ -162,6 +162,8 @@ static GtkActionEntry entries[] = {
 		N_("Activate next document"), G_CALLBACK (cb_documents_next)},
 	
 	{"Help", NULL, N_("Help"), NULL, NULL, NULL},
+	{"HelpLatexReference", GTK_STOCK_HELP, N_("LaTeX Reference"), NULL,
+		N_("The Kile LaTeX Reference"), G_CALLBACK (cb_help_latex_reference)},
 	{"HelpAbout", GTK_STOCK_ABOUT, N_("About"), NULL,
 		N_("About LaTeXila"), G_CALLBACK (cb_about_dialog)}
 };
