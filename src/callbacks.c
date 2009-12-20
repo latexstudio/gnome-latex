@@ -117,7 +117,7 @@ cb_save_as (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	document_t *doc_backup = latexila.active_doc;
+	document_t doc_backup = *latexila.active_doc;
 
 	latexila.active_doc->path = NULL;
 	latexila.active_doc->saved = FALSE;
@@ -126,7 +126,7 @@ cb_save_as (void)
 	// if the user click on cancel
 	if (! latexila.active_doc->saved)
 	{
-		latexila.active_doc = doc_backup;
+		*latexila.active_doc = doc_backup;
 		set_title ();
 	}
 }
