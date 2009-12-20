@@ -76,4 +76,33 @@ void cb_text_font_shape_italic (void);
 void cb_text_font_shape_slanted (void);
 void cb_text_font_shape_small_caps (void);
 
+void cb_math_env_normal (void);
+void cb_math_env_centered (void);
+void cb_math_env_numbered (void);
+void cb_math_env_array (void);
+void cb_math_env_numbered_array (void);
+void cb_math_superscript (void);
+void cb_math_subscript (void);
+void cb_math_frac (void);
+void cb_math_square_root (void);
+void cb_math_nth_root (void);
+void cb_math_left_delimiter_1 (void);
+void cb_math_left_delimiter_2 (void);
+void cb_math_left_delimiter_3 (void);
+void cb_math_left_delimiter_4 (void);
+void cb_math_left_delimiter_5 (void);
+void cb_math_left_delimiter_6 (void);
+void cb_math_left_delimiter_7 (void);
+void cb_math_left_delimiter_8 (void);
+void cb_math_left_delimiter_9 (void);
+void cb_math_right_delimiter_1 (void);
+void cb_math_right_delimiter_2 (void);
+void cb_math_right_delimiter_3 (void);
+void cb_math_right_delimiter_4 (void);
+void cb_math_right_delimiter_5 (void);
+void cb_math_right_delimiter_6 (void);
+void cb_math_right_delimiter_7 (void);
+void cb_math_right_delimiter_8 (void);
+void cb_math_right_delimiter_9 (void);
+
 #endif /* CB_LATEX_H */

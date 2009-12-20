@@ -62,6 +62,16 @@ static struct {
 	{DATA_DIR "/images/icons/list-description.png", "list-description"},
 	{DATA_DIR "/images/icons/list-item.png", "list-item"},
 	{DATA_DIR "/images/icons/references.png", "references"},
+	{DATA_DIR "/images/icons/math.png", "math"},
+	{DATA_DIR "/images/icons/math-centered.png", "math-centered"},
+	{DATA_DIR "/images/icons/math-numbered.png", "math-numbered"},
+	{DATA_DIR "/images/icons/math-array.png", "math-array"},
+	{DATA_DIR "/images/icons/math-numbered-array.png", "math-numbered-array"},
+	{DATA_DIR "/images/icons/math-superscript.png", "math-superscript"},
+	{DATA_DIR "/images/icons/math-subscript.png", "math-subscript"},
+	{DATA_DIR "/images/icons/math-frac.png", "math-frac"},
+	{DATA_DIR "/images/icons/math-square-root.png", "math-square-root"},
+	{DATA_DIR "/images/icons/math-nth-root.png", "math-nth-root"},
 };
 
 // all the actions (for the menu and the toolbar)
@@ -278,6 +288,67 @@ static GtkActionEntry latex_entries[] = {
 		N_("Slanted - \\slshape"), G_CALLBACK (cb_text_font_shape_slanted)},
 	{"FontShapeSmallCaps", NULL, N_("Small Capitals - \\scshape"), NULL,
 		N_("Small Capitals - \\scshape"), G_CALLBACK (cb_text_font_shape_small_caps)},
+
+	{"Math", "math", N_("Math"), NULL, NULL, NULL},
+	{"MathEnvironments", NULL, N_("Math Environments"), NULL, NULL, NULL},
+	{"MathEnvNormal", "math", N_("Mathematical Environment - $...$"), NULL,
+		N_("Mathematical Environment - $...$"), G_CALLBACK (cb_math_env_normal)},
+	{"MathEnvCentered", "math-centered", N_("Centered Formula - $$...$$"), NULL,
+		N_("Centered Formula - $$...$$"), G_CALLBACK (cb_math_env_centered)},
+	{"MathEnvNumbered", "math-numbered", N_("Numbered Equation - \\begin{equation}"), NULL,
+		N_("Numbered Equation - \\begin{equation}"), G_CALLBACK (cb_math_env_numbered)},
+	{"MathEnvArray", "math-array", N_("Array of Equations - \\begin{align*}"), NULL,
+		N_("Array of Equations - \\begin{align*}"), G_CALLBACK (cb_math_env_array)},
+	{"MathEnvNumberedArray", "math-numbered-array", N_("Numbered Array of Equations - \\begin{align}"), NULL,
+		N_("Numbered Array of Equations - \\begin{align}"), G_CALLBACK (cb_math_env_numbered_array)},
+	{"MathSuperscript", "math-superscript", N_("Superscript - ^{}"), NULL,
+		N_("Superscript - ^{}"), G_CALLBACK (cb_math_superscript)},
+	{"MathSubscript", "math-subscript", N_("Subscript - __{}"), NULL,
+		N_("Subscript - __{}"), G_CALLBACK (cb_math_subscript)},
+	{"MathFrac", "math-frac", N_("Fraction - \\frac{}{}"), NULL,
+		N_("Fraction - \\frac{}{}"), G_CALLBACK (cb_math_frac)},
+	{"MathSquareRoot", "math-square-root", N_("Square Root - \\sqrt{}"), NULL,
+		N_("Square Root - \\sqrt{}"), G_CALLBACK (cb_math_square_root)},
+	{"MathNthRoot", "math-nth-root", N_("N-th Root - \\sqrt[]{}"), NULL,
+		N_("N-th Root - \\sqrt[]{}"), G_CALLBACK (cb_math_nth_root)},
+	{"MathLeftDelimiters", NULL, N_("Left Delimiters"), NULL, NULL, NULL},
+	{"MathLeftDelimiter1", NULL, N_("left ("), NULL,
+		NULL, G_CALLBACK (cb_math_left_delimiter_1)},
+	{"MathLeftDelimiter2", NULL, N_("left ["), NULL,
+		NULL, G_CALLBACK (cb_math_left_delimiter_2)},
+	{"MathLeftDelimiter3", NULL, N_("left {"), NULL,
+		NULL, G_CALLBACK (cb_math_left_delimiter_3)},
+	{"MathLeftDelimiter4", NULL, N_("left <"), NULL,
+		NULL, G_CALLBACK (cb_math_left_delimiter_4)},
+	{"MathLeftDelimiter5", NULL, N_("left )"), NULL,
+		NULL, G_CALLBACK (cb_math_left_delimiter_5)},
+	{"MathLeftDelimiter6", NULL, N_("left ]"), NULL,
+		NULL, G_CALLBACK (cb_math_left_delimiter_6)},
+	{"MathLeftDelimiter7", NULL, N_("left }"), NULL,
+		NULL, G_CALLBACK (cb_math_left_delimiter_7)},
+	{"MathLeftDelimiter8", NULL, N_("left >"), NULL,
+		NULL, G_CALLBACK (cb_math_left_delimiter_8)},
+	{"MathLeftDelimiter9", NULL, N_("left ."), NULL,
+		NULL, G_CALLBACK (cb_math_left_delimiter_9)},
+	{"MathRightDelimiters", NULL, N_("Right Delimiters"), NULL, NULL, NULL},
+	{"MathRightDelimiter1", NULL, N_("right )"), NULL,
+		NULL, G_CALLBACK (cb_math_right_delimiter_1)},
+	{"MathRightDelimiter2", NULL, N_("right ]"), NULL,
+		NULL, G_CALLBACK (cb_math_right_delimiter_2)},
+	{"MathRightDelimiter3", NULL, N_("right }"), NULL,
+		NULL, G_CALLBACK (cb_math_right_delimiter_3)},
+	{"MathRightDelimiter4", NULL, N_("right >"), NULL,
+		NULL, G_CALLBACK (cb_math_right_delimiter_4)},
+	{"MathRightDelimiter5", NULL, N_("right ("), NULL,
+		NULL, G_CALLBACK (cb_math_right_delimiter_5)},
+	{"MathRightDelimiter6", NULL, N_("right ["), NULL,
+		NULL, G_CALLBACK (cb_math_right_delimiter_6)},
+	{"MathRightDelimiter7", NULL, N_("right {"), NULL,
+		NULL, G_CALLBACK (cb_math_right_delimiter_7)},
+	{"MathRightDelimiter8", NULL, N_("right <"), NULL,
+		NULL, G_CALLBACK (cb_math_right_delimiter_8)},
+	{"MathRightDelimiter9", NULL, N_("right ."), NULL,
+		NULL, G_CALLBACK (cb_math_right_delimiter_9)},
 };
 
 // {name, stock_id, label, accelerator, tooltip, callback}
@@ -335,8 +406,7 @@ init_ui (GtkWidget *box)
 	// menus under toolitems
 	GtkAction *sectioning = tool_menu_action_new ("SectioningToolItem",
 			_("Sectioning"), _("Sectioning"), "sectioning-section");
-	GtkToolItem *sectioning_menu_tool_button = gtk_menu_tool_button_new (NULL,
-			NULL);
+	GtkToolItem *sectioning_menu_tool_button = gtk_menu_tool_button_new (NULL, NULL);
 	gtk_activatable_set_related_action (
 			GTK_ACTIVATABLE (sectioning_menu_tool_button), sectioning);
 
@@ -348,10 +418,27 @@ init_ui (GtkWidget *box)
 
 	GtkAction *references = tool_menu_action_new ("ReferencesToolItem",
 			_("References"), _("References"), "references");
-	GtkToolItem *references_menu_tool_button = gtk_menu_tool_button_new (NULL,
-			NULL);
+	GtkToolItem *references_menu_tool_button = gtk_menu_tool_button_new (NULL, NULL);
 	gtk_activatable_set_related_action (
 			GTK_ACTIVATABLE (references_menu_tool_button), references);
+
+	GtkAction *math_env = tool_menu_action_new ("MathEnvironmentsToolItem",
+			_("Math Environments"), _("Math Environments"), "math");
+	GtkToolItem *math_env_menu_tool_button = gtk_menu_tool_button_new (NULL, NULL);
+	gtk_activatable_set_related_action (
+			GTK_ACTIVATABLE (math_env_menu_tool_button), math_env);
+
+	GtkAction *math_left_del = tool_menu_action_new ("MathLeftDelimitersToolItem",
+			_("Left Delimiters"), _("Left Delimiters"), NULL);
+	GtkToolItem *math_left_del_menu_tool_button = gtk_menu_tool_button_new (NULL, NULL);
+	gtk_activatable_set_related_action (
+			GTK_ACTIVATABLE (math_left_del_menu_tool_button), math_left_del);
+
+	GtkAction *math_right_del = tool_menu_action_new ("MathRightDelimitersToolItem",
+			_("Right Delimiters"), _("Right Delimiters"), NULL);
+	GtkToolItem *math_right_del_menu_tool_button = gtk_menu_tool_button_new (NULL, NULL);
+	gtk_activatable_set_related_action (
+			GTK_ACTIVATABLE (math_right_del_menu_tool_button), math_right_del);
 
 	// create the action group and the ui manager
 	GtkActionGroup *action_group = gtk_action_group_new ("menuActionGroup");
@@ -361,6 +448,9 @@ init_ui (GtkWidget *box)
 	gtk_action_group_add_action (action_group, sectioning);
 	gtk_action_group_add_action (action_group, sizes);
 	gtk_action_group_add_action (action_group, references);
+	gtk_action_group_add_action (action_group, math_env);
+	gtk_action_group_add_action (action_group, math_left_del);
+	gtk_action_group_add_action (action_group, math_right_del);
 	gtk_action_group_add_actions (action_group, entries, nb_entries, NULL);
 	gtk_action_group_add_actions (action_group, latex_entries, nb_latex_entries,
 			NULL);

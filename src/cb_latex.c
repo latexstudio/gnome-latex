@@ -404,3 +404,170 @@ cb_text_font_shape_small_caps (void)
 	text_buffer_insert ("{\\scshape ", "}", "\\scshape ");
 }
 
+void
+cb_math_env_normal (void)
+{
+	text_buffer_insert ("$ ", " $", NULL);
+}
+
+void
+cb_math_env_centered (void)
+{
+	text_buffer_insert ("$$ ", " $$", NULL);
+}
+
+void
+cb_math_env_numbered (void)
+{
+	text_buffer_insert ("\\begin{equation}\n", "\n\\end{equation}", NULL);
+}
+
+void
+cb_math_env_array (void)
+{
+	text_buffer_insert ("\\begin{align*}\n", "\n\\end{align*}", NULL);
+}
+
+void
+cb_math_env_numbered_array (void)
+{
+	text_buffer_insert ("\\begin{align}\n", "\n\\end{align}", NULL);
+}
+
+void
+cb_math_superscript (void)
+{
+	text_buffer_insert ("^{", "}", NULL);
+}
+
+void
+cb_math_subscript (void)
+{
+	text_buffer_insert ("_{", "}", NULL);
+}
+
+void
+cb_math_frac (void)
+{
+	text_buffer_insert ("\\frac{", "}{}", NULL);
+}
+
+void
+cb_math_square_root (void)
+{
+	text_buffer_insert ("\\sqrt{", "}", NULL);
+}
+
+void
+cb_math_nth_root (void)
+{
+	text_buffer_insert ("\\sqrt[]{", "}", NULL);
+}
+
+void
+cb_math_left_delimiter_1 (void)
+{
+	text_buffer_insert ("\\left( ", "", NULL);
+}
+
+void
+cb_math_left_delimiter_2 (void)
+{
+	text_buffer_insert ("\\left[ ", "", NULL);
+}
+
+void
+cb_math_left_delimiter_3 (void)
+{
+	text_buffer_insert ("\\left\\lbrace ", "", NULL);
+}
+
+void
+cb_math_left_delimiter_4 (void)
+{
+	text_buffer_insert ("\\left\\langle ", "", NULL);
+}
+
+void
+cb_math_left_delimiter_5 (void)
+{
+	text_buffer_insert ("\\left) ", "", NULL);
+}
+
+void
+cb_math_left_delimiter_6 (void)
+{
+	text_buffer_insert ("\\left] ", "", NULL);
+}
+
+void
+cb_math_left_delimiter_7 (void)
+{
+	text_buffer_insert ("\\left\\rbrace ", "", NULL);
+}
+
+void
+cb_math_left_delimiter_8 (void)
+{
+	text_buffer_insert ("\\left\\rangle ", "", NULL);
+}
+
+void
+cb_math_left_delimiter_9 (void)
+{
+	text_buffer_insert ("\\left. ", "", NULL);
+}
+
+void
+cb_math_right_delimiter_1 (void)
+{
+	text_buffer_insert ("\\right( ", "", NULL);
+}
+
+void
+cb_math_right_delimiter_2 (void)
+{
+	text_buffer_insert ("\\right[ ", "", NULL);
+}
+
+void
+cb_math_right_delimiter_3 (void)
+{
+	text_buffer_insert ("\\right\\rbrace ", "", NULL);
+}
+
+void
+cb_math_right_delimiter_4 (void)
+{
+	text_buffer_insert ("\\right\\rangle ", "", NULL);
+}
+
+void
+cb_math_right_delimiter_5 (void)
+{
+	text_buffer_insert ("\\right) ", "", NULL);
+}
+
+void
+cb_math_right_delimiter_6 (void)
+{
+	text_buffer_insert ("\\right] ", "", NULL);
+}
+
+void
+cb_math_right_delimiter_7 (void)
+{
+	text_buffer_insert ("\\right\\lbrace ", "", NULL);
+}
+
+void
+cb_math_right_delimiter_8 (void)
+{
+	text_buffer_insert ("\\right\\langle ", "", NULL);
+}
+
+void
+cb_math_right_delimiter_9 (void)
+{
+	text_buffer_insert ("\\right. ", "", NULL);
+}
