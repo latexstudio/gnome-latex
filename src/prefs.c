@@ -923,7 +923,7 @@ create_preferences (void)
 	GtkWidget *notebook = gtk_notebook_new ();
 	gtk_box_pack_start (GTK_BOX (content_area), notebook, TRUE, TRUE, 0);
 
-	GtkWidget *vbox_editor = gtk_vbox_new (FALSE, 10);
+	GtkWidget *vbox_editor = gtk_vbox_new (FALSE, 7);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox_editor), 4);
 	GtkWidget *label_editor = gtk_label_new (_("Editor"));
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_editor, label_editor);
@@ -934,12 +934,12 @@ create_preferences (void)
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_font_and_colors,
 			label_font_and_colors);
 
-	GtkWidget *vbox_latex = gtk_vbox_new (FALSE, 10);
+	GtkWidget *vbox_latex = gtk_vbox_new (FALSE, 7);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox_latex), 4);
 	GtkWidget *label_latex = gtk_label_new ("LaTeX");
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_latex, label_latex);
 
-	GtkWidget *vbox_other = gtk_vbox_new (FALSE, 10);
+	GtkWidget *vbox_other = gtk_vbox_new (FALSE, 7);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox_other), 4);
 	GtkWidget *label_other = gtk_label_new (_("Other"));
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_other, label_other);
@@ -1007,8 +1007,8 @@ create_preferences (void)
 	gtk_box_pack_start (GTK_BOX (vbox_font_and_colors), hbox, FALSE, FALSE, 0);
 
 	/* style schemes */
-	label = gtk_label_new (_("Color scheme:"));
-	gtk_box_pack_start (GTK_BOX (vbox_font_and_colors), label, FALSE, FALSE, 0);
+	GtkWidget *frame = gtk_frame_new (_("Color scheme"));
+	gtk_box_pack_start (GTK_BOX (vbox_font_and_colors), frame, FALSE, FALSE, 0);
 
 	GtkListStore *style_schemes_list_store = gtk_list_store_new (
 			N_COLUMNS_STYLE_SCHEMES, G_TYPE_STRING, G_TYPE_STRING);
@@ -1038,8 +1038,7 @@ create_preferences (void)
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
             GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     gtk_container_add (GTK_CONTAINER (scrollbar), style_schemes_tree_view);
-	gtk_box_pack_start (GTK_BOX (vbox_font_and_colors), scrollbar, FALSE,
-			FALSE, 0);
+	gtk_container_add (GTK_CONTAINER (frame), scrollbar);
 
 	/* command view entry */
 	hbox = gtk_hbox_new (FALSE, 5);
@@ -1054,49 +1053,58 @@ create_preferences (void)
 	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
 	/* commands (latex, pdflatex, dvipdf, dvips) */
-	GtkWidget *table = gtk_table_new (4, 2, FALSE);
-
-	label = gtk_label_new (_("latex command:"));
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+	hbox = gtk_hbox_new (FALSE, 5);
+	GtkWidget *label1 = gtk_label_new (_("latex command:"));
 	GtkWidget *command_latex = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_latex),
-			latexila.prefs.command_latex);
+	gtk_entry_set_text (GTK_ENTRY (command_latex), latexila.prefs.command_latex);
 	g_signal_connect (G_OBJECT (command_latex), "changed",
 			G_CALLBACK (cb_pref_command_latex), NULL);
-	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 0, 1);
-	gtk_table_attach_defaults (GTK_TABLE (table), command_latex, 1, 2, 0, 1);
+	gtk_box_pack_start (GTK_BOX (hbox), label1, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), command_latex, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
-	label = gtk_label_new (_("pdflatex command:"));
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+	hbox = gtk_hbox_new (FALSE, 5);
+	GtkWidget *label2 = gtk_label_new (_("pdflatex command:"));
 	GtkWidget *command_pdflatex = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_pdflatex),
-			latexila.prefs.command_pdflatex);
+	gtk_entry_set_text (GTK_ENTRY (command_pdflatex), latexila.prefs.command_pdflatex);
 	g_signal_connect (G_OBJECT (command_pdflatex), "changed",
 			G_CALLBACK (cb_pref_command_pdflatex), NULL);
-	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 1, 2);
-	gtk_table_attach_defaults (GTK_TABLE (table), command_pdflatex, 1, 2, 1, 2);
+	gtk_box_pack_start (GTK_BOX (hbox), label2, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), command_pdflatex, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
-	label = gtk_label_new (_("DVI to PDF command:"));
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+	hbox = gtk_hbox_new (FALSE, 5);
+	GtkWidget *label3 = gtk_label_new (_("DVI to PDF command:"));
 	GtkWidget *command_dvipdf = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_dvipdf),
-			latexila.prefs.command_dvipdf);
+	gtk_entry_set_text (GTK_ENTRY (command_dvipdf), latexila.prefs.command_dvipdf);
 	g_signal_connect (G_OBJECT (command_dvipdf), "changed",
 			G_CALLBACK (cb_pref_command_dvipdf), NULL);
-	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 2, 3);
-	gtk_table_attach_defaults (GTK_TABLE (table), command_dvipdf, 1, 2, 2, 3);
+	gtk_box_pack_start (GTK_BOX (hbox), label3, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), command_dvipdf, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
-	label = gtk_label_new (_("DVI to PS command:"));
-	gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+	hbox = gtk_hbox_new (FALSE, 5);
+	GtkWidget *label4 = gtk_label_new (_("DVI to PS command:"));
 	GtkWidget *command_dvips = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_dvips),
-			latexila.prefs.command_dvips);
+	gtk_entry_set_text (GTK_ENTRY (command_dvips), latexila.prefs.command_dvips);
 	g_signal_connect (G_OBJECT (command_dvips), "changed",
 			G_CALLBACK (cb_pref_command_dvips), NULL);
-	gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, 3, 4);
-	gtk_table_attach_defaults (GTK_TABLE (table), command_dvips, 1, 2, 3, 4);
+	gtk_box_pack_start (GTK_BOX (hbox), label4, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), command_dvips, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
-	gtk_box_pack_start (GTK_BOX (vbox_latex), table, FALSE, FALSE, 0);
+	// set the same width for the labels
+	// the longer label is label3
+	GtkRequisition size;
+	gtk_widget_size_request (label3, &size);
+	gtk_widget_set_size_request (label1, size.width, 0);
+	gtk_widget_set_size_request (label2, size.width, 0);
+	gtk_widget_set_size_request (label4, size.width, 0);
+
+	// flush left
+	gtk_misc_set_alignment (GTK_MISC (label1), 0.0, 0.5);
+	gtk_misc_set_alignment (GTK_MISC (label2), 0.0, 0.5);
+	gtk_misc_set_alignment (GTK_MISC (label4), 0.0, 0.5);
 
 	/* web browser */
 	hbox = gtk_hbox_new (FALSE, 5);
