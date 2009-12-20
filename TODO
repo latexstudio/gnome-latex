@@ -2,5 +2,6 @@ TODO LaTeXila
 
 [-] BibTeX support
 
-[-] bug correction
-	- when there are too much recent documents, new documents are not visible in File/Open Recent
+[-] math toolbar
+
+[-] update French translation

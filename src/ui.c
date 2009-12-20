@@ -162,7 +162,7 @@ static GtkActionEntry entries[] = {
 		N_("Activate next document"), G_CALLBACK (cb_documents_next)},
 	
 	{"Help", NULL, N_("Help"), NULL, NULL, NULL},
-	{"HelpLatexReference", GTK_STOCK_HELP, N_("LaTeX Reference"), NULL,
+	{"HelpLatexReference", GTK_STOCK_HELP, N_("LaTeX Reference"), "<Release>F1",
 		N_("The Kile LaTeX Reference"), G_CALLBACK (cb_help_latex_reference)},
 	{"HelpAbout", GTK_STOCK_ABOUT, N_("About"), NULL,
 		N_("About LaTeXila"), G_CALLBACK (cb_about_dialog)}
@@ -332,6 +332,8 @@ init_ui (GtkWidget *box)
 	GtkRecentFilter *filter = gtk_recent_filter_new ();
 	gtk_recent_filter_add_application (filter, "latexila");
 	gtk_recent_chooser_add_filter (GTK_RECENT_CHOOSER (recent), filter);
+	gtk_recent_chooser_set_sort_type (GTK_RECENT_CHOOSER (recent),
+			GTK_RECENT_SORT_MRU);
 
 	// menus under toolitems
 	GtkAction *sectioning = tool_menu_action_new ("SectioningToolItem",
