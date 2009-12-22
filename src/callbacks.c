@@ -693,6 +693,24 @@ cb_dvi_to_ps (void)
 }
 
 void
+cb_bibtex (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	run_bibtex ();
+}
+
+void
+cb_makeindex (void)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	run_makeindex ();
+}
+
+void
 cb_tools_comment (void)
 {
 	if (latexila.active_doc == NULL)
@@ -1704,6 +1722,8 @@ free_latexila (void)
 	g_free (latexila.prefs.command_dvipdf);
 	g_free (latexila.prefs.command_dvips);
 	g_free (latexila.prefs.command_web_browser);
+	g_free (latexila.prefs.command_bibtex);
+	g_free (latexila.prefs.command_makeindex);
 	g_free (latexila.prefs.file_chooser_dir);
 	g_free (latexila.prefs.file_browser_dir);
 	g_free (latexila.prefs.style_scheme_id);
@@ -1719,7 +1739,7 @@ delete_auxiliaries_files (const gchar *filename)
 	if (! g_str_has_suffix (filename, ".tex"))
 		return;
 
-	gchar *extensions[] = {".aux", ".bit", ".blg", ".bbl", ".lof", ".log", ".lot",
+	gchar *extensions[] = {".aux", ".bit", ".blg", ".lof", ".log", ".lot",
 		".glo", ".glx", ".gxg", ".gxs", ".idx", ".ilg", ".ind", ".out", ".url",
 		".svn", ".toc"};
 	gint nb_extensions = G_N_ELEMENTS (extensions);

@@ -37,9 +37,11 @@ static gchar * get_command_line (gchar **command);
 static void command_running_finished (void);
 static gboolean cb_watch_output_command (GIOChannel *channel,
 		GIOCondition condition, gpointer user_data);
-static void add_action (gchar *title, gchar *command);
+static void add_action (const gchar *title, const gchar *command);
 static void set_action_sensitivity (gboolean sensitive);
 static void view_document_run (gchar *filename);
+static void run_command_on_other_extension (gchar *title, gchar *message,
+		gchar *command, gchar *extension);
 
 static gchar *
 get_command_line (gchar **command)
@@ -319,82 +321,11 @@ view_document_run (gchar *filename)
 void
 convert_document (gchar *title, gchar *doc_extension, gchar *command)
 {
-	if (latexila.active_doc == NULL)
-		return;
-
-	gchar *command_output;
-
-	GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
-
-	/* replace .tex by doc_extension (.pdf, .dvi, ...) */
-	gchar *doc_path = g_regex_replace_literal (regex,
-			latexila.active_doc->path, -1, 0, doc_extension, 0, NULL);
-	g_regex_unref (regex);
-
-	gchar *full_command = g_strdup_printf ("%s %s", command, doc_path);
-	add_action (title, full_command);
-	g_free (full_command);
-
-	/* the document to convert exist? */
-	if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
-	{
-		command_output = g_strdup_printf (
-				_("%s does not exist. If this is not already made, compile the document with the right command."),
-				g_path_get_basename (doc_path));
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
-
-		g_free (command_output);
-		g_free (doc_path);
-		return;
-	}
-
-	/* print a message in the statusbar */
-	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
-			"running-action");
-	gtk_statusbar_push (latexila.statusbar, context_id,
-			_("Converting in progress. Please wait..."));
-
-	// without that, the message in the statusbar does not appear
-	while (gtk_events_pending ())
-		gtk_main_iteration ();
-
-	/* run the command */
-	gchar *argv[] = {command, doc_path, NULL};
-
-	GError *error = NULL;
-	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
-	GPid pid;
-	gint out, err;
-	g_spawn_async_with_pipes (dir, argv, NULL, G_SPAWN_SEARCH_PATH, NULL,
-			NULL, &pid, NULL, &out, &err, &error);
-
-	g_free (dir);
-	g_free (doc_path);
-
-	// an error occured
-	if (error != NULL)
-	{
-		command_output = g_strdup_printf (_("execution failed: %s"),
-				error->message);
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
-
-		g_free (command_output);
-		g_error_free (error);
-		return;
-	}
-
-	// create the channels
-	GIOChannel *out_channel = g_io_channel_unix_new (out);
-	GIOChannel *err_channel = g_io_channel_unix_new (err);
-
-	// lock the action list and all the build actions
-	set_action_sensitivity (FALSE);
-
-	// add watches to channels
-	g_io_add_watch (out_channel, G_IO_IN | G_IO_HUP,
-			(GIOFunc) cb_watch_output_command, NULL);
-	g_io_add_watch (err_channel, G_IO_IN | G_IO_HUP,
-			(GIOFunc) cb_watch_output_command, NULL);
+	run_command_on_other_extension (
+			title,
+			_("Converting in progress. Please wait..."),
+			command,
+			doc_extension);
 }
 
 void
@@ -430,8 +361,28 @@ view_in_web_browser (gchar *title, gchar *filename)
 	g_free (command_output);
 }
 
+void
+run_bibtex (void)
+{
+	run_command_on_other_extension (
+			"BibTeX",
+			_("BibTeX is running. Please wait..."),
+			latexila.prefs.command_bibtex,
+			".aux");
+}
+
+void
+run_makeindex (void)
+{
+	run_command_on_other_extension (
+			"MakeIndex",
+			_("MakeIndex is running. Please wait..."),
+			latexila.prefs.command_makeindex,
+			".idx");
+}
+
 static void
-add_action (gchar *title, gchar *command)
+add_action (const gchar *title, const gchar *command)
 {
 	static gint num = 1;
 	gchar *title2 = g_strdup_printf ("%d. %s", num, title);
@@ -498,4 +449,86 @@ set_action_sensitivity (gboolean sensitive)
 	gtk_action_set_sensitive (latexila.actions.view_dvi, sensitive);
 	gtk_action_set_sensitive (latexila.actions.view_pdf, sensitive);
 	gtk_action_set_sensitive (latexila.actions.view_ps, sensitive);
+	gtk_action_set_sensitive (latexila.actions.bibtex, sensitive);
+	gtk_action_set_sensitive (latexila.actions.makeindex, sensitive);
+}
+
+static void
+run_command_on_other_extension (gchar *title, gchar *message, gchar *command,
+		gchar *extension)
+{
+	if (latexila.active_doc == NULL)
+		return;
+
+	gchar *command_output;
+
+	/* replace .tex by .aux */
+	GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
+	gchar *doc_path = g_regex_replace_literal (regex,
+			latexila.active_doc->path, -1, 0, extension, 0, NULL);
+	g_regex_unref (regex);
+
+	gchar *full_command = g_strdup_printf ("%s %s", command, doc_path);
+	add_action (title, full_command);
+	g_free (full_command);
+
+	/* the document to convert exist? */
+	if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
+	{
+		command_output = g_strdup_printf (
+				_("%s does not exist. If this is not already made, compile the document with the right command."),
+				g_path_get_basename (doc_path));
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
+
+		g_free (command_output);
+		g_free (doc_path);
+		return;
+	}
+
+	/* print a message in the statusbar */
+	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
+			"running-action");
+	gtk_statusbar_push (latexila.statusbar, context_id, message);
+
+	// without that, the message in the statusbar does not appear
+	while (gtk_events_pending ())
+		gtk_main_iteration ();
+
+	/* run the command */
+	gchar *argv[] = {command, doc_path, NULL};
+
+	GError *error = NULL;
+	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
+	GPid pid;
+	gint out, err;
+	g_spawn_async_with_pipes (dir, argv, NULL, G_SPAWN_SEARCH_PATH, NULL,
+			NULL, &pid, NULL, &out, &err, &error);
+
+	g_free (dir);
+	g_free (doc_path);
+
+	// an error occured
+	if (error != NULL)
+	{
+		command_output = g_strdup_printf (_("execution failed: %s"),
+				error->message);
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
+
+		g_free (command_output);
+		g_error_free (error);
+		return;
+	}
+
+	// create the channels
+	GIOChannel *out_channel = g_io_channel_unix_new (out);
+	GIOChannel *err_channel = g_io_channel_unix_new (err);
+
+	// lock the action list and all the build actions
+	set_action_sensitivity (FALSE);
+
+	// add watches to channels
+	g_io_add_watch (out_channel, G_IO_IN | G_IO_HUP,
+			(GIOFunc) cb_watch_output_command, NULL);
+	g_io_add_watch (err_channel, G_IO_IN | G_IO_HUP,
+			(GIOFunc) cb_watch_output_command, NULL);
 }

@@ -56,6 +56,8 @@ void cb_view_pdf (void);
 void cb_view_ps (void);
 void cb_dvi_to_pdf (void);
 void cb_dvi_to_ps (void);
+void cb_bibtex (void);
+void cb_makeindex (void);
 void cb_tools_comment (void);
 void cb_tools_uncomment (void);
 void cb_tools_indent (void);

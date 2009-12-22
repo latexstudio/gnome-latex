@@ -145,6 +145,10 @@ static GtkActionEntry entries[] = {
 		N_("Convert the DVI document to the PostScript format"), G_CALLBACK (cb_dvi_to_ps)},
 	{"viewPS", "view_ps", N_("View PS"), NULL,
 		N_("View the PostScript file"), G_CALLBACK (cb_view_ps)},
+	{"compile_bibtex", NULL, "BibTeX", NULL,
+		N_("Run BibTeX on the current document"), G_CALLBACK (cb_bibtex)},
+	{"compile_makeindex", NULL, "MakeIndex", NULL,
+		N_("Run MakeIndex on the current document"), G_CALLBACK (cb_makeindex)},
 
 	{"Tools", NULL, N_("Tools"), NULL, NULL, NULL},
 	{"ToolsComment", NULL, N_("Comment"), "<Control>D",
@@ -304,7 +308,7 @@ static GtkActionEntry latex_entries[] = {
 	{"MathSuperscript", "math-superscript", N_("Superscript - ^{}"), NULL,
 		N_("Superscript - ^{}"), G_CALLBACK (cb_math_superscript)},
 	{"MathSubscript", "math-subscript", N_("Subscript - __{}"), NULL,
-		N_("Subscript - __{}"), G_CALLBACK (cb_math_subscript)},
+		N_("Subscript - _{}"), G_CALLBACK (cb_math_subscript)},
 	{"MathFrac", "math-frac", N_("Fraction - \\frac{}{}"), NULL,
 		N_("Fraction - \\frac{}{}"), G_CALLBACK (cb_math_frac)},
 	{"MathSquareRoot", "math-square-root", N_("Square Root - \\sqrt{}"), NULL,
@@ -518,6 +522,10 @@ init_ui (GtkWidget *box)
 			"viewPDF");
 	latexila.actions.view_ps = gtk_action_group_get_action (action_group,
 			"viewPS");
+	latexila.actions.bibtex = gtk_action_group_get_action (action_group,
+			"compile_bibtex");
+	latexila.actions.makeindex = gtk_action_group_get_action (action_group,
+			"compile_makeindex");
 
 
 	GtkToggleAction *show_side_pane = GTK_TOGGLE_ACTION (

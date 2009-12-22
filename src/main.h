@@ -90,6 +90,8 @@ typedef struct
 	gchar					*command_dvipdf;
 	gchar					*command_dvips;
 	gchar					*command_web_browser;
+	gchar					*command_bibtex;
+	gchar					*command_makeindex;
 	gchar					*file_chooser_dir;
 	gchar					*file_browser_dir;
 	gboolean				file_browser_show_all_files;
@@ -116,6 +118,8 @@ typedef struct
 	GtkAction *view_dvi;
 	GtkAction *view_pdf;
 	GtkAction *view_ps;
+	GtkAction *bibtex;
+	GtkAction *makeindex;
 } actions_t;
 
 typedef struct

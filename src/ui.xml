@@ -78,6 +78,9 @@ In the code, GtkUIManager is used to construct them.
       <menuitem action="DVItoPDF" />
       <menuitem action="DVItoPS" />
       <menuitem action="viewPS" />
+      <separator />
+      <menuitem action="compile_bibtex" />
+      <menuitem action="compile_makeindex" />
     </menu>
 
     <menu action="Latex">

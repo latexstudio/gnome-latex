@@ -56,6 +56,8 @@ static void cb_pref_command_pdflatex (GtkEditable *editable, gpointer user_data)
 static void cb_pref_command_dvipdf (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_dvips (GtkEditable *editable, gpointer user_data);
 static void cb_pref_web_browser (GtkEditable *editable, gpointer user_data);
+static void cb_pref_command_bibtex (GtkEditable *editable, gpointer user_data);
+static void cb_pref_command_makeindex (GtkEditable *editable, gpointer user_data);
 static void cb_style_scheme_changed (GtkTreeSelection *selection,
 		gpointer user_data);
 static void cb_delete_aux_files (GtkToggleButton *toggle_button,
@@ -85,6 +87,8 @@ static gchar	*command_pdflatex_				= COMMAND_PDFLATEX;
 static gchar	*command_dvipdf_				= COMMAND_DVIPDF;
 static gchar	*command_dvips_					= COMMAND_DVIPS;
 static gchar	*command_web_browser_			= "gnome-open";
+static gchar	*command_bibtex_				= COMMAND_BIBTEX;
+static gchar	*command_makeindex_				= COMMAND_MAKEINDEX;
 static gboolean delete_aux_files_				= FALSE;
 static gboolean reopen_files_on_startup_		= TRUE;
 static gboolean file_browser_show_all_files_	= FALSE;
@@ -291,6 +295,26 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->command_bibtex = g_key_file_get_string (key_file, PROGRAM_NAME,
+			"command_bibtex", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->command_bibtex = g_strdup (command_bibtex_);
+		g_error_free (error);
+		error = NULL;
+	}
+
+	prefs->command_makeindex = g_key_file_get_string (key_file, PROGRAM_NAME,
+			"command_makeindex", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->command_makeindex = g_strdup (command_makeindex_);
+		g_error_free (error);
+		error = NULL;
+	}
+
 	prefs->file_chooser_dir = g_key_file_get_string (key_file, PROGRAM_NAME,
 			"file_chooser_directory", &error);
 	if (error != NULL)
@@ -463,6 +487,10 @@ save_preferences (preferences_t *prefs)
 			prefs->command_dvips);
 	g_key_file_set_string (key_file, PROGRAM_NAME, "command_web_browser",
 			prefs->command_web_browser);
+	g_key_file_set_string (key_file, PROGRAM_NAME, "command_bibtex",
+			prefs->command_bibtex);
+	g_key_file_set_string (key_file, PROGRAM_NAME, "command_makeindex",
+			prefs->command_makeindex);
 	if (prefs->file_chooser_dir != NULL)
 		g_key_file_set_string (key_file, PROGRAM_NAME, "file_chooser_directory",
 				prefs->file_chooser_dir);
@@ -582,6 +610,8 @@ load_default_preferences (preferences_t *prefs)
 	prefs->command_dvipdf = g_strdup (command_dvipdf_);
 	prefs->command_dvips = g_strdup (command_dvips_);
 	prefs->command_web_browser = g_strdup (command_web_browser_);
+	prefs->command_bibtex = g_strdup (command_bibtex_);
+	prefs->command_makeindex = g_strdup (command_makeindex_);
 	prefs->file_chooser_dir = NULL;
 	prefs->file_browser_dir = g_strdup (g_get_home_dir ());
 	prefs->list_opened_docs = g_ptr_array_new ();
@@ -777,6 +807,24 @@ cb_pref_web_browser (GtkEditable *editable, gpointer user_data)
 	const gchar *new_command = gtk_entry_get_text (entry);
 	g_free (latexila.prefs.command_web_browser);
 	latexila.prefs.command_web_browser = g_strdup (new_command);
+}
+
+static void
+cb_pref_command_bibtex (GtkEditable *editable, gpointer user_data)
+{
+	GtkEntry *entry = GTK_ENTRY (editable);
+	const gchar *new_command = gtk_entry_get_text (entry);
+	g_free (latexila.prefs.command_bibtex);
+	latexila.prefs.command_bibtex = g_strdup (new_command);
+}
+
+static void
+cb_pref_command_makeindex (GtkEditable *editable, gpointer user_data)
+{
+	GtkEntry *entry = GTK_ENTRY (editable);
+	const gchar *new_command = gtk_entry_get_text (entry);
+	g_free (latexila.prefs.command_makeindex);
+	latexila.prefs.command_makeindex = g_strdup (new_command);
 }
 
 static void
@@ -1093,6 +1141,26 @@ create_preferences (void)
 	gtk_box_pack_start (GTK_BOX (hbox), command_dvips, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
+	hbox = gtk_hbox_new (FALSE, 5);
+	GtkWidget *label5 = gtk_label_new (_("BibTeX command:"));
+	GtkWidget *command_bibtex = gtk_entry_new ();
+	gtk_entry_set_text (GTK_ENTRY (command_bibtex), latexila.prefs.command_bibtex);
+	g_signal_connect (G_OBJECT (command_bibtex), "changed",
+			G_CALLBACK (cb_pref_command_bibtex), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox), label5, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), command_bibtex, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
+
+	hbox = gtk_hbox_new (FALSE, 5);
+	GtkWidget *label6 = gtk_label_new (_("MakeIndex command:"));
+	GtkWidget *command_makeindex = gtk_entry_new ();
+	gtk_entry_set_text (GTK_ENTRY (command_makeindex), latexila.prefs.command_makeindex);
+	g_signal_connect (G_OBJECT (command_makeindex), "changed",
+			G_CALLBACK (cb_pref_command_makeindex), NULL);
+	gtk_box_pack_start (GTK_BOX (hbox), label6, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), command_makeindex, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
+
 	// set the same width for the labels
 	// the longer label is label3
 	GtkRequisition size;
@@ -1100,11 +1168,15 @@ create_preferences (void)
 	gtk_widget_set_size_request (label1, size.width, 0);
 	gtk_widget_set_size_request (label2, size.width, 0);
 	gtk_widget_set_size_request (label4, size.width, 0);
+	gtk_widget_set_size_request (label5, size.width, 0);
+	gtk_widget_set_size_request (label6, size.width, 0);
 
 	// flush left
 	gtk_misc_set_alignment (GTK_MISC (label1), 0.0, 0.5);
 	gtk_misc_set_alignment (GTK_MISC (label2), 0.0, 0.5);
 	gtk_misc_set_alignment (GTK_MISC (label4), 0.0, 0.5);
+	gtk_misc_set_alignment (GTK_MISC (label5), 0.0, 0.5);
+	gtk_misc_set_alignment (GTK_MISC (label6), 0.0, 0.5);
 
 	/* web browser */
 	hbox = gtk_hbox_new (FALSE, 5);
@@ -1140,7 +1212,7 @@ create_preferences (void)
 	GtkWidget *delete_aux_files = gtk_check_button_new_with_label (
 			_("Clean-up auxiliaries files after close (*.aux, *.log, *.out, *.toc, etc)"));
 	gtk_widget_set_tooltip_text (delete_aux_files,
-			".aux .bit .blg .bbl .lof .log .lot .glo .glx .gxg .gxs .idx .ilg .ind .out .url .svn .toc");
+			".aux .bit .blg .lof .log .lot .glo .glx .gxg .gxs .idx .ilg .ind .out .url .svn .toc");
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (delete_aux_files),
 			latexila.prefs.delete_aux_files);
 	g_signal_connect (G_OBJECT (delete_aux_files), "toggled",
