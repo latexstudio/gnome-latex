@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=LaTeXila
+GenericName=LaTeX Frontend
+GenericName[fr]=Inerface graphique LaTeX
+Comment=LaTeX editor
+Comment[fr]=Éditeur LaTeX
+Exec=latexila
+Terminal=false
+Type=Application
+Categories=GTK;GNOME;Office;Publishing;
+MimeType=text/x-tex;
