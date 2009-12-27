@@ -9,8 +9,8 @@ SET(latexila_src main.c			main.h
 		 tool_menu_action.c	tool_menu_action.h
 		 file_browser.c		file_browser.h
 		 templates.c		templates.h)
+
 ADD_EXECUTABLE(latexila ${latexila_src})
 TARGET_LINK_LIBRARIES(latexila ${GTK2_LIBRARIES})
 
 INSTALL(TARGETS latexila DESTINATION "bin")
-INSTALL(FILES ui.xml DESTINATION "share/latexila")

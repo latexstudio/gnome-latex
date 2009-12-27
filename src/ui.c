@@ -74,292 +74,629 @@ static struct {
 	{DATA_DIR "/images/icons/math-nth-root.png", "math-nth-root"},
 };
 
+static const char *ui =
+"<ui>"
+"  <menubar name='MainMenu'>"
+"    <menu action='File'>"
+"      <menuitem action='FileNew' />"
+"      <menuitem action='FileOpen' />"
+"      <menuitem action='FileOpenRecent' />"
+"      <separator />"
+"      <menuitem action='FileSave' />"
+"      <menuitem action='FileSaveAs' />"
+"      <separator />"
+"      <menuitem action='FileCreateTemplate' />"
+"      <menuitem action='FileDeleteTemplate' />"
+"      <separator />"
+"      <menuitem action='FileClose' />"
+"      <menuitem action='FileQuit' />"
+"    </menu>"
+
+"    <menu name='Edit' action='Edit'>"
+"      <menuitem name='Undo' action='EditUndo' />"
+"      <menuitem name='Redo' action='EditRedo' />"
+"      <separator />"
+"      <menuitem action='EditCut' />"
+"      <menuitem action='EditCopy' />"
+"      <menuitem action='EditPaste' />"
+"      <menuitem action='EditDelete' />"
+"      <separator />"
+"      <menuitem action='EditSelectAll' />"
+"      <menuitem action='EditPreferences' />"
+"    </menu>"
+
+"    <menu action='View'>"
+"      <menuitem action='ViewSidePane' />"
+"      <menuitem action='ViewEditToolbar' />"
+"      <separator />"
+"      <menuitem action='ViewZoomIn' />"
+"      <menuitem action='ViewZoomOut' />"
+"      <menuitem action='ViewZoomReset' />"
+"    </menu>"
+
+"    <menu action='Search'>"
+"      <menuitem action='SearchFind' />"
+"      <menuitem action='SearchReplace' />"
+"      <separator />"
+"      <menuitem action='SearchGoToLine' />"
+"    </menu>"
+
+"    <menu action='Build'>"
+"      <menuitem action='compile_latex' />"
+"      <menuitem action='viewDVI' />"
+"      <separator />"
+"      <menuitem action='compile_pdflatex' />"
+"      <menuitem action='viewPDF' />"
+"      <separator />"
+"      <menuitem action='DVItoPDF' />"
+"      <menuitem action='DVItoPS' />"
+"      <menuitem action='viewPS' />"
+"      <separator />"
+"      <menuitem action='compile_bibtex' />"
+"      <menuitem action='compile_makeindex' />"
+"    </menu>"
+
+"    <menu action='Latex'>"
+"      <menu action='Sectioning'>"
+"        <menuitem action='SectioningPart' />"
+"        <menuitem action='SectioningChapter' />"
+"        <separator />"
+"        <menuitem action='SectioningSection' />"
+"        <menuitem action='SectioningSubsection' />"
+"        <menuitem action='SectioningSubsubsection' />"
+"        <menuitem action='SectioningParagraph' />"
+"        <menuitem action='SectioningSubparagraph' />"
+"      </menu>"
+
+"      <menu action='References'>"
+"        <menuitem action='ReferencesLabel' />"
+"        <menuitem action='ReferencesRef' />"
+"        <menuitem action='ReferencesPageref' />"
+"        <separator />"
+"        <menuitem action='ReferencesIndex' />"
+"        <menuitem action='ReferencesFootnote' />"
+"        <separator />"
+"        <menuitem action='ReferencesCite' />"
+"      </menu>"
+
+"      <menu action='Environments'>"
+"        <menuitem action='EnvironmentCenter' />"
+"        <menuitem action='EnvironmentLeft' />"
+"        <menuitem action='EnvironmentRight' />"
+"        <separator />"
+"        <menuitem action='EnvironmentMinipage' />"
+"        <separator />"
+"        <menuitem action='EnvironmentQuote' />"
+"        <menuitem action='EnvironmentQuotation' />"
+"        <menuitem action='EnvironmentVerse' />"
+"      </menu>"
+
+"      <menu action='ListEnvironments'>"
+"        <menuitem action='ListEnvItemize' />"
+"        <menuitem action='ListEnvEnumerate' />"
+"        <menuitem action='ListEnvDescription' />"
+"        <separator />"
+"        <menuitem action='ListEnvItem' />"
+"      </menu>"
+
+"      <menu action='CharacterSize'>"
+"        <menuitem action='CharacterSizeTiny' />"
+"        <menuitem action='CharacterSizeScriptsize' />"
+"        <menuitem action='CharacterSizeFootnotesize' />"
+"        <menuitem action='CharacterSizeSmall' />"
+"        <menuitem action='CharacterSizeNormalsize' />"
+"        <menuitem action='CharacterSizelarge' />"
+"        <menuitem action='CharacterSizeLarge' />"
+"        <menuitem action='CharacterSizeLARGE' />"
+"        <menuitem action='CharacterSizehuge' />"
+"        <menuitem action='CharacterSizeHuge' />"
+"      </menu>"
+
+"      <menu action='FontStyles'>"
+"        <menuitem action='Bold' />"
+"        <menuitem action='Italic' />"
+"        <menuitem action='Typewriter' />"
+"        <menuitem action='Slanted' />"
+"        <menuitem action='SmallCaps' />"
+"        <separator />"
+"        <menuitem action='Emph' />"
+"        <separator />"
+"        <menuitem action='Underline' />"
+"        <separator />"
+"        <menu action='FontFamily'>"
+"          <menuitem action='FontFamilyRoman' />"
+"          <menuitem action='FontFamilySansSerif' />"
+"          <menuitem action='FontFamilyMonospace' />"
+"        </menu>"
+"        <menu action='FontSeries'>"
+"          <menuitem action='FontSeriesMedium' />"
+"          <menuitem action='FontSeriesBold' />"
+"        </menu>"
+"        <menu action='FontShape'>"
+"          <menuitem action='FontShapeUpright' />"
+"          <menuitem action='FontShapeItalic' />"
+"          <menuitem action='FontShapeSlanted' />"
+"          <menuitem action='FontShapeSmallCaps' />"
+"        </menu>"
+"      </menu>"
+
+"      <menu action='Math'>"
+"        <menu action='MathEnvironments'>"
+"          <menuitem action='MathEnvNormal' />"
+"          <menuitem action='MathEnvCentered' />"
+"          <menuitem action='MathEnvNumbered' />"
+"          <menuitem action='MathEnvArray' />"
+"          <menuitem action='MathEnvNumberedArray' />"
+"        </menu>"
+"        <separator />"
+"        <menuitem action='MathSuperscript' />"
+"        <menuitem action='MathSubscript' />"
+"        <separator />"
+"        <menuitem action='MathFrac' />"
+"        <menuitem action='MathSquareRoot' />"
+"        <menuitem action='MathNthRoot' />"
+"        <separator />"
+"        <menu action='MathLeftDelimiters'>"
+"          <menuitem action='MathLeftDelimiter1' />"
+"          <menuitem action='MathLeftDelimiter2' />"
+"          <menuitem action='MathLeftDelimiter3' />"
+"          <menuitem action='MathLeftDelimiter4' />"
+"          <menuitem action='MathLeftDelimiter5' />"
+"          <menuitem action='MathLeftDelimiter6' />"
+"          <menuitem action='MathLeftDelimiter7' />"
+"          <menuitem action='MathLeftDelimiter8' />"
+"          <menuitem action='MathLeftDelimiter9' />"
+"        </menu>"
+"        <menu action='MathRightDelimiters'>"
+"          <menuitem action='MathRightDelimiter1' />"
+"          <menuitem action='MathRightDelimiter2' />"
+"          <menuitem action='MathRightDelimiter3' />"
+"          <menuitem action='MathRightDelimiter4' />"
+"          <menuitem action='MathRightDelimiter5' />"
+"          <menuitem action='MathRightDelimiter6' />"
+"          <menuitem action='MathRightDelimiter7' />"
+"          <menuitem action='MathRightDelimiter8' />"
+"          <menuitem action='MathRightDelimiter9' />"
+"        </menu>"
+"      </menu>"
+"    </menu>"
+
+"    <menu action='Tools'>"
+"      <menuitem action='ToolsComment' />"
+"      <menuitem action='ToolsUncomment' />"
+"      <separator />"
+"      <menuitem action='ToolsIndent' />"
+"      <menuitem action='ToolsUnindent' />"
+"    </menu>"
+
+"    <menu action='Documents'>"
+"      <menuitem action='DocumentsSaveAll' />"
+"      <menuitem action='DocumentsCloseAll' />"
+"      <separator />"
+"      <menuitem action='DocumentsPrevious' />"
+"      <menuitem action='DocumentsNext' />"
+"    </menu>"
+
+"    <menu action='Help'>"
+"      <menuitem action='HelpLatexReference' />"
+"      <menuitem action='HelpAbout' />"
+"    </menu>"
+"  </menubar>"
+
+"  <toolbar name='MainToolbar'>"
+"    <toolitem action='FileNew' />"
+"    <toolitem action='FileOpen' />"
+"    <!-- TODO add FileOpenRecent with the arrow only -->"
+"    <toolitem action='FileSave' />"
+"    <separator />"
+"    <toolitem action='EditUndo' />"
+"    <toolitem action='EditRedo' />"
+"    <separator />"
+"    <toolitem action='EditCut' />"
+"    <toolitem action='EditCopy' />"
+"    <toolitem action='EditPaste' />"
+"    <separator />"
+"    <toolitem action='SearchFind' />"
+"    <toolitem action='SearchReplace' />"
+"    <separator />"
+"    <toolitem action='compile_latex' />"
+"    <toolitem action='viewDVI' />"
+"    <separator />"
+"    <toolitem action='compile_pdflatex' />"
+"    <toolitem action='viewPDF' />"
+"  </toolbar>"
+
+"  <toolbar name='EditToolbar'>"
+"    <toolitem action='SectioningToolItem'>"
+"      <menu action='Sectioning'>"
+"        <menuitem action='SectioningPart' />"
+"        <menuitem action='SectioningChapter' />"
+"        <separator />"
+"        <menuitem action='SectioningSection' />"
+"        <menuitem action='SectioningSubsection' />"
+"        <menuitem action='SectioningSubsubsection' />"
+"        <menuitem action='SectioningParagraph' />"
+"        <menuitem action='SectioningSubparagraph' />"
+"      </menu>"
+"    </toolitem>"
+
+"    <toolitem action='ReferencesToolItem'>"
+"      <menu action='References'>"
+"        <menuitem action='ReferencesLabel' />"
+"        <menuitem action='ReferencesRef' />"
+"        <menuitem action='ReferencesPageref' />"
+"        <menuitem action='ReferencesIndex' />"
+"        <menuitem action='ReferencesFootnote' />"
+"        <menuitem action='ReferencesCite' />"
+"      </menu>"
+"    </toolitem>"
+
+"    <toolitem action='CharacterSizeToolItem'>"
+"      <menu action='CharacterSize'>"
+"        <menuitem action='CharacterSizeTiny' />"
+"        <menuitem action='CharacterSizeScriptsize' />"
+"        <menuitem action='CharacterSizeFootnotesize' />"
+"        <menuitem action='CharacterSizeSmall' />"
+"        <menuitem action='CharacterSizeNormalsize' />"
+"        <menuitem action='CharacterSizelarge' />"
+"        <menuitem action='CharacterSizeLarge' />"
+"        <menuitem action='CharacterSizeLARGE' />"
+"        <menuitem action='CharacterSizehuge' />"
+"        <menuitem action='CharacterSizeHuge' />"
+"      </menu>"
+"    </toolitem>"
+
+"    <separator />"
+
+"    <toolitem action='Bold' />"
+"    <toolitem action='Italic' />"
+"    <toolitem action='Typewriter' />"
+"    <toolitem action='Underline' />"
+
+"    <separator />"
+
+"    <toolitem action='EnvironmentCenter' />"
+
+"    <separator />"
+
+"    <toolitem action='ListEnvItemize' />"
+"    <toolitem action='ListEnvEnumerate' />"
+"    <toolitem action='ListEnvDescription' />"
+"    <toolitem action='ListEnvItem' />"
+
+"    <separator />"
+
+"    <toolitem action='MathEnvironmentsToolItem'>"
+"      <menu action='MathEnvironments'>"
+"        <menuitem action='MathEnvNormal' />"
+"        <menuitem action='MathEnvCentered' />"
+"        <menuitem action='MathEnvNumbered' />"
+"        <menuitem action='MathEnvArray' />"
+"        <menuitem action='MathEnvNumberedArray' />"
+"      </menu>"
+"    </toolitem>"
+"    <separator />"
+"    <toolitem action='MathSuperscript' />"
+"    <toolitem action='MathSubscript' />"
+"    <separator />"
+"    <toolitem action='MathFrac' />"
+"    <toolitem action='MathSquareRoot' />"
+"    <separator />"
+"    <toolitem action='MathLeftDelimitersToolItem'>"
+"      <menu action='MathLeftDelimiters'>"
+"        <menuitem action='MathLeftDelimiter1' />"
+"        <menuitem action='MathLeftDelimiter2' />"
+"        <menuitem action='MathLeftDelimiter3' />"
+"        <menuitem action='MathLeftDelimiter4' />"
+"        <menuitem action='MathLeftDelimiter5' />"
+"        <menuitem action='MathLeftDelimiter6' />"
+"        <menuitem action='MathLeftDelimiter7' />"
+"        <menuitem action='MathLeftDelimiter8' />"
+"        <menuitem action='MathLeftDelimiter9' />"
+"      </menu>"
+"    </toolitem>"
+"    <toolitem action='MathRightDelimitersToolItem'>"
+"      <menu action='MathRightDelimiters'>"
+"        <menuitem action='MathRightDelimiter1' />"
+"        <menuitem action='MathRightDelimiter2' />"
+"        <menuitem action='MathRightDelimiter3' />"
+"        <menuitem action='MathRightDelimiter4' />"
+"        <menuitem action='MathRightDelimiter5' />"
+"        <menuitem action='MathRightDelimiter6' />"
+"        <menuitem action='MathRightDelimiter7' />"
+"        <menuitem action='MathRightDelimiter8' />"
+"        <menuitem action='MathRightDelimiter9' />"
+"      </menu>"
+"    </toolitem>"
+"  </toolbar>"
+"</ui>";
+
 // all the actions (for the menu and the toolbar)
 // {name, stock_id, label, accelerator, tooltip, callback}
 // the names come from the XML file
 static GtkActionEntry entries[] = {
-	{"File", NULL, N_("File"), NULL, NULL, NULL},
-	{"FileNew", GTK_STOCK_NEW, N_("New"), "<Control>N",
+	{"File", NULL, N_("_File"), NULL, NULL, NULL},
+	{"FileNew", GTK_STOCK_NEW, N_("_New"), "<Control>N",
 		N_("New file"), G_CALLBACK (cb_new)},
-	{"FileOpen", GTK_STOCK_OPEN, N_("Open..."), "<Control>O",
+	{"FileOpen", GTK_STOCK_OPEN, N_("_Open..."), "<Control>O",
 		N_("Open a file"), G_CALLBACK (cb_open)},
-	{"FileSave", GTK_STOCK_SAVE, N_("Save..."), "<Control>S",
+	{"FileSave", GTK_STOCK_SAVE, N_("_Save..."), "<Control>S",
 		N_("Save the current file"), G_CALLBACK (cb_save)},
-	{"FileSaveAs", GTK_STOCK_SAVE_AS, N_("Save as..."), "<Shift><Control>S",
+	{"FileSaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), "<Shift><Control>S",
 		N_("Save the current file with a different name"), G_CALLBACK (cb_save_as)},
-	{"FileCreateTemplate", NULL, N_("Create Template From Document..."), NULL,
+	{"FileCreateTemplate", NULL, N_("Create _Template From Document..."), NULL,
 		N_("Create a new template from the current document"), G_CALLBACK (cb_create_template)},
-	{"FileDeleteTemplate", NULL, N_("Delete Template..."), NULL,
+	{"FileDeleteTemplate", NULL, N_("_Delete Template..."), NULL,
 		N_("Delete personnal template(s)"), G_CALLBACK (cb_delete_template)},
-	{"FileClose", GTK_STOCK_CLOSE, N_("Close"), "<Control>W",
+	{"FileClose", GTK_STOCK_CLOSE, N_("_Close"), "<Control>W",
 		N_("Close the current file"), G_CALLBACK (cb_close)},
-	{"FileQuit", GTK_STOCK_QUIT, N_("Quit"), "<Control>Q",
+	{"FileQuit", GTK_STOCK_QUIT, N_("_Quit"), "<Control>Q",
 		N_("Quit the program"), G_CALLBACK (cb_quit)},
 	
-	{"Edit", NULL, N_("Edit"), NULL, NULL, NULL},
-	{"EditUndo", GTK_STOCK_UNDO, N_("Undo"), "<Control>Z",
+	{"Edit", NULL, N_("_Edit"), NULL, NULL, NULL},
+	{"EditUndo", GTK_STOCK_UNDO, N_("_Undo"), "<Control>Z",
 		N_("Undo the last action"), G_CALLBACK (cb_undo)},
-	{"EditRedo", GTK_STOCK_REDO, N_("Redo"), "<Shift><Control>Z",
+	{"EditRedo", GTK_STOCK_REDO, N_("_Redo"), "<Shift><Control>Z",
 		N_("Redo the last undone action"), G_CALLBACK (cb_redo)},
-	{"EditCut", GTK_STOCK_CUT, N_("Cut"), "<Control>X",
+	{"EditCut", GTK_STOCK_CUT, N_("Cu_t"), "<Control>X",
 		N_("Cut the selection"), G_CALLBACK (cb_cut)},
-	{"EditCopy", GTK_STOCK_COPY, N_("Copy"), "<Control>C",
+	{"EditCopy", GTK_STOCK_COPY, N_("_Copy"), "<Control>C",
 		N_("Copy the selection"), G_CALLBACK (cb_copy)},
-	{"EditPaste", GTK_STOCK_PASTE, N_("Paste"), "<Control>V",
+	{"EditPaste", GTK_STOCK_PASTE, N_("_Paste"), "<Control>V",
 		N_("Paste the clipboard"), G_CALLBACK (cb_paste)},
-	{"EditDelete", GTK_STOCK_DELETE, N_("Delete"), NULL,
+	{"EditDelete", GTK_STOCK_DELETE, N_("_Delete"), NULL,
 		N_("Delete the selected text"), G_CALLBACK (cb_delete)},
-	{"EditSelectAll", GTK_STOCK_SELECT_ALL, N_("Select All"), "<Control>A",
+	{"EditSelectAll", GTK_STOCK_SELECT_ALL, N_("Select _All"), "<Control>A",
 		N_("Select the entire document"), G_CALLBACK (cb_select_all)},
-	{"EditPreferences", GTK_STOCK_PREFERENCES, N_("Preferences"), NULL,
+	{"EditPreferences", GTK_STOCK_PREFERENCES, N_("Pr_eferences"), NULL,
 		N_("Configure the application"), G_CALLBACK (cb_preferences)},
 
-	{"View", NULL, N_("View"), NULL, NULL, NULL},
-	{"ViewZoomIn", GTK_STOCK_ZOOM_IN, N_("Zoom In"), "<Control>plus",
+	{"View", NULL, N_("_View"), NULL, NULL, NULL},
+	{"ViewZoomIn", GTK_STOCK_ZOOM_IN, N_("Zoom _In"), "<Control>plus",
 		N_("Enlarge the font"), G_CALLBACK (cb_zoom_in)},
-	{"ViewZoomOut", GTK_STOCK_ZOOM_OUT, N_("Zoom Out"), "<Control>minus",
+	{"ViewZoomOut", GTK_STOCK_ZOOM_OUT, N_("Zoom _Out"), "<Control>minus",
 		N_("Shrink the font"), G_CALLBACK (cb_zoom_out)},
-	{"ViewZoomReset", GTK_STOCK_ZOOM_100, N_("Reset Zoom"), "<Control>0",
+	{"ViewZoomReset", GTK_STOCK_ZOOM_100, N_("_Reset Zoom"), "<Control>0",
 		N_("Reset the size of the font"), G_CALLBACK (cb_zoom_reset)},
 
-	{"Search", NULL, N_("Search"), NULL, NULL, NULL},
-	{"SearchFind", GTK_STOCK_FIND, N_("Find..."), "<Control>F",
+	{"Search", NULL, N_("_Search"), NULL, NULL, NULL},
+	{"SearchFind", GTK_STOCK_FIND, N_("_Find..."), "<Control>F",
 		N_("Search for text"), G_CALLBACK (cb_find)},
-	{"SearchReplace", GTK_STOCK_FIND_AND_REPLACE, N_("Replace..."), "<Control>H",
+	{"SearchReplace", GTK_STOCK_FIND_AND_REPLACE, N_("_Replace..."), "<Control>H",
 		N_("Search for and replace text"), G_CALLBACK (cb_replace)},
-	{"SearchGoToLine", GTK_STOCK_JUMP_TO, N_("Go to Line..."), "<Control>G",
+	{"SearchGoToLine", GTK_STOCK_JUMP_TO, N_("_Go to Line..."), "<Control>G",
 		N_("Go to a specific line"), G_CALLBACK (cb_go_to_line)},
 	
-	{"Build", NULL, N_("Build"), NULL, NULL, NULL},
-	{"compile_latex", "compile_latex", N_("Compile (latex)"), "<Release>F5",
+	{"Build", NULL, N_("_Build"), NULL, NULL, NULL},
+	{"compile_latex", "compile_latex", N_("_Compile (latex)"), "<Release>F5",
 		N_("Produce the document in DVI format"), G_CALLBACK (cb_latex)},
-	{"viewDVI", "view_dvi", N_("View DVI"), "<Release>F6",
+	{"viewDVI", "view_dvi", N_("_View DVI"), "<Release>F6",
 		N_("View the DVI file"), G_CALLBACK (cb_view_dvi)},
-	{"compile_pdflatex", "compile_pdflatex", N_("Compile (pdflatex)"), "<Release>F7",
+	{"compile_pdflatex", "compile_pdflatex", N_("C_ompile (pdflatex)"), "<Release>F7",
 		N_("Produce the document in PDF format"), G_CALLBACK (cb_pdflatex)},
-	{"viewPDF", "view_pdf", N_("View PDF"), "<Release>F8",
+	{"viewPDF", "view_pdf", N_("V_iew PDF"), "<Release>F8",
 		N_("View the PDF file"), G_CALLBACK (cb_view_pdf)},
-	{"DVItoPDF", "dvi_to_pdf", N_("DVI to PDF"), NULL,
+	{"DVItoPDF", "dvi_to_pdf", N_("_DVI to PDF"), NULL,
 		N_("Convert the DVI document to the PDF format"), G_CALLBACK (cb_dvi_to_pdf)},
-	{"DVItoPS", "dvi_to_ps", N_("DVI to PS"), NULL,
+	{"DVItoPS", "dvi_to_ps", N_("DVI to _PS"), NULL,
 		N_("Convert the DVI document to the PostScript format"), G_CALLBACK (cb_dvi_to_ps)},
-	{"viewPS", "view_ps", N_("View PS"), NULL,
+	{"viewPS", "view_ps", N_("Vi_ew PS"), NULL,
 		N_("View the PostScript file"), G_CALLBACK (cb_view_ps)},
-	{"compile_bibtex", NULL, "BibTeX", NULL,
+	{"compile_bibtex", NULL, "_BibTeX", NULL,
 		N_("Run BibTeX on the current document"), G_CALLBACK (cb_bibtex)},
-	{"compile_makeindex", NULL, "MakeIndex", NULL,
+	{"compile_makeindex", NULL, "_MakeIndex", NULL,
 		N_("Run MakeIndex on the current document"), G_CALLBACK (cb_makeindex)},
 
-	{"Tools", NULL, N_("Tools"), NULL, NULL, NULL},
-	{"ToolsComment", NULL, N_("Comment"), "<Control>D",
+	{"Tools", NULL, N_("_Tools"), NULL, NULL, NULL},
+	{"ToolsComment", NULL, N_("_Comment"), "<Control>D",
 		N_("Comment the selected lines (add the character \"%\")"),
 		G_CALLBACK (cb_tools_comment)},
-	{"ToolsUncomment", NULL, N_("Uncomment"), "<Shift><Control>D",
+	{"ToolsUncomment", NULL, N_("_Uncomment"), "<Shift><Control>D",
 		N_("Uncomment the selected lines (remove the character \"%\")"),
 		G_CALLBACK (cb_tools_uncomment)},
-	{"ToolsIndent", GTK_STOCK_INDENT, N_("Indent"), "<Control>I",
+	{"ToolsIndent", GTK_STOCK_INDENT, N_("_Indent"), "<Control>I",
 		N_("Indent the selected lines"), G_CALLBACK (cb_tools_indent)},
-	{"ToolsUnindent", GTK_STOCK_UNINDENT, N_("Unindent"), "<Shift><Control>I",
+	{"ToolsUnindent", GTK_STOCK_UNINDENT, N_("U_nindent"), "<Shift><Control>I",
 		N_("Unindent the selected lines"), G_CALLBACK (cb_tools_unindent)},
 
-	{"Documents", NULL, N_("Documents"), NULL, NULL, NULL},
-	{"DocumentsSaveAll", GTK_STOCK_SAVE, N_("Save All"), "<Shift><Control>L",
+	{"Documents", NULL, N_("_Documents"), NULL, NULL, NULL},
+	{"DocumentsSaveAll", GTK_STOCK_SAVE, N_("_Save All"), "<Shift><Control>L",
 		N_("Save all open files"), G_CALLBACK (cb_documents_save_all)},
-	{"DocumentsCloseAll", GTK_STOCK_CLOSE, N_("Close All"), "<Shift><Control>W",
+	{"DocumentsCloseAll", GTK_STOCK_CLOSE, N_("_Close All"), "<Shift><Control>W",
 		N_("Close all open files"), G_CALLBACK (cb_documents_close_all)},
-	{"DocumentsPrevious", GTK_STOCK_GO_BACK, N_("Previous Document"), "<Control><Alt>Page_Up",
+	{"DocumentsPrevious", GTK_STOCK_GO_BACK, N_("_Previous Document"), "<Control><Alt>Page_Up",
 		N_("Activate previous document"), G_CALLBACK (cb_documents_previous)},
-	{"DocumentsNext", GTK_STOCK_GO_FORWARD, N_("Next Document"), "<Control><Alt>Page_Down",
+	{"DocumentsNext", GTK_STOCK_GO_FORWARD, N_("_Next Document"), "<Control><Alt>Page_Down",
 		N_("Activate next document"), G_CALLBACK (cb_documents_next)},
 	
-	{"Help", NULL, N_("Help"), NULL, NULL, NULL},
-	{"HelpLatexReference", GTK_STOCK_HELP, N_("LaTeX Reference"), "<Release>F1",
+	{"Help", NULL, N_("_Help"), NULL, NULL, NULL},
+	{"HelpLatexReference", GTK_STOCK_HELP, N_("_LaTeX Reference"), "<Release>F1",
 		N_("The Kile LaTeX Reference"), G_CALLBACK (cb_help_latex_reference)},
-	{"HelpAbout", GTK_STOCK_ABOUT, N_("About"), NULL,
+	{"HelpAbout", GTK_STOCK_ABOUT, N_("_About"), NULL,
 		N_("About LaTeXila"), G_CALLBACK (cb_about_dialog)}
 };
 
 // {name, stock_id, label, accelerator, tooltip, callback}
 static GtkActionEntry latex_entries[] = {
-	{"Latex", NULL, "LaTeX", NULL, NULL, NULL},
+	{"Latex", NULL, "_LaTeX", NULL, NULL, NULL},
 
-	{"Sectioning", "sectioning-section", N_("Sectioning"), NULL, NULL, NULL},
-	{"SectioningPart", "sectioning-part", N_("part"), NULL,
+	{"Sectioning", "sectioning-section", N_("_Sectioning"), NULL, NULL, NULL},
+	{"SectioningPart", "sectioning-part", N_("_part"), NULL,
 		N_("part"), G_CALLBACK (cb_sectioning_part)},
-	{"SectioningChapter", "sectioning-chapter", N_("chapter"), NULL,
+	{"SectioningChapter", "sectioning-chapter", N_("_chapter"), NULL,
 		N_("chapter"), G_CALLBACK (cb_sectioning_chapter)},
-	{"SectioningSection", "sectioning-section", N_("section"), NULL,
+	{"SectioningSection", "sectioning-section", N_("_section"), NULL,
 		N_("section"), G_CALLBACK (cb_sectioning_section)},
-	{"SectioningSubsection", "sectioning-subsection", N_("subsection"), NULL,
+	{"SectioningSubsection", "sectioning-subsection", N_("s_ubsection"), NULL,
 		N_("subsection"), G_CALLBACK (cb_sectioning_subsection)},
-	{"SectioningSubsubsection", "sectioning-subsubsection", N_("subsubsection"), NULL,
+	{"SectioningSubsubsection", "sectioning-subsubsection", N_("su_bsubsection"), NULL,
 		N_("subsubsection"), G_CALLBACK (cb_sectioning_subsubsection)},
-	{"SectioningParagraph", "sectioning-paragraph", N_("paragraph"), NULL,
+	{"SectioningParagraph", "sectioning-paragraph", N_("p_aragraph"), NULL,
 		N_("paragraph"), G_CALLBACK (cb_sectioning_paragraph)},
-	{"SectioningSubparagraph", "sectioning-paragraph", N_("subparagraph"), NULL,
+	{"SectioningSubparagraph", "sectioning-paragraph", N_("subpa_ragraph"), NULL,
 		N_("subparagraph"), G_CALLBACK (cb_sectioning_subparagraph)},
 
-	{"References", "references", N_("References"), NULL, NULL, NULL},
-	{"ReferencesLabel", NULL, "label", NULL, "label", G_CALLBACK (cb_ref_label)},
-	{"ReferencesRef", NULL, "ref", NULL, "ref", G_CALLBACK (cb_ref_ref)},
-	{"ReferencesPageref", NULL, "pageref", NULL, "pageref", G_CALLBACK (cb_ref_pageref)},
-	{"ReferencesIndex", NULL, "index", NULL, "index", G_CALLBACK (cb_ref_index)},
-	{"ReferencesFootnote", NULL, "footnote", NULL, "footnote", G_CALLBACK (cb_ref_footnote)},
-	{"ReferencesCite", NULL, "cite", NULL, "cite", G_CALLBACK (cb_ref_cite)},
+	{"References", "references", N_("_References"), NULL, NULL, NULL},
+	{"ReferencesLabel", NULL, "_label", NULL, "label", G_CALLBACK (cb_ref_label)},
+	{"ReferencesRef", NULL, "_ref", NULL, "ref", G_CALLBACK (cb_ref_ref)},
+	{"ReferencesPageref", NULL, "_pageref", NULL, "pageref", G_CALLBACK (cb_ref_pageref)},
+	{"ReferencesIndex", NULL, "_index", NULL, "index", G_CALLBACK (cb_ref_index)},
+	{"ReferencesFootnote", NULL, "_footnote", NULL, "footnote", G_CALLBACK (cb_ref_footnote)},
+	{"ReferencesCite", NULL, "_cite", NULL, "cite", G_CALLBACK (cb_ref_cite)},
 
-	{"Environments", GTK_STOCK_JUSTIFY_CENTER, N_("Environments"), NULL, NULL, NULL},
-	{"EnvironmentCenter", GTK_STOCK_JUSTIFY_CENTER, N_("Center - \\begin{center}"), NULL,
+	{"Environments", GTK_STOCK_JUSTIFY_CENTER, N_("_Environments"), NULL, NULL, NULL},
+	{"EnvironmentCenter", GTK_STOCK_JUSTIFY_CENTER, N_("_Center - \\begin{center}"), NULL,
 		N_("Center - \\begin{center}"), G_CALLBACK (cb_env_center)},
-	{"EnvironmentLeft", GTK_STOCK_JUSTIFY_LEFT, N_("Align Left - \\begin{flushleft}"), NULL,
+	{"EnvironmentLeft", GTK_STOCK_JUSTIFY_LEFT, N_("Align _Left - \\begin{flushleft}"), NULL,
 		N_("Align Left - \\begin{flushleft}"), G_CALLBACK (cb_env_left)},
-	{"EnvironmentRight", GTK_STOCK_JUSTIFY_RIGHT, N_("Align Right - \\begin{flushright}"), NULL,
+	{"EnvironmentRight", GTK_STOCK_JUSTIFY_RIGHT, N_("Align _Right - \\begin{flushright}"), NULL,
 		N_("Align Right - \\begin{flushright}"), G_CALLBACK (cb_env_right)},
-	{"EnvironmentMinipage", NULL, N_("Minipage - \\begin{minipage}"), NULL,
+	{"EnvironmentMinipage", NULL, N_("_Minipage - \\begin{minipage}"), NULL,
 		N_("Minipage - \\begin{minipage}"), G_CALLBACK (cb_env_minipage)},
-	{"EnvironmentQuote", NULL, N_("Quote - \\begin{quote}"), NULL,
+	{"EnvironmentQuote", NULL, N_("_Quote - \\begin{quote}"), NULL,
 		N_("Quote - \\begin{quote}"), G_CALLBACK (cb_env_quote)},
-	{"EnvironmentQuotation", NULL, N_("Quotation - \\begin{quotation}"), NULL,
+	{"EnvironmentQuotation", NULL, N_("Qu_otation - \\begin{quotation}"), NULL,
 		N_("Quotation - \\begin{quotation}"), G_CALLBACK (cb_env_quotation)},
-	{"EnvironmentVerse", NULL, N_("Verse - \\begin{verse}"), NULL,
+	{"EnvironmentVerse", NULL, N_("_Verse - \\begin{verse}"), NULL,
 		N_("Verse - \\begin{verse}"), G_CALLBACK (cb_env_verse)},
 
-	{"ListEnvironments", "list-enumerate", N_("List Environments"), NULL, NULL, NULL},
-	{"ListEnvItemize", "list-itemize", N_("Bulleted List - \\begin{itemize}"), NULL,
+	{"ListEnvironments", "list-enumerate", N_("_List Environments"), NULL, NULL, NULL},
+	{"ListEnvItemize", "list-itemize", N_("_Bulleted List - \\begin{itemize}"), NULL,
 		N_("Bulleted List - \\begin{itemize}"), G_CALLBACK (cb_list_env_itemize)},
-	{"ListEnvEnumerate", "list-enumerate", N_("Enumeration - \\begin{enumerate}"), NULL,
+	{"ListEnvEnumerate", "list-enumerate", N_("_Enumeration - \\begin{enumerate}"), NULL,
 		N_("Enumeration - \\begin{enumerate}"), G_CALLBACK (cb_list_env_enumerate)},
-	{"ListEnvDescription", "list-description", N_("Description - \\begin{description}"), NULL,
+	{"ListEnvDescription", "list-description", N_("_Description - \\begin{description}"), NULL,
 		N_("Description - \\begin{description}"), G_CALLBACK (cb_list_env_description)},
-	{"ListEnvItem", "list-item", "\\item", NULL,
+	{"ListEnvItem", "list-item", "\\_item", NULL,
 		"\\item", G_CALLBACK (cb_list_env_item)},
 	
 
-	{"CharacterSize", "character-size", N_("Characters Sizes"), NULL, NULL, NULL},
-	{"CharacterSizeTiny", NULL, "tiny", NULL,
+	{"CharacterSize", "character-size", N_("_Characters Sizes"), NULL, NULL, NULL},
+	{"CharacterSizeTiny", NULL, "_tiny", NULL,
 		"\\tiny", G_CALLBACK (cb_size_tiny)},
-	{"CharacterSizeScriptsize", NULL, "scriptsize", NULL,
+	{"CharacterSizeScriptsize", NULL, "_scriptsize", NULL,
 		"\\scriptsize", G_CALLBACK (cb_size_scriptsize)},
-	{"CharacterSizeFootnotesize", NULL, "footnotesize", NULL,
+	{"CharacterSizeFootnotesize", NULL, "_footnotesize", NULL,
 		"\\footnotesize", G_CALLBACK (cb_size_footnotesize)},
-	{"CharacterSizeSmall", NULL, "small", NULL,
+	{"CharacterSizeSmall", NULL, "s_mall", NULL,
 		"\\small", G_CALLBACK (cb_size_small)},
-	{"CharacterSizeNormalsize", NULL, "normalsize", NULL,
+	{"CharacterSizeNormalsize", NULL, "_normalsize", NULL,
 		"\\normalsize", G_CALLBACK (cb_size_normalsize)},
-	{"CharacterSizelarge", NULL, "large", NULL,
+	{"CharacterSizelarge", NULL, "_large", NULL,
 		"\\large", G_CALLBACK (cb_size_large)},
-	{"CharacterSizeLarge", NULL, "Large", NULL,
+	{"CharacterSizeLarge", NULL, "L_arge", NULL,
 		"\\Large", G_CALLBACK (cb_size_Large)},
-	{"CharacterSizeLARGE", NULL, "LARGE", NULL,
+	{"CharacterSizeLARGE", NULL, "LA_RGE", NULL,
 		"\\LARGE", G_CALLBACK (cb_size_LARGE)},
-	{"CharacterSizehuge", NULL, "huge", NULL,
+	{"CharacterSizehuge", NULL, "_huge", NULL,
 		"\\huge", G_CALLBACK (cb_size_huge)},
-	{"CharacterSizeHuge", NULL, "Huge", NULL,
+	{"CharacterSizeHuge", NULL, "H_uge", NULL,
 		"\\Huge", G_CALLBACK (cb_size_Huge)},
 
-	{"FontStyles", "bold", N_("Font Styles"), NULL, NULL, NULL},
-	{"Bold", "bold", N_("Bold - \\textbf{}"), NULL,
+	{"FontStyles", "bold", N_("_Font Styles"), NULL, NULL, NULL},
+	{"Bold", "bold", N_("_Bold - \\textbf{}"), NULL,
 		N_("Bold - \\textbf{}"), G_CALLBACK (cb_text_bold)},
-	{"Italic", "italic", N_("Italic - \\textit{}"), NULL,
+	{"Italic", "italic", N_("_Italic - \\textit{}"), NULL,
 		N_("Italic - \\textit{}"), G_CALLBACK (cb_text_italic)},
-	{"Typewriter", "typewriter", N_("Typewriter - \\texttt{}"), NULL,
+	{"Typewriter", "typewriter", N_("_Typewriter - \\texttt{}"), NULL,
 		N_("Typewriter - \\texttt{}"), G_CALLBACK (cb_text_typewriter)},
-	{"Underline", "underline", N_("Underline - \\underline{}"), NULL,
+	{"Underline", "underline", N_("_Underline - \\underline{}"), NULL,
 		N_("Underline - \\underline{}"), G_CALLBACK (cb_text_underline)},
-	{"Slanted", NULL, N_("Slanted - \\textsl{}"), NULL,
+	{"Slanted", NULL, N_("_Slanted - \\textsl{}"), NULL,
 		N_("Slanted - \\textsl{}"), G_CALLBACK (cb_text_slanted)},
-	{"SmallCaps", NULL, N_("Small Capitals - \\textsc{}"), NULL,
+	{"SmallCaps", NULL, N_("Small _Capitals - \\textsc{}"), NULL,
 		N_("Small Capitals - \\textsc{}"), G_CALLBACK (cb_text_small_caps)},
-	{"Emph", NULL, N_("Emphasized - \\emph{}"), NULL,
+	{"Emph", NULL, N_("_Emphasized - \\emph{}"), NULL,
 		N_("Emphasized - \\emph{}"), G_CALLBACK (cb_text_emph)},
-	{"FontFamily", NULL, N_("Font Family"), NULL, NULL, NULL},
-	{"FontFamilyRoman", NULL, N_("Roman - \\rmfamily"), NULL,
+	{"FontFamily", NULL, N_("_Font Family"), NULL, NULL, NULL},
+	{"FontFamilyRoman", NULL, N_("_Roman - \\rmfamily"), NULL,
 		N_("Roman - \\rmfamily"), G_CALLBACK (cb_text_font_family_roman)},
-	{"FontFamilySansSerif", NULL, N_("Sans Serif - \\sffamily"), NULL,
+	{"FontFamilySansSerif", NULL, N_("_Sans Serif - \\sffamily"), NULL,
 		N_("Sans Serif - \\sffamily"), G_CALLBACK (cb_text_font_family_sans_serif)},
-	{"FontFamilyMonospace", NULL, N_("Monospace - \\ttfamily"), NULL,
+	{"FontFamilyMonospace", NULL, N_("_Monospace - \\ttfamily"), NULL,
 		N_("Monospace - \\ttfamily"), G_CALLBACK (cb_text_font_family_monospace)},
-	{"FontSeries", NULL, N_("Font Series"), NULL, NULL, NULL},
-	{"FontSeriesMedium", NULL, N_("Medium - \\mdseries"), NULL,
+	{"FontSeries", NULL, N_("F_ont Series"), NULL, NULL, NULL},
+	{"FontSeriesMedium", NULL, N_("_Medium - \\mdseries"), NULL,
 		N_("Medium - \\mdseries"), G_CALLBACK (cb_text_font_series_medium)},
-	{"FontSeriesBold", NULL, N_("Bold - \\bfseries"), NULL,
+	{"FontSeriesBold", NULL, N_("_Bold - \\bfseries"), NULL,
 		N_("Bold - \\bfseries"), G_CALLBACK (cb_text_font_series_bold)},
-	{"FontShape", NULL, N_("Font Shape"), NULL, NULL, NULL},
-	{"FontShapeUpright", NULL, N_("Upright - \\upshape"), NULL,
+	{"FontShape", NULL, N_("Fo_nt Shape"), NULL, NULL, NULL},
+	{"FontShapeUpright", NULL, N_("_Upright - \\upshape"), NULL,
 		N_("Upright - \\upshape"), G_CALLBACK (cb_text_font_shape_upright)},
-	{"FontShapeItalic", NULL, N_("Italic - \\itshape"), NULL,
+	{"FontShapeItalic", NULL, N_("_Italic - \\itshape"), NULL,
 		N_("Italic - \\itshape"), G_CALLBACK (cb_text_font_shape_italic)},
-	{"FontShapeSlanted", NULL, N_("Slanted - \\slshape"), NULL,
+	{"FontShapeSlanted", NULL, N_("_Slanted - \\slshape"), NULL,
 		N_("Slanted - \\slshape"), G_CALLBACK (cb_text_font_shape_slanted)},
-	{"FontShapeSmallCaps", NULL, N_("Small Capitals - \\scshape"), NULL,
+	{"FontShapeSmallCaps", NULL, N_("Small _Capitals - \\scshape"), NULL,
 		N_("Small Capitals - \\scshape"), G_CALLBACK (cb_text_font_shape_small_caps)},
 
-	{"Math", "math", N_("Math"), NULL, NULL, NULL},
-	{"MathEnvironments", NULL, N_("Math Environments"), NULL, NULL, NULL},
-	{"MathEnvNormal", "math", N_("Mathematical Environment - $...$"), NULL,
+	{"Math", "math", N_("_Math"), NULL, NULL, NULL},
+	{"MathEnvironments", NULL, N_("_Math Environments"), NULL, NULL, NULL},
+	{"MathEnvNormal", "math", N_("_Mathematical Environment - $...$"), NULL,
 		N_("Mathematical Environment - $...$"), G_CALLBACK (cb_math_env_normal)},
-	{"MathEnvCentered", "math-centered", N_("Centered Formula - $$...$$"), NULL,
+	{"MathEnvCentered", "math-centered", N_("_Centered Formula - $$...$$"), NULL,
 		N_("Centered Formula - $$...$$"), G_CALLBACK (cb_math_env_centered)},
-	{"MathEnvNumbered", "math-numbered", N_("Numbered Equation - \\begin{equation}"), NULL,
+	{"MathEnvNumbered", "math-numbered", N_("_Numbered Equation - \\begin{equation}"), NULL,
 		N_("Numbered Equation - \\begin{equation}"), G_CALLBACK (cb_math_env_numbered)},
-	{"MathEnvArray", "math-array", N_("Array of Equations - \\begin{align*}"), NULL,
+	{"MathEnvArray", "math-array", N_("_Array of Equations - \\begin{align*}"), NULL,
 		N_("Array of Equations - \\begin{align*}"), G_CALLBACK (cb_math_env_array)},
-	{"MathEnvNumberedArray", "math-numbered-array", N_("Numbered Array of Equations - \\begin{align}"), NULL,
+	{"MathEnvNumberedArray", "math-numbered-array", N_("Numbered Array of _Equations - \\begin{align}"), NULL,
 		N_("Numbered Array of Equations - \\begin{align}"), G_CALLBACK (cb_math_env_numbered_array)},
-	{"MathSuperscript", "math-superscript", N_("Superscript - ^{}"), NULL,
+	{"MathSuperscript", "math-superscript", N_("_Superscript - ^{}"), NULL,
 		N_("Superscript - ^{}"), G_CALLBACK (cb_math_superscript)},
-	{"MathSubscript", "math-subscript", N_("Subscript - __{}"), NULL,
+	{"MathSubscript", "math-subscript", N_("Su_bscript - __{}"), NULL,
 		N_("Subscript - _{}"), G_CALLBACK (cb_math_subscript)},
-	{"MathFrac", "math-frac", N_("Fraction - \\frac{}{}"), NULL,
+	{"MathFrac", "math-frac", N_("_Fraction - \\frac{}{}"), NULL,
 		N_("Fraction - \\frac{}{}"), G_CALLBACK (cb_math_frac)},
-	{"MathSquareRoot", "math-square-root", N_("Square Root - \\sqrt{}"), NULL,
+	{"MathSquareRoot", "math-square-root", N_("Square _Root - \\sqrt{}"), NULL,
 		N_("Square Root - \\sqrt{}"), G_CALLBACK (cb_math_square_root)},
-	{"MathNthRoot", "math-nth-root", N_("N-th Root - \\sqrt[]{}"), NULL,
+	{"MathNthRoot", "math-nth-root", N_("_N-th Root - \\sqrt[]{}"), NULL,
 		N_("N-th Root - \\sqrt[]{}"), G_CALLBACK (cb_math_nth_root)},
-	{"MathLeftDelimiters", NULL, N_("Left Delimiters"), NULL, NULL, NULL},
-	{"MathLeftDelimiter1", NULL, N_("left ("), NULL,
+	{"MathLeftDelimiters", NULL, N_("_Left Delimiters"), NULL, NULL, NULL},
+	{"MathLeftDelimiter1", NULL, N_("left _("), NULL,
 		NULL, G_CALLBACK (cb_math_left_delimiter_1)},
-	{"MathLeftDelimiter2", NULL, N_("left ["), NULL,
+	{"MathLeftDelimiter2", NULL, N_("left _["), NULL,
 		NULL, G_CALLBACK (cb_math_left_delimiter_2)},
-	{"MathLeftDelimiter3", NULL, N_("left {"), NULL,
+	{"MathLeftDelimiter3", NULL, N_("left _{"), NULL,
 		NULL, G_CALLBACK (cb_math_left_delimiter_3)},
-	{"MathLeftDelimiter4", NULL, N_("left <"), NULL,
+	{"MathLeftDelimiter4", NULL, N_("left _<"), NULL,
 		NULL, G_CALLBACK (cb_math_left_delimiter_4)},
-	{"MathLeftDelimiter5", NULL, N_("left )"), NULL,
+	{"MathLeftDelimiter5", NULL, N_("left _)"), NULL,
 		NULL, G_CALLBACK (cb_math_left_delimiter_5)},
-	{"MathLeftDelimiter6", NULL, N_("left ]"), NULL,
+	{"MathLeftDelimiter6", NULL, N_("left _]"), NULL,
 		NULL, G_CALLBACK (cb_math_left_delimiter_6)},
-	{"MathLeftDelimiter7", NULL, N_("left }"), NULL,
+	{"MathLeftDelimiter7", NULL, N_("left _}"), NULL,
 		NULL, G_CALLBACK (cb_math_left_delimiter_7)},
-	{"MathLeftDelimiter8", NULL, N_("left >"), NULL,
+	{"MathLeftDelimiter8", NULL, N_("left _>"), NULL,
 		NULL, G_CALLBACK (cb_math_left_delimiter_8)},
-	{"MathLeftDelimiter9", NULL, N_("left ."), NULL,
+	{"MathLeftDelimiter9", NULL, N_("left _."), NULL,
 		NULL, G_CALLBACK (cb_math_left_delimiter_9)},
-	{"MathRightDelimiters", NULL, N_("Right Delimiters"), NULL, NULL, NULL},
-	{"MathRightDelimiter1", NULL, N_("right )"), NULL,
+	{"MathRightDelimiters", NULL, N_("Right _Delimiters"), NULL, NULL, NULL},
+	{"MathRightDelimiter1", NULL, N_("right _)"), NULL,
 		NULL, G_CALLBACK (cb_math_right_delimiter_1)},
-	{"MathRightDelimiter2", NULL, N_("right ]"), NULL,
+	{"MathRightDelimiter2", NULL, N_("right _]"), NULL,
 		NULL, G_CALLBACK (cb_math_right_delimiter_2)},
-	{"MathRightDelimiter3", NULL, N_("right }"), NULL,
+	{"MathRightDelimiter3", NULL, N_("right _}"), NULL,
 		NULL, G_CALLBACK (cb_math_right_delimiter_3)},
-	{"MathRightDelimiter4", NULL, N_("right >"), NULL,
+	{"MathRightDelimiter4", NULL, N_("right _>"), NULL,
 		NULL, G_CALLBACK (cb_math_right_delimiter_4)},
-	{"MathRightDelimiter5", NULL, N_("right ("), NULL,
+	{"MathRightDelimiter5", NULL, N_("right _("), NULL,
 		NULL, G_CALLBACK (cb_math_right_delimiter_5)},
-	{"MathRightDelimiter6", NULL, N_("right ["), NULL,
+	{"MathRightDelimiter6", NULL, N_("right _["), NULL,
 		NULL, G_CALLBACK (cb_math_right_delimiter_6)},
-	{"MathRightDelimiter7", NULL, N_("right {"), NULL,
+	{"MathRightDelimiter7", NULL, N_("right _{"), NULL,
 		NULL, G_CALLBACK (cb_math_right_delimiter_7)},
-	{"MathRightDelimiter8", NULL, N_("right <"), NULL,
+	{"MathRightDelimiter8", NULL, N_("right _<"), NULL,
 		NULL, G_CALLBACK (cb_math_right_delimiter_8)},
-	{"MathRightDelimiter9", NULL, N_("right ."), NULL,
+	{"MathRightDelimiter9", NULL, N_("right _."), NULL,
 		NULL, G_CALLBACK (cb_math_right_delimiter_9)},
 };
 
 // {name, stock_id, label, accelerator, tooltip, callback}
 static GtkToggleActionEntry toggle_entries[] = {
-	{"ViewSidePane", NULL, N_("Side pane"), NULL,
+	{"ViewSidePane", NULL, N_("_Side pane"), NULL,
 		N_("Show or hide the side pane"), G_CALLBACK (cb_show_side_pane)},
-	{"ViewEditToolbar", NULL, N_("Edit Toolbar"), NULL,
+	{"ViewEditToolbar", NULL, N_("_Edit Toolbar"), NULL,
 		N_("Show or hide the edit toolbar"), G_CALLBACK (cb_show_edit_toolbar)},
 };
 
@@ -397,7 +734,7 @@ init_ui (GtkWidget *box)
 
 	// recent document
 	GtkAction *recent = gtk_recent_action_new ("FileOpenRecent",
-			_("Open Recent"), _("Open recently used files"), NULL);
+			_("Open _Recent"), _("Open recently used files"), NULL);
 	g_signal_connect (G_OBJECT (recent), "item-activated",
 			G_CALLBACK (cb_recent_item_activated), NULL);
 
@@ -465,8 +802,7 @@ init_ui (GtkWidget *box)
 	gtk_ui_manager_insert_action_group (ui_manager, action_group, 0);
 
 	// load the xml file
-	gchar *xml_file = DATA_DIR "/ui.xml";
-	gtk_ui_manager_add_ui_from_file (ui_manager, xml_file, &error);
+	gtk_ui_manager_add_ui_from_string (ui_manager, ui, -1, &error);
 	if (error != NULL)
 	{
 		print_error ("building menubar and toolbar failed: %s", error->message);
