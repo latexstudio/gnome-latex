@@ -4,8 +4,8 @@ For the compilation, CMake 2.6.4 minimum is also required.
 Simple install procedure
 ========================
 
-$ tar xvf latexila-0.0.2.tar.gz		# unpack the sources
-$ cd latexila-0.0.2/build/		# go to the build directory
+$ tar xvf latexila-0.1.tar.gz		# unpack the sources
+$ cd latexila-0.1/build/		# go to the build directory
 $ cmake ../				# run the Makefile generator
 $ make					# build LaTeXila
 [ Become root if necessary ]
@@ -17,7 +17,7 @@ Simple uninstall procedure
 All the files installed are listed in the "install_manifest.txt" file.
 So you can uninstall LaTeXila by doing this:
 
-$ cd latexila-0.0.2/build/
+$ cd latexila-0.1/build/
 [ Become root if necessary ]
 $ xargs rm < install_manifest.txt
 

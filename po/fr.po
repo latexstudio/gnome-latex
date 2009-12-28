@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: latexila\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-28 18:23+0100\n"
-"PO-Revision-Date: 2009-12-28 21:28+0100\n"
+"POT-Creation-Date: 2009-12-28 22:53+0100\n"
+"PO-Revision-Date: 2009-12-28 22:55+0100\n"
 "Last-Translator: Sébastien Wilmet <sebastien.wilmet@gmail.com>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "Un fichier nommé \"%s\" existe déjà. Voulez-vous le remplacer ?"
 msgid "About "
 msgstr "À propos"
 
-#: src/ui.c:516
+#: src/ui.c:518
 msgid "About LaTeXila"
 msgstr "À propos de LaTeXila"
 
@@ -42,31 +42,31 @@ msgstr "À propos de LaTeXila"
 msgid "Action history"
 msgstr "Historique des actions"
 
-#: src/ui.c:510
+#: src/ui.c:512
 msgid "Activate next document"
 msgstr "Activer le document suivant"
 
-#: src/ui.c:508
+#: src/ui.c:510
 msgid "Activate previous document"
 msgstr "Activer le document précédent"
 
-#: src/ui.c:551
+#: src/ui.c:553
 msgid "Align Left - \\begin{flushleft}"
 msgstr "Aligner à gauche - \\begin{flushleft}"
 
-#: src/ui.c:553
+#: src/ui.c:555
 msgid "Align Right - \\begin{flushright}"
 msgstr "Aligner à droite - \\begin{flushright}"
 
-#: src/ui.c:550
+#: src/ui.c:552
 msgid "Align _Left - \\begin{flushleft}"
 msgstr "Aligner à _gauche - \\begin{flushleft}"
 
-#: src/ui.c:552
+#: src/ui.c:554
 msgid "Align _Right - \\begin{flushright}"
 msgstr "Aligner à _droite - \\begin{flushright}"
 
-#: src/ui.c:642
+#: src/ui.c:644
 msgid "Array of Equations - \\begin{align*}"
 msgstr "Série d'équations - \\begin{align*}"
 
@@ -86,11 +86,11 @@ msgstr "Commande BibTeX :"
 msgid "BibTeX is running. Please wait..."
 msgstr "BibTeX est en cours d'exécution. Veuillez patienter..."
 
-#: src/ui.c:622
+#: src/ui.c:624
 msgid "Bold - \\bfseries"
 msgstr "Gras - \\bfseries"
 
-#: src/ui.c:598
+#: src/ui.c:600
 msgid "Bold - \\textbf{}"
 msgstr "Gras - \\textbf{}"
 
@@ -98,23 +98,23 @@ msgstr "Gras - \\textbf{}"
 msgid "Book"
 msgstr "Livre"
 
-#: src/ui.c:565
+#: src/ui.c:567
 msgid "Bulleted List - \\begin{itemize}"
 msgstr "Liste avec tirets - \\begin{itemize}"
 
-#: src/ui.c:475
+#: src/ui.c:477
 msgid "C_ompile (pdflatex)"
 msgstr "C_ompiler (pdflatex)"
 
-#: src/ui.c:549
+#: src/ui.c:551
 msgid "Center - \\begin{center}"
 msgstr "Centrer - \\begin{center}"
 
-#: src/ui.c:638
+#: src/ui.c:640
 msgid "Centered Formula - $$...$$"
 msgstr "Formule centrée - $$...$$"
 
-#: src/ui.c:755
+#: src/ui.c:757
 msgid "Characters Sizes"
 msgstr "Taille des caractères"
 
@@ -125,11 +125,11 @@ msgstr ""
 "Nettoyer les fichiers auxilières après fermeture (*.aux, *.log, *.out, *."
 "toc, etc)"
 
-#: src/ui.c:506
+#: src/ui.c:508
 msgid "Close all open files"
 msgstr "Ferme tous les documents ouverts"
 
-#: src/ui.c:432
+#: src/ui.c:434
 msgid "Close the current file"
 msgstr "Fermer le document courant"
 
@@ -137,7 +137,7 @@ msgstr "Fermer le document courant"
 msgid "Color scheme"
 msgstr "Style de couleurs"
 
-#: src/ui.c:492
+#: src/ui.c:494
 msgid "Comment the selected lines (add the character \"%\")"
 msgstr ""
 "Mettre en commentaire les lignes sélectionnées (ajouter le caractère \"%\")"
@@ -154,15 +154,15 @@ msgstr "Compiler (latex)"
 msgid "Compile (pdflatex)"
 msgstr "Compiler (pdflatex)"
 
-#: src/ui.c:452
+#: src/ui.c:454
 msgid "Configure the application"
 msgstr "Configure l'application"
 
-#: src/ui.c:480
+#: src/ui.c:482
 msgid "Convert the DVI document to the PDF format"
 msgstr "Converti le document DVI au format PDF"
 
-#: src/ui.c:482
+#: src/ui.c:484
 msgid "Convert the DVI document to the PostScript format"
 msgstr "Converti le document DVI au format PostScript"
 
@@ -170,15 +170,15 @@ msgstr "Converti le document DVI au format PostScript"
 msgid "Converting in progress. Please wait..."
 msgstr "Conversion en cours. Veuillez patienter..."
 
-#: src/ui.c:444
+#: src/ui.c:446
 msgid "Copy the selection"
 msgstr "Copie la sélection"
 
-#: src/ui.c:427
+#: src/ui.c:429
 msgid "Create _Template From Document..."
 msgstr "Créer un _modèle à partir du document..."
 
-#: src/ui.c:428
+#: src/ui.c:430
 msgid "Create a new template from the current document"
 msgstr "Créer un nouveau modèle à partir du document courrant"
 
@@ -186,11 +186,11 @@ msgstr "Créer un nouveau modèle à partir du document courrant"
 msgid "Create new document"
 msgstr "Créer un nouveau document"
 
-#: src/ui.c:441
+#: src/ui.c:443
 msgid "Cu_t"
 msgstr "Co_uper"
 
-#: src/ui.c:442
+#: src/ui.c:444
 msgid "Cut the selection"
 msgstr "Coupe la sélection"
 
@@ -210,7 +210,7 @@ msgstr "DVI -> PS"
 msgid "DVI to PS command:"
 msgstr "Commande DVI -> PS :"
 
-#: src/ui.c:481
+#: src/ui.c:483
 msgid "DVI to _PS"
 msgstr "DVI -> _PS"
 
@@ -222,11 +222,11 @@ msgstr "Modèles par défaut"
 msgid "Delete Template(s)..."
 msgstr "Supprimer des modèles..."
 
-#: src/ui.c:430
+#: src/ui.c:432
 msgid "Delete personnal template(s)"
 msgstr "Supprimer des modèles personnels"
 
-#: src/ui.c:448
+#: src/ui.c:450
 msgid "Delete the selected text"
 msgstr "Supprime le texte sélectionné"
 
@@ -234,7 +234,7 @@ msgstr "Supprime le texte sélectionné"
 msgid "Delimiters"
 msgstr "Délimiteurs"
 
-#: src/ui.c:569
+#: src/ui.c:571
 msgid "Description - \\begin{description}"
 msgstr "Description - \\begin{description}"
 
@@ -250,7 +250,7 @@ msgstr "Affiche les informations de version"
 msgid "Editor"
 msgstr "Éditeur"
 
-#: src/ui.c:610
+#: src/ui.c:612
 msgid "Emphasized - \\emph{}"
 msgstr "Emphase - \\emph{}"
 
@@ -258,15 +258,15 @@ msgstr "Emphase - \\emph{}"
 msgid "Empty"
 msgstr "Vide"
 
-#: src/ui.c:456
+#: src/ui.c:458
 msgid "Enlarge the font"
 msgstr "Agrandir la police"
 
-#: src/ui.c:567
+#: src/ui.c:569
 msgid "Enumeration - \\begin{enumerate}"
 msgstr "Énumération - \\begin{enumerate}"
 
-#: src/ui.c:618
+#: src/ui.c:620
 msgid "F_ont Series"
 msgstr "_Graisse de police"
 
@@ -282,7 +282,7 @@ msgstr "Navigateur de fichiers : montrer tous les fichiers"
 msgid "Find:"
 msgstr "Rechercher:"
 
-#: src/ui.c:623
+#: src/ui.c:625
 msgid "Fo_nt Shape"
 msgstr "_Forme de police"
 
@@ -303,7 +303,7 @@ msgstr "%d occurrences trouvées et remplacées"
 msgid "Found and replaced one occurence"
 msgstr "Une occurrence trouvée et remplacée"
 
-#: src/ui.c:650
+#: src/ui.c:652
 msgid "Fraction - \\frac{}{}"
 msgstr "Fraction - \\frac{}{}"
 
@@ -311,7 +311,7 @@ msgstr "Fraction - \\frac{}{}"
 msgid "Go to Line:"
 msgstr "Aller à la ligne :"
 
-#: src/ui.c:468
+#: src/ui.c:470
 msgid "Go to a specific line"
 msgstr "Aller à une certaine ligne"
 
@@ -344,7 +344,7 @@ msgstr "Surligner les parenthèses correspondantes"
 msgid "Impossible to open the file \"%s\"."
 msgstr "Impossible d'ouvrir le fichier \"%s\"."
 
-#: src/ui.c:498
+#: src/ui.c:500
 msgid "Indent the selected lines"
 msgstr "Indente les lignes sélectionnées"
 
@@ -352,11 +352,11 @@ msgstr "Indente les lignes sélectionnées"
 msgid "Insert spaces instead of tabs"
 msgstr "Insérer des espaces au lieu de tabulations"
 
-#: src/ui.c:627
+#: src/ui.c:629
 msgid "Italic - \\itshape"
 msgstr "Italique - \\itshape"
 
-#: src/ui.c:600
+#: src/ui.c:602
 msgid "Italic - \\textit{}"
 msgstr "Italique - \\textit{}"
 
@@ -366,7 +366,7 @@ msgstr ""
 "LaTeXila est un éditeur pour LaTeX, prévu pour le bureau GNOME. À consommer "
 "avec modération."
 
-#: src/ui.c:773
+#: src/ui.c:775
 msgid "Left Delimiters"
 msgstr "Délimiteurs gauches"
 
@@ -390,19 +390,19 @@ msgstr "MakeIndex est en cours d'exécution. Veuillez patienter..."
 msgid "Match case"
 msgstr "Respecter la casse"
 
-#: src/ui.c:767
+#: src/ui.c:769
 msgid "Math Environments"
 msgstr "Environnements mathématiques"
 
-#: src/ui.c:636
+#: src/ui.c:638
 msgid "Mathematical Environment - $...$"
 msgstr "Environnement mathématique - $...$"
 
-#: src/ui.c:620
+#: src/ui.c:622
 msgid "Medium - \\mdseries"
 msgstr "Non gras - \\mdseries"
 
-#: src/ui.c:555
+#: src/ui.c:557
 msgid "Minipage - \\begin{minipage}"
 msgstr "Minipage - \\begin{minipage}"
 
@@ -414,11 +414,11 @@ msgstr "Divers math"
 msgid "Misc text"
 msgstr "Divers texte"
 
-#: src/ui.c:617
+#: src/ui.c:619
 msgid "Monospace - \\ttfamily"
 msgstr "Machine à écrire - \\ttfamily"
 
-#: src/ui.c:654
+#: src/ui.c:656
 msgid "N-th Root - \\sqrt[]{}"
 msgstr "Racine Nième - \\sqrt[]{}"
 
@@ -438,7 +438,7 @@ msgstr "Nouveau modèle..."
 msgid "New document"
 msgstr "Nouveau document"
 
-#: src/ui.c:420
+#: src/ui.c:422
 msgid "New file"
 msgstr "Nouveau fichier"
 
@@ -446,15 +446,15 @@ msgstr "Nouveau fichier"
 msgid "Next"
 msgstr "Suivant"
 
-#: src/ui.c:644
+#: src/ui.c:646
 msgid "Numbered Array of Equations - \\begin{align}"
 msgstr "Série d'équations numérotées - \\begin{align}"
 
-#: src/ui.c:643
+#: src/ui.c:645
 msgid "Numbered Array of _Equations - \\begin{align}"
 msgstr "Série d'é_quations numérotées - \\begin{align}"
 
-#: src/ui.c:640
+#: src/ui.c:642
 msgid "Numbered Equation - \\begin{equation}"
 msgstr "Équation numérotée - \\begin{equation}"
 
@@ -462,15 +462,15 @@ msgstr "Équation numérotée - \\begin{equation}"
 msgid "Open File"
 msgstr "Ouvre un fichier"
 
-#: src/ui.c:737
+#: src/ui.c:739
 msgid "Open _Recent"
 msgstr "Ouvrir _récent"
 
-#: src/ui.c:422
+#: src/ui.c:424
 msgid "Open a file"
 msgstr "Ouvre un fichier"
 
-#: src/ui.c:737
+#: src/ui.c:739
 msgid "Open recently used files"
 msgstr "Ouvre un fichier récemment utilisé"
 
@@ -482,7 +482,7 @@ msgstr "Opérateurs"
 msgid "Other"
 msgstr "Autre"
 
-#: src/ui.c:446
+#: src/ui.c:448
 msgid "Paste the clipboard"
 msgstr "Colle le contenu du presse-papiers"
 
@@ -494,7 +494,7 @@ msgstr "Modèles personnels"
 msgid "Phrase not found"
 msgstr "Phrase non trouvée"
 
-#: src/ui.c:451
+#: src/ui.c:453
 msgid "Pr_eferences"
 msgstr "_Préférences"
 
@@ -506,11 +506,11 @@ msgstr "Préférences"
 msgid "Previous"
 msgstr "Précédent"
 
-#: src/ui.c:472
+#: src/ui.c:474
 msgid "Produce the document in DVI format"
 msgstr "Produit le document au format DVI"
 
-#: src/ui.c:476
+#: src/ui.c:478
 msgid "Produce the document in PDF format"
 msgstr "Produit le document au format PDF"
 
@@ -518,27 +518,27 @@ msgstr "Produit le document au format PDF"
 msgid "Program for viewing documents:"
 msgstr "Programme pour visionner les documents :"
 
-#: src/ui.c:558
+#: src/ui.c:560
 msgid "Qu_otation - \\begin{quotation}"
 msgstr "_Citation longue - \\begin{quotation}"
 
-#: src/ui.c:434
+#: src/ui.c:436
 msgid "Quit the program"
 msgstr "Quitte le programme"
 
-#: src/ui.c:559
+#: src/ui.c:561
 msgid "Quotation - \\begin{quotation}"
 msgstr "Citation longue - \\begin{quotation}"
 
-#: src/ui.c:557
+#: src/ui.c:559
 msgid "Quote - \\begin{quote}"
 msgstr "Citation courte - \\begin{quote}"
 
-#: src/ui.c:440
+#: src/ui.c:442
 msgid "Redo the last undone action"
 msgstr "Refait la dernière opération annulée"
 
-#: src/ui.c:761
+#: src/ui.c:763
 msgid "References"
 msgstr "Références"
 
@@ -570,31 +570,31 @@ msgstr "Remplacer par :"
 msgid "Report"
 msgstr "Rapport"
 
-#: src/ui.c:460
+#: src/ui.c:462
 msgid "Reset the size of the font"
 msgstr "Rétabli la taille de la police"
 
-#: src/ui.c:779
+#: src/ui.c:781
 msgid "Right Delimiters"
 msgstr "Délimiteurs droits"
 
-#: src/ui.c:674
+#: src/ui.c:676
 msgid "Right _Delimiters"
 msgstr "Délimiteurs _droits"
 
-#: src/ui.c:613
+#: src/ui.c:615
 msgid "Roman - \\rmfamily"
 msgstr "Romains - \\rmfamily"
 
-#: src/ui.c:486
+#: src/ui.c:488
 msgid "Run BibTeX on the current document"
 msgstr "Exécute BibTeX sur le document courrant"
 
-#: src/ui.c:488
+#: src/ui.c:490
 msgid "Run MakeIndex on the current document"
 msgstr "Exécute MakeIndex sur le document courrant"
 
-#: src/ui.c:615
+#: src/ui.c:617
 msgid "Sans Serif - \\sffamily"
 msgstr "Linéaux (sans serif) - \\sffamily"
 
@@ -602,11 +602,11 @@ msgstr "Linéaux (sans serif) - \\sffamily"
 msgid "Save File"
 msgstr "Enregistre le fichier"
 
-#: src/ui.c:425
+#: src/ui.c:427
 msgid "Save _As..."
 msgstr "Enregistrer _sous..."
 
-#: src/ui.c:504
+#: src/ui.c:506
 msgid "Save all open files"
 msgstr "Enregistre tous les fichiers ouverts"
 
@@ -615,19 +615,19 @@ msgstr "Enregistre tous les fichiers ouverts"
 msgid "Save changes to \"%s\" before closing?"
 msgstr "Enregistrer les changements de \"%s\" avant de le fermer ?"
 
-#: src/ui.c:424
+#: src/ui.c:426
 msgid "Save the current file"
 msgstr "Enregistre le fichier actuel"
 
-#: src/ui.c:426
+#: src/ui.c:428
 msgid "Save the current file with a different name"
 msgstr "Enregistrer le fichier actuel sous un nom différent"
 
-#: src/ui.c:466
+#: src/ui.c:468
 msgid "Search for and replace text"
 msgstr "Recherche un texte et le remplace"
 
-#: src/ui.c:464
+#: src/ui.c:466
 msgid "Search for text"
 msgstr "Recherche un texte"
 
@@ -635,23 +635,23 @@ msgstr "Recherche un texte"
 msgid "Search for:"
 msgstr "Rechercher :"
 
-#: src/ui.c:749
+#: src/ui.c:751
 msgid "Sectioning"
 msgstr "Sections"
 
-#: src/ui.c:449
+#: src/ui.c:451
 msgid "Select _All"
 msgstr "_Tout sélectionner"
 
-#: src/ui.c:450
+#: src/ui.c:452
 msgid "Select the entire document"
 msgstr "Sélectionne le document entier"
 
-#: src/ui.c:700
+#: src/ui.c:702
 msgid "Show or hide the edit toolbar"
 msgstr "Affiche ou cache la barre d'outils d'édition"
 
-#: src/ui.c:698
+#: src/ui.c:700
 msgid "Show or hide the side pane"
 msgstr "Affiche ou cache le panneau latéral"
 
@@ -662,51 +662,51 @@ msgstr ""
 "Afficher la barre d'outils d'édition sur la même ligne que la barre d'outils "
 "principale (redémarrage nécessaire)"
 
-#: src/ui.c:458
+#: src/ui.c:460
 msgid "Shrink the font"
 msgstr "Rétréci la police"
 
-#: src/ui.c:629
+#: src/ui.c:631
 msgid "Slanted - \\slshape"
 msgstr "Penché - \\slshape"
 
-#: src/ui.c:606
+#: src/ui.c:608
 msgid "Slanted - \\textsl{}"
 msgstr "Penché - \\textsl{}"
 
-#: src/ui.c:631
+#: src/ui.c:633
 msgid "Small Capitals - \\scshape"
 msgstr "Petites capitales - \\scshape"
 
-#: src/ui.c:608
+#: src/ui.c:610
 msgid "Small Capitals - \\textsc{}"
 msgstr "Petites capitales - \\textsc{}"
 
-#: src/ui.c:630
+#: src/ui.c:632
 msgid "Small _Capitals - \\scshape"
 msgstr "Petites _capitales - \\scshape"
 
-#: src/ui.c:607
+#: src/ui.c:609
 msgid "Small _Capitals - \\textsc{}"
 msgstr "Petites _capitales - \\textsc{}"
 
-#: src/ui.c:652
+#: src/ui.c:654
 msgid "Square Root - \\sqrt{}"
 msgstr "Racine carrée - \\sqrt{}"
 
-#: src/ui.c:651
+#: src/ui.c:653
 msgid "Square _Root - \\sqrt{}"
 msgstr "_Racine carrée - \\sqrt{}"
 
-#: src/ui.c:647
+#: src/ui.c:649
 msgid "Su_bscript - __{}"
 msgstr "_Indice - _{}"
 
-#: src/ui.c:648
+#: src/ui.c:650
 msgid "Subscript - _{}"
 msgstr "Indice - _{}"
 
-#: src/ui.c:646
+#: src/ui.c:648
 msgid "Superscript - ^{}"
 msgstr "_Exposant - ^{}"
 
@@ -718,47 +718,47 @@ msgstr "Symboles"
 msgid "Tab width:"
 msgstr "Largeur de tabulation :"
 
-#: src/ui.c:514
+#: src/ui.c:516
 msgid "The Kile LaTeX Reference"
 msgstr "La référence LaTeX de Kile"
 
-#: src/ui.c:602
+#: src/ui.c:604
 msgid "Typewriter - \\texttt{}"
 msgstr "Machine à écrire - \\texttt{}"
 
-#: src/ui.c:499
+#: src/ui.c:501
 msgid "U_nindent"
 msgstr "_Désindenter"
 
-#: src/ui.c:495
+#: src/ui.c:497
 msgid "Uncomment the selected lines (remove the character \"%\")"
 msgstr "Décommenter les lignes sélectionnées (enlève le caractère \"%\")"
 
-#: src/ui.c:604
+#: src/ui.c:606
 msgid "Underline - \\underline{}"
 msgstr "Souligner - \\underline{}"
 
-#: src/ui.c:438
+#: src/ui.c:440
 msgid "Undo the last action"
 msgstr "Annule la dernière action"
 
-#: src/ui.c:500
+#: src/ui.c:502
 msgid "Unindent the selected lines"
 msgstr "Désindente les lignes sélectionnées"
 
-#: src/ui.c:625
+#: src/ui.c:627
 msgid "Upright - \\upshape"
 msgstr "Droits - \\upshape"
 
-#: src/ui.c:477
+#: src/ui.c:479
 msgid "V_iew PDF"
 msgstr "V_isionner PDF"
 
-#: src/ui.c:561
+#: src/ui.c:563
 msgid "Verse - \\begin{verse}"
 msgstr "Poème - \\begin{verse}"
 
-#: src/ui.c:483
+#: src/ui.c:485
 msgid "Vi_ew PS"
 msgstr "Vi_sionner PS"
 
@@ -778,15 +778,15 @@ msgstr "Visionner PDF"
 msgid "View PS"
 msgstr "Visionner PS"
 
-#: src/ui.c:474
+#: src/ui.c:476
 msgid "View the DVI file"
 msgstr "Visionner le fichier DVI"
 
-#: src/ui.c:478
+#: src/ui.c:480
 msgid "View the PDF file"
 msgstr "Visionner le fichier PDF"
 
-#: src/ui.c:484
+#: src/ui.c:486
 msgid "View the PostScript file"
 msgstr "Visionner le fichier PostScript"
 
@@ -806,323 +806,323 @@ msgstr "Bienvenue sur LaTeXila !"
 msgid "Your personnal templates"
 msgstr "Vos modèles personnels"
 
-#: src/ui.c:455
+#: src/ui.c:457
 msgid "Zoom _In"
 msgstr "_Agrandir le zoom"
 
-#: src/ui.c:457
+#: src/ui.c:459
 msgid "Zoom _Out"
 msgstr "_Réduire le zoom"
 
-#: src/ui.c:515
+#: src/ui.c:517
 msgid "_About"
 msgstr "À _propos"
 
-#: src/ui.c:641
+#: src/ui.c:643
 msgid "_Array of Equations - \\begin{align*}"
 msgstr "_Série d'équations - \\begin{align*}"
 
-#: src/ui.c:621
+#: src/ui.c:623
 msgid "_Bold - \\bfseries"
 msgstr "_Gras - \\bfseries"
 
-#: src/ui.c:597
+#: src/ui.c:599
 msgid "_Bold - \\textbf{}"
 msgstr "_Gras - \\textbf{}"
 
-#: src/ui.c:470
+#: src/ui.c:472
 msgid "_Build"
 msgstr "_Construction"
 
-#: src/ui.c:564
+#: src/ui.c:566
 msgid "_Bulleted List - \\begin{itemize}"
 msgstr "Liste avec _tirets - \\begin{itemize}"
 
-#: src/ui.c:548
+#: src/ui.c:550
 msgid "_Center - \\begin{center}"
 msgstr "_Centrer - \\begin{center}"
 
-#: src/ui.c:637
+#: src/ui.c:639
 msgid "_Centered Formula - $$...$$"
 msgstr "Formule _centrée - $$...$$"
 
-#: src/ui.c:574
+#: src/ui.c:576
 msgid "_Characters Sizes"
 msgstr "_Taille des caractères"
 
-#: src/ui.c:431
+#: src/ui.c:433
 msgid "_Close"
 msgstr "_Fermer"
 
-#: src/ui.c:505
+#: src/ui.c:507
 msgid "_Close All"
 msgstr "_Tout fermer"
 
-#: src/ui.c:491
+#: src/ui.c:493
 msgid "_Comment"
 msgstr "_Commenter"
 
-#: src/ui.c:471
+#: src/ui.c:473
 msgid "_Compile (latex)"
 msgstr "_Compiler (latex)"
 
-#: src/ui.c:443
+#: src/ui.c:445
 msgid "_Copy"
 msgstr "_Copier"
 
-#: src/ui.c:479
+#: src/ui.c:481
 msgid "_DVI to PDF"
 msgstr "_DVI -> PDF"
 
-#: src/ui.c:447
+#: src/ui.c:449
 msgid "_Delete"
 msgstr "_Supprimer"
 
-#: src/ui.c:429
+#: src/ui.c:431
 msgid "_Delete Template..."
 msgstr "S_upprimer des modèles"
 
-#: src/ui.c:568
+#: src/ui.c:570
 msgid "_Description - \\begin{description}"
 msgstr "_Description - \\begin{description}"
 
-#: src/ui.c:502
+#: src/ui.c:504
 msgid "_Documents"
 msgstr "Do_cuments"
 
-#: src/ui.c:436
+#: src/ui.c:438
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/ui.c:699
+#: src/ui.c:701
 msgid "_Edit Toolbar"
 msgstr "_Barre d'outils d'édition"
 
-#: src/ui.c:609
+#: src/ui.c:611
 msgid "_Emphasized - \\emph{}"
 msgstr "_Emphase - \\emph{}"
 
-#: src/ui.c:566
+#: src/ui.c:568
 msgid "_Enumeration - \\begin{enumerate}"
 msgstr "É_numération - \\begin{enumerate}"
 
-#: src/ui.c:547
+#: src/ui.c:549
 msgid "_Environments"
 msgstr "_Environnements"
 
-#: src/ui.c:418
+#: src/ui.c:420
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/ui.c:463
+#: src/ui.c:465
 msgid "_Find..."
 msgstr "_Rechercher..."
 
-#: src/ui.c:611
+#: src/ui.c:613
 msgid "_Font Family"
 msgstr "_Famille de police"
 
-#: src/ui.c:596
+#: src/ui.c:598
 msgid "_Font Styles"
 msgstr "_Styles de police"
 
-#: src/ui.c:649
+#: src/ui.c:651
 msgid "_Fraction - \\frac{}{}"
 msgstr "_Fraction - \\frac{}{}"
 
-#: src/ui.c:467
+#: src/ui.c:469
 msgid "_Go to Line..."
 msgstr "_Aller à la ligne..."
 
-#: src/ui.c:512
+#: src/ui.c:514
 msgid "_Help"
 msgstr "Aid_e"
 
-#: src/ui.c:497
+#: src/ui.c:499
 msgid "_Indent"
 msgstr "_Indenter"
 
-#: src/ui.c:626
+#: src/ui.c:628
 msgid "_Italic - \\itshape"
 msgstr "_Italique - \\itshape"
 
-#: src/ui.c:599
+#: src/ui.c:601
 msgid "_Italic - \\textit{}"
 msgstr "_Italique - \\textit{}"
 
-#: src/ui.c:513
+#: src/ui.c:515
 msgid "_LaTeX Reference"
 msgstr "_Référence LaTeX"
 
-#: src/ui.c:655
+#: src/ui.c:657
 msgid "_Left Delimiters"
 msgstr "Délimiteurs _gauches"
 
-#: src/ui.c:563
+#: src/ui.c:565
 msgid "_List Environments"
 msgstr "Environnements de _liste"
 
-#: src/ui.c:633
+#: src/ui.c:635
 msgid "_Math"
 msgstr "_Math"
 
-#: src/ui.c:634
+#: src/ui.c:636
 msgid "_Math Environments"
 msgstr "Environnements _mathématiques"
 
-#: src/ui.c:635
+#: src/ui.c:637
 msgid "_Mathematical Environment - $...$"
 msgstr "Environnement _mathématique - $...$"
 
-#: src/ui.c:619
+#: src/ui.c:621
 msgid "_Medium - \\mdseries"
 msgstr "_Non gras - \\mdseries"
 
-#: src/ui.c:554
+#: src/ui.c:556
 msgid "_Minipage - \\begin{minipage}"
 msgstr "_Minipage - \\begin{minipage}"
 
-#: src/ui.c:616
+#: src/ui.c:618
 msgid "_Monospace - \\ttfamily"
 msgstr "_Machine à écrire - \\ttfamily"
 
-#: src/ui.c:653
+#: src/ui.c:655
 msgid "_N-th Root - \\sqrt[]{}"
 msgstr "Racine _Nième - \\sqrt[]{}"
 
-#: src/ui.c:419
+#: src/ui.c:421
 msgid "_New"
 msgstr "_Nouveau"
 
-#: src/ui.c:509
+#: src/ui.c:511
 msgid "_Next Document"
 msgstr "Document _suivant"
 
-#: src/ui.c:639
+#: src/ui.c:641
 msgid "_Numbered Equation - \\begin{equation}"
 msgstr "É_quation numérotée - \\begin{equation}"
 
-#: src/ui.c:421
+#: src/ui.c:423
 msgid "_Open..."
 msgstr "_Ouvrir..."
 
-#: src/ui.c:445
+#: src/ui.c:447
 msgid "_Paste"
 msgstr "C_oller"
 
-#: src/ui.c:507
+#: src/ui.c:509
 msgid "_Previous Document"
 msgstr "Document _précédent"
 
-#: src/ui.c:433
+#: src/ui.c:435
 msgid "_Quit"
 msgstr "_Quitter"
 
-#: src/ui.c:556
+#: src/ui.c:558
 msgid "_Quote - \\begin{quote}"
 msgstr "_Citation courte - \\begin{quote}"
 
-#: src/ui.c:439
+#: src/ui.c:441
 msgid "_Redo"
 msgstr "_Rétablir"
 
-#: src/ui.c:539
+#: src/ui.c:541
 msgid "_References"
 msgstr "_Références"
 
-#: src/ui.c:465
+#: src/ui.c:467
 msgid "_Replace..."
 msgstr "_Remplacer..."
 
-#: src/ui.c:459
+#: src/ui.c:461
 msgid "_Reset Zoom"
 msgstr "Zoom _normal"
 
-#: src/ui.c:612
+#: src/ui.c:614
 msgid "_Roman - \\rmfamily"
 msgstr "_Romains - \\rmfamily"
 
-#: src/ui.c:614
+#: src/ui.c:616
 msgid "_Sans Serif - \\sffamily"
 msgstr "_Linéaux (sans serif) - \\sffamily"
 
-#: src/ui.c:503
+#: src/ui.c:505
 msgid "_Save All"
 msgstr "Tout _enregistrer"
 
-#: src/ui.c:423
+#: src/ui.c:425
 msgid "_Save..."
 msgstr "_Enregistrer..."
 
-#: src/ui.c:462
+#: src/ui.c:464
 msgid "_Search"
 msgstr "_Rechercher"
 
-#: src/ui.c:523
+#: src/ui.c:525
 msgid "_Sectioning"
 msgstr "_Sections"
 
-#: src/ui.c:697
+#: src/ui.c:699
 msgid "_Side pane"
 msgstr "Panneau _latéral"
 
-#: src/ui.c:628
+#: src/ui.c:630
 msgid "_Slanted - \\slshape"
 msgstr "_Penché - \\slshape"
 
-#: src/ui.c:605
+#: src/ui.c:607
 msgid "_Slanted - \\textsl{}"
 msgstr "_Penché - \\textsl{}"
 
-#: src/ui.c:645
+#: src/ui.c:647
 msgid "_Superscript - ^{}"
 msgstr "_Exposant - ^{}"
 
-#: src/ui.c:490
+#: src/ui.c:492
 msgid "_Tools"
 msgstr "_Outils"
 
-#: src/ui.c:601
+#: src/ui.c:603
 msgid "_Typewriter - \\texttt{}"
 msgstr "_Machine à écrire - \\texttt{}"
 
-#: src/ui.c:494
+#: src/ui.c:496
 msgid "_Uncomment"
 msgstr "_Décommenter"
 
-#: src/ui.c:603
+#: src/ui.c:605
 msgid "_Underline - \\underline{}"
 msgstr "_Souligner - \\underline{}"
 
-#: src/ui.c:437
+#: src/ui.c:439
 msgid "_Undo"
 msgstr "A_nnuler"
 
-#: src/ui.c:624
+#: src/ui.c:626
 msgid "_Upright - \\upshape"
 msgstr "_Droits - \\upshape"
 
-#: src/ui.c:560
+#: src/ui.c:562
 msgid "_Verse - \\begin{verse}"
 msgstr "_Poème - \\begin{verse}"
 
-#: src/ui.c:454
+#: src/ui.c:456
 msgid "_View"
 msgstr "_Affichage"
 
-#: src/ui.c:473
+#: src/ui.c:475
 msgid "_View DVI"
 msgstr "_Visionner DVI"
 
-#: src/ui.c:526
+#: src/ui.c:528
 msgid "_chapter"
 msgstr "_Chapitre - \\chapter{}"
 
-#: src/ui.c:524
+#: src/ui.c:526
 msgid "_part"
 msgstr "_Partie - \\part{}"
 
-#: src/ui.c:528
+#: src/ui.c:530
 msgid "_section"
 msgstr "_Section - \\section{}"
 
@@ -1134,7 +1134,7 @@ msgstr "article-fr.tex"
 msgid "book-en.tex"
 msgstr "book-fr.tex"
 
-#: src/ui.c:527
+#: src/ui.c:529
 msgid "chapter"
 msgstr "Chapitre - \\chapter{}"
 
@@ -1158,55 +1158,55 @@ msgstr "échec : %s n'est pas un fichier *.tex"
 msgid "latex command:"
 msgstr "Commande latex :"
 
-#: src/ui.c:656
-msgid "left _("
-msgstr "_( gauche"
-
-#: src/ui.c:664
-msgid "left _)"
-msgstr "_) gauche"
-
-#: src/ui.c:672
-msgid "left _."
-msgstr "_. gauche"
-
-#: src/ui.c:662
-msgid "left _<"
-msgstr "_< gauche"
-
-#: src/ui.c:670
-msgid "left _>"
-msgstr "_> gauche"
-
 #: src/ui.c:658
-msgid "left _["
-msgstr "_[ gauche"
+msgid "left ("
+msgstr "( à gauche"
 
 #: src/ui.c:666
-msgid "left _]"
-msgstr "_] gauche"
+msgid "left )"
+msgstr ") à gauche"
+
+#: src/ui.c:674
+msgid "left ."
+msgstr ". à gauche"
+
+#: src/ui.c:664
+msgid "left <"
+msgstr "< à gauche"
+
+#: src/ui.c:672
+msgid "left >"
+msgstr "> à gauche"
 
 #: src/ui.c:660
-msgid "left _{"
-msgstr "_{ gauche"
+msgid "left ["
+msgstr "[ à gauche"
 
 #: src/ui.c:668
-msgid "left _}"
-msgstr "_} gauche"
+msgid "left ]"
+msgstr "] à gauche"
+
+#: src/ui.c:662
+msgid "left {"
+msgstr "{ à gauche"
+
+#: src/ui.c:670
+msgid "left }"
+msgstr "} à gauche"
 
 #: src/templates.c:306
 msgid "letter-en.tex"
 msgstr "letter-fr.tex"
 
-#: src/ui.c:534
+#: src/ui.c:536
 msgid "p_aragraph"
 msgstr "P_aragraphe - \\paragraph{}"
 
-#: src/ui.c:535
+#: src/ui.c:537
 msgid "paragraph"
 msgstr "Paragraphe - \\paragraph{}"
 
-#: src/ui.c:525
+#: src/ui.c:527
 msgid "part"
 msgstr "Partie - \\part{}"
 
@@ -1218,67 +1218,67 @@ msgstr "Commande pdflatex :"
 msgid "report-en.tex"
 msgstr "report-fr.tex"
 
-#: src/ui.c:683
-msgid "right _("
-msgstr "_( droite"
-
-#: src/ui.c:675
-msgid "right _)"
-msgstr "_) droite"
-
-#: src/ui.c:691
-msgid "right _."
-msgstr "_. droit"
-
-#: src/ui.c:689
-msgid "right _<"
-msgstr "_< droite"
-
-#: src/ui.c:681
-msgid "right _>"
-msgstr "_> droite"
-
 #: src/ui.c:685
-msgid "right _["
-msgstr "_[ droit"
+msgid "right ("
+msgstr "( à droite"
 
 #: src/ui.c:677
-msgid "right _]"
-msgstr "_] droit"
+msgid "right )"
+msgstr ") à droite"
+
+#: src/ui.c:693
+msgid "right ."
+msgstr ". à droite"
+
+#: src/ui.c:691
+msgid "right <"
+msgstr "< à droite"
+
+#: src/ui.c:683
+msgid "right >"
+msgstr "> à droite"
 
 #: src/ui.c:687
-msgid "right _{"
-msgstr "_{ droite"
+msgid "right ["
+msgstr "[ à droite"
 
 #: src/ui.c:679
-msgid "right _}"
-msgstr "_} droite"
+msgid "right ]"
+msgstr "] à droite"
 
-#: src/ui.c:530
+#: src/ui.c:689
+msgid "right {"
+msgstr "{ à droite"
+
+#: src/ui.c:681
+msgid "right }"
+msgstr "} à droite"
+
+#: src/ui.c:532
 msgid "s_ubsection"
 msgstr "S_ous-section - \\subsection{}"
 
-#: src/ui.c:529
+#: src/ui.c:531
 msgid "section"
 msgstr "Section - \\section{}"
 
-#: src/ui.c:532
+#: src/ui.c:534
 msgid "su_bsubsection"
 msgstr "So_us-sous-section - \\subsubsection{}"
 
-#: src/ui.c:536
+#: src/ui.c:538
 msgid "subpa_ragraph"
 msgstr "Sous-pa_ragraphe - \\subparagraph{}"
 
-#: src/ui.c:537
+#: src/ui.c:539
 msgid "subparagraph"
 msgstr "Sous-paragraphe - \\subparagraph{}"
 
-#: src/ui.c:531
+#: src/ui.c:533
 msgid "subsection"
 msgstr "Sous-section - \\subsection{}"
 
-#: src/ui.c:533
+#: src/ui.c:535
 msgid "subsubsection"
 msgstr "Sous-sous-section - \\subsubsection{}"
 

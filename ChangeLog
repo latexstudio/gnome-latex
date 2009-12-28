@@ -1,5 +1,31 @@
 ChangeLog LaTeXila
 
+* Release 0.1 (Dec 28, 2009)
+	Added:
+	- File browser integrated
+	- BibTeX and MakeIndex support
+	- Templates:
+		* 4 default templates (article, report, book and letter)
+		* possibility to create and delete personnal templates
+	- Tools: Indent/Unindent, Comment/Uncomment selected lines
+	- Search: Goto Line
+	- Documents menu: Save/Close all, Previous/Next document
+	- Documentation: LaTeX reference from Kile
+	- Edit toolbar and the LaTeX menu: math stuff
+	- More preferences:
+		* Style scheme support (GtkSourceView)
+		* Remember the files opened at exit and reopen them on startup
+		* Clean-up auxiliaries files after close
+		* Indentation (tab width; spaces instead of tabs)
+		* Highlighting (current line; brackets matching)
+		* Show the two toolbars on the same line
+
+	Updated:
+	- Undo/redo: check if the buffer is saved
+	- Find/Replace: under the source view instead of a dialog
+	- Some icons
+	- French translation
+
 * Release 0.0.2 (Oct 17, 2009)
 	Added:
 	- Symbol tables: Greek letters, arrows, relations, operators,
