@@ -72,6 +72,8 @@ static struct {
 	{DATA_DIR "/images/icons/math-frac.png", "math-frac"},
 	{DATA_DIR "/images/icons/math-square-root.png", "math-square-root"},
 	{DATA_DIR "/images/icons/math-nth-root.png", "math-nth-root"},
+	{DATA_DIR "/images/icons/delimiters-left.png", "delimiters-left"},
+	{DATA_DIR "/images/icons/delimiters-right.png", "delimiters-right"},
 };
 
 static const char *ui =
@@ -652,7 +654,7 @@ static GtkActionEntry latex_entries[] = {
 		N_("Square Root - \\sqrt{}"), G_CALLBACK (cb_math_square_root)},
 	{"MathNthRoot", "math-nth-root", N_("_N-th Root - \\sqrt[]{}"), NULL,
 		N_("N-th Root - \\sqrt[]{}"), G_CALLBACK (cb_math_nth_root)},
-	{"MathLeftDelimiters", NULL, N_("_Left Delimiters"), NULL, NULL, NULL},
+	{"MathLeftDelimiters", "delimiters-left", N_("_Left Delimiters"), NULL, NULL, NULL},
 	{"MathLeftDelimiter1", NULL, N_("left _("), NULL,
 		NULL, G_CALLBACK (cb_math_left_delimiter_1)},
 	{"MathLeftDelimiter2", NULL, N_("left _["), NULL,
@@ -671,7 +673,7 @@ static GtkActionEntry latex_entries[] = {
 		NULL, G_CALLBACK (cb_math_left_delimiter_8)},
 	{"MathLeftDelimiter9", NULL, N_("left _."), NULL,
 		NULL, G_CALLBACK (cb_math_left_delimiter_9)},
-	{"MathRightDelimiters", NULL, N_("Right _Delimiters"), NULL, NULL, NULL},
+	{"MathRightDelimiters", "delimiters-right", N_("Right _Delimiters"), NULL, NULL, NULL},
 	{"MathRightDelimiter1", NULL, N_("right _)"), NULL,
 		NULL, G_CALLBACK (cb_math_right_delimiter_1)},
 	{"MathRightDelimiter2", NULL, N_("right _]"), NULL,
@@ -770,13 +772,13 @@ init_ui (GtkWidget *box)
 			GTK_ACTIVATABLE (math_env_menu_tool_button), math_env);
 
 	GtkAction *math_left_del = tool_menu_action_new ("MathLeftDelimitersToolItem",
-			_("Left Delimiters"), _("Left Delimiters"), NULL);
+			_("Left Delimiters"), _("Left Delimiters"), "delimiters-left");
 	GtkToolItem *math_left_del_menu_tool_button = gtk_menu_tool_button_new (NULL, NULL);
 	gtk_activatable_set_related_action (
 			GTK_ACTIVATABLE (math_left_del_menu_tool_button), math_left_del);
 
 	GtkAction *math_right_del = tool_menu_action_new ("MathRightDelimitersToolItem",
-			_("Right Delimiters"), _("Right Delimiters"), NULL);
+			_("Right Delimiters"), _("Right Delimiters"), "delimiters-right");
 	GtkToolItem *math_right_del_menu_tool_button = gtk_menu_tool_button_new (NULL, NULL);
 	gtk_activatable_set_related_action (
 			GTK_ACTIVATABLE (math_right_del_menu_tool_button), math_right_del);
