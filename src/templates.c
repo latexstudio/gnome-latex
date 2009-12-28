@@ -59,7 +59,7 @@ cb_new (void)
 			GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
 			NULL);
 
-	gtk_window_set_default_size (GTK_WINDOW (dialog), 400, 350);
+	gtk_window_set_default_size (GTK_WINDOW (dialog), 420, 350);
 	
 	GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 
