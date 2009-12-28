@@ -1081,12 +1081,7 @@ create_preferences (void)
 
 	fill_style_schemes_list_store (style_schemes_list_store, select);
 
-	// with a scrollbar
-	GtkWidget *scrollbar = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
-            GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-    gtk_container_add (GTK_CONTAINER (scrollbar), style_schemes_tree_view);
-	gtk_container_add (GTK_CONTAINER (frame), scrollbar);
+    gtk_container_add (GTK_CONTAINER (frame), style_schemes_tree_view);
 
 	/* command view entry */
 	hbox = gtk_hbox_new (FALSE, 5);
@@ -1100,7 +1095,7 @@ create_preferences (void)
 	gtk_box_pack_start (GTK_BOX (hbox), command_view_entry, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
-	/* commands (latex, pdflatex, dvipdf, dvips) */
+	/* commands (latex, pdflatex, dvipdf, dvips, ...) */
 	hbox = gtk_hbox_new (FALSE, 5);
 	GtkWidget *label1 = gtk_label_new (_("latex command:"));
 	GtkWidget *command_latex = gtk_entry_new ();
