@@ -976,6 +976,7 @@ cb_about_dialog (void)
 
 	const gchar *artists[] =
 	{
+		"Eric Forgeot <e.forgeot@laposte.net>",
 		"Sébastien Wilmet <sebastien.wilmet@gmail.com>",
 		"The Kile Team: http://kile.sourceforge.net/",
 		"Gedit LaTeX Plugin: http://www.michaels-website.de/gedit-latex-plugin/",
