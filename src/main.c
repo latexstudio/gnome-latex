@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009, 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,6 +90,34 @@ init_main_window (void)
 	gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
 	gtk_window_set_default_size (GTK_WINDOW (window),
 			latexila.prefs.window_width, latexila.prefs.window_height);
+
+	// icons
+	GList *list_icons = NULL;
+	GError *error = NULL;
+	gchar *filenames[] =
+	{
+		DATA_DIR "/images/logo/icon16.png",
+		DATA_DIR "/images/logo/icon32.png",
+		DATA_DIR "/images/logo/icon64.png",
+	}; 
+
+	guint nb_icons = G_N_ELEMENTS (filenames);
+
+	for (int i = 0 ; i < nb_icons ; i++)
+	{
+		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (filenames[i], &error);
+		if (error != NULL)
+		{
+			print_warning ("%s", error->message);
+			g_error_free (error);
+			error = NULL;
+			continue;
+		}
+
+		list_icons = g_list_append (list_icons, pixbuf);
+	}
+
+	gtk_window_set_default_icon_list (list_icons);
 
 	if (latexila.prefs.window_maximised)
 		gtk_window_maximize (GTK_WINDOW (window));

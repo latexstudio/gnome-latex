@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009, 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -951,7 +951,7 @@ void
 cb_about_dialog (void)
 {
 	gchar *comments = _("LaTeXila is a LaTeX editor for the GNOME Desktop");
-	gchar *copyright = "Copyright © 2009 Sébastien Wilmet";
+	gchar *copyright = "Copyright © 2009, 2010 Sébastien Wilmet";
 
 	gchar *licence = "LaTeXila is free software: you can redistribute it and/or modify\n"
 			"it under the terms of the GNU General Public License as published by\n"
