@@ -1,2 +1,13 @@
 TODO LaTeXila
 
+- User-friendly output for the compilation
+	x filter the messages
+	- show the exit code
+	- show statistics: nb of errors, warnings and badboxes
+	- jump to lines: GtkTextBuffer -> GtkListStore
+	- colors
+	- go to the previous/next error/warning/badbox
+
+- Auto-completion of LaTeX commands
+
+- Change the title of the window with the filename of the current document

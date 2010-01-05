@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009, 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,115 +29,23 @@
 
 #include "main.h"
 #include "config.h"
-#include "external_commands.h"
 #include "print.h"
+#include "utils.h"
+#include "external_commands.h"
 #include "file_browser.h"
 
-static gchar * get_command_line (gchar **command);
-static void command_running_finished (void);
-static gboolean cb_watch_output_command (GIOChannel *channel,
-		GIOCondition condition, gpointer user_data);
 static void add_action (const gchar *title, const gchar *command);
 static void set_action_sensitivity (gboolean sensitive);
+static gchar * get_command_line (gchar **command);
+static gboolean cb_watch_output_command (GIOChannel *channel,
+		GIOCondition condition, gpointer user_data);
+static void output_filter_line (const gchar *line);
+static void command_running_finished (void);
 static void view_document_run (gchar *filename);
 static void run_command_on_other_extension (gchar *title, gchar *message,
 		gchar *command, gchar *extension);
 
-static gchar *
-get_command_line (gchar **command)
-{
-	if (command[0] == NULL)
-		return NULL;
-
-	gchar *command_line = g_strdup (command[0]);
-	gchar *tmp;
-	gchar **arg = command;
-	arg++;
-	while (*arg != NULL)
-	{
-		tmp = g_strdup_printf ("%s %s", command_line, *arg);
-		g_free (command_line);
-		command_line = tmp;
-		arg++;
-	}
-
-	return command_line;
-}
-
-static void
-command_running_finished (void)
-{
-	// the magic formula
-	while (gtk_events_pending ())
-		gtk_main_iteration ();
-
-	// unlock the action list and all the build actions
-	set_action_sensitivity (TRUE);
-
-	// pop the message from the statusbar
-	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
-			"running-action");
-	gtk_statusbar_pop (latexila.statusbar, context_id);
-
-	cb_file_browser_refresh (NULL, NULL);
-}
-
-static gboolean
-cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
-		gpointer user_data)
-{
-	static int nb_lines = 0;
-	static int nb_channels_active = 2;
-
-	if (condition == G_IO_HUP)
-	{
-		g_io_channel_unref (channel);
-		nb_channels_active--;
-		
-		if (nb_channels_active == 0)
-		{
-			command_running_finished ();
-			nb_lines = 0;
-			nb_channels_active = 2;
-		}
-
-		return FALSE;
-	}
-
-	GError *error = NULL;
-	gchar *line;
-	g_io_channel_read_line (channel, &line, NULL, NULL, &error);
-
-	if (error != NULL)
-	{
-		print_warning ("read line from output command failed: %s", error->message);
-		g_error_free (error);
-		return FALSE;
-	}
-
-	if (line != NULL)
-	{
-		// print the command output line to the log zone
-		print_log_add (latexila.action_log.text_view, line, FALSE);
-	}
-	
-	/* Apply the magic formula for the 200 first lines and then every 20 lines.
-	 * This is for the fluidity of the output, without that the lines do not
-	 * appear directly and it's ugly. But it is very slow, for a command that
-	 * execute for example in 10 seconds, it could take 250 seconds (!) if we
-	 * apply the magic formula for each line... But with commands that take 1
-	 * second or so there is not a big difference.
-	 */
-	if (nb_lines < 200 || nb_lines % 20 == 0)
-	{
-		while (gtk_events_pending ())
-			gtk_main_iteration ();
-	}
-
-	nb_lines++;
-
-	return TRUE;
-}
+static gboolean show_all_output = TRUE;
 
 void
 compile_document (gchar *title, gchar **command)
@@ -169,9 +77,7 @@ compile_document (gchar *title, gchar **command)
 			_("Compilation in progress. Please wait..."));
 
 	// without that, the message in the statusbar does not appear
-	while (gtk_events_pending ())
-		gtk_main_iteration ();
-
+	flush_queue ();
 
 	/* run the command */
 	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
@@ -198,6 +104,7 @@ compile_document (gchar *title, gchar **command)
 	GIOChannel *out_channel = g_io_channel_unix_new (out);
 	GIOChannel *err_channel = g_io_channel_unix_new (err);
 
+#if 0
 	// the encoding of the output of the latex and the pdflatex commands is not
 	// UTF-8...
 	g_io_channel_set_encoding (out_channel, "ISO-8859-1", &error);
@@ -213,9 +120,12 @@ compile_document (gchar *title, gchar **command)
 		g_error_free (error);
 		return;
 	}
+#endif
 
 	// lock the action list and all the build actions
 	set_action_sensitivity (FALSE);
+
+	show_all_output = FALSE;
 
 	// add watches to channels
 	g_io_add_watch (out_channel, G_IO_IN | G_IO_HUP,
@@ -286,38 +196,6 @@ view_document (gchar *title, gchar *filename)
 	view_document_run (filename);
 }
 
-static void
-view_document_run (gchar *filename)
-{
-	// we use here g_spawn_async () and not g_spawn_command_line_async ()
-	// because the spaces in doc_path are not escaped, so with the command line
-	// it doesn't work fine...
-	
-	GError *error = NULL;
-	gchar *argv[] = {latexila.prefs.command_view, filename, NULL};
-	g_spawn_async (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, &error);
-
-	gboolean is_error = TRUE;
-	gchar *command_output;
-
-	if (error != NULL)
-	{
-		command_output = g_strdup_printf (_("execution failed: %s"),
-				error->message);
-		g_error_free (error);
-		error = NULL;
-	}
-	else
-	{
-		command_output = g_strdup (_("Viewing in progress. Please wait..."));
-		is_error = FALSE;
-	}
-
-	print_log_add (latexila.action_log.text_view, command_output, is_error);
-
-	g_free (command_output);
-}
-
 void
 convert_document (gchar *title, gchar *doc_extension, gchar *command)
 {
@@ -326,6 +204,26 @@ convert_document (gchar *title, gchar *doc_extension, gchar *command)
 			_("Converting in progress. Please wait..."),
 			command,
 			doc_extension);
+}
+
+void
+run_bibtex (void)
+{
+	run_command_on_other_extension (
+			"BibTeX",
+			_("BibTeX is running. Please wait..."),
+			latexila.prefs.command_bibtex,
+			".aux");
+}
+
+void
+run_makeindex (void)
+{
+	run_command_on_other_extension (
+			"MakeIndex",
+			_("MakeIndex is running. Please wait..."),
+			latexila.prefs.command_makeindex,
+			".idx");
 }
 
 void
@@ -359,26 +257,6 @@ view_in_web_browser (gchar *title, gchar *filename)
 	print_log_add (latexila.action_log.text_view, command_output, is_error);
 
 	g_free (command_output);
-}
-
-void
-run_bibtex (void)
-{
-	run_command_on_other_extension (
-			"BibTeX",
-			_("BibTeX is running. Please wait..."),
-			latexila.prefs.command_bibtex,
-			".aux");
-}
-
-void
-run_makeindex (void)
-{
-	run_command_on_other_extension (
-			"MakeIndex",
-			_("MakeIndex is running. Please wait..."),
-			latexila.prefs.command_makeindex,
-			".idx");
 }
 
 static void
@@ -453,6 +331,162 @@ set_action_sensitivity (gboolean sensitive)
 	gtk_action_set_sensitive (latexila.actions.makeindex, sensitive);
 }
 
+static gchar *
+get_command_line (gchar **command)
+{
+	if (command[0] == NULL)
+		return NULL;
+
+	gchar *command_line = g_strdup (command[0]);
+	gchar *tmp;
+	gchar **arg = command;
+	arg++;
+	while (*arg != NULL)
+	{
+		tmp = g_strdup_printf ("%s %s", command_line, *arg);
+		g_free (command_line);
+		command_line = tmp;
+		arg++;
+	}
+
+	return command_line;
+}
+
+static gboolean
+cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
+		gpointer user_data)
+{
+	static int nb_lines = 0;
+	static int nb_channels_active = 2;
+
+	if (condition == G_IO_HUP)
+	{
+		g_io_channel_unref (channel);
+		nb_channels_active--;
+		
+		if (nb_channels_active == 0)
+		{
+			command_running_finished ();
+			nb_lines = 0;
+			nb_channels_active = 2;
+		}
+
+		return FALSE;
+	}
+
+	GError *error = NULL;
+	gchar *line;
+	g_io_channel_read_line (channel, &line, NULL, NULL, &error);
+
+	if (error != NULL)
+	{
+		print_warning ("read line from output command failed: %s", error->message);
+		g_error_free (error);
+		return FALSE;
+	}
+
+	if (line != NULL)
+	{
+		if (show_all_output)
+			// print the command output line to the log zone
+			print_log_add (latexila.action_log.text_view, line, FALSE);
+		else
+			output_filter_line (line);
+	}
+	
+	/* Flush the queue for the 200 first lines and then every 20 lines.
+	 * This is for the fluidity of the output, without that the lines do not
+	 * appear directly and it's ugly. But it is very slow, for a command that
+	 * execute for example in 10 seconds, it could take 250 seconds (!) if we
+	 * flush the queue at each line... But with commands that take 1
+	 * second or so there is not a big difference.
+	 */
+	if (show_all_output && (nb_lines < 200 || nb_lines % 20 == 0))
+		flush_queue ();
+
+	nb_lines++;
+
+	return TRUE;
+}
+
+static void
+output_filter_line (const gchar *line)
+{
+	if (line == NULL || strlen (line) == 0)
+		return;
+
+	printf ("%s", line);
+
+	if (g_regex_match_simple ("[^:]+:[0-9]+:.*", line, 0, 0)
+			|| g_regex_match_simple ("lines? [0-9]+", line, 0, 0)
+			|| strstr (line, "LaTeX Error")
+			|| strstr (line, "Output written on")
+			|| strstr (line, "Warning")
+			|| strstr (line, "Overfull")
+			|| strstr (line, "Underfull"))
+	{
+		print_log_add (latexila.action_log.text_view, line, FALSE);
+		flush_queue ();
+	}
+}
+
+static void
+command_running_finished (void)
+{
+	print_info ("\n\n\n");
+	flush_queue ();
+
+	show_all_output = TRUE;
+
+	// unlock the action list and all the build actions
+	set_action_sensitivity (TRUE);
+
+	// pop the message from the statusbar
+	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
+			"running-action");
+	gtk_statusbar_pop (latexila.statusbar, context_id);
+
+	cb_file_browser_refresh (NULL, NULL);
+}
+
+static void
+view_document_run (gchar *filename)
+{
+	// we use here g_spawn_async () and not g_spawn_command_line_async ()
+	// because the spaces in doc_path are not escaped, so with the command line
+	// it doesn't work fine...
+	
+	GError *error = NULL;
+	gchar *argv[] = {latexila.prefs.command_view, filename, NULL};
+	g_spawn_async (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, &error);
+
+	gboolean is_error = TRUE;
+	gchar *command_output;
+
+	if (error != NULL)
+	{
+		command_output = g_strdup_printf (_("execution failed: %s"),
+				error->message);
+		g_error_free (error);
+		error = NULL;
+	}
+	else
+	{
+		command_output = g_strdup (_("Viewing in progress. Please wait..."));
+		is_error = FALSE;
+	}
+
+	print_log_add (latexila.action_log.text_view, command_output, is_error);
+
+	g_free (command_output);
+}
+
+/* Run a command on the current document but with an other extension.
+ * For example the current document is doc.tex, and we want to run
+ * "bibtex doc.aux". In this case, command will be "bibtex" and extension
+ * ".aux".
+ * The output of the command is displayed.
+ */
 static void
 run_command_on_other_extension (gchar *title, gchar *message, gchar *command,
 		gchar *extension)
@@ -491,8 +525,7 @@ run_command_on_other_extension (gchar *title, gchar *message, gchar *command,
 	gtk_statusbar_push (latexila.statusbar, context_id, message);
 
 	// without that, the message in the statusbar does not appear
-	while (gtk_events_pending ())
-		gtk_main_iteration ();
+	flush_queue ();
 
 	/* run the command */
 	gchar *argv[] = {command, doc_path, NULL};

@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009, 2010 Sébastien Wilmet
+ * Copyright © 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,15 +17,15 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PRINT_H
-#define PRINT_H
+#include <stdlib.h>
+#include <stdio.h>
+#include <gtk/gtk.h>
 
-void print_log (GtkTextBuffer *log_buffer, gchar *title, gchar *command,
-		gchar *command_output, gboolean error);
-void print_log_add (GtkTextView *log, const gchar *text, gboolean error);
+#include "utils.h"
 
-void print_info (const char *, ...);
-void print_warning (const char *, ...);
-void print_error (const char *, ...);
-
-#endif /* PRINT_H */
+void
+flush_queue (void)
+{
+	while (g_main_context_pending (NULL))
+		g_main_context_iteration (NULL, TRUE);
+}

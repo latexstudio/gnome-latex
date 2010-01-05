@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009, 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,7 +53,7 @@ print_log (GtkTextBuffer *log_buffer, gchar *title, gchar *command,
 }
 
 void
-print_log_add (GtkTextView *log, gchar *text, gboolean error)
+print_log_add (GtkTextView *log, const gchar *text, gboolean error)
 {
 	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (log);
 	GtkTextIter end;
@@ -72,7 +72,7 @@ print_log_add (GtkTextView *log, gchar *text, gboolean error)
 }
 
 void
-print_info (char *format, ...)
+print_info (const char *format, ...)
 {
 	va_list va;
 	va_start (va, format);
@@ -81,7 +81,7 @@ print_info (char *format, ...)
 }
 
 void
-print_warning (char *format, ...)
+print_warning (const char *format, ...)
 {
 	va_list va;
 	va_start (va, format);
@@ -91,7 +91,7 @@ print_warning (char *format, ...)
 }
 
 void
-print_error (char *format, ...)
+print_error (const char *format, ...)
 {
 	va_list va;
 	va_start (va, format);

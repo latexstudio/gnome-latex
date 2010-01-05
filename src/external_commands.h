@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009, 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,8 +24,8 @@ void compile_document (gchar *title, gchar **command);
 void view_current_document (gchar *title, gchar *doc_extension);
 void view_document (gchar *title, gchar *filename);
 void convert_document (gchar *title, gchar *doc_extension, gchar *command);
-void view_in_web_browser (gchar *title, gchar *filename);
 void run_bibtex (void);
 void run_makeindex (void);
+void view_in_web_browser (gchar *title, gchar *filename);
 
 #endif /* EXTERNAL_COMMANDS_H */
