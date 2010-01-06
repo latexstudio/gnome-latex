@@ -2,7 +2,7 @@ TODO LaTeXila
 
 - User-friendly output for the compilation
 	x filter the messages
-	- show the exit code
+	x show the exit code
 	- show statistics: nb of errors, warnings and badboxes
 	- extract informations: file, line, message
 	- jump to lines: GtkTextBuffer -> GtkListStore

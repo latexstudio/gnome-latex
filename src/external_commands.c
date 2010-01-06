@@ -46,13 +46,15 @@ static gboolean cb_watch_output_command (GIOChannel *channel,
 		GIOCondition condition, gpointer user_data);
 static void output_filter_line (const gchar *line);
 static void cb_child_watch (GPid pid, gint status, gpointer user_data);
-static void command_running_finished (void);
+static void finish_execute (void);
 static void run_command_on_other_extension (gchar *title, gchar *message,
 		gchar *command, gchar *extension);
 static gboolean is_current_doc_tex_file (void);
 
 static gboolean show_all_output = TRUE;
 static gint child_pid_exit_code = 0;
+static enum output output_status = OUTPUT_GO_FETCHING;
+static gboolean exit_code_set = FALSE;
 
 void
 compile_document (gchar *title, gchar **command)
@@ -315,24 +317,17 @@ start_command_with_output (gchar **command)
 		return;
 	}
 
+	output_status = OUTPUT_GO_FETCHING;
+	exit_code_set = FALSE;
+
 	// we want to know the exit code
 	g_child_watch_add (pid, (GChildWatchFunc) cb_child_watch, NULL);
 
 	// create the channel
 	GIOChannel *out_channel = g_io_channel_unix_new (out);
 
-#if 0
-	g_io_channel_set_encoding (out_channel, "ISO-8859-1", &error);
-	if (error != NULL)
-	{
-		command_output = g_strdup_printf (
-				"conversion of the command output failed: %s", error->message);
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
-		g_free (command_output);
-		g_error_free (error);
-		return;
-	}
-#endif
+	// convert the channel
+	g_io_channel_set_encoding (out_channel, NULL, NULL);
 
 	// lock the action list and all the build actions
 	set_action_sensitivity (FALSE);
@@ -353,46 +348,93 @@ static gboolean
 cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 		gpointer user_data)
 {
-	static int nb_lines = 0;
-
-	if (condition == G_IO_HUP)
+	switch (output_status)
 	{
-		g_io_channel_unref (channel);
-		command_running_finished ();
-		nb_lines = 0;
-		return FALSE;
+		case OUTPUT_GO_FETCHING:
+			break;
+
+		case OUTPUT_IS_FETCHING:
+			return FALSE;
+			break;
+
+		case OUTPUT_STOP_REQUEST:
+			g_io_channel_unref (channel);
+			finish_execute ();
+			return FALSE;
+			break;
 	}
 
-	GError *error = NULL;
-	gchar *line;
-	g_io_channel_read_line (channel, &line, NULL, NULL, &error);
+	output_status = OUTPUT_IS_FETCHING;
 
-	if (error != NULL)
+	if (condition & G_IO_IN)
 	{
-		print_warning ("read line from output command failed: %s", error->message);
-		g_error_free (error);
-		return FALSE;
-	}
+		int nb_lines = 0;
 
-	if (line != NULL)
-	{
-		if (show_all_output)
-			print_log_add (latexila.action_log.text_view, line, FALSE);
-		else
-			output_filter_line (line);
+		GError *error = NULL;
+		gchar *line = NULL;
+		GIOStatus gio_status = g_io_channel_read_line (channel, &line, NULL, NULL, &error); 
+		while (gio_status == G_IO_STATUS_NORMAL && output_status == OUTPUT_IS_FETCHING)
+		{
+			gchar *line_utf8 = NULL;
+			if (line != NULL)
+			{
+				line_utf8 = g_locale_to_utf8 (line, -1, NULL, NULL, NULL);
+				g_free (line);
+			}
+
+			// the line is not showed if it contains bad characters!
+			if (line_utf8 != NULL)
+			{
+				if (show_all_output)
+				{
+					print_log_add (latexila.action_log.text_view, line_utf8, FALSE);
+
+					/* Flush the queue for the 200 first lines and then every 50 lines.
+					 * This is for the fluidity of the output, without that the lines do not
+					 * appear directly and it's ugly. But it is very slow, for a command that
+					 * execute for example in 10 seconds, it could take 250 seconds (!) if we
+					 * flush the queue at each line... But with commands that take 1
+					 * second or so there is not a big difference.
+					 */
+					if (nb_lines < 200 || nb_lines % 50 == 0)
+						flush_queue ();
+					nb_lines++;
+				}
+
+				else
+					output_filter_line (line_utf8);
+
+				g_free (line_utf8);
+			}
+
+			gio_status = g_io_channel_read_line (channel, &line, NULL, NULL, &error);
+		}
+
+		if (error != NULL)
+		{
+			print_warning ("IO channel error: %s", error->message);
+			g_error_free (error);
+		}
+		
+		if (gio_status == G_IO_STATUS_EOF)
+		{
+			output_status = OUTPUT_STOP_REQUEST;
+			g_io_channel_unref (channel);
+			finish_execute ();
+			return FALSE;
+		}
 	}
 	
-	/* Flush the queue for the 200 first lines and then every 20 lines.
-	 * This is for the fluidity of the output, without that the lines do not
-	 * appear directly and it's ugly. But it is very slow, for a command that
-	 * execute for example in 10 seconds, it could take 250 seconds (!) if we
-	 * flush the queue at each line... But with commands that take 1
-	 * second or so there is not a big difference.
-	 */
-	if (show_all_output && (nb_lines < 200 || nb_lines % 20 == 0))
-		flush_queue ();
+	if (condition & G_IO_HUP)
+	{
+		output_status = OUTPUT_STOP_REQUEST;
+		g_io_channel_unref (channel);
+		finish_execute ();
+		return FALSE;
+	}
 
-	nb_lines++;
+	if (output_status == OUTPUT_IS_FETCHING)
+		output_status = OUTPUT_GO_FETCHING;
 
 	return TRUE;
 }
@@ -419,22 +461,23 @@ output_filter_line (const gchar *line)
 static void
 cb_child_watch (GPid pid, gint status, gpointer user_data)
 {
-	print_info ("cb_child_watch ()");
-
 	g_spawn_close_pid (pid);
 
 	if (WIFEXITED (status))
 		child_pid_exit_code = WEXITSTATUS (status);
 	else
 		child_pid_exit_code = -1;
+
+	exit_code_set = TRUE;
+	finish_execute ();
 }
 
 static void
-command_running_finished (void)
+finish_execute (void)
 {
-	print_info ("command_running_finished ()");
+	if (! exit_code_set || output_status != OUTPUT_STOP_REQUEST)
+		return;
 
-	/*
 	if (child_pid_exit_code > -1)
 	{
 		gchar *exit_code = g_strdup_printf ("exit code: %d\n",
@@ -450,7 +493,6 @@ command_running_finished (void)
 	else
 		print_log_add (latexila.action_log.text_view,
 				_("the child process exited abnormally"), TRUE);
-	*/
 
 	flush_queue ();
 

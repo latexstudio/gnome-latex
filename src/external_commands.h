@@ -28,4 +28,11 @@ void run_bibtex (void);
 void run_makeindex (void);
 void view_in_web_browser (gchar *title, gchar *filename);
 
+enum output
+{
+	OUTPUT_GO_FETCHING,
+	OUTPUT_IS_FETCHING,
+	OUTPUT_STOP_REQUEST
+};
+
 #endif /* EXTERNAL_COMMANDS_H */
