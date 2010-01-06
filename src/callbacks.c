@@ -52,7 +52,7 @@ static void find (gboolean backward);
 static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 		gboolean backward, GtkTextIter *match_start, GtkTextIter *match_end);
 static void free_latexila (void);
-static void delete_auxiliaries_files (const gchar *filename);
+static void delete_build_files (const gchar *filename);
 static void set_entry_background (GtkWidget *entry, gboolean error);
 static void insert_text_at_beginning_of_selected_lines (gchar *text);
 
@@ -710,6 +710,15 @@ cb_makeindex (void)
 		return;
 
 	run_makeindex ();
+}
+
+void
+cb_clean_up_build_files (void)
+{
+	if (latexila.active_doc == NULL || latexila.active_doc->path == NULL)
+		return;
+
+	delete_build_files (latexila.active_doc->path);
 }
 
 void
@@ -1375,7 +1384,7 @@ close_document (gint index)
 			g_ptr_array_add (latexila.prefs.list_opened_docs,
 					(gpointer) g_strdup (latexila.active_doc->path));
 
-		delete_auxiliaries_files (latexila.active_doc->path);
+		delete_build_files (latexila.active_doc->path);
 
 		g_free (latexila.active_doc->path);
 	}
@@ -1737,7 +1746,7 @@ free_latexila (void)
 }
 
 static void
-delete_auxiliaries_files (const gchar *filename)
+delete_build_files (const gchar *filename)
 {
 	if (! g_str_has_suffix (filename, ".tex"))
 		return;

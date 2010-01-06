@@ -136,6 +136,8 @@ static const char *ui =
 "      <separator />"
 "      <menuitem action='compile_bibtex' />"
 "      <menuitem action='compile_makeindex' />"
+"      <separator />"
+"      <menuitem action='clean_up_build_files' />"
 "    </menu>"
 
 "    <menu action='Latex'>"
@@ -488,6 +490,9 @@ static GtkActionEntry entries[] = {
 		N_("Run BibTeX on the current document"), G_CALLBACK (cb_bibtex)},
 	{"compile_makeindex", NULL, "_MakeIndex", NULL,
 		N_("Run MakeIndex on the current document"), G_CALLBACK (cb_makeindex)},
+	{"clean_up_build_files", GTK_STOCK_DELETE, N_("Cleanup Build Files"), NULL,
+		N_("Clean-up build files (*.aux, *.log, *.out, *.toc, etc)"),
+		G_CALLBACK (cb_clean_up_build_files)},
 
 	{"Tools", NULL, N_("_Tools"), NULL, NULL, NULL},
 	{"ToolsComment", NULL, N_("_Comment"), "<Control>D",

@@ -1205,7 +1205,7 @@ create_preferences (void)
 
 	/* delete auxiliaries files on exit */
 	GtkWidget *delete_aux_files = gtk_check_button_new_with_label (
-			_("Clean-up auxiliaries files after close (*.aux, *.log, *.out, *.toc, etc)"));
+			_("Clean-up build files after close (*.aux, *.log, *.out, *.toc, etc)"));
 	gtk_widget_set_tooltip_text (delete_aux_files,
 			".aux .bit .blg .lof .log .lot .glo .glx .gxg .gxs .idx .ilg .ind .out .url .svn .toc");
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (delete_aux_files),

@@ -13,6 +13,3 @@ TODO LaTeXila
 - Auto-completion of LaTeX commands
 
 - Change the title of the window with the filename of the current document
-
-- New action: clean-up auxiliaries file
-	(for the moment it is possible when we close the document)
