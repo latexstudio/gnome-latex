@@ -4,10 +4,15 @@ TODO LaTeXila
 	x filter the messages
 	- show the exit code
 	- show statistics: nb of errors, warnings and badboxes
+	- extract informations: file, line, message
 	- jump to lines: GtkTextBuffer -> GtkListStore
 	- colors
 	- go to the previous/next error/warning/badbox
+	- button to stop the execution
 
 - Auto-completion of LaTeX commands
 
 - Change the title of the window with the filename of the current document
+
+- New action: clean-up auxiliaries file
+	(for the moment it is possible when we close the document)

@@ -5,7 +5,7 @@ PROJECT(latexila)
 # version
 SET(latexila_MAJOR 0)
 SET(latexila_MINOR 1)
-SET(latexila_PATCH 0)
+SET(latexila_PATCH 99)
 SET(latexila_VERSION ${latexila_MAJOR}.${latexila_MINOR}.${latexila_PATCH})
 
 MESSAGE(STATUS "*** Building LaTeXila ${latexila_VERSION} ***")

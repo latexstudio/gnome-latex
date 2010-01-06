@@ -613,20 +613,19 @@ cb_latex (void)
 
 	gchar *title = _("Compile (latex)");
 	gchar *command[] = {
-        latexila.prefs.command_latex,
-        "-interaction=nonstopmode",
+		latexila.prefs.command_latex,
 		"-file-line-error",
 		// we take the basename because the command is run inside the directory
 		// of the document, and the output lines which contains the filename
 		// are shorter (the lines too long are splitted, so the user can not
 		// see all the line if there is a filter which operate line per line)
-        g_path_get_basename (latexila.active_doc->path),
-        NULL
+		g_path_get_basename (latexila.active_doc->path),
+		NULL
     };
 
     compile_document (title, command);
 
-	g_free (command[3]);
+	g_free (command[2]);
 }
 
 void
@@ -639,16 +638,15 @@ cb_pdflatex (void)
 
 	gchar *title = _("Compile (pdflatex)");
 	gchar *command[] = {
-        latexila.prefs.command_pdflatex,
-        "-interaction=nonstopmode",
+		latexila.prefs.command_pdflatex,
 		"-file-line-error",
-        g_path_get_basename (latexila.active_doc->path),
-        NULL
+		g_path_get_basename (latexila.active_doc->path),
+		NULL
     };
 
     compile_document (title, command);
 
-	g_free (command[3]);
+	g_free (command[2]);
 }
 
 void

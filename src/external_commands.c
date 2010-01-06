@@ -20,6 +20,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/wait.h>
+#include <unistd.h> // for dup2
 #include <locale.h>
 #include <libintl.h>
 #include <gtk/gtk.h>
@@ -37,15 +39,20 @@
 static void add_action (const gchar *title, const gchar *command);
 static void set_action_sensitivity (gboolean sensitive);
 static gchar * get_command_line (gchar **command);
+static void start_command_without_output (gchar **command, gchar *message);
+static void start_command_with_output (gchar **command);
+static void cb_spawn_setup (gpointer data);
 static gboolean cb_watch_output_command (GIOChannel *channel,
 		GIOCondition condition, gpointer user_data);
 static void output_filter_line (const gchar *line);
+static void cb_child_watch (GPid pid, gint status, gpointer user_data);
 static void command_running_finished (void);
-static void view_document_run (gchar *filename);
 static void run_command_on_other_extension (gchar *title, gchar *message,
 		gchar *command, gchar *extension);
+static gboolean is_current_doc_tex_file (void);
 
 static gboolean show_all_output = TRUE;
+static gint child_pid_exit_code = 0;
 
 void
 compile_document (gchar *title, gchar **command)
@@ -53,22 +60,12 @@ compile_document (gchar *title, gchar **command)
 	if (latexila.active_doc == NULL)
 		return;
 
-	gchar *command_output;
-
 	gchar *command_line = get_command_line (command);
 	add_action (title, command_line);
 	g_free (command_line);
 
-	/* the current document is a *.tex file? */
-	gboolean tex_file = g_str_has_suffix (latexila.active_doc->path, ".tex");
-	if (! tex_file)
-	{
-		command_output = g_strdup_printf (_("compilation failed: %s is not a *.tex file"),
-				g_path_get_basename (latexila.active_doc->path));
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
-		g_free (command_output);
+	if (! is_current_doc_tex_file ())
 		return;
-	}
 
 	/* print a message in the statusbar */
 	guint context_id = gtk_statusbar_get_context_id (latexila.statusbar,
@@ -79,59 +76,8 @@ compile_document (gchar *title, gchar **command)
 	// without that, the message in the statusbar does not appear
 	flush_queue ();
 
-	/* run the command */
-	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
-	GError *error = NULL;
-	GPid pid;
-	gint out, err;
-	g_spawn_async_with_pipes (dir, command, NULL, G_SPAWN_SEARCH_PATH, NULL,
-			NULL, &pid, NULL, &out, &err, &error);
-	g_free (dir);
-
-	// an error occured
-	if (error != NULL)
-	{
-		command_output = g_strdup_printf (_("execution failed: %s"),
-				error->message);
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
-
-		g_free (command_output);
-		g_error_free (error);
-		return;
-	}
-
-	// create the channels
-	GIOChannel *out_channel = g_io_channel_unix_new (out);
-	GIOChannel *err_channel = g_io_channel_unix_new (err);
-
-#if 0
-	// the encoding of the output of the latex and the pdflatex commands is not
-	// UTF-8...
-	g_io_channel_set_encoding (out_channel, "ISO-8859-1", &error);
-	g_io_channel_set_encoding (err_channel, "ISO-8859-1", &error);
-
-	if (error != NULL)
-	{
-		command_output = g_strdup_printf (
-				"conversion of the command output failed: %s", error->message);
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
-
-		g_free (command_output);
-		g_error_free (error);
-		return;
-	}
-#endif
-
-	// lock the action list and all the build actions
-	set_action_sensitivity (FALSE);
-
 	show_all_output = FALSE;
-
-	// add watches to channels
-	g_io_add_watch (out_channel, G_IO_IN | G_IO_HUP,
-			(GIOFunc) cb_watch_output_command, NULL);
-	g_io_add_watch (err_channel, G_IO_IN | G_IO_HUP,
-			(GIOFunc) cb_watch_output_command, NULL);
+	start_command_with_output (command);
 }
 
 void
@@ -140,30 +86,19 @@ view_current_document (gchar *title, gchar *doc_extension)
 	if (latexila.active_doc == NULL)
 		return;
 
-	gchar *command_output;
-
-	GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
-
 	/* replace .tex by doc_extension (.pdf, .dvi, ...) */
+	GRegex *regex = g_regex_new ("\\.tex$", 0, 0, NULL);
 	gchar *doc_path = g_regex_replace_literal (regex, latexila.active_doc->path,
 			-1, 0, doc_extension, 0, NULL);
+	g_regex_unref (regex);
 
 	gchar *command_line = g_strdup_printf ("%s %s", latexila.prefs.command_view,
 			doc_path);
 	add_action (title, command_line);
 	g_free (command_line);
 
-	/* the current document is a *.tex file? */
-	gboolean tex_file = g_regex_match (regex, latexila.active_doc->path, 0, NULL);
-	g_regex_unref (regex);
-
-	if (! tex_file)
+	if (! is_current_doc_tex_file ())
 	{
-		command_output = g_strdup_printf (_("failed: %s is not a *.tex file"),
-				g_path_get_basename (latexila.active_doc->path));
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
-
-		g_free (command_output);
 		g_free (doc_path);
 		return;
 	}
@@ -171,17 +106,17 @@ view_current_document (gchar *title, gchar *doc_extension)
 	/* the document (PDF, DVI, ...) file exist? */
 	if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
 	{
-		command_output = g_strdup_printf (
+		gchar *command_output = g_strdup_printf (
 				_("%s does not exist. If this is not already made, compile the document with the right command."),
 				g_path_get_basename (doc_path));
 		print_log_add (latexila.action_log.text_view, command_output, TRUE);
-
 		g_free (command_output);
 		g_free (doc_path);
 		return;
 	}
 
-	view_document_run (doc_path);
+	gchar *command[] = {latexila.prefs.command_view, doc_path, NULL};
+	start_command_without_output (command, NULL);
 	g_free (doc_path);
 }
 
@@ -193,7 +128,8 @@ view_document (gchar *title, gchar *filename)
 	add_action (title, command_line);
 	g_free (command_line);
 
-	view_document_run (filename);
+	gchar *command[] = {latexila.prefs.command_view, filename, NULL};
+	start_command_without_output (command, NULL);
 }
 
 void
@@ -234,29 +170,8 @@ view_in_web_browser (gchar *title, gchar *filename)
 	add_action (title, command_line);
 	g_free (command_line);
 
-	GError *error = NULL;
-	gchar *argv[] = {latexila.prefs.command_web_browser, filename, NULL};
-	g_spawn_async (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, &error);
-
-	gboolean is_error = TRUE;
-	gchar *command_output;
-
-	if (error != NULL)
-	{
-		command_output = g_strdup_printf (_("execution failed: %s"),
-				error->message);
-		g_error_free (error);
-		error = NULL;
-	}
-	else
-	{
-		command_output = g_strdup (_("Viewing in progress. Please wait..."));
-		is_error = FALSE;
-	}
-
-	print_log_add (latexila.action_log.text_view, command_output, is_error);
-
-	g_free (command_output);
+	gchar *command[] = {latexila.prefs.command_web_browser, filename, NULL};
+	start_command_without_output (command, NULL);
 }
 
 static void
@@ -352,25 +267,99 @@ get_command_line (gchar **command)
 	return command_line;
 }
 
+static void
+start_command_without_output (gchar **command, gchar *message)
+{
+	GError *error = NULL;
+	g_spawn_async (NULL, command, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, &error);
+
+	if (error != NULL)
+	{
+		gchar *command_output = g_strdup_printf (_("execution failed: %s"),
+				error->message);
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
+		g_free (command_output);
+		g_error_free (error);
+	}
+	else if (message == NULL)
+		print_log_add (latexila.action_log.text_view,
+				_("Viewing in progress. Please wait..."), FALSE);
+	else
+		print_log_add (latexila.action_log.text_view, message, FALSE);
+}
+
+// Attention, before calling this function, set the variable "show_all_output"
+// to TRUE or FALSE. If it is FALSE, the output will be filtered by the function
+// output_filter_line().
+static void
+start_command_with_output (gchar **command)
+{
+	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
+	GError *error = NULL;
+	GPid pid;
+	gint out;
+	g_spawn_async_with_pipes (dir, command, NULL,
+			G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
+			(GSpawnChildSetupFunc) cb_spawn_setup, NULL,
+			&pid, NULL, &out, NULL, &error);
+	g_free (dir);
+
+	// an error occured
+	if (error != NULL)
+	{
+		gchar *command_output = g_strdup_printf (_("execution failed: %s"),
+				error->message);
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
+		g_free (command_output);
+		g_error_free (error);
+		return;
+	}
+
+	// we want to know the exit code
+	g_child_watch_add (pid, (GChildWatchFunc) cb_child_watch, NULL);
+
+	// create the channel
+	GIOChannel *out_channel = g_io_channel_unix_new (out);
+
+#if 0
+	g_io_channel_set_encoding (out_channel, "ISO-8859-1", &error);
+	if (error != NULL)
+	{
+		command_output = g_strdup_printf (
+				"conversion of the command output failed: %s", error->message);
+		print_log_add (latexila.action_log.text_view, command_output, TRUE);
+		g_free (command_output);
+		g_error_free (error);
+		return;
+	}
+#endif
+
+	// lock the action list and all the build actions
+	set_action_sensitivity (FALSE);
+
+	// add watches to channels
+	g_io_add_watch (out_channel, G_IO_IN | G_IO_HUP,
+			(GIOFunc) cb_watch_output_command, NULL);
+}
+
+static void
+cb_spawn_setup (gpointer data)
+{
+	// include stderr in the output
+	dup2 (STDOUT_FILENO, STDERR_FILENO);
+}
+
 static gboolean
 cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 		gpointer user_data)
 {
 	static int nb_lines = 0;
-	static int nb_channels_active = 2;
 
 	if (condition == G_IO_HUP)
 	{
 		g_io_channel_unref (channel);
-		nb_channels_active--;
-		
-		if (nb_channels_active == 0)
-		{
-			command_running_finished ();
-			nb_lines = 0;
-			nb_channels_active = 2;
-		}
-
+		command_running_finished ();
+		nb_lines = 0;
 		return FALSE;
 	}
 
@@ -388,7 +377,6 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 	if (line != NULL)
 	{
 		if (show_all_output)
-			// print the command output line to the log zone
 			print_log_add (latexila.action_log.text_view, line, FALSE);
 		else
 			output_filter_line (line);
@@ -415,8 +403,6 @@ output_filter_line (const gchar *line)
 	if (line == NULL || strlen (line) == 0)
 		return;
 
-	printf ("%s", line);
-
 	if (g_regex_match_simple ("[^:]+:[0-9]+:.*", line, 0, 0)
 			|| g_regex_match_simple ("lines? [0-9]+", line, 0, 0)
 			|| strstr (line, "LaTeX Error")
@@ -431,12 +417,42 @@ output_filter_line (const gchar *line)
 }
 
 static void
+cb_child_watch (GPid pid, gint status, gpointer user_data)
+{
+	print_info ("cb_child_watch ()");
+
+	g_spawn_close_pid (pid);
+
+	if (WIFEXITED (status))
+		child_pid_exit_code = WEXITSTATUS (status);
+	else
+		child_pid_exit_code = -1;
+}
+
+static void
 command_running_finished (void)
 {
-	print_info ("\n\n\n");
-	flush_queue ();
+	print_info ("command_running_finished ()");
 
-	show_all_output = TRUE;
+	/*
+	if (child_pid_exit_code > -1)
+	{
+		gchar *exit_code = g_strdup_printf ("exit code: %d\n",
+				child_pid_exit_code);
+
+		if (child_pid_exit_code == 0)
+			print_log_add (latexila.action_log.text_view, exit_code, FALSE);
+		else
+			print_log_add (latexila.action_log.text_view, exit_code, TRUE);
+
+		g_free (exit_code);
+	}
+	else
+		print_log_add (latexila.action_log.text_view,
+				_("the child process exited abnormally"), TRUE);
+	*/
+
+	flush_queue ();
 
 	// unlock the action list and all the build actions
 	set_action_sensitivity (TRUE);
@@ -447,38 +463,6 @@ command_running_finished (void)
 	gtk_statusbar_pop (latexila.statusbar, context_id);
 
 	cb_file_browser_refresh (NULL, NULL);
-}
-
-static void
-view_document_run (gchar *filename)
-{
-	// we use here g_spawn_async () and not g_spawn_command_line_async ()
-	// because the spaces in doc_path are not escaped, so with the command line
-	// it doesn't work fine...
-	
-	GError *error = NULL;
-	gchar *argv[] = {latexila.prefs.command_view, filename, NULL};
-	g_spawn_async (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL, NULL, &error);
-
-	gboolean is_error = TRUE;
-	gchar *command_output;
-
-	if (error != NULL)
-	{
-		command_output = g_strdup_printf (_("execution failed: %s"),
-				error->message);
-		g_error_free (error);
-		error = NULL;
-	}
-	else
-	{
-		command_output = g_strdup (_("Viewing in progress. Please wait..."));
-		is_error = FALSE;
-	}
-
-	print_log_add (latexila.action_log.text_view, command_output, is_error);
-
-	g_free (command_output);
 }
 
 /* Run a command on the current document but with an other extension.
@@ -506,14 +490,13 @@ run_command_on_other_extension (gchar *title, gchar *message, gchar *command,
 	add_action (title, full_command);
 	g_free (full_command);
 
-	/* the document to convert exist? */
+	/* the document with the other extension exist? */
 	if (! g_file_test (doc_path, G_FILE_TEST_IS_REGULAR))
 	{
 		command_output = g_strdup_printf (
 				_("%s does not exist. If this is not already made, compile the document with the right command."),
 				g_path_get_basename (doc_path));
 		print_log_add (latexila.action_log.text_view, command_output, TRUE);
-
 		g_free (command_output);
 		g_free (doc_path);
 		return;
@@ -529,39 +512,23 @@ run_command_on_other_extension (gchar *title, gchar *message, gchar *command,
 
 	/* run the command */
 	gchar *argv[] = {command, doc_path, NULL};
-
-	GError *error = NULL;
-	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
-	GPid pid;
-	gint out, err;
-	g_spawn_async_with_pipes (dir, argv, NULL, G_SPAWN_SEARCH_PATH, NULL,
-			NULL, &pid, NULL, &out, &err, &error);
-
-	g_free (dir);
+	show_all_output = TRUE;
+	start_command_with_output (argv);
 	g_free (doc_path);
+}
 
-	// an error occured
-	if (error != NULL)
+static gboolean
+is_current_doc_tex_file (void)
+{
+	/* the current document is a *.tex file? */
+	if (! g_str_has_suffix (latexila.active_doc->path, ".tex"))
 	{
-		command_output = g_strdup_printf (_("execution failed: %s"),
-				error->message);
+		gchar *command_output = g_strdup_printf (_("failed: %s is not a *.tex file"),
+				g_path_get_basename (latexila.active_doc->path));
 		print_log_add (latexila.action_log.text_view, command_output, TRUE);
-
 		g_free (command_output);
-		g_error_free (error);
-		return;
+		return FALSE;
 	}
 
-	// create the channels
-	GIOChannel *out_channel = g_io_channel_unix_new (out);
-	GIOChannel *err_channel = g_io_channel_unix_new (err);
-
-	// lock the action list and all the build actions
-	set_action_sensitivity (FALSE);
-
-	// add watches to channels
-	g_io_add_watch (out_channel, G_IO_IN | G_IO_HUP,
-			(GIOFunc) cb_watch_output_command, NULL);
-	g_io_add_watch (err_channel, G_IO_IN | G_IO_HUP,
-			(GIOFunc) cb_watch_output_command, NULL);
+	return TRUE;
 }
