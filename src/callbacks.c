@@ -722,6 +722,12 @@ cb_clean_up_build_files (void)
 }
 
 void
+cb_stop_execution (void)
+{
+	stop_execution ();
+}
+
+void
 cb_tools_comment (void)
 {
 	if (latexila.active_doc == NULL)
@@ -962,7 +968,7 @@ void
 cb_about_dialog (void)
 {
 	gchar *comments = _("LaTeXila is a LaTeX editor for the GNOME Desktop");
-	gchar *copyright = "Copyright © 2009, 2010 Sébastien Wilmet";
+	gchar *copyright = "Copyright (C) 2009, 2010 Sébastien Wilmet";
 
 	gchar *licence = "LaTeXila is free software: you can redistribute it and/or modify\n"
 			"it under the terms of the GNU General Public License as published by\n"
@@ -994,7 +1000,7 @@ cb_about_dialog (void)
 		NULL
 	};
 
-	GdkPixbuf *logo = gdk_pixbuf_new_from_file (DATA_DIR "/images/logo.png",
+	GdkPixbuf *logo = gdk_pixbuf_new_from_file (DATA_DIR "/images/logo/logo.png",
 			NULL);
 
 	gtk_show_about_dialog (

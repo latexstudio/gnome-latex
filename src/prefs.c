@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009, 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1157,14 +1157,14 @@ create_preferences (void)
 	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
 	// set the same width for the labels
-	// the longer label is label3
+	// the longer label is label6
 	GtkRequisition size;
-	gtk_widget_size_request (label3, &size);
+	gtk_widget_size_request (label6, &size);
 	gtk_widget_set_size_request (label1, size.width, 0);
 	gtk_widget_set_size_request (label2, size.width, 0);
+	gtk_widget_set_size_request (label3, size.width, 0);
 	gtk_widget_set_size_request (label4, size.width, 0);
 	gtk_widget_set_size_request (label5, size.width, 0);
-	gtk_widget_set_size_request (label6, size.width, 0);
 
 	// flush left
 	gtk_misc_set_alignment (GTK_MISC (label1), 0.0, 0.5);

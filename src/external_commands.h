@@ -27,6 +27,7 @@ void convert_document (gchar *title, gchar *doc_extension, gchar *command);
 void run_bibtex (void);
 void run_makeindex (void);
 void view_in_web_browser (gchar *title, gchar *filename);
+void stop_execution (void);
 
 enum output
 {

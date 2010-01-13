@@ -3,12 +3,12 @@ TODO LaTeXila
 - User-friendly output for the compilation
 	x filter the messages
 	x show the exit code
+	x button to stop the execution
 	- show statistics: nb of errors, warnings and badboxes
 	- extract informations: file, line, message
-	- jump to lines: GtkTextBuffer -> GtkListStore
+	- jump to lines and files: GtkTextBuffer -> GtkListStore
 	- colors
 	- go to the previous/next error/warning/badbox
-	- button to stop the execution
 
 - Auto-completion of LaTeX commands
 

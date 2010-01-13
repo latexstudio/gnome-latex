@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009, 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -120,6 +120,7 @@ typedef struct
 	GtkAction *view_ps;
 	GtkAction *bibtex;
 	GtkAction *makeindex;
+	GtkAction *stop_execution;
 } actions_t;
 
 typedef struct

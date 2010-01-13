@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009, 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,6 +59,7 @@ void cb_dvi_to_ps (void);
 void cb_bibtex (void);
 void cb_makeindex (void);
 void cb_clean_up_build_files (void);
+void cb_stop_execution (void);
 void cb_tools_comment (void);
 void cb_tools_uncomment (void);
 void cb_tools_indent (void);

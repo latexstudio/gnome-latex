@@ -17,11 +17,14 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#define _POSIX_C_SOURCE 1
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/wait.h>
 #include <unistd.h> // for dup2
+#include <sys/types.h>
+#include <signal.h> // for kill
 #include <locale.h>
 #include <libintl.h>
 #include <gtk/gtk.h>
@@ -52,9 +55,10 @@ static void run_command_on_other_extension (gchar *title, gchar *message,
 static gboolean is_current_doc_tex_file (void);
 
 static gboolean show_all_output = TRUE;
+static GPid child_pid;
 static gint child_pid_exit_code = 0;
-static enum output output_status = OUTPUT_GO_FETCHING;
 static gboolean exit_code_set = FALSE;
+static enum output output_status = OUTPUT_GO_FETCHING;
 
 void
 compile_document (gchar *title, gchar **command)
@@ -176,6 +180,13 @@ view_in_web_browser (gchar *title, gchar *filename)
 	start_command_without_output (command, NULL);
 }
 
+void
+stop_execution (void)
+{
+	kill (child_pid, SIGTERM);
+	gtk_action_set_sensitive (latexila.actions.stop_execution, FALSE);
+}
+
 static void
 add_action (const gchar *title, const gchar *command)
 {
@@ -246,6 +257,7 @@ set_action_sensitivity (gboolean sensitive)
 	gtk_action_set_sensitive (latexila.actions.view_ps, sensitive);
 	gtk_action_set_sensitive (latexila.actions.bibtex, sensitive);
 	gtk_action_set_sensitive (latexila.actions.makeindex, sensitive);
+	gtk_action_set_sensitive (latexila.actions.stop_execution, ! sensitive);
 }
 
 static gchar *
@@ -298,12 +310,11 @@ start_command_with_output (gchar **command)
 {
 	gchar *dir = g_path_get_dirname (latexila.active_doc->path);
 	GError *error = NULL;
-	GPid pid;
 	gint out;
 	g_spawn_async_with_pipes (dir, command, NULL,
 			G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
 			(GSpawnChildSetupFunc) cb_spawn_setup, NULL,
-			&pid, NULL, &out, NULL, &error);
+			&child_pid, NULL, &out, NULL, &error);
 	g_free (dir);
 
 	// an error occured
@@ -321,7 +332,7 @@ start_command_with_output (gchar **command)
 	exit_code_set = FALSE;
 
 	// we want to know the exit code
-	g_child_watch_add (pid, (GChildWatchFunc) cb_child_watch, NULL);
+	g_child_watch_add (child_pid, (GChildWatchFunc) cb_child_watch, NULL);
 
 	// create the channel
 	GIOChannel *out_channel = g_io_channel_unix_new (out);

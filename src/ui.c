@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009, 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -138,6 +138,7 @@ static const char *ui =
 "      <menuitem action='compile_makeindex' />"
 "      <separator />"
 "      <menuitem action='clean_up_build_files' />"
+"      <menuitem action='stop_execution' />"
 "    </menu>"
 
 "    <menu action='Latex'>"
@@ -308,6 +309,8 @@ static const char *ui =
 "    <separator />"
 "    <toolitem action='compile_pdflatex' />"
 "    <toolitem action='viewPDF' />"
+"    <separator />"
+"    <toolitem action='stop_execution' />"
 "  </toolbar>"
 
 "  <toolbar name='EditToolbar'>"
@@ -490,9 +493,11 @@ static GtkActionEntry entries[] = {
 		N_("Run BibTeX on the current document"), G_CALLBACK (cb_bibtex)},
 	{"compile_makeindex", NULL, "_MakeIndex", NULL,
 		N_("Run MakeIndex on the current document"), G_CALLBACK (cb_makeindex)},
-	{"clean_up_build_files", GTK_STOCK_DELETE, N_("Cleanup Build Files"), NULL,
+	{"clean_up_build_files", GTK_STOCK_DELETE, N_("Cleanup Build _Files"), NULL,
 		N_("Clean-up build files (*.aux, *.log, *.out, *.toc, etc)"),
 		G_CALLBACK (cb_clean_up_build_files)},
+	{"stop_execution", GTK_STOCK_STOP, N_("_Stop Execution"), "<Release>F9",
+		N_("Stop Execution"), G_CALLBACK (cb_stop_execution)},
 
 	{"Tools", NULL, N_("_Tools"), NULL, NULL, NULL},
 	{"ToolsComment", NULL, N_("_Comment"), "<Control>D",
@@ -869,7 +874,8 @@ init_ui (GtkWidget *box)
 			"compile_bibtex");
 	latexila.actions.makeindex = gtk_action_group_get_action (action_group,
 			"compile_makeindex");
-
+	latexila.actions.stop_execution = gtk_action_group_get_action (action_group,
+			"stop_execution");
 
 	GtkToggleAction *show_side_pane = GTK_TOGGLE_ACTION (
 			gtk_action_group_get_action (action_group, "ViewSidePane"));
@@ -880,4 +886,6 @@ init_ui (GtkWidget *box)
 			gtk_action_group_get_action (action_group, "ViewEditToolbar"));
 	gtk_toggle_action_set_active (show_edit_toolbar,
 			latexila.prefs.show_edit_toolbar);
+
+	gtk_action_set_sensitive (latexila.actions.stop_execution, FALSE);
 }
