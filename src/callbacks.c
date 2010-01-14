@@ -612,20 +612,33 @@ cb_latex (void)
 	cb_save ();
 
 	gchar *title = _("Compile (latex)");
-	gchar *command[] = {
-		latexila.prefs.command_latex,
-		"-file-line-error",
-		// we take the basename because the command is run inside the directory
-		// of the document, and the output lines which contains the filename
-		// are shorter (the lines too long are splitted, so the user can not
-		// see all the line if there is a filter which operate line per line)
-		g_path_get_basename (latexila.active_doc->path),
-		NULL
-    };
 
-    compile_document (title, command);
+	if (latexila.prefs.compile_non_stop)
+	{
+		gchar *command[] = {
+			latexila.prefs.command_latex,
+			"-interaction=nonstopmode",
+			// we take the basename because the command is run inside the directory
+			// of the document, and the output lines which contains the filename
+			// are shorter (the lines too long are splitted, so the user can not
+			// see all the line if there is a filter which operate line per line)
+			g_path_get_basename (latexila.active_doc->path),
+			NULL
+		};
+		compile_document (title, command);
+		g_free (command[2]);
+	}
 
-	g_free (command[2]);
+	else
+	{
+		gchar *command[] = {
+			latexila.prefs.command_latex,
+			g_path_get_basename (latexila.active_doc->path),
+			NULL
+		};
+		compile_document (title, command);
+		g_free (command[1]);
+	}
 }
 
 void
@@ -637,16 +650,29 @@ cb_pdflatex (void)
 	cb_save ();
 
 	gchar *title = _("Compile (pdflatex)");
-	gchar *command[] = {
-		latexila.prefs.command_pdflatex,
-		"-file-line-error",
-		g_path_get_basename (latexila.active_doc->path),
-		NULL
-    };
 
-    compile_document (title, command);
+	if (latexila.prefs.compile_non_stop)
+	{
+		gchar *command[] = {
+			latexila.prefs.command_pdflatex,
+			"-interaction=nonstopmode",
+			g_path_get_basename (latexila.active_doc->path),
+			NULL
+		};
+		compile_document (title, command);
+		g_free (command[2]);
+	}
 
-	g_free (command[2]);
+	else
+	{
+		gchar *command[] = {
+			latexila.prefs.command_pdflatex,
+			g_path_get_basename (latexila.active_doc->path),
+			NULL
+		};
+		compile_document (title, command);
+		g_free (command[1]);
+	}
 }
 
 void

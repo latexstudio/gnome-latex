@@ -58,6 +58,10 @@ static void cb_pref_command_dvips (GtkEditable *editable, gpointer user_data);
 static void cb_pref_web_browser (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_bibtex (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_makeindex (GtkEditable *editable, gpointer user_data);
+static void cb_pref_compile_show_all_output (GtkToggleButton *toggle_button,
+		gpointer user_data);
+static void cb_pref_compile_non_stop (GtkToggleButton *toggle_button,
+		gpointer user_data);
 static void cb_style_scheme_changed (GtkTreeSelection *selection,
 		gpointer user_data);
 static void cb_delete_aux_files (GtkToggleButton *toggle_button,
@@ -89,6 +93,8 @@ static gchar	*command_dvips_					= COMMAND_DVIPS;
 static gchar	*command_web_browser_			= "gnome-open";
 static gchar	*command_bibtex_				= COMMAND_BIBTEX;
 static gchar	*command_makeindex_				= COMMAND_MAKEINDEX;
+static gboolean	compile_show_all_output_		= FALSE;
+static gboolean compile_non_stop_				= FALSE;
 static gboolean delete_aux_files_				= FALSE;
 static gboolean reopen_files_on_startup_		= TRUE;
 static gboolean file_browser_show_all_files_	= FALSE;
@@ -315,6 +321,26 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->compile_show_all_output = g_key_file_get_boolean (key_file, PROGRAM_NAME,
+			"compile_show_all_output", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->compile_show_all_output = compile_show_all_output_;
+		g_error_free (error);
+		error = NULL;
+	}
+
+	prefs->compile_non_stop = g_key_file_get_boolean (key_file, PROGRAM_NAME,
+			"compile_non_stop", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->compile_non_stop = compile_non_stop_;
+		g_error_free (error);
+		error = NULL;
+	}
+
 	prefs->file_chooser_dir = g_key_file_get_string (key_file, PROGRAM_NAME,
 			"file_chooser_directory", &error);
 	if (error != NULL)
@@ -357,8 +383,6 @@ load_preferences (preferences_t *prefs)
 		g_strfreev (list_opened_docs);
 	}
 
-	// look, I see light, we are close to the exit!
-	
 	prefs->reopen_files_on_startup = g_key_file_get_boolean (key_file,
 			PROGRAM_NAME, "reopen_files_on_startup", &error);
 	if (error != NULL)
@@ -409,6 +433,8 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	// look, I see light, we are close to the exit!
+	
 	prefs->spaces_instead_of_tabs = g_key_file_get_boolean (key_file,
 			PROGRAM_NAME, "spaces_instead_of_tabs", &error);
 	if (error != NULL)
@@ -491,6 +517,10 @@ save_preferences (preferences_t *prefs)
 			prefs->command_bibtex);
 	g_key_file_set_string (key_file, PROGRAM_NAME, "command_makeindex",
 			prefs->command_makeindex);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "compile_show_all_output",
+			prefs->compile_show_all_output);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "compile_non_stop",
+			prefs->compile_non_stop);
 	if (prefs->file_chooser_dir != NULL)
 		g_key_file_set_string (key_file, PROGRAM_NAME, "file_chooser_directory",
 				prefs->file_chooser_dir);
@@ -612,6 +642,8 @@ load_default_preferences (preferences_t *prefs)
 	prefs->command_web_browser = g_strdup (command_web_browser_);
 	prefs->command_bibtex = g_strdup (command_bibtex_);
 	prefs->command_makeindex = g_strdup (command_makeindex_);
+	prefs->compile_show_all_output = compile_show_all_output_;
+	prefs->compile_non_stop = compile_non_stop_;
 	prefs->file_chooser_dir = NULL;
 	prefs->file_browser_dir = g_strdup (g_get_home_dir ());
 	prefs->list_opened_docs = g_ptr_array_new ();
@@ -828,6 +860,21 @@ cb_pref_command_makeindex (GtkEditable *editable, gpointer user_data)
 }
 
 static void
+cb_pref_compile_show_all_output (GtkToggleButton *toggle_button,
+		gpointer user_data)
+{
+	latexila.prefs.compile_show_all_output =
+		gtk_toggle_button_get_active (toggle_button);
+}
+
+static void
+cb_pref_compile_non_stop (GtkToggleButton *toggle_button, gpointer user_data)
+{
+	latexila.prefs.compile_non_stop =
+		gtk_toggle_button_get_active (toggle_button);
+}
+
+static void
 cb_style_scheme_changed (GtkTreeSelection *selection, gpointer user_data)
 {
 	GtkTreeIter iter;
@@ -993,236 +1040,289 @@ create_preferences (void)
 	gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox_other, label_other);
 
 	/* show line numbers */
-	GtkWidget *line_numbers = gtk_check_button_new_with_label (
-			_("Display line numbers"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (line_numbers),
-			latexila.prefs.show_line_numbers);
-	g_signal_connect (G_OBJECT (line_numbers), "toggled",
-			G_CALLBACK (cb_pref_line_numbers), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_editor), line_numbers, FALSE, FALSE, 0);
+	{
+		GtkWidget *line_numbers = gtk_check_button_new_with_label (
+				_("Display line numbers"));
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (line_numbers),
+				latexila.prefs.show_line_numbers);
+		g_signal_connect (G_OBJECT (line_numbers), "toggled",
+				G_CALLBACK (cb_pref_line_numbers), NULL);
+		gtk_box_pack_start (GTK_BOX (vbox_editor), line_numbers, FALSE, FALSE, 0);
+	}
 
 	/* tab width */
-	GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
-	GtkWidget *label = gtk_label_new (_("Tab width:"));
-	GtkAdjustment *spinner_adj = (GtkAdjustment *) gtk_adjustment_new (
-			(gdouble) latexila.prefs.tab_width, 1.0, 24.0, 1.0, 0.0, 0.0);
-	GtkWidget *tab_width = gtk_spin_button_new (spinner_adj, 1.0, 0);
-	g_signal_connect (G_OBJECT (tab_width), "value-changed",
-			G_CALLBACK (cb_pref_tab_width), NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), tab_width, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox_editor), hbox, FALSE, FALSE, 0);
+	{
+		GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
+		GtkWidget *label = gtk_label_new (_("Tab width:"));
+		GtkAdjustment *spinner_adj = (GtkAdjustment *) gtk_adjustment_new (
+				(gdouble) latexila.prefs.tab_width, 1.0, 24.0, 1.0, 0.0, 0.0);
+		GtkWidget *tab_width = gtk_spin_button_new (spinner_adj, 1.0, 0);
+		g_signal_connect (G_OBJECT (tab_width), "value-changed",
+				G_CALLBACK (cb_pref_tab_width), NULL);
+		gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), tab_width, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox_editor), hbox, FALSE, FALSE, 0);
+	}
 	
 	/* spaces instead of tabs */
-	GtkWidget *spaces_instead_of_tabs = gtk_check_button_new_with_label (
-			_("Insert spaces instead of tabs"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (spaces_instead_of_tabs),
-			latexila.prefs.spaces_instead_of_tabs);
-	g_signal_connect (G_OBJECT (spaces_instead_of_tabs), "toggled",
-			G_CALLBACK (cb_pref_spaces_instead_of_tabs), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_editor), spaces_instead_of_tabs, FALSE,
-			FALSE, 0);
+	{
+		GtkWidget *spaces_instead_of_tabs = gtk_check_button_new_with_label (
+				_("Insert spaces instead of tabs"));
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (spaces_instead_of_tabs),
+				latexila.prefs.spaces_instead_of_tabs);
+		g_signal_connect (G_OBJECT (spaces_instead_of_tabs), "toggled",
+				G_CALLBACK (cb_pref_spaces_instead_of_tabs), NULL);
+		gtk_box_pack_start (GTK_BOX (vbox_editor), spaces_instead_of_tabs, FALSE,
+				FALSE, 0);
+	}
 
 	/* highlight current line */
-	GtkWidget *highlight_current_line = gtk_check_button_new_with_label (
-			_("Highlight current line"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (highlight_current_line),
-			latexila.prefs.highlight_current_line);
-	g_signal_connect (G_OBJECT (highlight_current_line), "toggled",
-			G_CALLBACK (cb_pref_highlight_current_line), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_editor), highlight_current_line, FALSE,
-			FALSE, 0);
+	{
+		GtkWidget *highlight_current_line = gtk_check_button_new_with_label (
+				_("Highlight current line"));
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (highlight_current_line),
+				latexila.prefs.highlight_current_line);
+		g_signal_connect (G_OBJECT (highlight_current_line), "toggled",
+				G_CALLBACK (cb_pref_highlight_current_line), NULL);
+		gtk_box_pack_start (GTK_BOX (vbox_editor), highlight_current_line, FALSE,
+				FALSE, 0);
+	}
 
 	/* highlight matching brackets */
-	GtkWidget *highlight_matching_brackets = gtk_check_button_new_with_label (
-			_("Highlight matching brackets"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (highlight_matching_brackets),
-			latexila.prefs.highlight_matching_brackets);
-	g_signal_connect (G_OBJECT (highlight_matching_brackets), "toggled",
-			G_CALLBACK (cb_pref_highlight_matching_brackets), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_editor), highlight_matching_brackets, FALSE,
-			FALSE, 0);
+	{
+		GtkWidget *highlight_matching_brackets = gtk_check_button_new_with_label (
+				_("Highlight matching brackets"));
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (highlight_matching_brackets),
+				latexila.prefs.highlight_matching_brackets);
+		g_signal_connect (G_OBJECT (highlight_matching_brackets), "toggled",
+				G_CALLBACK (cb_pref_highlight_matching_brackets), NULL);
+		gtk_box_pack_start (GTK_BOX (vbox_editor), highlight_matching_brackets, FALSE,
+				FALSE, 0);
+	}
 
 	/* font */
-	hbox = gtk_hbox_new (FALSE, 5);
-	label = gtk_label_new (_("Font:"));
-	GtkWidget *font_button = gtk_font_button_new_with_font (
-			latexila.prefs.font_str);
-	g_signal_connect (G_OBJECT (font_button), "font-set",
-			G_CALLBACK (cb_pref_font_set), NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), font_button, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox_font_and_colors), hbox, FALSE, FALSE, 0);
+	{
+		GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
+		GtkWidget *label = gtk_label_new (_("Font:"));
+		GtkWidget *font_button = gtk_font_button_new_with_font (
+				latexila.prefs.font_str);
+		g_signal_connect (G_OBJECT (font_button), "font-set",
+				G_CALLBACK (cb_pref_font_set), NULL);
+		gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), font_button, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox_font_and_colors), hbox, FALSE, FALSE, 0);
+	}
 
 	/* style schemes */
-	GtkWidget *frame = gtk_frame_new (_("Color scheme"));
-	gtk_box_pack_start (GTK_BOX (vbox_font_and_colors), frame, FALSE, FALSE, 0);
+	{
+		GtkWidget *frame = gtk_frame_new (_("Color scheme"));
+		gtk_box_pack_start (GTK_BOX (vbox_font_and_colors), frame, FALSE, FALSE, 0);
 
-	GtkListStore *style_schemes_list_store = gtk_list_store_new (
-			N_COLUMNS_STYLE_SCHEMES, G_TYPE_STRING, G_TYPE_STRING);
+		GtkListStore *style_schemes_list_store = gtk_list_store_new (
+				N_COLUMNS_STYLE_SCHEMES, G_TYPE_STRING, G_TYPE_STRING);
 
-	GtkWidget *style_schemes_tree_view = gtk_tree_view_new_with_model (
-			GTK_TREE_MODEL (style_schemes_list_store));
-	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (style_schemes_tree_view),
-			FALSE);
-	GtkCellRenderer *renderer = gtk_cell_renderer_text_new ();
-	GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes (
-			"Name and description", renderer,
-			"text", COLUMN_STYLE_SCHEME_DESC,
-			NULL);
-	gtk_tree_view_append_column (GTK_TREE_VIEW (style_schemes_tree_view),
-			column);
+		GtkWidget *style_schemes_tree_view = gtk_tree_view_new_with_model (
+				GTK_TREE_MODEL (style_schemes_list_store));
+		gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (style_schemes_tree_view),
+				FALSE);
+		GtkCellRenderer *renderer = gtk_cell_renderer_text_new ();
+		GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes (
+				"Name and description", renderer,
+				"text", COLUMN_STYLE_SCHEME_DESC,
+				NULL);
+		gtk_tree_view_append_column (GTK_TREE_VIEW (style_schemes_tree_view),
+				column);
 
-	GtkTreeSelection *select = gtk_tree_view_get_selection (
-			GTK_TREE_VIEW (style_schemes_tree_view));
-	gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
-	g_signal_connect (G_OBJECT (select), "changed",
-			G_CALLBACK (cb_style_scheme_changed), NULL);
+		GtkTreeSelection *select = gtk_tree_view_get_selection (
+				GTK_TREE_VIEW (style_schemes_tree_view));
+		gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
+		g_signal_connect (G_OBJECT (select), "changed",
+				G_CALLBACK (cb_style_scheme_changed), NULL);
 
-	fill_style_schemes_list_store (style_schemes_list_store, select);
+		fill_style_schemes_list_store (style_schemes_list_store, select);
 
-    gtk_container_add (GTK_CONTAINER (frame), style_schemes_tree_view);
+		gtk_container_add (GTK_CONTAINER (frame), style_schemes_tree_view);
+	}
 
 	/* command view entry */
-	hbox = gtk_hbox_new (FALSE, 5);
-	label = gtk_label_new (_("Program for viewing documents:"));
-	GtkWidget *command_view_entry = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_view_entry),
-			latexila.prefs.command_view);
-	g_signal_connect (G_OBJECT (command_view_entry), "changed",
-			G_CALLBACK (cb_pref_command_view), NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), command_view_entry, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
+	{
+		GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
+		GtkWidget *label = gtk_label_new (_("Program for viewing documents:"));
+		GtkWidget *command_view_entry = gtk_entry_new ();
+		gtk_entry_set_text (GTK_ENTRY (command_view_entry),
+				latexila.prefs.command_view);
+		g_signal_connect (G_OBJECT (command_view_entry), "changed",
+				G_CALLBACK (cb_pref_command_view), NULL);
+		gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), command_view_entry, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
+	}
 
 	/* commands (latex, pdflatex, dvipdf, dvips, ...) */
-	hbox = gtk_hbox_new (FALSE, 5);
-	GtkWidget *label1 = gtk_label_new (_("latex command:"));
-	GtkWidget *command_latex = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_latex), latexila.prefs.command_latex);
-	g_signal_connect (G_OBJECT (command_latex), "changed",
-			G_CALLBACK (cb_pref_command_latex), NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), label1, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), command_latex, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
+	{
+		GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
+		GtkWidget *label1 = gtk_label_new (_("latex command:"));
+		GtkWidget *command_latex = gtk_entry_new ();
+		gtk_entry_set_text (GTK_ENTRY (command_latex), latexila.prefs.command_latex);
+		g_signal_connect (G_OBJECT (command_latex), "changed",
+				G_CALLBACK (cb_pref_command_latex), NULL);
+		gtk_box_pack_start (GTK_BOX (hbox), label1, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), command_latex, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new (FALSE, 5);
-	GtkWidget *label2 = gtk_label_new (_("pdflatex command:"));
-	GtkWidget *command_pdflatex = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_pdflatex), latexila.prefs.command_pdflatex);
-	g_signal_connect (G_OBJECT (command_pdflatex), "changed",
-			G_CALLBACK (cb_pref_command_pdflatex), NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), label2, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), command_pdflatex, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
+		hbox = gtk_hbox_new (FALSE, 5);
+		GtkWidget *label2 = gtk_label_new (_("pdflatex command:"));
+		GtkWidget *command_pdflatex = gtk_entry_new ();
+		gtk_entry_set_text (GTK_ENTRY (command_pdflatex), latexila.prefs.command_pdflatex);
+		g_signal_connect (G_OBJECT (command_pdflatex), "changed",
+				G_CALLBACK (cb_pref_command_pdflatex), NULL);
+		gtk_box_pack_start (GTK_BOX (hbox), label2, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), command_pdflatex, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new (FALSE, 5);
-	GtkWidget *label3 = gtk_label_new (_("DVI to PDF command:"));
-	GtkWidget *command_dvipdf = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_dvipdf), latexila.prefs.command_dvipdf);
-	g_signal_connect (G_OBJECT (command_dvipdf), "changed",
-			G_CALLBACK (cb_pref_command_dvipdf), NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), label3, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), command_dvipdf, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
+		hbox = gtk_hbox_new (FALSE, 5);
+		GtkWidget *label3 = gtk_label_new (_("DVI to PDF command:"));
+		GtkWidget *command_dvipdf = gtk_entry_new ();
+		gtk_entry_set_text (GTK_ENTRY (command_dvipdf), latexila.prefs.command_dvipdf);
+		g_signal_connect (G_OBJECT (command_dvipdf), "changed",
+				G_CALLBACK (cb_pref_command_dvipdf), NULL);
+		gtk_box_pack_start (GTK_BOX (hbox), label3, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), command_dvipdf, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new (FALSE, 5);
-	GtkWidget *label4 = gtk_label_new (_("DVI to PS command:"));
-	GtkWidget *command_dvips = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_dvips), latexila.prefs.command_dvips);
-	g_signal_connect (G_OBJECT (command_dvips), "changed",
-			G_CALLBACK (cb_pref_command_dvips), NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), label4, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), command_dvips, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
+		hbox = gtk_hbox_new (FALSE, 5);
+		GtkWidget *label4 = gtk_label_new (_("DVI to PS command:"));
+		GtkWidget *command_dvips = gtk_entry_new ();
+		gtk_entry_set_text (GTK_ENTRY (command_dvips), latexila.prefs.command_dvips);
+		g_signal_connect (G_OBJECT (command_dvips), "changed",
+				G_CALLBACK (cb_pref_command_dvips), NULL);
+		gtk_box_pack_start (GTK_BOX (hbox), label4, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), command_dvips, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new (FALSE, 5);
-	GtkWidget *label5 = gtk_label_new (_("BibTeX command:"));
-	GtkWidget *command_bibtex = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_bibtex), latexila.prefs.command_bibtex);
-	g_signal_connect (G_OBJECT (command_bibtex), "changed",
-			G_CALLBACK (cb_pref_command_bibtex), NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), label5, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), command_bibtex, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
+		hbox = gtk_hbox_new (FALSE, 5);
+		GtkWidget *label5 = gtk_label_new (_("BibTeX command:"));
+		GtkWidget *command_bibtex = gtk_entry_new ();
+		gtk_entry_set_text (GTK_ENTRY (command_bibtex), latexila.prefs.command_bibtex);
+		g_signal_connect (G_OBJECT (command_bibtex), "changed",
+				G_CALLBACK (cb_pref_command_bibtex), NULL);
+		gtk_box_pack_start (GTK_BOX (hbox), label5, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), command_bibtex, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new (FALSE, 5);
-	GtkWidget *label6 = gtk_label_new (_("MakeIndex command:"));
-	GtkWidget *command_makeindex = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (command_makeindex), latexila.prefs.command_makeindex);
-	g_signal_connect (G_OBJECT (command_makeindex), "changed",
-			G_CALLBACK (cb_pref_command_makeindex), NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), label6, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), command_makeindex, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
+		hbox = gtk_hbox_new (FALSE, 5);
+		GtkWidget *label6 = gtk_label_new (_("MakeIndex command:"));
+		GtkWidget *command_makeindex = gtk_entry_new ();
+		gtk_entry_set_text (GTK_ENTRY (command_makeindex), latexila.prefs.command_makeindex);
+		g_signal_connect (G_OBJECT (command_makeindex), "changed",
+				G_CALLBACK (cb_pref_command_makeindex), NULL);
+		gtk_box_pack_start (GTK_BOX (hbox), label6, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), command_makeindex, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox_latex), hbox, FALSE, FALSE, 0);
 
-	// set the same width for the labels
-	// the longer label is label6
-	GtkRequisition size;
-	gtk_widget_size_request (label6, &size);
-	gtk_widget_set_size_request (label1, size.width, 0);
-	gtk_widget_set_size_request (label2, size.width, 0);
-	gtk_widget_set_size_request (label3, size.width, 0);
-	gtk_widget_set_size_request (label4, size.width, 0);
-	gtk_widget_set_size_request (label5, size.width, 0);
+		// set the same width for the labels
+		// the longer label is label6
+		GtkRequisition size;
+		gtk_widget_size_request (label6, &size);
+		gtk_widget_set_size_request (label1, size.width, 0);
+		gtk_widget_set_size_request (label2, size.width, 0);
+		gtk_widget_set_size_request (label3, size.width, 0);
+		gtk_widget_set_size_request (label4, size.width, 0);
+		gtk_widget_set_size_request (label5, size.width, 0);
 
-	// flush left
-	gtk_misc_set_alignment (GTK_MISC (label1), 0.0, 0.5);
-	gtk_misc_set_alignment (GTK_MISC (label2), 0.0, 0.5);
-	gtk_misc_set_alignment (GTK_MISC (label4), 0.0, 0.5);
-	gtk_misc_set_alignment (GTK_MISC (label5), 0.0, 0.5);
-	gtk_misc_set_alignment (GTK_MISC (label6), 0.0, 0.5);
+		// flush left
+		gtk_misc_set_alignment (GTK_MISC (label1), 0.0, 0.5);
+		gtk_misc_set_alignment (GTK_MISC (label2), 0.0, 0.5);
+		gtk_misc_set_alignment (GTK_MISC (label4), 0.0, 0.5);
+		gtk_misc_set_alignment (GTK_MISC (label5), 0.0, 0.5);
+		gtk_misc_set_alignment (GTK_MISC (label6), 0.0, 0.5);
+	}
+
+	/* document compilation options */
+	{
+		GtkWidget *frame = gtk_frame_new (_("Document Compilation"));
+		gtk_box_pack_start (GTK_BOX (vbox_latex), frame, FALSE, FALSE, 0);
+
+		GtkWidget *vbox_compilation = gtk_vbox_new (FALSE, 3);
+		gtk_container_add (GTK_CONTAINER (frame), vbox_compilation);
+
+		// show all output
+		GtkWidget *show_all_output = gtk_check_button_new_with_label (_("Show all output"));
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (show_all_output),
+				latexila.prefs.compile_show_all_output);
+		g_signal_connect (G_OBJECT (show_all_output), "toggled",
+				G_CALLBACK (cb_pref_compile_show_all_output), NULL);
+		gtk_box_pack_start (GTK_BOX (vbox_compilation), show_all_output, FALSE, FALSE, 0);
+
+		// non stop mode interaction
+		GtkWidget *non_stop = gtk_check_button_new_with_label ("-interaction=nonstopmode");
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (non_stop),
+				latexila.prefs.compile_non_stop);
+		g_signal_connect (G_OBJECT (non_stop), "toggled",
+				G_CALLBACK (cb_pref_compile_non_stop), NULL);
+		gtk_box_pack_start (GTK_BOX (vbox_compilation), non_stop, FALSE, FALSE, 0);
+	}
+
 
 	/* web browser */
-	hbox = gtk_hbox_new (FALSE, 5);
-	label = gtk_label_new (_("Web browser:"));
-	GtkWidget *web_browser_entry = gtk_entry_new ();
-	gtk_entry_set_text (GTK_ENTRY (web_browser_entry),
-			latexila.prefs.command_web_browser);
-	g_signal_connect (G_OBJECT (web_browser_entry), "changed",
-			G_CALLBACK (cb_pref_web_browser), NULL);
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), web_browser_entry, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (vbox_other), hbox, FALSE, FALSE, 0);
+	{
+		GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
+		GtkWidget *label = gtk_label_new (_("Web browser:"));
+		GtkWidget *web_browser_entry = gtk_entry_new ();
+		gtk_entry_set_text (GTK_ENTRY (web_browser_entry),
+				latexila.prefs.command_web_browser);
+		g_signal_connect (G_OBJECT (web_browser_entry), "changed",
+				G_CALLBACK (cb_pref_web_browser), NULL);
+		gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), web_browser_entry, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox_other), hbox, FALSE, FALSE, 0);
+	}
 
 	/* reopen files on startup */
-	GtkWidget *reopen = gtk_check_button_new_with_label (
-			_("Reopen files on startup"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (reopen),
-			latexila.prefs.reopen_files_on_startup);
-	g_signal_connect (G_OBJECT (reopen), "toggled",
-			G_CALLBACK (cb_reopen_files_on_startup), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_other), reopen, FALSE, FALSE, 0);
+	{
+		GtkWidget *reopen = gtk_check_button_new_with_label (
+				_("Reopen files on startup"));
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (reopen),
+				latexila.prefs.reopen_files_on_startup);
+		g_signal_connect (G_OBJECT (reopen), "toggled",
+				G_CALLBACK (cb_reopen_files_on_startup), NULL);
+		gtk_box_pack_start (GTK_BOX (vbox_other), reopen, FALSE, FALSE, 0);
+	}
 
 	/* file browser: show all files */
-	GtkWidget *fb_show_all_files = gtk_check_button_new_with_label (
-			_("File browser: show all files"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fb_show_all_files),
-			latexila.prefs.file_browser_show_all_files);
-	g_signal_connect (G_OBJECT (fb_show_all_files), "toggled",
-			G_CALLBACK (cb_file_browser_show_all_files), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_other), fb_show_all_files, FALSE, FALSE, 0);
+	{
+		GtkWidget *fb_show_all_files = gtk_check_button_new_with_label (
+				_("File browser: show all files"));
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fb_show_all_files),
+				latexila.prefs.file_browser_show_all_files);
+		g_signal_connect (G_OBJECT (fb_show_all_files), "toggled",
+				G_CALLBACK (cb_file_browser_show_all_files), NULL);
+		gtk_box_pack_start (GTK_BOX (vbox_other), fb_show_all_files, FALSE, FALSE, 0);
+	}
 
 	/* delete auxiliaries files on exit */
-	GtkWidget *delete_aux_files = gtk_check_button_new_with_label (
-			_("Clean-up build files after close (*.aux, *.log, *.out, *.toc, etc)"));
-	gtk_widget_set_tooltip_text (delete_aux_files,
-			".aux .bit .blg .lof .log .lot .glo .glx .gxg .gxs .idx .ilg .ind .out .url .svn .toc");
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (delete_aux_files),
-			latexila.prefs.delete_aux_files);
-	g_signal_connect (G_OBJECT (delete_aux_files), "toggled",
-			G_CALLBACK (cb_delete_aux_files), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_other), delete_aux_files, FALSE, FALSE, 0);
+	{
+		GtkWidget *delete_aux_files = gtk_check_button_new_with_label (
+				_("Clean-up build files after close (*.aux, *.log, *.out, *.toc, etc)"));
+		gtk_widget_set_tooltip_text (delete_aux_files,
+				".aux .bit .blg .lof .log .lot .glo .glx .gxg .gxs .idx .ilg .ind .out .url .svn .toc");
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (delete_aux_files),
+				latexila.prefs.delete_aux_files);
+		g_signal_connect (G_OBJECT (delete_aux_files), "toggled",
+				G_CALLBACK (cb_delete_aux_files), NULL);
+		gtk_box_pack_start (GTK_BOX (vbox_other), delete_aux_files, FALSE, FALSE, 0);
+	}
 
 	/* toolbars horizontal */
-	GtkWidget *toolbars_horiz = gtk_check_button_new_with_label (
-			_("Show the edit toolbar on the same line as the main toolbar (restart needed)"));
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (toolbars_horiz),
-			latexila.prefs.toolbars_horizontal);
-	g_signal_connect (G_OBJECT (toolbars_horiz), "toggled",
-			G_CALLBACK (cb_toolbars_horizontal), NULL);
-	gtk_box_pack_start (GTK_BOX (vbox_other), toolbars_horiz, FALSE, FALSE, 0);
-
+	{
+		GtkWidget *toolbars_horiz = gtk_check_button_new_with_label (
+				_("Show the edit toolbar on the same line as the main toolbar (restart needed)"));
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (toolbars_horiz),
+				latexila.prefs.toolbars_horizontal);
+		g_signal_connect (G_OBJECT (toolbars_horiz), "toggled",
+				G_CALLBACK (cb_toolbars_horizontal), NULL);
+		gtk_box_pack_start (GTK_BOX (vbox_other), toolbars_horiz, FALSE, FALSE, 0);
+	}
 
 	gtk_widget_show_all (content_area);
 }

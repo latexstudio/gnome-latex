@@ -38,6 +38,7 @@
 #include "utils.h"
 #include "external_commands.h"
 #include "file_browser.h"
+#include "latex_output_filter.h"
 
 static void add_action (const gchar *title, const gchar *command);
 static void set_action_sensitivity (gboolean sensitive);
@@ -47,7 +48,7 @@ static void start_command_with_output (gchar **command);
 static void cb_spawn_setup (gpointer data);
 static gboolean cb_watch_output_command (GIOChannel *channel,
 		GIOCondition condition, gpointer user_data);
-static void output_filter_line (const gchar *line);
+//static void output_filter_line (const gchar *line);
 static void cb_child_watch (GPid pid, gint status, gpointer user_data);
 static void finish_execute (void);
 static void run_command_on_other_extension (gchar *title, gchar *message,
@@ -82,7 +83,7 @@ compile_document (gchar *title, gchar **command)
 	// without that, the message in the statusbar does not appear
 	flush_queue ();
 
-	show_all_output = FALSE;
+	show_all_output = latexila.prefs.compile_show_all_output;
 	start_command_with_output (command);
 }
 
@@ -304,7 +305,7 @@ start_command_without_output (gchar **command, gchar *message)
 
 // Attention, before calling this function, set the variable "show_all_output"
 // to TRUE or FALSE. If it is FALSE, the output will be filtered by the function
-// output_filter_line().
+// latex_output_filter().
 static void
 start_command_with_output (gchar **command)
 {
@@ -339,6 +340,7 @@ start_command_with_output (gchar **command)
 
 	// convert the channel
 	g_io_channel_set_encoding (out_channel, NULL, NULL);
+	//g_io_channel_set_encoding (out_channel, "ISO-8859-1", NULL);
 
 	// lock the action list and all the build actions
 	set_action_sensitivity (FALSE);
@@ -390,6 +392,8 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 			if (line != NULL)
 			{
 				line_utf8 = g_locale_to_utf8 (line, -1, NULL, NULL, NULL);
+				if (line_utf8 == NULL)
+					line_utf8 = g_convert (line, -1, "UTF-8", "ISO-8859-1", NULL, NULL, NULL);
 				g_free (line);
 			}
 
@@ -413,7 +417,7 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 				}
 
 				else
-					output_filter_line (line_utf8);
+					latex_output_filter (line_utf8);
 
 				g_free (line_utf8);
 			}
@@ -450,6 +454,7 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 	return TRUE;
 }
 
+/*
 static void
 output_filter_line (const gchar *line)
 {
@@ -468,6 +473,7 @@ output_filter_line (const gchar *line)
 		flush_queue ();
 	}
 }
+*/
 
 static void
 cb_child_watch (GPid pid, gint status, gpointer user_data)

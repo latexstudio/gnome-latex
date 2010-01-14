@@ -92,6 +92,8 @@ typedef struct
 	gchar					*command_web_browser;
 	gchar					*command_bibtex;
 	gchar					*command_makeindex;
+	gboolean				compile_show_all_output;
+	gboolean				compile_non_stop;
 	gchar					*file_chooser_dir;
 	gchar					*file_browser_dir;
 	gboolean				file_browser_show_all_files;
