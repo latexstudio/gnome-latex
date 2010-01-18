@@ -25,12 +25,9 @@
 #include <unistd.h> // for dup2
 #include <sys/types.h>
 #include <signal.h> // for kill
-#include <locale.h>
-#include <libintl.h>
 #include <gtk/gtk.h>
 #include <glib.h>
 #include <glib/gstdio.h>
-#include <gtksourceview/gtksourceview.h>
 
 #include "main.h"
 #include "config.h"

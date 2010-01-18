@@ -21,10 +21,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h> // for isspace()
-#include <locale.h>
-#include <libintl.h>
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourceview.h>
 
 #include "main.h"
 #include "print.h"
@@ -841,6 +838,7 @@ print_msg (void)
 
 	print_log_add (latexila.action_log.text_view, str, msg.message_type == TYPE_ERROR);
 	flush_queue ();
+	g_free (str);
 	
 	msg.line = NO_LINE;
 	msg.message_type = TYPE_OTHER;

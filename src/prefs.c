@@ -19,14 +19,12 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <locale.h>
-#include <libintl.h>
+#include <string.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcestylescheme.h>
 #include <gtksourceview/gtksourcestyleschememanager.h>
 #include <sys/stat.h> // for S_IRWXU
-#include <string.h>
 
 #include "main.h"
 #include "prefs.h"

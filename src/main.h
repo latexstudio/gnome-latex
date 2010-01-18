@@ -20,6 +20,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <locale.h>
+#include <libintl.h>
+#include <gtksourceview/gtksourceview.h>
 #include "config.h"
 
 // if Native Language Support is enabled
@@ -109,6 +112,8 @@ typedef struct
 	gint					side_pane_page;
 } preferences_t;
 
+// actions from the menu or the toolbars
+// so we can change the sensitivity of these actions
 typedef struct
 {
 	GtkAction *undo;
@@ -125,6 +130,7 @@ typedef struct
 	GtkAction *stop_execution;
 } actions_t;
 
+// Go to line, Find and Replace are under the source view
 typedef struct
 {
 	GtkWidget	*go_to_line;
@@ -139,6 +145,7 @@ typedef struct
 	GtkWidget	*replace_button;
 } under_source_view_t;
 
+// main structure containing all the others
 typedef struct
 {
 	GList				*all_docs;

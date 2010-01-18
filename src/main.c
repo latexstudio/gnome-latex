@@ -19,12 +19,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <locale.h>
-#include <libintl.h>
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourceview.h>
-#include <gtksourceview/gtksourcelanguage.h>
-#include <gtksourceview/gtksourcelanguagemanager.h>
 
 #include "main.h"
 #include "config.h"
