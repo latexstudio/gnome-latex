@@ -4,12 +4,18 @@ TODO LaTeXila
 	x filter the messages
 	x show the exit code
 	x button to stop the execution
-	- show statistics: nb of errors, warnings and badboxes
-	- extract informations: file, line, message
+	x show statistics: nb of errors, warnings and badboxes
+	x extract informations: file, line, message
 	- jump to lines and files: GtkTextBuffer -> GtkListStore
 	- colors
 	- go to the previous/next error/warning/badbox
 
 - Auto-completion of LaTeX commands
 
-- Change the title of the window with the filename of the current document
+- Some various improvements:
+	- Change the title of the window with the filename of the current document
+	- Make a copy of a file before saving it for the first time (with a name like "file~")
+	- Autosave files every X minutes
+	- Symbols: most recently used
+	- File browser: list with all parents directories
+	- Create personnal templates: choose an icon

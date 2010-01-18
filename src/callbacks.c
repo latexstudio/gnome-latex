@@ -39,6 +39,7 @@
 #include "external_commands.h"
 #include "prefs.h"
 #include "file_browser.h"
+#include "latex_output_filter.h"
 
 static void close_document (gint index);
 static void save_as_dialog (void);
@@ -1775,6 +1776,8 @@ free_latexila (void)
 
 	for (int i = 0 ; i < 7 ; i++)
 		g_object_unref (latexila.symbols.list_stores[i]);
+
+	latex_output_filter_free ();
 }
 
 static void

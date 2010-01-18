@@ -316,7 +316,6 @@ start_command_with_output (gchar **command)
 			G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
 			(GSpawnChildSetupFunc) cb_spawn_setup, NULL,
 			&child_pid, NULL, &out, NULL, &error);
-	g_free (dir);
 
 	// an error occured
 	if (error != NULL)
@@ -326,8 +325,13 @@ start_command_with_output (gchar **command)
 		print_log_add (latexila.action_log.text_view, command_output, TRUE);
 		g_free (command_output);
 		g_error_free (error);
+		g_free (dir);
 		return;
 	}
+
+	if (! show_all_output)
+		latex_output_filter_set_path (dir);
+	g_free (dir);
 
 	output_status = OUTPUT_GO_FETCHING;
 	exit_code_set = FALSE;
@@ -417,7 +421,11 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 				}
 
 				else
+				{
+					// delete the \n
+					line_utf8[strlen (line_utf8) - 1] = '\0';
 					latex_output_filter (line_utf8);
+				}
 
 				g_free (line_utf8);
 			}
@@ -454,27 +462,6 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 	return TRUE;
 }
 
-/*
-static void
-output_filter_line (const gchar *line)
-{
-	if (line == NULL || strlen (line) == 0)
-		return;
-
-	if (g_regex_match_simple ("[^:]+:[0-9]+:.*", line, 0, 0)
-			|| g_regex_match_simple ("lines? [0-9]+", line, 0, 0)
-			|| strstr (line, "LaTeX Error")
-			|| strstr (line, "Output written on")
-			|| strstr (line, "Warning")
-			|| strstr (line, "Overfull")
-			|| strstr (line, "Underfull"))
-	{
-		print_log_add (latexila.action_log.text_view, line, FALSE);
-		flush_queue ();
-	}
-}
-*/
-
 static void
 cb_child_watch (GPid pid, gint status, gpointer user_data)
 {
@@ -495,9 +482,12 @@ finish_execute (void)
 	if (! exit_code_set || output_status != OUTPUT_STOP_REQUEST)
 		return;
 
+	if (! show_all_output)
+		latex_output_filter_print_stats ();
+
 	if (child_pid_exit_code > -1)
 	{
-		gchar *exit_code = g_strdup_printf ("exit code: %d\n",
+		gchar *exit_code = g_strdup_printf ("exit code: %d",
 				child_pid_exit_code);
 
 		if (child_pid_exit_code == 0)

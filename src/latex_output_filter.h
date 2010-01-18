@@ -21,5 +21,44 @@
 #define LATEX_OUTPUT_FILTER_H
 
 void latex_output_filter (const gchar *line);
+void latex_output_filter_init (void);
+void latex_output_filter_free (void);
+void latex_output_filter_set_path (const gchar *dir);
+void latex_output_filter_print_stats (void);
+
+enum filter_status
+{
+	START,
+	BADBOX,
+	WARNING,
+	ERROR,
+	ERROR_SEARCH_LINE,
+	FILENAME,
+	FILENAME_HEURISTIC
+};
+
+typedef struct
+{
+	gchar *filename;
+	gboolean reliable;
+} file_in_stack_t;
+
+enum message_type
+{
+	TYPE_BADBOX,
+	TYPE_WARNING,
+	TYPE_ERROR,
+	TYPE_OTHER
+};
+
+typedef struct
+{
+	enum message_type message_type;
+	gchar *message;
+	gint line;
+} message_t;
+
+#define BUFFER_SIZE 1024
+#define NO_LINE -1
 
 #endif /* LATEX_OUTPUT_FILTER_H */
