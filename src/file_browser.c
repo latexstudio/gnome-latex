@@ -210,7 +210,7 @@ fill_list_store_with_current_dir (void)
 	GList *current = directory_list;
 	while (current != NULL)
 	{
-		gchar *directory = g_list_nth_data (current, 0);
+		gchar *directory = current->data;
 
 		// append the directory to the list store
 		gtk_list_store_append (latexila.file_browser.list_store, &iter);
@@ -227,7 +227,7 @@ fill_list_store_with_current_dir (void)
 	current = file_list;
 	while (current != NULL)
 	{
-		gchar *file = g_list_nth_data (current, 0);
+		gchar *file = current->data;
 
 		GdkPixbuf *pixbuf;
 		if (g_str_has_suffix (file, ".tex"))

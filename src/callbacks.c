@@ -919,7 +919,7 @@ cb_documents_save_all (void)
 	GList *current = latexila.all_docs;
 	while (current != NULL)
 	{
-		document_t *current_doc = g_list_nth_data (current, 0);
+		document_t *current_doc = current->data;
 		document_t *active_doc = latexila.active_doc;
 		latexila.active_doc = current_doc;
 		cb_save ();
@@ -1138,7 +1138,7 @@ open_new_document (const gchar *filename, const gchar *uri)
 	gint n = 0;
 	while (current != NULL)
 	{
-		document_t *current_doc = g_list_nth_data (current, 0);
+		document_t *current_doc = current->data;
 
 		// if the filename is the same, just go to that tab on the notebook
 		if (current_doc->path != NULL &&
@@ -1196,7 +1196,7 @@ change_font_source_view (void)
 	GList *current = latexila.all_docs;
 	while (current != NULL)
 	{
-		document_t *doc = g_list_nth_data (current, 0);
+		document_t *doc = current->data;
 		gtk_widget_modify_font (doc->source_view, latexila.prefs.font_desc);
 		current = g_list_next (current);
 	}

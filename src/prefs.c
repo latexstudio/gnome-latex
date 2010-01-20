@@ -76,14 +76,14 @@ static void fill_style_schemes_list_store (GtkListStore *store,
 static gboolean	show_line_numbers_				= FALSE;
 static gboolean	show_side_pane_					= TRUE;
 static gboolean show_edit_toolbar_				= TRUE;
-static gint		window_width_					= 800;
-static gint		window_height_					= 600;
+static gint		window_width_					= 950;
+static gint		window_height_					= 660;
 static gboolean	window_maximised_				= FALSE;
-static gint		main_hpaned_pos_				= 180;
-static gint		vpaned_pos_						= 380;
-static gint		log_hpaned_pos_					= 190;
+static gint		main_hpaned_pos_				= 256;
+static gint		vpaned_pos_						= 375;
+static gint		log_hpaned_pos_					= 180;
 static gchar	*font_							= "Monospace 10";
-static gchar	*command_view_					= "evince";
+static gchar	*command_view_					= "gnome-open";
 static gchar	*command_latex_					= COMMAND_LATEX;
 static gchar	*command_pdflatex_				= COMMAND_PDFLATEX;
 static gchar	*command_dvipdf_				= COMMAND_DVIPDF;
@@ -700,7 +700,7 @@ cb_pref_line_numbers (GtkToggleButton *toggle_button, gpointer user_data)
 	GList *current = latexila.all_docs;
 	while (current != NULL)
 	{
-		document_t *doc = g_list_nth_data (current, 0);
+		document_t *doc = current->data;
 		gtk_source_view_set_show_line_numbers (
 				GTK_SOURCE_VIEW (doc->source_view), show_line_numbers);
 		current = g_list_next (current);
@@ -717,7 +717,7 @@ cb_pref_tab_width (GtkSpinButton *spin_button, gpointer user_data)
 	GList *current = latexila.all_docs;
 	while (current != NULL)
 	{
-		document_t *doc = g_list_nth_data (current, 0);
+		document_t *doc = current->data;
 		gtk_source_view_set_tab_width (GTK_SOURCE_VIEW (doc->source_view), value);
 		current = g_list_next (current);
 	}
@@ -734,7 +734,7 @@ cb_pref_spaces_instead_of_tabs (GtkToggleButton *toggle_button,
 	GList *current = latexila.all_docs;
 	while (current != NULL)
 	{
-		document_t *doc = g_list_nth_data (current, 0);
+		document_t *doc = current->data;
 		gtk_source_view_set_insert_spaces_instead_of_tabs (
 				GTK_SOURCE_VIEW (doc->source_view), tmp);
 		current = g_list_next (current);
@@ -752,7 +752,7 @@ cb_pref_highlight_current_line (GtkToggleButton *toggle_button,
 	GList *current = latexila.all_docs;
 	while (current != NULL)
 	{
-		document_t *doc = g_list_nth_data (current, 0);
+		document_t *doc = current->data;
 		gtk_source_view_set_highlight_current_line (
 				GTK_SOURCE_VIEW (doc->source_view), tmp);
 		current = g_list_next (current);
@@ -770,7 +770,7 @@ cb_pref_highlight_matching_brackets (GtkToggleButton *toggle_button,
 	GList *current = latexila.all_docs;
 	while (current != NULL)
 	{
-		document_t *doc = g_list_nth_data (current, 0);
+		document_t *doc = current->data;
 		gtk_source_buffer_set_highlight_matching_brackets (doc->source_buffer, tmp);
 		current = g_list_next (current);
 	}
@@ -895,7 +895,7 @@ cb_style_scheme_changed (GtkTreeSelection *selection, gpointer user_data)
 		for (GList *current = latexila.all_docs ; current != NULL ;
 				current = g_list_next (current))
 		{
-			document_t *doc = g_list_nth_data (current, 0);
+			document_t *doc = current->data;
 			gtk_source_buffer_set_style_scheme (doc->source_buffer, style_scheme);
 		}
 	}
@@ -975,7 +975,7 @@ fill_style_schemes_list_store (GtkListStore *store, GtkTreeSelection *selection)
 
 	while (list != NULL)
 	{
-		GtkSourceStyleScheme *style_scheme = g_slist_nth_data (list, 0);
+		GtkSourceStyleScheme *style_scheme = list->data;
 
 		const gchar *id = gtk_source_style_scheme_get_id (style_scheme);
 		gchar *desc = g_strdup_printf ("%s (%s)",

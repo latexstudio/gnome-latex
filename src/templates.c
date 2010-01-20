@@ -123,7 +123,7 @@ cb_new (void)
 			model = GTK_TREE_MODEL (personnal_store);
 		}
 
-		GtkTreePath *path = g_list_nth_data (selected_items, 0);
+		GtkTreePath *path = selected_items->data;
 		GtkTreeIter iter;
 		gchar *contents = NULL;
 

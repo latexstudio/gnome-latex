@@ -762,7 +762,7 @@ get_current_filename (void)
 {
 	if (g_slist_length (stack_file) > 0)
 	{
-		file_in_stack_t *file = g_slist_nth_data (stack_file, 0);
+		file_in_stack_t *file = stack_file->data;
 		return file->filename;
 	}
 
