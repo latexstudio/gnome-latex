@@ -30,6 +30,7 @@
 #include <glib/gstdio.h>
 
 #include "main.h"
+#include "callbacks.h"
 #include "config.h"
 #include "print.h"
 #include "utils.h"
@@ -38,6 +39,7 @@
 #include "latex_output_filter.h"
 #include "log.h"
 
+static void compile_document (gchar *title, gchar **command);
 static void set_action_sensitivity (gboolean sensitive);
 static gchar * get_command_line (gchar **command);
 static void start_command_without_output (gchar **command, gchar *message);
@@ -58,6 +60,42 @@ static gboolean exit_code_set = FALSE;
 static enum output output_status = OUTPUT_GO_FETCHING;
 
 void
+run_compilation (gchar *command, gchar *title)
+{
+	cb_save ();
+
+	// if it was a new document, and if the user has cancelled the saving
+	if (latexila.active_doc->path == NULL)
+		return;
+
+	if (latexila.prefs.compile_non_stop)
+	{
+		gchar *argv[] = {
+			command,
+			"-interaction=nonstopmode",
+
+			// we take the basename because the command is run inside the directory
+			// of the document, and the output lines which contains the filename
+			// are shorter (the lines too long are splitted, so the user can not
+			// see all the line if there is a filter which operate line per line)
+			latexila.active_doc->basename,
+			NULL
+		};
+		compile_document (title, argv);
+	}
+
+	else
+	{
+		gchar *argv[] = {
+			command,
+			latexila.active_doc->basename,
+			NULL
+		};
+		compile_document (title, argv);
+	}
+}
+
+static void
 compile_document (gchar *title, gchar **command)
 {
 	if (latexila.active_doc == NULL)
@@ -488,7 +526,7 @@ is_current_doc_tex_file (void)
 	if (! g_str_has_suffix (latexila.active_doc->path, ".tex"))
 	{
 		gchar *command_output = g_strdup_printf (_("failed: %s is not a *.tex file"),
-				g_path_get_basename (latexila.active_doc->path));
+				latexila.active_doc->basename);
 		print_output_exit (0, command_output);
 		g_free (command_output);
 		return FALSE;

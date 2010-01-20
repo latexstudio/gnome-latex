@@ -608,36 +608,7 @@ cb_latex (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	cb_save ();
-
-	gchar *title = _("Compile (latex)");
-
-	if (latexila.prefs.compile_non_stop)
-	{
-		gchar *command[] = {
-			latexila.prefs.command_latex,
-			"-interaction=nonstopmode",
-			// we take the basename because the command is run inside the directory
-			// of the document, and the output lines which contains the filename
-			// are shorter (the lines too long are splitted, so the user can not
-			// see all the line if there is a filter which operate line per line)
-			g_path_get_basename (latexila.active_doc->path),
-			NULL
-		};
-		compile_document (title, command);
-		g_free (command[2]);
-	}
-
-	else
-	{
-		gchar *command[] = {
-			latexila.prefs.command_latex,
-			g_path_get_basename (latexila.active_doc->path),
-			NULL
-		};
-		compile_document (title, command);
-		g_free (command[1]);
-	}
+	run_compilation (latexila.prefs.command_latex, _("Compile (latex)"));
 }
 
 void
@@ -646,32 +617,7 @@ cb_pdflatex (void)
 	if (latexila.active_doc == NULL)
 		return;
 
-	cb_save ();
-
-	gchar *title = _("Compile (pdflatex)");
-
-	if (latexila.prefs.compile_non_stop)
-	{
-		gchar *command[] = {
-			latexila.prefs.command_pdflatex,
-			"-interaction=nonstopmode",
-			g_path_get_basename (latexila.active_doc->path),
-			NULL
-		};
-		compile_document (title, command);
-		g_free (command[2]);
-	}
-
-	else
-	{
-		gchar *command[] = {
-			latexila.prefs.command_pdflatex,
-			g_path_get_basename (latexila.active_doc->path),
-			NULL
-		};
-		compile_document (title, command);
-		g_free (command[1]);
-	}
+	run_compilation (latexila.prefs.command_pdflatex, _("Compile (pdflatex)"));
 }
 
 void
@@ -1159,15 +1105,15 @@ open_new_document (const gchar *filename, const gchar *uri)
 		// convert the text to UTF-8
 		gchar *text_utf8 = g_locale_to_utf8 (contents, -1, NULL, NULL, NULL);
 
-		gchar *basename = g_path_get_basename (filename);
-		create_document_in_new_tab (filename, text_utf8, basename);
+		gchar *title = g_path_get_basename (filename);
+		create_document_in_new_tab (filename, text_utf8, title);
 
 		GtkRecentManager *manager = gtk_recent_manager_get_default ();
 		gtk_recent_manager_add_item (manager, uri);
 
 		g_free (contents);
 		g_free (text_utf8);
-		g_free (basename);
+		g_free (title);
 	}
 
 	else
@@ -1206,14 +1152,20 @@ void
 create_document_in_new_tab (const gchar *path, const gchar *text,
 		const gchar *title)
 {
-	// create a new document_t structure
+	/* create a new document_t structure */
 	// if path = NULL, this is a new document
-	// else, the user opened a document
+	// else, the user opened a document, and title is the basename
 	document_t *new_doc = g_malloc (sizeof (document_t));
+
+	// if path is NULL, new_doc->path will be also NULL
 	new_doc->path = g_strdup (path);
+	// it doesn't work with g_path_get_basename()...
+	new_doc->basename = path != NULL ? g_strdup (title) : NULL;
 	new_doc->saved = TRUE;
 	new_doc->source_buffer = gtk_source_buffer_new (NULL);
 	new_doc->source_view = gtk_source_view_new_with_buffer (new_doc->source_buffer);
+
+	// TODO check if we need this
 	g_object_unref (new_doc->source_buffer);
 
 	latexila.all_docs = g_list_append (latexila.all_docs, new_doc);
@@ -1225,8 +1177,8 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 	if (path != NULL)
 	{
 		// TODO check memory leaks here
-		GtkSourceLanguage *lang = gtk_source_language_manager_guess_language (
-				lm, path, NULL);
+		GtkSourceLanguage *lang =
+			gtk_source_language_manager_guess_language (lm, path, NULL);
 		if (lang != NULL)
 			gtk_source_buffer_set_language (new_doc->source_buffer, lang);
 	}
@@ -1312,6 +1264,8 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 
 	GtkWidget *label = gtk_label_new (title);
 	new_doc->title = label;
+	if (path != NULL)
+		gtk_widget_set_tooltip_text (label, path);
 	gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
 
 	GtkWidget *close_button = gtk_button_new ();
@@ -1355,9 +1309,9 @@ close_document (gint index)
 	{
 		gchar *doc_name;
 		if (latexila.active_doc->path == NULL)
-			doc_name = g_strdup (_("New document"));
+			doc_name = _("New document");
 		else
-			doc_name = g_path_get_basename (latexila.active_doc->path);
+			doc_name = latexila.active_doc->basename;
 
 		GtkWidget *dialog = gtk_message_dialog_new (
 				latexila.main_window,
@@ -1366,7 +1320,6 @@ close_document (gint index)
 				GTK_BUTTONS_NONE,
 				_("Save changes to \"%s\" before closing?"),
 				doc_name);
-		g_free (doc_name);
 
 		gtk_dialog_add_buttons (GTK_DIALOG (dialog),
 				GTK_STOCK_YES, GTK_RESPONSE_YES,
@@ -1405,6 +1358,7 @@ close_document (gint index)
 		delete_build_files (latexila.active_doc->path);
 
 		g_free (latexila.active_doc->path);
+		g_free (latexila.active_doc->basename);
 	}
 	g_free (latexila.active_doc);
 
@@ -1468,9 +1422,17 @@ save_as_dialog (void)
 			}
 		}
 
-		latexila.active_doc->path = filename;
-		gchar *uri = gtk_file_chooser_get_uri (GTK_FILE_CHOOSER (dialog));
+		if (latexila.active_doc->path != NULL)
+			g_free (latexila.active_doc->path);
+		if (latexila.active_doc->basename != NULL)
+			g_free (latexila.active_doc->basename);
 
+		latexila.active_doc->path = filename;
+		latexila.active_doc->basename = g_path_get_basename (filename);
+
+		gtk_widget_set_tooltip_text (latexila.active_doc->title, filename);
+
+		gchar *uri = gtk_file_chooser_get_uri (GTK_FILE_CHOOSER (dialog));
 		GtkRecentManager *manager = gtk_recent_manager_get_default ();
 		gtk_recent_manager_add_item (manager, uri);
 
@@ -1546,9 +1508,9 @@ set_title (void)
 	gchar *title;
 
 	if (latexila.active_doc->path != NULL)
-		tmp = g_path_get_basename (latexila.active_doc->path);
+		tmp = latexila.active_doc->basename;
 	else
-		tmp = g_strdup (_("New document"));
+		tmp = _("New document");
 
 	if (latexila.active_doc->saved)
 		title = g_strdup (tmp);
@@ -1557,7 +1519,6 @@ set_title (void)
 
 	gtk_label_set_text (GTK_LABEL (latexila.active_doc->title), title);
 
-	g_free (tmp);
 	g_free (title);
 }
 

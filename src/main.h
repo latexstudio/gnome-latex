@@ -40,6 +40,7 @@
 typedef struct
 {
 	gchar			*path;
+	gchar			*basename;
 	gboolean		saved;
 	GtkWidget		*source_view;
 	GtkSourceBuffer	*source_buffer;
