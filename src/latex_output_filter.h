@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009, 2010 Sébastien Wilmet
+ * Copyright © 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 
 #ifndef LATEX_OUTPUT_FILTER_H
 #define LATEX_OUTPUT_FILTER_H
+
+#include "log.h"
 
 void latex_output_filter (const gchar *line);
 void latex_output_filter_init (void);
@@ -53,12 +55,11 @@ enum message_type
 
 typedef struct
 {
-	enum message_type message_type;
+	enum output_message_type message_type;
 	gchar *message;
 	gint line;
 } message_t;
 
 #define BUFFER_SIZE 1024
-#define NO_LINE -1
 
 #endif /* LATEX_OUTPUT_FILTER_H */

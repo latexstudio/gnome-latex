@@ -46,17 +46,6 @@ typedef struct
 	GtkWidget		*title;
 } document_t;
 
-// the log zone
-typedef struct
-{
-	GtkListStore		*list_store;
-	GtkTreeView			*list_view;
-	GtkTreeSelection	*list_selection;
-	GtkTextView			*text_view;
-	GtkTextBuffer		*text_buffer;
-	GtkTextTagTable		*tag_table;
-} action_log_t;
-
 // symbols tables
 typedef struct
 {
@@ -150,7 +139,6 @@ typedef struct
 {
 	GList				*all_docs;
 	document_t			*active_doc;
-	action_log_t		action_log;
 	symbols_t			symbols;
 	file_browser_t		file_browser;
 	preferences_t		prefs;
@@ -170,13 +158,5 @@ typedef struct
 // a lot of things are accessible by the "latexila" variable everywhere in the
 // sources (if this file is included)
 extern latexila_t latexila;
-
-// for the actions list in the log zone
-enum action
-{
-	COLUMN_ACTION_TITLE,
-	COLUMN_ACTION_TEXTBUFFER,
-	N_COLUMNS_ACTION
-};
 
 #endif /* MAIN_H */

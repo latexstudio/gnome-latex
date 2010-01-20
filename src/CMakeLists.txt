@@ -12,6 +12,7 @@ SET(latexila_src
 	file_browser.c		file_browser.h
 	templates.c		templates.h
 	utils.c			utils.h
+	log.c			log.h
 )
 
 ADD_EXECUTABLE(latexila ${latexila_src})

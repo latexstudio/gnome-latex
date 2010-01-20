@@ -20,10 +20,6 @@
 #ifndef PRINT_H
 #define PRINT_H
 
-void print_log (GtkTextBuffer *log_buffer, gchar *title, gchar *command,
-		gchar *command_output, gboolean error);
-void print_log_add (GtkTextView *log, const gchar *text, gboolean error);
-
 void print_info (const char *, ...);
 void print_warning (const char *, ...);
 void print_error (const char *, ...);

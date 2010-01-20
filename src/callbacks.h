@@ -68,8 +68,6 @@ void cb_documents_save_all (void);
 void cb_documents_close_all (void);
 void cb_documents_previous (void);
 void cb_documents_next (void);
-void cb_action_list_changed (GtkTreeSelection *selection,
-		gpointer user_data);
 void cb_help_latex_reference (void);
 void cb_about_dialog (void);
 void cb_text_changed (GtkWidget *widget, gpointer user_data);

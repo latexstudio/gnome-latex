@@ -36,8 +36,8 @@
 #include "external_commands.h"
 #include "file_browser.h"
 #include "latex_output_filter.h"
+#include "log.h"
 
-static void add_action (const gchar *title, const gchar *command);
 static void set_action_sensitivity (gboolean sensitive);
 static gchar * get_command_line (gchar **command);
 static void start_command_without_output (gchar **command, gchar *message);
@@ -45,7 +45,6 @@ static void start_command_with_output (gchar **command);
 static void cb_spawn_setup (gpointer data);
 static gboolean cb_watch_output_command (GIOChannel *channel,
 		GIOCondition condition, gpointer user_data);
-//static void output_filter_line (const gchar *line);
 static void cb_child_watch (GPid pid, gint status, gpointer user_data);
 static void finish_execute (void);
 static void run_command_on_other_extension (gchar *title, gchar *message,
@@ -113,7 +112,7 @@ view_current_document (gchar *title, gchar *doc_extension)
 		gchar *command_output = g_strdup_printf (
 				_("%s does not exist. If this is not already made, compile the document with the right command."),
 				g_path_get_basename (doc_path));
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
+		print_output_exit (1337, command_output);
 		g_free (command_output);
 		g_free (doc_path);
 		return;
@@ -186,65 +185,14 @@ stop_execution (void)
 }
 
 static void
-add_action (const gchar *title, const gchar *command)
-{
-	static gint num = 1;
-	gchar *title2 = g_strdup_printf ("%d. %s", num, title);
-
-	// create a new text buffer
-	GtkTextBuffer *new_text_buffer = gtk_text_buffer_new (
-			latexila.action_log.tag_table);
-	latexila.action_log.text_buffer = new_text_buffer;
-	gtk_text_view_set_buffer (latexila.action_log.text_view, new_text_buffer);
-
-	// title
-	GtkTextIter end;
-	gtk_text_buffer_get_end_iter (new_text_buffer, &end);
-	gtk_text_buffer_insert_with_tags_by_name (new_text_buffer, &end, title2, -1,
-			"bold", NULL);
-
-	// command
-    gtk_text_buffer_get_end_iter (new_text_buffer, &end);
-    gchar *command2 = g_strdup_printf ("\n$ %s\n", command);
-    gtk_text_buffer_insert (new_text_buffer, &end, command2, -1);
-    g_free (command2);
-
-	// append a new entry to the action list
-	GtkTreeIter iter;
-	gtk_list_store_append (latexila.action_log.list_store, &iter);
-	gtk_list_store_set (latexila.action_log.list_store, &iter,
-			COLUMN_ACTION_TITLE, title2,
-			COLUMN_ACTION_TEXTBUFFER, new_text_buffer,
-			-1);
-
-	// select the new entry
-	gtk_tree_selection_select_iter (latexila.action_log.list_selection, &iter);
-
-	// scroll to the end
-	GtkTreePath *path = gtk_tree_model_get_path (
-			GTK_TREE_MODEL (latexila.action_log.list_store), &iter);
-	gtk_tree_view_scroll_to_cell (latexila.action_log.list_view, path, NULL,
-			FALSE, 0, 0);
-
-	// delete the first entry
-	if (num > 5)
-	{
-		GtkTreeIter first;
-		gtk_tree_model_get_iter_first (
-				GTK_TREE_MODEL (latexila.action_log.list_store), &first);
-		gtk_list_store_remove (latexila.action_log.list_store, &first);
-	}
-
-	num++;
-	g_free (title2);
-}
-
-static void
 set_action_sensitivity (gboolean sensitive)
 {
-	// Lock the action list when a command is running so the user can not view
-	// an other action.
-	gtk_widget_set_sensitive (GTK_WIDGET (latexila.action_log.list_view), sensitive);
+	// Lock the history action list when a command is running so the user can not view
+	// an other action. We do that because the output lines are added in the
+	// current list store. If the user changed the action in the history list
+	// while a new action is running, the new output lines would be added to the
+	// wrong list store.
+	set_history_sensitivity (sensitive);
 
 	gtk_action_set_sensitive (latexila.actions.compile_latex, sensitive);
 	gtk_action_set_sensitive (latexila.actions.compile_pdflatex, sensitive);
@@ -289,15 +237,14 @@ start_command_without_output (gchar **command, gchar *message)
 	{
 		gchar *command_output = g_strdup_printf (_("execution failed: %s"),
 				error->message);
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
+		print_output_exit (42, command_output);
 		g_free (command_output);
 		g_error_free (error);
 	}
 	else if (message == NULL)
-		print_log_add (latexila.action_log.text_view,
-				_("Viewing in progress. Please wait..."), FALSE);
+		print_output_info (_("Viewing in progress. Please wait..."));
 	else
-		print_log_add (latexila.action_log.text_view, message, FALSE);
+		print_output_info (message);
 }
 
 // Attention, before calling this function, set the variable "show_all_output"
@@ -319,7 +266,7 @@ start_command_with_output (gchar **command)
 	{
 		gchar *command_output = g_strdup_printf (_("execution failed: %s"),
 				error->message);
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
+		print_output_exit (42, command_output);
 		g_free (command_output);
 		g_error_free (error);
 		g_free (dir);
@@ -341,7 +288,6 @@ start_command_with_output (gchar **command)
 
 	// convert the channel
 	g_io_channel_set_encoding (out_channel, NULL, NULL);
-	//g_io_channel_set_encoding (out_channel, "ISO-8859-1", NULL);
 
 	// lock the action list and all the build actions
 	set_action_sensitivity (FALSE);
@@ -401,9 +347,12 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 			// the line is not showed if it contains bad characters!
 			if (line_utf8 != NULL)
 			{
+				// delete the \n
+				line_utf8[strlen (line_utf8) - 1] = '\0';
+
 				if (show_all_output)
 				{
-					print_log_add (latexila.action_log.text_view, line_utf8, FALSE);
+					print_output_normal (line_utf8);
 
 					/* Flush the queue for the 200 first lines and then every 50 lines.
 					 * This is for the fluidity of the output, without that the lines do not
@@ -418,11 +367,7 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 				}
 
 				else
-				{
-					// delete the \n
-					line_utf8[strlen (line_utf8) - 1] = '\0';
 					latex_output_filter (line_utf8);
-				}
 
 				g_free (line_utf8);
 			}
@@ -483,21 +428,11 @@ finish_execute (void)
 		latex_output_filter_print_stats ();
 
 	if (child_pid_exit_code > -1)
-	{
-		gchar *exit_code = g_strdup_printf ("exit code: %d",
-				child_pid_exit_code);
-
-		if (child_pid_exit_code == 0)
-			print_log_add (latexila.action_log.text_view, exit_code, FALSE);
-		else
-			print_log_add (latexila.action_log.text_view, exit_code, TRUE);
-
-		g_free (exit_code);
-	}
+		print_output_exit (child_pid_exit_code, NULL);
 	else
-		print_log_add (latexila.action_log.text_view,
-				_("the child process exited abnormally"), TRUE);
+		print_output_exit (42, _("The child process exited abnormally"));
 
+	output_view_columns_autosize ();
 	flush_queue ();
 
 	// unlock the action list and all the build actions
@@ -542,7 +477,7 @@ run_command_on_other_extension (gchar *title, gchar *message, gchar *command,
 		command_output = g_strdup_printf (
 				_("%s does not exist. If this is not already made, compile the document with the right command."),
 				g_path_get_basename (doc_path));
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
+		print_output_exit (42, command_output);
 		g_free (command_output);
 		g_free (doc_path);
 		return;
@@ -571,7 +506,7 @@ is_current_doc_tex_file (void)
 	{
 		gchar *command_output = g_strdup_printf (_("failed: %s is not a *.tex file"),
 				g_path_get_basename (latexila.active_doc->path));
-		print_log_add (latexila.action_log.text_view, command_output, TRUE);
+		print_output_exit (0, command_output);
 		g_free (command_output);
 		return FALSE;
 	}

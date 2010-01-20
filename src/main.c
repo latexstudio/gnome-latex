@@ -31,6 +31,7 @@
 #include "ui.h"
 #include "templates.h"
 #include "latex_output_filter.h"
+#include "log.h"
 
 static gboolean option_version (const gchar *option_name, const gchar *value,
 		gpointer data, GError **error);
@@ -40,7 +41,6 @@ static void init_source_view (GtkWidget *vbox_source_view);
 static void init_go_to_line (GtkWidget *vbox_source_view);
 static void init_find (GtkWidget *vbox_source_view);
 static void init_replace (GtkWidget *vbox_source_view);
-static void init_log_zone (void);
 static void init_statusbar (GtkWidget *main_vbox);
 
 latexila_t latexila = {NULL};
@@ -319,64 +319,6 @@ init_replace (GtkWidget *vbox_source_view)
 }
 
 static void
-init_log_zone (void)
-{
-	// action history
-	GtkListStore *list_store = gtk_list_store_new (N_COLUMNS_ACTION,
-			G_TYPE_STRING, G_TYPE_POINTER);
-	latexila.action_log.list_store = list_store;
-	
-	GtkWidget *list_view = gtk_tree_view_new_with_model (
-			GTK_TREE_MODEL (list_store));
-	latexila.action_log.list_view = GTK_TREE_VIEW (list_view);
-	GtkCellRenderer *renderer = gtk_cell_renderer_text_new ();
-	GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes (
-			_("Action history"), renderer, "text", COLUMN_ACTION_TITLE, NULL);	
-	gtk_tree_view_append_column (latexila.action_log.list_view, column);
-	
-	GtkTreeSelection *select =
-		gtk_tree_view_get_selection (latexila.action_log.list_view);
-	latexila.action_log.list_selection = select;
-	gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
-	g_signal_connect (G_OBJECT (select), "changed",
-			G_CALLBACK (cb_action_list_changed), NULL);
-
-	// with a scrollbar
-	GtkWidget *scrollbar = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
-			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_paned_add1 (GTK_PANED (latexila.log_hpaned), scrollbar);
-	gtk_container_add (GTK_CONTAINER (scrollbar), list_view);
-	
-	// log details
-	GtkWidget *log_view = gtk_text_view_new ();
-	GtkTextBuffer *log_buffer = gtk_text_view_get_buffer (
-			GTK_TEXT_VIEW (log_view));
-
-	latexila.action_log.text_view = GTK_TEXT_VIEW (log_view);
-	latexila.action_log.text_buffer = log_buffer;
-
-	gtk_text_buffer_set_text (log_buffer, _("Welcome to LaTeXila!"), -1);
-	gtk_text_view_set_editable (GTK_TEXT_VIEW (log_view), FALSE);
-	
-	// with a scrollbar
-	scrollbar = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
-			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_paned_add2 (GTK_PANED (latexila.log_hpaned), scrollbar);
-	gtk_container_add (GTK_CONTAINER (scrollbar), log_view);
-
-	// tags
-	gtk_text_buffer_create_tag (log_buffer, "bold",
-			"weight", PANGO_WEIGHT_BOLD,
-			NULL);
-	gtk_text_buffer_create_tag (log_buffer, "error",
-			"foreground", "red",
-			NULL);
-	latexila.action_log.tag_table = gtk_text_buffer_get_tag_table (log_buffer);
-}
-
-static void
 init_statusbar (GtkWidget *main_vbox)
 {
 	GtkWidget *statusbar = gtk_statusbar_new ();
@@ -505,7 +447,7 @@ main (int argc, char *argv[])
 	gtk_paned_set_position (GTK_PANED (hpaned), latexila.prefs.log_hpaned_pos);
 	gtk_paned_add2 (GTK_PANED (vpaned), hpaned);
 
-	init_log_zone ();
+	init_log_zone (latexila.log_hpaned);
 
 	/* statusbar */
 	init_statusbar (main_vbox);

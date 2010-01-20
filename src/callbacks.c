@@ -968,22 +968,6 @@ cb_documents_next (void)
 }
 
 void
-cb_action_list_changed (GtkTreeSelection *selection, gpointer user_data)
-{
-	GtkTreeIter iter;
-	GtkTreeModel *model;
-	if (gtk_tree_selection_get_selected (selection, &model, &iter))
-	{
-		GtkTextBuffer *text_buffer;
-		gtk_tree_model_get (model, &iter,
-				COLUMN_ACTION_TEXTBUFFER, &text_buffer,
-				-1);
-
-		gtk_text_view_set_buffer (latexila.action_log.text_view, text_buffer);
-	}
-}
-
-void
 cb_help_latex_reference (void)
 {
 	view_in_web_browser (_("View LaTeX Reference"), DATA_DIR "/latexhelp.html");

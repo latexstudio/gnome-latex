@@ -6,9 +6,10 @@ TODO LaTeXila
 	x button to stop the execution
 	x show statistics: nb of errors, warnings and badboxes
 	x extract informations: file, line, message
-	- jump to lines and files: GtkTextBuffer -> GtkListStore
-	- colors
-	- go to the previous/next error/warning/badbox
+	x GtkTextBuffer -> GtkListStore
+	x colors
+	- jump to lines and files
+	- buttons for going to the previous/next error/warning/badbox
 
 - Auto-completion of LaTeX commands
 
@@ -18,4 +19,5 @@ TODO LaTeXila
 	- Autosave files every X minutes
 	- Symbols: most recently used
 	- File browser: list with all parents directories
+	- File browser: two cell renderers in one column
 	- Create personnal templates: choose an icon

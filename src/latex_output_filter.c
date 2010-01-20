@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009, 2010 Sébastien Wilmet
+ * Copyright © 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
 #include "print.h"
 #include "utils.h"
 #include "latex_output_filter.h"
+#include "log.h"
 
 static gboolean detect_badbox (const gchar *line);
 static gboolean detect_badbox_line (const gchar *badbox,
@@ -201,27 +202,30 @@ latex_output_filter_print_stats (void)
 	}
 	if (nb_badboxes > 1)
 	{
-		gchar *tmp = g_strdup_printf (_("%s%d badboxes\n"), str, nb_badboxes);
+		gchar *tmp = g_strdup_printf (_("%s%d badboxes"), str, nb_badboxes);
 		g_free (str);
 		str = tmp;
 	}
 	else
 	{
-		gchar *tmp = g_strdup_printf (_("%s%d badbox\n"), str, nb_badboxes);
+		gchar *tmp = g_strdup_printf (_("%s%d badbox"), str, nb_badboxes);
 		g_free (str);
 		str = tmp;
 	}
 
-	print_log_add (latexila.action_log.text_view, str, FALSE);
+	print_output_info (str);
 	flush_queue ();
 	g_free (str);
 
+	// it's finish, we reset the counters
 	nb_badboxes = 0;
 	nb_warnings = 0;
 	nb_errors = 0;
 
-	// if all the files in the stack are not popped
+	// if the file stack is not empty
 	gint nb_files_in_stack = g_slist_length (stack_file);
+	if (nb_files_in_stack > 0)
+		print_warning ("the file stack was not empty!");
 	for (int i = 0 ; i < nb_files_in_stack ; i++)
 		pop_file_from_stack ();
 }
@@ -236,7 +240,7 @@ detect_badbox (const gchar *line)
 		case START:
 			if (g_regex_match (reg_badbox, line, 0, NULL))
 			{
-				msg.message_type = TYPE_BADBOX;
+				msg.message_type = MESSAGE_TYPE_BADBOX;
 				nb_badboxes++;
 
 				if (detect_badbox_line (line, FALSE))
@@ -332,7 +336,7 @@ detect_warning (const gchar *line)
 			if (g_regex_match (reg_warning, line, 0, NULL))
 			{
 				nb_warnings++;
-				msg.message_type = TYPE_WARNING;
+				msg.message_type = MESSAGE_TYPE_WARNING;
 
 				strings = g_regex_split (reg_warning, line, 0);
 
@@ -351,7 +355,7 @@ detect_warning (const gchar *line)
 			else if (g_regex_match (reg_warning_no_file, line, 0, NULL))
 			{
 				nb_warnings++;
-				msg.message_type = TYPE_WARNING;
+				msg.message_type = MESSAGE_TYPE_WARNING;
 				strings = g_regex_split (reg_warning_no_file, line, 0);
 				msg.message = g_strdup (strings[1]);
 				g_strfreev (strings);
@@ -465,7 +469,7 @@ detect_error (const gchar *line)
 			{
 				nb_errors++;
 				nb_lines++;
-				msg.message_type = TYPE_ERROR;
+				msg.message_type = MESSAGE_TYPE_ERROR;
 
 				// the message is complete
 				if (line[strlen (line) - 1] == '.')
@@ -544,7 +548,7 @@ detect_other (const gchar *line)
 	{
 		msg.message = g_strdup (line);
 		msg.line = NO_LINE;
-		msg.message_type = TYPE_OTHER;
+		msg.message_type = MESSAGE_TYPE_OTHER;
 		print_msg ();
 		return TRUE;
 	}
@@ -798,49 +802,11 @@ top_file_on_stack_reliable (void)
 static void
 print_msg (void)
 {
-	gchar *str;
-	switch (msg.message_type)
-	{
-		case TYPE_ERROR:
-			str = g_strdup ("[x] ");
-			break;
-		case TYPE_WARNING:
-			str = g_strdup ("[+] ");
-			break;
-		case TYPE_BADBOX:
-			str = g_strdup ("[-] ");
-			break;
-		case TYPE_OTHER:
-			str = g_strdup ("[ ] ");
-			break;
-		default:
-			break;
-	}
-
 	gchar *filename = get_current_filename ();
-	if (filename != NULL)
-	{
-		gchar *tmp = g_strdup_printf ("%s%s:", str, filename);
-		g_free (str);
-		str = tmp;
-	}
-
-	if (msg.line != NO_LINE)
-	{
-		gchar *tmp = g_strdup_printf ("%s%d:", str, msg.line);
-		g_free (str);
-		str = tmp;
-	}
-
-	gchar *tmp = g_strdup_printf ("%s%s\n", str, msg.message);
-	g_free (str);
-	str = tmp;
-
-	print_log_add (latexila.action_log.text_view, str, msg.message_type == TYPE_ERROR);
+	print_output_message (filename, msg.line, msg.message, msg.message_type);
 	flush_queue ();
-	g_free (str);
 	
 	msg.line = NO_LINE;
-	msg.message_type = TYPE_OTHER;
+	msg.message_type = MESSAGE_TYPE_OTHER;
 	g_free (msg.message);
 }
