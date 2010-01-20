@@ -816,7 +816,7 @@ init_ui (GtkWidget *box)
 	{
 		print_error ("building menubar and toolbar failed: %s", error->message);
 		g_error_free (error);
-		error = NULL;
+		exit (EXIT_FAILURE);
 	}
 
 	// get and put the menubar and the toolbars to the main vbox

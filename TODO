@@ -8,7 +8,7 @@ TODO LaTeXila
 	x extract informations: file, line, message
 	x GtkTextBuffer -> GtkListStore
 	x colors
-	- jump to lines and files
+	x jump to lines and files
 	- buttons for going to the previous/next error/warning/badbox
 
 - Auto-completion of LaTeX commands

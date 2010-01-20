@@ -147,6 +147,7 @@ fill_list_store_with_current_dir (void)
 		return;
 	}
 
+	//TODO check memomy leaks
 	gtk_list_store_clear (latexila.file_browser.list_store);
 
 	/* append all the files contained in the directory */

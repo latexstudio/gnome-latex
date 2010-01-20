@@ -50,5 +50,4 @@ print_error (const char *format, ...)
 	fprintf (stderr, "Error: ");
 	vfprintf (stderr, format, va);
 	fprintf (stderr, "\n");
-	exit (EXIT_FAILURE);
 }

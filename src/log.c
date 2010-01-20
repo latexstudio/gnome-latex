@@ -17,18 +17,29 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <stdlib.h>
+#include <string.h>
 #include <gtk/gtk.h>
 
 #include "main.h"
 #include "log.h"
+#include "utils.h"
+#include "callbacks.h"
 
 static void cb_action_history_changed (GtkTreeSelection *selection,
 		gpointer user_data);
+static void cb_output_row_changed (GtkTreeSelection *selection, gpointer data);
+static gboolean output_row_selection_func (GtkTreeSelection *selection,
+		GtkTreeModel *model, GtkTreePath *path,
+		gboolean path_currently_selected, gpointer data);
 static GtkListStore * get_new_output_list_store (void);
-static void scroll_to_end (GtkTreeIter *iter);
+static void scroll_to_end (GtkTreeIter *iter, gboolean force);
 
 static GtkTreeView *history_view;
 static GtkTreeView *output_view;
+
+// used to scroll to the end and to flush not everytime (because it is slow)
+static gint nb_lines = 0;
 
 void
 init_log_zone (GtkPaned *log_hpaned)
@@ -106,6 +117,16 @@ init_log_zone (GtkPaned *log_hpaned)
 				NULL);
 		gtk_tree_view_append_column (output_view, column);
 
+		// selection
+		GtkTreeSelection *select = gtk_tree_view_get_selection (output_view);
+		gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
+		g_signal_connect (G_OBJECT (select), "changed",
+				G_CALLBACK (cb_output_row_changed), NULL);
+
+		// certain rows can not be selected
+		gtk_tree_selection_set_select_function (select,
+				(GtkTreeSelectionFunc) output_row_selection_func, NULL, NULL);
+
 		// with a scrollbar
 		GtkWidget *scrollbar = gtk_scrolled_window_new (NULL, NULL);
 		gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
@@ -131,6 +152,71 @@ cb_action_history_changed (GtkTreeSelection *selection, gpointer user_data)
 	}
 }
 
+static void
+cb_output_row_changed (GtkTreeSelection *selection, gpointer data)
+{
+	GtkTreeIter iter;
+	GtkTreeModel *model;
+	if (gtk_tree_selection_get_selected (selection, &model, &iter))
+	{
+		gchar *filename;
+		gchar *line_number;
+		gint message_type;
+
+		gtk_tree_model_get (model, &iter,
+				COL_OUTPUT_FILENAME, &filename,
+				COL_OUTPUT_LINE_NUMBER, &line_number,
+				COL_OUTPUT_MESSAGE_TYPE, &message_type,
+				-1);
+
+		if (message_type != MESSAGE_TYPE_OTHER && filename != NULL
+				&& strlen (filename) != 0)
+		{
+			// open the file (if the file is already opened, go to it)
+			open_new_document_without_uri (filename);
+
+			// go to line
+			if (line_number != NULL && strlen (line_number) != 0
+					&& latexila.active_doc != NULL)
+			{
+				gint num = strtol (line_number, NULL, 10);
+				GtkTextIter iter_file;
+				GtkTextBuffer *buffer = GTK_TEXT_BUFFER (
+						latexila.active_doc->source_buffer);
+				gtk_text_buffer_get_iter_at_line (buffer, &iter_file, --num);
+				gtk_text_buffer_place_cursor (buffer, &iter_file);
+				scroll_to_cursor ();
+			}
+
+			gtk_widget_grab_focus (latexila.active_doc->source_view);
+		}
+	}
+}
+
+static gboolean
+output_row_selection_func (GtkTreeSelection *selection, GtkTreeModel *model,
+		GtkTreePath *path, gboolean path_currently_selected, gpointer data)
+{
+	GtkTreeIter iter;
+	if (gtk_tree_model_get_iter (model, &iter, path))
+	{
+		gint message_type;
+		gchar *filename;
+		gtk_tree_model_get (model, &iter,
+				COL_OUTPUT_FILENAME, &filename,
+				COL_OUTPUT_MESSAGE_TYPE, &message_type,
+				-1);
+
+		if (message_type == MESSAGE_TYPE_OTHER || filename == NULL
+				|| strlen (filename) == 0)
+			return FALSE;
+		else
+			return TRUE;
+	}
+
+	return FALSE; // not allow the selection state to change
+}
+
 static GtkListStore *
 get_new_output_list_store (void)
 {
@@ -154,7 +240,6 @@ add_action (const gchar *title, const gchar *command)
 
 	GtkListStore *output_list_store = get_new_output_list_store ();
 	gtk_tree_view_set_model (output_view, GTK_TREE_MODEL (output_list_store));
-	g_object_unref (output_list_store);
 
 	// print title and command to the new list store
 	gchar *title_with_num = g_strdup_printf ("%d. %s", num, title);
@@ -180,12 +265,20 @@ add_action (const gchar *title, const gchar *command)
 	// scroll to the end
 	GtkTreePath *path = gtk_tree_model_get_path (history_tree_model, &iter);
 	gtk_tree_view_scroll_to_cell (history_view, path, NULL, FALSE, 0, 0);
+	gtk_tree_path_free (path);
 
 	// delete the first entry
 	if (num > 5)
 	{
 		GtkTreeIter first;
 		gtk_tree_model_get_iter_first (history_tree_model, &first);
+
+		// free the output model
+		GtkTreeModel *first_output_store;
+		gtk_tree_model_get (history_tree_model, &first,
+				COL_ACTION_OUTPUT_STORE, &first_output_store, -1);
+		g_object_unref (first_output_store);
+
 		gtk_list_store_remove (GTK_LIST_STORE (history_tree_model), &first);
 	}
 
@@ -208,6 +301,10 @@ output_view_columns_autosize (void)
 void
 print_output_title (const gchar *title)
 {
+	// generally, the title is the first line in a new output, and is used only
+	// once, so we reset the counter...
+	nb_lines = 0;
+
 	GtkListStore *list_store =
 		GTK_LIST_STORE (gtk_tree_view_get_model (output_view));
 	GtkTreeIter iter;
@@ -220,12 +317,13 @@ print_output_title (const gchar *title)
 			COL_OUTPUT_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_BOLD,
 			-1);
-	scroll_to_end (&iter);
 }
 
 void
 print_output_info (const gchar *info)
 {
+	nb_lines++;
+
 	GtkListStore *list_store =
 		GTK_LIST_STORE (gtk_tree_view_get_model (output_view));
 	GtkTreeIter iter;
@@ -238,13 +336,15 @@ print_output_info (const gchar *info)
 			COL_OUTPUT_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
-	scroll_to_end (&iter);
+	scroll_to_end (&iter, FALSE);
 }
 
 // if message != NULL the exit_code is not taken into account
 void
 print_output_exit (const gint exit_code, const gchar *message)
 {
+	nb_lines++;
+
 	GtkListStore *list_store =
 		GTK_LIST_STORE (gtk_tree_view_get_model (output_view));
 	GtkTreeIter iter;
@@ -280,13 +380,19 @@ print_output_exit (const gint exit_code, const gchar *message)
 				-1);
 		g_free (tmp);
 	}
-	scroll_to_end (&iter);
+
+	// force the scrolling and the flush
+	scroll_to_end (&iter, TRUE);
 }
 
 void
 print_output_message (const gchar *filename, const gint line_number,
 		const gchar *message, gint message_type)
 {
+	// this function is used only in the filter, so there are less lines
+	// but we want to flush more often
+	nb_lines += 2;
+
 	GtkListStore *list_store =
 		GTK_LIST_STORE (gtk_tree_view_get_model (output_view));
 
@@ -331,7 +437,7 @@ print_output_message (const gchar *filename, const gint line_number,
 			COL_OUTPUT_COLOR_SET, TRUE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
-	scroll_to_end (&iter);
+	scroll_to_end (&iter, FALSE);
 
 	g_free (basename);
 	g_free (line_number_str);
@@ -340,6 +446,8 @@ print_output_message (const gchar *filename, const gint line_number,
 void
 print_output_normal (const gchar *message)
 {
+	nb_lines++;
+
 	GtkListStore *list_store =
 		GTK_LIST_STORE (gtk_tree_view_get_model (output_view));
 	GtkTreeIter iter;
@@ -352,13 +460,25 @@ print_output_normal (const gchar *message)
 			COL_OUTPUT_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
-	scroll_to_end (&iter);
+	scroll_to_end (&iter, FALSE);
 }
 
 static void
-scroll_to_end (GtkTreeIter *iter)
+scroll_to_end (GtkTreeIter *iter, gboolean force)
 {
-	GtkTreeModel *tree_model = gtk_tree_view_get_model (output_view);
-	GtkTreePath *path = gtk_tree_model_get_path (tree_model, iter);
-	gtk_tree_view_scroll_to_cell (output_view, path, NULL, FALSE, 0, 0);
+	/* Flush the queue for the 50 first lines and then every 40 lines.
+	 * This is for the fluidity of the output, without that the lines do not
+	 * appear directly and it's ugly. But it is very slow, for a command that
+	 * execute for example in 10 seconds, it could take 250 seconds (!) if we
+	 * flush the queue at each line... But with commands that take 1
+	 * second or so there is not a big difference.
+	 */
+	if (force || nb_lines < 50 || nb_lines % 40 == 0)
+	{
+		GtkTreeModel *tree_model = gtk_tree_view_get_model (output_view);
+		GtkTreePath *path = gtk_tree_model_get_path (tree_model, iter);
+		gtk_tree_view_scroll_to_cell (output_view, path, NULL, FALSE, 0, 0);
+		gtk_tree_path_free (path);
+		flush_queue ();
+	}
 }

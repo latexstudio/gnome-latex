@@ -373,6 +373,7 @@ load_preferences (preferences_t *prefs)
 		gchar **current = list_opened_docs;
 		while (*current != NULL)
 		{
+			// the string must be freed later
 			g_ptr_array_add (prefs->list_opened_docs,
 					(gpointer) g_strdup (*current));
 			current++;
@@ -882,6 +883,7 @@ cb_style_scheme_changed (GtkTreeSelection *selection, gpointer user_data)
 	{
 		gchar *id;
 		gtk_tree_model_get (model, &iter, COLUMN_STYLE_SCHEME_ID, &id, -1);
+		g_free (latexila.prefs.style_scheme_id);
 		latexila.prefs.style_scheme_id = id;
 
 		GtkSourceStyleSchemeManager *style_scheme_manager =
@@ -890,12 +892,11 @@ cb_style_scheme_changed (GtkTreeSelection *selection, gpointer user_data)
 			gtk_source_style_scheme_manager_get_scheme (style_scheme_manager, id);
 
 		// set the style scheme for all opened documents
-		GList *current = latexila.all_docs;
-		while (current != NULL)
+		for (GList *current = latexila.all_docs ; current != NULL ;
+				current = g_list_next (current))
 		{
 			document_t *doc = g_list_nth_data (current, 0);
 			gtk_source_buffer_set_style_scheme (doc->source_buffer, style_scheme);
-			current = g_list_next (current);
 		}
 	}
 }
@@ -1102,6 +1103,7 @@ create_preferences (void)
 	{
 		GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
 		GtkWidget *label = gtk_label_new (_("Font:"));
+		// TODO check memory leaks here
 		GtkWidget *font_button = gtk_font_button_new_with_font (
 				latexila.prefs.font_str);
 		g_signal_connect (G_OBJECT (font_button), "font-set",

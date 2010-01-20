@@ -25,7 +25,6 @@
 
 #include "main.h"
 #include "print.h"
-#include "utils.h"
 #include "latex_output_filter.h"
 #include "log.h"
 
@@ -44,6 +43,7 @@ static void update_stack_file (const gchar *line);
 static void update_stack_file_heuristic (const gchar *line);
 
 static gboolean file_exists (const gchar *filename);
+static gchar * get_path_if_file_exists (const gchar *filename);
 static gchar * get_current_filename (void);
 static void push_file_on_stack (gchar *filename, gboolean reliable);
 static void pop_file_from_stack (void);
@@ -183,38 +183,12 @@ latex_output_filter_set_path (const gchar *dir)
 void
 latex_output_filter_print_stats (void)
 {
-	gchar *str;
-	if (nb_errors > 1)
-		str = g_strdup_printf (_("%d errors, "), nb_errors);
-	else
-		str = g_strdup_printf (_("%d error, "), nb_errors);
-	if (nb_warnings > 1)
-	{
-		gchar *tmp = g_strdup_printf (_("%s%d warnings, "), str, nb_warnings);
-		g_free (str);
-		str = tmp;
-	}
-	else
-	{
-		gchar *tmp = g_strdup_printf (_("%s%d warning, "), str, nb_warnings);
-		g_free (str);
-		str = tmp;
-	}
-	if (nb_badboxes > 1)
-	{
-		gchar *tmp = g_strdup_printf (_("%s%d badboxes"), str, nb_badboxes);
-		g_free (str);
-		str = tmp;
-	}
-	else
-	{
-		gchar *tmp = g_strdup_printf (_("%s%d badbox"), str, nb_badboxes);
-		g_free (str);
-		str = tmp;
-	}
+	gchar *str = g_strdup_printf ("%d %s, %d %s, %d %s",
+			nb_errors, nb_errors > 1 ? "errors" : "error",
+			nb_warnings, nb_warnings > 1 ? "warnings" : "warning",
+			nb_badboxes, nb_badboxes > 1 ? "badboxes" : "badbox");
 
 	print_output_info (str);
-	flush_queue ();
 	g_free (str);
 
 	// it's finish, we reset the counters
@@ -222,12 +196,15 @@ latex_output_filter_print_stats (void)
 	nb_warnings = 0;
 	nb_errors = 0;
 
-	// if the file stack is not empty
+	// empty the stack file
 	gint nb_files_in_stack = g_slist_length (stack_file);
 	if (nb_files_in_stack > 0)
 		print_warning ("the file stack was not empty!");
 	for (int i = 0 ; i < nb_files_in_stack ; i++)
+	{
+		print_info ("%s", get_current_filename ());
 		pop_file_from_stack ();
+	}
 }
 
 static gboolean
@@ -731,15 +708,36 @@ update_stack_file_heuristic (const gchar *line)
 static gboolean
 file_exists (const gchar *filename)
 {
-	if (g_path_is_absolute (filename))
-		return g_file_test (filename, G_FILE_TEST_IS_REGULAR);
-
-	gchar *full_path = g_build_filename (path, filename, NULL);
-	if (g_file_test (full_path, G_FILE_TEST_IS_REGULAR))
+	gchar *full_path = get_path_if_file_exists (filename);
+	if (full_path != NULL)
 	{
 		g_free (full_path);
 		return TRUE;
 	}
+	return FALSE;
+}
+
+// return NULL if the filename does not exist
+// return the path of the filename if it exists (must be freed)
+static gchar *
+get_path_if_file_exists (const gchar *filename)
+{
+	if (g_path_is_absolute (filename))
+	{
+		if (g_file_test (filename, G_FILE_TEST_IS_REGULAR))
+			return g_strdup (filename);
+		else
+			return NULL;
+	}
+
+	gchar *full_path;
+	if (g_str_has_prefix (filename, "./"))
+		full_path = g_build_filename (path, filename + 2, NULL);
+	else
+		full_path = g_build_filename (path, filename, NULL);
+
+	if (g_file_test (full_path, G_FILE_TEST_IS_REGULAR))
+		return full_path;
 
 	// try to add various extensions on the filename to see if the file exists
 	gchar *extensions[] = {".tex", ".ltx", ".latex", ".dtx", ".ins"};
@@ -749,14 +747,14 @@ file_exists (const gchar *filename)
 		gchar *tmp = g_strdup_printf ("%s%s", full_path, extensions[i]);
 		if (g_file_test (tmp, G_FILE_TEST_IS_REGULAR))
 		{
-			g_free (tmp);
 			g_free (full_path);
-			return TRUE;
+			return tmp;
 		}
 		g_free (tmp);
 	}
 
-	return FALSE;
+	g_free (full_path);
+	return NULL;
 }
 
 static gchar *
@@ -776,7 +774,13 @@ push_file_on_stack (gchar *filename, gboolean reliable)
 {
 	//print_info ("***\tpush\t\"%s\" (%s)", filename, reliable ? "reliable" : "not reliable");
 	file_in_stack_t *file = g_malloc (sizeof (file_in_stack_t));
-	file->filename = g_strdup (filename);
+
+	gchar *path = get_path_if_file_exists (filename);
+	if (path != NULL)
+		file->filename = path;
+	else
+		file->filename = g_strdup (filename);
+
 	file->reliable = reliable;
 	stack_file = g_slist_prepend (stack_file, file);
 }
@@ -784,7 +788,7 @@ push_file_on_stack (gchar *filename, gboolean reliable)
 static void
 pop_file_from_stack (void)
 {
-	file_in_stack_t *file = g_slist_nth_data (stack_file, 0);
+	file_in_stack_t *file = stack_file->data;
 	//print_info ("***\tpop\t\"%s\" (%s)", file->filename, file->reliable ? "reliable" : "not reliable");
 	stack_file = g_slist_remove (stack_file, file);
 	g_free (file->filename);
@@ -795,7 +799,9 @@ static gboolean
 top_file_on_stack_reliable (void)
 {
 	// stack_file must contain at least one file
-	file_in_stack_t *file = g_slist_nth_data (stack_file, 0);
+	g_assert (stack_file != NULL);
+
+	file_in_stack_t *file = stack_file->data;
 	return file->reliable;
 }
 
@@ -804,7 +810,6 @@ print_msg (void)
 {
 	gchar *filename = get_current_filename ();
 	print_output_message (filename, msg.line, msg.message, msg.message_type);
-	flush_queue ();
 	
 	msg.line = NO_LINE;
 	msg.message_type = MESSAGE_TYPE_OTHER;

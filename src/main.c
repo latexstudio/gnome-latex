@@ -101,6 +101,7 @@ init_main_window (void)
 
 	for (int i = 0 ; i < nb_icons ; i++)
 	{
+		// TODO check memory leaks here
 		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (filenames[i], &error);
 		if (error != NULL)
 		{
@@ -115,6 +116,10 @@ init_main_window (void)
 
 	gtk_window_set_default_icon_list (list_icons);
 
+	// Gtk have a copy of the GList and adds a ref to every icon
+	g_list_foreach (list_icons, (GFunc) g_object_unref, NULL);
+	g_list_free (list_icons);
+
 	if (latexila.prefs.window_maximised)
 		gtk_window_maximize (GTK_WINDOW (window));
 }
@@ -128,35 +133,39 @@ init_side_pane (void)
 	gtk_paned_add1 (latexila.main_hpaned, side_pane_notebook);
 
 	// symbol tables
-	GtkWidget *vbox_symbols = gtk_vbox_new (FALSE, 0);
-	latexila.symbols.vbox = vbox_symbols;
+	{
+		GtkWidget *vbox_symbols = gtk_vbox_new (FALSE, 0);
+		latexila.symbols.vbox = vbox_symbols;
 
-	GtkWidget *tab_label = gtk_hbox_new (FALSE, 3);
-	GtkWidget *label = gtk_label_new (_("Symbols"));
-	GtkWidget *image = gtk_image_new_from_file (DATA_DIR "/images/greek/01.png");
-	gtk_box_pack_start (GTK_BOX (tab_label), image, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (tab_label), label, TRUE, TRUE, 0);
-	gtk_widget_show_all (tab_label);
+		GtkWidget *tab_label = gtk_hbox_new (FALSE, 3);
+		GtkWidget *label = gtk_label_new (_("Symbols"));
+		GtkWidget *image = gtk_image_new_from_file (DATA_DIR "/images/greek/01.png");
+		gtk_box_pack_start (GTK_BOX (tab_label), image, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (tab_label), label, TRUE, TRUE, 0);
+		gtk_widget_show_all (tab_label);
 
-	gtk_notebook_append_page (GTK_NOTEBOOK (side_pane_notebook), vbox_symbols,
-			tab_label);
-	init_symbols ();
+		gtk_notebook_append_page (GTK_NOTEBOOK (side_pane_notebook), vbox_symbols,
+				tab_label);
+		init_symbols ();
+	}
 
 	// file browser
-	GtkWidget *vbox_file_browser = gtk_vbox_new (FALSE, 0);
-	latexila.file_browser.vbox = vbox_file_browser;
+	{
+		GtkWidget *vbox_file_browser = gtk_vbox_new (FALSE, 0);
+		latexila.file_browser.vbox = vbox_file_browser;
 
-	tab_label = gtk_hbox_new (FALSE, 3);
-	label = gtk_label_new (_("File Browser"));
-	image = gtk_image_new_from_stock (GTK_STOCK_OPEN,
-			GTK_ICON_SIZE_MENU);
-	gtk_box_pack_start (GTK_BOX (tab_label), image, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (tab_label), label, TRUE, TRUE, 0);
-	gtk_widget_show_all (tab_label);
+		GtkWidget *tab_label = gtk_hbox_new (FALSE, 3);
+		GtkWidget *label = gtk_label_new (_("File Browser"));
+		GtkWidget *image = gtk_image_new_from_stock (GTK_STOCK_OPEN,
+				GTK_ICON_SIZE_MENU);
+		gtk_box_pack_start (GTK_BOX (tab_label), image, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (tab_label), label, TRUE, TRUE, 0);
+		gtk_widget_show_all (tab_label);
 
-	gtk_notebook_append_page (GTK_NOTEBOOK (side_pane_notebook),
-			vbox_file_browser, tab_label);
-	init_file_browser ();
+		gtk_notebook_append_page (GTK_NOTEBOOK (side_pane_notebook),
+				vbox_file_browser, tab_label);
+		init_file_browser ();
+	}
 }
 
 static void
@@ -339,13 +348,19 @@ main (int argc, char *argv[])
 {
 	GError *error = NULL;
 
-	/* command line options */
-	gboolean option_new_document = FALSE;
-
+	/* localisation */
 	gchar *latexila_nls_package = NULL;
+
 #ifdef LATEXILA_NLS_ENABLED
+	setlocale (LC_ALL, "");
+	bindtextdomain (LATEXILA_NLS_PACKAGE, LATEXILA_NLS_LOCALEDIR);
+	bind_textdomain_codeset (LATEXILA_NLS_PACKAGE, "UTF-8");
+	textdomain (LATEXILA_NLS_PACKAGE);
 	latexila_nls_package = LATEXILA_NLS_PACKAGE;
 #endif
+
+	/* command line options */
+	gboolean option_new_document = FALSE;
 
 	GOptionEntry options[] = {
 		{ "version", 'v', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_NO_ARG,
@@ -357,29 +372,29 @@ main (int argc, char *argv[])
 		{NULL}
 	};
 
-	GOptionContext *context = g_option_context_new ("[FILES]");
-	g_option_context_add_main_entries (context, options, latexila_nls_package);
+	GOptionContext *context = g_option_context_new (NULL);
 	g_option_context_add_group (context, gtk_get_option_group (TRUE));
+	g_option_context_add_main_entries (context, options, latexila_nls_package);
 
 	// TODO with valgrind there are a lot of memory leaks with this, can we do
 	// something?
-	if (! g_option_context_parse (context, &argc, &argv, &error))
+	gboolean tmp = g_option_context_parse (context, &argc, &argv, &error);
+	g_option_context_free (context);
+	if (! tmp)
+	{
 		print_error ("option parsing failed: %s\n", error->message);
+		g_error_free (error);
+		exit (EXIT_FAILURE);
+	}
 
 	gtk_init_with_args (&argc, &argv, NULL, options, latexila_nls_package,
 			&error);
 	if (error != NULL)
+	{
 		print_error ("%s", error->message);
-
-	g_option_context_free (context);
-
-	/* localisation */
-#ifdef LATEXILA_NLS_ENABLED
-	setlocale (LC_ALL, "");
-	bindtextdomain (LATEXILA_NLS_PACKAGE, LATEXILA_NLS_LOCALEDIR);
-	bind_textdomain_codeset (LATEXILA_NLS_PACKAGE, "UTF-8");
-	textdomain (LATEXILA_NLS_PACKAGE);
-#endif
+		g_error_free (error);
+		exit (EXIT_FAILURE);
+	}
 
 	/* preferences */
 	load_preferences (&latexila.prefs);
@@ -470,10 +485,13 @@ main (int argc, char *argv[])
 
 	/* reopen files on startup */
 	gchar ** list_opened_docs = (gchar **) latexila.prefs.list_opened_docs->pdata;
-	for (int i = 0 ; i < latexila.prefs.list_opened_docs->len
-			&& latexila.prefs.reopen_files_on_startup ; i++)
+	for (int i = 0 ; i < latexila.prefs.list_opened_docs->len ; i++)
 	{
-		open_new_document_without_uri (list_opened_docs[i]);
+		if (latexila.prefs.reopen_files_on_startup)
+			open_new_document_without_uri (list_opened_docs[i]);
+
+		// in all cases we must free the string
+		g_free (list_opened_docs[i]);
 	}
 	g_ptr_array_free (latexila.prefs.list_opened_docs, TRUE);
 	latexila.prefs.list_opened_docs = g_ptr_array_new ();

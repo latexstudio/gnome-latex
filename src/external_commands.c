@@ -328,8 +328,6 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 
 	if (condition & G_IO_IN)
 	{
-		int nb_lines = 0;
-
 		GError *error = NULL;
 		gchar *line = NULL;
 		GIOStatus gio_status = g_io_channel_read_line (channel, &line, NULL, NULL, &error); 
@@ -351,21 +349,7 @@ cb_watch_output_command (GIOChannel *channel, GIOCondition condition,
 				line_utf8[strlen (line_utf8) - 1] = '\0';
 
 				if (show_all_output)
-				{
 					print_output_normal (line_utf8);
-
-					/* Flush the queue for the 200 first lines and then every 50 lines.
-					 * This is for the fluidity of the output, without that the lines do not
-					 * appear directly and it's ugly. But it is very slow, for a command that
-					 * execute for example in 10 seconds, it could take 250 seconds (!) if we
-					 * flush the queue at each line... But with commands that take 1
-					 * second or so there is not a big difference.
-					 */
-					if (nb_lines < 200 || nb_lines % 50 == 0)
-						flush_queue ();
-					nb_lines++;
-				}
-
 				else
 					latex_output_filter (line_utf8);
 
@@ -433,7 +417,6 @@ finish_execute (void)
 		print_output_exit (42, _("The child process exited abnormally"));
 
 	output_view_columns_autosize ();
-	flush_queue ();
 
 	// unlock the action list and all the build actions
 	set_action_sensitivity (TRUE);

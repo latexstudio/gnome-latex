@@ -38,6 +38,7 @@
 #include "prefs.h"
 #include "file_browser.h"
 #include "latex_output_filter.h"
+#include "utils.h"
 
 static void close_document (gint index);
 static void save_as_dialog (void);
@@ -46,7 +47,6 @@ static gboolean close_all (void);
 static void set_title (void);
 static void set_undo_redo_sensitivity (void);
 static void update_cursor_position_statusbar (void);
-static void scroll_to_cursor (void);
 static void find (gboolean backward);
 static gboolean find_next_match (const gchar *what, GtkSourceSearchFlags flags,
 		gboolean backward, GtkTextIter *match_start, GtkTextIter *match_end);
@@ -1159,14 +1159,15 @@ open_new_document (const gchar *filename, const gchar *uri)
 		// convert the text to UTF-8
 		gchar *text_utf8 = g_locale_to_utf8 (contents, -1, NULL, NULL, NULL);
 
-		create_document_in_new_tab (filename, text_utf8,
-				g_path_get_basename (filename));
+		gchar *basename = g_path_get_basename (filename);
+		create_document_in_new_tab (filename, text_utf8, basename);
 
 		GtkRecentManager *manager = gtk_recent_manager_get_default ();
 		gtk_recent_manager_add_item (manager, uri);
 
 		g_free (contents);
 		g_free (text_utf8);
+		g_free (basename);
 	}
 
 	else
@@ -1213,6 +1214,7 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 	new_doc->saved = TRUE;
 	new_doc->source_buffer = gtk_source_buffer_new (NULL);
 	new_doc->source_view = gtk_source_view_new_with_buffer (new_doc->source_buffer);
+	g_object_unref (new_doc->source_buffer);
 
 	latexila.all_docs = g_list_append (latexila.all_docs, new_doc);
 	latexila.active_doc = new_doc;
@@ -1222,6 +1224,7 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 	// set the language for the syntaxic color
 	if (path != NULL)
 	{
+		// TODO check memory leaks here
 		GtkSourceLanguage *lang = gtk_source_language_manager_guess_language (
 				lm, path, NULL);
 		if (lang != NULL)
@@ -1614,19 +1617,6 @@ update_cursor_position_statusbar (void)
 	gchar *text = g_strdup_printf ("Ln %d, Col %d", row, col);
 	gtk_statusbar_push (latexila.cursor_position, 0, text);
 	g_free (text);
-}
-
-static void
-scroll_to_cursor (void)
-{
-	if (latexila.active_doc == NULL)
-		return;
-
-	gtk_text_view_scroll_to_mark (
-			GTK_TEXT_VIEW (latexila.active_doc->source_view),
-			gtk_text_buffer_get_insert (
-				GTK_TEXT_BUFFER (latexila.active_doc->source_buffer)),
-			0.25, FALSE, 0, 0);
 }
 
 static void

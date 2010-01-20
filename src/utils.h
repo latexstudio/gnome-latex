@@ -21,5 +21,6 @@
 #define UTILS_H
 
 void flush_queue (void);
+void scroll_to_cursor (void);
 
 #endif /* UTILS_H */

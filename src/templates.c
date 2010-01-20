@@ -348,12 +348,15 @@ init_templates (void)
 	for (gint i = 0 ; i < length ; i++)
 	{
 		gchar *file = g_strdup_printf ("%s/%d.tex", rc_dir, i);
-
 		if (! g_file_test (file, G_FILE_TEST_EXISTS))
+		{
+			g_free (file);
 			continue;
-		
+		}
+
 		add_template_from_file (personnal_store, names[i],
 				DATA_DIR "/images/templates/article.png", file);
+		g_free (file);
 	}
 
 	g_strfreev (names);

@@ -51,9 +51,9 @@ enum history_action
 enum output_message_type
 {
 	MESSAGE_TYPE_OTHER,
-	MESSAGE_TYPE_ERROR,
+	MESSAGE_TYPE_BADBOX,
 	MESSAGE_TYPE_WARNING,
-	MESSAGE_TYPE_BADBOX
+	MESSAGE_TYPE_ERROR
 };
 
 enum output_line
