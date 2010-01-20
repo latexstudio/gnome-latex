@@ -14,7 +14,6 @@ TODO LaTeXila
 - Auto-completion of LaTeX commands
 
 - Some various improvements:
-	- Change the title of the window with the filename of the current document
 	- Make a copy of a file before saving it for the first time (with a name like "file~")
 	- Autosave files every X minutes
 	- Symbols: most recently used

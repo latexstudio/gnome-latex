@@ -45,6 +45,7 @@ static void save_as_dialog (void);
 static void file_save (void);
 static gboolean close_all (void);
 static void set_title (void);
+static void set_window_title (void);
 static void set_undo_redo_sensitivity (void);
 static void update_cursor_position_statusbar (void);
 static void find (gboolean backward);
@@ -146,6 +147,7 @@ cb_close (void)
 		latexila.active_doc = NULL;
 
 	set_undo_redo_sensitivity ();
+	set_window_title ();
 }
 
 void
@@ -168,6 +170,7 @@ cb_close_tab (GtkWidget *widget, GtkWidget *child)
 
 		set_undo_redo_sensitivity ();
 		update_cursor_position_statusbar ();
+		set_window_title ();
 	}
 
 	// the document to close is not the current document
@@ -1005,6 +1008,7 @@ cb_page_change (GtkNotebook *notebook, GtkNotebookPage *page, guint page_num,
 	latexila.active_doc = g_list_nth_data (latexila.all_docs, page_num);
 	set_undo_redo_sensitivity ();
 	update_cursor_position_statusbar ();
+	set_window_title ();
 }
 
 void
@@ -1290,6 +1294,7 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 	
 	set_undo_redo_sensitivity ();
 	update_cursor_position_statusbar ();
+	set_window_title ();
 }
 
 
@@ -1520,6 +1525,23 @@ set_title (void)
 	gtk_label_set_text (GTK_LABEL (latexila.active_doc->title), title);
 
 	g_free (title);
+
+	set_window_title ();
+}
+
+static void
+set_window_title (void)
+{
+	if (latexila.active_doc == NULL)
+	{
+		gtk_window_set_title (latexila.main_window, "LaTeXila");
+		return;
+	}
+
+	const gchar *title = gtk_label_get_text (GTK_LABEL (latexila.active_doc->title));
+	gchar *window_title = g_strdup_printf ("%s - LaTeXila", title);
+	gtk_window_set_title (latexila.main_window, window_title);
+	g_free (window_title);
 }
 
 static void
