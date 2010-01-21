@@ -2,7 +2,6 @@ TODO LaTeXila
 
 - User-friendly output for the compilation
 	- sensitivity of buttons (previous/next error/...)
-	- convert file size in KB or MB or ... ("Output written on ...")
 
 - File browser
 	- optimisations, check memory leaks, ...

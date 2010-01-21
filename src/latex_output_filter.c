@@ -85,6 +85,7 @@ static GRegex *reg_tex_error = NULL;
 static GRegex *reg_error_line = NULL;
 
 static GRegex *reg_file_pop = NULL;
+static GRegex *reg_other_bytes = NULL;
 
 // for statistics
 static gint nb_badboxes = 0;
@@ -151,6 +152,7 @@ latex_output_filter_init (void)
 	reg_error_line = g_regex_new ("^l\\.([0-9]+)(.*)", 0, 0, NULL);
 
 	reg_file_pop = g_regex_new ("(\\) )?:<-$", 0, 0, NULL);
+	reg_other_bytes = g_regex_new ("([0-9]+) bytes", 0, 0, NULL);
 
 	msg.line = NO_LINE;
 }
@@ -171,6 +173,7 @@ latex_output_filter_free (void)
 	g_regex_unref (reg_tex_error);
 	g_regex_unref (reg_error_line);
 	g_regex_unref (reg_file_pop);
+	g_regex_unref (reg_other_bytes);
 	g_free ((gpointer) path);
 }
 
@@ -523,7 +526,59 @@ detect_other (const gchar *line)
 {
 	if (strstr (line, "Output written on"))
 	{
-		msg.message = g_strdup (line);
+		/* try to show the file size in a human readable format */
+		if (g_regex_match (reg_other_bytes, line, 0, NULL))
+		{
+			gchar **strings = g_regex_split (reg_other_bytes, line, 0);
+			gint nb_bytes = strtol (strings[1], NULL, 10);
+			g_strfreev (strings);
+
+			gboolean replace = FALSE;
+			gchar *human_size = NULL;
+
+			// do nothing
+			if (nb_bytes < 1024)
+				msg.message = g_strdup (line);
+
+			// size in KB (less than 1 MB)
+			else if (nb_bytes < 1024 * 1024)
+			{
+				gint nb_kb = nb_bytes / 1024;
+				human_size = g_strdup_printf ("%d KB", nb_kb);
+				replace = TRUE;
+			}
+
+			// size in MB (with one decimal)
+			else
+			{
+				gdouble nb_mb = (gdouble) nb_bytes / (1024.0 * 1024.0);
+				human_size = g_strdup_printf ("%.1f MB", nb_mb);
+				replace = TRUE;
+			}
+
+			if (replace)
+			{
+				GError *error = NULL;
+				gchar *new_line = g_regex_replace_literal (reg_other_bytes,
+						line, -1, 0, human_size, 0, &error);
+				g_free (human_size);
+
+				// shit!
+				if (error != NULL)
+				{
+					g_error_free (error);
+					g_free (new_line);
+					msg.message = g_strdup (line);
+				}
+				else
+					msg.message = new_line;
+			}
+		}
+		
+		// no "bytes" found
+		else
+			msg.message = g_strdup (line);
+
 		msg.line = NO_LINE;
 		msg.message_type = MESSAGE_TYPE_OTHER;
 		print_msg ();
