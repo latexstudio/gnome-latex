@@ -29,8 +29,14 @@
 #define WEIGHT_BOLD		800
 #define INFO_MESSAGE	"*****"
 
-void init_log_zone (GtkPaned *log_hpaned);
+void init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar);
 void add_action (const gchar *title, const gchar *command);
+void cb_go_previous_latex_error (void);
+void cb_go_previous_latex_warning (void);
+void cb_go_previous_latex_badbox (void);
+void cb_go_next_latex_error (void);
+void cb_go_next_latex_warning (void);
+void cb_go_next_latex_badbox (void);
 void set_history_sensitivity (gboolean sensitive);
 void output_view_columns_autosize (void);
 

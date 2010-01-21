@@ -20,6 +20,6 @@
 #ifndef UI_H
 #define UI_H
 
-void init_ui (GtkWidget *box);
+void init_ui (GtkWidget *box, GtkWidget **log_zone);
 
 #endif /* UI_H */

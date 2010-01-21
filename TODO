@@ -1,22 +1,19 @@
 TODO LaTeXila
 
 - User-friendly output for the compilation
-	x filter the messages
-	x show the exit code
-	x button to stop the execution
-	x show statistics: nb of errors, warnings and badboxes
-	x extract informations: file, line, message
-	x GtkTextBuffer -> GtkListStore
-	x colors
-	x jump to lines and files
-	- buttons for going to the previous/next error/warning/badbox
+	- sensitivity of buttons (previous/next error/...)
+	- convert file size in KB or MB or ... ("Output written on ...")
 
-- Auto-completion of LaTeX commands
+- File browser
+	- optimisations, check memory leaks, ...
+	- two cell renderers (icon + basename) in one column
+	- list with all parent directories
+	- sort with GtkTreeSortable?
 
 - Some various improvements:
 	- Make a copy of a file before saving it for the first time (with a name like "file~")
 	- Autosave files every X minutes
 	- Symbols: most recently used
-	- File browser: list with all parents directories
-	- File browser: two cell renderers in one column
 	- Create personnal templates: choose an icon
+
+- Auto-completion of LaTeX commands

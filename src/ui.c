@@ -29,6 +29,7 @@
 #include "tool_menu_action.h"
 #include "prefs.h"
 #include "templates.h"
+#include "log.h"
 
 static void register_my_stock_icons (void);
 
@@ -71,6 +72,12 @@ static struct {
 	{DATA_DIR "/images/icons/math-nth-root.png", "math-nth-root"},
 	{DATA_DIR "/images/icons/delimiters-left.png", "delimiters-left"},
 	{DATA_DIR "/images/icons/delimiters-right.png", "delimiters-right"},
+	{DATA_DIR "/images/icons/go_previous_error.png", "go-previous-error"},
+	{DATA_DIR "/images/icons/go_next_error.png", "go-next-error"},
+	{DATA_DIR "/images/icons/go_previous_warning.png", "go-previous-warning"},
+	{DATA_DIR "/images/icons/go_next_warning.png", "go-next-warning"},
+	{DATA_DIR "/images/icons/go_previous_badbox.png", "go-previous-badbox"},
+	{DATA_DIR "/images/icons/go_next_badbox.png", "go-next-badbox"},
 };
 
 static const char *ui =
@@ -136,6 +143,13 @@ static const char *ui =
 "      <separator />"
 "      <menuitem action='clean_up_build_files' />"
 "      <menuitem action='stop_execution' />"
+"      <separator />"
+"      <menuitem action='go_previous_error' />"
+"      <menuitem action='go_next_error' />"
+"      <menuitem action='go_previous_warning' />"
+"      <menuitem action='go_next_warning' />"
+"      <menuitem action='go_previous_badbox' />"
+"      <menuitem action='go_next_badbox' />"
 "    </menu>"
 
 "    <menu action='Latex'>"
@@ -306,8 +320,6 @@ static const char *ui =
 "    <separator />"
 "    <toolitem action='compile_pdflatex' />"
 "    <toolitem action='viewPDF' />"
-"    <separator />"
-"    <toolitem action='stop_execution' />"
 "  </toolbar>"
 
 "  <toolbar name='EditToolbar'>"
@@ -413,6 +425,16 @@ static const char *ui =
 "      </menu>"
 "    </toolitem>"
 "  </toolbar>"
+
+"  <toolbar name='LogToolbar'>"
+"    <toolitem action='stop_execution' />"
+"    <toolitem action='go_previous_error' />"
+"    <toolitem action='go_next_error' />"
+"    <toolitem action='go_previous_warning' />"
+"    <toolitem action='go_next_warning' />"
+"    <toolitem action='go_previous_badbox' />"
+"    <toolitem action='go_next_badbox' />"
+"  </toolbar>"
 "</ui>";
 
 // all the actions (for the menu and the toolbar)
@@ -495,6 +517,18 @@ static GtkActionEntry entries[] = {
 		G_CALLBACK (cb_clean_up_build_files)},
 	{"stop_execution", GTK_STOCK_STOP, N_("_Stop Execution"), "<Release>F9",
 		N_("Stop Execution"), G_CALLBACK (cb_stop_execution)},
+	{"go_previous_error", "go-previous-error", N_("_Previous LaTeX Error"), NULL,
+		N_("Previous LaTeX Error"), G_CALLBACK (cb_go_previous_latex_error)},
+	{"go_previous_warning", "go-previous-warning", N_("_Previous LaTeX Warning"), NULL,
+		N_("Previous LaTeX Warning"), G_CALLBACK (cb_go_previous_latex_warning)},
+	{"go_previous_badbox", "go-previous-badbox", N_("_Previous LaTeX Badbox"), NULL,
+		N_("Previous LaTeX Badbox"), G_CALLBACK (cb_go_previous_latex_badbox)},
+	{"go_next_error", "go-next-error", N_("_Next LaTeX Error"), NULL,
+		N_("Next LaTeX Error"), G_CALLBACK (cb_go_next_latex_error)},
+	{"go_next_warning", "go-next-warning", N_("_Next LaTeX Warning"), NULL,
+		N_("Next LaTeX Warning"), G_CALLBACK (cb_go_next_latex_warning)},
+	{"go_next_badbox", "go-next-badbox", N_("_Next LaTeX Badbox"), NULL,
+		N_("Next LaTeX Badbox"), G_CALLBACK (cb_go_next_latex_badbox)},
 
 	{"Tools", NULL, N_("_Tools"), NULL, NULL, NULL},
 	{"ToolsComment", NULL, N_("_Comment"), "<Control>D",
@@ -735,7 +769,7 @@ register_my_stock_icons (void)
 }
 
 void
-init_ui (GtkWidget *box)
+init_ui (GtkWidget *box, GtkWidget **log_toolbar)
 {
 	GError *error = NULL;
 
@@ -825,11 +859,19 @@ init_ui (GtkWidget *box)
 
 	GtkWidget *toolbar = gtk_ui_manager_get_widget (ui_manager, "/MainToolbar");
 	GtkWidget *edit_toolbar = gtk_ui_manager_get_widget (ui_manager, "/EditToolbar");
+	*log_toolbar = gtk_ui_manager_get_widget (ui_manager, "/LogToolbar");
 	latexila.edit_toolbar = edit_toolbar;
 
 	// toolbars with icons only
 	gtk_toolbar_set_style (GTK_TOOLBAR (toolbar), GTK_TOOLBAR_ICONS);
 	gtk_toolbar_set_style (GTK_TOOLBAR (edit_toolbar), GTK_TOOLBAR_ICONS);
+	gtk_toolbar_set_style (GTK_TOOLBAR (*log_toolbar), GTK_TOOLBAR_ICONS);
+
+	// log toolbar vertical, with small icons
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (*log_toolbar),
+			GTK_ORIENTATION_VERTICAL);
+	gtk_toolbar_set_icon_size (GTK_TOOLBAR (*log_toolbar), GTK_ICON_SIZE_MENU);
+
 
 	if (latexila.prefs.toolbars_horizontal)
 	{

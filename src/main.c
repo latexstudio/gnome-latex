@@ -420,7 +420,10 @@ main (int argc, char *argv[])
 	GtkWidget *main_vbox = gtk_vbox_new (FALSE, 0);
 	gtk_container_add (GTK_CONTAINER (latexila.main_window), main_vbox);
 
-	init_ui (main_vbox);
+	// init_ui() will set log_toolbar so we can pass it to init_log_zone()
+	GtkWidget *log_toolbar;
+
+	init_ui (main_vbox, &log_toolbar);
 	
 	/* horizontal pane
 	 * left: side pane (symbol tables and the file browser)
@@ -462,7 +465,7 @@ main (int argc, char *argv[])
 	gtk_paned_set_position (GTK_PANED (hpaned), latexila.prefs.log_hpaned_pos);
 	gtk_paned_add2 (GTK_PANED (vpaned), hpaned);
 
-	init_log_zone (latexila.log_hpaned);
+	init_log_zone (latexila.log_hpaned, log_toolbar);
 
 	/* statusbar */
 	init_statusbar (main_vbox);

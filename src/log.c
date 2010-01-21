@@ -25,6 +25,7 @@
 #include "log.h"
 #include "utils.h"
 #include "callbacks.h"
+#include "print.h"
 
 static void cb_action_history_changed (GtkTreeSelection *selection,
 		gpointer user_data);
@@ -33,7 +34,8 @@ static gboolean output_row_selection_func (GtkTreeSelection *selection,
 		GtkTreeModel *model, GtkTreePath *path,
 		gboolean path_currently_selected, gpointer data);
 static GtkListStore * get_new_output_list_store (void);
-static void scroll_to_end (GtkTreeIter *iter, gboolean force);
+static void go_to_message (gboolean next, gint message_type);
+static void scroll_to_iter (GtkTreeIter *iter, gboolean force);
 
 static GtkTreeView *history_view;
 static GtkTreeView *output_view;
@@ -42,7 +44,7 @@ static GtkTreeView *output_view;
 static gint nb_lines = 0;
 
 void
-init_log_zone (GtkPaned *log_hpaned)
+init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 {
 	/* action history */
 	{
@@ -132,7 +134,14 @@ init_log_zone (GtkPaned *log_hpaned)
 		gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
 				GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 		gtk_container_add (GTK_CONTAINER (scrollbar), GTK_WIDGET (output_view));
-		gtk_paned_add2 (log_hpaned, scrollbar);
+
+		/* left: output view
+		 * right: log toolbar (vertical)
+		 */
+		GtkWidget *hbox = gtk_hbox_new (FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), scrollbar, TRUE, TRUE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), log_toolbar, FALSE, FALSE, 0);
+		gtk_paned_add2 (log_hpaned, hbox);
 	}
 }
 
@@ -159,8 +168,8 @@ cb_output_row_changed (GtkTreeSelection *selection, gpointer data)
 	GtkTreeModel *model;
 	if (gtk_tree_selection_get_selected (selection, &model, &iter))
 	{
-		gchar *filename;
-		gchar *line_number;
+		gchar *filename = NULL;
+		gchar *line_number = NULL;
 		gint message_type;
 
 		gtk_tree_model_get (model, &iter,
@@ -170,7 +179,7 @@ cb_output_row_changed (GtkTreeSelection *selection, gpointer data)
 				-1);
 
 		if (message_type != MESSAGE_TYPE_OTHER && filename != NULL
-				&& strlen (filename) != 0)
+				&& strlen (filename) > 0)
 		{
 			// open the file (if the file is already opened, go to it)
 			open_new_document_without_uri (filename);
@@ -190,6 +199,9 @@ cb_output_row_changed (GtkTreeSelection *selection, gpointer data)
 
 			gtk_widget_grab_focus (latexila.active_doc->source_view);
 		}
+
+		g_free (filename);
+		g_free (line_number);
 	}
 }
 
@@ -207,11 +219,16 @@ output_row_selection_func (GtkTreeSelection *selection, GtkTreeModel *model,
 				COL_OUTPUT_MESSAGE_TYPE, &message_type,
 				-1);
 
-		if (message_type == MESSAGE_TYPE_OTHER || filename == NULL
-				|| strlen (filename) == 0)
+		if (message_type == MESSAGE_TYPE_OTHER || filename == NULL || strlen (filename) == 0)
+		{
+			g_free (filename);
 			return FALSE;
+		}
 		else
+		{
+			g_free (filename);
 			return TRUE;
+		}
 	}
 
 	return FALSE; // not allow the selection state to change
@@ -286,6 +303,91 @@ add_action (const gchar *title, const gchar *command)
 	g_free (title_with_num);
 }
 
+static void
+go_to_message (gboolean next, gint message_type)
+{
+	GtkTreeSelection *selection = gtk_tree_view_get_selection (output_view);
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+	gboolean valid = gtk_tree_selection_get_selected (selection, &model, &iter);
+
+	// if no row is selected, we take the first
+	if (! valid)
+		valid = gtk_tree_model_get_iter_first (model, &iter);
+	if (! valid)
+		return;
+
+	// get the next or previous iter
+	if (next)
+		valid = gtk_tree_model_iter_next (model, &iter);
+	else
+		valid = tree_model_iter_prev (model, &iter);
+
+	gint current_message_type;
+	gchar *filename;
+	while (valid)
+	{
+		gtk_tree_model_get (model, &iter, 
+				COL_OUTPUT_MESSAGE_TYPE, &current_message_type,
+				COL_OUTPUT_FILENAME, &filename,
+				-1);
+
+		// if found, select the row
+		if (current_message_type == message_type && filename != NULL
+				&& strlen (filename) > 0)
+		{
+			gtk_tree_selection_select_iter (selection, &iter);
+			scroll_to_iter (&iter, TRUE);
+			g_free (filename);
+			break;
+		}
+
+		g_free (filename);
+
+		// get the next or previous iter
+		if (next)
+			valid = gtk_tree_model_iter_next (model, &iter);
+		else
+			valid = tree_model_iter_prev (model, &iter);
+	}
+}
+
+void
+cb_go_previous_latex_error (void)
+{
+	go_to_message (FALSE, MESSAGE_TYPE_ERROR);
+}
+
+void
+cb_go_previous_latex_warning (void)
+{
+	go_to_message (FALSE, MESSAGE_TYPE_WARNING);
+}
+
+void
+cb_go_previous_latex_badbox (void)
+{
+	go_to_message (FALSE, MESSAGE_TYPE_BADBOX);
+}
+
+void
+cb_go_next_latex_error (void)
+{
+	go_to_message (TRUE, MESSAGE_TYPE_ERROR);
+}
+
+void
+cb_go_next_latex_warning (void)
+{
+	go_to_message (TRUE, MESSAGE_TYPE_WARNING);
+}
+
+void
+cb_go_next_latex_badbox (void)
+{
+	go_to_message (TRUE, MESSAGE_TYPE_BADBOX);
+}
+
 void
 set_history_sensitivity (gboolean sensitive)
 {
@@ -336,7 +438,7 @@ print_output_info (const gchar *info)
 			COL_OUTPUT_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
-	scroll_to_end (&iter, FALSE);
+	scroll_to_iter (&iter, FALSE);
 }
 
 // if message != NULL the exit_code is not taken into account
@@ -382,7 +484,7 @@ print_output_exit (const gint exit_code, const gchar *message)
 	}
 
 	// force the scrolling and the flush
-	scroll_to_end (&iter, TRUE);
+	scroll_to_iter (&iter, TRUE);
 }
 
 void
@@ -437,7 +539,7 @@ print_output_message (const gchar *filename, const gint line_number,
 			COL_OUTPUT_COLOR_SET, TRUE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
-	scroll_to_end (&iter, FALSE);
+	scroll_to_iter (&iter, FALSE);
 
 	g_free (basename);
 	g_free (line_number_str);
@@ -460,11 +562,11 @@ print_output_normal (const gchar *message)
 			COL_OUTPUT_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
-	scroll_to_end (&iter, FALSE);
+	scroll_to_iter (&iter, FALSE);
 }
 
 static void
-scroll_to_end (GtkTreeIter *iter, gboolean force)
+scroll_to_iter (GtkTreeIter *iter, gboolean force)
 {
 	/* Flush the queue for the 50 first lines and then every 40 lines.
 	 * This is for the fluidity of the output, without that the lines do not

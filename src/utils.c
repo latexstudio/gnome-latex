@@ -43,3 +43,19 @@ scroll_to_cursor (void)
 				GTK_TEXT_BUFFER (latexila.active_doc->source_buffer)),
 			0.25, FALSE, 0, 0);
 }
+
+// same as gtk_tree_model_iter_next(), but previous instead of next
+gboolean
+tree_model_iter_prev (GtkTreeModel *tree_model, GtkTreeIter *iter)
+{
+	GtkTreePath *path = gtk_tree_model_get_path (tree_model, iter);
+	if (gtk_tree_path_prev (path))
+	{
+		gboolean ret_val = gtk_tree_model_get_iter (tree_model, iter, path);
+		gtk_tree_path_free (path);
+		return ret_val;
+	}
+
+	gtk_tree_path_free (path);
+	return FALSE;
+}

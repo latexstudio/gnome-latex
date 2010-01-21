@@ -22,5 +22,6 @@
 
 void flush_queue (void);
 void scroll_to_cursor (void);
+gboolean tree_model_iter_prev (GtkTreeModel *tree_model, GtkTreeIter *iter);
 
 #endif /* UTILS_H */
