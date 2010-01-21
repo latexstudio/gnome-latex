@@ -29,13 +29,14 @@
 
 static void cb_action_history_changed (GtkTreeSelection *selection,
 		gpointer user_data);
-static void cb_output_row_changed (GtkTreeSelection *selection, gpointer data);
-static gboolean output_row_selection_func (GtkTreeSelection *selection,
-		GtkTreeModel *model, GtkTreePath *path,
-		gboolean path_currently_selected, gpointer data);
 static GtkListStore * get_new_output_list_store (void);
 static void go_to_message (gboolean next, gint message_type);
 static void scroll_to_iter (GtkTreeIter *iter, gboolean force);
+static gboolean output_row_selection_func (GtkTreeSelection *selection,
+		GtkTreeModel *model, GtkTreePath *path,
+		gboolean path_currently_selected, gpointer data);
+static void select_row (GtkTreeModel *model, GtkTreeIter *iter);
+static void jump_to_file (void);
 
 static GtkTreeView *history_view;
 static GtkTreeView *output_view;
@@ -80,6 +81,10 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 					GTK_TREE_MODEL (output_list_store)));
 		g_object_unref (output_list_store);
 
+		GdkColor color;
+		gdk_color_parse ("green", &color);
+		gtk_widget_modify_bg (GTK_WIDGET (output_view), GTK_STATE_SELECTED, &color);
+
 		// we can now show some text (output_view must be initialized)
 		print_output_normal (_("Welcome to LaTeXila!"));
 
@@ -95,6 +100,8 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 				"text", COL_OUTPUT_BASENAME,
 				"foreground", COL_OUTPUT_COLOR,
 				"foreground-set", COL_OUTPUT_COLOR_SET,
+				"background", COL_OUTPUT_BG_COLOR,
+				"background-set", COL_OUTPUT_BG_COLOR_SET,
 				"weight", COL_OUTPUT_WEIGHT,
 				NULL);
 		gtk_tree_view_append_column (output_view, column);
@@ -105,6 +112,8 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 				"text", COL_OUTPUT_LINE_NUMBER,
 				"foreground", COL_OUTPUT_COLOR,
 				"foreground-set", COL_OUTPUT_COLOR_SET,
+				"background", COL_OUTPUT_BG_COLOR,
+				"background-set", COL_OUTPUT_BG_COLOR_SET,
 				"weight", COL_OUTPUT_WEIGHT,
 				NULL);
 		gtk_tree_view_append_column (output_view, column);
@@ -115,6 +124,8 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 				"text", COL_OUTPUT_MESSAGE,
 				"foreground", COL_OUTPUT_COLOR,
 				"foreground-set", COL_OUTPUT_COLOR_SET,
+				"background", COL_OUTPUT_BG_COLOR,
+				"background-set", COL_OUTPUT_BG_COLOR_SET,
 				"weight", COL_OUTPUT_WEIGHT,
 				NULL);
 		gtk_tree_view_append_column (output_view, column);
@@ -122,10 +133,14 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 		// selection
 		GtkTreeSelection *select = gtk_tree_view_get_selection (output_view);
 		gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
-		g_signal_connect (G_OBJECT (select), "changed",
-				G_CALLBACK (cb_output_row_changed), NULL);
 
-		// certain rows can not be selected
+		// If the user click on a row, output_row_selection_func() will be
+		// called, but no row will be selected (the function return FALSE
+		// everytime). Instead, if the row can be "selected" (if the message
+		// type is an error, a warning or a badbox, and if the filename is not
+		// empty), the background and foreground colors are inverted.
+		// The GtkTreePath of the row selected is stored as a data in the
+		// GtkTreeModel (with g_object_set_data()).
 		gtk_tree_selection_set_select_function (select,
 				(GtkTreeSelectionFunc) output_row_selection_func, NULL, NULL);
 
@@ -157,81 +172,19 @@ cb_action_history_changed (GtkTreeSelection *selection, gpointer user_data)
 				COL_ACTION_OUTPUT_STORE, &output_model,
 				-1);
 		gtk_tree_view_set_model (output_view, output_model);
+
 		output_view_columns_autosize ();
-	}
-}
 
-static void
-cb_output_row_changed (GtkTreeSelection *selection, gpointer data)
-{
-	GtkTreeIter iter;
-	GtkTreeModel *model;
-	if (gtk_tree_selection_get_selected (selection, &model, &iter))
-	{
-		gchar *filename = NULL;
-		gchar *line_number = NULL;
-		gint message_type;
-
-		gtk_tree_model_get (model, &iter,
-				COL_OUTPUT_FILENAME, &filename,
-				COL_OUTPUT_LINE_NUMBER, &line_number,
-				COL_OUTPUT_MESSAGE_TYPE, &message_type,
-				-1);
-
-		if (message_type != MESSAGE_TYPE_OTHER && filename != NULL
-				&& strlen (filename) > 0)
+		// scroll to the selected line
+		GtkTreePath *path = g_object_get_data (G_OBJECT (output_model),
+				"row-selected");
+		if (path != NULL)
 		{
-			// open the file (if the file is already opened, go to it)
-			open_new_document_without_uri (filename);
-
-			// go to line
-			if (line_number != NULL && strlen (line_number) != 0
-					&& latexila.active_doc != NULL)
-			{
-				gint num = strtol (line_number, NULL, 10);
-				GtkTextIter iter_file;
-				GtkTextBuffer *buffer = GTK_TEXT_BUFFER (
-						latexila.active_doc->source_buffer);
-				gtk_text_buffer_get_iter_at_line (buffer, &iter_file, --num);
-				gtk_text_buffer_place_cursor (buffer, &iter_file);
-				scroll_to_cursor ();
-			}
-
-			gtk_widget_grab_focus (latexila.active_doc->source_view);
-		}
-
-		g_free (filename);
-		g_free (line_number);
-	}
-}
-
-static gboolean
-output_row_selection_func (GtkTreeSelection *selection, GtkTreeModel *model,
-		GtkTreePath *path, gboolean path_currently_selected, gpointer data)
-{
-	GtkTreeIter iter;
-	if (gtk_tree_model_get_iter (model, &iter, path))
-	{
-		gint message_type;
-		gchar *filename;
-		gtk_tree_model_get (model, &iter,
-				COL_OUTPUT_FILENAME, &filename,
-				COL_OUTPUT_MESSAGE_TYPE, &message_type,
-				-1);
-
-		if (message_type == MESSAGE_TYPE_OTHER || filename == NULL || strlen (filename) == 0)
-		{
-			g_free (filename);
-			return FALSE;
-		}
-		else
-		{
-			g_free (filename);
-			return TRUE;
+			GtkTreeIter output_iter;
+			gtk_tree_model_get_iter (output_model, &output_iter, path);
+			scroll_to_iter (&output_iter, TRUE);
 		}
 	}
-
-	return FALSE; // not allow the selection state to change
 }
 
 static GtkListStore *
@@ -245,6 +198,8 @@ get_new_output_list_store (void)
 			G_TYPE_INT,			// message type
 			G_TYPE_STRING,		// color
 			G_TYPE_BOOLEAN,		// color set
+			G_TYPE_STRING,		// background color
+			G_TYPE_BOOLEAN,		// background color set
 			G_TYPE_INT			// weight
 			);
 	return output_list_store;
@@ -294,6 +249,10 @@ add_action (const gchar *title, const gchar *command)
 		GtkTreeModel *first_output_store;
 		gtk_tree_model_get (history_tree_model, &first,
 				COL_ACTION_OUTPUT_STORE, &first_output_store, -1);
+		GtkTreePath *path_to_free =
+			g_object_get_data (G_OBJECT (first_output_store), "row-selected");
+
+		gtk_tree_path_free (path_to_free);
 		g_object_unref (first_output_store);
 
 		gtk_list_store_remove (GTK_LIST_STORE (history_tree_model), &first);
@@ -306,14 +265,17 @@ add_action (const gchar *title, const gchar *command)
 static void
 go_to_message (gboolean next, gint message_type)
 {
-	GtkTreeSelection *selection = gtk_tree_view_get_selection (output_view);
-	GtkTreeModel *model;
+	GtkTreeModel *model = gtk_tree_view_get_model (output_view);
+	GtkTreePath *path = g_object_get_data (G_OBJECT (model), "row-selected");
 	GtkTreeIter iter;
-	gboolean valid = gtk_tree_selection_get_selected (selection, &model, &iter);
+	gboolean valid;
 
 	// if no row is selected, we take the first
-	if (! valid)
+	if (path == NULL)
 		valid = gtk_tree_model_get_iter_first (model, &iter);
+	else
+		valid = gtk_tree_model_get_iter (model, &iter, path);
+
 	if (! valid)
 		return;
 
@@ -336,7 +298,7 @@ go_to_message (gboolean next, gint message_type)
 		if (current_message_type == message_type && filename != NULL
 				&& strlen (filename) > 0)
 		{
-			gtk_tree_selection_select_iter (selection, &iter);
+			select_row (model, &iter);
 			scroll_to_iter (&iter, TRUE);
 			g_free (filename);
 			break;
@@ -417,6 +379,7 @@ print_output_title (const gchar *title)
 			COL_OUTPUT_MESSAGE, title,
 			COL_OUTPUT_MESSAGE_TYPE, MESSAGE_TYPE_OTHER,
 			COL_OUTPUT_COLOR_SET, FALSE,
+			COL_OUTPUT_BG_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_BOLD,
 			-1);
 }
@@ -436,6 +399,7 @@ print_output_info (const gchar *info)
 			COL_OUTPUT_MESSAGE, info,
 			COL_OUTPUT_MESSAGE_TYPE, MESSAGE_TYPE_OTHER,
 			COL_OUTPUT_COLOR_SET, FALSE,
+			COL_OUTPUT_BG_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
 	scroll_to_iter (&iter, FALSE);
@@ -456,6 +420,7 @@ print_output_exit (const gint exit_code, const gchar *message)
 			COL_OUTPUT_LINE_NUMBER, "",
 			COL_OUTPUT_MESSAGE_TYPE, MESSAGE_TYPE_OTHER,
 			COL_OUTPUT_COLOR_SET, TRUE,
+			COL_OUTPUT_BG_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
 
@@ -537,6 +502,9 @@ print_output_message (const gchar *filename, const gint line_number,
 			COL_OUTPUT_MESSAGE_TYPE, message_type,
 			COL_OUTPUT_COLOR, color,
 			COL_OUTPUT_COLOR_SET, TRUE,
+			// we set the background color so when the row is selected we just
+			// have to change the "set" flag
+			COL_OUTPUT_BG_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
 	scroll_to_iter (&iter, FALSE);
@@ -560,6 +528,7 @@ print_output_normal (const gchar *message)
 			COL_OUTPUT_MESSAGE, message,
 			COL_OUTPUT_MESSAGE_TYPE, MESSAGE_TYPE_OTHER,
 			COL_OUTPUT_COLOR_SET, FALSE,
+			COL_OUTPUT_BG_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
 	scroll_to_iter (&iter, FALSE);
@@ -583,4 +552,134 @@ scroll_to_iter (GtkTreeIter *iter, gboolean force)
 		gtk_tree_path_free (path);
 		flush_queue ();
 	}
+}
+
+static gboolean
+output_row_selection_func (GtkTreeSelection *selection, GtkTreeModel *model,
+		GtkTreePath *path, gboolean path_currently_selected, gpointer data)
+{
+	GtkTreeIter iter;
+	if (gtk_tree_model_get_iter (model, &iter, path))
+	{
+		gint message_type;
+		gchar *filename;
+		gtk_tree_model_get (model, &iter,
+				COL_OUTPUT_FILENAME, &filename,
+				COL_OUTPUT_MESSAGE_TYPE, &message_type,
+				-1);
+
+		if (message_type != MESSAGE_TYPE_OTHER && filename != NULL
+				&& strlen (filename) > 0)
+			select_row (model, &iter);
+
+		g_free (filename);
+	}
+
+	// rows will never be selected
+	return FALSE;
+}
+
+static void
+select_row (GtkTreeModel *model, GtkTreeIter *iter)
+{
+	GtkTreePath *current_path_selected = g_object_get_data (G_OBJECT (model),
+			"row-selected");
+
+	GtkTreePath *path = gtk_tree_model_get_path (model, iter);
+
+	if (current_path_selected != NULL)
+	{
+		// if the row to select is not the same as the row already selected,
+		// we must deselect this row
+		if (gtk_tree_path_compare (current_path_selected, path) != 0)
+		{
+			GtkTreeIter current_iter_selected;
+			gtk_tree_model_get_iter (model, &current_iter_selected,
+					current_path_selected);
+			gtk_tree_path_free (current_path_selected);
+
+			// invert the colors
+			gchar *bg_color;
+			gtk_tree_model_get (model, &current_iter_selected,
+					COL_OUTPUT_BG_COLOR, &bg_color,
+					-1);
+			gtk_list_store_set (GTK_LIST_STORE (model), &current_iter_selected,
+					COL_OUTPUT_COLOR, bg_color,
+					COL_OUTPUT_BG_COLOR, "white",
+					COL_OUTPUT_BG_COLOR_SET, FALSE,
+					-1);
+			g_free (bg_color);
+		}
+
+		// the row is already selected
+		else
+		{
+			gtk_tree_path_free (path);
+			jump_to_file ();
+			return;
+		}
+	}
+
+	// invert the colors
+	gchar *color;
+	gtk_tree_model_get (model, iter,
+			COL_OUTPUT_COLOR, &color,
+			-1);
+	gtk_list_store_set (GTK_LIST_STORE (model), iter,
+			COL_OUTPUT_COLOR, "white",
+			COL_OUTPUT_BG_COLOR, color,
+			COL_OUTPUT_BG_COLOR_SET, TRUE,
+			-1);
+	g_free (color);
+
+	g_object_set_data (G_OBJECT (model), "row-selected", path);
+	jump_to_file ();
+}
+
+static void
+jump_to_file (void)
+{
+	GtkTreeModel *model = gtk_tree_view_get_model (output_view);
+	GtkTreePath *path_selected = g_object_get_data (G_OBJECT (model),
+			"row-selected");
+	if (path_selected == NULL)
+		return;
+
+	GtkTreeIter iter;
+	gtk_tree_model_get_iter (model, &iter, path_selected);
+
+	gchar *filename = NULL;
+	gchar *line_number = NULL;
+	gint message_type;
+
+	gtk_tree_model_get (model, &iter,
+			COL_OUTPUT_FILENAME, &filename,
+			COL_OUTPUT_LINE_NUMBER, &line_number,
+			COL_OUTPUT_MESSAGE_TYPE, &message_type,
+			-1);
+
+	if (message_type != MESSAGE_TYPE_OTHER && filename != NULL
+			&& strlen (filename) > 0)
+	{
+		// open the file (if the file is already opened, go to it)
+		open_new_document_without_uri (filename);
+
+		// go to line
+		if (line_number != NULL && strlen (line_number) != 0
+				&& latexila.active_doc != NULL)
+		{
+			gint num = strtol (line_number, NULL, 10);
+			GtkTextIter iter_file;
+			GtkTextBuffer *buffer = GTK_TEXT_BUFFER (
+					latexila.active_doc->source_buffer);
+			gtk_text_buffer_get_iter_at_line (buffer, &iter_file, --num);
+			gtk_text_buffer_place_cursor (buffer, &iter_file);
+			scroll_to_cursor ();
+		}
+
+		gtk_widget_grab_focus (latexila.active_doc->source_view);
+	}
+
+	g_free (filename);
+	g_free (line_number);
 }
