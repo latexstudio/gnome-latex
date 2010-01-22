@@ -76,14 +76,9 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 	{
 		GtkListStore *output_list_store = get_new_output_list_store ();
 
-		// tree view with 3 columns: basename, line, message
 		output_view = GTK_TREE_VIEW (gtk_tree_view_new_with_model (
 					GTK_TREE_MODEL (output_list_store)));
 		g_object_unref (output_list_store);
-
-		GdkColor color;
-		gdk_color_parse ("green", &color);
-		gtk_widget_modify_bg (GTK_WIDGET (output_view), GTK_STATE_SELECTED, &color);
 
 		// we can now show some text (output_view must be initialized)
 		print_output_normal (_("Welcome to LaTeXila!"));
@@ -91,12 +86,15 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 		gtk_tree_view_set_headers_visible (output_view, FALSE);
 		gtk_tree_view_set_tooltip_column (output_view, COL_OUTPUT_FILENAME);
 
-		GtkCellRenderer *renderer = gtk_cell_renderer_text_new ();
-		g_object_set (renderer, "weight-set", TRUE, NULL);
+		// one column with 3 cell renderers (basename, line number, and message)
+		GtkTreeViewColumn *column = gtk_tree_view_column_new ();
+		gtk_tree_view_append_column (output_view, column);
 
 		// basename
-		GtkTreeViewColumn *column = gtk_tree_view_column_new_with_attributes (
-				NULL, renderer,
+		GtkCellRenderer *renderer1 = gtk_cell_renderer_text_new ();
+		g_object_set (renderer1, "weight-set", TRUE, NULL);
+		gtk_tree_view_column_pack_start (column, renderer1, FALSE);
+		gtk_tree_view_column_set_attributes (column, renderer1,
 				"text", COL_OUTPUT_BASENAME,
 				"foreground", COL_OUTPUT_COLOR,
 				"foreground-set", COL_OUTPUT_COLOR_SET,
@@ -104,11 +102,12 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 				"background-set", COL_OUTPUT_BG_COLOR_SET,
 				"weight", COL_OUTPUT_WEIGHT,
 				NULL);
-		gtk_tree_view_append_column (output_view, column);
 
 		// line number
-		column = gtk_tree_view_column_new_with_attributes (
-				NULL, renderer,
+		GtkCellRenderer *renderer2 = gtk_cell_renderer_text_new ();
+		g_object_set (renderer2, "weight-set", TRUE, NULL);
+		gtk_tree_view_column_pack_start (column, renderer2, FALSE);
+		gtk_tree_view_column_set_attributes (column, renderer2,
 				"text", COL_OUTPUT_LINE_NUMBER,
 				"foreground", COL_OUTPUT_COLOR,
 				"foreground-set", COL_OUTPUT_COLOR_SET,
@@ -116,11 +115,12 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 				"background-set", COL_OUTPUT_BG_COLOR_SET,
 				"weight", COL_OUTPUT_WEIGHT,
 				NULL);
-		gtk_tree_view_append_column (output_view, column);
 
 		// message
-		column = gtk_tree_view_column_new_with_attributes (
-				NULL, renderer,
+		GtkCellRenderer *renderer3 = gtk_cell_renderer_text_new ();
+		g_object_set (renderer3, "weight-set", TRUE, NULL);
+		gtk_tree_view_column_pack_start (column, renderer3, FALSE);
+		gtk_tree_view_column_set_attributes (column, renderer3,
 				"text", COL_OUTPUT_MESSAGE,
 				"foreground", COL_OUTPUT_COLOR,
 				"foreground-set", COL_OUTPUT_COLOR_SET,
@@ -128,7 +128,6 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 				"background-set", COL_OUTPUT_BG_COLOR_SET,
 				"weight", COL_OUTPUT_WEIGHT,
 				NULL);
-		gtk_tree_view_append_column (output_view, column);
 
 		// selection
 		GtkTreeSelection *select = gtk_tree_view_get_selection (output_view);
