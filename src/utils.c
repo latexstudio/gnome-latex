@@ -23,6 +23,7 @@
 
 #include "main.h"
 #include "utils.h"
+#include "print.h"
 
 void
 flush_queue (void)

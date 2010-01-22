@@ -664,6 +664,11 @@ jump_to_file (void)
 		// open the file (if the file is already opened, go to it)
 		open_new_document_without_uri (filename);
 
+		// we flush the queue here because without that, there is a bug when the
+		// file is not already opened, scroll_to_cursor() doesn't work as
+		// expected.
+		flush_queue ();
+
 		// go to line
 		if (line_number != NULL && strlen (line_number) != 0
 				&& latexila.active_doc != NULL)
