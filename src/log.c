@@ -39,6 +39,8 @@ static void select_row (GtkTreeModel *model, GtkTreeIter *iter);
 static void jump_to_file (void);
 static void index_messages_by_type (GtkTreeModel *model);
 static void set_previous_next_actions_sensitivity (void);
+static void path_free (gpointer data);
+static void index_free (gpointer data);
 
 static GtkTreeView *history_view;
 static GtkTreeView *output_view;
@@ -253,17 +255,8 @@ add_action (const gchar *title, const gchar *command)
 		// free the output model
 		GtkTreeModel *first_output_store;
 		gtk_tree_model_get (history_tree_model, &first,
-				COL_ACTION_OUTPUT_STORE, &first_output_store, -1);
-		GtkTreePath *path_to_free =
-			g_object_get_data (G_OBJECT (first_output_store), "row-selected");
-		messages_index_t *index =
-			g_object_get_data (G_OBJECT (first_output_store), "index");
-
-		gtk_tree_path_free (path_to_free);
-		g_free (index->errors);
-		g_free (index->warnings);
-		g_free (index->badboxes);
-		g_free (index);
+				COL_ACTION_OUTPUT_STORE, &first_output_store,
+				-1);
 		g_object_unref (first_output_store);
 
 		gtk_list_store_remove (GTK_LIST_STORE (history_tree_model), &first);
@@ -473,7 +466,8 @@ print_output_stats (gint nb_errors, gint nb_warnings, gint nb_badboxes)
 	index->badboxes = g_malloc (nb_badboxes * sizeof (gint));
 
 	GtkTreeModel *model = gtk_tree_view_get_model (output_view);
-	g_object_set_data (G_OBJECT (model), "index", index);
+	g_object_set_data_full (G_OBJECT (model), "index", index,
+			(GDestroyNotify) index_free);
 }
 
 // if message != NULL the exit_code is not taken into account
@@ -670,7 +664,6 @@ select_row (GtkTreeModel *model, GtkTreeIter *iter)
 			GtkTreeIter current_iter_selected;
 			gtk_tree_model_get_iter (model, &current_iter_selected,
 					current_path_selected);
-			gtk_tree_path_free (current_path_selected);
 
 			// invert the colors
 			gchar *bg_color;
@@ -706,7 +699,8 @@ select_row (GtkTreeModel *model, GtkTreeIter *iter)
 			-1);
 	g_free (color);
 
-	g_object_set_data (G_OBJECT (model), "row-selected", path);
+	g_object_set_data_full (G_OBJECT (model), "row-selected", path,
+			(GDestroyNotify) path_free);
 	jump_to_file ();
 	set_previous_next_actions_sensitivity ();
 }
@@ -896,4 +890,20 @@ set_previous_next_actions_sensitivity (void)
 		gtk_action_set_sensitive (latexila.actions.go_previous_badbox, FALSE);
 		gtk_action_set_sensitive (latexila.actions.go_next_badbox, FALSE);
 	}
+}
+
+static void
+path_free (gpointer data)
+{
+	gtk_tree_path_free ((GtkTreePath *) data);
+}
+
+static void
+index_free (gpointer data)
+{
+	messages_index_t *index = (messages_index_t *) data;
+	g_free (index->errors);
+	g_free (index->warnings);
+	g_free (index->badboxes);
+	g_free (index);
 }

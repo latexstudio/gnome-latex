@@ -5,6 +5,7 @@ TODO LaTeXila
 	- two cell renderers (icon + basename) in one column
 	- list with all parent directories
 	- sort with GtkTreeSortable?
+	- option in preferences: show all files + show hidden files
 
 - Some various improvements:
 	- Make a copy of a file before saving it for the first time (with a name like "file~")
