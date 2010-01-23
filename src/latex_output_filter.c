@@ -186,13 +186,7 @@ latex_output_filter_set_path (const gchar *dir)
 void
 latex_output_filter_print_stats (void)
 {
-	gchar *str = g_strdup_printf ("%d %s, %d %s, %d %s",
-			nb_errors, nb_errors > 1 ? "errors" : "error",
-			nb_warnings, nb_warnings > 1 ? "warnings" : "warning",
-			nb_badboxes, nb_badboxes > 1 ? "badboxes" : "badbox");
-
-	print_output_info (str);
-	g_free (str);
+	print_output_stats (nb_errors, nb_warnings, nb_badboxes);
 
 	// it's finish, we reset the counters
 	nb_badboxes = 0;

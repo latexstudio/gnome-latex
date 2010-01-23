@@ -37,6 +37,8 @@ static gboolean output_row_selection_func (GtkTreeSelection *selection,
 		gboolean path_currently_selected, gpointer data);
 static void select_row (GtkTreeModel *model, GtkTreeIter *iter);
 static void jump_to_file (void);
+static void index_messages_by_type (GtkTreeModel *model);
+static void set_previous_next_actions_sensitivity (void);
 
 static GtkTreeView *history_view;
 static GtkTreeView *output_view;
@@ -79,6 +81,7 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 		output_view = GTK_TREE_VIEW (gtk_tree_view_new_with_model (
 					GTK_TREE_MODEL (output_list_store)));
 		g_object_unref (output_list_store);
+		set_previous_next_actions_sensitivity ();
 
 		// we can now show some text (output_view must be initialized)
 		print_output_normal (_("Welcome to LaTeXila!"));
@@ -183,6 +186,8 @@ cb_action_history_changed (GtkTreeSelection *selection, gpointer user_data)
 			gtk_tree_model_get_iter (output_model, &output_iter, path);
 			scroll_to_iter (&output_iter, TRUE);
 		}
+
+		set_previous_next_actions_sensitivity ();
 	}
 }
 
@@ -211,6 +216,7 @@ add_action (const gchar *title, const gchar *command)
 
 	GtkListStore *output_list_store = get_new_output_list_store ();
 	gtk_tree_view_set_model (output_view, GTK_TREE_MODEL (output_list_store));
+	set_previous_next_actions_sensitivity ();
 
 	// print title and command to the new list store
 	gchar *title_with_num = g_strdup_printf ("%d. %s", num, title);
@@ -250,8 +256,14 @@ add_action (const gchar *title, const gchar *command)
 				COL_ACTION_OUTPUT_STORE, &first_output_store, -1);
 		GtkTreePath *path_to_free =
 			g_object_get_data (G_OBJECT (first_output_store), "row-selected");
+		messages_index_t *index =
+			g_object_get_data (G_OBJECT (first_output_store), "index");
 
 		gtk_tree_path_free (path_to_free);
+		g_free (index->errors);
+		g_free (index->warnings);
+		g_free (index->badboxes);
+		g_free (index);
 		g_object_unref (first_output_store);
 
 		gtk_list_store_remove (GTK_LIST_STORE (history_tree_model), &first);
@@ -265,52 +277,87 @@ static void
 go_to_message (gboolean next, gint message_type)
 {
 	GtkTreeModel *model = gtk_tree_view_get_model (output_view);
-	GtkTreePath *path = g_object_get_data (G_OBJECT (model), "row-selected");
-	GtkTreeIter iter;
-	gboolean valid;
-
-	// if no row is selected, we take the first
-	if (path == NULL)
-		valid = gtk_tree_model_get_iter_first (model, &iter);
-	else
-		valid = gtk_tree_model_get_iter (model, &iter, path);
-
-	if (! valid)
+	messages_index_t *index = g_object_get_data (G_OBJECT (model), "index");
+	if (index == NULL)
 		return;
 
-	// get the next or previous iter
-	if (next)
-		valid = gtk_tree_model_iter_next (model, &iter);
-	else
-		valid = tree_model_iter_prev (model, &iter);
-
-	gint current_message_type;
-	gchar *filename;
-	while (valid)
+	// set nb_messages and messages with the data from index for the right
+	// message type
+	gint nb_messages;
+	gint *messages;
+	switch (message_type)
 	{
-		gtk_tree_model_get (model, &iter, 
-				COL_OUTPUT_MESSAGE_TYPE, &current_message_type,
-				COL_OUTPUT_FILENAME, &filename,
-				-1);
-
-		// if found, select the row
-		if (current_message_type == message_type && filename != NULL
-				&& strlen (filename) > 0)
-		{
-			select_row (model, &iter);
-			scroll_to_iter (&iter, TRUE);
-			g_free (filename);
+		case MESSAGE_TYPE_ERROR:
+			nb_messages = index->nb_errors;
+			messages = index->errors;
 			break;
+
+		case MESSAGE_TYPE_WARNING:
+			nb_messages = index->nb_warnings;
+			messages = index->warnings;
+			break;
+
+		case MESSAGE_TYPE_BADBOX:
+			nb_messages = index->nb_badboxes;
+			messages = index->badboxes;
+			break;
+
+		default:
+			return;
+	}
+
+	if (nb_messages == 0)
+		return;
+
+
+	// find the row number to select
+	gint row_to_select = -1;
+
+	GtkTreePath *path = g_object_get_data (G_OBJECT (model), "row-selected");
+	if (path != NULL)
+	{
+		gint *indices = gtk_tree_path_get_indices (path);
+		gint indice = indices[0];
+		for (gint i = 0 ; i < nb_messages ; i++)
+		{
+			if (next && messages[i] > indice)
+			{
+				row_to_select = messages[i];
+				break;
+			}
+			else if (! next && messages[i] >= indice)
+			{
+				if (i == 0)
+					return;
+				row_to_select = messages[i-1];
+				break;
+			}
+			// the row selected is after the last row of the type message_type
+			else if (! next && i == nb_messages - 1)
+			{
+				row_to_select = messages[i];
+				break;
+			}
 		}
 
-		g_free (filename);
-
-		// get the next or previous iter
-		if (next)
-			valid = gtk_tree_model_iter_next (model, &iter);
-		else
-			valid = tree_model_iter_prev (model, &iter);
+		// not found
+		if (row_to_select == -1)
+			return;
 	}
+
+	// no row is selected, take the first
+	else if (path == NULL && next)
+		row_to_select = messages[0];
+	else
+		return;
+
+	GtkTreePath *new_path = gtk_tree_path_new_from_indices (row_to_select, -1);
+	GtkTreeIter iter;
+	if (! gtk_tree_model_get_iter (model, &iter, new_path))
+		return;
+
+	select_row (model, &iter);
+	scroll_to_iter (&iter, TRUE);
 }
 
 void
@@ -404,6 +451,31 @@ print_output_info (const gchar *info)
 	scroll_to_iter (&iter, FALSE);
 }
 
+void
+print_output_stats (gint nb_errors, gint nb_warnings, gint nb_badboxes)
+{
+	gchar *str = g_strdup_printf ("%d %s, %d %s, %d %s",
+			nb_errors, nb_errors > 1 ? "errors" : "error",
+			nb_warnings, nb_warnings > 1 ? "warnings" : "warning",
+			nb_badboxes, nb_badboxes > 1 ? "badboxes" : "badbox");
+
+	print_output_info (str);
+	g_free (str);
+
+	// init the index
+	// we wait the exit code to fill it
+	messages_index_t *index = g_malloc (sizeof (messages_index_t));
+	index->nb_errors = nb_errors;
+	index->nb_warnings = nb_warnings;
+	index->nb_badboxes = nb_badboxes;
+	index->errors = g_malloc (nb_errors * sizeof (gint));
+	index->warnings = g_malloc (nb_warnings * sizeof (gint));
+	index->badboxes = g_malloc (nb_badboxes * sizeof (gint));
+
+	GtkTreeModel *model = gtk_tree_view_get_model (output_view);
+	g_object_set_data (G_OBJECT (model), "index", index);
+}
+
 // if message != NULL the exit_code is not taken into account
 void
 print_output_exit (const gint exit_code, const gchar *message)
@@ -449,6 +521,9 @@ print_output_exit (const gint exit_code, const gchar *message)
 
 	// force the scrolling and the flush
 	scroll_to_iter (&iter, TRUE);
+
+	// it's normally the last line, so we can index the messages by type
+	index_messages_by_type (GTK_TREE_MODEL (list_store));
 }
 
 void
@@ -633,6 +708,7 @@ select_row (GtkTreeModel *model, GtkTreeIter *iter)
 
 	g_object_set_data (G_OBJECT (model), "row-selected", path);
 	jump_to_file ();
+	set_previous_next_actions_sensitivity ();
 }
 
 static void
@@ -686,4 +762,138 @@ jump_to_file (void)
 
 	g_free (filename);
 	g_free (line_number);
+}
+
+static void
+index_messages_by_type (GtkTreeModel *model)
+{
+	messages_index_t *index = g_object_get_data (G_OBJECT (model), "index");
+	if (index == NULL)
+		return;
+
+	if (index->nb_errors == 0 && index->nb_warnings == 0
+			&& index->nb_badboxes == 0)
+		return;
+
+	// the row number
+	gint i = 0;
+
+	// positions in the tables
+	gint i_error = 0;
+	gint i_warning = 0;
+	gint i_badbox = 0;
+
+	GtkTreeIter iter;
+	gboolean valid = gtk_tree_model_get_iter_first (model, &iter);
+
+	while (valid)
+	{
+		gint message_type;
+		gtk_tree_model_get (model, &iter,
+				COL_OUTPUT_MESSAGE_TYPE, &message_type,
+				-1);
+
+		switch (message_type)
+		{
+			case MESSAGE_TYPE_ERROR:
+				index->errors[i_error] = i;
+				i_error++;
+				break;
+
+			case MESSAGE_TYPE_WARNING:
+				index->warnings[i_warning] = i;
+				i_warning++;
+				break;
+
+			case MESSAGE_TYPE_BADBOX:
+				index->badboxes[i_badbox] = i;
+				i_badbox++;
+				break;
+
+			default:
+				break;
+		}
+
+		valid = gtk_tree_model_iter_next (model, &iter);
+		i++;
+	}
+
+	set_previous_next_actions_sensitivity ();
+}
+
+static void
+set_previous_next_actions_sensitivity (void)
+{
+	GtkTreeModel *model = gtk_tree_view_get_model (output_view);
+	messages_index_t *index = g_object_get_data (G_OBJECT (model), "index");
+
+	if (index == NULL)
+	{
+		gtk_action_set_sensitive (latexila.actions.go_previous_error, FALSE);
+		gtk_action_set_sensitive (latexila.actions.go_previous_warning, FALSE);
+		gtk_action_set_sensitive (latexila.actions.go_previous_badbox, FALSE);
+		gtk_action_set_sensitive (latexila.actions.go_next_error, FALSE);
+		gtk_action_set_sensitive (latexila.actions.go_next_warning, FALSE);
+		gtk_action_set_sensitive (latexila.actions.go_next_badbox, FALSE);
+		return;
+	}
+
+	GtkTreePath *path = g_object_get_data (G_OBJECT (model), "row-selected");
+
+	if (path == NULL)
+	{
+		gtk_action_set_sensitive (latexila.actions.go_previous_error, FALSE);
+		gtk_action_set_sensitive (latexila.actions.go_previous_warning, FALSE);
+		gtk_action_set_sensitive (latexila.actions.go_previous_badbox, FALSE);
+
+		gtk_action_set_sensitive (latexila.actions.go_next_error, index->nb_errors > 0);
+		gtk_action_set_sensitive (latexila.actions.go_next_warning, index->nb_warnings > 0);
+		gtk_action_set_sensitive (latexila.actions.go_next_badbox, index->nb_badboxes > 0);
+		return;
+	}
+
+	gint *indices = gtk_tree_path_get_indices (path);
+	gint indice = indices[0];
+
+	// errors
+	if (index->nb_errors > 0)
+	{
+		gtk_action_set_sensitive (latexila.actions.go_previous_error,
+				index->errors[0] < indice);
+		gtk_action_set_sensitive (latexila.actions.go_next_error,
+				index->errors[index->nb_errors - 1] > indice);
+	}
+	else
+	{
+		gtk_action_set_sensitive (latexila.actions.go_previous_error, FALSE);
+		gtk_action_set_sensitive (latexila.actions.go_next_error, FALSE);
+	}
+
+	// warnings
+	if (index->nb_warnings > 0)
+	{
+		gtk_action_set_sensitive (latexila.actions.go_previous_warning,
+				index->warnings[0] < indice);
+		gtk_action_set_sensitive (latexila.actions.go_next_warning,
+				index->warnings[index->nb_warnings - 1] > indice);
+	}
+	else
+	{
+		gtk_action_set_sensitive (latexila.actions.go_previous_warning, FALSE);
+		gtk_action_set_sensitive (latexila.actions.go_next_warning, FALSE);
+	}
+
+	// badboxes
+	if (index->nb_badboxes > 0)
+	{
+		gtk_action_set_sensitive (latexila.actions.go_previous_badbox,
+				index->badboxes[0] < indice);
+		gtk_action_set_sensitive (latexila.actions.go_next_badbox,
+				index->badboxes[index->nb_badboxes - 1] > indice);
+	}
+	else
+	{
+		gtk_action_set_sensitive (latexila.actions.go_previous_badbox, FALSE);
+		gtk_action_set_sensitive (latexila.actions.go_next_badbox, FALSE);
+	}
 }

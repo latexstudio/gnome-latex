@@ -42,6 +42,7 @@ void output_view_columns_autosize (void);
 
 void print_output_title (const gchar *title);
 void print_output_info (const gchar *info);
+void print_output_stats (gint nb_errors, gint nb_warnings, gint nb_badboxes);
 void print_output_exit (const gint exit_code, const gchar *message);
 void print_output_message (const gchar *filename, const gint line_number,
 		const gchar *message, gint message_type);
@@ -76,5 +77,15 @@ enum output_line
 	COL_OUTPUT_WEIGHT,
 	N_COLS_OUTPUT
 };
+
+typedef struct
+{
+	gint nb_errors;
+	gint nb_warnings;
+	gint nb_badboxes;
+	gint *errors;
+	gint *warnings;
+	gint *badboxes;
+} messages_index_t;
 
 #endif /* LOG_H */

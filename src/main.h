@@ -118,6 +118,12 @@ typedef struct
 	GtkAction *bibtex;
 	GtkAction *makeindex;
 	GtkAction *stop_execution;
+	GtkAction *go_previous_error;
+	GtkAction *go_previous_warning;
+	GtkAction *go_previous_badbox;
+	GtkAction *go_next_error;
+	GtkAction *go_next_warning;
+	GtkAction *go_next_badbox;
 } actions_t;
 
 // Go to line, Find and Replace are under the source view

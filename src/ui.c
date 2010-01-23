@@ -915,6 +915,18 @@ init_ui (GtkWidget *box, GtkWidget **log_toolbar)
 			"compile_makeindex");
 	latexila.actions.stop_execution = gtk_action_group_get_action (action_group,
 			"stop_execution");
+	latexila.actions.go_previous_error = gtk_action_group_get_action (action_group,
+			"go_previous_error");
+	latexila.actions.go_previous_warning = gtk_action_group_get_action (action_group,
+			"go_previous_warning");
+	latexila.actions.go_previous_badbox = gtk_action_group_get_action (action_group,
+			"go_previous_badbox");
+	latexila.actions.go_next_error = gtk_action_group_get_action (action_group,
+			"go_next_error");
+	latexila.actions.go_next_warning = gtk_action_group_get_action (action_group,
+			"go_next_warning");
+	latexila.actions.go_next_badbox = gtk_action_group_get_action (action_group,
+			"go_next_badbox");
 
 	GtkToggleAction *show_side_pane = GTK_TOGGLE_ACTION (
 			gtk_action_group_get_action (action_group, "ViewSidePane"));

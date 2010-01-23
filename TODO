@@ -1,8 +1,5 @@
 TODO LaTeXila
 
-- User-friendly output for the compilation
-	- sensitivity of buttons (previous/next error/...)
-
 - File browser
 	- optimisations, check memory leaks, ...
 	- two cell renderers (icon + basename) in one column
