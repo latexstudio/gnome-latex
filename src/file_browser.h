@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009, 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,9 +25,9 @@ void cb_file_browser_refresh (GtkButton *button, gpointer user_data);
 
 enum
 {
-	COLUMN_FILE_BROWSER_PIXBUF,
-	COLUMN_FILE_BROWSER_FILE,
-	N_COLUMNS_FILE_BROWSER
+	COL_FILE_BROWSER_PIXBUF,
+	COL_FILE_BROWSER_FILE,
+	N_COLS_FILE_BROWSER
 };
 
 #endif /* FILE_BROWSER_H */
