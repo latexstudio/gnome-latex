@@ -20,7 +20,7 @@
 #ifndef FILE_BROWSER_H
 #define FILE_BROWSER_H
 
-void init_file_browser (void);
+void init_file_browser (GtkWidget *vbox);
 void cb_file_browser_refresh (GtkButton *button, gpointer user_data);
 
 enum

@@ -37,13 +37,14 @@ static void cb_file_browser_row_activated (GtkTreeView *tree_view,
 		GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 static gint sort_list_alphabetical_order (gconstpointer a, gconstpointer b);
 
+static GtkListStore *list_store;
+
 void
-init_file_browser (void)
+init_file_browser (GtkWidget *vbox)
 {
 	/* mini-toolbar */
 	GtkWidget *hbox = gtk_hbox_new (TRUE, 0);
-	gtk_box_pack_start (GTK_BOX (latexila.file_browser.vbox), hbox,
-			FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
 	// go to the home user directory
 	{
@@ -100,16 +101,15 @@ init_file_browser (void)
 
 	/* list of files and directories */
 	{
-		GtkListStore *store = gtk_list_store_new (N_COLS_FILE_BROWSER,
+		list_store = gtk_list_store_new (N_COLS_FILE_BROWSER,
 				G_TYPE_STRING, // stock-id of a pixbux
 				G_TYPE_STRING  // file
 				);
-		latexila.file_browser.list_store = store;
 
 		fill_list_store_with_current_dir ();
 
-		GtkWidget *tree_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (store));
-		g_object_unref (store);
+		GtkWidget *tree_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list_store));
+		g_object_unref (list_store);
 		gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (tree_view), FALSE);
 
 		// dubble-click on a row will open the file
@@ -139,8 +139,7 @@ init_file_browser (void)
 				GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 		gtk_container_add (GTK_CONTAINER (scrollbar), tree_view);
 
-		gtk_box_pack_start (GTK_BOX (latexila.file_browser.vbox), scrollbar,
-				TRUE, TRUE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox), scrollbar, TRUE, TRUE, 0);
 	}
 }
 
@@ -163,7 +162,7 @@ fill_list_store_with_current_dir (void)
 		return;
 	}
 
-	gtk_list_store_clear (latexila.file_browser.list_store);
+	gtk_list_store_clear (list_store);
 
 	/* append all the files contained in the directory */
 	const gchar *read_name = NULL;
@@ -214,8 +213,8 @@ fill_list_store_with_current_dir (void)
 		gchar *directory = current->data;
 
 		// append the directory to the list store
-		gtk_list_store_append (latexila.file_browser.list_store, &iter);
-		gtk_list_store_set (latexila.file_browser.list_store, &iter,
+		gtk_list_store_append (list_store, &iter);
+		gtk_list_store_set (list_store, &iter,
 				COL_FILE_BROWSER_PIXBUF, GTK_STOCK_DIRECTORY,
 				COL_FILE_BROWSER_FILE, directory,
 				-1);
@@ -244,8 +243,8 @@ fill_list_store_with_current_dir (void)
 
 
 		// append the file to the list store
-		gtk_list_store_append (latexila.file_browser.list_store, &iter);
-		gtk_list_store_set (latexila.file_browser.list_store, &iter,
+		gtk_list_store_append (list_store, &iter);
+		gtk_list_store_set (list_store, &iter,
 				COL_FILE_BROWSER_PIXBUF, stock_id,
 				COL_FILE_BROWSER_FILE, file,
 				-1);
@@ -292,7 +291,7 @@ cb_file_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
 		GtkTreeViewColumn *column, gpointer user_data)
 {
 	GtkTreeIter iter;
-	GtkTreeModel *model = GTK_TREE_MODEL (latexila.file_browser.list_store);
+	GtkTreeModel *model = GTK_TREE_MODEL (list_store);
 	gtk_tree_model_get_iter (model, &iter, path);
 	
 	gchar *file = NULL;

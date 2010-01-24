@@ -152,7 +152,6 @@ init_side_pane (void)
 	// file browser
 	{
 		GtkWidget *vbox_file_browser = gtk_vbox_new (FALSE, 0);
-		latexila.file_browser.vbox = vbox_file_browser;
 
 		GtkWidget *tab_label = gtk_hbox_new (FALSE, 3);
 		GtkWidget *label = gtk_label_new (_("File Browser"));
@@ -164,7 +163,7 @@ init_side_pane (void)
 
 		gtk_notebook_append_page (GTK_NOTEBOOK (side_pane_notebook),
 				vbox_file_browser, tab_label);
-		init_file_browser ();
+		init_file_browser (vbox_file_browser);
 	}
 }
 

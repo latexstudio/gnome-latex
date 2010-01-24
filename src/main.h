@@ -55,13 +55,6 @@ typedef struct
 	GtkIconView		*icon_view;
 } symbols_t;
 
-// file browser
-typedef struct
-{
-	GtkWidget		*vbox;
-	GtkListStore	*list_store;
-} file_browser_t;
-
 // preferences, settings
 typedef struct
 {
@@ -147,7 +140,6 @@ typedef struct
 	GList				*all_docs;
 	document_t			*active_doc;
 	symbols_t			symbols;
-	file_browser_t		file_browser;
 	preferences_t		prefs;
 	actions_t			actions;
 	under_source_view_t under_source_view;
