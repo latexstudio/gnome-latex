@@ -467,8 +467,10 @@ main (int argc, char *argv[])
 
 	init_log_zone (latexila.log_hpaned, log_toolbar);
 
-	/* statusbar */
+	/* init various things */
 	init_statusbar (main_vbox);
+	init_templates ();
+	latex_output_filter_init ();
 
 	/* show the window */
 	gtk_widget_show_all (GTK_WIDGET (latexila.main_window));
@@ -499,6 +501,9 @@ main (int argc, char *argv[])
 	g_ptr_array_free (latexila.prefs.list_opened_docs, TRUE);
 	latexila.prefs.list_opened_docs = g_ptr_array_new ();
 
+	// go to the first file
+	gtk_notebook_set_current_page (latexila.notebook, 0);
+
 	/* open documents given in arguments */
 	for (int i = 1 ; i < argc ; i++)
 	{
@@ -519,10 +524,6 @@ main (int argc, char *argv[])
 	/* if --new-document option is used */
 	if (option_new_document)
 		cb_new ();
-
-	/* init various things */
-	init_templates ();
-	latex_output_filter_init ();
 
 
 	gtk_main ();
