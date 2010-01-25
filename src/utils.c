@@ -17,8 +17,6 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <gtk/gtk.h>
 
 #include "main.h"

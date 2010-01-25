@@ -1,7 +1,6 @@
 TODO LaTeXila
 
 - Some various improvements:
-	- Make a copy of a file before saving it for the first time (with a name like "file~")
 	- Autosave files every X minutes
 	- Symbols: most recently used
 	- Create personnal templates: choose an icon

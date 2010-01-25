@@ -18,7 +18,6 @@
  */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <gtk/gtk.h>
 #include <sys/stat.h> // for S_IRWXU
 #include <glib/gstdio.h> // for g_remove()

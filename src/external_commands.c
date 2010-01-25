@@ -18,8 +18,6 @@
  */
 
 #define _POSIX_C_SOURCE 1
-#include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 #include <sys/wait.h>
 #include <unistd.h> // for dup2

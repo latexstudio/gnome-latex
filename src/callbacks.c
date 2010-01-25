@@ -18,10 +18,8 @@
  */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 #include <gtk/gtk.h>
-#include <glib.h>
 #include <glib/gstdio.h>
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourcelanguage.h>
@@ -89,8 +87,8 @@ cb_open (void)
 
 	/* save the current folder */
 	g_free (latexila.prefs.file_chooser_dir);
-	latexila.prefs.file_chooser_dir = gtk_file_chooser_get_current_folder_uri (
-			GTK_FILE_CHOOSER (dialog));
+	latexila.prefs.file_chooser_dir =
+		gtk_file_chooser_get_current_folder_uri (GTK_FILE_CHOOSER (dialog));
 
 	gtk_widget_destroy (dialog);
 }
@@ -121,6 +119,7 @@ cb_save_as (void)
 
 	latexila.active_doc->path = NULL;
 	latexila.active_doc->saved = FALSE;
+	latexila.active_doc->backup_made = FALSE;
 	cb_save ();
 
 	// if the user click on cancel
@@ -1166,6 +1165,7 @@ create_document_in_new_tab (const gchar *path, const gchar *text,
 	// it doesn't work with g_path_get_basename()...
 	new_doc->basename = path != NULL ? g_strdup (title) : NULL;
 	new_doc->saved = TRUE;
+	new_doc->backup_made = FALSE;
 	new_doc->source_buffer = gtk_source_buffer_new (NULL);
 	new_doc->source_view = gtk_source_view_new_with_buffer (new_doc->source_buffer);
 
@@ -1434,6 +1434,7 @@ save_as_dialog (void)
 
 		latexila.active_doc->path = filename;
 		latexila.active_doc->basename = g_path_get_basename (filename);
+		latexila.active_doc->backup_made = FALSE;
 
 		gtk_widget_set_tooltip_text (latexila.active_doc->title, filename);
 
@@ -1471,6 +1472,16 @@ file_save (void)
 		print_warning ("impossible to convert the contents: %s", error->message);
 		g_error_free (error);
 		return;
+	}
+
+	if (! latexila.active_doc->backup_made
+			&& latexila.prefs.make_backup
+			&& g_file_test (latexila.active_doc->path, G_FILE_TEST_IS_REGULAR))
+	{
+		gchar *backup_file = g_strdup_printf ("%s~", latexila.active_doc->path);
+		g_rename (latexila.active_doc->path, backup_file);
+		g_free (backup_file);
+		latexila.active_doc->backup_made = TRUE;
 	}
 
 	g_file_set_contents (latexila.active_doc->path, locale, -1, &error);

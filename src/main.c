@@ -18,7 +18,6 @@
  */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <gtk/gtk.h>
 
 #include "main.h"

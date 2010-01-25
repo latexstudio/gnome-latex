@@ -17,8 +17,6 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <string.h> // for strcmp
 #include <gtk/gtk.h>
 

@@ -17,8 +17,6 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourceview.h>
@@ -46,6 +44,8 @@ static void cb_pref_spaces_instead_of_tabs (GtkToggleButton *toggle_button,
 static void cb_pref_highlight_current_line (GtkToggleButton *toggle_button,
 		gpointer user_data);
 static void cb_pref_highlight_matching_brackets (GtkToggleButton *toggle_button,
+		gpointer user_data);
+static void cb_pref_make_backup (GtkToggleButton *toggle_button,
 		gpointer user_data);
 static void cb_pref_font_set (GtkFontButton *font_button, gpointer user_data);
 static void cb_pref_command_view (GtkEditable *editable, gpointer user_data);
@@ -108,6 +108,7 @@ static gboolean	highlight_current_line_			= TRUE;
 static gboolean highlight_matching_brackets_	= TRUE;
 static gboolean	toolbars_horizontal_			= FALSE;
 static gint		side_pane_page_					= 0;
+static gboolean	make_backup_					= TRUE;
 
 void
 load_preferences (preferences_t *prefs)
@@ -499,6 +500,16 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->make_backup = g_key_file_get_boolean (key_file,
+			PROGRAM_NAME, "make_backup", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->make_backup = make_backup_;
+		g_error_free (error);
+		error = NULL;
+	}
+
 	g_key_file_free (key_file);
 }
 
@@ -563,6 +574,8 @@ save_preferences (preferences_t *prefs)
 			prefs->highlight_matching_brackets);
 	g_key_file_set_boolean (key_file, PROGRAM_NAME, "toolbars_horizontal",
 			prefs->toolbars_horizontal);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "make_backup",
+			prefs->make_backup);
 
 	/* set the keys that must be taken from the widgets */
 	GdkWindowState flag = gdk_window_get_state (gtk_widget_get_window (
@@ -674,6 +687,7 @@ load_default_preferences (preferences_t *prefs)
 	prefs->highlight_matching_brackets = highlight_matching_brackets_;
 	prefs->toolbars_horizontal = toolbars_horizontal_;
 	prefs->side_pane_page = side_pane_page_;
+	prefs->make_backup = make_backup_;
 
 	set_current_font_prefs (prefs);
 }
@@ -792,6 +806,12 @@ cb_pref_highlight_matching_brackets (GtkToggleButton *toggle_button,
 		gtk_source_buffer_set_highlight_matching_brackets (doc->source_buffer, tmp);
 		current = g_list_next (current);
 	}
+}
+
+static void
+cb_pref_make_backup (GtkToggleButton *toggle_button, gpointer user_data)
+{
+	latexila.prefs.make_backup = gtk_toggle_button_get_active (toggle_button);
 }
 
 static void
@@ -1128,6 +1148,17 @@ create_preferences (void)
 				G_CALLBACK (cb_pref_highlight_matching_brackets), NULL);
 		gtk_box_pack_start (GTK_BOX (vbox_editor), highlight_matching_brackets, FALSE,
 				FALSE, 0);
+	}
+
+	/* make backup */
+	{
+		GtkWidget *make_backup = gtk_check_button_new_with_label (
+				_("Create a backup copy of files before saving"));
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (make_backup),
+				latexila.prefs.make_backup);
+		g_signal_connect (G_OBJECT (make_backup), "toggled",
+				G_CALLBACK (cb_pref_make_backup), NULL);
+		gtk_box_pack_start (GTK_BOX (vbox_editor), make_backup, FALSE, FALSE, 0);
 	}
 
 	/* font */

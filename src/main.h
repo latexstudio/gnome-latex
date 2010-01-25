@@ -42,6 +42,7 @@ typedef struct
 	gchar			*path;
 	gchar			*basename;
 	gboolean		saved;
+	gboolean		backup_made;
 	GtkWidget		*source_view;
 	GtkSourceBuffer	*source_buffer;
 	GtkWidget		*title;
@@ -94,6 +95,7 @@ typedef struct
 	gboolean				highlight_matching_brackets;
 	gboolean				toolbars_horizontal;
 	gint					side_pane_page;
+	gboolean				make_backup;
 } preferences_t;
 
 // actions from the menu or the toolbars
