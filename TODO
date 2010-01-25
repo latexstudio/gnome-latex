@@ -1,8 +1,5 @@
 TODO LaTeXila
 
-- File browser
-	- list with all parent directories
-
 - Some various improvements:
 	- Make a copy of a file before saving it for the first time (with a name like "file~")
 	- Autosave files every X minutes

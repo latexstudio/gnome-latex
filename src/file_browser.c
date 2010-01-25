@@ -36,8 +36,14 @@ static void cb_jump_dir_current_doc (GtkButton *button, gpointer user_data);
 static void cb_file_browser_row_activated (GtkTreeView *tree_view,
 		GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data);
 static gint sort_list_alphabetical_order (gconstpointer a, gconstpointer b);
+static void cb_combo_parent_dir_changed (GtkComboBox *combo_box,
+		gpointer user_data);
 
+// list of files and directories of the current directory
 static GtkListStore *list_store;
+// for the list of directories showed in a combobox
+static GtkListStore *parent_dir_store;
+static GtkComboBox *combo;
 
 void
 init_file_browser (GtkWidget *vbox)
@@ -99,10 +105,51 @@ init_file_browser (GtkWidget *vbox)
 		gtk_box_pack_start (GTK_BOX (hbox), refresh_button, TRUE, TRUE, 0);
 	}
 
+	/* list of parent directories */
+	{
+		parent_dir_store = gtk_list_store_new (N_COLS_PARENT_DIR,
+				G_TYPE_STRING,	// indentation (spaces)
+				G_TYPE_STRING,	// stock-id of a pixbuf
+				G_TYPE_STRING,	// directory name
+				G_TYPE_STRING	// full path
+				);
+
+		GtkWidget *combo_box =
+			gtk_combo_box_new_with_model (GTK_TREE_MODEL (parent_dir_store));
+		g_object_unref (parent_dir_store);
+		combo = GTK_COMBO_BOX (combo_box);
+
+		g_signal_connect (G_OBJECT (combo_box), "changed",
+				G_CALLBACK (cb_combo_parent_dir_changed), NULL);
+
+		// indentation
+		GtkCellRenderer *renderer = gtk_cell_renderer_text_new ();
+		gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo_box), renderer, FALSE);
+		gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combo_box), renderer,
+				"text", COL_PARENT_DIR_INDENT, NULL);
+
+		// pixbuf
+		renderer = gtk_cell_renderer_pixbuf_new ();
+		gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo_box), renderer, FALSE);
+		gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combo_box), renderer,
+				"stock-id", COL_PARENT_DIR_PIXBUF, NULL);
+
+		// directory
+		renderer = gtk_cell_renderer_text_new ();
+		gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo_box), renderer, TRUE);
+		gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combo_box), renderer,
+				"text", COL_PARENT_DIR_DIRECTORY, NULL);
+		// omit characters at the end of the text if not enough place
+		g_object_set (renderer, "ellipsize-set", TRUE,
+				"ellipsize", PANGO_ELLIPSIZE_END, NULL);
+
+		gtk_box_pack_start (GTK_BOX (vbox), combo_box, FALSE, FALSE, 0);
+	}
+
 	/* list of files and directories */
 	{
 		list_store = gtk_list_store_new (N_COLS_FILE_BROWSER,
-				G_TYPE_STRING, // stock-id of a pixbux
+				G_TYPE_STRING, // stock-id of a pixbuf
 				G_TYPE_STRING  // file
 				);
 
@@ -181,6 +228,7 @@ fill_list_store_with_dir (const gchar *directory)
 	}
 
 	gtk_list_store_clear (list_store);
+	gtk_list_store_clear (parent_dir_store);
 
 	if (directory != NULL)
 	{
@@ -280,6 +328,67 @@ fill_list_store_with_dir (const gchar *directory)
 
 	g_list_free (directory_list);
 	g_list_free (file_list);
+
+	/* fill the parent directory list */
+	if (! g_path_is_absolute (latexila.prefs.file_browser_dir))
+		return;
+
+	GList *parent_dirs = NULL;
+	parent_dirs = g_list_append (parent_dirs,
+			g_strdup (latexila.prefs.file_browser_dir));
+	gchar *path = latexila.prefs.file_browser_dir;
+
+	while (TRUE)
+	{
+		gchar *parent = g_path_get_dirname (path);
+		parent_dirs = g_list_prepend (parent_dirs, parent);
+		path = parent;
+		if (strcmp (parent, "/") == 0)
+			break;
+	}
+
+	current = parent_dirs;
+	gint i = 0;
+	while (current != NULL)
+	{
+		gchar *current_dir = current->data;
+
+		// basename
+		gchar *basename;
+		if (i == 0)
+			basename = g_strdup (_("File System"));
+		else
+			basename = g_path_get_basename (current_dir);
+
+		// indentation
+		gchar *indent = g_strnfill (i * 2, ' ');
+
+		// pixbuf
+		gchar *stock_id;
+		if (i == 0)
+			stock_id = GTK_STOCK_HARDDISK;
+		else if (strcmp (current_dir, g_get_home_dir ()) == 0)
+			stock_id = GTK_STOCK_HOME;
+		else
+			stock_id = GTK_STOCK_DIRECTORY;
+
+		gtk_list_store_append (parent_dir_store, &iter);
+		gtk_list_store_set (parent_dir_store, &iter,
+				COL_PARENT_DIR_INDENT, indent,
+				COL_PARENT_DIR_PIXBUF, stock_id,
+				COL_PARENT_DIR_DIRECTORY, basename,
+				COL_PARENT_DIR_PATH, current_dir,
+				-1);
+
+		g_free (current_dir);
+		g_free (basename);
+		g_free (indent);
+		current = g_list_next (current);
+		i++;
+	}
+
+	// select the last parent directory
+	gtk_combo_box_set_active_iter (combo, &iter);
 }
 
 static void
@@ -346,4 +455,24 @@ static gint
 sort_list_alphabetical_order (gconstpointer a, gconstpointer b)
 {
 	return g_utf8_collate ((char *) a, (char *) b);
+}
+
+static void
+cb_combo_parent_dir_changed (GtkComboBox *combo_box, gpointer user_data)
+{
+	GtkTreeIter iter;
+	if (gtk_combo_box_get_active_iter (combo_box, &iter))
+	{
+		gchar *path;
+		GtkTreeModel *model = gtk_combo_box_get_model (combo_box);
+		gtk_tree_model_get (model, &iter,
+				COL_PARENT_DIR_PATH, &path,
+				-1);
+
+		// avoid infinite loop (this function is called in
+		// fill_list_store_with_dir())
+		if (strcmp (path, latexila.prefs.file_browser_dir) != 0)
+			fill_list_store_with_dir (path);
+		g_free (path);
+	}
 }
