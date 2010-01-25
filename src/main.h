@@ -83,6 +83,7 @@ typedef struct
 	gchar					*file_chooser_dir;
 	gchar					*file_browser_dir;
 	gboolean				file_browser_show_all_files;
+	gboolean				file_browser_show_hidden_files;
 	GPtrArray				*list_opened_docs;
 	gboolean				reopen_files_on_startup;
 	gboolean				delete_aux_files;

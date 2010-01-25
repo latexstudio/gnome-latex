@@ -62,6 +62,10 @@ static void cb_pref_compile_non_stop (GtkToggleButton *toggle_button,
 		gpointer user_data);
 static void cb_style_scheme_changed (GtkTreeSelection *selection,
 		gpointer user_data);
+static void cb_file_browser_show_all_files (GtkToggleButton *toggle_button,
+		gpointer user_data);
+static void cb_file_browser_show_hidden_files (GtkToggleButton *toggle_button,
+		gpointer user_data);
 static void cb_delete_aux_files (GtkToggleButton *toggle_button,
 		gpointer user_data);
 static void cb_toolbars_horizontal (GtkToggleButton *toggle_button,
@@ -96,6 +100,7 @@ static gboolean compile_non_stop_				= FALSE;
 static gboolean delete_aux_files_				= FALSE;
 static gboolean reopen_files_on_startup_		= TRUE;
 static gboolean file_browser_show_all_files_	= FALSE;
+static gboolean file_browser_show_hidden_files_ = FALSE;
 static gchar	*style_scheme_id_				= "classic";
 static gint		tab_width_						= 2;
 static gboolean	spaces_instead_of_tabs_			= TRUE;
@@ -402,6 +407,16 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->file_browser_show_hidden_files = g_key_file_get_boolean (key_file,
+			PROGRAM_NAME, "file_browser_show_hidden_files", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->file_browser_show_hidden_files = file_browser_show_hidden_files_;
+		g_error_free (error);
+		error = NULL;
+	}
+
 	prefs->delete_aux_files = g_key_file_get_boolean (key_file,
 			PROGRAM_NAME, "delete_auxiliaries_files", &error);
 	if (error != NULL)
@@ -532,6 +547,8 @@ save_preferences (preferences_t *prefs)
 			prefs->reopen_files_on_startup);
 	g_key_file_set_boolean (key_file, PROGRAM_NAME, "file_browser_show_all_files",
 			prefs->file_browser_show_all_files);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "file_browser_show_hidden_files",
+			prefs->file_browser_show_hidden_files);
 	g_key_file_set_boolean (key_file, PROGRAM_NAME, "delete_auxiliaries_files",
 			prefs->delete_aux_files);
 	g_key_file_set_string (key_file, PROGRAM_NAME, "style_scheme_id",
@@ -648,6 +665,7 @@ load_default_preferences (preferences_t *prefs)
 	prefs->list_opened_docs = g_ptr_array_new ();
 	prefs->reopen_files_on_startup = reopen_files_on_startup_;
 	prefs->file_browser_show_all_files = file_browser_show_all_files_;
+	prefs->file_browser_show_hidden_files = file_browser_show_hidden_files_;
 	prefs->delete_aux_files = delete_aux_files_;
 	prefs->style_scheme_id = g_strdup (style_scheme_id_);
 	prefs->tab_width = tab_width_;
@@ -912,7 +930,20 @@ static void
 cb_file_browser_show_all_files (GtkToggleButton *toggle_button,
 		gpointer user_data)
 {
-	latexila.prefs.file_browser_show_all_files =
+	gboolean val = gtk_toggle_button_get_active (toggle_button);
+	latexila.prefs.file_browser_show_all_files = val;
+
+	GtkWidget *show_hidden_files = (GtkWidget *) user_data;
+	gtk_widget_set_sensitive (show_hidden_files, val);
+
+	cb_file_browser_refresh (NULL, NULL);
+}
+
+static void
+cb_file_browser_show_hidden_files (GtkToggleButton *toggle_button,
+		gpointer user_data)
+{
+	latexila.prefs.file_browser_show_hidden_files =
 		gtk_toggle_button_get_active (toggle_button);
 	cb_file_browser_refresh (NULL, NULL);
 }
@@ -1289,15 +1320,32 @@ create_preferences (void)
 		gtk_box_pack_start (GTK_BOX (vbox_other), reopen, FALSE, FALSE, 0);
 	}
 
-	/* file browser: show all files */
+	/* file browser */
 	{
 		GtkWidget *fb_show_all_files = gtk_check_button_new_with_label (
 				_("File browser: show all files"));
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fb_show_all_files),
 				latexila.prefs.file_browser_show_all_files);
-		g_signal_connect (G_OBJECT (fb_show_all_files), "toggled",
-				G_CALLBACK (cb_file_browser_show_all_files), NULL);
 		gtk_box_pack_start (GTK_BOX (vbox_other), fb_show_all_files, FALSE, FALSE, 0);
+
+		GtkWidget *fb_show_hidden_files = gtk_check_button_new_with_label (
+				_("File browser: show hidden files (beginning with a point)"));
+
+		// show hidden files are sensitive only when show all files is set
+		gtk_widget_set_sensitive (fb_show_hidden_files,
+				latexila.prefs.file_browser_show_all_files);
+		g_signal_connect (G_OBJECT (fb_show_all_files), "toggled",
+				G_CALLBACK (cb_file_browser_show_all_files), fb_show_hidden_files);
+
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (fb_show_hidden_files),
+				latexila.prefs.file_browser_show_hidden_files);
+		g_signal_connect (G_OBJECT (fb_show_hidden_files), "toggled",
+				G_CALLBACK (cb_file_browser_show_hidden_files), NULL);
+
+		// with a shift right
+		GtkWidget *hbox = gtk_hbox_new (FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), fb_show_hidden_files, FALSE, FALSE, 20);
+		gtk_box_pack_start (GTK_BOX (vbox_other), hbox, FALSE, FALSE, 0);
 	}
 
 	/* delete auxiliaries files on exit */

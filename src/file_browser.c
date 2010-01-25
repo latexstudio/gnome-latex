@@ -171,7 +171,8 @@ fill_list_store_with_current_dir (void)
 	while ((read_name = g_dir_read_name (dir)) != NULL)
 	{
 		// not show hidden files
-		if (read_name[0] == '.')
+		if (read_name[0] == '.' && (! latexila.prefs.file_browser_show_all_files
+					|| ! latexila.prefs.file_browser_show_hidden_files))
 			continue;
 
 		gchar *full_path = g_build_filename (latexila.prefs.file_browser_dir,
