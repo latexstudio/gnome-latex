@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2009 Sébastien Wilmet
+ * Copyright © 2009, 2010 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,10 +27,10 @@ void init_templates (void);
 
 enum templates
 {
-	COLUMN_TEMPLATE_PIXBUF,
-	COLUMN_TEMPLATE_NAME,
-	COLUMN_TEMPLATE_CONTENTS,
-	N_COLUMNS_TEMPLATE
+	COL_TEMPLATE_PIXBUF,
+	COL_TEMPLATE_NAME,
+	COL_TEMPLATE_CONTENTS,
+	N_COLS_TEMPLATE
 };
 
 #endif /* TEMPLATES_H */

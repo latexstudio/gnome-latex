@@ -130,7 +130,7 @@ cb_new (void)
 		if (path != NULL && gtk_tree_model_get_iter (model, &iter, path))
 		{
 			gtk_tree_model_get (model, &iter,
-					COLUMN_TEMPLATE_CONTENTS, &contents,
+					COL_TEMPLATE_CONTENTS, &contents,
 					-1);
 		}
 		else
@@ -271,7 +271,7 @@ void
 init_templates (void)
 {
 	/* default templates */
-	default_store = gtk_list_store_new (N_COLUMNS_TEMPLATE,
+	default_store = gtk_list_store_new (N_COLS_TEMPLATE,
 			GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
 
 	add_template_from_string (default_store, _("Empty"),
@@ -307,7 +307,7 @@ init_templates (void)
 
 
 	/* personnal templates */
-	personnal_store = gtk_list_store_new (N_COLUMNS_TEMPLATE,
+	personnal_store = gtk_list_store_new (N_COLS_TEMPLATE,
 			GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
 	nb_personnal_templates = 0;
 
@@ -384,9 +384,9 @@ add_template_from_string (GtkListStore *store, const gchar *name,
 	GtkTreeIter iter;
 	gtk_list_store_append (store, &iter);
 	gtk_list_store_set (store, &iter,
-			COLUMN_TEMPLATE_PIXBUF, pixbuf,
-			COLUMN_TEMPLATE_NAME, name,
-			COLUMN_TEMPLATE_CONTENTS, contents,
+			COL_TEMPLATE_PIXBUF, pixbuf,
+			COL_TEMPLATE_NAME, name,
+			COL_TEMPLATE_CONTENTS, contents,
 			-1);
 
 	g_object_unref (pixbuf);
@@ -423,9 +423,9 @@ create_icon_view (GtkListStore *store)
 	gtk_icon_view_set_selection_mode (GTK_ICON_VIEW (icon_view),
 			GTK_SELECTION_SINGLE);
 	gtk_icon_view_set_text_column (GTK_ICON_VIEW (icon_view),
-			COLUMN_TEMPLATE_NAME);
+			COL_TEMPLATE_NAME);
 	gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (icon_view),
-			COLUMN_TEMPLATE_PIXBUF);
+			COL_TEMPLATE_PIXBUF);
 
 	return icon_view;
 }
@@ -512,7 +512,7 @@ save_rc_file (void)
 	gboolean valid_iter = gtk_tree_model_get_iter_first (model, &iter);
 	while (valid_iter)
 	{
-		gtk_tree_model_get (model, &iter, COLUMN_TEMPLATE_NAME, names_i, -1);
+		gtk_tree_model_get (model, &iter, COL_TEMPLATE_NAME, names_i, -1);
 		valid_iter = gtk_tree_model_iter_next (model, &iter);
 		names_i++;
 	}
@@ -565,7 +565,7 @@ save_contents (void)
 	while (valid_iter)
 	{
 		gchar *contents;
-		gtk_tree_model_get (model, &iter, COLUMN_TEMPLATE_CONTENTS, &contents, -1);
+		gtk_tree_model_get (model, &iter, COL_TEMPLATE_CONTENTS, &contents, -1);
 
 		gchar *file = g_strdup_printf ("%s/%d.tex", rc_dir, i);
 

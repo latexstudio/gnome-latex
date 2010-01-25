@@ -29,7 +29,7 @@
 #include "callbacks.h"
 #include "external_commands.h"
 
-static void fill_list_store_with_current_dir (void);
+static void fill_list_store_with_dir (const gchar *directory);
 static void cb_go_to_home_dir (GtkButton *button, gpointer user_data);
 static void cb_go_to_parent_dir (GtkButton *button, gpointer user_data);
 static void cb_jump_dir_current_doc (GtkButton *button, gpointer user_data);
@@ -106,7 +106,7 @@ init_file_browser (GtkWidget *vbox)
 				G_TYPE_STRING  // file
 				);
 
-		fill_list_store_with_current_dir ();
+		fill_list_store_with_dir (NULL);
 
 		GtkWidget *tree_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list_store));
 		g_object_unref (list_store);
@@ -146,23 +146,47 @@ init_file_browser (GtkWidget *vbox)
 void
 cb_file_browser_refresh (GtkButton *button, gpointer user_data)
 {
-	fill_list_store_with_current_dir ();
+	fill_list_store_with_dir (NULL);
 }
 
 
 static void
-fill_list_store_with_current_dir (void)
+fill_list_store_with_dir (const gchar *directory)
 {
+	// if directory is NULL, open the current directory
 	GError *error = NULL;
-	GDir *dir = g_dir_open (latexila.prefs.file_browser_dir, 0, &error);
+	GDir *dir;
+	if (directory == NULL)
+		dir = g_dir_open (latexila.prefs.file_browser_dir, 0, &error);
+	else
+		dir = g_dir_open (directory, 0, &error);
+
 	if (error != NULL)
 	{
 		print_warning ("File browser: %s", error->message);
+
+		// warning dialog
+		GtkWidget *dialog = gtk_message_dialog_new (latexila.main_window,
+				GTK_DIALOG_DESTROY_WITH_PARENT,
+				GTK_MESSAGE_WARNING,
+				GTK_BUTTONS_CLOSE,
+				_("File Browser"));
+		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+				"%s", error->message);
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+
 		g_error_free (error);
 		return;
 	}
 
 	gtk_list_store_clear (list_store);
+
+	if (directory != NULL)
+	{
+		g_free (latexila.prefs.file_browser_dir);
+		latexila.prefs.file_browser_dir = g_strdup (directory);
+	}
 
 	/* append all the files contained in the directory */
 	const gchar *read_name = NULL;
@@ -261,18 +285,15 @@ fill_list_store_with_current_dir (void)
 static void
 cb_go_to_home_dir (GtkButton *button, gpointer user_data)
 {
-	g_free (latexila.prefs.file_browser_dir);
-	latexila.prefs.file_browser_dir = g_strdup (g_get_home_dir ());
-	fill_list_store_with_current_dir ();
+	fill_list_store_with_dir (g_get_home_dir ());
 }
 
 static void
 cb_go_to_parent_dir (GtkButton *button, gpointer user_data)
 {
 	gchar *path = g_path_get_dirname (latexila.prefs.file_browser_dir);
-	g_free (latexila.prefs.file_browser_dir);
-	latexila.prefs.file_browser_dir = path;
-	fill_list_store_with_current_dir ();
+	fill_list_store_with_dir (path);
+	g_free (path);
 }
 
 static void
@@ -282,9 +303,8 @@ cb_jump_dir_current_doc (GtkButton *button, gpointer user_data)
 		return;
 
 	gchar *path = g_path_get_dirname (latexila.active_doc->path);
-	g_free (latexila.prefs.file_browser_dir);
-	latexila.prefs.file_browser_dir = path;
-	fill_list_store_with_current_dir ();
+	fill_list_store_with_dir (path);
+	g_free (path);
 }
 
 static void
@@ -305,11 +325,7 @@ cb_file_browser_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
 
 	// open the directory
 	if (g_file_test (full_path, G_FILE_TEST_IS_DIR))
-	{
-		g_free (latexila.prefs.file_browser_dir);
-		latexila.prefs.file_browser_dir = g_strdup (full_path);
-		fill_list_store_with_current_dir ();
-	}
+		fill_list_store_with_dir (full_path);
 
 	// view the document
 	else if (g_str_has_suffix (full_path, ".pdf"))
