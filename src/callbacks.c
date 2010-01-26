@@ -868,10 +868,14 @@ cb_documents_save_all (void)
 	while (current != NULL)
 	{
 		document_t *current_doc = current->data;
-		document_t *active_doc = latexila.active_doc;
-		latexila.active_doc = current_doc;
-		cb_save ();
-		latexila.active_doc = active_doc;
+
+		if (! current_doc->saved)
+		{
+			document_t *active_doc = latexila.active_doc;
+			latexila.active_doc = current_doc;
+			cb_save ();
+			latexila.active_doc = active_doc;
+		}
 
 		current = g_list_next (current);
 	}
@@ -1059,6 +1063,34 @@ cb_show_edit_toolbar (GtkToggleAction *toggle_action, gpointer user_data)
 		gtk_widget_show_all (latexila.edit_toolbar);
 	else
 		gtk_widget_hide (latexila.edit_toolbar);
+}
+
+gboolean
+auto_save_files (gpointer data)
+{
+	if (! latexila.prefs.auto_save)
+	{
+		// destroy the timeout
+		return FALSE;
+	}
+
+	GList *current = latexila.all_docs;
+	while (current != NULL)
+	{
+		document_t *current_doc = current->data;
+		
+		if (! current_doc->saved && current_doc->path != NULL)
+		{
+			document_t *active_doc = latexila.active_doc;
+			latexila.active_doc = current_doc;
+			cb_save ();
+			latexila.active_doc = active_doc;
+		}
+
+		current = g_list_next (current);
+	}
+
+	return TRUE;
 }
 
 void

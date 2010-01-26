@@ -1,8 +1,10 @@
 TODO LaTeXila
 
 - Some various improvements:
-	- Autosave files every X minutes
-	- Symbols: most recently used
 	- Create personnal templates: choose an icon
+	- Symbols: most recently used
+	- Syntax highlighting for BibTeX (*.bib)
+	- Choose encoding in "save as" dialog
+	- Choose end of line: unix, dos or mac
 
 - Auto-completion of LaTeX commands

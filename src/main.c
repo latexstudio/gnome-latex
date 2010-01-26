@@ -523,6 +523,14 @@ main (int argc, char *argv[])
 	if (option_new_document)
 		cb_new ();
 
+	/* timeout for saving files every X minutes */
+	if (latexila.prefs.auto_save)
+		latexila.auto_save_timeout = g_timeout_add_seconds (
+				60 * latexila.prefs.auto_save_interval,
+				(GSourceFunc) auto_save_files, NULL);
+	else
+		latexila.auto_save_timeout = 0;
+
 
 	gtk_main ();
 

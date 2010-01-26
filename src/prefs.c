@@ -47,6 +47,10 @@ static void cb_pref_highlight_matching_brackets (GtkToggleButton *toggle_button,
 		gpointer user_data);
 static void cb_pref_make_backup (GtkToggleButton *toggle_button,
 		gpointer user_data);
+static void cb_pref_auto_save (GtkToggleButton *toggle_button,
+		GtkWidget *spin_button);
+static void cb_pref_auto_save_interval (GtkSpinButton *spin_button,
+		gpointer user_data);
 static void cb_pref_font_set (GtkFontButton *font_button, gpointer user_data);
 static void cb_pref_command_view (GtkEditable *editable, gpointer user_data);
 static void cb_pref_command_latex (GtkEditable *editable, gpointer user_data);
@@ -109,6 +113,8 @@ static gboolean highlight_matching_brackets_	= TRUE;
 static gboolean	toolbars_horizontal_			= FALSE;
 static gint		side_pane_page_					= 0;
 static gboolean	make_backup_					= TRUE;
+static gboolean	auto_save_						= FALSE;
+static gint		auto_save_interval_				= 10;
 
 void
 load_preferences (preferences_t *prefs)
@@ -510,6 +516,26 @@ load_preferences (preferences_t *prefs)
 		error = NULL;
 	}
 
+	prefs->auto_save = g_key_file_get_boolean (key_file,
+			PROGRAM_NAME, "auto_save", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->auto_save = auto_save_;
+		g_error_free (error);
+		error = NULL;
+	}
+
+	prefs->auto_save_interval = g_key_file_get_integer (key_file,
+			PROGRAM_NAME, "auto_save_interval", &error);
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		prefs->auto_save_interval = auto_save_interval_;
+		g_error_free (error);
+		error = NULL;
+	}
+
 	g_key_file_free (key_file);
 }
 
@@ -576,6 +602,10 @@ save_preferences (preferences_t *prefs)
 			prefs->toolbars_horizontal);
 	g_key_file_set_boolean (key_file, PROGRAM_NAME, "make_backup",
 			prefs->make_backup);
+	g_key_file_set_boolean (key_file, PROGRAM_NAME, "auto_save",
+			prefs->auto_save);
+	g_key_file_set_integer (key_file, PROGRAM_NAME, "auto_save_interval",
+			prefs->auto_save_interval);
 
 	/* set the keys that must be taken from the widgets */
 	GdkWindowState flag = gdk_window_get_state (gtk_widget_get_window (
@@ -688,6 +718,8 @@ load_default_preferences (preferences_t *prefs)
 	prefs->toolbars_horizontal = toolbars_horizontal_;
 	prefs->side_pane_page = side_pane_page_;
 	prefs->make_backup = make_backup_;
+	prefs->auto_save = auto_save_;
+	prefs->auto_save_interval = auto_save_interval_;
 
 	set_current_font_prefs (prefs);
 }
@@ -812,6 +844,44 @@ static void
 cb_pref_make_backup (GtkToggleButton *toggle_button, gpointer user_data)
 {
 	latexila.prefs.make_backup = gtk_toggle_button_get_active (toggle_button);
+}
+
+static void
+cb_pref_auto_save (GtkToggleButton *toggle_button, GtkWidget *spin_button)
+{
+	gboolean tmp = gtk_toggle_button_get_active (toggle_button);
+	latexila.prefs.auto_save = tmp;
+	gtk_widget_set_sensitive (spin_button, tmp);
+	
+	// initialize the timeout
+	if (tmp)
+	{
+		latexila.auto_save_timeout = g_timeout_add_seconds (
+				60 * latexila.prefs.auto_save_interval,
+				(GSourceFunc) auto_save_files, NULL);
+	}
+
+	// destroy the timeout
+	else if (latexila.auto_save_timeout > 0)
+	{
+		g_source_remove (latexila.auto_save_timeout);
+		latexila.auto_save_timeout = 0;
+	}
+}
+
+static void
+cb_pref_auto_save_interval (GtkSpinButton *spin_button, gpointer user_data)
+{
+	gint value = gtk_spin_button_get_value_as_int (spin_button);
+	latexila.prefs.auto_save_interval = value;
+
+	// destroy the timeout
+	if (latexila.auto_save_timeout > 0)
+		g_source_remove (latexila.auto_save_timeout);
+
+	// initialize the timeout with the new value
+	latexila.auto_save_timeout = g_timeout_add_seconds (
+			60 * value, (GSourceFunc) auto_save_files, NULL);
 }
 
 static void
@@ -1159,6 +1229,33 @@ create_preferences (void)
 		g_signal_connect (G_OBJECT (make_backup), "toggled",
 				G_CALLBACK (cb_pref_make_backup), NULL);
 		gtk_box_pack_start (GTK_BOX (vbox_editor), make_backup, FALSE, FALSE, 0);
+	}
+
+	/* auto save files */
+	{
+		GtkWidget *hbox = gtk_hbox_new (FALSE, 6);
+		GtkWidget *check_button = gtk_check_button_new_with_label (
+				_("Autosave files every"));
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (check_button),
+				latexila.prefs.auto_save);
+
+		GtkAdjustment *spinner_adj = (GtkAdjustment *) gtk_adjustment_new (
+				(gdouble) latexila.prefs.auto_save_interval,
+				1.0, 100.0, 1.0, 0.0, 0.0);
+		GtkWidget *spin_button = gtk_spin_button_new (spinner_adj, 1.0, 0);
+		g_signal_connect (G_OBJECT (spin_button), "value-changed",
+				G_CALLBACK (cb_pref_auto_save_interval), NULL);
+		gtk_widget_set_sensitive (spin_button, latexila.prefs.auto_save);
+
+		g_signal_connect (G_OBJECT (check_button), "toggled",
+				G_CALLBACK (cb_pref_auto_save), spin_button);
+
+		GtkWidget *minutes = gtk_label_new (_("minutes"));
+
+		gtk_box_pack_start (GTK_BOX (hbox), check_button, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), spin_button, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (hbox), minutes, FALSE, FALSE, 0);
+		gtk_box_pack_start (GTK_BOX (vbox_editor), hbox, FALSE, FALSE, 0);
 	}
 
 	/* font */

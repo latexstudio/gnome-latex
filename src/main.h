@@ -96,6 +96,8 @@ typedef struct
 	gboolean				toolbars_horizontal;
 	gint					side_pane_page;
 	gboolean				make_backup;
+	gboolean				auto_save;
+	gint					auto_save_interval;
 } preferences_t;
 
 // actions from the menu or the toolbars
@@ -155,6 +157,7 @@ typedef struct
 	GtkPaned			*log_hpaned;
 	GtkWidget			*edit_toolbar;
 	GtkWidget			*side_pane;
+	guint				auto_save_timeout;
 } latexila_t;
 
 // a lot of things are accessible by the "latexila" variable everywhere in the
