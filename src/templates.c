@@ -55,7 +55,7 @@ cb_new (void)
 			GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
 			NULL);
 
-	gtk_window_set_default_size (GTK_WINDOW (dialog), 420, 350);
+	gtk_window_set_default_size (GTK_WINDOW (dialog), 400, 330);
 	
 	GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 
@@ -304,6 +304,12 @@ init_templates (void)
 			DATA_DIR "/images/templates/letter.png", path);
 	g_free (path);
 
+	// presentation (beamer)
+	path = g_strdup_printf (DATA_DIR "/templates/%s",
+			_("beamer-en.tex"));
+	add_template_from_file (default_store, _("Presentation"),
+			DATA_DIR "/images/templates/beamer.png", path);
+	g_free (path);
 
 	/* personnal templates */
 	personnal_store = gtk_list_store_new (N_COLS_TEMPLATE,
