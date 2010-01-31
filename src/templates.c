@@ -29,15 +29,15 @@
 #include "templates.h"
 
 static void add_template_from_string (GtkListStore *store, const gchar *name,
-		const gchar *icon, const gchar *contents);
+		const gchar *icon_id, const gchar *contents);
 static void add_template_from_file (GtkListStore *store, const gchar *name,
-		const gchar *icon, const gchar *path);
+		const gchar *icon_id, const gchar *path);
 static GtkWidget * create_icon_view (GtkListStore *store);
 static void cb_icon_view_selection_changed (GtkIconView *icon_view,
 		gpointer other_icon_view);
 static gchar * get_rc_file (void);
 static gchar * get_rc_dir (void);
-static void add_personnal_template (const gchar *name, const gchar *contents);
+static void add_personnal_template (const gchar *contents);
 static void save_rc_file (void);
 static void save_contents (void);
 
@@ -159,8 +159,11 @@ cb_create_template (void)
 			GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
 			NULL);
 
+	gtk_window_set_default_size (GTK_WINDOW (dialog), 400, 330);
+
 	GtkWidget *content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 
+	/* name */
 	GtkWidget *hbox = gtk_hbox_new (FALSE, 5);
 	GtkWidget *label = gtk_label_new (_("Name of the new template:"));
 	GtkWidget *entry = gtk_entry_new ();
@@ -169,17 +172,45 @@ cb_create_template (void)
 	gtk_box_pack_start (GTK_BOX (hbox), entry, FALSE, FALSE, 0);
 	gtk_box_pack_start (GTK_BOX (content_area), hbox, FALSE, FALSE, 10);
 
+	/* icon */
+	// we take the default store because it contains all the icons
+	GtkWidget *icon_view = create_icon_view (default_store);
+
+	// bug, see https://bugzilla.gnome.org/show_bug.cgi?id=608609
+	//gtk_icon_view_set_text_column (GTK_ICON_VIEW (icon_view), -1);
+
+	// with a scrollbar
+	GtkWidget *scrollbar = gtk_scrolled_window_new (NULL, NULL);
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrollbar),
+			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_container_add (GTK_CONTAINER (scrollbar), icon_view);
+
+	// with a frame
+	GtkWidget *frame = gtk_frame_new (_("Choose an icon:"));
+	gtk_container_add (GTK_CONTAINER (frame), scrollbar);
+	gtk_box_pack_start (GTK_BOX (content_area), frame, TRUE, TRUE, 10);
+
 	gtk_widget_show_all (content_area);
 
 	while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
 	{
+		// if no name specified
 		if (gtk_entry_get_text_length (GTK_ENTRY (entry)) == 0)
 			continue;
 
+		GList *selected_items =
+			gtk_icon_view_get_selected_items (GTK_ICON_VIEW (icon_view));
+
+		// if no icon selected
+		if (g_list_length (selected_items) == 0)
+		{
+			g_list_free (selected_items);
+			continue;
+		}
+
 		nb_personnal_templates++;
 
-		const gchar *name = gtk_entry_get_text (GTK_ENTRY (entry));
-
+		// get the contents
 		GtkTextBuffer *buffer =
 			GTK_TEXT_BUFFER (latexila.active_doc->source_buffer);
 		GtkTextIter start, end;
@@ -187,11 +218,26 @@ cb_create_template (void)
 		gchar *contents = gtk_text_buffer_get_text (buffer, &start, &end,
 				FALSE);
 
-		add_template_from_string (personnal_store, name,
-				DATA_DIR "/images/templates/article.png", contents);
-		add_personnal_template (name, contents);
+		// get the name
+		const gchar *name = gtk_entry_get_text (GTK_ENTRY (entry));
+
+		// get the icon id
+		GtkTreeModel *model = GTK_TREE_MODEL (default_store);
+		GtkTreePath *path = selected_items->data;
+		GtkTreeIter iter;
+		gchar *icon_id;
+		gtk_tree_model_get_iter (model, &iter, path);
+		gtk_tree_model_get (model, &iter,
+				COL_TEMPLATE_ICON_ID, &icon_id,
+				-1);
+
+		add_template_from_string (personnal_store, name, icon_id, contents);
+		add_personnal_template (contents);
 
 		g_free (contents);
+		g_free (icon_id);
+		g_list_foreach (selected_items, (GFunc) gtk_tree_path_free, NULL);
+		g_list_free (selected_items);
 		break;
 	}
 
@@ -271,49 +317,43 @@ init_templates (void)
 {
 	/* default templates */
 	default_store = gtk_list_store_new (N_COLS_TEMPLATE,
-			GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
+			GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
-	add_template_from_string (default_store, _("Empty"),
-			DATA_DIR "/images/templates/empty.png", "");
+	add_template_from_string (default_store, _("Empty"), "empty", "");
 
 	// article
 	gchar *path = g_strdup_printf (DATA_DIR "/templates/%s",
 			_("article-en.tex"));
-	add_template_from_file (default_store, _("Article"),
-			DATA_DIR "/images/templates/article.png", path);
+	add_template_from_file (default_store, _("Article"), "article", path);
 	g_free (path);
 
 	// report
 	path = g_strdup_printf (DATA_DIR "/templates/%s",
 			_("report-en.tex"));
-	add_template_from_file (default_store, _("Report"),
-			DATA_DIR "/images/templates/report.png", path);
+	add_template_from_file (default_store, _("Report"), "report", path);
 	g_free (path);
 
 	// book
 	path = g_strdup_printf (DATA_DIR "/templates/%s",
 			_("book-en.tex"));
-	add_template_from_file (default_store, _("Book"),
-			DATA_DIR "/images/templates/book.png", path);
+	add_template_from_file (default_store, _("Book"), "book", path);
 	g_free (path);
 
 	// letter
 	path = g_strdup_printf (DATA_DIR "/templates/%s",
 			_("letter-en.tex"));
-	add_template_from_file (default_store, _("Letter"),
-			DATA_DIR "/images/templates/letter.png", path);
+	add_template_from_file (default_store, _("Letter"), "letter", path);
 	g_free (path);
 
 	// presentation (beamer)
 	path = g_strdup_printf (DATA_DIR "/templates/%s",
 			_("beamer-en.tex"));
-	add_template_from_file (default_store, _("Presentation"),
-			DATA_DIR "/images/templates/beamer.png", path);
+	add_template_from_file (default_store, _("Presentation"), "beamer", path);
 	g_free (path);
 
 	/* personnal templates */
 	personnal_store = gtk_list_store_new (N_COLS_TEMPLATE,
-			GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
+			GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 	nb_personnal_templates = 0;
 
 	gchar *rc_file = get_rc_file ();
@@ -346,6 +386,16 @@ init_templates (void)
 		return;
 	}
 
+	gchar **icons = g_key_file_get_string_list (key_file, PROGRAM_NAME,
+			"icons", NULL, &error);
+	gboolean icons_ok = TRUE;
+	if (error != NULL)
+	{
+		print_warning ("%s", error->message);
+		g_error_free (error);
+		icons_ok = FALSE;
+	}
+
 	nb_personnal_templates = length;
 
 	gchar *rc_dir = get_rc_dir ();
@@ -360,24 +410,28 @@ init_templates (void)
 		}
 
 		add_template_from_file (personnal_store, names[i],
-				DATA_DIR "/images/templates/article.png", file);
+				icons_ok ? icons[i] : "article", file);
 		g_free (file);
 	}
 
 	g_strfreev (names);
+	g_strfreev (icons);
 	g_key_file_free (key_file);
 	g_free (rc_dir);
 }
 
 static void
 add_template_from_string (GtkListStore *store, const gchar *name,
-		const gchar *icon, const gchar *contents)
+		const gchar *icon_id, const gchar *contents)
 {
 	if (contents == NULL)
 		return;
 
 	GError *error = NULL;
-	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (icon, &error);
+	gchar *icon_path = g_strdup_printf (DATA_DIR "/images/templates/%s.png",
+			icon_id);
+	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file (icon_path, &error);
+	g_free (icon_path);
 	if (error != NULL)
 	{
 		print_warning ("impossible to load the icon of the template: %s",
@@ -390,6 +444,7 @@ add_template_from_string (GtkListStore *store, const gchar *name,
 	gtk_list_store_append (store, &iter);
 	gtk_list_store_set (store, &iter,
 			COL_TEMPLATE_PIXBUF, pixbuf,
+			COL_TEMPLATE_ICON_ID, icon_id,
 			COL_TEMPLATE_NAME, name,
 			COL_TEMPLATE_CONTENTS, contents,
 			-1);
@@ -399,7 +454,7 @@ add_template_from_string (GtkListStore *store, const gchar *name,
 
 static void
 add_template_from_file (GtkListStore *store, const gchar *name,
-		const gchar *icon, const gchar *path)
+		const gchar *icon_id, const gchar *path)
 {
 	gchar *contents = NULL;
 	GError *error = NULL;
@@ -414,7 +469,7 @@ add_template_from_file (GtkListStore *store, const gchar *name,
 	}
 
 	gchar *text_utf8 = g_locale_to_utf8 (contents, -1, NULL, NULL, NULL);
-	add_template_from_string (store, name, icon, text_utf8);
+	add_template_from_string (store, name, icon_id, text_utf8);
 
 	g_free (text_utf8);
 	g_free (contents);
@@ -475,7 +530,7 @@ get_rc_dir (void)
 }
 
 static void
-add_personnal_template (const gchar *name, const gchar *contents)
+add_personnal_template (const gchar *contents)
 {
 	save_rc_file ();
 
@@ -508,8 +563,13 @@ save_rc_file (void)
 		return;
 	}
 
+	// the names of all the personnal templates
 	gchar **names = g_malloc ((nb_personnal_templates + 1) * sizeof (gchar *));
 	gchar **names_i = names;
+
+	// the icons id of all the personnal templates
+	gchar **icons = g_malloc ((nb_personnal_templates + 1) * sizeof (gchar *));
+	gchar **icons_i = icons;
 	
 	// traverse the list store
 	GtkTreeIter iter;
@@ -517,18 +577,24 @@ save_rc_file (void)
 	gboolean valid_iter = gtk_tree_model_get_iter_first (model, &iter);
 	while (valid_iter)
 	{
-		gtk_tree_model_get (model, &iter, COL_TEMPLATE_NAME, names_i, -1);
+		gtk_tree_model_get (model, &iter,
+				COL_TEMPLATE_NAME, names_i,
+				COL_TEMPLATE_ICON_ID, icons_i,
+				-1);
 		valid_iter = gtk_tree_model_iter_next (model, &iter);
 		names_i++;
+		icons_i++;
 	}
 
-	// the last element is NULL so we can use g_strfreev()
+	// the last elements are NULL so we can use g_strfreev()
 	*names_i = NULL;
+	*icons_i = NULL;
 
 	GKeyFile *key_file = g_key_file_new ();
 	g_key_file_set_string_list (key_file, PROGRAM_NAME, "names",
-			(const gchar * const *) names,
-			nb_personnal_templates);
+			(const gchar * const *) names, nb_personnal_templates);
+	g_key_file_set_string_list (key_file, PROGRAM_NAME, "icons",
+			(const gchar * const *) icons, nb_personnal_templates);
 
 	/* save the rc file */
 	gchar *rc_file = get_rc_file ();
@@ -546,12 +612,15 @@ save_rc_file (void)
 	}
 
 	g_strfreev (names);
+	g_strfreev (icons);
 	g_free (rc_file);
 	g_free (rc_dir);
 	g_free (key_file_data);
 	g_key_file_free (key_file);
 }
 
+/* save the contents of the personnal templates
+ * the first personnal template is saved in 0.tex, the second in 1.tex, etc */
 static void
 save_contents (void)
 {

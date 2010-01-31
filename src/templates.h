@@ -28,6 +28,7 @@ void init_templates (void);
 enum templates
 {
 	COL_TEMPLATE_PIXBUF,
+	COL_TEMPLATE_ICON_ID,
 	COL_TEMPLATE_NAME,
 	COL_TEMPLATE_CONTENTS,
 	N_COLS_TEMPLATE
