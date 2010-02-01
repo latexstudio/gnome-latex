@@ -102,9 +102,7 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 		gtk_tree_view_column_set_attributes (column, renderer1,
 				"text", COL_OUTPUT_BASENAME,
 				"foreground", COL_OUTPUT_COLOR,
-				"foreground-set", COL_OUTPUT_COLOR_SET,
 				"background", COL_OUTPUT_BG_COLOR,
-				"background-set", COL_OUTPUT_BG_COLOR_SET,
 				"weight", COL_OUTPUT_WEIGHT,
 				NULL);
 
@@ -115,9 +113,7 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 		gtk_tree_view_column_set_attributes (column, renderer2,
 				"text", COL_OUTPUT_LINE_NUMBER,
 				"foreground", COL_OUTPUT_COLOR,
-				"foreground-set", COL_OUTPUT_COLOR_SET,
 				"background", COL_OUTPUT_BG_COLOR,
-				"background-set", COL_OUTPUT_BG_COLOR_SET,
 				"weight", COL_OUTPUT_WEIGHT,
 				NULL);
 
@@ -128,9 +124,7 @@ init_log_zone (GtkPaned *log_hpaned, GtkWidget *log_toolbar)
 		gtk_tree_view_column_set_attributes (column, renderer3,
 				"text", COL_OUTPUT_MESSAGE,
 				"foreground", COL_OUTPUT_COLOR,
-				"foreground-set", COL_OUTPUT_COLOR_SET,
 				"background", COL_OUTPUT_BG_COLOR,
-				"background-set", COL_OUTPUT_BG_COLOR_SET,
 				"weight", COL_OUTPUT_WEIGHT,
 				NULL);
 
@@ -203,9 +197,7 @@ get_new_output_list_store (void)
 			G_TYPE_STRING,		// message
 			G_TYPE_INT,			// message type
 			G_TYPE_STRING,		// color
-			G_TYPE_BOOLEAN,		// color set
 			G_TYPE_STRING,		// background color
-			G_TYPE_BOOLEAN,		// background color set
 			G_TYPE_INT			// weight
 			);
 	return output_list_store;
@@ -417,8 +409,6 @@ print_output_title (const gchar *title)
 			COL_OUTPUT_LINE_NUMBER, "",
 			COL_OUTPUT_MESSAGE, title,
 			COL_OUTPUT_MESSAGE_TYPE, MESSAGE_TYPE_OTHER,
-			COL_OUTPUT_COLOR_SET, FALSE,
-			COL_OUTPUT_BG_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_BOLD,
 			-1);
 }
@@ -437,8 +427,6 @@ print_output_info (const gchar *info)
 			COL_OUTPUT_LINE_NUMBER, "",
 			COL_OUTPUT_MESSAGE, info,
 			COL_OUTPUT_MESSAGE_TYPE, MESSAGE_TYPE_OTHER,
-			COL_OUTPUT_COLOR_SET, FALSE,
-			COL_OUTPUT_BG_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
 	scroll_to_iter (&iter, FALSE);
@@ -484,8 +472,6 @@ print_output_exit (const gint exit_code, const gchar *message)
 			COL_OUTPUT_BASENAME, INFO_MESSAGE,
 			COL_OUTPUT_LINE_NUMBER, "",
 			COL_OUTPUT_MESSAGE_TYPE, MESSAGE_TYPE_OTHER,
-			COL_OUTPUT_COLOR_SET, TRUE,
-			COL_OUTPUT_BG_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
 
@@ -556,7 +542,7 @@ print_output_message (const gchar *filename, const gint line_number,
 			color = COLOR_BROWN;
 			break;
 		default:
-			color = "black";
+			color = NULL;
 			break;
 	}
 
@@ -569,10 +555,6 @@ print_output_message (const gchar *filename, const gint line_number,
 			COL_OUTPUT_MESSAGE, message,
 			COL_OUTPUT_MESSAGE_TYPE, message_type,
 			COL_OUTPUT_COLOR, color,
-			COL_OUTPUT_COLOR_SET, TRUE,
-			// we set the background color so when the row is selected we just
-			// have to change the "set" flag
-			COL_OUTPUT_BG_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
 	scroll_to_iter (&iter, FALSE);
@@ -595,8 +577,6 @@ print_output_normal (const gchar *message)
 			COL_OUTPUT_LINE_NUMBER, "",
 			COL_OUTPUT_MESSAGE, message,
 			COL_OUTPUT_MESSAGE_TYPE, MESSAGE_TYPE_OTHER,
-			COL_OUTPUT_COLOR_SET, FALSE,
-			COL_OUTPUT_BG_COLOR_SET, FALSE,
 			COL_OUTPUT_WEIGHT, WEIGHT_NORMAL,
 			-1);
 	scroll_to_iter (&iter, FALSE);
@@ -672,8 +652,7 @@ select_row (GtkTreeModel *model, GtkTreeIter *iter)
 					-1);
 			gtk_list_store_set (GTK_LIST_STORE (model), &current_iter_selected,
 					COL_OUTPUT_COLOR, bg_color,
-					COL_OUTPUT_BG_COLOR, "white",
-					COL_OUTPUT_BG_COLOR_SET, FALSE,
+					COL_OUTPUT_BG_COLOR, NULL,
 					-1);
 			g_free (bg_color);
 		}
@@ -695,7 +674,6 @@ select_row (GtkTreeModel *model, GtkTreeIter *iter)
 	gtk_list_store_set (GTK_LIST_STORE (model), iter,
 			COL_OUTPUT_COLOR, "white",
 			COL_OUTPUT_BG_COLOR, color,
-			COL_OUTPUT_BG_COLOR_SET, TRUE,
 			-1);
 	g_free (color);
 
