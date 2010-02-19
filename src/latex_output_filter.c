@@ -808,7 +808,7 @@ get_path_if_file_exists (const gchar *filename)
 static gchar *
 get_current_filename (void)
 {
-	if (g_slist_length (stack_file) > 0)
+	if (stack_file != NULL)
 	{
 		file_in_stack_t *file = stack_file->data;
 		return file->filename;
@@ -836,6 +836,9 @@ push_file_on_stack (gchar *filename, gboolean reliable)
 static void
 pop_file_from_stack (void)
 {
+	if (stack_file == NULL)
+		return;
+
 	file_in_stack_t *file = stack_file->data;
 	//print_info ("***\tpop\t\"%s\" (%s)", file->filename, file->reliable ? "reliable" : "not reliable");
 	stack_file = g_slist_remove (stack_file, file);

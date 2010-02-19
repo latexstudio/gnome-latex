@@ -879,7 +879,7 @@ static void
 cb_category_symbols_selected (GtkIconView *icon_view, gpointer user_data)
 {
 	GList *selected_items = gtk_icon_view_get_selected_items (icon_view);
-	GtkTreePath *path = selected_items->data;
+	GtkTreePath *path = g_list_nth_data (selected_items, 0);
 	GtkTreeModel *model = gtk_icon_view_get_model (icon_view);
 	GtkTreeIter iter;
 
@@ -921,7 +921,7 @@ cb_symbol_selected (GtkIconView *icon_view, gpointer user_data)
 	GList *selected_items = gtk_icon_view_get_selected_items (icon_view);
 	// unselect the symbol, so the user can insert several times the same symbol
 	gtk_icon_view_unselect_all (icon_view);
-	GtkTreePath *path = selected_items->data;
+	GtkTreePath *path = g_list_nth_data (selected_items, 0);
 	GtkTreeModel *model = gtk_icon_view_get_model (icon_view);
 	GtkTreeIter iter;
 

@@ -122,7 +122,7 @@ cb_new (void)
 			model = GTK_TREE_MODEL (personnal_store);
 		}
 
-		GtkTreePath *path = selected_items->data;
+		GtkTreePath *path = g_list_nth_data (selected_items, 0);
 		GtkTreeIter iter;
 		gchar *contents = NULL;
 
@@ -223,7 +223,7 @@ cb_create_template (void)
 
 		// get the icon id
 		GtkTreeModel *model = GTK_TREE_MODEL (default_store);
-		GtkTreePath *path = selected_items->data;
+		GtkTreePath *path = g_list_nth_data (selected_items, 0);
 		GtkTreeIter iter;
 		gchar *icon_id;
 		gtk_tree_model_get_iter (model, &iter, path);
