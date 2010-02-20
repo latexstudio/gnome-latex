@@ -1,7 +1,7 @@
 General Information
 ===================
 
-This is version 0.1 of LaTeXila. LaTeXila is a LaTeX editor designed for the
+This is version 0.2 of LaTeXila. LaTeXila is a LaTeX editor designed for the
 GNOME Desktop.
 
 LaTeXila is released under the GNU General Public License (GPL) version 3 or
@@ -23,4 +23,3 @@ Where to report bugs
 
 Bugs should be reported to the Tracker on SourceForge:
 http://sourceforge.net/tracker/?group_id=271323
-

@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=LaTeXila
 GenericName=LaTeX Frontend
-GenericName[fr]=Inerface graphique LaTeX
+GenericName[fr]=Interface graphique LaTeX
 Comment=LaTeX editor
 Comment[fr]=Éditeur LaTeX
 Exec=latexila
