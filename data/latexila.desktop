@@ -6,6 +6,7 @@ GenericName[fr]=Interface graphique LaTeX
 Comment=LaTeX editor
 Comment[fr]=Éditeur LaTeX
 Exec=latexila
+Icon=latexila
 Terminal=false
 Type=Application
 Categories=GTK;GNOME;Office;Publishing;

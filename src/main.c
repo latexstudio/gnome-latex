@@ -92,8 +92,10 @@ init_main_window (void)
 	gchar *filenames[] =
 	{
 		DATA_DIR "/images/logo/icon16.png",
+		DATA_DIR "/images/logo/icon22.png",
+		DATA_DIR "/images/logo/icon24.png",
 		DATA_DIR "/images/logo/icon32.png",
-		DATA_DIR "/images/logo/icon64.png",
+		DATA_DIR "/images/logo/icon48.png",
 	}; 
 
 	guint nb_icons = G_N_ELEMENTS (filenames);
