@@ -449,7 +449,7 @@ main (int argc, char *argv[])
 
 	// vbox_source_view contains the source view, go to line, search and replace
 	GtkWidget *vbox_source_view = gtk_vbox_new (FALSE, 2);
-	gtk_paned_add1 (GTK_PANED (vpaned), vbox_source_view);
+	gtk_paned_pack1 (GTK_PANED (vpaned), vbox_source_view, TRUE, TRUE);
 
 	init_source_view (vbox_source_view);
 	init_go_to_line (vbox_source_view);
@@ -463,7 +463,9 @@ main (int argc, char *argv[])
 	GtkWidget *hpaned = gtk_hpaned_new ();
 	latexila.log_hpaned = GTK_PANED (hpaned);
 	gtk_paned_set_position (GTK_PANED (hpaned), latexila.prefs.log_hpaned_pos);
-	gtk_paned_add2 (GTK_PANED (vpaned), hpaned);
+
+	// when we resize the window, the log zone keeps the same height
+	gtk_paned_pack2 (GTK_PANED (vpaned), hpaned, FALSE, TRUE);
 
 	init_log_zone (latexila.log_hpaned, log_toolbar);
 
