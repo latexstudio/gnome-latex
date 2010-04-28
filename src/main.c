@@ -49,27 +49,6 @@ option_version (const gchar *option_name, const gchar *value, gpointer data,
 		GError **error)
 {
 	print_info ("%s %s", PROGRAM_NAME, PROGRAM_VERSION);
-	print_info ("\tGTK+ %d.%d.%d", GTK_MAJOR_VERSION, GTK_MINOR_VERSION,
-			GTK_MICRO_VERSION);
-	print_info ("\tGLib %d.%d.%d", GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION,
-			GLIB_MICRO_VERSION);
-	print_info ("\tGtkSourceView %s", GTKSOURCEVIEW_VERSION);
-
-	/*
-	// more information
-	print_info ("\t%s GTK+ %s %d.%d.%d (%s %d.%d.%d)",
-			_("using"), _("version"),
-			gtk_major_version, gtk_minor_version, gtk_micro_version,
-			_("compiled against version"),
-			GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
-
-	print_info ("\t%s GLib %s %d.%d.%d (%s %d.%d.%d)",
-			_("using"), _("version"),
-			glib_major_version, glib_minor_version, glib_micro_version,
-			_("compiled against version"),
-			GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION, GLIB_MICRO_VERSION);
-	*/
-
 	exit (EXIT_SUCCESS);
 	return TRUE;
 }
@@ -365,7 +344,7 @@ main (int argc, char *argv[])
 	GOptionEntry options[] = {
 		{ "version", 'v', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_NO_ARG,
 			G_OPTION_ARG_CALLBACK, (gpointer) option_version,
-			N_("Display version informations"), NULL },
+			N_("Show version information and exit"), NULL },
 		{ "new-document", 'n', G_OPTION_FLAG_IN_MAIN | G_OPTION_FLAG_NO_ARG,
 			G_OPTION_ARG_NONE, &option_new_document,
 			N_("Create new document"), NULL },

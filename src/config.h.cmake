@@ -36,6 +36,4 @@
 
 #define DATA_DIR "${DATA_DIR}"
 
-#define GTKSOURCEVIEW_VERSION "@GTKSOURCEVIEW_VERSION@"
-
 #endif /* CONFIG_H */
