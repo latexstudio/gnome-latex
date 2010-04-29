@@ -81,3 +81,4 @@ CONFIGURE_FILE(${latexila_SOURCE_DIR}/src/config.h.cmake
 
 ADD_SUBDIRECTORY(src)
 ADD_SUBDIRECTORY(data)
+ADD_SUBDIRECTORY(man)
