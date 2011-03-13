@@ -29,7 +29,7 @@ ELSE(ENABLE_NLS)
   MESSAGE(STATUS "Native language support disabled.")
 ENDIF(ENABLE_NLS)
 
-SET(CMAKE_C_FLAGS "-Wall -std=c99 -DGTK_DISABLE_DEPRECATED=1")
+SET(CMAKE_C_FLAGS "-Wall -std=c99")
 
 FIND_PACKAGE(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(GTK2 REQUIRED gtk+-2.0>=2.16 gtksourceview-2.0>=2.4)
