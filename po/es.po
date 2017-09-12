@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: latexila 2.0\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=latexila&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-04-21 10:37+0000\n"
-"PO-Revision-Date: 2017-06-20 12:50+0200\n"
+"POT-Creation-Date: 2017-09-09 16:59+0000\n"
+"PO-Revision-Date: 2017-09-12 16:37+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -451,7 +451,7 @@ msgstr "Carpeta actual"
 msgid "URI of the file browser current directory"
 msgstr "URI de la carpeta actual en el navegador de archivos."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:58 ../src/file_browser.vala:361
+#: ../data/org.gnome.latexila.gschema.xml.in.h:58 ../src/file_browser.vala:347
 msgid "Show build files"
 msgstr "Mostrar archivos de construcción"
 
@@ -462,7 +462,7 @@ msgstr ""
 "Muestra archivos con una extensión presente en «preferences.latex.clean-"
 "extensions»."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:60 ../src/file_browser.vala:369
+#: ../data/org.gnome.latexila.gschema.xml.in.h:60 ../src/file_browser.vala:355
 msgid "Show hidden files"
 msgstr "Mostrar archivos ocultos"
 
@@ -547,12 +547,12 @@ msgstr "Herramienta de construcción personal"
 
 #: ../src/build_tool_dialog.vala:72 ../src/build_tools_preferences.vala:335
 #: ../src/clean_build_files.vala:242 ../src/dialogs.vala:41
-#: ../src/document_tab.vala:294
+#: ../src/document_tab.vala:178
 #: ../src/liblatexila/latexila-templates-dialogs.c:128
 #: ../src/liblatexila/latexila-templates-dialogs.c:238
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:145
-#: ../src/main_window_file.vala:154 ../src/main_window.vala:763
-#: ../src/main_window.vala:859 ../src/preferences_dialog.vala:114
+#: ../src/main_window_file.vala:157 ../src/main_window.vala:779
+#: ../src/main_window.vala:875 ../src/preferences_dialog.vala:114
 #: ../src/project_dialogs.vala:31 ../src/project_dialogs.vala:122
 #: ../src/project_dialogs.vala:276 ../src/project_dialogs.vala:296
 msgid "_Cancel"
@@ -755,12 +755,12 @@ msgstr "No hay propuesta equivalente"
 msgid "Ln %d, Col %d"
 msgstr "Ln %d, Col %d"
 
-#: ../src/dialogs.vala:40 ../src/main_window.vala:762
+#: ../src/dialogs.vala:40 ../src/main_window.vala:778
 msgid "Close _without Saving"
 msgstr "Cerrar _sin guardar"
 
 #: ../src/dialogs.vala:42 ../src/main_window_file.vala:41
-#: ../src/main_window.vala:768 ../src/main_window.vala:860
+#: ../src/main_window.vala:784 ../src/main_window.vala:876
 msgid "_Save"
 msgstr "_Guardar"
 
@@ -784,80 +784,61 @@ msgstr "Si no guarda, todos sus cambios se perderán permanentemente."
 msgid "The structure item already contains a sub-paragraph."
 msgstr "El elemento de estructura ya contiene un subpárrafo."
 
-#: ../src/document_tab.vala:174
-msgid "Close document"
-msgstr "Cerrar documento"
-
-#. main file
-#: ../src/document_tab.vala:237 ../src/project_dialogs.vala:46
-#: ../src/project_dialogs.vala:48 ../src/project_dialogs.vala:142
-#: ../src/project_dialogs.vala:144 ../src/project_dialogs.vala:217
-msgid "Main File"
-msgstr "Archivo principal"
-
-#: ../src/document_tab.vala:239
-msgid "Main File:"
-msgstr "Archivo principal:"
-
-#: ../src/document_tab.vala:263
+#: ../src/document_tab.vala:147
 #, c-format
 msgid "Activate '%s'"
 msgstr "Activar '%s'"
 
-#: ../src/document_tab.vala:282
+#: ../src/document_tab.vala:166
 #, c-format
 msgid "The file %s changed on disk."
 msgstr "El archivo %s ha cambiado en el disco."
 
-#: ../src/document_tab.vala:287
+#: ../src/document_tab.vala:171
 msgid "Do you want to drop your changes and reload the file?"
 msgstr "¿Quiere perder sus cambios y volver a cargar el archivo?"
 
-#: ../src/document_tab.vala:289
+#: ../src/document_tab.vala:173
 msgid "Do you want to reload the file?"
 msgstr "¿Quiere volver a cargar el archivo?"
 
-#: ../src/document_tab.vala:293
+#: ../src/document_tab.vala:177
 msgid "_Reload"
 msgstr "_Recargar"
 
-#: ../src/document.vala:124
+#: ../src/document.vala:128
 #, c-format
 msgid "Impossible to load the file '%s'."
 msgstr "No es posible cargar el archivo «%s»."
 
-#: ../src/document.vala:203
+#: ../src/document.vala:210
 #, c-format
 msgid "The file %s has been modified since reading it."
 msgstr "El archivo %s se ha modificado desde que lo leyó."
 
-#: ../src/document.vala:206
+#: ../src/document.vala:213
 msgid "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
 "Si lo guarda, todos los cambios externos se perderán. ¿Quiere guardarlo de "
 "todas formas?"
 
-#: ../src/document.vala:209
+#: ../src/document.vala:217
 msgid "_Save Anyway"
 msgstr "_Guardar de todos modos"
 
-#: ../src/document.vala:210
+#: ../src/document.vala:218
 msgid "_Don't Save"
 msgstr "_No guardar"
 
-#: ../src/document.vala:224
+#: ../src/document.vala:235
 msgid "Impossible to save the file."
 msgstr "No es posible guardar el archivo."
 
-#: ../src/document.vala:250
+#: ../src/document.vala:263
 msgid "Error trying to convert the document to UTF-8"
 msgstr "Error al tratar de convertir el documento a UTF-8"
 
-#: ../src/document.vala:304
-msgid "Untitled Document"
-msgstr "Documento sin título"
-
-#: ../src/document.vala:519
+#: ../src/document.vala:492
 msgid ""
 "The file has a temporary location. The data can be lost after rebooting your "
 "computer."
@@ -865,16 +846,16 @@ msgstr ""
 "El archivo está en una ubicación temporal. Los datos se pueden perder tras "
 "reiniciar el equipo."
 
-#: ../src/document.vala:520
+#: ../src/document.vala:493
 msgid "Do you want to save the file in a safer place?"
 msgstr "¿Quiere guardar el archivo en un lugar más seguro?"
 
-#: ../src/document.vala:523 ../src/main_window_file.vala:44
-#: ../src/main_window.vala:766
+#: ../src/document.vala:494 ../src/main_window_file.vala:44
+#: ../src/main_window.vala:782
 msgid "Save _As"
 msgstr "Guardar _como"
 
-#: ../src/document.vala:524
+#: ../src/document.vala:495
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -904,28 +885,28 @@ msgstr "Ir a la carpeta padre"
 msgid "Go to the active document directory"
 msgstr "Ir a la carpeta del documento activo"
 
-#: ../src/file_browser.vala:303
+#: ../src/file_browser.vala:289
 msgid "Open in a file manager"
 msgstr "Abrir en un gestor de archivos"
 
-#: ../src/file_browser.vala:305
+#: ../src/file_browser.vala:291
 msgid "Open the current directory in a file manager"
 msgstr "Abrir la carpeta actual en un gestor de archivos"
 
-#: ../src/file_browser.vala:327
+#: ../src/file_browser.vala:313
 msgid "Open in a terminal"
 msgstr "Abrir en una terminal"
 
-#: ../src/file_browser.vala:328
+#: ../src/file_browser.vala:314
 msgid "Open the current directory in a terminal"
 msgstr "Abrir la carpeta actual en una terminal"
 
-#: ../src/file_browser.vala:417
+#: ../src/file_browser.vala:403
 msgid "File System"
 msgstr "Sistema de archivos"
 
 #. File browser
-#: ../src/file_browser.vala:536 ../src/main_window.vala:412
+#: ../src/file_browser.vala:522 ../src/main_window.vala:457
 msgid "File Browser"
 msgstr "Explorador de archivos"
 
@@ -943,15 +924,15 @@ msgstr ""
 "Crear una ventana nueva de nivel superior en una instancia existente de "
 "LaTeXila"
 
-#: ../src/latexila_app.vala:237
+#: ../src/latexila_app.vala:234
 msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
 msgstr "LaTeXila es un entorno LaTeX Integrado para el escritorio GNOME"
 
-#: ../src/latexila_app.vala:276 ../src/main_window.vala:72
+#: ../src/latexila_app.vala:273 ../src/main_window.vala:71
 msgid "About LaTeXila"
 msgstr "Acerca de LaTeXila"
 
-#: ../src/latexila_app.vala:277
+#: ../src/latexila_app.vala:274
 msgid "translator-credits"
 msgstr ""
 "Daniel Mustieles García <daniel.mustieles@gmail.com>, 2011\n"
@@ -2004,11 +1985,11 @@ msgstr "_Ventana nueva"
 msgid "Create a new window"
 msgstr "Crear una ventana nueva"
 
-#: ../src/main_window_file.vala:38 ../src/main_window_file.vala:155
+#: ../src/main_window_file.vala:38 ../src/main_window_file.vala:158
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:86
+#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:90
 msgid "Open a file"
 msgstr "Abrir un archivo"
 
@@ -2053,21 +2034,21 @@ msgstr "Abir _reciente"
 msgid "Open recently used files"
 msgstr "Abrir archivos usados recientemente"
 
-#: ../src/main_window_file.vala:87
+#: ../src/main_window_file.vala:91
 msgid "Open a recently used file"
 msgstr "Abrir un archivo usado recientemente"
 
-#: ../src/main_window_file.vala:151
+#: ../src/main_window_file.vala:154
 msgid "Open Files"
 msgstr "Abrir archivos"
 
 #. Filter: by default show only .tex and .bib files
-#: ../src/main_window_file.vala:174
+#: ../src/main_window_file.vala:177
 msgid "All LaTeX Files"
 msgstr "Todos los archivos de LaTeX"
 
 #. All files filter
-#: ../src/main_window_file.vala:181
+#: ../src/main_window_file.vala:184
 msgid "All Files"
 msgstr "Todos los archivos"
 
@@ -2280,58 +2261,58 @@ msgstr "Referencia de _LaTeX"
 msgid "The Kile LaTeX Reference"
 msgstr "La referencia de LaTeX de Kile"
 
-#: ../src/main_window.vala:71 ../src/ui/menus.ui.h:5
+#: ../src/main_window.vala:70 ../src/ui/menus.ui.h:5
 msgid "_About"
 msgstr "Acerca _de"
 
-#: ../src/main_window.vala:77
+#: ../src/main_window.vala:76
 msgid "_Main Toolbar"
 msgstr "Barra de _herramientas principal"
 
-#: ../src/main_window.vala:78
+#: ../src/main_window.vala:77
 msgid "Show or hide the main toolbar"
 msgstr "Mostrar u ocultar la barra de herramientas principal"
 
 #. Translators: "Edit" here is an adjective.
-#: ../src/main_window.vala:80
+#: ../src/main_window.vala:79
 msgid "_Edit Toolbar"
 msgstr "_Editar la barra de herramientas"
 
-#: ../src/main_window.vala:81
+#: ../src/main_window.vala:80
 msgid "Show or hide the edit toolbar"
 msgstr "Mostrar u ocultar la barra de herramientas de edición"
 
-#: ../src/main_window.vala:82
+#: ../src/main_window.vala:81
 msgid "_Side panel"
 msgstr "Panel _lateral"
 
-#: ../src/main_window.vala:83
+#: ../src/main_window.vala:82
 msgid "Show or hide the side panel"
 msgstr "Mostrar u ocultar el panel lateral"
 
-#: ../src/main_window.vala:84
+#: ../src/main_window.vala:83
 msgid "_Bottom panel"
 msgstr "Panel _inferior"
 
-#: ../src/main_window.vala:85
+#: ../src/main_window.vala:84
 msgid "Show or hide the bottom panel"
 msgstr "Mostrar u ocultar el panel inferior"
 
 #. Symbols
-#: ../src/main_window.vala:408
+#: ../src/main_window.vala:453
 msgid "Symbols"
 msgstr "Símbolos"
 
-#: ../src/main_window.vala:417
+#: ../src/main_window.vala:462
 msgid "Structure"
 msgstr "Estructura"
 
-#: ../src/main_window.vala:651
+#: ../src/main_window.vala:655
 #, c-format
 msgid "This file (%s) is already opened in another LaTeXila window."
 msgstr "Este archivo (%s) ya esta abierto en otra ventana de LaTeXila."
 
-#: ../src/main_window.vala:653
+#: ../src/main_window.vala:657
 msgid ""
 "LaTeXila opened this instance of the file in a non-editable way. Do you want "
 "to edit it anyway?"
@@ -2339,24 +2320,24 @@ msgstr ""
 "LaTeXila abrió esta instancia del archivo en una forma no editable.¿Quiere "
 "editarlo de todas formas?"
 
-#: ../src/main_window.vala:656
+#: ../src/main_window.vala:661
 msgid "Edit Anyway"
 msgstr "Editar de todas formas"
 
-#: ../src/main_window.vala:657
+#: ../src/main_window.vala:662
 msgid "Don't Edit"
 msgstr "No editar"
 
-#: ../src/main_window.vala:759
+#: ../src/main_window.vala:775
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
 msgstr "¿Guardar los cambios del documento «%s» antes de cerrar?"
 
-#: ../src/main_window.vala:839
+#: ../src/main_window.vala:855
 msgid "Read-Only"
 msgstr "Sólo lectura"
 
-#: ../src/main_window.vala:857
+#: ../src/main_window.vala:873
 msgid "Save File"
 msgstr "Guardar Archivo"
 
@@ -2403,6 +2384,13 @@ msgstr "Proyecto nuevo"
 #: ../src/project_dialogs.vala:204
 msgid "Directory"
 msgstr "Carpeta"
+
+#. main file
+#: ../src/project_dialogs.vala:46 ../src/project_dialogs.vala:48
+#: ../src/project_dialogs.vala:142 ../src/project_dialogs.vala:144
+#: ../src/project_dialogs.vala:217
+msgid "Main File"
+msgstr "Archivo principal"
 
 #: ../src/project_dialogs.vala:102
 #, c-format
@@ -2463,36 +2451,36 @@ msgstr "Reemplazar"
 msgid "Replace All"
 msgstr "Reemplazar todo"
 
-#: ../src/search.vala:193
+#: ../src/search.vala:194
 msgid "All"
 msgstr "Todo"
 
-#: ../src/search.vala:307
+#: ../src/search.vala:308
 msgid "Search for"
 msgstr "Buscar"
 
-#: ../src/search.vala:318
+#: ../src/search.vala:319
 msgid "Case sensitive"
 msgstr "Sensible a capitalización"
 
-#: ../src/search.vala:321
+#: ../src/search.vala:322
 msgid "Entire words only"
 msgstr "Solo palabras completas"
 
-#: ../src/search.vala:467
+#: ../src/search.vala:468
 msgid "Not found"
 msgstr "No encontrado"
 
 #. Translators: the first %d is the position of the current search occurrence,
 #. * and the second %d is the total number of search occurrences.
 #.
-#: ../src/search.vala:484
+#: ../src/search.vala:485
 #, c-format
 msgid "Match %d of %d"
 msgstr "%d de %d coincidencias"
 
 #. Translators: %d is the total number of search occurrences.
-#: ../src/search.vala:489
+#: ../src/search.vala:490
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
@@ -2632,6 +2620,15 @@ msgstr "L_impiar"
 msgid "Clear most used symbols"
 msgstr "Limpiar los símbolos más usados"
 
+#: ../src/tab_label.vala:48
+#| msgid "open file"
+msgid "Project main file"
+msgstr "Archivo principal del proyecto"
+
+#: ../src/tab_label.vala:51
+msgid "Project main file:"
+msgstr "Archivo principal del proyecto:"
+
 #: ../src/ui/menus.ui.h:1
 msgid "_New Window"
 msgstr "_Ventana nueva"
@@ -2740,6 +2737,15 @@ msgstr "Resaltar las palabras mal escritas"
 #: ../src/ui/preferences_dialog.ui.h:28
 msgid "Other"
 msgstr "Otros"
+
+#~ msgid "Close document"
+#~ msgstr "Cerrar documento"
+
+#~ msgid "Main File:"
+#~ msgstr "Archivo principal:"
+
+#~ msgid "Untitled Document"
+#~ msgstr "Documento sin título"
 
 #~ msgid "_Search Forward"
 #~ msgstr "_Buscar hacia adelante"
