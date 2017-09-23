@@ -13,7 +13,7 @@
   <p>The purpose is to facilitate the writing of LaTeX commands, by showing proposals.</p>
 </synopsis>
 
-<section>
+<section id="interactive-completion">
   <title>Interactive completion</title>
   <p>
     By default, when a LaTeX command is typed, proposals will be shown after two
@@ -26,7 +26,7 @@
   </p>
 </section>
 
-<section>
+<section id="manual-completion">
   <title>Manual completion</title>
   <p>
     At any time, press

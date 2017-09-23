@@ -14,7 +14,7 @@
   figures, … of a document, to easily navigate in it.</p>
 </synopsis>
 
-<section>
+<section id="display">
   <title>Display the structure</title>
 
   <p>
@@ -33,7 +33,7 @@
   </p>
 </section>
 
-<section>
+<section id="actions">
   <title>Actions</title>
 
   <p>
@@ -44,7 +44,7 @@
 </section>
 
 <section its:locNote="Do not translate the words TODO and FIXME. They are special comments
-that can be inserted in LaTeX documents.">
+that can be inserted in LaTeX documents." id="todos-and-fixmes">
   <title>TODOs and FIXMEs</title>
 
   <p>

@@ -13,7 +13,7 @@
   <p>The purpose is to correct spelling mistakes easily.</p>
 </synopsis>
 
-<section>
+<section id="use">
   <title>Use the spell checking</title>
   <p>
     The default spell checking settings can be changed in the preferences dialog:
@@ -36,7 +36,7 @@
   </p>
 </section>
 
-<section>
+<section id="dictionaries">
   <title>Dictionaries</title>
   <p>
     <link href="http://www.abisource.com/projects/enchant/">Enchant</link>
