@@ -57,13 +57,13 @@ public class LatexilaApp : Gtk.Application
 
     public MainWindow? get_active_main_window ()
     {
-        foreach (Gtk.Window window in get_windows ())
-        {
-            if (window is MainWindow)
-                return window as MainWindow;
-        }
+        Tepl.Application tepl_app = Tepl.Application.get_from_gtk_application (this);
+        Gtk.ApplicationWindow? main_window = tepl_app.get_active_main_window ();
 
-        return null;
+        if (main_window == null)
+            return null;
+
+        return main_window as MainWindow;
     }
 
     private void setup_main_option_entries ()
