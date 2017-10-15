@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: latexila master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=latexila&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-02-24 12:47+0000\n"
-"PO-Revision-Date: 2017-03-10 22:35+0200\n"
+"POT-Creation-Date: 2017-09-09 12:03+0000\n"
+"PO-Revision-Date: 2017-10-15 22:15+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -86,7 +86,6 @@ msgid "Convert the PostScript document to the PDF format"
 msgstr "Konvertuoti PostScript dokumentą į PDF formatą"
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:1
-#| msgid "Integrated LaTeX Environment"
 msgid "Integrated LaTeX environment"
 msgstr "Integruota LaTeX aplinka"
 
@@ -101,10 +100,6 @@ msgstr ""
 "LaTeX kodo rašymą."
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:3
-#| msgid ""
-#| "New documents are created from templates. There are buttons to compile, "
-#| "convert and view a document in one click. And projects containing "
-#| "several .tex files are managed easily."
 msgid ""
 "To help the writing of the LaTeX markup, auto-completion is available as "
 "well as menus and toolbars with the principal commands. New documents are "
@@ -441,7 +436,7 @@ msgstr "Dabartinis aplankas"
 msgid "URI of the file browser current directory"
 msgstr "Failų naršyklės dabartinio aplanko URI"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:58 ../src/file_browser.vala:361
+#: ../data/org.gnome.latexila.gschema.xml.in.h:58 ../src/file_browser.vala:347
 msgid "Show build files"
 msgstr "Rodyti kūrimo failus"
 
@@ -450,7 +445,7 @@ msgid ""
 "Show files with an extension present in preferences.latex.clean-extensions."
 msgstr "Rodyti failus su plėtiniu iš preferences.latex.clean-extensions."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:60 ../src/file_browser.vala:369
+#: ../data/org.gnome.latexila.gschema.xml.in.h:60 ../src/file_browser.vala:355
 msgid "Show hidden files"
 msgstr "Rodyti paslėptus failus"
 
@@ -535,12 +530,12 @@ msgstr "Asmeninis kūrimo įrankis"
 
 #: ../src/build_tool_dialog.vala:72 ../src/build_tools_preferences.vala:335
 #: ../src/clean_build_files.vala:242 ../src/dialogs.vala:41
-#: ../src/document_tab.vala:294
+#: ../src/document_tab.vala:178
 #: ../src/liblatexila/latexila-templates-dialogs.c:128
 #: ../src/liblatexila/latexila-templates-dialogs.c:238
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:145
-#: ../src/main_window_file.vala:153 ../src/main_window.vala:763
-#: ../src/main_window.vala:859 ../src/preferences_dialog.vala:114
+#: ../src/main_window_file.vala:157 ../src/main_window.vala:758
+#: ../src/main_window.vala:815 ../src/preferences_dialog.vala:114
 #: ../src/project_dialogs.vala:31 ../src/project_dialogs.vala:122
 #: ../src/project_dialogs.vala:276 ../src/project_dialogs.vala:296
 msgid "_Cancel"
@@ -738,12 +733,12 @@ msgstr "Nėra atitinkančio siūlymo"
 msgid "Ln %d, Col %d"
 msgstr "Eil %d, Stlp %d"
 
-#: ../src/dialogs.vala:40 ../src/main_window.vala:762
+#: ../src/dialogs.vala:40 ../src/main_window.vala:757
 msgid "Close _without Saving"
 msgstr "Užverti _neįrašant"
 
 #: ../src/dialogs.vala:42 ../src/main_window_file.vala:41
-#: ../src/main_window.vala:768 ../src/main_window.vala:860
+#: ../src/main_window.vala:763 ../src/main_window.vala:816
 msgid "_Save"
 msgstr "Į_rašyti"
 
@@ -767,80 +762,61 @@ msgstr "Jei neįrašysite, visi jūsų pakeitimai bus negrįžtamai prarasti."
 msgid "The structure item already contains a sub-paragraph."
 msgstr "Struktūros elementas jau turi po-paragrafą."
 
-#: ../src/document_tab.vala:174
-msgid "Close document"
-msgstr "Užverti dokumentą"
-
-#. main file
-#: ../src/document_tab.vala:237 ../src/project_dialogs.vala:46
-#: ../src/project_dialogs.vala:48 ../src/project_dialogs.vala:142
-#: ../src/project_dialogs.vala:144 ../src/project_dialogs.vala:217
-msgid "Main File"
-msgstr "Pagrindinis failas"
-
-#: ../src/document_tab.vala:239
-msgid "Main File:"
-msgstr "Pagrindinis failas:"
-
-#: ../src/document_tab.vala:263
+#: ../src/document_tab.vala:147
 #, c-format
 msgid "Activate '%s'"
 msgstr "Aktyvinti „%s“"
 
-#: ../src/document_tab.vala:282
+#: ../src/document_tab.vala:166
 #, c-format
 msgid "The file %s changed on disk."
 msgstr "Failas %s pakeistas diske."
 
-#: ../src/document_tab.vala:287
+#: ../src/document_tab.vala:171
 msgid "Do you want to drop your changes and reload the file?"
 msgstr "Ar norite atsisakyti savo pakeitimų ir iš naujo įkelti failą?"
 
-#: ../src/document_tab.vala:289
+#: ../src/document_tab.vala:173
 msgid "Do you want to reload the file?"
 msgstr "Ar norite iš naujo įkelti failą?"
 
-#: ../src/document_tab.vala:293
+#: ../src/document_tab.vala:177
 msgid "_Reload"
 msgstr "Įkelti iš _naujo"
 
-#: ../src/document.vala:115
+#: ../src/document.vala:128
 #, c-format
 msgid "Impossible to load the file '%s'."
 msgstr "Neįmanoma iš naujo įkelti failo „%s“."
 
-#: ../src/document.vala:193
+#: ../src/document.vala:210
 #, c-format
 msgid "The file %s has been modified since reading it."
 msgstr "Failas %s buvo pakeistas nuo jo perskaitymo."
 
-#: ../src/document.vala:196
+#: ../src/document.vala:213
 msgid "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
 "Jei jį įrašysite, visi išoriniai pakeitimai gali būti prarasti. Vis tiek "
 "įrašyti?"
 
-#: ../src/document.vala:199
+#: ../src/document.vala:217
 msgid "_Save Anyway"
 msgstr "Vistiek į_rašyti"
 
-#: ../src/document.vala:200
+#: ../src/document.vala:218
 msgid "_Don't Save"
 msgstr "_Neįrašyti"
 
-#: ../src/document.vala:212
+#: ../src/document.vala:235
 msgid "Impossible to save the file."
 msgstr "Neįmanoma įrašyti failo."
 
-#: ../src/document.vala:237
+#: ../src/document.vala:263
 msgid "Error trying to convert the document to UTF-8"
 msgstr "Klaida bandant konvertuoti dokumentą į UTF-8"
 
-#: ../src/document.vala:291
-msgid "Untitled Document"
-msgstr "Nepavadintas dokumentas"
-
-#: ../src/document.vala:503
+#: ../src/document.vala:492
 msgid ""
 "The file has a temporary location. The data can be lost after rebooting your "
 "computer."
@@ -848,16 +824,16 @@ msgstr ""
 "Failas turi laikinąją vietą. Duomenys gali būti prarasti iš naujo paleidus "
 "kompiuterį."
 
-#: ../src/document.vala:504
+#: ../src/document.vala:493
 msgid "Do you want to save the file in a safer place?"
 msgstr "Ar norite įrašyti failą į saugesnę vietą?"
 
-#: ../src/document.vala:507 ../src/main_window_file.vala:44
-#: ../src/main_window.vala:766
+#: ../src/document.vala:494 ../src/main_window_file.vala:44
+#: ../src/main_window.vala:761
 msgid "Save _As"
 msgstr "Įrašyti _taip"
 
-#: ../src/document.vala:508
+#: ../src/document.vala:495
 msgid "Cancel"
 msgstr "Atsisakyti"
 
@@ -887,28 +863,28 @@ msgstr "Eiti į tėvinį aplanką"
 msgid "Go to the active document directory"
 msgstr "Eiti į aktyvaus dokumento aplanką"
 
-#: ../src/file_browser.vala:303
+#: ../src/file_browser.vala:289
 msgid "Open in a file manager"
 msgstr "Atverti failų tvarkytuvę"
 
-#: ../src/file_browser.vala:305
+#: ../src/file_browser.vala:291
 msgid "Open the current directory in a file manager"
 msgstr "Atverti dabartinį aplanką failų tvarkytuvėje"
 
-#: ../src/file_browser.vala:327
+#: ../src/file_browser.vala:313
 msgid "Open in a terminal"
 msgstr "Atverti terminale"
 
-#: ../src/file_browser.vala:328
+#: ../src/file_browser.vala:314
 msgid "Open the current directory in a terminal"
 msgstr "Atverti dabartinį aplanką terminale"
 
-#: ../src/file_browser.vala:417
+#: ../src/file_browser.vala:403
 msgid "File System"
 msgstr "Failų sistema"
 
 #. File browser
-#: ../src/file_browser.vala:536 ../src/main_window.vala:412
+#: ../src/file_browser.vala:522 ../src/main_window.vala:457
 msgid "File Browser"
 msgstr "Failų naršyklė"
 
@@ -924,15 +900,15 @@ msgstr "Sukurti naują dokumentą"
 msgid "Create a new top-level window in an existing instance of LaTeXila"
 msgstr "Sukurti naują aukščiausio lygio langą veikiančioje LaTeXila"
 
-#: ../src/latexila_app.vala:223
+#: ../src/latexila_app.vala:234
 msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
 msgstr "LaTeXila yra integruota LaTeX aplinka GNOME darbalaukiui"
 
-#: ../src/latexila_app.vala:262 ../src/main_window.vala:72
+#: ../src/latexila_app.vala:273 ../src/main_window.vala:71
 msgid "About LaTeXila"
 msgstr "Apie LaTeXila"
 
-#: ../src/latexila_app.vala:263
+#: ../src/latexila_app.vala:274
 msgid "translator-credits"
 msgstr ""
 "Išvertė:\n"
@@ -1985,11 +1961,11 @@ msgstr "Naujas _langas"
 msgid "Create a new window"
 msgstr "Sukurti naują langą"
 
-#: ../src/main_window_file.vala:38 ../src/main_window_file.vala:154
+#: ../src/main_window_file.vala:38 ../src/main_window_file.vala:158
 msgid "_Open"
 msgstr "_Atverti"
 
-#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:86
+#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:90
 msgid "Open a file"
 msgstr "Atverti failą"
 
@@ -2034,21 +2010,21 @@ msgstr "Atverti _neseniai naudotus"
 msgid "Open recently used files"
 msgstr "Atverti neseniai naudotus failus"
 
-#: ../src/main_window_file.vala:87
+#: ../src/main_window_file.vala:91
 msgid "Open a recently used file"
 msgstr "Atverti neseniai naudotą failą"
 
-#: ../src/main_window_file.vala:150
+#: ../src/main_window_file.vala:154
 msgid "Open Files"
 msgstr "Atverti failus"
 
 #. Filter: by default show only .tex and .bib files
-#: ../src/main_window_file.vala:173
+#: ../src/main_window_file.vala:177
 msgid "All LaTeX Files"
 msgstr "Visi LaTeX failai"
 
 #. All files filter
-#: ../src/main_window_file.vala:180
+#: ../src/main_window_file.vala:184
 msgid "All Files"
 msgstr "Visi failai"
 
@@ -2257,82 +2233,78 @@ msgstr "_LaTeX žinynas"
 msgid "The Kile LaTeX Reference"
 msgstr "Kile LaTeX žinynas"
 
-#: ../src/main_window.vala:71 ../src/ui/menus.ui.h:5
+#: ../src/main_window.vala:70 ../src/ui/menus.ui.h:5
 msgid "_About"
 msgstr "_Apie"
 
-#: ../src/main_window.vala:77
+#: ../src/main_window.vala:76
 msgid "_Main Toolbar"
 msgstr "_Pagrindinė įrankinė"
 
-#: ../src/main_window.vala:78
+#: ../src/main_window.vala:77
 msgid "Show or hide the main toolbar"
 msgstr "Rodyti arba slėpti pagrindinę įrankinę"
 
 #. Translators: "Edit" here is an adjective.
-#: ../src/main_window.vala:80
+#: ../src/main_window.vala:79
 msgid "_Edit Toolbar"
 msgstr "R_edagavimo įrankinė"
 
-#: ../src/main_window.vala:81
+#: ../src/main_window.vala:80
 msgid "Show or hide the edit toolbar"
 msgstr "Rodyti arba slėpti redagavimo įrankinę"
 
-#: ../src/main_window.vala:82
+#: ../src/main_window.vala:81
 msgid "_Side panel"
 msgstr "Š_oninis polangis"
 
-#: ../src/main_window.vala:83
+#: ../src/main_window.vala:82
 msgid "Show or hide the side panel"
 msgstr "Rodyti arba slėpti šoninį polangį"
 
-#: ../src/main_window.vala:84
+#: ../src/main_window.vala:83
 msgid "_Bottom panel"
 msgstr "_Apatinis skydelis"
 
-#: ../src/main_window.vala:85
+#: ../src/main_window.vala:84
 msgid "Show or hide the bottom panel"
 msgstr "Rodyti arba slėpti apatinį skydelį"
 
 #. Symbols
-#: ../src/main_window.vala:408
+#: ../src/main_window.vala:453
 msgid "Symbols"
 msgstr "Simboliai"
 
-#: ../src/main_window.vala:417
+#: ../src/main_window.vala:462
 msgid "Structure"
 msgstr "Struktūra"
 
-#: ../src/main_window.vala:651
+#: ../src/main_window.vala:655
 #, c-format
 msgid "This file (%s) is already opened in another LaTeXila window."
 msgstr "Failas (%s) jau atvertas kitame LaTeXila lange."
 
-#: ../src/main_window.vala:653
+#: ../src/main_window.vala:657
 msgid ""
 "LaTeXila opened this instance of the file in a non-editable way. Do you want "
 "to edit it anyway?"
 msgstr ""
 "LaTeXila atvėrė šį failą ne redagavimui. Ar vistiek norite jį redaguoti?"
 
-#: ../src/main_window.vala:656
+#: ../src/main_window.vala:661
 msgid "Edit Anyway"
 msgstr "Vistiek redaguoti"
 
-#: ../src/main_window.vala:657
+#: ../src/main_window.vala:662
 msgid "Don't Edit"
 msgstr "Neredaguoti"
 
-#: ../src/main_window.vala:759
+#: ../src/main_window.vala:754
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
 msgstr "Įrašyti dokumento „%s“ pakeitimus prieš užveriant?"
 
-#: ../src/main_window.vala:839
-msgid "Read-Only"
-msgstr "Tik skaitymui"
-
-#: ../src/main_window.vala:857
+#: ../src/main_window.vala:813
 msgid "Save File"
 msgstr "Įrašyti failą"
 
@@ -2381,6 +2353,13 @@ msgstr "Naujas projektas"
 #: ../src/project_dialogs.vala:204
 msgid "Directory"
 msgstr "Aplankas"
+
+#. main file
+#: ../src/project_dialogs.vala:46 ../src/project_dialogs.vala:48
+#: ../src/project_dialogs.vala:142 ../src/project_dialogs.vala:144
+#: ../src/project_dialogs.vala:217
+msgid "Main File"
+msgstr "Pagrindinis failas"
 
 #: ../src/project_dialogs.vala:102
 #, c-format
@@ -2441,36 +2420,36 @@ msgstr "Pakeisti"
 msgid "Replace All"
 msgstr "Pakeisti visus"
 
-#: ../src/search.vala:193
+#: ../src/search.vala:194
 msgid "All"
 msgstr "Visi"
 
-#: ../src/search.vala:307
+#: ../src/search.vala:308
 msgid "Search for"
 msgstr "Ko ieškoti"
 
-#: ../src/search.vala:318
+#: ../src/search.vala:319
 msgid "Case sensitive"
 msgstr "Skirti raidžių registrą"
 
-#: ../src/search.vala:321
+#: ../src/search.vala:322
 msgid "Entire words only"
 msgstr "Tik visus žodžius"
 
-#: ../src/search.vala:467
+#: ../src/search.vala:468
 msgid "Not found"
 msgstr "Nerasta"
 
 #. Translators: the first %d is the position of the current search occurrence,
 #. * and the second %d is the total number of search occurrences.
 #.
-#: ../src/search.vala:484
+#: ../src/search.vala:485
 #, c-format
 msgid "Match %d of %d"
 msgstr "Atitikmuo %d iš %d"
 
 #. Translators: %d is the total number of search occurrences.
-#: ../src/search.vala:489
+#: ../src/search.vala:490
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
@@ -2611,6 +2590,15 @@ msgstr "Iš_valyti"
 msgid "Clear most used symbols"
 msgstr "Išvalyti dažniausiai naudojamus simbolius"
 
+#: ../src/tab_label.vala:48
+#| msgid "open file"
+msgid "Project main file"
+msgstr "Projekto pagrindinis failas"
+
+#: ../src/tab_label.vala:51
+msgid "Project main file:"
+msgstr "Projekto pagrindinis failas:"
+
 #: ../src/ui/menus.ui.h:1
 msgid "_New Window"
 msgstr "_Naujas langas"
@@ -2719,6 +2707,18 @@ msgstr "Paryškinti blogai parašytus žodžius"
 #: ../src/ui/preferences_dialog.ui.h:28
 msgid "Other"
 msgstr "Kita"
+
+#~ msgid "Close document"
+#~ msgstr "Užverti dokumentą"
+
+#~ msgid "Main File:"
+#~ msgstr "Pagrindinis failas:"
+
+#~ msgid "Untitled Document"
+#~ msgstr "Nepavadintas dokumentas"
+
+#~ msgid "Read-Only"
+#~ msgstr "Tik skaitymui"
 
 #~ msgid ""
 #~ "To help the writing of the LaTeX markup, auto-completion is available as "
