@@ -9,35 +9,51 @@
     <title>LaTeXila Reference Manual</title>
   </bookinfo>
 
-  <chapter>
+  <part id="api-reference">
     <title>API reference</title>
-    <xi:include href="xml/build-job.xml"/>
-    <xi:include href="xml/build-tool.xml"/>
-    <xi:include href="xml/build-tools.xml"/>
-    <xi:include href="xml/build-tools-default.xml"/>
-    <xi:include href="xml/build-tools-personal.xml"/>
-    <xi:include href="xml/build-view.xml"/>
-    <xi:include href="xml/post-processor.xml"/>
-    <xi:include href="xml/post-processor-all-output.xml"/>
-    <xi:include href="xml/post-processor-latex.xml"/>
-    <xi:include href="xml/post-processor-latexmk.xml"/>
-    <xi:include href="xml/synctex.xml"/>
-    <xi:include href="xml/templates-dialogs.xml"/>
-    <xi:include href="xml/templates-manage-dialog.xml"/>
-    <xi:include href="xml/templates-default.xml"/>
-    <xi:include href="xml/templates-personal.xml"/>
-    <xi:include href="xml/utils.xml"/>
-  </chapter>
 
-  <chapter id="object-tree">
-    <title>Object Hierarchy</title>
-     <xi:include href="xml/tree_index.sgml"/>
-  </chapter>
+    <chapter>
+      <title>Build Tools</title>
+      <xi:include href="xml/build-job.xml"/>
+      <xi:include href="xml/build-tool.xml"/>
+      <xi:include href="xml/build-tools.xml"/>
+      <xi:include href="xml/build-tools-default.xml"/>
+      <xi:include href="xml/build-tools-personal.xml"/>
+      <xi:include href="xml/build-view.xml"/>
+      <xi:include href="xml/post-processor.xml"/>
+      <xi:include href="xml/post-processor-all-output.xml"/>
+      <xi:include href="xml/post-processor-latex.xml"/>
+      <xi:include href="xml/post-processor-latexmk.xml"/>
+    </chapter>
 
-  <index>
-    <title>Index of all symbols</title>
-    <xi:include href="xml/api-index-full.xml"><xi:fallback /></xi:include>
-  </index>
+    <chapter>
+      <title>Templates</title>
+      <xi:include href="xml/templates-dialogs.xml"/>
+      <xi:include href="xml/templates-manage-dialog.xml"/>
+      <xi:include href="xml/templates-default.xml"/>
+      <xi:include href="xml/templates-personal.xml"/>
+    </chapter>
 
-  <xi:include href="xml/annotation-glossary.xml"><xi:fallback /></xi:include>
+    <chapter>
+      <title>Misc</title>
+      <xi:include href="xml/synctex.xml"/>
+      <xi:include href="xml/utils.xml"/>
+    </chapter>
+  </part>
+
+  <part id="annexes">
+    <title>Annexes</title>
+
+    <chapter id="object-tree">
+      <title>Object Hierarchy</title>
+       <xi:include href="xml/tree_index.sgml"/>
+    </chapter>
+
+    <index>
+      <title>Index of all symbols</title>
+      <xi:include href="xml/api-index-full.xml"><xi:fallback /></xi:include>
+    </index>
+
+    <xi:include href="xml/annotation-glossary.xml"><xi:fallback /></xi:include>
+  </part>
 </book>
