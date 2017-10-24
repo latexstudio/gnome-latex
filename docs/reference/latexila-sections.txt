@@ -132,7 +132,7 @@ latexila_build_view_get_type
 
 <SECTION>
 <FILE>latex-menu</FILE>
-latexila_latex_menu_do_something
+latexila_latex_menu_insert_text
 </SECTION>
 
 <SECTION>

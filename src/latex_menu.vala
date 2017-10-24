@@ -473,72 +473,11 @@ public class LatexMenu : Gtk.ActionGroup
     private void text_buffer_insert (string text_before, string text_after,
         string? text_if_no_selection = null)
     {
-        return_if_fail (main_window.active_tab != null);
-        Document active_document = main_window.active_document;
+        Tepl.ApplicationWindow tepl_window =
+            Tepl.ApplicationWindow.get_from_gtk_application_window (main_window);
 
-        // we don't use the insert and selection_bound marks because we don't
-        // know the order. With gtk_text_buffer_get_selection_bounds, we are certain
-        // that "start" points to the start of the selection, where we must insert
-        // "text_before".
-
-        TextIter start, end;
-        bool text_selected = active_document.get_selection_bounds (out start, out end);
-
-        // take into account the current indentation
-        string? text_before2 = null;
-        string? text_after2 = null;
-
-        if (text_before.contains ("\n") || text_after.contains ("\n"))
-        {
-            string current_indent = Tepl.iter_get_line_indentation (start);
-
-            if (current_indent != "")
-            {
-                text_before2 = text_before.replace ("\n", @"\n$current_indent");
-                text_after2 = text_after.replace ("\n", @"\n$current_indent");
-            }
-        }
-
-        active_document.begin_user_action ();
-
-        // insert around the selected text
-        // move the cursor to the end
-        if (text_selected)
-        {
-            TextMark mark_end = active_document.create_mark (null, end, false);
-            active_document.insert (ref start, text_before2 ?? text_before, -1);
-            active_document.get_iter_at_mark (out end, mark_end);
-            active_document.insert (ref end, text_after2 ?? text_after, -1);
-
-            active_document.get_iter_at_mark (out end, mark_end);
-            active_document.delete_mark (mark_end);
-            active_document.place_cursor (end);
-        }
-
-        // no selection
-        else if (text_if_no_selection != null)
-            active_document.insert_at_cursor (text_if_no_selection, -1);
-
-        // no selection
-        // move the cursor between the 2 texts inserted
-        else
-        {
-            active_document.insert_at_cursor (text_before2 ?? text_before, -1);
-
-            TextIter between;
-            active_document.get_iter_at_mark (out between, active_document.get_insert ());
-            TextMark mark = active_document.create_mark (null, between, true);
-
-            active_document.insert_at_cursor (text_after2 ?? text_after, -1);
-
-            active_document.get_iter_at_mark (out between, mark);
-            active_document.delete_mark (mark);
-            active_document.place_cursor (between);
-        }
-
-        active_document.end_user_action ();
-
-        main_window.active_view.grab_focus ();
+        Latexila.latex_menu_insert_text (tepl_window, text_before, text_after,
+            text_if_no_selection);
     }
 
     private string get_indentation ()

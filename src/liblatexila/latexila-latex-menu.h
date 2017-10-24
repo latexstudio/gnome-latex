@@ -24,7 +24,10 @@
 
 G_BEGIN_DECLS
 
-void latexila_latex_menu_do_something (void);
+void      latexila_latex_menu_insert_text       (TeplApplicationWindow *tepl_window,
+                                                 const gchar           *text_before,
+                                                 const gchar           *text_after,
+                                                 const gchar           *text_if_no_selection);
 
 G_END_DECLS
 
