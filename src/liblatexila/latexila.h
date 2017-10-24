@@ -33,6 +33,7 @@
 #include "latexila-build-tools-default.h"
 #include "latexila-build-tools-personal.h"
 #include "latexila-build-view.h"
+#include "latexila-latex-menu.h"
 #include "latexila-post-processor.h"
 #include "latexila-post-processor-all-output.h"
 #include "latexila-post-processor-latex.h"

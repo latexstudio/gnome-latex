@@ -27,6 +27,7 @@ liblatexila_headers =				\
 	latexila-build-tools-default.h		\
 	latexila-build-tools-personal.h		\
 	latexila-build-view.h			\
+	latexila-latex-menu.h			\
 	latexila-post-processor.h		\
 	latexila-post-processor-all-output.h	\
 	latexila-post-processor-latex.h		\
@@ -47,6 +48,7 @@ liblatexila_sources =				\
 	latexila-build-tools-default.c		\
 	latexila-build-tools-personal.c		\
 	latexila-build-view.c			\
+	latexila-latex-menu.c			\
 	latexila-post-processor.c		\
 	latexila-post-processor-all-output.c	\
 	latexila-post-processor-latex.c		\
@@ -100,7 +102,7 @@ INTROSPECTION_GIRS = Latexila.gir
 
 Latexila.gir: liblatexila.la
 Latexila_gir_NAMESPACE = Latexila
-Latexila_gir_INCLUDES = Gtk-3.0
+Latexila_gir_INCLUDES = Gtk-3.0 Tepl-3
 Latexila_gir_LIBS = liblatexila.la
 Latexila_gir_FILES = $(liblatexila_la_SOURCES) $(nodist_liblatexila_la_SOURCES)
 Latexila_gir_SCANNERFLAGS = $(WARN_SCANNERFLAGS)
@@ -117,7 +119,7 @@ latexila.vapi: Latexila.gir
 
 VAPIGEN_VAPIS = latexila.vapi
 
-latexila_vapi_DEPS = gio-2.0 gtk+-3.0
+latexila_vapi_DEPS = gio-2.0 gtk+-3.0 Tepl-3
 latexila_vapi_FILES = Latexila.gir
 
 noinst_DATA += latexila.vapi

@@ -36,6 +36,7 @@
 
     <chapter>
       <title>Misc</title>
+      <xi:include href="xml/latex-menu.xml"/>
       <xi:include href="xml/synctex.xml"/>
       <xi:include href="xml/utils.xml"/>
     </chapter>
