@@ -25,9 +25,9 @@
 /**
  * SECTION:utils
  * @title: LatexilaUtils
- * @short_description: Utilities functions
+ * @short_description: Utility functions
  *
- * Various utilities functions.
+ * Various utility functions.
  */
 
 #include "latexila-utils.h"
