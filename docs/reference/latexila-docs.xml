@@ -13,6 +13,11 @@
     <title>API reference</title>
 
     <chapter>
+      <title>Main Classes</title>
+      <xi:include href="xml/view.xml"/>
+    </chapter>
+
+    <chapter>
       <title>Build Tools</title>
       <xi:include href="xml/build-job.xml"/>
       <xi:include href="xml/build-tool.xml"/>

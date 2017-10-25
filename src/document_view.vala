@@ -121,13 +121,6 @@ public class DocumentView : Tepl.View
         override_font (_font_desc);
     }
 
-    public string get_indentation_style ()
-    {
-        if (insert_spaces_instead_of_tabs)
-            return string.nfill (tab_width, ' ');
-        return "\t";
-    }
-
     private bool on_button_release_event (Gdk.EventButton event)
     {
         // Forward search on Ctrl + left click

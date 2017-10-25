@@ -560,7 +560,7 @@ public class LatexMenu : Gtk.ActionGroup
 
     private string get_indentation ()
     {
-        return main_window.active_view.get_indentation_style ();
+        return Latexila.view_get_indentation_style (main_window.active_view);
     }
 
     private void insert_character_style (string style)

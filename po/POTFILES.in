@@ -43,6 +43,7 @@ src/liblatexila/latexila-templates-dialogs.c
 src/liblatexila/latexila-templates-manage-dialog.c
 src/liblatexila/latexila-templates-personal.c
 src/liblatexila/latexila-utils.c
+src/liblatexila/latexila-view.c
 src/main.vala
 src/main_window_build_tools.vala
 src/main_window_documents.vala

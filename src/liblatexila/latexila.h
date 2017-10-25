@@ -43,5 +43,6 @@
 #include "latexila-templates-dialogs.h"
 #include "latexila-templates-manage-dialog.h"
 #include "latexila-utils.h"
+#include "latexila-view.h"
 
 #endif /* __LATEXILA_H__ */

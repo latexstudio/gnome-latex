@@ -280,3 +280,8 @@ latexila_utils_get_pixbuf_from_icon_name
 latexila_utils_str_replace
 latexila_utils_register_icons
 </SECTION>
+
+<SECTION>
+<FILE>view</FILE>
+latexila_view_get_indentation_style
+</SECTION>
