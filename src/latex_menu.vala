@@ -147,27 +147,27 @@ public class LatexMenu : Gtk.ActionGroup
 
         { "FontFamily", null, N_("_Font Family") },
         { "FontFamilyRoman", "roman", "\\_rmfamily", null,
-            N_("Roman - \\rmfamily"), on_text_font_family_roman },
+            N_("Roman - \\rmfamily") },
         { "FontFamilySansSerif", "sans_serif", "\\_sffamily", null,
-            N_("Sans Serif - \\sffamily"), on_text_font_family_sans_serif },
+            N_("Sans Serif - \\sffamily") },
         { "FontFamilyMonospace", "typewriter", "\\_ttfamily", null,
-            N_("Monospace - \\ttfamily"), on_text_font_family_monospace },
+            N_("Monospace - \\ttfamily") },
 
         { "FontSeries", null, N_("F_ont Series") },
         { "FontSeriesMedium", "roman", "\\_mdseries", null,
-            N_("Medium - \\mdseries"), on_text_font_series_medium },
+            N_("Medium - \\mdseries") },
         { "FontSeriesBold", "bold", "\\_bfseries", null,
-            N_("Bold - \\bfseries"), on_text_font_series_bold },
+            N_("Bold - \\bfseries") },
 
         { "FontShape", null, N_("Fo_nt Shape") },
         { "FontShapeUpright", "roman", "\\_upshape", null,
-            N_("Upright - \\upshape"), on_text_font_shape_upright },
+            N_("Upright - \\upshape") },
         { "FontShapeItalic", "italic", "\\_itshape", null,
-            N_("Italic - \\itshape"), on_text_font_shape_italic },
+            N_("Italic - \\itshape") },
         { "FontShapeSlanted", "slanted", "\\_slshape", null,
-            N_("Slanted - \\slshape"), on_text_font_shape_slanted },
+            N_("Slanted - \\slshape") },
         { "FontShapeSmallCaps", "small_caps", "\\s_cshape", null,
-            N_("Small Capitals - \\scshape"), on_text_font_shape_small_caps },
+            N_("Small Capitals - \\scshape") },
 
         // LaTeX: Tabular
 
@@ -499,6 +499,27 @@ public class LatexMenu : Gtk.ActionGroup
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::underline",
             this, "Underline");
 
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::rmfamily",
+            this, "FontFamilyRoman");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::sffamily",
+            this, "FontFamilySansSerif");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::ttfamily",
+            this, "FontFamilyMonospace");
+
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::mdseries",
+            this, "FontSeriesMedium");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::bfseries",
+            this, "FontSeriesBold");
+
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::upshape",
+            this, "FontShapeUpright");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::itshape",
+            this, "FontShapeItalic");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::slshape",
+            this, "FontShapeSlanted");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::scshape",
+            this, "FontShapeSmallCaps");
+
         // LaTeX: Spacing
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::hspace",
             this, "SpacingHSpace");
@@ -777,53 +798,6 @@ public class LatexMenu : Gtk.ActionGroup
     public void on_size_Huge ()
     {
         insert_character_style ("Huge");
-    }
-
-    /* Font styles */
-
-    public void on_text_font_family_roman ()
-    {
-        insert_character_style ("rmfamily");
-    }
-
-    public void on_text_font_family_sans_serif ()
-    {
-        insert_character_style ("sffamily");
-    }
-
-    public void on_text_font_family_monospace ()
-    {
-        insert_character_style ("ttfamily");
-    }
-
-    public void on_text_font_series_medium ()
-    {
-        insert_character_style ("mdseries");
-    }
-
-    public void on_text_font_series_bold ()
-    {
-        insert_character_style ("bfseries");
-    }
-
-    public void on_text_font_shape_upright ()
-    {
-        insert_character_style ("upshape");
-    }
-
-    public void on_text_font_shape_italic ()
-    {
-        insert_character_style ("itshape");
-    }
-
-    public void on_text_font_shape_slanted ()
-    {
-        insert_character_style ("slshape");
-    }
-
-    public void on_text_font_shape_small_caps ()
-    {
-        insert_character_style ("scshape");
     }
 
     /* Tabular */

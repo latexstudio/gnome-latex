@@ -141,6 +141,49 @@ latex_command_with_braces_cb (GSimpleAction *action,
   g_free (text_before);
 }
 
+static void
+latex_command_char_style_cb (GSimpleAction *action,
+                             GVariant      *parameter,
+                             gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  const gchar *style;
+  TeplBuffer *buffer;
+  TeplSelectionType selection_type;
+  gchar *text_before;
+  gchar *text_after;
+  gchar *text_if_no_selection;
+
+  style = g_variant_get_string (parameter, NULL);
+
+  buffer = tepl_tab_group_get_active_buffer (TEPL_TAB_GROUP (tepl_window));
+  g_return_if_fail (buffer != NULL);
+
+  selection_type = tepl_buffer_get_selection_type (buffer);
+
+  if (selection_type == TEPL_SELECTION_TYPE_MULTIPLE_LINES)
+    {
+      text_before = g_strdup_printf ("\\begin{%s}\n", style);
+      text_after = g_strdup_printf ("\n\\end{%s}", style);
+      text_if_no_selection = NULL;
+    }
+  else
+    {
+      text_before = g_strdup_printf ("{\\%s ", style);
+      text_after = g_strdup_printf ("}");
+      text_if_no_selection = g_strdup_printf ("\\%s ", style);
+    }
+
+  latexila_latex_commands_insert_text (tepl_window,
+                                       text_before,
+                                       text_after,
+                                       text_if_no_selection);
+
+  g_free (text_before);
+  g_free (text_after);
+  g_free (text_if_no_selection);
+}
+
 /**
  * latexila_latex_commands_add_actions:
  * @gtk_window: a #GtkApplicationWindow.
@@ -154,6 +197,7 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
 
   const GActionEntry entries[] = {
     { "latex-command-with-braces", latex_command_with_braces_cb, "s" },
+    { "latex-command-char-style", latex_command_char_style_cb, "s" },
   };
 
   g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));
