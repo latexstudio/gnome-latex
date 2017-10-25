@@ -211,9 +211,9 @@ public class LatexMenu : Gtk.ActionGroup
         { "SpacingMedSkip", null, "\\_medskip", null,
             N_("Medium skip - \\medskip"), on_spacing_medskip },
         { "SpacingHSpace", null, "\\_hspace", null,
-            N_("Horizontal space - \\hspace"), on_spacing_hspace },
+            N_("Horizontal space - \\hspace") },
         { "SpacingVSpace", null, "\\_vspace", null,
-            N_("Vertical space - \\vspace"), on_spacing_vspace },
+            N_("Vertical space - \\vspace") },
         { "SpacingNoIndent", null, "\\_noindent", null,
             N_("No paragraph indentation - \\noindent"), on_spacing_noindent },
 
@@ -498,6 +498,12 @@ public class LatexMenu : Gtk.ActionGroup
             this, "Emph");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::underline",
             this, "Underline");
+
+        // LaTeX: Spacing
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::hspace",
+            this, "SpacingHSpace");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::vspace",
+            this, "SpacingVSpace");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -859,16 +865,6 @@ public class LatexMenu : Gtk.ActionGroup
     public void on_spacing_medskip ()
     {
         text_buffer_insert ("\\medskip ", "");
-    }
-
-    public void on_spacing_hspace ()
-    {
-        text_buffer_insert ("\\hspace{", "}");
-    }
-
-    public void on_spacing_vspace ()
-    {
-        text_buffer_insert ("\\vspace{", "}");
     }
 
     public void on_spacing_noindent ()
