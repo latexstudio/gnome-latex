@@ -24,6 +24,8 @@
 
 G_BEGIN_DECLS
 
+void      latexila_latex_menu_add_actions       (GtkApplicationWindow *gtk_window);
+
 void      latexila_latex_menu_insert_text       (TeplApplicationWindow *tepl_window,
                                                  const gchar           *text_before,
                                                  const gchar           *text_after,

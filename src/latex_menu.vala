@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2010-2011 Sébastien Wilmet
+ * Copyright © 2010-2011, 2017 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,19 +31,19 @@ public class LatexMenu : Gtk.ActionGroup
 
         { "Sectioning", "sectioning", N_("_Sectioning") },
         { "SectioningPart", null, "\\_part", null,
-            N_("Part"), on_sectioning_part },
+            N_("Part") },
         { "SectioningChapter", null, "\\_chapter", null,
-            N_("Chapter"), on_sectioning_chapter },
+            N_("Chapter") },
         { "SectioningSection", null, "\\_section", null,
-            N_("Section"), on_sectioning_section },
+            N_("Section") },
         { "SectioningSubsection", null, "\\s_ubsection", null,
-            N_("Sub-section"), on_sectioning_subsection },
-        { "SectioningSubsubsection", null, "\\su_bsubsection",
-            null, N_("Sub-sub-section"), on_sectioning_subsubsection },
+            N_("Sub-section") },
+        { "SectioningSubsubsection", null, "\\su_bsubsection", null,
+            N_("Sub-sub-section") },
         { "SectioningParagraph", null, "\\p_aragraph", null,
-            N_("Paragraph"), on_sectioning_paragraph },
+            N_("Paragraph") },
         { "SectioningSubparagraph", null, "\\subpa_ragraph", null,
-            N_("Sub-paragraph"), on_sectioning_subparagraph },
+            N_("Sub-paragraph") },
 
         // LaTeX: References
 
@@ -460,6 +460,25 @@ public class LatexMenu : Gtk.ActionGroup
         add_action (references);
         add_action (presentation_env);
         add_action (math_env);
+
+        /* GActions */
+
+        Latexila.latex_menu_add_actions (main_window);
+
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::part",
+            this, "SectioningPart");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::chapter",
+            this, "SectioningChapter");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::section",
+            this, "SectioningSection");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::subsection",
+            this, "SectioningSubsection");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::subsubsection",
+            this, "SectioningSubsubsection");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::paragraph",
+            this, "SectioningParagraph");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::subparagraph",
+            this, "SectioningSubparagraph");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -494,43 +513,6 @@ public class LatexMenu : Gtk.ActionGroup
             text_buffer_insert (@"\\begin{$style}\n", @"\n\\end{$style}");
         else
             text_buffer_insert (@"{\\$style ", "}", @"\\$style ");
-    }
-
-    /* Sectioning */
-
-    public void on_sectioning_part ()
-    {
-        text_buffer_insert ("\\part{", "}");
-    }
-
-    public void on_sectioning_chapter ()
-    {
-        text_buffer_insert ("\\chapter{", "}");
-    }
-
-    public void on_sectioning_section ()
-    {
-        text_buffer_insert ("\\section{", "}");
-    }
-
-    public void on_sectioning_subsection ()
-    {
-        text_buffer_insert ("\\subsection{", "}");
-    }
-
-    public void on_sectioning_subsubsection ()
-    {
-        text_buffer_insert ("\\subsubsection{", "}");
-    }
-
-    public void on_sectioning_paragraph ()
-    {
-        text_buffer_insert ("\\paragraph{", "}");
-    }
-
-    public void on_sectioning_subparagraph ()
-    {
-        text_buffer_insert ("\\subparagraph{", "}");
     }
 
     /* References */
