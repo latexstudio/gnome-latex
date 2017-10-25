@@ -220,23 +220,23 @@ public class LatexMenu : Gtk.ActionGroup
         // LaTeX: International accents
 
         { "Accents", null, N_("International _Accents") },
-        { "Accent0", "accent0", "\\'", null, N_("Acute accent - \\'"), on_accent0 },
-        { "Accent1", "accent1", "\\`", null, N_("Grave accent - \\`"), on_accent1 },
-        { "Accent2", "accent2", "\\^", null, N_("Circumflex accent - \\^"), on_accent2 },
-        { "Accent3", "accent3", "\\\"", null, N_("Trema - \\\""), on_accent3 },
-        { "Accent4", "accent4", "\\~", null, N_("Tilde - \\~"), on_accent4 },
-        { "Accent5", "accent5", "\\=", null, N_("Macron - \\="), on_accent5 },
-        { "Accent6", "accent6", "\\.", null, N_("Dot above - \\."), on_accent6 },
-        { "Accent7", "accent7", "\\v", null, N_("Caron - \\v"), on_accent7 },
-        { "Accent8", "accent8", "\\u", null, N_("Breve - \\u"), on_accent8 },
+        { "Accent0", "accent0", "\\'", null, N_("Acute accent - \\'") },
+        { "Accent1", "accent1", "\\`", null, N_("Grave accent - \\`") },
+        { "Accent2", "accent2", "\\^", null, N_("Circumflex accent - \\^") },
+        { "Accent3", "accent3", "\\\"", null, N_("Trema - \\\"") },
+        { "Accent4", "accent4", "\\~", null, N_("Tilde - \\~") },
+        { "Accent5", "accent5", "\\=", null, N_("Macron - \\=") },
+        { "Accent6", "accent6", "\\.", null, N_("Dot above - \\.") },
+        { "Accent7", "accent7", "\\v", null, N_("Caron - \\v") },
+        { "Accent8", "accent8", "\\u", null, N_("Breve - \\u") },
         { "Accent9", "accent9", "\\H", null,
-            N_("Double acute accent - \\H"), on_accent9 },
-        { "Accent10", "accent10", "\\c", null, N_("Cedilla - \\c"), on_accent10 },
-        { "Accent11", "accent11", "\\k", null, N_("Ogonek - \\k"), on_accent11 },
-        { "Accent12", "accent12", "\\d", null, N_("Dot below - \\d"), on_accent12 },
-        { "Accent13", "accent13", "\\b", null, N_("Macron below - \\b"), on_accent13 },
-        { "Accent14", "accent14", "\\r", null, N_("Ring - \\r"), on_accent14 },
-        { "Accent15", "accent15", "\\t", null, N_("Tie - \\t"), on_accent15 },
+            N_("Double acute accent - \\H") },
+        { "Accent10", "accent10", "\\c", null, N_("Cedilla - \\c") },
+        { "Accent11", "accent11", "\\k", null, N_("Ogonek - \\k") },
+        { "Accent12", "accent12", "\\d", null, N_("Dot below - \\d") },
+        { "Accent13", "accent13", "\\b", null, N_("Macron below - \\b") },
+        { "Accent14", "accent14", "\\r", null, N_("Ring - \\r") },
+        { "Accent15", "accent15", "\\t", null, N_("Tie - \\t") },
 
         // LaTeX: Others
 
@@ -504,6 +504,40 @@ public class LatexMenu : Gtk.ActionGroup
             this, "SpacingHSpace");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::vspace",
             this, "SpacingVSpace");
+
+        // LaTeX: International accents
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('\\'')",
+            this, "Accent0");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('`')",
+            this, "Accent1");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('^')",
+            this, "Accent2");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('\"')",
+            this, "Accent3");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('~')",
+            this, "Accent4");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('=')",
+            this, "Accent5");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('.')",
+            this, "Accent6");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('v')",
+            this, "Accent7");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('u')",
+            this, "Accent8");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('H')",
+            this, "Accent9");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('c')",
+            this, "Accent10");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('k')",
+            this, "Accent11");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('d')",
+            this, "Accent12");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('b')",
+            this, "Accent13");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('r')",
+            this, "Accent14");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('t')",
+            this, "Accent15");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -870,88 +904,6 @@ public class LatexMenu : Gtk.ActionGroup
     public void on_spacing_noindent ()
     {
         text_buffer_insert ("\\noindent ", "");
-    }
-
-    /* International accents */
-
-    public void on_accent0 ()
-    {
-        text_buffer_insert ("\\'{", "}");
-    }
-
-    public void on_accent1 ()
-    {
-        text_buffer_insert ("\\`{", "}");
-    }
-
-    public void on_accent2 ()
-    {
-        text_buffer_insert ("\\^{", "}");
-    }
-
-    public void on_accent3 ()
-    {
-        text_buffer_insert ("\\\"{", "}");
-    }
-
-    public void on_accent4 ()
-    {
-        text_buffer_insert ("\\~{", "}");
-    }
-
-    public void on_accent5 ()
-    {
-        text_buffer_insert ("\\={", "}");
-    }
-
-    public void on_accent6 ()
-    {
-        text_buffer_insert ("\\.{", "}");
-    }
-
-    public void on_accent7 ()
-    {
-        text_buffer_insert ("\\v{", "}");
-    }
-
-    public void on_accent8 ()
-    {
-        text_buffer_insert ("\\u{", "}");
-    }
-
-    public void on_accent9 ()
-    {
-        text_buffer_insert ("\\H{", "}");
-    }
-
-    public void on_accent10 ()
-    {
-        text_buffer_insert ("\\c{", "}");
-    }
-
-    public void on_accent11 ()
-    {
-        text_buffer_insert ("\\k{", "}");
-    }
-
-    public void on_accent12 ()
-    {
-        text_buffer_insert ("\\d{", "}");
-    }
-
-    public void on_accent13 ()
-    {
-        text_buffer_insert ("\\b{", "}");
-    }
-
-    public void on_accent14 ()
-    {
-        text_buffer_insert ("\\r{", "}");
-    }
-
-    public void on_accent15 ()
-    {
-        text_buffer_insert ("\\t{", "}");
     }
 
     /* Presentation */
