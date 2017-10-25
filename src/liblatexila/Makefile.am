@@ -27,7 +27,7 @@ liblatexila_headers =				\
 	latexila-build-tools-default.h		\
 	latexila-build-tools-personal.h		\
 	latexila-build-view.h			\
-	latexila-latex-menu.h			\
+	latexila-latex-commands.h		\
 	latexila-post-processor.h		\
 	latexila-post-processor-all-output.h	\
 	latexila-post-processor-latex.h		\
@@ -48,7 +48,7 @@ liblatexila_sources =				\
 	latexila-build-tools-default.c		\
 	latexila-build-tools-personal.c		\
 	latexila-build-view.c			\
-	latexila-latex-menu.c			\
+	latexila-latex-commands.c		\
 	latexila-post-processor.c		\
 	latexila-post-processor-all-output.c	\
 	latexila-post-processor-latex.c		\

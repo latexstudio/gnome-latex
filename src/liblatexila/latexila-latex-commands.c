@@ -18,22 +18,22 @@
  */
 
 /**
- * SECTION:latex-menu
- * @title: LatexilaLatexMenu
- * @short_description: LaTeX and Math menus
+ * SECTION:latex-commands
+ * @title: LaTeX commands
+ * @short_description: LaTeX menu, Math menu and Edit toolbar
  */
 
-#include "latexila-latex-menu.h"
+#include "latexila-latex-commands.h"
 #include "latexila-utils.h"
 
 /* Temporarily public, will be made private when all GActions for the LaTeX and
  * Math menus are implemented.
  */
 void
-latexila_latex_menu_insert_text (TeplApplicationWindow *tepl_window,
-                                 const gchar           *text_before,
-                                 const gchar           *text_after,
-                                 const gchar           *text_if_no_selection)
+latexila_latex_commands_insert_text (TeplApplicationWindow *tepl_window,
+                                     const gchar           *text_before,
+                                     const gchar           *text_after,
+                                     const gchar           *text_if_no_selection)
 {
   TeplView *view;
   GtkTextBuffer *buffer;
@@ -136,19 +136,19 @@ latex_command_with_braces_cb (GSimpleAction *action,
   command = g_variant_get_string (parameter, NULL);
   text_before = g_strdup_printf ("\\%s{", command);
 
-  latexila_latex_menu_insert_text (tepl_window, text_before, "}", NULL);
+  latexila_latex_commands_insert_text (tepl_window, text_before, "}", NULL);
 
   g_free (text_before);
 }
 
 /**
- * latexila_latex_menu_add_actions:
+ * latexila_latex_commands_add_actions:
  * @gtk_window: a #GtkApplicationWindow.
  *
  * Adds the #GAction's related to the LaTeX and Math menus.
  */
 void
-latexila_latex_menu_add_actions (GtkApplicationWindow *gtk_window)
+latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
 {
   TeplApplicationWindow *tepl_window;
 

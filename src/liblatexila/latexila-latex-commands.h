@@ -17,20 +17,20 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LATEXILA_LATEX_MENU_H
-#define LATEXILA_LATEX_MENU_H
+#ifndef LATEXILA_LATEX_COMMANDS_H
+#define LATEXILA_LATEX_COMMANDS_H
 
 #include <tepl/tepl.h>
 
 G_BEGIN_DECLS
 
-void      latexila_latex_menu_add_actions       (GtkApplicationWindow *gtk_window);
+void      latexila_latex_commands_add_actions       (GtkApplicationWindow *gtk_window);
 
-void      latexila_latex_menu_insert_text       (TeplApplicationWindow *tepl_window,
-                                                 const gchar           *text_before,
-                                                 const gchar           *text_after,
-                                                 const gchar           *text_if_no_selection);
+void      latexila_latex_commands_insert_text       (TeplApplicationWindow *tepl_window,
+                                                     const gchar           *text_before,
+                                                     const gchar           *text_after,
+                                                     const gchar           *text_if_no_selection);
 
 G_END_DECLS
 
-#endif /* LATEXILA_LATEX_MENU_H */
+#endif /* LATEXILA_LATEX_COMMANDS_H */

@@ -463,7 +463,7 @@ public class LatexMenu : Gtk.ActionGroup
 
         /* GActions */
 
-        Latexila.latex_menu_add_actions (main_window);
+        Latexila.latex_commands_add_actions (main_window);
 
         // LaTeX: Sectioning
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::part",
@@ -554,7 +554,7 @@ public class LatexMenu : Gtk.ActionGroup
         Tepl.ApplicationWindow tepl_window =
             Tepl.ApplicationWindow.get_from_gtk_application_window (main_window);
 
-        Latexila.latex_menu_insert_text (tepl_window, text_before, text_after,
+        Latexila.latex_commands_insert_text (tepl_window, text_before, text_after,
             text_if_no_selection);
     }
 
