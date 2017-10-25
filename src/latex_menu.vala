@@ -104,26 +104,16 @@ public class LatexMenu : Gtk.ActionGroup
         // LaTeX: character sizes
 
         { "CharacterSize", "character-size", N_("_Characters Sizes") },
-        { "CharacterSizeTiny", null, "_tiny", null,
-            "tiny", on_size_tiny },
-        { "CharacterSizeScriptsize", null, "_scriptsize", null,
-            "scriptsize", on_size_scriptsize },
-        { "CharacterSizeFootnotesize", null, "_footnotesize", null,
-            "footnotesize", on_size_footnotesize },
-        { "CharacterSizeSmall", null, "s_mall", null,
-            "small", on_size_small },
-        { "CharacterSizeNormalsize", null, "_normalsize", null,
-            "normalsize", on_size_normalsize },
-        { "CharacterSizelarge", null, "_large", null,
-            "large", on_size_large },
-        { "CharacterSizeLarge", null, "L_arge", null,
-            "Large", on_size_Large },
-        { "CharacterSizeLARGE", null, "LA_RGE", null,
-            "LARGE", on_size_LARGE },
-        { "CharacterSizehuge", null, "_huge", null,
-            "huge", on_size_huge },
-        { "CharacterSizeHuge", null, "H_uge", null,
-            "Huge", on_size_Huge },
+        { "CharacterSizeTiny", null, "_tiny", null, "tiny" },
+        { "CharacterSizeScriptsize", null, "_scriptsize", null, "scriptsize" },
+        { "CharacterSizeFootnotesize", null, "_footnotesize", null, "footnotesize" },
+        { "CharacterSizeSmall", null, "s_mall", null, "small" },
+        { "CharacterSizeNormalsize", null, "_normalsize", null, "normalsize" },
+        { "CharacterSizelarge", null, "_large", null, "large" },
+        { "CharacterSizeLarge", null, "L_arge", null, "Large" },
+        { "CharacterSizeLARGE", null, "LA_RGE", null, "LARGE" },
+        { "CharacterSizehuge", null, "_huge", null, "huge" },
+        { "CharacterSizeHuge", null, "H_uge", null, "Huge" },
 
         // LaTeX: font styles
 
@@ -481,6 +471,28 @@ public class LatexMenu : Gtk.ActionGroup
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::subparagraph",
             this, "SectioningSubparagraph");
 
+        // LaTeX: character sizes
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::tiny",
+            this, "CharacterSizeTiny");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::scriptsize",
+            this, "CharacterSizeScriptsize");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::footnotesize",
+            this, "CharacterSizeFootnotesize");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::small",
+            this, "CharacterSizeSmall");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::normalsize",
+            this, "CharacterSizeNormalsize");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::large",
+            this, "CharacterSizelarge");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::Large",
+            this, "CharacterSizeLarge");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::LARGE",
+            this, "CharacterSizeLARGE");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::huge",
+            this, "CharacterSizehuge");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::Huge",
+            this, "CharacterSizeHuge");
+
         // LaTeX: font styles
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::textbf",
             this, "Bold");
@@ -582,17 +594,6 @@ public class LatexMenu : Gtk.ActionGroup
     private string get_indentation ()
     {
         return Latexila.view_get_indentation_style (main_window.active_view);
-    }
-
-    private void insert_character_style (string style)
-    {
-        return_if_fail (main_window.active_tab != null);
-
-        if (main_window.active_document.get_selection_type ()
-            == Tepl.SelectionType.MULTIPLE_LINES)
-            text_buffer_insert (@"\\begin{$style}\n", @"\n\\end{$style}");
-        else
-            text_buffer_insert (@"{\\$style ", "}", @"\\$style ");
     }
 
     /* References */
@@ -746,58 +747,6 @@ public class LatexMenu : Gtk.ActionGroup
     public void on_list_env_item ()
     {
         text_buffer_insert ("\\item ", "");
-    }
-
-    /* Characters sizes */
-
-    public void on_size_tiny ()
-    {
-        insert_character_style ("tiny");
-    }
-
-    public void on_size_scriptsize ()
-    {
-        insert_character_style ("scriptsize");
-    }
-
-    public void on_size_footnotesize ()
-    {
-        insert_character_style ("footnotesize");
-    }
-
-    public void on_size_small ()
-    {
-        insert_character_style ("small");
-    }
-
-    public void on_size_normalsize ()
-    {
-        insert_character_style ("normalsize");
-    }
-
-    public void on_size_large ()
-    {
-        insert_character_style ("large");
-    }
-
-    public void on_size_Large ()
-    {
-        insert_character_style ("Large");
-    }
-
-    public void on_size_LARGE ()
-    {
-        insert_character_style ("LARGE");
-    }
-
-    public void on_size_huge ()
-    {
-        insert_character_style ("huge");
-    }
-
-    public void on_size_Huge ()
-    {
-        insert_character_style ("Huge");
     }
 
     /* Tabular */
