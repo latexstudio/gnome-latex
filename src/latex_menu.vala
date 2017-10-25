@@ -129,21 +129,21 @@ public class LatexMenu : Gtk.ActionGroup
 
         { "FontStyles", "bold", N_("_Font Styles") },
         { "Bold", "bold", "\\text_bf", "<Control>B",
-            N_("Bold - \\textbf"), on_text_bold },
+            N_("Bold - \\textbf") },
         { "Italic", "italic", "\\text_it", "<Control>I",
-            N_("Italic - \\textit"), on_text_italic },
+            N_("Italic - \\textit") },
         { "Typewriter", "typewriter", "\\text_tt", "<Alt><Shift>T",
-            N_("Typewriter - \\texttt"), on_text_typewriter },
+            N_("Typewriter - \\texttt") },
         { "Slanted", "slanted", "\\text_sl", "<Alt><Shift>S",
-            N_("Slanted - \\textsl"), on_text_slanted },
+            N_("Slanted - \\textsl") },
         { "SmallCaps", "small_caps", "\\texts_c", "<Alt><Shift>C",
-            N_("Small Capitals - \\textsc"), on_text_small_caps },
+            N_("Small Capitals - \\textsc") },
         { "SansSerif", "sans_serif", "\\texts_f", null,
-            N_("Sans Serif - \\textsf"), on_text_sans_serif },
+            N_("Sans Serif - \\textsf") },
         { "Emph", null, "\\_emph", "<Control>E",
-            N_("Emphasized - \\emph"), on_text_emph },
+            N_("Emphasized - \\emph") },
         { "Underline", "underline", "\\_underline", "<Control>U",
-            N_("Underline - \\underline"), on_text_underline },
+            N_("Underline - \\underline") },
 
         { "FontFamily", null, N_("_Font Family") },
         { "FontFamilyRoman", "roman", "\\_rmfamily", null,
@@ -465,6 +465,7 @@ public class LatexMenu : Gtk.ActionGroup
 
         Latexila.latex_menu_add_actions (main_window);
 
+        // LaTeX: Sectioning
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::part",
             this, "SectioningPart");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::chapter",
@@ -479,6 +480,24 @@ public class LatexMenu : Gtk.ActionGroup
             this, "SectioningParagraph");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::subparagraph",
             this, "SectioningSubparagraph");
+
+        // LaTeX: font styles
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::textbf",
+            this, "Bold");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::textit",
+            this, "Italic");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::texttt",
+            this, "Typewriter");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::textsl",
+            this, "Slanted");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::textsc",
+            this, "SmallCaps");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::textsf",
+            this, "SansSerif");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::emph",
+            this, "Emph");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::underline",
+            this, "Underline");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -721,46 +740,6 @@ public class LatexMenu : Gtk.ActionGroup
     }
 
     /* Font styles */
-
-    public void on_text_bold ()
-    {
-        text_buffer_insert ("\\textbf{", "}");
-    }
-
-    public void on_text_italic ()
-    {
-        text_buffer_insert ("\\textit{", "}");
-    }
-
-    public void on_text_typewriter ()
-    {
-        text_buffer_insert ("\\texttt{", "}");
-    }
-
-    public void on_text_slanted ()
-    {
-        text_buffer_insert ("\\textsl{", "}");
-    }
-
-    public void on_text_small_caps ()
-    {
-        text_buffer_insert ("\\textsc{", "}");
-    }
-
-    public void on_text_sans_serif ()
-    {
-        text_buffer_insert ("\\textsf{", "}");
-    }
-
-    public void on_text_emph ()
-    {
-        text_buffer_insert ("\\emph{", "}");
-    }
-
-    public void on_text_underline ()
-    {
-        text_buffer_insert ("\\underline{", "}");
-    }
 
     public void on_text_font_family_roman ()
     {
