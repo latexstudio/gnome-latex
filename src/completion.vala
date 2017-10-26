@@ -275,7 +275,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
             else
                 pixbuf = _icon_choice;
 
-            SourceCompletionItem item = SourceCompletionItem.new2 ();
+            SourceCompletionItem item = new SourceCompletionItem ();
             item.set_label (choice.name);
             item.set_text (choice.name);
             item.set_icon (pixbuf);
@@ -330,7 +330,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
         // No match, show a message so the completion widget doesn't disappear.
         else
         {
-            SourceCompletionItem dummy_proposal = SourceCompletionItem.new2 ();
+            SourceCompletionItem dummy_proposal = new SourceCompletionItem ();
             dummy_proposal.set_label (_("No matching proposal"));
             dummy_proposal.set_text ("");
             filtered_proposals.prepend (dummy_proposal);
@@ -926,7 +926,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
                 Gdk.Pixbuf pixbuf = _current_command.package != null
                     ? _icon_package_required : _icon_cmd;
 
-                SourceCompletionItem item = SourceCompletionItem.new2 ();
+                SourceCompletionItem item = new SourceCompletionItem ();
                 item.set_label (_current_command.name);
                 item.set_text (get_command_text_to_insert (_current_command));
                 item.set_icon (pixbuf);

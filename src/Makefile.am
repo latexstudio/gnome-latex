@@ -7,8 +7,8 @@ bin_PROGRAMS = latexila
 AM_VALAFLAGS =			\
 	--disable-since-check	\
 	--pkg gtk+-3.0		\
-	--pkg gtksourceview-3.0	\
-	--pkg Tepl-3		\
+	--pkg gtksourceview-4	\
+	--pkg Tepl-4		\
 	--pkg gspell-1		\
 	--pkg gee-0.8		\
 	--pkg posix		\

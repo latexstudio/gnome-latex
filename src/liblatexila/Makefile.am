@@ -104,7 +104,7 @@ INTROSPECTION_GIRS = Latexila.gir
 
 Latexila.gir: liblatexila.la
 Latexila_gir_NAMESPACE = Latexila
-Latexila_gir_INCLUDES = Gtk-3.0 GtkSource-3.0 Tepl-3
+Latexila_gir_INCLUDES = Gtk-3.0 GtkSource-4 Tepl-4
 Latexila_gir_LIBS = liblatexila.la
 Latexila_gir_FILES = $(liblatexila_la_SOURCES) $(nodist_liblatexila_la_SOURCES)
 Latexila_gir_SCANNERFLAGS = $(WARN_SCANNERFLAGS)
@@ -121,7 +121,7 @@ latexila.vapi: Latexila.gir
 
 VAPIGEN_VAPIS = latexila.vapi
 
-latexila_vapi_DEPS = gio-2.0 gtk+-3.0 gtksourceview-3.0 Tepl-3
+latexila_vapi_DEPS = gio-2.0 gtk+-3.0 gtksourceview-4 Tepl-4
 latexila_vapi_FILES = Latexila.gir
 
 noinst_DATA += latexila.vapi
