@@ -91,15 +91,15 @@ public class LatexMenu : Gtk.ActionGroup
 
         { "ListEnvironments", "list-itemize", N_("_List Environments") },
         { "ListEnvItemize", "list-itemize", "\\begin{_itemize}", null,
-            N_("Bulleted List - \\begin{itemize}"), on_list_env_itemize },
+            N_("Bulleted List - \\begin{itemize}") },
         { "ListEnvEnumerate", "list-enumerate", "\\begin{_enumerate}", null,
-            N_("Enumeration - \\begin{enumerate}"), on_list_env_enumerate },
+            N_("Enumeration - \\begin{enumerate}") },
         { "ListEnvDescription", "list-description", "\\begin{_description}", null,
-            N_("Description - \\begin{description}"), on_list_env_description },
+            N_("Description - \\begin{description}") },
         { "ListEnvList", null, "\\begin{_list}", null,
-            N_("Custom list - \\begin{list}"), on_list_env_list },
+            N_("Custom list - \\begin{list}") },
         { "ListEnvItem", "list-item", "\\i_tem", "<Alt><Shift>H",
-            N_("List item - \\item"), on_list_env_item },
+            N_("List item - \\item") },
 
         // LaTeX: character sizes
 
@@ -509,6 +509,18 @@ public class LatexMenu : Gtk.ActionGroup
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::titlepage",
             this, "EnvTitlepage");
 
+        // LaTeX: list environments
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-list-env-simple::itemize",
+            this, "ListEnvItemize");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-list-env-simple::enumerate",
+            this, "ListEnvEnumerate");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-list-env-description",
+            this, "ListEnvDescription");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-list-env-list",
+            this, "ListEnvList");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::item",
+            this, "ListEnvItem");
+
         // LaTeX: character sizes
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::tiny",
             this, "CharacterSizeTiny");
@@ -632,38 +644,6 @@ public class LatexMenu : Gtk.ActionGroup
     private string get_indentation ()
     {
         return Latexila.view_get_indentation_style (main_window.active_view);
-    }
-
-    /* List Environments */
-
-    public void on_list_env_itemize ()
-    {
-        string indent = get_indentation ();
-        text_buffer_insert (@"\\begin{itemize}\n$indent\\item ", "\n\\end{itemize}");
-    }
-
-    public void on_list_env_enumerate ()
-    {
-        string indent = get_indentation ();
-        text_buffer_insert (@"\\begin{enumerate}\n$indent\\item ", "\n\\end{enumerate}");
-    }
-
-    public void on_list_env_description ()
-    {
-        string indent = get_indentation ();
-        text_buffer_insert (@"\\begin{description}\n$indent\\item[",
-                "] \n\\end{description}");
-    }
-
-    public void on_list_env_list ()
-    {
-        string indent = get_indentation ();
-        text_buffer_insert ("\\begin{list}{", @"}{}\n$indent\\item \n\\end{list}");
-    }
-
-    public void on_list_env_item ()
-    {
-        text_buffer_insert ("\\item ", "");
     }
 
     /* Tabular */

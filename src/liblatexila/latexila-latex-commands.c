@@ -143,6 +143,23 @@ latex_command_with_braces_cb (GSimpleAction *action,
 }
 
 static void
+latex_command_without_braces_cb (GSimpleAction *action,
+                                 GVariant      *parameter,
+                                 gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  const gchar *command;
+  gchar *text_before;
+
+  command = g_variant_get_string (parameter, NULL);
+  text_before = g_strdup_printf ("\\%s ", command);
+
+  latexila_latex_commands_insert_text (tepl_window, text_before, "", NULL);
+
+  g_free (text_before);
+}
+
+static void
 latex_command_env_simple_cb (GSimpleAction *action,
                              GVariant      *parameter,
                              gpointer       user_data)
@@ -246,6 +263,90 @@ latex_command_env_table_cb (GSimpleAction *action,
 }
 
 static void
+latex_command_list_env_simple_cb (GSimpleAction *action,
+                                  GVariant      *parameter,
+                                  gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  const gchar *list_env;
+  TeplView *view;
+  gchar *indent;
+  gchar *text_before;
+  gchar *text_after;
+
+  list_env = g_variant_get_string (parameter, NULL);
+
+  view = tepl_tab_group_get_active_view (TEPL_TAB_GROUP (tepl_window));
+  g_return_if_fail (view != NULL);
+
+  indent = latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
+
+  text_before = g_strdup_printf ("\\begin{%s}\n"
+                                 "%s\\item ",
+                                 list_env,
+                                 indent);
+
+  text_after = g_strdup_printf ("\n\\end{%s}", list_env);
+
+  latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+
+  g_free (indent);
+  g_free (text_before);
+  g_free (text_after);
+}
+
+static void
+latex_command_list_env_description_cb (GSimpleAction *action,
+                                       GVariant      *parameter,
+                                       gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  TeplView *view;
+  gchar *indent;
+  gchar *text_before;
+  gchar *text_after;
+
+  view = tepl_tab_group_get_active_view (TEPL_TAB_GROUP (tepl_window));
+  g_return_if_fail (view != NULL);
+
+  indent = latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
+
+  text_before = g_strdup_printf ("\\begin{description}\n"
+                                 "%s\\item[",
+                                 indent);
+
+  text_after = g_strdup_printf ("] \n\\end{description}");
+
+  latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+
+  g_free (indent);
+  g_free (text_before);
+  g_free (text_after);
+}
+
+static void
+latex_command_list_env_list_cb (GSimpleAction *action,
+                                GVariant      *parameter,
+                                gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  TeplView *view;
+  gchar *indent;
+  gchar *text_after;
+
+  view = tepl_tab_group_get_active_view (TEPL_TAB_GROUP (tepl_window));
+  g_return_if_fail (view != NULL);
+
+  indent = latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
+  text_after = g_strdup_printf ("}{}\n%s\\item \n\\end{list}", indent);
+
+  latexila_latex_commands_insert_text (tepl_window, "\\begin{list}{", text_after, NULL);
+
+  g_free (indent);
+  g_free (text_after);
+}
+
+static void
 latex_command_char_style_cb (GSimpleAction *action,
                              GVariant      *parameter,
                              gpointer       user_data)
@@ -301,9 +402,13 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
 
   const GActionEntry entries[] = {
     { "latex-command-with-braces", latex_command_with_braces_cb, "s" },
+    { "latex-command-without-braces", latex_command_without_braces_cb, "s" },
     { "latex-command-env-simple", latex_command_env_simple_cb, "s" },
     { "latex-command-env-figure", latex_command_env_figure_cb },
     { "latex-command-env-table", latex_command_env_table_cb },
+    { "latex-command-list-env-simple", latex_command_list_env_simple_cb, "s" },
+    { "latex-command-list-env-description", latex_command_list_env_description_cb },
+    { "latex-command-list-env-list", latex_command_list_env_list_cb },
     { "latex-command-char-style", latex_command_char_style_cb, "s" },
   };
 
