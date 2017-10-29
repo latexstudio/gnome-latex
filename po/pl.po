@@ -8,10 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=latexila&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-08-06 15:54+0000\n"
-"PO-Revision-Date: 2017-08-06 21:15+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-29 18:39+0100\n"
+"PO-Revision-Date: 2017-10-29 18:40+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -100,8 +99,8 @@ msgid ""
 "of LaTeXila is to always deal directly with the LaTeX code, while "
 "simplifying as most as possible the writing of this LaTeX code."
 msgstr ""
-"Program LaTeXila to zintegrowane środowisko LaTeX-a dla GNOME. Ideą programu "
-"jest jak największe uproszczenie tworzenia kodu LaTeX-a, z którym użytkownik "
+"LaTeXila to zintegrowane środowisko LaTeX-a dla GNOME. Ideą programu jest "
+"jak największe uproszczenie tworzenia kodu LaTeX-a, z którym użytkownik "
 "programu LaTeXila ma zawsze bezpośredni kontakt."
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:3
@@ -130,11 +129,11 @@ msgstr ""
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:5
 msgid ""
-"LaTeXila has also other features like the spell checking, or the forward and "
-"backward search to switch between the .tex and the PDF."
+"LaTeXila has also other features like the spell-checking, or jumping to the "
+"associated position between the .tex file and the PDF."
 msgstr ""
 "Program LaTeXila ma również inne funkcje, takie jak sprawdzanie pisowni "
-"i szybkie przełączanie pomiędzy plikiem .tex a plikiem PDF."
+"i przechodzenie do powiązanego położenia między plikiem .tex a plikiem PDF."
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:6
 msgid "Completion of LaTeX commands"
@@ -142,7 +141,7 @@ msgstr "Uzupełnianie poleceń LaTeX-a"
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:7
 msgid "Generating the PDF file"
-msgstr "Tworzenie pliku PDF"
+msgstr "Tworzenie plików PDF"
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:8
 msgid "Document structure in the side panel"
@@ -158,7 +157,8 @@ msgstr "Redagowanie dokumentów LaTeX-a"
 
 #: ../data/org.gnome.latexila.desktop.in.in.h:3
 msgid "text;tex;latex;editor;documents;"
-msgstr "tekst;text;tex;latex;edytor;edycja;dokumenty;"
+msgstr ""
+"tekst;text;tex;tech;latex;latech;edytor;edycja;redakcja;redaguj;dokumenty;"
 
 #: ../data/org.gnome.latexila.desktop.in.in.h:4
 msgid "Open a New Window"
@@ -179,10 +179,10 @@ msgid ""
 "the font named in the \"Editor Font\" option will be used instead of the "
 "system font."
 msgstr ""
-"Określa, czy w obszarze redagowania tekstu powinna być używana domyślna "
-"czcionka systemowa o stałej szerokości zamiast czcionki właściwej dla "
-"programu LaTeXila. Jeśli opcja jest wyłączona, używana jest czcionka "
-"określona w opcji „Czcionka edytora”."
+"Określa, czy w obszarze redagowania tekstu ma być używana domyślna czcionka "
+"systemowa o stałej szerokości zamiast czcionki właściwej dla programu "
+"LaTeXila. Jeśli opcja jest wyłączona, używana jest czcionka określona "
+"w opcji „Czcionka edytora”."
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:3
 msgid "Editor Font"
@@ -271,7 +271,7 @@ msgstr "Wstawianie spacji"
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:18
 msgid "Whether LaTeXila should insert spaces instead of tabs."
-msgstr "Określa, czy spacje powinny być wstawiane zamiast znaków tabulacji."
+msgstr "Określa, czy spacje mają być wstawiane zamiast znaków tabulacji."
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:19
 msgid "Forget lack of tabulations"
@@ -288,15 +288,15 @@ msgstr "Wyświetlanie numerów wierszy"
 #: ../data/org.gnome.latexila.gschema.xml.in.h:22
 msgid "Whether LaTeXila should display line numbers in the editing area."
 msgstr ""
-"Określa, czy numery wierszy powinny być wyświetlane w obszarze redagowania."
+"Określa, czy numery wierszy mają być wyświetlane w obszarze redagowania."
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:23
 msgid "Highlight Current Line"
-msgstr "Wyróżnianie bieżącej linii"
+msgstr "Wyróżnianie bieżącego wiersza"
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:24
 msgid "Whether LaTeXila should highlight the current line."
-msgstr "Określa, czy bieżąca linia powinna być wyróżniana."
+msgstr "Określa, czy bieżący wiersz ma być wyróżniany."
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:25
 msgid "Highlight Matching Brackets"
@@ -304,7 +304,7 @@ msgstr "Wyróżnianie pasujących nawiasów"
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:26
 msgid "Whether LaTeXila should highlight matching brackets."
-msgstr "Określa, czy pasujące nawiasy powinny być wyróżniane."
+msgstr "Określa, czy pasujące nawiasy mają być wyróżniane."
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:27
 msgid "Highlight Misspelled Words"
@@ -335,7 +335,7 @@ msgid ""
 "Whether the main toolbar (file open, close, build, ...) should be visible."
 msgstr ""
 "Określa, czy główny pasek narzędziowy (otwieranie pliku, zamykanie, "
-"budowanie…) powinien być wyświetlany."
+"budowanie…) ma być wyświetlany."
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:33
 msgid "Edit toolbar is visible"
@@ -347,7 +347,7 @@ msgid ""
 "visible."
 msgstr ""
 "Określa, czy pasek narzędziowy edycji (pogrubienie, kursywa, rozmiary "
-"czcionki…) powinien być wyświetlany."
+"czcionki…) ma być wyświetlany."
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:35
 msgid "Side panel is Visible"
@@ -357,8 +357,8 @@ msgstr "Wyświetlanie panelu bocznego"
 msgid ""
 "Whether the side panel at the left of editing windows should be visible."
 msgstr ""
-"Określa, czy po lewej stronie okna redagowania tekstu powinien być "
-"wyświetlany panel boczny."
+"Określa, czy po lewej stronie okna redagowania tekstu ma być wyświetlany "
+"panel boczny."
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:37
 msgid "Bottom panel is Visible"
@@ -367,7 +367,7 @@ msgstr "Wyświetlanie panelu dolnego"
 #: ../data/org.gnome.latexila.gschema.xml.in.h:38
 msgid "Whether the bottom panel containing the build view should be visible."
 msgstr ""
-"Określa, czy panel dolny zawierający stan budowania powinien być wyświetlany."
+"Określa, czy panel dolny zawierający stan budowania ma być wyświetlany."
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:39
 msgid "Side panel component"
@@ -411,7 +411,7 @@ msgstr ""
 #: ../data/org.gnome.latexila.gschema.xml.in.h:47
 #: ../src/ui/preferences_dialog.ui.h:22
 msgid "No confirmation when cleaning-up"
-msgstr "Niewymagane potwierdzenie czyszczenia"
+msgstr "Bez potwierdzania czyszczenia"
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:48
 msgid "Automatic clean-up"
@@ -456,9 +456,9 @@ msgstr "Bieżący katalog"
 msgid "URI of the file browser current directory"
 msgstr "Adres URI bieżącego katalogu przeglądarki plików"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:58 ../src/file_browser.vala:361
+#: ../data/org.gnome.latexila.gschema.xml.in.h:58 ../src/file_browser.vala:347
 msgid "Show build files"
-msgstr "Wyświetlanie plików budowania"
+msgstr "Pliki budowania"
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:59
 msgid ""
@@ -467,9 +467,9 @@ msgstr ""
 "Wyświetlanie plików z rozszerzeniem obecnym w „preferences.latex.clean-"
 "extensions”."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:60 ../src/file_browser.vala:369
+#: ../data/org.gnome.latexila.gschema.xml.in.h:60 ../src/file_browser.vala:355
 msgid "Show hidden files"
-msgstr "Wyświetlanie ukrytych plików"
+msgstr "Ukryte pliki"
 
 #: ../data/org.gnome.latexila.gschema.xml.in.h:61
 msgid "Show files beginning with a dot."
@@ -536,7 +536,7 @@ msgstr ""
 "\\closing{Z poważaniem,}\n"
 "\n"
 "%\\cc{Inny odbiorca}\n"
-"%\\ps{PS: PostScriptum}\n"
+"%\\ps{PS PostScriptum}\n"
 "%\\encl{Załączniki}\n"
 "\n"
 "\\end{letter}\n"
@@ -552,12 +552,12 @@ msgstr "Własne narzędzie budowania"
 
 #: ../src/build_tool_dialog.vala:72 ../src/build_tools_preferences.vala:335
 #: ../src/clean_build_files.vala:242 ../src/dialogs.vala:41
-#: ../src/document_tab.vala:226
+#: ../src/document_tab.vala:178
 #: ../src/liblatexila/latexila-templates-dialogs.c:128
 #: ../src/liblatexila/latexila-templates-dialogs.c:238
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:145
-#: ../src/main_window_file.vala:154 ../src/main_window.vala:780
-#: ../src/main_window.vala:876 ../src/preferences_dialog.vala:114
+#: ../src/main_window_file.vala:157 ../src/main_window.vala:758
+#: ../src/main_window.vala:815 ../src/preferences_dialog.vala:114
 #: ../src/project_dialogs.vala:31 ../src/project_dialogs.vala:122
 #: ../src/project_dialogs.vala:276 ../src/project_dialogs.vala:296
 msgid "_Cancel"
@@ -622,7 +622,7 @@ msgstr "Etykieta"
 
 #: ../src/build_tool_dialog.vala:578
 msgid "You can select this arrow and copy/paste it!"
-msgstr "Można zaznaczyć tę strzałkę, a następnie skopiować i wkleić."
+msgstr "Można zaznaczyć tę strzałkę, a następnie ją skopiować i wkleić."
 
 #: ../src/build_tool_dialog.vala:594
 msgid "Description"
@@ -631,7 +631,7 @@ msgstr "Opis"
 #: ../src/build_tool_dialog.vala:600
 msgid "File extensions for which the build tool can be executed."
 msgstr ""
-"Rozszerzenia plików, dla których uruchomione może być narzędzie budowania."
+"Rozszerzenia plików, dla których wykonane może być narzędzie budowania."
 
 #: ../src/build_tool_dialog.vala:601
 msgid "The extensions are separated by spaces."
@@ -673,7 +673,7 @@ msgstr "Zadania"
 
 #: ../src/build_tool_dialog.vala:681
 msgid "List of files to open after executing the build jobs."
-msgstr "Lista plików do otwarcia po dokonanych procesach budowania."
+msgstr "Lista plików do otwarcia po wykonaniu zadań budowania."
 
 #: ../src/build_tool_dialog.vala:682
 msgid "The files are separated by spaces."
@@ -756,12 +756,12 @@ msgstr "Brak propozycji uzupełnienia"
 msgid "Ln %d, Col %d"
 msgstr "Wrsz %d, kol %d"
 
-#: ../src/dialogs.vala:40 ../src/main_window.vala:779
+#: ../src/dialogs.vala:40 ../src/main_window.vala:757
 msgid "Close _without Saving"
 msgstr "Zamknij _bez zapisywania"
 
 #: ../src/dialogs.vala:42 ../src/main_window_file.vala:41
-#: ../src/main_window.vala:785 ../src/main_window.vala:877
+#: ../src/main_window.vala:763 ../src/main_window.vala:816
 msgid "_Save"
 msgstr "_Zapisz"
 
@@ -784,35 +784,27 @@ msgstr ""
 
 #: ../src/document_structure.vala:720
 msgid "The structure item already contains a sub-paragraph."
-msgstr "Element struktury zawiera już podparagraf."
+msgstr "Element struktury zawiera już akapit podrzędny."
 
-#: ../src/document_tab.vala:174
-msgid "Project main file"
-msgstr "Główny plik projektu"
-
-#: ../src/document_tab.vala:176
-msgid "Project main file:"
-msgstr "Główny plik projektu:"
-
-#: ../src/document_tab.vala:195
+#: ../src/document_tab.vala:147
 #, c-format
 msgid "Activate '%s'"
 msgstr "Aktywacja dokumentu „%s”"
 
-#: ../src/document_tab.vala:214
+#: ../src/document_tab.vala:166
 #, c-format
 msgid "The file %s changed on disk."
 msgstr "Plik %s został zmieniony przez inny program."
 
-#: ../src/document_tab.vala:219
+#: ../src/document_tab.vala:171
 msgid "Do you want to drop your changes and reload the file?"
 msgstr "Porzucić zmiany i wczytać plik ponownie?"
 
-#: ../src/document_tab.vala:221
+#: ../src/document_tab.vala:173
 msgid "Do you want to reload the file?"
 msgstr "Wczytać plik ponownie?"
 
-#: ../src/document_tab.vala:225
+#: ../src/document_tab.vala:177
 msgid "_Reload"
 msgstr "_Wczytaj ponownie"
 
@@ -861,7 +853,7 @@ msgid "Do you want to save the file in a safer place?"
 msgstr "Zapisać plik w bezpiecznym miejscu?"
 
 #: ../src/document.vala:494 ../src/main_window_file.vala:44
-#: ../src/main_window.vala:783
+#: ../src/main_window.vala:761
 msgid "Save _As"
 msgstr "Z_apisz jako"
 
@@ -869,17 +861,17 @@ msgstr "Z_apisz jako"
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: ../src/document_view.vala:317
+#: ../src/document_view.vala:310
 msgid "No dictionaries available for the spell checking."
 msgstr "Brak dostępnych słowników do sprawdzania pisowni."
 
 #. Help
-#: ../src/document_view.vala:319 ../src/main_window.vala:63
+#: ../src/document_view.vala:312 ../src/main_window.vala:63
 #: ../src/ui/menus.ui.h:4
 msgid "_Help"
 msgstr "Pomo_c"
 
-#: ../src/document_view.vala:320
+#: ../src/document_view.vala:313
 msgid "_OK"
 msgstr "_OK"
 
@@ -895,28 +887,28 @@ msgstr "Przechodzi do katalogu nadrzędnego"
 msgid "Go to the active document directory"
 msgstr "Przechodzi do katalogu aktywnego dokumentu"
 
-#: ../src/file_browser.vala:303
+#: ../src/file_browser.vala:289
 msgid "Open in a file manager"
 msgstr "Otwórz w menedżerze plików"
 
-#: ../src/file_browser.vala:305
+#: ../src/file_browser.vala:291
 msgid "Open the current directory in a file manager"
 msgstr "Otwiera bieżący katalog w menedżerze plików"
 
-#: ../src/file_browser.vala:327
+#: ../src/file_browser.vala:313
 msgid "Open in a terminal"
 msgstr "Otwórz w terminalu"
 
-#: ../src/file_browser.vala:328
+#: ../src/file_browser.vala:314
 msgid "Open the current directory in a terminal"
 msgstr "Otwiera bieżący katalog w terminalu"
 
-#: ../src/file_browser.vala:417
+#: ../src/file_browser.vala:403
 msgid "File System"
 msgstr "System plików"
 
 #. File browser
-#: ../src/file_browser.vala:536 ../src/main_window.vala:416
+#: ../src/file_browser.vala:522 ../src/main_window.vala:457
 msgid "File Browser"
 msgstr "Przeglądarka plików"
 
@@ -931,15 +923,15 @@ msgstr "Tworzy nowy dokument"
 #: ../src/latexila_app.vala:84
 msgid "Create a new top-level window in an existing instance of LaTeXila"
 msgstr ""
-"Tworzy nowe główne okno w ramach istniejącej instancji programu LaTeXila"
+"Tworzy nowe główne okno w ramach istniejącego wystąpienia programu LaTeXila"
 
 #: ../src/latexila_app.vala:234
 msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
-msgstr "Program LaTeXila to zintegrowane środowisko LaTeX-a dla GNOME"
+msgstr "LaTeXila to zintegrowane środowisko LaTeX-a dla GNOME"
 
-#: ../src/latexila_app.vala:273 ../src/main_window.vala:72
+#: ../src/latexila_app.vala:273 ../src/main_window.vala:71
 msgid "About LaTeXila"
-msgstr "O programie LaTeXila"
+msgstr "O programie"
 
 #: ../src/latexila_app.vala:274
 msgid "translator-credits"
@@ -967,19 +959,19 @@ msgstr "Sekcja"
 
 #: ../src/latex_menu.vala:40 ../src/structure.vala:779
 msgid "Sub-section"
-msgstr "Podsekcja"
+msgstr "Sekcja podrzędna"
 
 #: ../src/latex_menu.vala:42 ../src/structure.vala:780
 msgid "Sub-sub-section"
-msgstr "Podpodsekcja"
+msgstr "Sekcja podrzędna drugiego poziomu"
 
 #: ../src/latex_menu.vala:44 ../src/structure.vala:781
 msgid "Paragraph"
-msgstr "Paragraf"
+msgstr "Akapit"
 
 #: ../src/latex_menu.vala:46 ../src/structure.vala:782
 msgid "Sub-paragraph"
-msgstr "Podparagraf"
+msgstr "Akapit podrzędny"
 
 #. LaTeX: References
 #: ../src/latex_menu.vala:50
@@ -1081,564 +1073,564 @@ msgid "_Characters Sizes"
 msgstr "Rozmiar _czcionki"
 
 #. LaTeX: font styles
-#: ../src/latex_menu.vala:130
+#: ../src/latex_menu.vala:120
 msgid "_Font Styles"
 msgstr "_Styl czcionki"
 
-#: ../src/latex_menu.vala:132
+#: ../src/latex_menu.vala:122
 msgid "Bold - \\textbf"
 msgstr "Pogrubienie — \\textbf"
 
-#: ../src/latex_menu.vala:134
+#: ../src/latex_menu.vala:124
 msgid "Italic - \\textit"
 msgstr "Kursywa — \\textit"
 
-#: ../src/latex_menu.vala:136
+#: ../src/latex_menu.vala:126
 msgid "Typewriter - \\texttt"
 msgstr "Maszynopis — \\texttt"
 
-#: ../src/latex_menu.vala:138
+#: ../src/latex_menu.vala:128
 msgid "Slanted - \\textsl"
 msgstr "Pochylenie — \\textsl"
 
-#: ../src/latex_menu.vala:140
+#: ../src/latex_menu.vala:130
 msgid "Small Capitals - \\textsc"
 msgstr "Kapitaliki — \\textsc"
 
-#: ../src/latex_menu.vala:142
+#: ../src/latex_menu.vala:132
 msgid "Sans Serif - \\textsf"
 msgstr "Czcionka bezszeryfowa — \\textsf"
 
-#: ../src/latex_menu.vala:144
+#: ../src/latex_menu.vala:134
 msgid "Emphasized - \\emph"
 msgstr "Wyróżnienie — \\emph"
 
-#: ../src/latex_menu.vala:146
+#: ../src/latex_menu.vala:136
 msgid "Underline - \\underline"
 msgstr "Podkreślenie — \\underline"
 
-#: ../src/latex_menu.vala:148
+#: ../src/latex_menu.vala:138
 msgid "_Font Family"
 msgstr "_Krój czcionki"
 
-#: ../src/latex_menu.vala:150
+#: ../src/latex_menu.vala:140
 msgid "Roman - \\rmfamily"
 msgstr "Czcionka szeryfowa — \\rmfamily"
 
-#: ../src/latex_menu.vala:152
+#: ../src/latex_menu.vala:142
 msgid "Sans Serif - \\sffamily"
 msgstr "Czcionka bezszeryfowa — \\sffamily"
 
-#: ../src/latex_menu.vala:154
+#: ../src/latex_menu.vala:144
 msgid "Monospace - \\ttfamily"
 msgstr "Czcionka o stałej szerokości — \\ttfamily"
 
-#: ../src/latex_menu.vala:156
+#: ../src/latex_menu.vala:146
 msgid "F_ont Series"
 msgstr "Seria czci_onki"
 
-#: ../src/latex_menu.vala:158
+#: ../src/latex_menu.vala:148
 msgid "Medium - \\mdseries"
 msgstr "Zwykła grubość — \\mdseries"
 
-#: ../src/latex_menu.vala:160
+#: ../src/latex_menu.vala:150
 msgid "Bold - \\bfseries"
 msgstr "Pogrubienie — \\bfseries"
 
-#: ../src/latex_menu.vala:162
+#: ../src/latex_menu.vala:152
 msgid "Fo_nt Shape"
 msgstr "K_ształt czcionki"
 
-#: ../src/latex_menu.vala:164
+#: ../src/latex_menu.vala:154
 msgid "Upright - \\upshape"
 msgstr "Prosta — \\upshape"
 
-#: ../src/latex_menu.vala:166
+#: ../src/latex_menu.vala:156
 msgid "Italic - \\itshape"
 msgstr "Kursywa — \\itshape"
 
-#: ../src/latex_menu.vala:168
+#: ../src/latex_menu.vala:158
 msgid "Slanted - \\slshape"
 msgstr "Pochylona — \\slshape"
 
-#: ../src/latex_menu.vala:170
+#: ../src/latex_menu.vala:160
 msgid "Small Capitals - \\scshape"
 msgstr "Kapitaliki — \\scshape"
 
 #. LaTeX: Tabular
-#: ../src/latex_menu.vala:174
+#: ../src/latex_menu.vala:164
 msgid "_Tabular"
 msgstr "_Tabele"
 
-#: ../src/latex_menu.vala:176
+#: ../src/latex_menu.vala:166
 msgid "Tabbing - \\begin{tabbing}"
 msgstr "Tabulatory — \\begin{tabbing}"
 
-#: ../src/latex_menu.vala:178
+#: ../src/latex_menu.vala:168
 msgid "Tabular - \\begin{tabular}"
 msgstr "Tabela — \\begin{tabular}"
 
-#: ../src/latex_menu.vala:180
+#: ../src/latex_menu.vala:170
 msgid "Multicolumn - \\multicolumn"
 msgstr "Łączenie komórek w wierszu — \\multicolumn"
 
-#: ../src/latex_menu.vala:182
+#: ../src/latex_menu.vala:172
 msgid "Horizontal line - \\hline"
 msgstr "Linia pozioma — \\hline"
 
-#: ../src/latex_menu.vala:184
+#: ../src/latex_menu.vala:174
 msgid "Vertical line - \\vline"
 msgstr "Linia pionowa — \\vline"
 
-#: ../src/latex_menu.vala:186
+#: ../src/latex_menu.vala:176
 msgid "Horizontal line (columns specified) - \\cline"
 msgstr "Linia pozioma (określone kolumny) — \\cline"
 
-#: ../src/latex_menu.vala:192
+#: ../src/latex_menu.vala:182
 msgid "Frame - \\begin{frame}"
 msgstr "Ramka — \\begin{frame}"
 
-#: ../src/latex_menu.vala:194
+#: ../src/latex_menu.vala:184
 msgid "Block - \\begin{block}"
 msgstr "Blok — \\begin{block}"
 
-#: ../src/latex_menu.vala:196
+#: ../src/latex_menu.vala:186
 msgid "Two columns - \\begin{columns}"
 msgstr "Dwie kolumny — \\begin{columns}"
 
 #. LaTeX: Spacing
-#: ../src/latex_menu.vala:200
+#: ../src/latex_menu.vala:190
 msgid "_Spacing"
 msgstr "Od_stęp między wierszami"
 
-#: ../src/latex_menu.vala:201
+#: ../src/latex_menu.vala:191
 msgid "New _Line"
 msgstr "Nowy _wiersz"
 
-#: ../src/latex_menu.vala:202
+#: ../src/latex_menu.vala:192
 msgid "New Line - \\\\"
 msgstr "Nowy wiersz — \\\\"
 
-#: ../src/latex_menu.vala:204
+#: ../src/latex_menu.vala:194
 msgid "New page - \\newpage"
 msgstr "Nowa strona — \\newpage"
 
-#: ../src/latex_menu.vala:206
+#: ../src/latex_menu.vala:196
 msgid "Line break - \\linebreak"
 msgstr "Łamanie wiersza — \\linebreak"
 
-#: ../src/latex_menu.vala:208
+#: ../src/latex_menu.vala:198
 msgid "Page break - \\pagebreak"
 msgstr "Łamanie strony — \\pagebreak"
 
-#: ../src/latex_menu.vala:210
+#: ../src/latex_menu.vala:200
 msgid "Big skip - \\bigskip"
 msgstr "Duży odstęp — \\bigskip"
 
-#: ../src/latex_menu.vala:212
+#: ../src/latex_menu.vala:202
 msgid "Medium skip - \\medskip"
 msgstr "Średni odstęp — \\medskip"
 
-#: ../src/latex_menu.vala:214
+#: ../src/latex_menu.vala:204
 msgid "Horizontal space - \\hspace"
 msgstr "Poziomy odstęp — \\hspace"
 
-#: ../src/latex_menu.vala:216
+#: ../src/latex_menu.vala:206
 msgid "Vertical space - \\vspace"
 msgstr "Pionowy odstęp — \\vspace"
 
-#: ../src/latex_menu.vala:218
+#: ../src/latex_menu.vala:208
 msgid "No paragraph indentation - \\noindent"
 msgstr "Brak wcięcia akapitu — \\noindent"
 
 #. LaTeX: International accents
-#: ../src/latex_menu.vala:222
+#: ../src/latex_menu.vala:212
 msgid "International _Accents"
 msgstr "_Akcenty międzynarodowe"
 
-#: ../src/latex_menu.vala:223
+#: ../src/latex_menu.vala:213
 msgid "Acute accent - \\'"
 msgstr "Akut — \\'"
 
-#: ../src/latex_menu.vala:224
+#: ../src/latex_menu.vala:214
 msgid "Grave accent - \\`"
 msgstr "Grawis — \\`"
 
-#: ../src/latex_menu.vala:225
+#: ../src/latex_menu.vala:215
 msgid "Circumflex accent - \\^"
 msgstr "Cyrkumfleks — \\^"
 
-#: ../src/latex_menu.vala:226
+#: ../src/latex_menu.vala:216
 msgid "Trema - \\\""
 msgstr "Diereza/umlaut — \\\""
 
-#: ../src/latex_menu.vala:227
+#: ../src/latex_menu.vala:217
 msgid "Tilde - \\~"
 msgstr "Tylda — \\~"
 
-#: ../src/latex_menu.vala:228
+#: ../src/latex_menu.vala:218
 msgid "Macron - \\="
 msgstr "Makron — \\="
 
-#: ../src/latex_menu.vala:229
+#: ../src/latex_menu.vala:219
 msgid "Dot above - \\."
 msgstr "Kropka górna — \\."
 
-#: ../src/latex_menu.vala:230
+#: ../src/latex_menu.vala:220
 msgid "Caron - \\v"
 msgstr "Haczek — \\v"
 
-#: ../src/latex_menu.vala:231
+#: ../src/latex_menu.vala:221
 msgid "Breve - \\u"
 msgstr "Brewis — \\u"
 
-#: ../src/latex_menu.vala:233
+#: ../src/latex_menu.vala:223
 msgid "Double acute accent - \\H"
 msgstr "Podwójny akut — \\H"
 
-#: ../src/latex_menu.vala:234
+#: ../src/latex_menu.vala:224
 msgid "Cedilla - \\c"
 msgstr "Cedylla — \\c"
 
-#: ../src/latex_menu.vala:235
+#: ../src/latex_menu.vala:225
 msgid "Ogonek - \\k"
 msgstr "Ogonek — \\k"
 
-#: ../src/latex_menu.vala:236
+#: ../src/latex_menu.vala:226
 msgid "Dot below - \\d"
 msgstr "Kropka dolna — \\d"
 
-#: ../src/latex_menu.vala:237
+#: ../src/latex_menu.vala:227
 msgid "Macron below - \\b"
 msgstr "Makron dolny — \\b"
 
-#: ../src/latex_menu.vala:238
+#: ../src/latex_menu.vala:228
 msgid "Ring - \\r"
 msgstr "Kółko — \\r"
 
-#: ../src/latex_menu.vala:239
+#: ../src/latex_menu.vala:229
 msgid "Tie - \\t"
 msgstr "Podwójny odwrócony brewis dostawny górny — \\t"
 
 #. LaTeX: Others
-#: ../src/latex_menu.vala:243
+#: ../src/latex_menu.vala:233
 msgid "_Misc"
 msgstr "Różn_e"
 
-#: ../src/latex_menu.vala:245
+#: ../src/latex_menu.vala:235
 msgid "Document class - \\documentclass"
 msgstr "Rodzaj dokumentu — \\documentclass"
 
-#: ../src/latex_menu.vala:247
+#: ../src/latex_menu.vala:237
 msgid "Use package - \\usepackage"
 msgstr "Użycie pakietu — \\usepackage"
 
-#: ../src/latex_menu.vala:248
+#: ../src/latex_menu.vala:238
 msgid "_AMS packages"
 msgstr "Pakiety _AMS"
 
-#: ../src/latex_menu.vala:249
+#: ../src/latex_menu.vala:239
 msgid "AMS packages"
 msgstr "Pakiety AMS"
 
-#: ../src/latex_menu.vala:250
+#: ../src/latex_menu.vala:240
 msgid "Author - \\author"
 msgstr "Autor — \\author"
 
-#: ../src/latex_menu.vala:251
+#: ../src/latex_menu.vala:241
 msgid "Title - \\title"
 msgstr "Tytuł — \\title"
 
-#: ../src/latex_menu.vala:253
+#: ../src/latex_menu.vala:243
 msgid "Content of the document - \\begin{document}"
 msgstr "Treść dokumentu — \\begin{document}"
 
-#: ../src/latex_menu.vala:255
+#: ../src/latex_menu.vala:245
 msgid "Make title - \\maketitle"
 msgstr "Utworzenie strony tytułowej — \\maketitle"
 
-#: ../src/latex_menu.vala:257
+#: ../src/latex_menu.vala:247
 msgid "Table of contents - \\tableofcontents"
 msgstr "Spis treści — \\tableofcontents"
 
-#: ../src/latex_menu.vala:259
+#: ../src/latex_menu.vala:249
 msgid "Abstract - \\begin{abstract}"
 msgstr "Streszczenie — \\begin{abstract}"
 
-#: ../src/latex_menu.vala:261
+#: ../src/latex_menu.vala:251
 msgid "Include an image (graphicx package) - \\includegraphics"
 msgstr "Dołączenie obrazu (pakiet graphicx) — \\includegraphics"
 
-#: ../src/latex_menu.vala:264
+#: ../src/latex_menu.vala:254
 msgid "Include a file - \\input"
 msgstr "Dołączenie pliku — \\input"
 
 #. Math
-#: ../src/latex_menu.vala:268
+#: ../src/latex_menu.vala:258
 msgid "_Math"
 msgstr "_Matematyka"
 
 #. Math Environments
-#: ../src/latex_menu.vala:272
+#: ../src/latex_menu.vala:262
 msgid "_Math Environments"
 msgstr "Środowiska _matematyczne"
 
-#: ../src/latex_menu.vala:273
+#: ../src/latex_menu.vala:263
 msgid "_Mathematical Environment - $...$"
 msgstr "Środowisko _matematyczne — $...$"
 
-#: ../src/latex_menu.vala:274
+#: ../src/latex_menu.vala:264
 msgid "Mathematical Environment - $...$"
 msgstr "Środowisko matematyczne — $...$"
 
-#: ../src/latex_menu.vala:275
+#: ../src/latex_menu.vala:265
 msgid "_Centered Formula - \\[...\\]"
 msgstr "_Wyśrodkowany wzór — \\[...\\]"
 
-#: ../src/latex_menu.vala:276
+#: ../src/latex_menu.vala:266
 msgid "Centered Formula - \\[...\\]"
 msgstr "Wyśrodkowany wzór — \\[...\\]"
 
-#: ../src/latex_menu.vala:278
+#: ../src/latex_menu.vala:268
 msgid "_Numbered Equation - \\begin{equation}"
 msgstr "_Numerowane równanie — \\begin{equation}"
 
-#: ../src/latex_menu.vala:279
+#: ../src/latex_menu.vala:269
 msgid "Numbered Equation - \\begin{equation}"
 msgstr "Numerowane równanie — \\begin{equation}"
 
-#: ../src/latex_menu.vala:280
+#: ../src/latex_menu.vala:270
 msgid "_Array of Equations - \\begin{align*}"
 msgstr "_Szereg równań — \\begin{align*}"
 
-#: ../src/latex_menu.vala:281
+#: ../src/latex_menu.vala:271
 msgid "Array of Equations - \\begin{align*}"
 msgstr "Szereg równań — \\begin{align*}"
 
-#: ../src/latex_menu.vala:283
+#: ../src/latex_menu.vala:273
 msgid "Numbered Array of _Equations - \\begin{align}"
 msgstr "Num_erowany szereg równań — \\begin{align*}"
 
-#: ../src/latex_menu.vala:284
+#: ../src/latex_menu.vala:274
 msgid "Numbered Array of Equations - \\begin{align}"
 msgstr "Numerowany szereg równań — \\begin{align*}"
 
-#: ../src/latex_menu.vala:287
+#: ../src/latex_menu.vala:277
 msgid "_Superscript - ^{}"
 msgstr "Indeks gó_rny — ^{}"
 
-#: ../src/latex_menu.vala:288
+#: ../src/latex_menu.vala:278
 msgid "Superscript - ^{}"
 msgstr "Indeks górny — ^{}"
 
-#: ../src/latex_menu.vala:289
+#: ../src/latex_menu.vala:279
 msgid "Su_bscript - __{}"
 msgstr "Indeks _dolny — __{}"
 
-#: ../src/latex_menu.vala:290
+#: ../src/latex_menu.vala:280
 msgid "Subscript - _{}"
 msgstr "Indeks dolny — _{}"
 
-#: ../src/latex_menu.vala:291
+#: ../src/latex_menu.vala:281
 msgid "_Fraction - \\frac{}{}"
 msgstr "_Ułamek — \\frac{}{}"
 
-#: ../src/latex_menu.vala:292
+#: ../src/latex_menu.vala:282
 msgid "Fraction - \\frac{}{}"
 msgstr "Ułamek — \\frac{}{}"
 
-#: ../src/latex_menu.vala:293
+#: ../src/latex_menu.vala:283
 msgid "Square _Root - \\sqrt{}"
 msgstr "_Pierwiastek kwadratowy — \\sqrt{}"
 
-#: ../src/latex_menu.vala:294
+#: ../src/latex_menu.vala:284
 msgid "Square Root - \\sqrt{}"
 msgstr "Pierwiastek kwadratowy — \\sqrt{}"
 
-#: ../src/latex_menu.vala:295
+#: ../src/latex_menu.vala:285
 msgid "_N-th Root - \\sqrt[]{}"
 msgstr "Pierwiastek _n-tego stopnia — \\sqrt[]{}"
 
-#: ../src/latex_menu.vala:296
+#: ../src/latex_menu.vala:286
 msgid "N-th Root - \\sqrt[]{}"
 msgstr "Pierwiastek n-tego stopnia — \\sqrt[]{}"
 
 #. Math functions
-#: ../src/latex_menu.vala:300
+#: ../src/latex_menu.vala:290
 msgid "Math _Functions"
 msgstr "_Funkcje matematyczne"
 
 #. Math Font Styles
-#: ../src/latex_menu.vala:334
+#: ../src/latex_menu.vala:324
 msgid "Math Font _Styles"
 msgstr "_Style czcionki matematycznej"
 
-#: ../src/latex_menu.vala:336
+#: ../src/latex_menu.vala:326
 msgid "Roman - \\mathrm"
 msgstr "Czcionka szeryfowa — \\mathrm"
 
-#: ../src/latex_menu.vala:338
+#: ../src/latex_menu.vala:328
 msgid "Italic - \\mathit"
 msgstr "Kursywa — \\mathit"
 
-#: ../src/latex_menu.vala:340
+#: ../src/latex_menu.vala:330
 msgid "Bold - \\mathbf"
 msgstr "Pogrubienie — \\mathbf"
 
-#: ../src/latex_menu.vala:342
+#: ../src/latex_menu.vala:332
 msgid "Sans Serif - \\mathsf"
 msgstr "Czcionka bezszeryfowa — \\mathsf"
 
-#: ../src/latex_menu.vala:344
+#: ../src/latex_menu.vala:334
 msgid "Typewriter - \\mathtt"
 msgstr "Maszynopis — \\mathtt"
 
-#: ../src/latex_menu.vala:346
+#: ../src/latex_menu.vala:336
 msgid "Calligraphic - \\mathcal"
 msgstr "Kaligrafia — \\mathcal"
 
-#: ../src/latex_menu.vala:348
+#: ../src/latex_menu.vala:338
 msgid "Blackboard (uppercase only)  - \\mathbb (amsfonts package)"
 msgstr "Czcionka tablicowa (tylko wielkie litery) — \\mathbb (pakiet amsfonts)"
 
-#: ../src/latex_menu.vala:351
+#: ../src/latex_menu.vala:341
 msgid "Euler Fraktur - \\mathfrak (amsfonts package)"
 msgstr "Czcionka gotycka — \\mathfrak (pakiet amsfonts)"
 
 #. Math Accents
-#: ../src/latex_menu.vala:356
+#: ../src/latex_menu.vala:346
 msgid "Math _Accents"
 msgstr "_Akcenty matematyczne"
 
 #. Math Spaces
-#: ../src/latex_menu.vala:377
+#: ../src/latex_menu.vala:367
 msgid "Math _Spaces"
 msgstr "O_dstępy matematyczne"
 
-#: ../src/latex_menu.vala:378
+#: ../src/latex_menu.vala:368
 msgid "_Small"
 msgstr "_Małe"
 
-#: ../src/latex_menu.vala:379
+#: ../src/latex_menu.vala:369
 msgid "Small - \\,"
 msgstr "Małe — \\,"
 
-#: ../src/latex_menu.vala:380
+#: ../src/latex_menu.vala:370
 msgid "_Medium"
 msgstr "Ś_rednie"
 
-#: ../src/latex_menu.vala:381
+#: ../src/latex_menu.vala:371
 msgid "Medium - \\:"
 msgstr "Średnie — \\:"
 
-#: ../src/latex_menu.vala:382
+#: ../src/latex_menu.vala:372
 msgid "_Large"
 msgstr "_Duże"
 
-#: ../src/latex_menu.vala:383
+#: ../src/latex_menu.vala:373
 msgid "Large - \\;"
 msgstr "Duże — \\;"
 
 #. Math: Left Delimiters
-#: ../src/latex_menu.vala:389
+#: ../src/latex_menu.vala:379
 msgid "_Left Delimiters"
 msgstr "_Lewe ograniczniki"
 
-#: ../src/latex_menu.vala:390
+#: ../src/latex_menu.vala:380
 msgid "left ("
 msgstr "lewy ("
 
-#: ../src/latex_menu.vala:392
+#: ../src/latex_menu.vala:382
 msgid "left ["
 msgstr "lewy ["
 
-#: ../src/latex_menu.vala:394
+#: ../src/latex_menu.vala:384
 msgid "left { "
 msgstr "lewy { "
 
-#: ../src/latex_menu.vala:396
+#: ../src/latex_menu.vala:386
 msgid "left <"
 msgstr "lewy <"
 
-#: ../src/latex_menu.vala:398
+#: ../src/latex_menu.vala:388
 msgid "left )"
 msgstr "lewy )"
 
-#: ../src/latex_menu.vala:400
+#: ../src/latex_menu.vala:390
 msgid "left ]"
 msgstr "lewy ]"
 
-#: ../src/latex_menu.vala:402
+#: ../src/latex_menu.vala:392
 msgid "left  }"
 msgstr "lewy }"
 
-#: ../src/latex_menu.vala:404
+#: ../src/latex_menu.vala:394
 msgid "left >"
 msgstr "lewy >"
 
-#: ../src/latex_menu.vala:406
+#: ../src/latex_menu.vala:396
 msgid "left ."
 msgstr "lewy ."
 
 #. Math: Right Delimiters
-#: ../src/latex_menu.vala:411
+#: ../src/latex_menu.vala:401
 msgid "Right _Delimiters"
 msgstr "_Prawe ograniczniki"
 
-#: ../src/latex_menu.vala:412
+#: ../src/latex_menu.vala:402
 msgid "right )"
 msgstr "prawy )"
 
-#: ../src/latex_menu.vala:414
+#: ../src/latex_menu.vala:404
 msgid "right ]"
 msgstr "prawy ]"
 
-#: ../src/latex_menu.vala:416
+#: ../src/latex_menu.vala:406
 msgid "right  }"
 msgstr "prawy }"
 
-#: ../src/latex_menu.vala:418
+#: ../src/latex_menu.vala:408
 msgid "right >"
 msgstr "prawy >"
 
-#: ../src/latex_menu.vala:420
+#: ../src/latex_menu.vala:410
 msgid "right ("
 msgstr "prawy ("
 
-#: ../src/latex_menu.vala:422
+#: ../src/latex_menu.vala:412
 msgid "right ["
 msgstr "prawy ["
 
-#: ../src/latex_menu.vala:424
+#: ../src/latex_menu.vala:414
 msgid "right { "
 msgstr "prawy { "
 
-#: ../src/latex_menu.vala:426
+#: ../src/latex_menu.vala:416
 msgid "right <"
 msgstr "prawy <"
 
-#: ../src/latex_menu.vala:428
+#: ../src/latex_menu.vala:418
 msgid "right ."
 msgstr "prawy ."
 
 #. menus under toolitems
-#: ../src/latex_menu.vala:443
+#: ../src/latex_menu.vala:433
 msgid "Sectioning"
 msgstr "Podział dokumentu"
 
-#: ../src/latex_menu.vala:446
+#: ../src/latex_menu.vala:436
 msgid "Characters Sizes"
 msgstr "Rozmiar czcionki"
 
-#: ../src/latex_menu.vala:449
+#: ../src/latex_menu.vala:439
 msgid "References"
 msgstr "Odniesienia"
 
-#: ../src/latex_menu.vala:452
+#: ../src/latex_menu.vala:442
 msgid "Presentation Environments"
 msgstr "Środowiska prezentacji"
 
-#: ../src/latex_menu.vala:455
+#: ../src/latex_menu.vala:445
 msgid "Math Environments"
 msgstr "Środowiska matematyczne"
 
@@ -1801,11 +1793,11 @@ msgstr "Zarządzaj _narzędziami budowania"
 
 #: ../src/main_window_build_tools.vala:41
 msgid "Manage Build Tools"
-msgstr "Zarządzanie narzędziami budowania"
+msgstr "Zarządza narzędziami budowania"
 
 #: ../src/main_window_build_tools.vala:46
 msgid "Show _Details"
-msgstr "Wyświetlanie _szczegółów"
+msgstr "_Szczegóły"
 
 #: ../src/main_window_build_tools.vala:47
 msgid "Show Details"
@@ -1813,7 +1805,7 @@ msgstr "Wyświetla szczegóły"
 
 #: ../src/main_window_build_tools.vala:49
 msgid "Show _Warnings"
-msgstr "Wyświetlanie os_trzeżeń"
+msgstr "Os_trzeżenia"
 
 #: ../src/main_window_build_tools.vala:50
 msgid "Show Warnings"
@@ -1821,7 +1813,7 @@ msgstr "Wyświetla ostrzeżenia"
 
 #: ../src/main_window_build_tools.vala:52
 msgid "Show _Bad Boxes"
-msgstr "Wyświetl _błędne pudełka"
+msgstr "_Błędne pudełka"
 
 #: ../src/main_window_build_tools.vala:53
 msgid "Show Bad Boxes"
@@ -1881,7 +1873,7 @@ msgstr "_Cofnij"
 
 #: ../src/main_window_edit.vala:33
 msgid "Undo the last action"
-msgstr "Cofa ostatnią czynność"
+msgstr "Cofa ostatnie działanie"
 
 #: ../src/main_window_edit.vala:35
 msgid "_Redo"
@@ -1889,7 +1881,7 @@ msgstr "P_onów"
 
 #: ../src/main_window_edit.vala:36
 msgid "Redo the last undone action"
-msgstr "Ponawia ostatnio cofniętą czynność"
+msgstr "Ponawia ostatnio cofnięte działanie"
 
 #: ../src/main_window_edit.vala:38 ../src/main_window_structure.vala:32
 msgid "Cu_t"
@@ -1977,7 +1969,7 @@ msgstr "_Preferencje"
 
 #: ../src/main_window_edit.vala:75
 msgid "Configure the application"
-msgstr "Konfiguracja programu"
+msgstr "Konfiguruje program"
 
 #: ../src/main_window_file.vala:30
 msgid "_File"
@@ -1995,11 +1987,11 @@ msgstr "Nowe _okno"
 msgid "Create a new window"
 msgstr "Tworzy nowe okno"
 
-#: ../src/main_window_file.vala:38 ../src/main_window_file.vala:155
+#: ../src/main_window_file.vala:38 ../src/main_window_file.vala:158
 msgid "_Open"
 msgstr "_Otwórz"
 
-#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:86
+#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:90
 msgid "Open a file"
 msgstr "Otwiera plik"
 
@@ -2038,27 +2030,27 @@ msgstr "Zamyka bieżący plik"
 #. recent documents
 #: ../src/main_window_file.vala:69
 msgid "Open _Recent"
-msgstr "Otwórz _ostatni"
+msgstr "Otwórz _ostatnio używane"
 
 #: ../src/main_window_file.vala:70
 msgid "Open recently used files"
 msgstr "Otwiera ostatnio używane pliki"
 
-#: ../src/main_window_file.vala:87
+#: ../src/main_window_file.vala:91
 msgid "Open a recently used file"
 msgstr "Otwiera ostatnio używany plik"
 
-#: ../src/main_window_file.vala:151
+#: ../src/main_window_file.vala:154
 msgid "Open Files"
 msgstr "Otwieranie plików"
 
 #. Filter: by default show only .tex and .bib files
-#: ../src/main_window_file.vala:174
+#: ../src/main_window_file.vala:177
 msgid "All LaTeX Files"
 msgstr "Wszystkie pliki LaTeX-a"
 
 #. All files filter
-#: ../src/main_window_file.vala:181
+#: ../src/main_window_file.vala:184
 msgid "All Files"
 msgstr "Wszystkie pliki"
 
@@ -2190,7 +2182,7 @@ msgstr "_Znajdź"
 
 #: ../src/main_window.vala:43
 msgid "Search for text"
-msgstr "Wyszukiwanie tekstu"
+msgstr "Wyszukuje tekst"
 
 #: ../src/main_window.vala:44
 msgid "Find and _Replace"
@@ -2198,7 +2190,7 @@ msgstr "Z_najdź i zastąp"
 
 #: ../src/main_window.vala:45
 msgid "Search for and replace text"
-msgstr "Wyszukiwanie i zamiana tekstu"
+msgstr "Wyszukuje i zamienia tekst"
 
 #: ../src/main_window.vala:46
 msgid "_Go to Line..."
@@ -2218,12 +2210,12 @@ msgid ""
 "+click, which works in both directions."
 msgstr ""
 "Przechodzi do powiązanego położenia w pliku PDF. Inny skrót: Ctrl"
-"+kliknięcie, co działa w obu kierunkach."
+"+kliknięcie, który działa w obu kierunkach."
 
 #. Projects
 #: ../src/main_window.vala:53
 msgid "_Projects"
-msgstr "_Projekt"
+msgstr "_Projekty"
 
 #: ../src/main_window.vala:54
 msgid "_New Project"
@@ -2235,11 +2227,11 @@ msgstr "Tworzy nowy projekt"
 
 #: ../src/main_window.vala:56
 msgid "_Configure Current Project"
-msgstr "_Konfiguruj bieżący projekt"
+msgstr "S_konfiguruj bieżący projekt"
 
 #: ../src/main_window.vala:57
 msgid "Change the main file of the current project"
-msgstr "Zmiana głównego pliku bieżącego projektu"
+msgstr "Zmienia główny plik bieżącego projektu"
 
 #: ../src/main_window.vala:59
 msgid "_Manage Projects"
@@ -2265,83 +2257,79 @@ msgstr "Materiały _LaTeX-a"
 msgid "The Kile LaTeX Reference"
 msgstr "Materiały LaTeX-a programu Kile"
 
-#: ../src/main_window.vala:71 ../src/ui/menus.ui.h:5
+#: ../src/main_window.vala:70 ../src/ui/menus.ui.h:5
 msgid "_About"
 msgstr "_O programie"
 
-#: ../src/main_window.vala:77
+#: ../src/main_window.vala:76
 msgid "_Main Toolbar"
 msgstr "_Główny pasek narzędziowy"
 
-#: ../src/main_window.vala:78
+#: ../src/main_window.vala:77
 msgid "Show or hide the main toolbar"
 msgstr "Wyświetla lub ukrywa główny pasek narzędziowy"
 
 #. Translators: "Edit" here is an adjective.
-#: ../src/main_window.vala:80
+#: ../src/main_window.vala:79
 msgid "_Edit Toolbar"
 msgstr "Pasek narzędziowy _edycji"
 
-#: ../src/main_window.vala:81
+#: ../src/main_window.vala:80
 msgid "Show or hide the edit toolbar"
 msgstr "Wyświetla lub ukrywa pasek narzędziowy edycji"
 
-#: ../src/main_window.vala:82
+#: ../src/main_window.vala:81
 msgid "_Side panel"
 msgstr "Panel bo_czny"
 
-#: ../src/main_window.vala:83
+#: ../src/main_window.vala:82
 msgid "Show or hide the side panel"
 msgstr "Wyświetla lub ukrywa panel boczny"
 
-#: ../src/main_window.vala:84
+#: ../src/main_window.vala:83
 msgid "_Bottom panel"
 msgstr "Panel _dolny"
 
-#: ../src/main_window.vala:85
+#: ../src/main_window.vala:84
 msgid "Show or hide the bottom panel"
 msgstr "Wyświetla lub ukrywa panel dolny"
 
 #. Symbols
-#: ../src/main_window.vala:412
+#: ../src/main_window.vala:453
 msgid "Symbols"
 msgstr "Symbole"
 
-#: ../src/main_window.vala:421
+#: ../src/main_window.vala:462
 msgid "Structure"
 msgstr "Struktura"
 
-#: ../src/main_window.vala:656
+#: ../src/main_window.vala:655
 #, c-format
 msgid "This file (%s) is already opened in another LaTeXila window."
 msgstr "Ten plik (%s) jest już otwarty w innym oknie programu."
 
-#: ../src/main_window.vala:658
+#: ../src/main_window.vala:657
 msgid ""
 "LaTeXila opened this instance of the file in a non-editable way. Do you want "
 "to edit it anyway?"
 msgstr ""
-"Program LaTeXila otworzył tę instancję pliku w formie niemożliwej do "
+"Program LaTeXila otworzył to wystąpienie pliku w formie niemożliwej do "
 "modyfikowania. Modyfikować go mimo to?"
 
-#: ../src/main_window.vala:662
+#: ../src/main_window.vala:661
 msgid "Edit Anyway"
 msgstr "Modyfikuj mimo to"
 
-#: ../src/main_window.vala:663
+#: ../src/main_window.vala:662
 msgid "Don't Edit"
 msgstr "Nie modyfikuj"
 
-#: ../src/main_window.vala:776
+#: ../src/main_window.vala:754
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
 msgstr "Zapisać zmiany w dokumencie „%s” przed zamknięciem?"
 
-#: ../src/main_window.vala:856
-msgid "Read-Only"
-msgstr "Tylko do odczytu"
-
-#: ../src/main_window.vala:874
+#: ../src/main_window.vala:813
 msgid "Save File"
 msgstr "Zapisywanie pliku"
 
@@ -2365,21 +2353,21 @@ msgstr "Na pewno przywrócić wszystkie preferencje?"
 #: ../src/preferences_dialog.vala:189
 msgid "minute"
 msgid_plural "minutes"
-msgstr[0] "minuta"
+msgstr[0] "minutę"
 msgstr[1] "minuty"
 msgstr[2] "minut"
 
 #: ../src/preferences_dialog.vala:289
 msgid "character"
 msgid_plural "characters"
-msgstr[0] "znak"
-msgstr[1] "znaki"
-msgstr[2] "znaków"
+msgstr[0] "znaku"
+msgstr[1] "znakach"
+msgstr[2] "znakach"
 
 #: ../src/preferences_dialog.vala:344
 #, c-format
 msgid "Use the system fixed width font (%s)"
-msgstr "Użycie systemowej czcionki o stałej szerokości (%s)"
+msgstr "Systemowa czcionka o stałej szerokości (%s)"
 
 #: ../src/project_dialogs.vala:28
 msgid "New Project"
@@ -2457,36 +2445,36 @@ msgstr "Zastąp"
 msgid "Replace All"
 msgstr "Zastąpienie wszystkiego"
 
-#: ../src/search.vala:193
+#: ../src/search.vala:194
 msgid "All"
 msgstr "Wszystko"
 
-#: ../src/search.vala:307
+#: ../src/search.vala:308
 msgid "Search for"
 msgstr "Wyszukiwanie"
 
-#: ../src/search.vala:318
+#: ../src/search.vala:319
 msgid "Case sensitive"
 msgstr "Rozróżnianie małych i wielkich liter"
 
-#: ../src/search.vala:321
+#: ../src/search.vala:322
 msgid "Entire words only"
 msgstr "Tylko całe wyrazy"
 
-#: ../src/search.vala:467
+#: ../src/search.vala:468
 msgid "Not found"
 msgstr "Nie odnaleziono"
 
 #. Translators: the first %d is the position of the current search occurrence,
 #. * and the second %d is the total number of search occurrences.
 #.
-#: ../src/search.vala:484
+#: ../src/search.vala:485
 #, c-format
 msgid "Match %d of %d"
 msgstr "%d. wynik z %d"
 
 #. Translators: %d is the total number of search occurrences.
-#: ../src/search.vala:489
+#: ../src/search.vala:490
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
@@ -2627,6 +2615,14 @@ msgstr "Wy_czyść"
 msgid "Clear most used symbols"
 msgstr "Czyści najczęściej używane symbole"
 
+#: ../src/tab_label.vala:48
+msgid "Project main file"
+msgstr "Główny plik projektu"
+
+#: ../src/tab_label.vala:51
+msgid "Project main file:"
+msgstr "Główny plik projektu:"
+
 #: ../src/ui/menus.ui.h:1
 msgid "_New Window"
 msgstr "_Nowe okno"
@@ -2649,7 +2645,7 @@ msgstr "Ignorowanie faktu, że użytkownik nie używa znaków tabulacji"
 
 #: ../src/ui/preferences_dialog.ui.h:5
 msgid "Highlight current line"
-msgstr "Wyróżnianie bieżącej linii"
+msgstr "Wyróżnianie bieżącego wiersza"
 
 #: ../src/ui/preferences_dialog.ui.h:6
 msgid "Highlight matching brackets"
@@ -2674,7 +2670,7 @@ msgstr "Czcionka"
 #: ../src/ui/preferences_dialog.ui.h:13
 #, no-c-format
 msgid "_Use the system fixed width font (%s)"
-msgstr "_Użycie czcionki systemowej o stałej szerokości (%s)"
+msgstr "_Systemowa czcionka o stałej szerokości (%s)"
 
 #: ../src/ui/preferences_dialog.ui.h:14
 msgid "Editor _font: "
@@ -2706,7 +2702,7 @@ msgstr "Liczba znaków po znaku „\\”"
 
 #: ../src/ui/preferences_dialog.ui.h:21
 msgid "File Clean-Up"
-msgstr "Wyczyszczenie plików"
+msgstr "Czyszczenie plików"
 
 #: ../src/ui/preferences_dialog.ui.h:23
 msgid "Automatically clean-up files after close"
