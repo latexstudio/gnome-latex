@@ -163,17 +163,17 @@ public class LatexMenu : Gtk.ActionGroup
 
         { "Tabular", "table", N_("_Tabular") },
         { "TabularTabbing", null, "\\begin{ta_bbing}", null,
-            N_("Tabbing - \\begin{tabbing}"), on_tabular_tabbing },
+            N_("Tabbing - \\begin{tabbing}") },
         { "TabularTabular", null, "\\begin{_tabular}", null,
-            N_("Tabular - \\begin{tabular}"), on_tabular_tabular },
+            N_("Tabular - \\begin{tabular}") },
         { "TabularMulticolumn", null, "\\_multicolumn", null,
-            N_("Multicolumn - \\multicolumn"), on_tabular_multicolumn },
+            N_("Multicolumn - \\multicolumn") },
         { "TabularHline", null, "\\_hline", null,
-            N_("Horizontal line - \\hline"), on_tabular_hline },
+            N_("Horizontal line - \\hline") },
         { "TabularVline", null, "\\_vline", null,
-            N_("Vertical line - \\vline"), on_tabular_vline },
+            N_("Vertical line - \\vline") },
         { "TabularCline", null, "\\_cline", null,
-            N_("Horizontal line (columns specified) - \\cline"), on_tabular_cline },
+            N_("Horizontal line (columns specified) - \\cline") },
 
         // LaTeX: Presentation
 
@@ -582,6 +582,20 @@ public class LatexMenu : Gtk.ActionGroup
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::scshape",
             this, "FontShapeSmallCaps");
 
+        // LaTeX: Tabular
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::tabbing",
+            this, "TabularTabbing");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-tabular-tabular",
+            this, "TabularTabular");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-tabular-multicolumn",
+            this, "TabularMulticolumn");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::hline",
+            this, "TabularHline");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::vline",
+            this, "TabularVline");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-tabular-cline",
+            this, "TabularCline");
+
         // LaTeX: Spacing
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::hspace",
             this, "SpacingHSpace");
@@ -644,49 +658,6 @@ public class LatexMenu : Gtk.ActionGroup
     private string get_indentation ()
     {
         return Latexila.view_get_indentation_style (main_window.active_view);
-    }
-
-    /* Tabular */
-
-    public void on_tabular_tabbing ()
-    {
-        text_buffer_insert ("\\begin{tabbing}\n", "\n\\end{tabbing}");
-    }
-
-    public void on_tabular_tabular ()
-    {
-        string indent = get_indentation ();
-
-        string before_cursor =
-            "\\begin{tabular}{cc";
-
-        string after_cursor =
-            "}\n" +
-            @"$indent & \\\\\n" +
-            @"$indent & \\\\\n" +
-            "\\end{tabular}";
-
-        text_buffer_insert (before_cursor, after_cursor);
-    }
-
-    public void on_tabular_multicolumn ()
-    {
-        text_buffer_insert ("\\multicolumn{}{}{", "}");
-    }
-
-    public void on_tabular_hline ()
-    {
-        text_buffer_insert ("\\hline ", "");
-    }
-
-    public void on_tabular_vline ()
-    {
-        text_buffer_insert ("\\vline ", "");
-    }
-
-    public void on_tabular_cline ()
-    {
-        text_buffer_insert ("\\cline{", "-}");
     }
 
     /* Spacing */

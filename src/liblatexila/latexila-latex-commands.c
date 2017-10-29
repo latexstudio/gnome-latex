@@ -416,6 +416,53 @@ latex_command_char_style_cb (GSimpleAction *action,
   g_free (text_if_no_selection);
 }
 
+static void
+latex_command_tabular_tabular_cb (GSimpleAction *action,
+                                  GVariant      *parameter,
+                                  gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  gchar *indent;
+  gchar *text_after;
+
+  indent = get_indentation (tepl_window);
+  text_after = g_strdup_printf ("}\n"
+                                "%s a & b \\\\\n"
+                                "%s c & d \\\\\n"
+                                "\\end{tabular}",
+                                indent,
+                                indent);
+
+  deselect_text (tepl_window);
+  latexila_latex_commands_insert_text (tepl_window,
+                                       "\\begin{tabular}{cc",
+                                       text_after,
+                                       NULL);
+
+  g_free (indent);
+  g_free (text_after);
+}
+
+static void
+latex_command_tabular_multicolumn_cb (GSimpleAction *action,
+                                      GVariant      *parameter,
+                                      gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+  latexila_latex_commands_insert_text (tepl_window, "\\multicolumn{}{}{", "}", NULL);
+}
+
+static void
+latex_command_tabular_cline_cb (GSimpleAction *action,
+                                GVariant      *parameter,
+                                gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+  latexila_latex_commands_insert_text (tepl_window, "\\cline{", "-}", NULL);
+}
+
 /**
  * latexila_latex_commands_add_actions:
  * @gtk_window: a #GtkApplicationWindow.
@@ -437,6 +484,9 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
     { "latex-command-list-env-description", latex_command_list_env_description_cb },
     { "latex-command-list-env-list", latex_command_list_env_list_cb },
     { "latex-command-char-style", latex_command_char_style_cb, "s" },
+    { "latex-command-tabular-tabular", latex_command_tabular_tabular_cb },
+    { "latex-command-tabular-multicolumn", latex_command_tabular_multicolumn_cb },
+    { "latex-command-tabular-cline", latex_command_tabular_cline_cb },
   };
 
   g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));
