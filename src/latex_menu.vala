@@ -65,27 +65,27 @@ public class LatexMenu : Gtk.ActionGroup
 
         { "Environments", "format-justify-center", "_Environments" },
         { "EnvCenter", "format-justify-center", "\\begin{_center}", null,
-            N_("Center - \\begin{center}"), on_env_center },
+            N_("Center - \\begin{center}") },
         { "EnvLeft", "format-justify-left", "\\begin{flush_left}", null,
-            N_("Align Left - \\begin{flushleft}"), on_env_left },
+            N_("Align Left - \\begin{flushleft}") },
         { "EnvRight", "format-justify-right", "\\begin{flush_right}", null,
-            N_("Align Right - \\begin{flushright}"), on_env_right },
+            N_("Align Right - \\begin{flushright}") },
         { "EnvFigure", "image-x-generic", "\\begin{_figure}", null,
-            N_("Figure - \\begin{figure}"), on_env_figure },
+            N_("Figure - \\begin{figure}") },
         { "EnvTable", "table", "\\begin{_table}", null,
-            N_("Table - \\begin{table}"), on_env_table },
+            N_("Table - \\begin{table}") },
         { "EnvQuote", null, "\\begin{_quote}", null,
-            N_("Quote - \\begin{quote}"), on_env_quote },
+            N_("Quote - \\begin{quote}") },
         { "EnvQuotation", null, "\\begin{qu_otation}", null,
-            N_("Quotation - \\begin{quotation}"), on_env_quotation },
+            N_("Quotation - \\begin{quotation}") },
         { "EnvVerse", null, "\\begin{_verse}", null,
-            N_("Verse - \\begin{verse}"), on_env_verse },
+            N_("Verse - \\begin{verse}") },
         { "EnvVerbatim", null, "\\begin{ver_batim}", null,
-            N_("Verbatim - \\begin{verbatim}"), on_env_verbatim },
+            N_("Verbatim - \\begin{verbatim}") },
         { "EnvMinipage", null, "\\begin{_minipage}", null,
-            N_("Minipage - \\begin{minipage}"), on_env_minipage },
+            N_("Minipage - \\begin{minipage}") },
         { "EnvTitlepage", null, "\\begin{titlepage}", null,
-            N_("Title page - \\begin{titlepage}"), on_env_titlepage },
+            N_("Title page - \\begin{titlepage}") },
 
         // LaTeX: list environments
 
@@ -485,6 +485,30 @@ public class LatexMenu : Gtk.ActionGroup
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::cite",
             this, "ReferencesCite");
 
+        // LaTeX: Environments
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::center",
+            this, "EnvCenter");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::flushleft",
+            this, "EnvLeft");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::flushright",
+            this, "EnvRight");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-figure",
+            this, "EnvFigure");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-table",
+            this, "EnvTable");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::quote",
+            this, "EnvQuote");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::quotation",
+            this, "EnvQuotation");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::verse",
+            this, "EnvVerse");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::verbatim",
+            this, "EnvVerbatim");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::minipage",
+            this, "EnvMinipage");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::titlepage",
+            this, "EnvTitlepage");
+
         // LaTeX: character sizes
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::tiny",
             this, "CharacterSizeTiny");
@@ -608,95 +632,6 @@ public class LatexMenu : Gtk.ActionGroup
     private string get_indentation ()
     {
         return Latexila.view_get_indentation_style (main_window.active_view);
-    }
-
-    /* Environments */
-
-    public void on_env_center ()
-    {
-        text_buffer_insert ("\\begin{center}\n", "\n\\end{center}");
-    }
-
-    public void on_env_left ()
-    {
-        text_buffer_insert ("\\begin{flushleft}\n", "\n\\end{flushleft}");
-    }
-
-    public void on_env_right ()
-    {
-        text_buffer_insert ("\\begin{flushright}\n", "\n\\end{flushright}");
-    }
-
-    public void on_env_figure ()
-    {
-        string indent = get_indentation ();
-
-        string before_cursor =
-            "\\begin{figure}\n" +
-            @"$indent\\begin{center}\n" +
-            @"$indent$indent\\includegraphics{";
-
-        string after_cursor =
-            "}\n" +
-            @"$indent$indent\\caption{}\n" +
-            @"$indent$indent\\label{fig:}\n" +
-            @"$indent\\end{center}\n" +
-            "\\end{figure}";
-
-        text_buffer_insert (before_cursor, after_cursor);
-    }
-
-    public void on_env_table ()
-    {
-        string indent = get_indentation ();
-
-        string before_cursor =
-            "\\begin{table}\n" +
-            @"$indent\\caption{";
-
-        string after_cursor =
-            "}\n" +
-            @"$indent\\label{tab:}\n" +
-            "\n" +
-            @"$indent\\begin{center}\n" +
-            @"$indent$indent\\begin{tabular}{cc}\n" +
-            @"$indent$indent$indent & \\\\\n" +
-            @"$indent$indent$indent & \\\\\n" +
-            @"$indent$indent\\end{tabular}\n" +
-            @"$indent\\end{center}\n" +
-            "\\end{table}";
-
-        text_buffer_insert (before_cursor, after_cursor);
-    }
-
-    public void on_env_quote ()
-    {
-        text_buffer_insert ("\\begin{quote}\n", "\n\\end{quote}");
-    }
-
-    public void on_env_quotation ()
-    {
-        text_buffer_insert ("\\begin{quotation}\n", "\n\\end{quotation}");
-    }
-
-    public void on_env_verse ()
-    {
-        text_buffer_insert ("\\begin{verse}\n", "\n\\end{verse}");
-    }
-
-    public void on_env_verbatim ()
-    {
-        text_buffer_insert ("\\begin{verbatim}\n", "\n\\end{verbatim}");
-    }
-
-    public void on_env_minipage ()
-    {
-        text_buffer_insert ("\\begin{minipage}\n", "\n\\end{minipage}");
-    }
-
-    public void on_env_titlepage ()
-    {
-        text_buffer_insert ("\\begin{titlepage}\n", "\n\\end{titlepage}");
     }
 
     /* List Environments */

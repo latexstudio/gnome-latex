@@ -25,6 +25,7 @@
 
 #include "latexila-latex-commands.h"
 #include "latexila-utils.h"
+#include "latexila-view.h"
 
 /* Temporarily public, will be made private when all GActions for the LaTeX and
  * Math menus are implemented.
@@ -142,6 +143,109 @@ latex_command_with_braces_cb (GSimpleAction *action,
 }
 
 static void
+latex_command_env_simple_cb (GSimpleAction *action,
+                             GVariant      *parameter,
+                             gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  const gchar *environment;
+  gchar *text_before;
+  gchar *text_after;
+
+  environment = g_variant_get_string (parameter, NULL);
+  text_before = g_strdup_printf ("\\begin{%s}\n", environment);
+  text_after = g_strdup_printf ("\n\\end{%s}", environment);
+
+  latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+
+  g_free (text_before);
+  g_free (text_after);
+}
+
+static void
+latex_command_env_figure_cb (GSimpleAction *action,
+                             GVariant      *parameter,
+                             gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  TeplView *view;
+  gchar *indent;
+  gchar *text_before;
+  gchar *text_after;
+
+  view = tepl_tab_group_get_active_view (TEPL_TAB_GROUP (tepl_window));
+  g_return_if_fail (view != NULL);
+
+  indent = latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
+
+  text_before = g_strdup_printf ("\\begin{figure}\n"
+                                 "%s\\begin{center}\n"
+                                 "%s%s\\includegraphics{",
+                                 indent,
+                                 indent, indent);
+
+  text_after = g_strdup_printf ("}\n"
+                                "%s%s\\caption{}\n"
+                                "%s%s\\label{fig:}\n"
+                                "%s\\end{center}\n"
+                                "\\end{figure}",
+                                indent, indent,
+                                indent, indent,
+                                indent);
+
+  latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+
+  g_free (indent);
+  g_free (text_before);
+  g_free (text_after);
+}
+
+static void
+latex_command_env_table_cb (GSimpleAction *action,
+                            GVariant      *parameter,
+                            gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  TeplView *view;
+  gchar *indent;
+  gchar *text_before;
+  gchar *text_after;
+
+  view = tepl_tab_group_get_active_view (TEPL_TAB_GROUP (tepl_window));
+  g_return_if_fail (view != NULL);
+
+  indent = latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
+
+  text_before = g_strdup_printf ("\\begin{table}\n"
+                                 "%s\\caption{",
+                                 indent);
+
+  text_after = g_strdup_printf ("}\n"
+                                "%s\\label{tab:}\n"
+                                "\n"
+                                "%s\\begin{center}\n"
+                                "%s%s\\begin{tabular}{cc}\n"
+                                "%s%s%s & \\\\\n"
+                                "%s%s%s & \\\\\n"
+                                "%s%s\\end{tabular}\n"
+                                "%s\\end{center}\n"
+                                "\\end{table}",
+                                indent,
+                                indent,
+                                indent, indent,
+                                indent, indent, indent,
+                                indent, indent, indent,
+                                indent, indent,
+                                indent);
+
+  latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+
+  g_free (indent);
+  g_free (text_before);
+  g_free (text_after);
+}
+
+static void
 latex_command_char_style_cb (GSimpleAction *action,
                              GVariant      *parameter,
                              gpointer       user_data)
@@ -197,6 +301,9 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
 
   const GActionEntry entries[] = {
     { "latex-command-with-braces", latex_command_with_braces_cb, "s" },
+    { "latex-command-env-simple", latex_command_env_simple_cb, "s" },
+    { "latex-command-env-figure", latex_command_env_figure_cb },
+    { "latex-command-env-table", latex_command_env_table_cb },
     { "latex-command-char-style", latex_command_char_style_cb, "s" },
   };
 
