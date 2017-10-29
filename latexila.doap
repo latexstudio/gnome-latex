@@ -13,18 +13,17 @@ The idea of LaTeXila is to always deal directly with the LaTeX code, while
 simplifying as most as possible the writing of this LaTeX code.
 
 To help the writing of the LaTeX markup, auto-completion is available as
-well as menus and toolbars with the principal commands.
-
-New documents are created from templates. There are buttons to compile,
-convert and view a document in one click. And projects containing several
-.tex files are managed easily.
+well as menus and toolbars with the principal commands. New documents are
+created from templates. There are buttons to compile, convert and view a
+document in one click. And projects containing several .tex files are
+managed easily.
 
 A side panel contains three components: the document structure to easily
 navigate in it; lists of symbols to insert them in a document; and an
 integrated file browser.
 
-LaTeXila has also other features like the spell checking, or the forward
-and backward search to switch between the .tex and the PDF.
+LaTeXila has also other features like the spell-checking, or jumping to
+the associated position between the .tex file and the PDF.
   </description>
 
   <homepage rdf:resource="https://wiki.gnome.org/Apps/LaTeXila" />

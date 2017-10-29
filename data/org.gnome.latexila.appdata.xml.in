@@ -25,8 +25,8 @@
       integrated file browser.
     </_p>
     <_p>
-      LaTeXila has also other features like the spell checking, or the forward
-      and backward search to switch between the .tex and the PDF.
+      LaTeXila has also other features like the spell-checking, or jumping to
+      the associated position between the .tex file and the PDF.
     </_p>
   </description>
   <screenshots>
