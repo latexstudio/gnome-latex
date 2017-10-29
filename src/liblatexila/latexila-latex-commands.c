@@ -27,6 +27,8 @@
 #include "latexila-utils.h"
 #include "latexila-view.h"
 
+/* Util functions */
+
 /* Temporarily public, will be made private when all GActions for the LaTeX and
  * Math menus are implemented.
  */
@@ -125,6 +127,19 @@ latexila_latex_commands_insert_text (TeplApplicationWindow *tepl_window,
   g_free (text_after_with_indent);
 }
 
+static gchar *
+get_indentation (TeplApplicationWindow *tepl_window)
+{
+  TeplView *view;
+
+  view = tepl_tab_group_get_active_view (TEPL_TAB_GROUP (tepl_window));
+  g_return_val_if_fail (view != NULL, NULL);
+
+  return latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
+}
+
+/* GActions implementation */
+
 static void
 latex_command_with_braces_cb (GSimpleAction *action,
                               GVariant      *parameter,
@@ -185,15 +200,11 @@ latex_command_env_figure_cb (GSimpleAction *action,
                              gpointer       user_data)
 {
   TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
-  TeplView *view;
   gchar *indent;
   gchar *text_before;
   gchar *text_after;
 
-  view = tepl_tab_group_get_active_view (TEPL_TAB_GROUP (tepl_window));
-  g_return_if_fail (view != NULL);
-
-  indent = latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
+  indent = get_indentation (tepl_window);
 
   text_before = g_strdup_printf ("\\begin{figure}\n"
                                  "%s\\begin{center}\n"
@@ -223,15 +234,11 @@ latex_command_env_table_cb (GSimpleAction *action,
                             gpointer       user_data)
 {
   TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
-  TeplView *view;
   gchar *indent;
   gchar *text_before;
   gchar *text_after;
 
-  view = tepl_tab_group_get_active_view (TEPL_TAB_GROUP (tepl_window));
-  g_return_if_fail (view != NULL);
-
-  indent = latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
+  indent = get_indentation (tepl_window);
 
   text_before = g_strdup_printf ("\\begin{table}\n"
                                  "%s\\caption{",
@@ -269,17 +276,13 @@ latex_command_list_env_simple_cb (GSimpleAction *action,
 {
   TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
   const gchar *list_env;
-  TeplView *view;
   gchar *indent;
   gchar *text_before;
   gchar *text_after;
 
   list_env = g_variant_get_string (parameter, NULL);
 
-  view = tepl_tab_group_get_active_view (TEPL_TAB_GROUP (tepl_window));
-  g_return_if_fail (view != NULL);
-
-  indent = latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
+  indent = get_indentation (tepl_window);
 
   text_before = g_strdup_printf ("\\begin{%s}\n"
                                  "%s\\item ",
@@ -301,15 +304,11 @@ latex_command_list_env_description_cb (GSimpleAction *action,
                                        gpointer       user_data)
 {
   TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
-  TeplView *view;
   gchar *indent;
   gchar *text_before;
   gchar *text_after;
 
-  view = tepl_tab_group_get_active_view (TEPL_TAB_GROUP (tepl_window));
-  g_return_if_fail (view != NULL);
-
-  indent = latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
+  indent = get_indentation (tepl_window);
 
   text_before = g_strdup_printf ("\\begin{description}\n"
                                  "%s\\item[",
@@ -330,14 +329,10 @@ latex_command_list_env_list_cb (GSimpleAction *action,
                                 gpointer       user_data)
 {
   TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
-  TeplView *view;
   gchar *indent;
   gchar *text_after;
 
-  view = tepl_tab_group_get_active_view (TEPL_TAB_GROUP (tepl_window));
-  g_return_if_fail (view != NULL);
-
-  indent = latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
+  indent = get_indentation (tepl_window);
   text_after = g_strdup_printf ("}{}\n%s\\item \n\\end{list}", indent);
 
   latexila_latex_commands_insert_text (tepl_window, "\\begin{list}{", text_after, NULL);
