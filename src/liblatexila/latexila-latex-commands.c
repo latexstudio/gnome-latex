@@ -138,6 +138,33 @@ get_indentation (TeplApplicationWindow *tepl_window)
   return latexila_view_get_indentation_style (GTK_SOURCE_VIEW (view));
 }
 
+/* When it doesn't make sense to have the selected text between @text_before and
+ * @text_after when calling latexila_latex_commands_insert_text(), call this
+ * function first.
+ */
+static void
+deselect_text (TeplApplicationWindow *tepl_window)
+{
+  TeplBuffer *tepl_buffer;
+  GtkTextBuffer *gtk_buffer;
+  GtkTextIter selection_start;
+  GtkTextIter selection_end;
+
+  tepl_buffer = tepl_tab_group_get_active_buffer (TEPL_TAB_GROUP (tepl_window));
+  g_return_if_fail (tepl_buffer != NULL);
+
+  gtk_buffer = GTK_TEXT_BUFFER (tepl_buffer);
+
+  gtk_text_buffer_get_selection_bounds (gtk_buffer,
+                                        &selection_start,
+                                        &selection_end);
+
+  /* Always place cursor at beginning of selection, to have more predictable
+   * results, instead of placing the cursor at the insert mark.
+   */
+  gtk_text_buffer_place_cursor (gtk_buffer, &selection_start);
+}
+
 /* GActions implementation */
 
 static void
@@ -221,6 +248,7 @@ latex_command_env_figure_cb (GSimpleAction *action,
                                 indent, indent,
                                 indent);
 
+  deselect_text (tepl_window);
   latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
 
   g_free (indent);
@@ -262,6 +290,7 @@ latex_command_env_table_cb (GSimpleAction *action,
                                 indent, indent,
                                 indent);
 
+  deselect_text (tepl_window);
   latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
 
   g_free (indent);
@@ -291,6 +320,7 @@ latex_command_list_env_simple_cb (GSimpleAction *action,
 
   text_after = g_strdup_printf ("\n\\end{%s}", list_env);
 
+  deselect_text (tepl_window);
   latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
 
   g_free (indent);
@@ -316,6 +346,7 @@ latex_command_list_env_description_cb (GSimpleAction *action,
 
   text_after = g_strdup_printf ("] \n\\end{description}");
 
+  deselect_text (tepl_window);
   latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
 
   g_free (indent);
@@ -335,6 +366,7 @@ latex_command_list_env_list_cb (GSimpleAction *action,
   indent = get_indentation (tepl_window);
   text_after = g_strdup_printf ("}{}\n%s\\item \n\\end{list}", indent);
 
+  deselect_text (tepl_window);
   latexila_latex_commands_insert_text (tepl_window, "\\begin{list}{", text_after, NULL);
 
   g_free (indent);
