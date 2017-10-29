@@ -277,8 +277,8 @@ latex_command_env_table_cb (GSimpleAction *action,
                                 "\n"
                                 "%s\\begin{center}\n"
                                 "%s%s\\begin{tabular}{cc}\n"
-                                "%s%s%s & \\\\\n"
-                                "%s%s%s & \\\\\n"
+                                "%s%s%s a & b \\\\\n"
+                                "%s%s%s c & d \\\\\n"
                                 "%s%s\\end{tabular}\n"
                                 "%s\\end{center}\n"
                                 "\\end{table}",
