@@ -49,17 +49,17 @@ public class LatexMenu : Gtk.ActionGroup
 
         { "References", "references", N_("_References") },
         { "ReferencesLabel", null, "\\_label", null,
-            N_("Label"), on_ref_label },
+            N_("Label") },
         { "ReferencesRef", null, "\\_ref", null,
-            N_("Reference to a label"), on_ref_ref },
+            N_("Reference to a label") },
         { "ReferencesPageref", null, "\\_pageref", null,
-            N_("Page reference to a label"), on_ref_pageref },
+            N_("Page reference to a label") },
         { "ReferencesIndex", null, "\\_index", null,
-            N_("Add a word to the index"), on_ref_index },
+            N_("Add a word to the index") },
         { "ReferencesFootnote", null, "\\_footnote", null,
-            N_("Footnote"), on_ref_footnote },
+            N_("Footnote") },
         { "ReferencesCite", null, "\\_cite", null,
-            N_("Reference to a bibliography item"), on_ref_cite },
+            N_("Reference to a bibliography item") },
 
         // LaTeX: Environments
 
@@ -471,6 +471,20 @@ public class LatexMenu : Gtk.ActionGroup
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::subparagraph",
             this, "SectioningSubparagraph");
 
+        // LaTeX: References
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::label",
+            this, "ReferencesLabel");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::ref",
+            this, "ReferencesRef");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::pageref",
+            this, "ReferencesPageref");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::index",
+            this, "ReferencesIndex");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::footnote",
+            this, "ReferencesFootnote");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::cite",
+            this, "ReferencesCite");
+
         // LaTeX: character sizes
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-char-style::tiny",
             this, "CharacterSizeTiny");
@@ -594,38 +608,6 @@ public class LatexMenu : Gtk.ActionGroup
     private string get_indentation ()
     {
         return Latexila.view_get_indentation_style (main_window.active_view);
-    }
-
-    /* References */
-
-    public void on_ref_label ()
-    {
-        text_buffer_insert ("\\label{", "} ");
-    }
-
-    public void on_ref_ref ()
-    {
-        text_buffer_insert ("\\ref{", "} ");
-    }
-
-    public void on_ref_pageref ()
-    {
-        text_buffer_insert ("\\pageref{", "} ");
-    }
-
-    public void on_ref_index ()
-    {
-        text_buffer_insert ("\\index{", "} ");
-    }
-
-    public void on_ref_footnote ()
-    {
-        text_buffer_insert ("\\footnote{", "} ");
-    }
-
-    public void on_ref_cite ()
-    {
-        text_buffer_insert ("\\cite{", "} ");
     }
 
     /* Environments */
