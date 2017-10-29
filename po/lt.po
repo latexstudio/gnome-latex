@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: latexila master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=latexila&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-09-09 12:03+0000\n"
-"PO-Revision-Date: 2017-10-15 22:15+0300\n"
+"POT-Creation-Date: 2017-10-29 10:43+0000\n"
+"PO-Revision-Date: 2017-10-29 19:23+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -123,9 +123,12 @@ msgstr ""
 "naršyklė."
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:5
+#| msgid ""
+#| "LaTeXila has also other features like the spell checking, or the forward "
+#| "and backward search to switch between the .tex and the PDF."
 msgid ""
-"LaTeXila has also other features like the spell checking, or the forward and "
-"backward search to switch between the .tex and the PDF."
+"LaTeXila has also other features like the spell-checking, or jumping to the "
+"associated position between the .tex file and the PDF."
 msgstr ""
 "LaTeXila taip pat turi kitų savybių, tokių kaip rašybos tikrinimas bei "
 "paieška pirmyn ir atgal persijungimui tarp .tex ir PDF."
@@ -837,17 +840,17 @@ msgstr "Įrašyti _taip"
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-#: ../src/document_view.vala:317
+#: ../src/document_view.vala:310
 msgid "No dictionaries available for the spell checking."
 msgstr "Nėra žodynų rašybos tikrinimui."
 
 #. Help
-#: ../src/document_view.vala:319 ../src/main_window.vala:63
+#: ../src/document_view.vala:312 ../src/main_window.vala:63
 #: ../src/ui/menus.ui.h:4
 msgid "_Help"
 msgstr "_Žinynas"
 
-#: ../src/document_view.vala:320
+#: ../src/document_view.vala:313
 msgid "_OK"
 msgstr "_Gerai"
 
@@ -1047,564 +1050,564 @@ msgid "_Characters Sizes"
 msgstr "_Simbolių dydžiai"
 
 #. LaTeX: font styles
-#: ../src/latex_menu.vala:130
+#: ../src/latex_menu.vala:120
 msgid "_Font Styles"
 msgstr "Šri_ftų stiliai"
 
-#: ../src/latex_menu.vala:132
+#: ../src/latex_menu.vala:122
 msgid "Bold - \\textbf"
 msgstr "Pusjuodis - \\textbf"
 
-#: ../src/latex_menu.vala:134
+#: ../src/latex_menu.vala:124
 msgid "Italic - \\textit"
 msgstr "Kursyvas - \\textit"
 
-#: ../src/latex_menu.vala:136
+#: ../src/latex_menu.vala:126
 msgid "Typewriter - \\texttt"
 msgstr "Spausdinimo mašinėlės - \\texttt"
 
-#: ../src/latex_menu.vala:138
+#: ../src/latex_menu.vala:128
 msgid "Slanted - \\textsl"
 msgstr "Nuožulnus - \\textsl"
 
-#: ../src/latex_menu.vala:140
+#: ../src/latex_menu.vala:130
 msgid "Small Capitals - \\textsc"
 msgstr "Mažos didžiosios - \\textsc"
 
-#: ../src/latex_menu.vala:142
+#: ../src/latex_menu.vala:132
 msgid "Sans Serif - \\textsf"
 msgstr "Be užraitų - \\textsf"
 
-#: ../src/latex_menu.vala:144
+#: ../src/latex_menu.vala:134
 msgid "Emphasized - \\emph"
 msgstr "Akcentuotas - \\emph"
 
-#: ../src/latex_menu.vala:146
+#: ../src/latex_menu.vala:136
 msgid "Underline - \\underline"
 msgstr "Pabrauktas - \\underline"
 
-#: ../src/latex_menu.vala:148
+#: ../src/latex_menu.vala:138
 msgid "_Font Family"
 msgstr "Šri_ftų šeima"
 
-#: ../src/latex_menu.vala:150
+#: ../src/latex_menu.vala:140
 msgid "Roman - \\rmfamily"
 msgstr "Roman - \\rmfamily"
 
-#: ../src/latex_menu.vala:152
+#: ../src/latex_menu.vala:142
 msgid "Sans Serif - \\sffamily"
 msgstr "Be užraitų - \\sffamily"
 
-#: ../src/latex_menu.vala:154
+#: ../src/latex_menu.vala:144
 msgid "Monospace - \\ttfamily"
 msgstr "Lygiapločiai - \\ttfamily"
 
-#: ../src/latex_menu.vala:156
+#: ../src/latex_menu.vala:146
 msgid "F_ont Series"
 msgstr "Š_riftų sekos"
 
-#: ../src/latex_menu.vala:158
+#: ../src/latex_menu.vala:148
 msgid "Medium - \\mdseries"
 msgstr "Vidutiniai - \\mdseries"
 
-#: ../src/latex_menu.vala:160
+#: ../src/latex_menu.vala:150
 msgid "Bold - \\bfseries"
 msgstr "Pusjuodžiai - \\bfseries"
 
-#: ../src/latex_menu.vala:162
+#: ../src/latex_menu.vala:152
 msgid "Fo_nt Shape"
 msgstr "Šr_ifto forma"
 
-#: ../src/latex_menu.vala:164
+#: ../src/latex_menu.vala:154
 msgid "Upright - \\upshape"
 msgstr "Vertikalus - \\upshape"
 
-#: ../src/latex_menu.vala:166
+#: ../src/latex_menu.vala:156
 msgid "Italic - \\itshape"
 msgstr "Kursyvas - \\itshape"
 
-#: ../src/latex_menu.vala:168
+#: ../src/latex_menu.vala:158
 msgid "Slanted - \\slshape"
 msgstr "Nuožulnus - \\slshape"
 
-#: ../src/latex_menu.vala:170
+#: ../src/latex_menu.vala:160
 msgid "Small Capitals - \\scshape"
 msgstr "Mažos didžiosios - \\scshape"
 
 #. LaTeX: Tabular
-#: ../src/latex_menu.vala:174
+#: ../src/latex_menu.vala:164
 msgid "_Tabular"
 msgstr "_Tabuliacinis"
 
-#: ../src/latex_menu.vala:176
+#: ../src/latex_menu.vala:166
 msgid "Tabbing - \\begin{tabbing}"
 msgstr "Tabuliacija - \\begin{tabbing}"
 
-#: ../src/latex_menu.vala:178
+#: ../src/latex_menu.vala:168
 msgid "Tabular - \\begin{tabular}"
 msgstr "Tabuliacinis - \\begin{tabular}"
 
-#: ../src/latex_menu.vala:180
+#: ../src/latex_menu.vala:170
 msgid "Multicolumn - \\multicolumn"
 msgstr "Daugelio stulpelių - \\multicolumn"
 
-#: ../src/latex_menu.vala:182
+#: ../src/latex_menu.vala:172
 msgid "Horizontal line - \\hline"
 msgstr "Horizontali linija - \\hline"
 
-#: ../src/latex_menu.vala:184
+#: ../src/latex_menu.vala:174
 msgid "Vertical line - \\vline"
 msgstr "Vertikali linija - \\vline"
 
-#: ../src/latex_menu.vala:186
+#: ../src/latex_menu.vala:176
 msgid "Horizontal line (columns specified) - \\cline"
 msgstr "Horizontali linija (nurodyti stulpeliai) - \\cline"
 
-#: ../src/latex_menu.vala:192
+#: ../src/latex_menu.vala:182
 msgid "Frame - \\begin{frame}"
 msgstr "Rėmelis - \\begin{frame}"
 
-#: ../src/latex_menu.vala:194
+#: ../src/latex_menu.vala:184
 msgid "Block - \\begin{block}"
 msgstr "Blokas - \\begin{block}"
 
-#: ../src/latex_menu.vala:196
+#: ../src/latex_menu.vala:186
 msgid "Two columns - \\begin{columns}"
 msgstr "Du stulpeliai - \\begin{columns}"
 
 #. LaTeX: Spacing
-#: ../src/latex_menu.vala:200
+#: ../src/latex_menu.vala:190
 msgid "_Spacing"
 msgstr "_Tarpai"
 
-#: ../src/latex_menu.vala:201
+#: ../src/latex_menu.vala:191
 msgid "New _Line"
 msgstr "Nauja ei_lutė"
 
-#: ../src/latex_menu.vala:202
+#: ../src/latex_menu.vala:192
 msgid "New Line - \\\\"
 msgstr "Nauja eilutė - \\\\"
 
-#: ../src/latex_menu.vala:204
+#: ../src/latex_menu.vala:194
 msgid "New page - \\newpage"
 msgstr "Naujas puslapis - \\newpage"
 
-#: ../src/latex_menu.vala:206
+#: ../src/latex_menu.vala:196
 msgid "Line break - \\linebreak"
 msgstr "Eilutės laužtė - \\linebreak"
 
-#: ../src/latex_menu.vala:208
+#: ../src/latex_menu.vala:198
 msgid "Page break - \\pagebreak"
 msgstr "Puslapio laužtė - \\pagebreak"
 
-#: ../src/latex_menu.vala:210
+#: ../src/latex_menu.vala:200
 msgid "Big skip - \\bigskip"
 msgstr "Didelis tarpas - \\bigskip"
 
-#: ../src/latex_menu.vala:212
+#: ../src/latex_menu.vala:202
 msgid "Medium skip - \\medskip"
 msgstr "Vidutinis tarpas - \\medskip"
 
-#: ../src/latex_menu.vala:214
+#: ../src/latex_menu.vala:204
 msgid "Horizontal space - \\hspace"
 msgstr "Horizontalus tarpas - \\hspace"
 
-#: ../src/latex_menu.vala:216
+#: ../src/latex_menu.vala:206
 msgid "Vertical space - \\vspace"
 msgstr "Vertikalus tarpas - \\vspace"
 
-#: ../src/latex_menu.vala:218
+#: ../src/latex_menu.vala:208
 msgid "No paragraph indentation - \\noindent"
 msgstr "Nėra pastraipos įtraukos - \\noindent"
 
 #. LaTeX: International accents
-#: ../src/latex_menu.vala:222
+#: ../src/latex_menu.vala:212
 msgid "International _Accents"
 msgstr "_Diakritiniai ženklai"
 
-#: ../src/latex_menu.vala:223
+#: ../src/latex_menu.vala:213
 msgid "Acute accent - \\'"
 msgstr "Dešininis kirtis - \\'"
 
-#: ../src/latex_menu.vala:224
+#: ../src/latex_menu.vala:214
 msgid "Grave accent - \\`"
 msgstr "Kairinis kirtis - \\`"
 
-#: ../src/latex_menu.vala:225
+#: ../src/latex_menu.vala:215
 msgid "Circumflex accent - \\^"
 msgstr "Stogelis - \\^"
 
-#: ../src/latex_menu.vala:226
+#: ../src/latex_menu.vala:216
 msgid "Trema - \\\""
 msgstr "Dvitaškis diakritas - \\\""
 
-#: ../src/latex_menu.vala:227
+#: ../src/latex_menu.vala:217
 msgid "Tilde - \\~"
 msgstr "Riestinis kirtis - \\~"
 
-#: ../src/latex_menu.vala:228
+#: ../src/latex_menu.vala:218
 msgid "Macron - \\="
 msgstr "Brūkšnys - \\="
 
-#: ../src/latex_menu.vala:229
+#: ../src/latex_menu.vala:219
 msgid "Dot above - \\."
 msgstr "Taškas viršuje - \\."
 
-#: ../src/latex_menu.vala:230
+#: ../src/latex_menu.vala:220
 msgid "Caron - \\v"
 msgstr "Varnelė - \\v"
 
-#: ../src/latex_menu.vala:231
+#: ../src/latex_menu.vala:221
 msgid "Breve - \\u"
 msgstr "Lankelis - \\u"
 
-#: ../src/latex_menu.vala:233
+#: ../src/latex_menu.vala:223
 msgid "Double acute accent - \\H"
 msgstr "Dvigubas dešininis kirtis - \\H"
 
-#: ../src/latex_menu.vala:234
+#: ../src/latex_menu.vala:224
 msgid "Cedilla - \\c"
 msgstr "Nosinė atgal - \\c"
 
-#: ../src/latex_menu.vala:235
+#: ../src/latex_menu.vala:225
 msgid "Ogonek - \\k"
 msgstr "Nosinė pirmyn - \\k"
 
-#: ../src/latex_menu.vala:236
+#: ../src/latex_menu.vala:226
 msgid "Dot below - \\d"
 msgstr "Taškas apačioje - \\d"
 
-#: ../src/latex_menu.vala:237
+#: ../src/latex_menu.vala:227
 msgid "Macron below - \\b"
 msgstr "Brūkšnys apačioje - \\b"
 
-#: ../src/latex_menu.vala:238
+#: ../src/latex_menu.vala:228
 msgid "Ring - \\r"
 msgstr "Žiedas - \\r"
 
-#: ../src/latex_menu.vala:239
+#: ../src/latex_menu.vala:229
 msgid "Tie - \\t"
 msgstr "Apjungimas - \\t"
 
 #. LaTeX: Others
-#: ../src/latex_menu.vala:243
+#: ../src/latex_menu.vala:233
 msgid "_Misc"
 msgstr "Į_vairūs"
 
-#: ../src/latex_menu.vala:245
+#: ../src/latex_menu.vala:235
 msgid "Document class - \\documentclass"
 msgstr "Dokumento klasė - \\documentclass"
 
-#: ../src/latex_menu.vala:247
+#: ../src/latex_menu.vala:237
 msgid "Use package - \\usepackage"
 msgstr "Naudoti paketą - \\usepackage"
 
-#: ../src/latex_menu.vala:248
+#: ../src/latex_menu.vala:238
 msgid "_AMS packages"
 msgstr "_AMS paketai"
 
-#: ../src/latex_menu.vala:249
+#: ../src/latex_menu.vala:239
 msgid "AMS packages"
 msgstr "AMS paketai"
 
-#: ../src/latex_menu.vala:250
+#: ../src/latex_menu.vala:240
 msgid "Author - \\author"
 msgstr "Autorius - \\author"
 
-#: ../src/latex_menu.vala:251
+#: ../src/latex_menu.vala:241
 msgid "Title - \\title"
 msgstr "Pavadinimas - \\title"
 
-#: ../src/latex_menu.vala:253
+#: ../src/latex_menu.vala:243
 msgid "Content of the document - \\begin{document}"
 msgstr "Dokumento turinys - \\begin{document}"
 
-#: ../src/latex_menu.vala:255
+#: ../src/latex_menu.vala:245
 msgid "Make title - \\maketitle"
 msgstr "Sukurti pavadinimą - \\maketitle"
 
-#: ../src/latex_menu.vala:257
+#: ../src/latex_menu.vala:247
 msgid "Table of contents - \\tableofcontents"
 msgstr "Turinys - \\tableofcontents"
 
-#: ../src/latex_menu.vala:259
+#: ../src/latex_menu.vala:249
 msgid "Abstract - \\begin{abstract}"
 msgstr "Įžanga - \\begin{abstract}"
 
-#: ../src/latex_menu.vala:261
+#: ../src/latex_menu.vala:251
 msgid "Include an image (graphicx package) - \\includegraphics"
 msgstr "Įterpti paveikslėlį (graphicx paketas) - \\includegraphics"
 
-#: ../src/latex_menu.vala:264
+#: ../src/latex_menu.vala:254
 msgid "Include a file - \\input"
 msgstr "Įterpti failą - \\input"
 
 #. Math
-#: ../src/latex_menu.vala:268
+#: ../src/latex_menu.vala:258
 msgid "_Math"
 msgstr "_Matematika"
 
 #. Math Environments
-#: ../src/latex_menu.vala:272
+#: ../src/latex_menu.vala:262
 msgid "_Math Environments"
 msgstr "_Matematikos aplinkos"
 
-#: ../src/latex_menu.vala:273
+#: ../src/latex_menu.vala:263
 msgid "_Mathematical Environment - $...$"
 msgstr "_Matematinė aplinka - $...$"
 
-#: ../src/latex_menu.vala:274
+#: ../src/latex_menu.vala:264
 msgid "Mathematical Environment - $...$"
 msgstr "Matematinė aplinka - $...$"
 
-#: ../src/latex_menu.vala:275
+#: ../src/latex_menu.vala:265
 msgid "_Centered Formula - \\[...\\]"
 msgstr "_Centruota formlė - \\[...\\]"
 
-#: ../src/latex_menu.vala:276
+#: ../src/latex_menu.vala:266
 msgid "Centered Formula - \\[...\\]"
 msgstr "Centruota formlė - \\[...\\]"
 
-#: ../src/latex_menu.vala:278
+#: ../src/latex_menu.vala:268
 msgid "_Numbered Equation - \\begin{equation}"
 msgstr "_Numeruota lygtis - \\begin{equation}"
 
-#: ../src/latex_menu.vala:279
+#: ../src/latex_menu.vala:269
 msgid "Numbered Equation - \\begin{equation}"
 msgstr "Numeruota lygtis - \\begin{equation}"
 
-#: ../src/latex_menu.vala:280
+#: ../src/latex_menu.vala:270
 msgid "_Array of Equations - \\begin{align*}"
 msgstr "_Lygčių sistema - \\begin{align*}"
 
-#: ../src/latex_menu.vala:281
+#: ../src/latex_menu.vala:271
 msgid "Array of Equations - \\begin{align*}"
 msgstr "Lygčių sistema - \\begin{align*}"
 
-#: ../src/latex_menu.vala:283
+#: ../src/latex_menu.vala:273
 msgid "Numbered Array of _Equations - \\begin{align}"
 msgstr "Num_eruota lygčių sistema - \\begin{align}"
 
-#: ../src/latex_menu.vala:284
+#: ../src/latex_menu.vala:274
 msgid "Numbered Array of Equations - \\begin{align}"
 msgstr "Numeruota lygčių sistema - \\begin{align}"
 
-#: ../src/latex_menu.vala:287
+#: ../src/latex_menu.vala:277
 msgid "_Superscript - ^{}"
 msgstr "_Viršutinis indeksas - ^{}"
 
-#: ../src/latex_menu.vala:288
+#: ../src/latex_menu.vala:278
 msgid "Superscript - ^{}"
 msgstr "Viršutinis indeksas - ^{}"
 
-#: ../src/latex_menu.vala:289
+#: ../src/latex_menu.vala:279
 msgid "Su_bscript - __{}"
 msgstr "_Apatinis indeksas - __{}"
 
-#: ../src/latex_menu.vala:290
+#: ../src/latex_menu.vala:280
 msgid "Subscript - _{}"
 msgstr "Apatinis indeksas - __{}"
 
-#: ../src/latex_menu.vala:291
+#: ../src/latex_menu.vala:281
 msgid "_Fraction - \\frac{}{}"
 msgstr "_Trupmena - \\frac{}{}"
 
-#: ../src/latex_menu.vala:292
+#: ../src/latex_menu.vala:282
 msgid "Fraction - \\frac{}{}"
 msgstr "Trupmena - \\frac{}{}"
 
-#: ../src/latex_menu.vala:293
+#: ../src/latex_menu.vala:283
 msgid "Square _Root - \\sqrt{}"
 msgstr "_Kvadratinė šaknis - \\sqrt{}"
 
-#: ../src/latex_menu.vala:294
+#: ../src/latex_menu.vala:284
 msgid "Square Root - \\sqrt{}"
 msgstr "Kvadratinė šaknis - \\sqrt{}"
 
-#: ../src/latex_menu.vala:295
+#: ../src/latex_menu.vala:285
 msgid "_N-th Root - \\sqrt[]{}"
 msgstr "_N-tojo laipsnio šaknis - \\sqrt[]{}"
 
-#: ../src/latex_menu.vala:296
+#: ../src/latex_menu.vala:286
 msgid "N-th Root - \\sqrt[]{}"
 msgstr "N-tojo laipsnio šaknis - \\sqrt[]{}"
 
 #. Math functions
-#: ../src/latex_menu.vala:300
+#: ../src/latex_menu.vala:290
 msgid "Math _Functions"
 msgstr "Matematikos _funkcijos"
 
 #. Math Font Styles
-#: ../src/latex_menu.vala:334
+#: ../src/latex_menu.vala:324
 msgid "Math Font _Styles"
 msgstr "Matematikos šriftų _stiliai"
 
-#: ../src/latex_menu.vala:336
+#: ../src/latex_menu.vala:326
 msgid "Roman - \\mathrm"
 msgstr "Roman - \\mathrm"
 
-#: ../src/latex_menu.vala:338
+#: ../src/latex_menu.vala:328
 msgid "Italic - \\mathit"
 msgstr "Kursyvas - \\mathit"
 
-#: ../src/latex_menu.vala:340
+#: ../src/latex_menu.vala:330
 msgid "Bold - \\mathbf"
 msgstr "Pusjuodis - \\mathbf"
 
-#: ../src/latex_menu.vala:342
+#: ../src/latex_menu.vala:332
 msgid "Sans Serif - \\mathsf"
 msgstr "Be užraitų - \\mathsf"
 
-#: ../src/latex_menu.vala:344
+#: ../src/latex_menu.vala:334
 msgid "Typewriter - \\mathtt"
 msgstr "Spausdinimo mašinėlės - \\mathtt"
 
-#: ../src/latex_menu.vala:346
+#: ../src/latex_menu.vala:336
 msgid "Calligraphic - \\mathcal"
 msgstr "Kaligrafinis - \\mathcal"
 
-#: ../src/latex_menu.vala:348
+#: ../src/latex_menu.vala:338
 msgid "Blackboard (uppercase only)  - \\mathbb (amsfonts package)"
 msgstr "Lentos (tik didžiosiomis)  - \\mathbb (amsfonts paketas)"
 
-#: ../src/latex_menu.vala:351
+#: ../src/latex_menu.vala:341
 msgid "Euler Fraktur - \\mathfrak (amsfonts package)"
 msgstr "Euler Fraktur - \\mathfrak (amsfonts paketas)"
 
 #. Math Accents
-#: ../src/latex_menu.vala:356
+#: ../src/latex_menu.vala:346
 msgid "Math _Accents"
 msgstr "Matematikos _diakritiniai ženklai"
 
 #. Math Spaces
-#: ../src/latex_menu.vala:377
+#: ../src/latex_menu.vala:367
 msgid "Math _Spaces"
 msgstr "Matematikos _tarpai"
 
-#: ../src/latex_menu.vala:378
+#: ../src/latex_menu.vala:368
 msgid "_Small"
 msgstr "_Mažas"
 
-#: ../src/latex_menu.vala:379
+#: ../src/latex_menu.vala:369
 msgid "Small - \\,"
 msgstr "Mažas - \\,"
 
-#: ../src/latex_menu.vala:380
+#: ../src/latex_menu.vala:370
 msgid "_Medium"
 msgstr "_Vidutinis"
 
-#: ../src/latex_menu.vala:381
+#: ../src/latex_menu.vala:371
 msgid "Medium - \\:"
 msgstr "Vidutinis - \\:"
 
-#: ../src/latex_menu.vala:382
+#: ../src/latex_menu.vala:372
 msgid "_Large"
 msgstr "_Didelis"
 
-#: ../src/latex_menu.vala:383
+#: ../src/latex_menu.vala:373
 msgid "Large - \\;"
 msgstr "Didelis - \\;"
 
 #. Math: Left Delimiters
-#: ../src/latex_menu.vala:389
+#: ../src/latex_menu.vala:379
 msgid "_Left Delimiters"
 msgstr "_Kairieji riboženkliai"
 
-#: ../src/latex_menu.vala:390
+#: ../src/latex_menu.vala:380
 msgid "left ("
 msgstr "kairysis ("
 
-#: ../src/latex_menu.vala:392
+#: ../src/latex_menu.vala:382
 msgid "left ["
 msgstr "kairysis ["
 
-#: ../src/latex_menu.vala:394
+#: ../src/latex_menu.vala:384
 msgid "left { "
 msgstr "kairysis {"
 
-#: ../src/latex_menu.vala:396
+#: ../src/latex_menu.vala:386
 msgid "left <"
 msgstr "kairysis <"
 
-#: ../src/latex_menu.vala:398
+#: ../src/latex_menu.vala:388
 msgid "left )"
 msgstr "kairysis )"
 
-#: ../src/latex_menu.vala:400
+#: ../src/latex_menu.vala:390
 msgid "left ]"
 msgstr "kairysis ]"
 
-#: ../src/latex_menu.vala:402
+#: ../src/latex_menu.vala:392
 msgid "left  }"
 msgstr "kairysis }"
 
-#: ../src/latex_menu.vala:404
+#: ../src/latex_menu.vala:394
 msgid "left >"
 msgstr "kairysis >"
 
-#: ../src/latex_menu.vala:406
+#: ../src/latex_menu.vala:396
 msgid "left ."
 msgstr "kairysis ."
 
 #. Math: Right Delimiters
-#: ../src/latex_menu.vala:411
+#: ../src/latex_menu.vala:401
 msgid "Right _Delimiters"
 msgstr "Dešinieji _riboženkliai"
 
-#: ../src/latex_menu.vala:412
+#: ../src/latex_menu.vala:402
 msgid "right )"
 msgstr "dešinysis )"
 
-#: ../src/latex_menu.vala:414
+#: ../src/latex_menu.vala:404
 msgid "right ]"
 msgstr "dešinysis ]"
 
-#: ../src/latex_menu.vala:416
+#: ../src/latex_menu.vala:406
 msgid "right  }"
 msgstr "dešinysis }"
 
-#: ../src/latex_menu.vala:418
+#: ../src/latex_menu.vala:408
 msgid "right >"
 msgstr "dešinysis >"
 
-#: ../src/latex_menu.vala:420
+#: ../src/latex_menu.vala:410
 msgid "right ("
 msgstr "dešinysis ("
 
-#: ../src/latex_menu.vala:422
+#: ../src/latex_menu.vala:412
 msgid "right ["
 msgstr "dešinysis ["
 
-#: ../src/latex_menu.vala:424
+#: ../src/latex_menu.vala:414
 msgid "right { "
 msgstr "dešinysis {"
 
-#: ../src/latex_menu.vala:426
+#: ../src/latex_menu.vala:416
 msgid "right <"
 msgstr "dešinysis <"
 
-#: ../src/latex_menu.vala:428
+#: ../src/latex_menu.vala:418
 msgid "right ."
 msgstr "dešinysis ."
 
 #. menus under toolitems
-#: ../src/latex_menu.vala:443
+#: ../src/latex_menu.vala:433
 msgid "Sectioning"
 msgstr "Skiltys"
 
-#: ../src/latex_menu.vala:446
+#: ../src/latex_menu.vala:436
 msgid "Characters Sizes"
 msgstr "Simbolių dydžiai"
 
-#: ../src/latex_menu.vala:449
+#: ../src/latex_menu.vala:439
 msgid "References"
 msgstr "Rodyklės"
 
-#: ../src/latex_menu.vala:452
+#: ../src/latex_menu.vala:442
 msgid "Presentation Environments"
 msgstr "Pateikčių aplinkos"
 
-#: ../src/latex_menu.vala:455
+#: ../src/latex_menu.vala:445
 msgid "Math Environments"
 msgstr "Matematikos aplinkos"
 
@@ -2591,7 +2594,6 @@ msgid "Clear most used symbols"
 msgstr "Išvalyti dažniausiai naudojamus simbolius"
 
 #: ../src/tab_label.vala:48
-#| msgid "open file"
 msgid "Project main file"
 msgstr "Projekto pagrindinis failas"
 
