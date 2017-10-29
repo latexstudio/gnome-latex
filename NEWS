@@ -1,5 +1,9 @@
 LaTeXila NEWS
 
+Release 3.26.1, 2017-10-29
+--------------------------
+* Translation updates.
+
 Release 3.26.0, 2017-09-09
 --------------------------
 * Internal code refactoring, use more Tepl features:
