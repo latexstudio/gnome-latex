@@ -481,6 +481,76 @@ latex_command_tabular_cline_cb (GSimpleAction *action,
 }
 
 static void
+latex_command_presentation_frame_cb (GSimpleAction *action,
+                                     GVariant      *parameter,
+                                     gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  gchar *indent;
+  gchar *text_before;
+
+  indent = get_indentation (tepl_window);
+  text_before = g_strdup_printf ("\\begin{frame}\n"
+                                 "%s\\frametitle{}\n"
+                                 "%s\\framesubtitle{}\n",
+                                 indent,
+                                 indent);
+
+  latexila_latex_commands_insert_text (tepl_window,
+                                       text_before,
+                                       "\n\\end{frame}",
+                                       NULL);
+
+  g_free (indent);
+  g_free (text_before);
+}
+
+static void
+latex_command_presentation_block_cb (GSimpleAction *action,
+                                     GVariant      *parameter,
+                                     gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+  latexila_latex_commands_insert_text (tepl_window,
+                                       "\\begin{block}{}\n",
+                                       "\n\\end{block}",
+                                       NULL);
+}
+
+static void
+latex_command_presentation_columns_cb (GSimpleAction *action,
+                                       GVariant      *parameter,
+                                       gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  gchar *indent;
+  gchar *text_before;
+  gchar *text_after;
+
+  indent = get_indentation (tepl_window);
+
+  text_before = g_strdup_printf ("\\begin{columns}\n"
+                                 "%s\\begin{column}{.5\\textwidth}\n",
+                                 indent);
+
+  text_after = g_strdup_printf ("\n"
+                                "%s\\end{column}\n"
+                                "%s\\begin{column}{.5\\textwidth}\n\n"
+                                "%s\\end{column}\n"
+                                "\\end{columns}",
+                                indent,
+                                indent,
+                                indent);
+
+  latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+
+  g_free (indent);
+  g_free (text_before);
+  g_free (text_after);
+}
+
+static void
 latex_command_spacing_new_line_cb (GSimpleAction *action,
                                    GVariant      *parameter,
                                    gpointer       user_data)
@@ -515,6 +585,9 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
     { "latex-command-tabular-tabular", latex_command_tabular_tabular_cb },
     { "latex-command-tabular-multicolumn", latex_command_tabular_multicolumn_cb },
     { "latex-command-tabular-cline", latex_command_tabular_cline_cb },
+    { "latex-command-presentation-frame", latex_command_presentation_frame_cb },
+    { "latex-command-presentation-block", latex_command_presentation_block_cb },
+    { "latex-command-presentation-columns", latex_command_presentation_columns_cb },
     { "latex-command-spacing-new-line", latex_command_spacing_new_line_cb },
   };
 

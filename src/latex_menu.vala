@@ -179,11 +179,11 @@ public class LatexMenu : Gtk.ActionGroup
 
         { "Presentation", "x-office-presentation", "_Presentation" },
         { "PresentationFrame", null, "\\begin{frame}", null,
-            N_("Frame - \\begin{frame}"), on_present_frame },
+            N_("Frame - \\begin{frame}") },
         { "PresentationBlock", null, "\\begin{block}", null,
-            N_("Block - \\begin{block}"), on_present_block },
+            N_("Block - \\begin{block}") },
         { "PresentationColumns", null, "\\begin{columns}", null,
-            N_("Two columns - \\begin{columns}"), on_present_columns },
+            N_("Two columns - \\begin{columns}") },
 
         // LaTeX: Spacing
 
@@ -596,6 +596,14 @@ public class LatexMenu : Gtk.ActionGroup
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-tabular-cline",
             this, "TabularCline");
 
+        // LaTeX: Presentation
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-presentation-frame",
+            this, "PresentationFrame");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-presentation-block",
+            this, "PresentationBlock");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-presentation-columns",
+            this, "PresentationColumns");
+
         // LaTeX: Spacing
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-spacing-new-line",
             this, "SpacingNewLine");
@@ -667,40 +675,6 @@ public class LatexMenu : Gtk.ActionGroup
 
         Latexila.latex_commands_insert_text (tepl_window, text_before, text_after,
             text_if_no_selection);
-    }
-
-    private string get_indentation ()
-    {
-        return Latexila.view_get_indentation_style (main_window.active_view);
-    }
-
-    /* Presentation */
-
-    public void on_present_frame ()
-    {
-        string indent = get_indentation ();
-        string begin_frame = "\\begin{frame}\n"
-                           + @"$indent\\frametitle{}\n"
-                           + @"$indent\\framesubtitle{}\n";
-        string end_frame = "\n\\end{frame}";
-        text_buffer_insert (begin_frame, end_frame);
-    }
-
-    public void on_present_columns ()
-    {
-        string indent = get_indentation ();
-        string begin_columns = "\\begin{columns}\n"
-                             + @"$indent\\begin{column}{.5\\textwidth}\n";
-        string end_columns = @"\n$indent\\end{column}\n"
-                           + @"$indent\\begin{column}{.5\\textwidth}\n\n"
-                           + @"$indent\\end{column}\n"
-                           + "\\end{columns}";
-        text_buffer_insert (begin_columns, end_columns);
-    }
-
-    public void on_present_block ()
-    {
-        text_buffer_insert ("\\begin{block}{}\n","\n\\end{block}");
     }
 
     /* Others */
