@@ -189,23 +189,23 @@ public class LatexMenu : Gtk.ActionGroup
 
         { "Spacing", null, N_("_Spacing") },
         { "SpacingNewLine", null, N_("New _Line"), null,
-            N_("New Line - \\\\"), on_spacing_new_line },
+            N_("New Line - \\\\") },
         { "SpacingNewPage", null, "\\new_page", null,
-            N_("New page - \\newpage"), on_spacing_new_page },
+            N_("New page - \\newpage") },
         { "SpacingLineBreak", null, "\\l_inebreak", null,
-            N_("Line break - \\linebreak"), on_spacing_line_break },
+            N_("Line break - \\linebreak") },
         { "SpacingPageBreak", null, "\\p_agebreak", null,
-            N_("Page break - \\pagebreak"), on_spacing_page_break },
+            N_("Page break - \\pagebreak") },
         { "SpacingBigSkip", null, "\\_bigskip", null,
-            N_("Big skip - \\bigskip"), on_spacing_bigskip },
+            N_("Big skip - \\bigskip") },
         { "SpacingMedSkip", null, "\\_medskip", null,
-            N_("Medium skip - \\medskip"), on_spacing_medskip },
+            N_("Medium skip - \\medskip") },
         { "SpacingHSpace", null, "\\_hspace", null,
             N_("Horizontal space - \\hspace") },
         { "SpacingVSpace", null, "\\_vspace", null,
             N_("Vertical space - \\vspace") },
         { "SpacingNoIndent", null, "\\_noindent", null,
-            N_("No paragraph indentation - \\noindent"), on_spacing_noindent },
+            N_("No paragraph indentation - \\noindent") },
 
         // LaTeX: International accents
 
@@ -597,10 +597,24 @@ public class LatexMenu : Gtk.ActionGroup
             this, "TabularCline");
 
         // LaTeX: Spacing
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-spacing-new-line",
+            this, "SpacingNewLine");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-newline::newpage",
+            this, "SpacingNewPage");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-newline::linebreak",
+            this, "SpacingLineBreak");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-newline::pagebreak",
+            this, "SpacingPageBreak");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::bigskip",
+            this, "SpacingBigSkip");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::medskip",
+            this, "SpacingMedSkip");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::hspace",
             this, "SpacingHSpace");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::vspace",
             this, "SpacingVSpace");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::noindent",
+            this, "SpacingNoIndent");
 
         // LaTeX: International accents
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('\\'')",
@@ -658,43 +672,6 @@ public class LatexMenu : Gtk.ActionGroup
     private string get_indentation ()
     {
         return Latexila.view_get_indentation_style (main_window.active_view);
-    }
-
-    /* Spacing */
-
-    public void on_spacing_new_line ()
-    {
-        text_buffer_insert ("\\\\\n", "");
-    }
-
-    public void on_spacing_new_page ()
-    {
-        text_buffer_insert ("\\newpage\n", "");
-    }
-
-    public void on_spacing_line_break ()
-    {
-        text_buffer_insert ("\\linebreak\n", "");
-    }
-
-    public void on_spacing_page_break ()
-    {
-        text_buffer_insert ("\\pagebreak\n", "");
-    }
-
-    public void on_spacing_bigskip ()
-    {
-        text_buffer_insert ("\\bigskip ", "");
-    }
-
-    public void on_spacing_medskip ()
-    {
-        text_buffer_insert ("\\medskip ", "");
-    }
-
-    public void on_spacing_noindent ()
-    {
-        text_buffer_insert ("\\noindent ", "");
     }
 
     /* Presentation */

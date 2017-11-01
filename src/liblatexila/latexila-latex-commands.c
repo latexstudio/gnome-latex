@@ -202,6 +202,23 @@ latex_command_without_braces_cb (GSimpleAction *action,
 }
 
 static void
+latex_command_with_newline_cb (GSimpleAction *action,
+                               GVariant      *parameter,
+                               gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  const gchar *command;
+  gchar *text_before;
+
+  command = g_variant_get_string (parameter, NULL);
+  text_before = g_strdup_printf ("\\%s\n", command);
+
+  latexila_latex_commands_insert_text (tepl_window, text_before, "", NULL);
+
+  g_free (text_before);
+}
+
+static void
 latex_command_env_simple_cb (GSimpleAction *action,
                              GVariant      *parameter,
                              gpointer       user_data)
@@ -463,6 +480,16 @@ latex_command_tabular_cline_cb (GSimpleAction *action,
   latexila_latex_commands_insert_text (tepl_window, "\\cline{", "-}", NULL);
 }
 
+static void
+latex_command_spacing_new_line_cb (GSimpleAction *action,
+                                   GVariant      *parameter,
+                                   gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+  latexila_latex_commands_insert_text (tepl_window, "\\\\\n", "", NULL);
+}
+
 /**
  * latexila_latex_commands_add_actions:
  * @gtk_window: a #GtkApplicationWindow.
@@ -477,6 +504,7 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
   const GActionEntry entries[] = {
     { "latex-command-with-braces", latex_command_with_braces_cb, "s" },
     { "latex-command-without-braces", latex_command_without_braces_cb, "s" },
+    { "latex-command-with-newline", latex_command_with_newline_cb, "s" },
     { "latex-command-env-simple", latex_command_env_simple_cb, "s" },
     { "latex-command-env-figure", latex_command_env_figure_cb },
     { "latex-command-env-table", latex_command_env_table_cb },
@@ -487,6 +515,7 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
     { "latex-command-tabular-tabular", latex_command_tabular_tabular_cb },
     { "latex-command-tabular-multicolumn", latex_command_tabular_multicolumn_cb },
     { "latex-command-tabular-cline", latex_command_tabular_cline_cb },
+    { "latex-command-spacing-new-line", latex_command_spacing_new_line_cb },
   };
 
   g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));
