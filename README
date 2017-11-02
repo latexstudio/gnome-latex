@@ -32,10 +32,10 @@ And for building the sources:
 If you are installing LaTeXila from a tarball, you don't have to install Vala
 because the C code is already generated.
 
-Installation from a tarball
----------------------------
+Installation
+------------
 
-Simple install procedure:
+Simple install procedure from a tarball:
 
   $ ./configure
   $ make
@@ -44,12 +44,16 @@ Simple install procedure:
 
 See the file 'INSTALL' for more detailed information.
 
-Installation from Git
----------------------
+From the Git repository, the 'configure' script and the 'INSTALL' file are not
+yet generated, so you need to run 'autogen.sh' instead, which takes the same
+arguments as 'configure'.
 
-It is recommended to use Jhbuild:
+To build the latest version of LaTeXila plus its dependencies from Git, Jhbuild
+is recommended. LaTeXila is in the gnome-world moduleset. An example of a
+jhbuildrc file for LaTeXila is provided:
 
     https://wiki.gnome.org/Projects/Jhbuild
+    https://people.gnome.org/~swilmet/latexila/jhbuildrc
 
 How to contribute
 -----------------

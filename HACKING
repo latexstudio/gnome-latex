@@ -9,11 +9,6 @@ messages:
     https://wiki.gnome.org/Git/WorkingWithPatches
     https://wiki.gnome.org/Git/CommitMessages
 
-An easy way to build LaTeXila and its dependencies is to use jhbuild
-(gnome-world moduleset). Example of a jhbuildrc file for LaTeXila:
-
-    https://people.gnome.org/~swilmet/latexila/jhbuildrc
-
 Code conventions
 ----------------
 
