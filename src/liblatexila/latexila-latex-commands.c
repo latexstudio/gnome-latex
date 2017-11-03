@@ -168,6 +168,23 @@ deselect_text (TeplApplicationWindow *tepl_window)
 /* GActions implementation */
 
 static void
+latex_command_simple_cb (GSimpleAction *action,
+                         GVariant      *parameter,
+                         gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+  const gchar *command;
+  gchar *text_before;
+
+  command = g_variant_get_string (parameter, NULL);
+  text_before = g_strdup_printf ("\\%s", command);
+
+  latexila_latex_commands_insert_text (tepl_window, text_before, "", NULL);
+
+  g_free (text_before);
+}
+
+static void
 latex_command_with_braces_cb (GSimpleAction *action,
                               GVariant      *parameter,
                               gpointer       user_data)
@@ -560,6 +577,21 @@ latex_command_spacing_new_line_cb (GSimpleAction *action,
   latexila_latex_commands_insert_text (tepl_window, "\\\\\n", "", NULL);
 }
 
+static void
+latex_command_ams_packages_cb (GSimpleAction *action,
+                               GVariant      *parameter,
+                               gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+  latexila_latex_commands_insert_text (tepl_window,
+                                       "\\usepackage{amsmath}\n"
+                                       "\\usepackage{amsfonts}\n"
+                                       "\\usepackage{amssymb}",
+                                       "",
+                                       NULL);
+}
+
 /**
  * latexila_latex_commands_add_actions:
  * @gtk_window: a #GtkApplicationWindow.
@@ -572,6 +604,7 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
   TeplApplicationWindow *tepl_window;
 
   const GActionEntry entries[] = {
+    { "latex-command-simple", latex_command_simple_cb, "s" },
     { "latex-command-with-braces", latex_command_with_braces_cb, "s" },
     { "latex-command-without-braces", latex_command_without_braces_cb, "s" },
     { "latex-command-with-newline", latex_command_with_newline_cb, "s" },
@@ -589,6 +622,7 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
     { "latex-command-presentation-block", latex_command_presentation_block_cb },
     { "latex-command-presentation-columns", latex_command_presentation_columns_cb },
     { "latex-command-spacing-new-line", latex_command_spacing_new_line_cb },
+    { "latex-command-ams-packages", latex_command_ams_packages_cb },
   };
 
   g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));

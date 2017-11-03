@@ -228,30 +228,29 @@ public class LatexMenu : Gtk.ActionGroup
         { "Accent14", "accent14", "\\r", null, N_("Ring - \\r") },
         { "Accent15", "accent15", "\\t", null, N_("Tie - \\t") },
 
-        // LaTeX: Others
+        // LaTeX: Misc
 
         { "LatexMisc", null, N_("_Misc") },
         { "LatexDocumentClass", null, "\\_documentclass", null,
-            N_("Document class - \\documentclass"), on_documentclass },
+            N_("Document class - \\documentclass") },
         { "LatexUsepackage", null, "\\_usepackage", null,
-            N_("Use package - \\usepackage"), on_usepackage },
+            N_("Use package - \\usepackage") },
         { "LatexAMS", null, N_("_AMS packages"), null,
-            N_("AMS packages"), on_ams_packages },
-        { "LatexAuthor", null, "\\au_thor", null, N_("Author - \\author"), on_author },
-        { "LatexTitle", null, "\\t_itle", null, N_("Title - \\title"), on_title },
+            N_("AMS packages") },
+        { "LatexAuthor", null, "\\au_thor", null, N_("Author - \\author") },
+        { "LatexTitle", null, "\\t_itle", null, N_("Title - \\title") },
         { "LatexBeginDocument", null, "\\begin{d_ocument}", null,
-            N_("Content of the document - \\begin{document}"), on_begin_document },
+            N_("Content of the document - \\begin{document}") },
         { "LatexMakeTitle", null, "\\_maketitle", null,
-            N_("Make title - \\maketitle"), on_maketitle },
+            N_("Make title - \\maketitle") },
         { "LatexTableOfContents", null, "\\tableof_contents", null,
-            N_("Table of contents - \\tableofcontents"), on_tableofcontents },
+            N_("Table of contents - \\tableofcontents") },
         { "LatexAbstract", null, "\\begin{abst_ract}", null,
-            N_("Abstract - \\begin{abstract}"), on_abstract },
+            N_("Abstract - \\begin{abstract}") },
         { "LatexIncludeGraphics", null, "\\include_graphics", null,
-            N_("Include an image (graphicx package) - \\includegraphics"),
-            on_include_graphics },
+            N_("Include an image (graphicx package) - \\includegraphics") },
         { "LatexInput", null, "\\_input", null,
-            N_("Include a file - \\input"), on_input },
+            N_("Include a file - \\input") },
 
         // Math
 
@@ -657,6 +656,30 @@ public class LatexMenu : Gtk.ActionGroup
             this, "Accent14");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces('t')",
             this, "Accent15");
+
+        // LaTeX: Misc
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::documentclass",
+            this, "LatexDocumentClass");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::usepackage",
+            this, "LatexUsepackage");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-ams-packages",
+            this, "LatexAMS");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::author",
+            this, "LatexAuthor");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::title",
+            this, "LatexTitle");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::document",
+            this, "LatexBeginDocument");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-simple::maketitle",
+            this, "LatexMakeTitle");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-simple::tableofcontents",
+            this, "LatexTableOfContents");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::abstract",
+            this, "LatexAbstract");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::includegraphics",
+            this, "LatexIncludeGraphics");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::input",
+            this, "LatexInput");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -675,66 +698,6 @@ public class LatexMenu : Gtk.ActionGroup
 
         Latexila.latex_commands_insert_text (tepl_window, text_before, text_after,
             text_if_no_selection);
-    }
-
-    /* Others */
-
-    public void on_documentclass ()
-    {
-        text_buffer_insert ("\\documentclass{", "}");
-    }
-
-    public void on_usepackage ()
-    {
-        text_buffer_insert ("\\usepackage{", "}");
-    }
-
-    public void on_ams_packages ()
-    {
-        string packages = "\\usepackage{amsmath}\n"
-                        + "\\usepackage{amsfonts}\n"
-                        + "\\usepackage{amssymb}";
-        text_buffer_insert (packages, "");
-    }
-
-    public void on_author ()
-    {
-        text_buffer_insert ("\\author{", "}");
-    }
-
-    public void on_title ()
-    {
-        text_buffer_insert ("\\title{", "}");
-    }
-
-    public void on_begin_document ()
-    {
-        text_buffer_insert ("\\begin{document}\n", "\n\\end{document}");
-    }
-
-    public void on_maketitle ()
-    {
-        text_buffer_insert ("\\maketitle", "");
-    }
-
-    public void on_tableofcontents ()
-    {
-        text_buffer_insert ("\\tableofcontents", "");
-    }
-
-    public void on_abstract ()
-    {
-        text_buffer_insert ("\\begin{abstract}\n", "\n\\end{abstract}");
-    }
-
-    public void on_include_graphics ()
-    {
-        text_buffer_insert ("\\includegraphics{", "}");
-    }
-
-    public void on_input ()
-    {
-        text_buffer_insert ("\\input{", "}");
     }
 
     /* Math environments */
