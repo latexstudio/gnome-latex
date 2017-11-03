@@ -517,7 +517,7 @@ public class LatexMenu : Gtk.ActionGroup
             this, "ListEnvDescription");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-list-env-list",
             this, "ListEnvList");
-        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::item",
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::item",
             this, "ListEnvItem");
 
         // LaTeX: character sizes
@@ -588,9 +588,9 @@ public class LatexMenu : Gtk.ActionGroup
             this, "TabularTabular");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-tabular-multicolumn",
             this, "TabularMulticolumn");
-        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::hline",
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::hline",
             this, "TabularHline");
-        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::vline",
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::vline",
             this, "TabularVline");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-tabular-cline",
             this, "TabularCline");
@@ -612,15 +612,15 @@ public class LatexMenu : Gtk.ActionGroup
             this, "SpacingLineBreak");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-newline::pagebreak",
             this, "SpacingPageBreak");
-        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::bigskip",
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::bigskip",
             this, "SpacingBigSkip");
-        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::medskip",
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::medskip",
             this, "SpacingMedSkip");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::hspace",
             this, "SpacingHSpace");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::vspace",
             this, "SpacingVSpace");
-        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-without-braces::noindent",
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::noindent",
             this, "SpacingNoIndent");
 
         // LaTeX: International accents

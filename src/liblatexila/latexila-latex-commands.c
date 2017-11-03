@@ -202,9 +202,9 @@ latex_command_with_braces_cb (GSimpleAction *action,
 }
 
 static void
-latex_command_without_braces_cb (GSimpleAction *action,
-                                 GVariant      *parameter,
-                                 gpointer       user_data)
+latex_command_with_space_cb (GSimpleAction *action,
+                             GVariant      *parameter,
+                             gpointer       user_data)
 {
   TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
   const gchar *command;
@@ -606,7 +606,7 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
   const GActionEntry entries[] = {
     { "latex-command-simple", latex_command_simple_cb, "s" },
     { "latex-command-with-braces", latex_command_with_braces_cb, "s" },
-    { "latex-command-without-braces", latex_command_without_braces_cb, "s" },
+    { "latex-command-with-space", latex_command_with_space_cb, "s" },
     { "latex-command-with-newline", latex_command_with_newline_cb, "s" },
     { "latex-command-env-simple", latex_command_env_simple_cb, "s" },
     { "latex-command-env-figure", latex_command_env_figure_cb },
