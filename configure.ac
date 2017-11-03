@@ -54,6 +54,17 @@ AC_SUBST([GEE_REQUIRED_VERSION])
 # WARNING: It's easy to get an infinite loop with some unsane input.
 # For example ${datadir} becomes ${datarootdir}, and then ${prefix}/share, and
 # finally ${prefix} is replaced by the prefix.
+#
+# Why is it used in LaTeXila?
+# TL;DR: Vala.
+#
+# If the variable is needed only in C code, it is possible to pass the value
+# with -D in the CPPFLAGS in the Makefile.am, and the value will correctly be
+# interpolated.
+# This macro is used in LaTeXila because the variables are needed in Vala, the
+# variables are accessed through vapi/config.vapi, so they need to be present
+# in the config.h (the variables are added to the config.h with
+# AC_DEFINE_UNQUOTED).
 AC_DEFUN([adl_RECURSIVE_EVAL],
 [_lcl_receval="$1"
 $2=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
