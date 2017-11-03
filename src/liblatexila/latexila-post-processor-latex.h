@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_POST_PROCESSOR_LATEX_H__
-#define __LATEXILA_POST_PROCESSOR_LATEX_H__
+#ifndef LATEXILA_POST_PROCESSOR_LATEX_H
+#define LATEXILA_POST_PROCESSOR_LATEX_H
 
 #include <glib-object.h>
 #include "latexila-post-processor.h"
@@ -56,4 +56,4 @@ gint                    latexila_post_processor_latex_get_errors_count  (Latexil
 
 G_END_DECLS
 
-#endif /* __LATEXILA_POST_PROCESSOR_LATEX_H__ */
+#endif /* LATEXILA_POST_PROCESSOR_LATEX_H */

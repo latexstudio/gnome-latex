@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_POST_PROCESSOR_H__
-#define __LATEXILA_POST_PROCESSOR_H__
+#ifndef LATEXILA_POST_PROCESSOR_H
+#define LATEXILA_POST_PROCESSOR_H
 
 #include <gio/gio.h>
 #include "latexila-types.h"
@@ -114,4 +114,4 @@ GQueue *                latexila_post_processor_take_messages         (LatexilaP
 
 G_END_DECLS
 
-#endif /* __LATEXILA_POST_PROCESSOR_H__ */
+#endif /* LATEXILA_POST_PROCESSOR_H */

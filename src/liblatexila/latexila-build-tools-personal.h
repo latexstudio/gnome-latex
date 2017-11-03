@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_BUILD_TOOLS_PERSONAL_H__
-#define __LATEXILA_BUILD_TOOLS_PERSONAL_H__
+#ifndef LATEXILA_BUILD_TOOLS_PERSONAL_H
+#define LATEXILA_BUILD_TOOLS_PERSONAL_H
 
 #include <glib-object.h>
 #include "latexila-build-tools.h"
@@ -77,4 +77,4 @@ void                latexila_build_tools_personal_replace             (LatexilaB
 
 G_END_DECLS
 
-#endif /* __LATEXILA_BUILD_TOOLS_PERSONAL_H__ */
+#endif /* LATEXILA_BUILD_TOOLS_PERSONAL_H */

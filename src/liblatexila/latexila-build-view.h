@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_BUILD_VIEW_H__
-#define __LATEXILA_BUILD_VIEW_H__
+#ifndef LATEXILA_BUILD_VIEW_H
+#define LATEXILA_BUILD_VIEW_H
 
 #include <gtk/gtk.h>
 #include "latexila-types.h"
@@ -161,4 +161,4 @@ void                  latexila_build_view_remove_children           (LatexilaBui
 
 G_END_DECLS
 
-#endif /* __LATEXILA_BUILD_VIEW_H__ */
+#endif /* LATEXILA_BUILD_VIEW_H */

@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_BUILD_TOOLS_DEFAULT_H__
-#define __LATEXILA_BUILD_TOOLS_DEFAULT_H__
+#ifndef LATEXILA_BUILD_TOOLS_DEFAULT_H
+#define LATEXILA_BUILD_TOOLS_DEFAULT_H
 
 #include <glib-object.h>
 #include "latexila-build-tools.h"
@@ -55,4 +55,4 @@ LatexilaBuildToolsDefault *
 
 G_END_DECLS
 
-#endif /* __LATEXILA_BUILD_TOOLS_DEFAULT_H__ */
+#endif /* LATEXILA_BUILD_TOOLS_DEFAULT_H */

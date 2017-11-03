@@ -21,8 +21,8 @@
  * code) should #include only this header.
  */
 
-#ifndef __LATEXILA_H__
-#define __LATEXILA_H__
+#ifndef LATEXILA_H
+#define LATEXILA_H
 
 #include "latexila-types.h"
 #include "latexila-enum-types.h"
@@ -45,4 +45,4 @@
 #include "latexila-utils.h"
 #include "latexila-view.h"
 
-#endif /* __LATEXILA_H__ */
+#endif /* LATEXILA_H */

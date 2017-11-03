@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_TEMPLATES_PERSONAL_H__
-#define __LATEXILA_TEMPLATES_PERSONAL_H__
+#ifndef LATEXILA_TEMPLATES_PERSONAL_H
+#define LATEXILA_TEMPLATES_PERSONAL_H
 
 #include <gtk/gtk.h>
 #include "latexila-types.h"
@@ -54,4 +54,4 @@ gboolean      latexila_templates_personal_move_down             (LatexilaTemplat
 
 G_END_DECLS
 
-#endif /* __LATEXILA_TEMPLATES_PERSONAL_H__ */
+#endif /* LATEXILA_TEMPLATES_PERSONAL_H */

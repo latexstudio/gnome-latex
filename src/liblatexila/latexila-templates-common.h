@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_TEMPLATES_COMMON_H__
-#define __LATEXILA_TEMPLATES_COMMON_H__
+#ifndef LATEXILA_TEMPLATES_COMMON_H
+#define LATEXILA_TEMPLATES_COMMON_H
 
 #include <gtk/gtk.h>
 
@@ -55,4 +55,4 @@ GtkTreeView *   latexila_templates_get_view         (GtkListStore *store);
 
 G_END_DECLS
 
-#endif /* __LATEXILA_TEMPLATES_COMMON_H__ */
+#endif /* LATEXILA_TEMPLATES_COMMON_H */

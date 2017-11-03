@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_BUILD_TOOL_H__
-#define __LATEXILA_BUILD_TOOL_H__
+#ifndef LATEXILA_BUILD_TOOL_H
+#define LATEXILA_BUILD_TOOL_H
 
 #include "latexila-types.h"
 #include <gio/gio.h>
@@ -74,4 +74,4 @@ void                  latexila_build_tool_run_finish                (LatexilaBui
 
 G_END_DECLS
 
-#endif /* __LATEXILA_BUILD_TOOL_H__ */
+#endif /* LATEXILA_BUILD_TOOL_H */

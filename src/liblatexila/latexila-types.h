@@ -22,8 +22,8 @@
  * TypeA declaration.
  */
 
-#ifndef __LATEXILA_TYPES_H__
-#define __LATEXILA_TYPES_H__
+#ifndef LATEXILA_TYPES_H
+#define LATEXILA_TYPES_H
 
 #include <glib.h>
 
@@ -45,4 +45,4 @@ typedef struct _LatexilaTemplatesPersonal       LatexilaTemplatesPersonal;
 
 G_END_DECLS
 
-#endif /* __LATEXILA_TYPES_H__ */
+#endif /* LATEXILA_TYPES_H */

@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_TEMPLATES_DEFAULT_H__
-#define __LATEXILA_TEMPLATES_DEFAULT_H__
+#ifndef LATEXILA_TEMPLATES_DEFAULT_H
+#define LATEXILA_TEMPLATES_DEFAULT_H
 
 #include <gtk/gtk.h>
 #include "latexila-types.h"
@@ -36,4 +36,4 @@ gchar *       latexila_templates_default_get_contents           (LatexilaTemplat
 
 G_END_DECLS
 
-#endif /* __LATEXILA_TEMPLATES_DEFAULT_H__ */
+#endif /* LATEXILA_TEMPLATES_DEFAULT_H */

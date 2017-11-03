@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_TEMPLATES_DIALOGS_H__
-#define __LATEXILA_TEMPLATES_DIALOGS_H__
+#ifndef LATEXILA_TEMPLATES_DIALOGS_H
+#define LATEXILA_TEMPLATES_DIALOGS_H
 
 #include <gtk/gtk.h>
 
@@ -31,4 +31,4 @@ void            latexila_templates_dialogs_create_template    (GtkWindow   *pare
 
 G_END_DECLS
 
-#endif /* __LATEXILA_TEMPLATES_DIALOGS_H__ */
+#endif /* LATEXILA_TEMPLATES_DIALOGS_H */

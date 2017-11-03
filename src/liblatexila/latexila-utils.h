@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_UTILS_H__
-#define __LATEXILA_UTILS_H__
+#ifndef LATEXILA_UTILS_H
+#define LATEXILA_UTILS_H
 
 #include <gtk/gtk.h>
 
@@ -71,4 +71,4 @@ void            latexila_utils_register_icons                   (void);
 
 G_END_DECLS
 
-#endif /* __LATEXILA_UTILS_H__ */
+#endif /* LATEXILA_UTILS_H */

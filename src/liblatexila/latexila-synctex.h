@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_SYNCTEX_H__
-#define __LATEXILA_SYNCTEX_H__
+#ifndef LATEXILA_SYNCTEX_H
+#define LATEXILA_SYNCTEX_H
 
 #include "latexila-types.h"
 #include <gtk/gtk.h>
@@ -62,4 +62,4 @@ void              latexila_synctex_forward_search                 (LatexilaSynct
 
 G_END_DECLS
 
-#endif /* __LATEXILA_SYNCTEX_H__ */
+#endif /* LATEXILA_SYNCTEX_H */

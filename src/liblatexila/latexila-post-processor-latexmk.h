@@ -17,8 +17,8 @@
  * along with LaTeXila.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __LATEXILA_POST_PROCESSOR_LATEXMK_H__
-#define __LATEXILA_POST_PROCESSOR_LATEXMK_H__
+#ifndef LATEXILA_POST_PROCESSOR_LATEXMK_H
+#define LATEXILA_POST_PROCESSOR_LATEXMK_H
 
 #include <glib-object.h>
 #include "latexila-post-processor.h"
@@ -54,4 +54,4 @@ LatexilaPostProcessor * latexila_post_processor_latexmk_new       (void);
 
 G_END_DECLS
 
-#endif /* __LATEXILA_POST_PROCESSOR_LATEXMK_H__ */
+#endif /* LATEXILA_POST_PROCESSOR_LATEXMK_H */
