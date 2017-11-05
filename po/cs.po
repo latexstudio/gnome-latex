@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=latexila&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2017-11-03 16:17+0000\n"
-"PO-Revision-Date: 2017-11-05 12:49+0100\n"
+"PO-Revision-Date: 2017-11-05 12:53+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -87,7 +87,7 @@ msgstr "Převést postskriptový dokument do formátu PDF"
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:1
 msgid "LaTeX editor"
-msgstr ""
+msgstr "Editor formátu LaTeX"
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:2
 msgid ""
@@ -95,6 +95,9 @@ msgid ""
 "concentrate on the content and the structure of the document instead of "
 "being distracted by its presentation."
 msgstr ""
+"LaTeXila je editor dokumentů ve formátu LaTeX pro pracovní uživatelské "
+"prostředí GNOME. LaTeXila vám umožní se soustředit na obsah a strukturu "
+"dokumentu, místo toho abyste byli rozptylování jeho podáním."
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:3
 msgid ""
@@ -2707,4 +2710,3 @@ msgstr "Zvýrazňovat pravopisné chyby"
 #: ../src/ui/preferences_dialog.ui.h:28
 msgid "Other"
 msgstr "Ostatní"
-
