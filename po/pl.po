@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: latexila\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-29 18:39+0100\n"
-"PO-Revision-Date: 2017-10-29 18:40+0100\n"
+"POT-Creation-Date: 2017-11-05 15:44+0100\n"
+"PO-Revision-Date: 2017-11-05 15:45+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -90,18 +90,17 @@ msgid "Convert the PostScript document to the PDF format"
 msgstr "Konwertuje dokument PostScript do formatu PDF"
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:1
-msgid "Integrated LaTeX environment"
-msgstr "Zintegrowane środowisko LaTeX-a"
+msgid "LaTeX editor"
+msgstr "Edytor LaTeX-a"
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:2
 msgid ""
-"LaTeXila is an integrated LaTeX environment for the GNOME desktop. The idea "
-"of LaTeXila is to always deal directly with the LaTeX code, while "
-"simplifying as most as possible the writing of this LaTeX code."
+"LaTeXila is a LaTeX editor for the GNOME desktop. LaTeXila permits to "
+"concentrate on the content and the structure of the document instead of "
+"being distracted by its presentation."
 msgstr ""
-"LaTeXila to zintegrowane środowisko LaTeX-a dla GNOME. Ideą programu jest "
-"jak największe uproszczenie tworzenia kodu LaTeX-a, z którym użytkownik "
-"programu LaTeXila ma zawsze bezpośredni kontakt."
+"LaTeXila to edytor LaTeX-a dla środowiska GNOME. Umożliwia skupienie się na "
+"treści i strukturze dokumentu, bez rozpraszania się jego prezentacją."
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:3
 msgid ""
@@ -120,12 +119,12 @@ msgstr ""
 #: ../data/org.gnome.latexila.appdata.xml.in.h:4
 msgid ""
 "A side panel contains three components: the document structure to easily "
-"navigate in it; lists of symbols to insert them in a document; and an "
-"integrated file browser."
+"navigate in it; lists of symbols to insert them in a document; and a file "
+"browser."
 msgstr ""
 "Panel boczny programu składa się z trzech elementów: struktury dokumentu do "
 "łatwej nawigacji, listy symboli do umieszczenia w dokumencie oraz "
-"zintegrowanej przeglądarki plików."
+"przeglądarki plików."
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:5
 msgid ""
@@ -148,8 +147,8 @@ msgid "Document structure in the side panel"
 msgstr "Struktura dokumentu w panelu bocznym"
 
 #: ../data/org.gnome.latexila.desktop.in.in.h:1
-msgid "Integrated LaTeX Environment"
-msgstr "Zintegrowane środowisko LaTeX-a"
+msgid "LaTeX Editor"
+msgstr "Edytor LaTeX-a"
 
 #: ../data/org.gnome.latexila.desktop.in.in.h:2
 msgid "Edit LaTeX documents"
@@ -926,8 +925,8 @@ msgstr ""
 "Tworzy nowe główne okno w ramach istniejącego wystąpienia programu LaTeXila"
 
 #: ../src/latexila_app.vala:234
-msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
-msgstr "LaTeXila to zintegrowane środowisko LaTeX-a dla GNOME"
+msgid "LaTeXila is a LaTeX editor for the GNOME desktop"
+msgstr "LaTeXila to edytor LaTeX-a dla środowiska GNOME"
 
 #: ../src/latexila_app.vala:273 ../src/main_window.vala:71
 msgid "About LaTeXila"
