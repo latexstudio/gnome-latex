@@ -354,28 +354,6 @@ public class LatexilaApp : Gtk.Application
         }
     }
 
-    private void reopen_files ()
-    {
-        GLib.Settings editor_settings =
-            new GLib.Settings ("org.gnome.latexila.preferences.editor");
-
-        if (editor_settings.get_boolean ("reopen-files"))
-        {
-            GLib.Settings window_settings =
-                new GLib.Settings ("org.gnome.latexila.state.window");
-
-            string[] uris = window_settings.get_strv ("documents");
-            File[] files = {};
-            foreach (string uri in uris)
-            {
-                if (0 < uri.length)
-                    files += File.new_for_uri (uri);
-            }
-
-            open_documents (files);
-        }
-    }
-
     // Get all the documents currently opened.
     public Gee.List<Document> get_documents ()
     {
@@ -410,17 +388,10 @@ public class LatexilaApp : Gtk.Application
 
     public MainWindow create_window ()
     {
-        MainWindow? active_main_window = get_active_main_window ();
-        if (active_main_window != null)
-            active_main_window.save_state ();
+        Tepl.AbstractFactoryVala factory = Tepl.AbstractFactory.get_singleton ()
+            as Tepl.AbstractFactoryVala;
 
-        bool first_window = active_main_window == null;
-
-        MainWindow new_window = new MainWindow (this);
-        if (first_window)
-            reopen_files ();
-
-        return new_window;
+        return factory.create_main_window_vala (this) as MainWindow;
     }
 
     public void open_documents (File[] files)

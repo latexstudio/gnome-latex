@@ -31,7 +31,10 @@ private void init_i18n ()
 int main (string[] argv)
 {
     init_i18n ();
+
     Tepl.init ();
+    Factory factory = new Factory ();
+    factory.set_singleton_vala ();
 
     LatexilaApp app = new LatexilaApp ();
     int status = app.run (argv);
