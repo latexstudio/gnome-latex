@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: latexila master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=latexila&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-10-29 10:43+0000\n"
-"PO-Revision-Date: 2017-08-25 19:10+0200\n"
+"POT-Creation-Date: 2017-11-03 16:17+0000\n"
+"PO-Revision-Date: 2017-11-05 12:49+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -86,18 +86,15 @@ msgid "Convert the PostScript document to the PDF format"
 msgstr "Převést postskriptový dokument do formátu PDF"
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:1
-msgid "Integrated LaTeX environment"
-msgstr "Integrované prostředí LaTeX"
+msgid "LaTeX editor"
+msgstr ""
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:2
 msgid ""
-"LaTeXila is an integrated LaTeX environment for the GNOME desktop. The idea "
-"of LaTeXila is to always deal directly with the LaTeX code, while "
-"simplifying as most as possible the writing of this LaTeX code."
+"LaTeXila is a LaTeX editor for the GNOME desktop. LaTeXila permits to "
+"concentrate on the content and the structure of the document instead of "
+"being distracted by its presentation."
 msgstr ""
-"LaTeXila je integrované prostředí LaTeX pro GNOME. Ideou LaTeXily je "
-"pracovat vždy přímo s kódem LaTeX, ale přitom psaní tohoto kódu zjednodušit, "
-"co nejvíce to jde."
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:3
 msgid ""
@@ -116,12 +113,11 @@ msgstr ""
 #: ../data/org.gnome.latexila.appdata.xml.in.h:4
 msgid ""
 "A side panel contains three components: the document structure to easily "
-"navigate in it; lists of symbols to insert them in a document; and an "
-"integrated file browser."
+"navigate in it; lists of symbols to insert them in a document; and a file "
+"browser."
 msgstr ""
 "Postranní panel obsahuje tři věci: strukturu dokumentu pro snadný pohyb v "
-"něm; seznam symbolů pro vkládání do dokumentu; integrované procházení "
-"souborů."
+"něm; seznam symbolů pro vkládání do dokumentu; procházení souborů."
 
 #: ../data/org.gnome.latexila.appdata.xml.in.h:5
 msgid ""
@@ -144,8 +140,8 @@ msgid "Document structure in the side panel"
 msgstr "Struktura dokumentu v postranním panelu"
 
 #: ../data/org.gnome.latexila.desktop.in.in.h:1
-msgid "Integrated LaTeX Environment"
-msgstr "Integrované prostředí LaTeX"
+msgid "LaTeX Editor"
+msgstr "Editor formátu LaTeX"
 
 #: ../data/org.gnome.latexila.desktop.in.in.h:2
 msgid "Edit LaTeX documents"
@@ -907,8 +903,8 @@ msgid "Create a new top-level window in an existing instance of LaTeXila"
 msgstr "Vytvořit nové okno nejvyšší úrovně ve stávající instanci LaTeXila"
 
 #: ../src/latexila_app.vala:234
-msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
-msgstr "LaTeXila je integrované prostředí LaTeX pro GNOME"
+msgid "LaTeXila is a LaTeX editor for the GNOME desktop"
+msgstr "LaTeXila je editor dokumentů ve formátu LaTeX pro GNOME"
 
 #: ../src/latexila_app.vala:273 ../src/main_window.vala:71
 msgid "About LaTeXila"
@@ -2711,3 +2707,4 @@ msgstr "Zvýrazňovat pravopisné chyby"
 #: ../src/ui/preferences_dialog.ui.h:28
 msgid "Other"
 msgstr "Ostatní"
+
