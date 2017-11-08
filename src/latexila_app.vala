@@ -44,9 +44,11 @@ public class LatexilaApp : Gtk.Application
         setup_main_option_entries ();
 
         startup.connect (startup_cb);
-        activate.connect (activate_cb);
         open.connect (open_documents);
         shutdown.connect (shutdown_cb);
+
+        Tepl.Application tepl_app = Tepl.Application.get_from_gtk_application (this);
+        tepl_app.handle_activate ();
     }
 
     public static LatexilaApp get_instance ()
@@ -137,18 +139,6 @@ public class LatexilaApp : Gtk.Application
         AppSettings.get_default ();
         support_backward_search ();
         Gtk.AccelMap.load (get_accel_filename ());
-
-        release ();
-    }
-
-    private void activate_cb ()
-    {
-        hold ();
-
-        if (get_active_main_window () == null)
-            create_window ();
-        else
-            active_window.present ();
 
         release ();
     }
