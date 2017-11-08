@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2010-2015 Sébastien Wilmet
+ * Copyright © 2010-2015, 2017 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@
 public class LatexilaApp : Gtk.Application
 {
     static Gtk.CssProvider? _provider = null;
-    private bool _activate_called = false;
 
     private const GLib.ActionEntry[] _app_actions =
     {
@@ -146,12 +145,8 @@ public class LatexilaApp : Gtk.Application
     {
         hold ();
 
-        if (! _activate_called)
-        {
-            _activate_called = true;
+        if (get_active_main_window () == null)
             create_window ();
-            reopen_files ();
-        }
         else
             active_window.present ();
 
@@ -183,20 +178,16 @@ public class LatexilaApp : Gtk.Application
 
     private void new_document_cb ()
     {
-        if (! _activate_called)
-            activate ();
-
         MainWindow? window = get_active_main_window ();
-        return_if_fail (window != null);
+        if (window == null)
+            window = create_window ();
+
         window.create_tab (true);
     }
 
     private void new_window_cb ()
     {
-        if (_activate_called)
-            create_window ();
-        else
-            activate ();
+        create_window ();
     }
 
     private void preferences_cb ()
@@ -419,20 +410,24 @@ public class LatexilaApp : Gtk.Application
 
     public MainWindow create_window ()
     {
-        MainWindow? main_window = get_active_main_window ();
-        if (main_window != null)
-            main_window.save_state ();
+        MainWindow? active_main_window = get_active_main_window ();
+        if (active_main_window != null)
+            active_main_window.save_state ();
 
-        return new MainWindow (this);
+        bool first_window = active_main_window == null;
+
+        MainWindow new_window = new MainWindow (this);
+        if (first_window)
+            reopen_files ();
+
+        return new_window;
     }
 
     public void open_documents (File[] files)
     {
-        if (! _activate_called)
-            activate ();
-
         MainWindow? main_window = get_active_main_window ();
-        return_if_fail (main_window != null);
+        if (main_window == null)
+            main_window = create_window ();
 
         bool jump_to = true;
         foreach (File file in files)
