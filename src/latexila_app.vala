@@ -26,7 +26,6 @@ public class LatexilaApp : Gtk.Application
     private const GLib.ActionEntry[] _app_actions =
     {
         { "new-document", new_document_cb },
-        { "new-window", new_window_cb },
         { "preferences", preferences_cb },
         { "manage-build-tools", manage_build_tools_cb },
         { "help", help_cb },
@@ -106,7 +105,7 @@ public class LatexilaApp : Gtk.Application
             }
 
             if (new_window)
-                activate_action ("new-window", null);
+                activate_action ("tepl-new-window", null);
 
             if (new_document)
                 activate_action ("new-document", null);
@@ -173,11 +172,6 @@ public class LatexilaApp : Gtk.Application
             window = create_window ();
 
         window.create_tab (true);
-    }
-
-    private void new_window_cb ()
-    {
-        create_window ();
     }
 
     private void preferences_cb ()

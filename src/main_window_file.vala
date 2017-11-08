@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2012 Sébastien Wilmet
+ * Copyright © 2012, 2017 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,7 +74,7 @@ public class MainWindowFile
         ui_manager.insert_action_group (_action_group, 0);
 
         LatexilaApp app = LatexilaApp.get_instance ();
-        Amtk.utils_bind_g_action_to_gtk_action (app, "new-window",
+        Amtk.utils_bind_g_action_to_gtk_action (app, "tepl-new-window",
             _action_group, "FileNewWindow");
     }
 
