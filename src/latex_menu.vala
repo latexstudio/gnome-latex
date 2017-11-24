@@ -272,16 +272,18 @@ public class LatexMenu : Gtk.ActionGroup
             N_("Numbered Array of _Equations - \\begin{align}"), null,
             N_("Numbered Array of Equations - \\begin{align}") },
 
+        // Math misc
+
         { "MathSuperscript", "math-superscript", N_("_Superscript - ^{}"), null,
-            N_("Superscript - ^{}"), on_math_superscript },
+            N_("Superscript - ^{}") },
         { "MathSubscript", "math-subscript", N_("Su_bscript - __{}"), null,
-            N_("Subscript - _{}"), on_math_subscript },
+            N_("Subscript - _{}") },
         { "MathFrac", "math-frac", N_("_Fraction - \\frac{}{}"), "<Alt><Shift>F",
-            N_("Fraction - \\frac{}{}"), on_math_frac },
+            N_("Fraction - \\frac{}{}") },
         { "MathSquareRoot", "math-square-root", N_("Square _Root - \\sqrt{}"), null,
-            N_("Square Root - \\sqrt{}"), on_math_square_root },
+            N_("Square Root - \\sqrt{}") },
         { "MathNthRoot", "math-nth-root", N_("_N-th Root - \\sqrt[]{}"), null,
-            N_("N-th Root - \\sqrt[]{}"), on_math_nth_root },
+            N_("N-th Root - \\sqrt[]{}") },
 
         // Math functions
 
@@ -691,6 +693,18 @@ public class LatexMenu : Gtk.ActionGroup
             this, "MathEnvArray");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::align",
             this, "MathEnvNumberedArray");
+
+        // Math misc
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-misc-superscript",
+            this, "MathSuperscript");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-misc-subscript",
+            this, "MathSubscript");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-misc-frac",
+            this, "MathFrac");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::sqrt",
+            this, "MathSquareRoot");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-misc-nth-root",
+            this, "MathNthRoot");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -709,33 +723,6 @@ public class LatexMenu : Gtk.ActionGroup
 
         Latexila.latex_commands_insert_text (tepl_window, text_before, text_after,
             text_if_no_selection);
-    }
-
-    /* Math environments */
-
-    public void on_math_superscript ()
-    {
-        text_buffer_insert ("^{", "}");
-    }
-
-    public void on_math_subscript ()
-    {
-        text_buffer_insert ("_{", "}");
-    }
-
-    public void on_math_frac ()
-    {
-        text_buffer_insert ("\\frac{", "}{}");
-    }
-
-    public void on_math_square_root ()
-    {
-        text_buffer_insert ("\\sqrt{", "}");
-    }
-
-    public void on_math_nth_root ()
-    {
-        text_buffer_insert ("\\sqrt[]{", "}");
     }
 
     /* Math Functions */
