@@ -260,18 +260,17 @@ public class LatexMenu : Gtk.ActionGroup
 
         { "MathEnvironments", null, N_("_Math Environments") },
         { "MathEnvNormal", null, N_("_Mathematical Environment - $...$"),
-            "<Alt><Shift>M", N_("Mathematical Environment - $...$"), on_math_env_normal },
+            "<Alt><Shift>M", N_("Mathematical Environment - $...$") },
         { "MathEnvCentered", null, N_("_Centered Formula - \\[...\\]"),
-            "<Alt><Shift>E", N_("Centered Formula - \\[...\\]"), on_math_env_centered },
+            "<Alt><Shift>E", N_("Centered Formula - \\[...\\]") },
         { "MathEnvNumbered", null,
             N_("_Numbered Equation - \\begin{equation}"), null,
-            N_("Numbered Equation - \\begin{equation}"), on_math_env_numbered },
+            N_("Numbered Equation - \\begin{equation}") },
         { "MathEnvArray", null, N_("_Array of Equations - \\begin{align*}"), null,
-            N_("Array of Equations - \\begin{align*}"), on_math_env_array },
+            N_("Array of Equations - \\begin{align*}") },
         { "MathEnvNumberedArray", null,
             N_("Numbered Array of _Equations - \\begin{align}"), null,
-            N_("Numbered Array of Equations - \\begin{align}"),
-            on_math_env_numbered_array },
+            N_("Numbered Array of Equations - \\begin{align}") },
 
         { "MathSuperscript", "math-superscript", N_("_Superscript - ^{}"), null,
             N_("Superscript - ^{}"), on_math_superscript },
@@ -680,6 +679,18 @@ public class LatexMenu : Gtk.ActionGroup
             this, "LatexIncludeGraphics");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::input",
             this, "LatexInput");
+
+        // Math Environments
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-env-normal",
+            this, "MathEnvNormal");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-env-centered",
+            this, "MathEnvCentered");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::equation",
+            this, "MathEnvNumbered");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-env-array",
+            this, "MathEnvArray");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::align",
+            this, "MathEnvNumberedArray");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -701,31 +712,6 @@ public class LatexMenu : Gtk.ActionGroup
     }
 
     /* Math environments */
-
-    public void on_math_env_normal ()
-    {
-        text_buffer_insert ("$ ", " $");
-    }
-
-    public void on_math_env_centered ()
-    {
-        text_buffer_insert ("\\[ ", " \\]");
-    }
-
-    public void on_math_env_numbered ()
-    {
-        text_buffer_insert ("\\begin{equation}\n", "\n\\end{equation}");
-    }
-
-    public void on_math_env_array ()
-    {
-        text_buffer_insert ("\\begin{align*}\n", "\n\\end{align*}");
-    }
-
-    public void on_math_env_numbered_array ()
-    {
-        text_buffer_insert ("\\begin{align}\n", "\n\\end{align}");
-    }
 
     public void on_math_superscript ()
     {

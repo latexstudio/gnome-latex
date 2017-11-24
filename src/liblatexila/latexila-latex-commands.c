@@ -592,6 +592,39 @@ latex_command_ams_packages_cb (GSimpleAction *action,
                                        NULL);
 }
 
+static void
+math_command_env_normal_cb (GSimpleAction *action,
+                            GVariant      *parameter,
+                            gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+  latexila_latex_commands_insert_text (tepl_window, "$ ", " $", NULL);
+}
+
+static void
+math_command_env_centered_cb (GSimpleAction *action,
+                              GVariant      *parameter,
+                              gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+  latexila_latex_commands_insert_text (tepl_window, "\\[ ", " \\]", NULL);
+}
+
+static void
+math_command_env_array_cb (GSimpleAction *action,
+                           GVariant      *parameter,
+                           gpointer       user_data)
+{
+  TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+  latexila_latex_commands_insert_text (tepl_window,
+                                       "\\begin{align*}\n",
+                                       "\n\\end{align*}",
+                                       NULL);
+}
+
 /**
  * latexila_latex_commands_add_actions:
  * @gtk_window: a #GtkApplicationWindow.
@@ -623,6 +656,9 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
     { "latex-command-presentation-columns", latex_command_presentation_columns_cb },
     { "latex-command-spacing-new-line", latex_command_spacing_new_line_cb },
     { "latex-command-ams-packages", latex_command_ams_packages_cb },
+    { "math-command-env-normal", math_command_env_normal_cb },
+    { "math-command-env-centered", math_command_env_centered_cb },
+    { "math-command-env-array", math_command_env_array_cb },
   };
 
   g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));
