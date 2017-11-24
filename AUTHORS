@@ -1,12 +1,16 @@
-AUTHORS
+LaTeXila authors
+================
 
-Maintainer
-==========
+Main author and maintainer
+--------------------------
+
 Sébastien Wilmet <swilmet@gnome.org>
 
-Patches
-=======
+Code contributions
+------------------
+
 Matthieu Baerts
+Arnaud Blouin
 Erwan Bousse
 Simon Claessens
 Tanguy Ortolo
@@ -15,32 +19,13 @@ Matias De la Puente
 Stéphane Roy
 Nathan Samson
 
-Translations
-============
-Andika Triwidada
-Aron Xu
-Átila Camurça
-Bruno Brouard
-Christian Kirbach
-Claude Paroz
-Daniel Mustieles
-Daniel Nylander
-Fran Dieguez
-Frederik Hahne
-Johannes Wilde
-Jorge González
-Kjartan Maraas
-Kristjan SCHMIDT
-Marek Černocký
-Mario Blättermann
-Martin Srebotnjak
-Matej Urbančič
-Miguel Rodriguez
-Piotr Drąg
-Rudolfs Mazurs
-Vito Fasano
-Мирослав Николић
+Graphic design
+--------------
 
-Graphic Design
-==============
-Éric Forgeot (logo, icon and web site)
+Éric Forgeot (logo, icon and first web page)
+Ann Melnichuk (a previous icon)
+
+Other
+-----
+
+Translators, packagers, bug reporters, ...
