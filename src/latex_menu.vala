@@ -288,36 +288,36 @@ public class LatexMenu : Gtk.ActionGroup
         // Math functions
 
         { "MathFunctions", null, N_("Math _Functions") },
-        { "MathFuncArccos", null, "\\arccos", null, null, on_math_func_arccos },
-        { "MathFuncArcsin", null, "\\arcsin", null, null, on_math_func_arcsin },
-        { "MathFuncArctan", null, "\\arctan", null, null, on_math_func_arctan },
-        { "MathFuncCos", null, "\\cos", null, null, on_math_func_cos },
-        { "MathFuncCosh", null, "\\cosh", null, null, on_math_func_cosh },
-        { "MathFuncCot", null, "\\cot", null, null, on_math_func_cot },
-        { "MathFuncCoth", null, "\\coth", null, null, on_math_func_coth },
-        { "MathFuncCsc", null, "\\csc", null, null, on_math_func_csc },
-        { "MathFuncDeg", null, "\\deg", null, null, on_math_func_deg },
-        { "MathFuncDet", null, "\\det", null, null, on_math_func_det },
-        { "MathFuncDim", null, "\\dim", null, null, on_math_func_dim },
-        { "MathFuncExp", null, "\\exp", null, null, on_math_func_exp },
-        { "MathFuncGcd", null, "\\gcd", null, null, on_math_func_gcd },
-        { "MathFuncHom", null, "\\hom", null, null, on_math_func_hom },
-        { "MathFuncInf", null, "\\inf", null, null, on_math_func_inf },
-        { "MathFuncKer", null, "\\ker", null, null, on_math_func_ker },
-        { "MathFuncLg", null, "\\lg", null, null, on_math_func_lg },
-        { "MathFuncLim", null, "\\lim", null, null, on_math_func_lim },
-        { "MathFuncLiminf", null, "\\liminf", null, null, on_math_func_liminf },
-        { "MathFuncLimsup", null, "\\limsup", null, null, on_math_func_limsup },
-        { "MathFuncLn", null, "\\ln", null, null, on_math_func_ln },
-        { "MathFuncLog", null, "\\log", null, null, on_math_func_log },
-        { "MathFuncMax", null, "\\max", null, null, on_math_func_max },
-        { "MathFuncMin", null, "\\min", null, null, on_math_func_min },
-        { "MathFuncSec", null, "\\sec", null, null, on_math_func_sec },
-        { "MathFuncSin", null, "\\sin", null, null, on_math_func_sin },
-        { "MathFuncSinh", null, "\\sinh", null, null, on_math_func_sinh },
-        { "MathFuncSup", null, "\\sup", null, null, on_math_func_sup },
-        { "MathFuncTan", null, "\\tan", null, null, on_math_func_tan },
-        { "MathFuncTanh", null, "\\tanh", null, null, on_math_func_tanh },
+        { "MathFuncArccos", null, "\\arccos", null, null },
+        { "MathFuncArcsin", null, "\\arcsin", null, null },
+        { "MathFuncArctan", null, "\\arctan", null, null },
+        { "MathFuncCos", null, "\\cos", null, null },
+        { "MathFuncCosh", null, "\\cosh", null, null },
+        { "MathFuncCot", null, "\\cot", null, null },
+        { "MathFuncCoth", null, "\\coth", null, null },
+        { "MathFuncCsc", null, "\\csc", null, null },
+        { "MathFuncDeg", null, "\\deg", null, null },
+        { "MathFuncDet", null, "\\det", null, null },
+        { "MathFuncDim", null, "\\dim", null, null },
+        { "MathFuncExp", null, "\\exp", null, null },
+        { "MathFuncGcd", null, "\\gcd", null, null },
+        { "MathFuncHom", null, "\\hom", null, null },
+        { "MathFuncInf", null, "\\inf", null, null },
+        { "MathFuncKer", null, "\\ker", null, null },
+        { "MathFuncLg", null, "\\lg", null, null },
+        { "MathFuncLim", null, "\\lim", null, null },
+        { "MathFuncLiminf", null, "\\liminf", null, null },
+        { "MathFuncLimsup", null, "\\limsup", null, null },
+        { "MathFuncLn", null, "\\ln", null, null },
+        { "MathFuncLog", null, "\\log", null, null },
+        { "MathFuncMax", null, "\\max", null, null },
+        { "MathFuncMin", null, "\\min", null, null },
+        { "MathFuncSec", null, "\\sec", null, null },
+        { "MathFuncSin", null, "\\sin", null, null },
+        { "MathFuncSinh", null, "\\sinh", null, null },
+        { "MathFuncSup", null, "\\sup", null, null },
+        { "MathFuncTan", null, "\\tan", null, null },
+        { "MathFuncTanh", null, "\\tanh", null, null },
 
         // Math Font Styles
 
@@ -705,6 +705,68 @@ public class LatexMenu : Gtk.ActionGroup
             this, "MathSquareRoot");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-misc-nth-root",
             this, "MathNthRoot");
+
+        // Math functions
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::arccos",
+            this, "MathFuncArccos");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::arcsin",
+            this, "MathFuncArcsin");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::arctan",
+            this, "MathFuncArctan");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::cos",
+            this, "MathFuncCos");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::cosh",
+            this, "MathFuncCosh");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::cot",
+            this, "MathFuncCot");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::coth",
+            this, "MathFuncCoth");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::csc",
+            this, "MathFuncCsc");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::deg",
+            this, "MathFuncDeg");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::det",
+            this, "MathFuncDet");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::dim",
+            this, "MathFuncDim");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::exp",
+            this, "MathFuncExp");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::gcd",
+            this, "MathFuncGcd");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::hom",
+            this, "MathFuncHom");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::inf",
+            this, "MathFuncInf");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::ker",
+            this, "MathFuncKer");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::lg",
+            this, "MathFuncLg");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::lim",
+            this, "MathFuncLim");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::liminf",
+            this, "MathFuncLiminf");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::limsup",
+            this, "MathFuncLimsup");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::ln",
+            this, "MathFuncLn");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::log",
+            this, "MathFuncLog");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::max",
+            this, "MathFuncMax");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::min",
+            this, "MathFuncMin");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::sec",
+            this, "MathFuncSec");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::sin",
+            this, "MathFuncSin");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::sinh",
+            this, "MathFuncSinh");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::sup",
+            this, "MathFuncSup");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::tan",
+            this, "MathFuncTan");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::tanh",
+            this, "MathFuncTanh");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -723,158 +785,6 @@ public class LatexMenu : Gtk.ActionGroup
 
         Latexila.latex_commands_insert_text (tepl_window, text_before, text_after,
             text_if_no_selection);
-    }
-
-    /* Math Functions */
-
-    public void on_math_func_arccos ()
-    {
-        text_buffer_insert ("\\arccos ", "");
-    }
-
-    public void on_math_func_arcsin ()
-    {
-        text_buffer_insert ("\\arcsin ", "");
-    }
-
-    public void on_math_func_arctan ()
-    {
-        text_buffer_insert ("\\arctan ", "");
-    }
-
-    public void on_math_func_cos ()
-    {
-        text_buffer_insert ("\\cos ", "");
-    }
-
-    public void on_math_func_cosh ()
-    {
-        text_buffer_insert ("\\cosh ", "");
-    }
-
-    public void on_math_func_cot ()
-    {
-        text_buffer_insert ("\\cot ", "");
-    }
-
-    public void on_math_func_coth ()
-    {
-        text_buffer_insert ("\\coth ", "");
-    }
-
-    public void on_math_func_csc ()
-    {
-        text_buffer_insert ("\\csc ", "");
-    }
-
-    public void on_math_func_deg ()
-    {
-        text_buffer_insert ("\\deg ", "");
-    }
-
-    public void on_math_func_det ()
-    {
-        text_buffer_insert ("\\det ", "");
-    }
-
-    public void on_math_func_dim ()
-    {
-        text_buffer_insert ("\\dim ", "");
-    }
-
-    public void on_math_func_exp ()
-    {
-        text_buffer_insert ("\\exp ", "");
-    }
-
-    public void on_math_func_gcd ()
-    {
-        text_buffer_insert ("\\gcd ", "");
-    }
-
-    public void on_math_func_hom ()
-    {
-        text_buffer_insert ("\\hom ", "");
-    }
-
-    public void on_math_func_inf ()
-    {
-        text_buffer_insert ("\\inf ", "");
-    }
-
-    public void on_math_func_ker ()
-    {
-        text_buffer_insert ("\\ker ", "");
-    }
-
-    public void on_math_func_lg ()
-    {
-        text_buffer_insert ("\\lg ", "");
-    }
-
-    public void on_math_func_lim ()
-    {
-        text_buffer_insert ("\\lim ", "");
-    }
-
-    public void on_math_func_liminf ()
-    {
-        text_buffer_insert ("\\liminf ", "");
-    }
-
-    public void on_math_func_limsup ()
-    {
-        text_buffer_insert ("\\limsup ", "");
-    }
-
-    public void on_math_func_ln ()
-    {
-        text_buffer_insert ("\\ln ", "");
-    }
-
-    public void on_math_func_log ()
-    {
-        text_buffer_insert ("\\log ", "");
-    }
-
-    public void on_math_func_max ()
-    {
-        text_buffer_insert ("\\max ", "");
-    }
-
-    public void on_math_func_min ()
-    {
-        text_buffer_insert ("\\min ", "");
-    }
-
-    public void on_math_func_sec ()
-    {
-        text_buffer_insert ("\\sec ", "");
-    }
-
-    public void on_math_func_sin ()
-    {
-        text_buffer_insert ("\\sin ", "");
-    }
-
-    public void on_math_func_sinh ()
-    {
-        text_buffer_insert ("\\sinh ", "");
-    }
-
-    public void on_math_func_sup ()
-    {
-        text_buffer_insert ("\\sup ", "");
-    }
-
-    public void on_math_func_tan ()
-    {
-        text_buffer_insert ("\\tan ", "");
-    }
-
-    public void on_math_func_tanh ()
-    {
-        text_buffer_insert ("\\tanh ", "");
     }
 
     /* Math Font Styles */
