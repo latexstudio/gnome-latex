@@ -701,7 +701,10 @@ public class MainWindow : ApplicationWindow
         if (tab == null)
             return null;
 
-        tab.close_request.connect (() => { close_tab (tab); });
+        tab.close_request.connect (() => {
+            close_tab (tab);
+            Signal.stop_emission_by_name (tab, "close-request");
+        });
 
         Document doc = tab.document;
 
