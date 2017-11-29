@@ -23,7 +23,9 @@
  * @short_description: LaTeX menu, Math menu and Edit toolbar
  */
 
+#include "config.h"
 #include "latexila-latex-commands.h"
+#include <glib/gi18n.h>
 #include "latexila-utils.h"
 #include "latexila-view.h"
 
@@ -665,14 +667,8 @@ math_command_misc_nth_root_cb (GSimpleAction *action,
   latexila_latex_commands_insert_text (tepl_window, "\\sqrt[]{", "}", NULL);
 }
 
-/**
- * latexila_latex_commands_add_actions:
- * @gtk_window: a #GtkApplicationWindow.
- *
- * Adds the #GAction's related to the LaTeX and Math menus.
- */
-void
-latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
+static void
+add_actions (GtkApplicationWindow *gtk_window)
 {
   TeplApplicationWindow *tepl_window;
 
@@ -705,12 +701,49 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
     { "math-command-misc-nth-root", math_command_misc_nth_root_cb },
   };
 
-  g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));
-
   tepl_window = tepl_application_window_get_from_gtk_application_window (gtk_window);
 
   amtk_action_map_add_action_entries_check_dups (G_ACTION_MAP (gtk_window),
                                                  entries,
                                                  G_N_ELEMENTS (entries),
                                                  tepl_window);
+}
+
+static void
+add_action_info_entries (void)
+{
+  TeplApplication *tepl_app;
+  AmtkActionInfoStore *store;
+
+  const AmtkActionInfoEntry entries[] =
+  {
+    /* action, icon, label, accel, tooltip */
+
+    { "win.latex-command-env-figure", "image-x-generic", "\\begin{_figure}", NULL,
+      N_("Figure - \\begin{figure}") },
+  };
+
+  tepl_app = tepl_application_get_default ();
+  store = tepl_application_get_app_action_info_store (tepl_app);
+
+  amtk_action_info_store_add_entries (store,
+                                      entries,
+                                      G_N_ELEMENTS (entries),
+                                      GETTEXT_PACKAGE);
+}
+
+/**
+ * latexila_latex_commands_init:
+ * @gtk_window: a #GtkApplicationWindow.
+ *
+ * Creates the #GAction's and #AmtkActionInfo's related to the LaTeX and Math
+ * menus.
+ */
+void
+latexila_latex_commands_init (GtkApplicationWindow *gtk_window)
+{
+  g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));
+
+  add_actions (gtk_window);
+  add_action_info_entries ();
 }

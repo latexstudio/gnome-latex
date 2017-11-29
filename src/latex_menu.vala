@@ -70,8 +70,6 @@ public class LatexMenu : Gtk.ActionGroup
             N_("Align Left - \\begin{flushleft}") },
         { "EnvRight", "format-justify-right", "\\begin{flush_right}", null,
             N_("Align Right - \\begin{flushright}") },
-        { "EnvFigure", "image-x-generic", "\\begin{_figure}", null,
-            N_("Figure - \\begin{figure}") },
         { "EnvTable", "table", "\\begin{_table}", null,
             N_("Table - \\begin{table}") },
         { "EnvQuote", null, "\\begin{_quote}", null,
@@ -453,7 +451,7 @@ public class LatexMenu : Gtk.ActionGroup
 
         /* GActions */
 
-        Latexila.latex_commands_add_actions (main_window);
+        Latexila.latex_commands_init (main_window);
 
         // LaTeX: Sectioning
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::part",
@@ -492,7 +490,7 @@ public class LatexMenu : Gtk.ActionGroup
             this, "EnvLeft");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-simple::flushright",
             this, "EnvRight");
-        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-figure",
+        Amtk.utils_create_gtk_action (main_window, "win.latex-command-env-figure",
             this, "EnvFigure");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-env-table",
             this, "EnvTable");
