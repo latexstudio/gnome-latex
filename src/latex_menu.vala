@@ -340,23 +340,17 @@ public class LatexMenu : Gtk.ActionGroup
         // Math Accents
 
         { "MathAccents", null, N_("Math _Accents") },
-        { "MathAccentAcute", "mathaccent0", "\\_acute", null,
-            null, on_math_accent_acute },
-        { "MathAccentGrave", "mathaccent1", "\\_grave", null,
-        null, on_math_accent_grave },
-        { "MathAccentTilde", "mathaccent2", "\\_tilde", null,
-            null, on_math_accent_tilde },
-        { "MathAccentBar", "mathaccent3", "\\_bar", null, null, on_math_accent_bar },
-        { "MathAccentVec", "mathaccent4", "\\_vec", null, null, on_math_accent_vec },
-        { "MathAccentHat", "mathaccent5", "\\_hat", null, null, on_math_accent_hat },
-        { "MathAccentCheck", "mathaccent6", "\\_check", null,
-            null, on_math_accent_check },
-        { "MathAccentBreve", "mathaccent7", "\\b_reve", null,
-            null, on_math_accent_breve },
-        { "MathAccentDot", "mathaccent8", "\\_dot", null, null, on_math_accent_dot },
-        { "MathAccentDdot", "mathaccent9", "\\dd_ot", null, null, on_math_accent_ddot },
-        { "MathAccentRing", "mathaccent10", "\\_mathring", null,
-            null, on_math_accent_ring },
+        { "MathAccentAcute", "mathaccent0", "\\_acute", null, null },
+        { "MathAccentGrave", "mathaccent1", "\\_grave", null, null },
+        { "MathAccentTilde", "mathaccent2", "\\_tilde", null, null },
+        { "MathAccentBar", "mathaccent3", "\\_bar", null, null },
+        { "MathAccentVec", "mathaccent4", "\\_vec", null, null },
+        { "MathAccentHat", "mathaccent5", "\\_hat", null, null },
+        { "MathAccentCheck", "mathaccent6", "\\_check", null, null },
+        { "MathAccentBreve", "mathaccent7", "\\b_reve", null, null },
+        { "MathAccentDot", "mathaccent8", "\\_dot", null, null },
+        { "MathAccentDdot", "mathaccent9", "\\dd_ot", null, null },
+        { "MathAccentRing", "mathaccent10", "\\_mathring", null, null },
 
         // Math Spaces
 
@@ -781,6 +775,30 @@ public class LatexMenu : Gtk.ActionGroup
             this, "MathFSbb");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::mathfrak",
             this, "MathFSfrak");
+
+        // Math Accents
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::acute",
+            this, "MathAccentAcute");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::grave",
+            this, "MathAccentGrave");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::tilde",
+            this, "MathAccentTilde");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::bar",
+            this, "MathAccentBar");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::vec",
+            this, "MathAccentVec");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::hat",
+            this, "MathAccentHat");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::check",
+            this, "MathAccentCheck");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::breve",
+            this, "MathAccentBreve");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::dot",
+            this, "MathAccentDot");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::ddot",
+            this, "MathAccentDdot");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::mathring",
+            this, "MathAccentRing");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -799,63 +817,6 @@ public class LatexMenu : Gtk.ActionGroup
 
         Latexila.latex_commands_insert_text (tepl_window, text_before, text_after,
             text_if_no_selection);
-    }
-
-    /* Math Accents */
-
-    public void on_math_accent_acute ()
-    {
-        text_buffer_insert ("\\acute{", "}");
-    }
-
-    public void on_math_accent_grave ()
-    {
-        text_buffer_insert ("\\grave{", "}");
-    }
-
-    public void on_math_accent_tilde ()
-    {
-        text_buffer_insert ("\\tilde{", "}");
-    }
-
-    public void on_math_accent_bar ()
-    {
-        text_buffer_insert ("\\bar{", "}");
-    }
-
-    public void on_math_accent_vec ()
-    {
-        text_buffer_insert ("\\vec{", "}");
-    }
-
-    public void on_math_accent_hat ()
-    {
-        text_buffer_insert ("\\hat{", "}");
-    }
-
-    public void on_math_accent_check ()
-    {
-        text_buffer_insert ("\\check{", "}");
-    }
-
-    public void on_math_accent_breve ()
-    {
-        text_buffer_insert ("\\breve{", "}");
-    }
-
-    public void on_math_accent_dot ()
-    {
-        text_buffer_insert ("\\dot{", "}");
-    }
-
-    public void on_math_accent_ddot ()
-    {
-        text_buffer_insert ("\\ddot{", "}");
-    }
-
-    public void on_math_accent_ring ()
-    {
-        text_buffer_insert ("\\mathring{", "}");
     }
 
     /* Math Spaces */
