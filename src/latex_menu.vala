@@ -321,23 +321,21 @@ public class LatexMenu : Gtk.ActionGroup
 
         { "MathFontStyles", null, N_("Math Font _Styles") },
         { "MathFSrm", "roman", "\\math_rm", null,
-            N_("Roman - \\mathrm"), on_math_font_style_rm },
+            N_("Roman - \\mathrm") },
         { "MathFSit", "italic", "\\math_it", null,
-            N_("Italic - \\mathit"), on_math_font_style_it },
+            N_("Italic - \\mathit") },
         { "MathFSbf", "bold", "\\math_bf", null,
-            N_("Bold - \\mathbf"), on_math_font_style_bf },
+            N_("Bold - \\mathbf") },
         { "MathFSsf", "sans_serif", "\\math_sf", null,
-            N_("Sans Serif - \\mathsf"), on_math_font_style_sf },
+            N_("Sans Serif - \\mathsf") },
         { "MathFStt", "typewriter", "\\math_tt", null,
-            N_("Typewriter - \\mathtt"), on_math_font_style_tt },
+            N_("Typewriter - \\mathtt") },
         { "MathFScal", "mathcal", "\\math_cal", null,
-            N_("Calligraphic - \\mathcal"), on_math_font_style_cal },
+            N_("Calligraphic - \\mathcal") },
         { "MathFSbb", "blackboard", "\\_mathbb", null,
-            N_("Blackboard (uppercase only)  - \\mathbb (amsfonts package)"),
-            on_math_font_style_bb },
+            N_("Blackboard (uppercase only)  - \\mathbb (amsfonts package)") },
         { "MathFSfrak", "mathfrak", "\\math_frak", null,
-            N_("Euler Fraktur - \\mathfrak (amsfonts package)"),
-            on_math_font_style_frak },
+            N_("Euler Fraktur - \\mathfrak (amsfonts package)") },
 
         // Math Accents
 
@@ -765,6 +763,24 @@ public class LatexMenu : Gtk.ActionGroup
             this, "MathFuncTan");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::tanh",
             this, "MathFuncTanh");
+
+        // Math Font Styles
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::mathrm",
+            this, "MathFSrm");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::mathit",
+            this, "MathFSit");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::mathbf",
+            this, "MathFSbf");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::mathsf",
+            this, "MathFSsf");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::mathtt",
+            this, "MathFStt");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::mathcal",
+            this, "MathFScal");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::mathbb",
+            this, "MathFSbb");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::mathfrak",
+            this, "MathFSfrak");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -783,48 +799,6 @@ public class LatexMenu : Gtk.ActionGroup
 
         Latexila.latex_commands_insert_text (tepl_window, text_before, text_after,
             text_if_no_selection);
-    }
-
-    /* Math Font Styles */
-
-    public void on_math_font_style_rm ()
-    {
-        text_buffer_insert ("\\mathrm{", "}");
-    }
-
-    public void on_math_font_style_it ()
-    {
-        text_buffer_insert ("\\mathit{", "}");
-    }
-
-    public void on_math_font_style_bf ()
-    {
-        text_buffer_insert ("\\mathbf{", "}");
-    }
-
-    public void on_math_font_style_sf ()
-    {
-        text_buffer_insert ("\\mathsf{", "}");
-    }
-
-    public void on_math_font_style_tt ()
-    {
-        text_buffer_insert ("\\mathtt{", "}");
-    }
-
-    public void on_math_font_style_cal ()
-    {
-        text_buffer_insert ("\\mathcal{", "}");
-    }
-
-    public void on_math_font_style_bb ()
-    {
-        text_buffer_insert ("\\mathbb{", "}");
-    }
-
-    public void on_math_font_style_frak ()
-    {
-        text_buffer_insert ("\\mathfrak{", "}");
     }
 
     /* Math Accents */
