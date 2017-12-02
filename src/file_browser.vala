@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2010-2012 Sébastien Wilmet
+ * Copyright © 2010-2012, 2017 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -277,7 +277,8 @@ public class FileBrowser : Grid
 
         button.clicked.connect (() =>
         {
-            menu.popup (null, null, null, 0, get_current_event_time ());
+            menu.popup_at_widget (button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST,
+                null);
         });
 
         return button;
@@ -371,7 +372,8 @@ public class FileBrowser : Grid
 
         button.clicked.connect (() =>
         {
-            menu.popup (null, null, null, 0, get_current_event_time ());
+            menu.popup_at_widget (button, Gdk.Gravity.SOUTH_WEST, Gdk.Gravity.NORTH_WEST,
+                null);
         });
 
         return button;
