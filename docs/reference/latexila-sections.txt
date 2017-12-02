@@ -283,5 +283,6 @@ latexila_utils_register_icons
 
 <SECTION>
 <FILE>view</FILE>
+latexila_view_configure_space_drawer
 latexila_view_get_indentation_style
 </SECTION>

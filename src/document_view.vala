@@ -46,6 +46,8 @@ public class DocumentView : Tepl.View
         auto_indent = true;
         indent_width = -1;
 
+        Latexila.view_configure_space_drawer (this);
+
         /* settings */
         _editor_settings = new GLib.Settings ("org.gnome.latexila.preferences.editor");
 

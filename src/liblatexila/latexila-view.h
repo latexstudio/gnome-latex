@@ -24,6 +24,8 @@
 
 G_BEGIN_DECLS
 
+void          latexila_view_configure_space_drawer    (GtkSourceView *view);
+
 gchar *       latexila_view_get_indentation_style     (GtkSourceView *view);
 
 G_END_DECLS

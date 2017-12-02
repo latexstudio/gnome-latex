@@ -28,6 +28,38 @@
 #include "latexila-view.h"
 
 /**
+ * latexila_view_configure_space_drawer:
+ * @view: a #GtkSourceView.
+ *
+ * Configures the #GtkSourceSpaceDrawer of @view, to draw non-breaking spaces at
+ * all locations.
+ */
+void
+latexila_view_configure_space_drawer (GtkSourceView *view)
+{
+  GtkSourceSpaceDrawer *space_drawer;
+
+  g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+
+  space_drawer = gtk_source_view_get_space_drawer (view);
+
+  /* Rationale for always drawing non-breaking spaces:
+   *
+   * With my Dvorak bépo keyboard layout, it is possible to type a non-breaking
+   * space. I remember that one time I inserted one by mistake in LaTeXila, and
+   * when compiling the document there was an incomprehensible error, it took me
+   * some time to figure out that there was a non-breaking space... So, I think
+   * it's better to always draw non-breaking spaces, to distinguish them from
+   * normal spaces. -- swilmet
+   */
+  gtk_source_space_drawer_set_types_for_locations (space_drawer,
+                                                   GTK_SOURCE_SPACE_LOCATION_ALL,
+                                                   GTK_SOURCE_SPACE_TYPE_NBSP);
+
+  gtk_source_space_drawer_set_enable_matrix (space_drawer, TRUE);
+}
+
+/**
  * latexila_view_get_indentation_style:
  * @view: a #GtkSourceView.
  *
