@@ -1,7 +1,7 @@
 LaTeXila
 ========
 
-This is the version 3.27.0 of LaTeXila.
+This is the version 3.27.1 of LaTeXila.
 
 LaTeXila is a LaTeX editor for the GNOME desktop.
 
@@ -17,8 +17,8 @@ Dependencies
 
 * GLib >= 2.50
 * GTK+ >= 3.22
-* GtkSourceView >= 3.99.6
-* Tepl >= 3.99.0 - https://wiki.gnome.org/Projects/Tepl
+* GtkSourceView >= 3.99.7
+* Tepl >= 3.99.1 - https://wiki.gnome.org/Projects/Tepl
 * gspell >= 1.0
 * gee-0.8 >= 0.10
 * gettext

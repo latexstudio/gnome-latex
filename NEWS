@@ -1,17 +1,23 @@
 LaTeXila NEWS
 
-Release 3.27.1, 201X-XX-XX (not yet released)
+Release 3.27.1, 2017-12-09
 --------------------------
+* User-visible improvements:
+ - Draw non-breaking spaces.
+ - File browser in the side panel: popup menus under buttons.
+
 * Port to GtkSourceView 4 and Tepl 4.
 
-* Internal code refactoring, use more Tepl features:
-  * Use more Tepl GActions.
-  * Let Tepl handle the window title.
-  * Implement TeplAbstractFactoryVala subclass.
-  * Other small things.
+* Internal code refactorings, use more Tepl features:
+ - Use more Tepl GActions.
+ - Let Tepl handle the window title.
+ - Implement TeplAbstractFactoryVala subclass.
+ - Other small things.
 
-* Port LaTeX menu to GAction and C in the liblatexila.
-  Math menu in progress.
+* Port to GAction/Amtk:
+ - Port the whole LaTeX menu to GAction and C in the liblatexila.
+ - Math menu in progress.
+ - Create first AmtkActionInfo.
 
 * Other small improvements.
 * Translation updates.
