@@ -476,7 +476,7 @@ public class MainWindow : ApplicationWindow
         _documents_panel.right_click.connect ((event) =>
         {
             Gtk.Menu popup_menu = _ui_manager.get_widget ("/NotebookPopup") as Gtk.Menu;
-            popup_menu.popup (null, null, null, event.button, event.time);
+            popup_menu.popup_at_pointer (event);
         });
     }
 
