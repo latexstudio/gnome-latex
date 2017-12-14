@@ -119,6 +119,7 @@ public class LatexilaApp : Gtk.Application
         hold ();
 
         add_action_entries (_app_actions, this);
+        Latexila.latex_commands_add_action_infos (this);
 
         GLib.MenuModel manual_app_menu = get_menu_by_id ("manual-app-menu");
         if (manual_app_menu == null)

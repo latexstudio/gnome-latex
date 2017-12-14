@@ -24,7 +24,9 @@
 
 G_BEGIN_DECLS
 
-void      latexila_latex_commands_init              (GtkApplicationWindow *gtk_window);
+void      latexila_latex_commands_add_action_infos  (GtkApplication *gtk_app);
+
+void      latexila_latex_commands_add_actions       (GtkApplicationWindow *gtk_window);
 
 void      latexila_latex_commands_insert_text       (TeplApplicationWindow *tepl_window,
                                                      const gchar           *text_before,

@@ -29,6 +29,39 @@
 #include "latexila-utils.h"
 #include "latexila-view.h"
 
+/**
+ * latexila_latex_commands_add_action_infos:
+ * @gtk_app: the #GtkApplication instance.
+ *
+ * Creates the #AmtkActionInfo's related to the LaTeX and Math menus, and add
+ * them to the #AmtkActionInfoStore as returned by
+ * tepl_application_get_app_action_info_store().
+ */
+void
+latexila_latex_commands_add_action_infos (GtkApplication *gtk_app)
+{
+  TeplApplication *tepl_app;
+  AmtkActionInfoStore *store;
+
+  const AmtkActionInfoEntry entries[] =
+  {
+    /* action, icon, label, accel, tooltip */
+
+    { "win.latex-command-env-figure", "image-x-generic", "\\begin{_figure}", NULL,
+      N_("Figure - \\begin{figure}") },
+  };
+
+  g_return_if_fail (GTK_IS_APPLICATION (gtk_app));
+
+  tepl_app = tepl_application_get_from_gtk_application (gtk_app);
+  store = tepl_application_get_app_action_info_store (tepl_app);
+
+  amtk_action_info_store_add_entries (store,
+                                      entries,
+                                      G_N_ELEMENTS (entries),
+                                      GETTEXT_PACKAGE);
+}
+
 /* Util functions */
 
 /* Temporarily public, will be made private when all GActions for the LaTeX and
@@ -667,8 +700,15 @@ math_command_misc_nth_root_cb (GSimpleAction *action,
   latexila_latex_commands_insert_text (tepl_window, "\\sqrt[]{", "}", NULL);
 }
 
-static void
-add_actions (GtkApplicationWindow *gtk_window)
+/**
+ * latexila_latex_commands_add_actions:
+ * @gtk_window: a #GtkApplicationWindow.
+ *
+ * Creates the #GAction's related to the LaTeX and Math menus, and add them to
+ * @gtk_window.
+ */
+void
+latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
 {
   TeplApplicationWindow *tepl_window;
 
@@ -701,49 +741,12 @@ add_actions (GtkApplicationWindow *gtk_window)
     { "math-command-misc-nth-root", math_command_misc_nth_root_cb },
   };
 
+  g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));
+
   tepl_window = tepl_application_window_get_from_gtk_application_window (gtk_window);
 
   amtk_action_map_add_action_entries_check_dups (G_ACTION_MAP (gtk_window),
                                                  entries,
                                                  G_N_ELEMENTS (entries),
                                                  tepl_window);
-}
-
-static void
-add_action_info_entries (void)
-{
-  TeplApplication *tepl_app;
-  AmtkActionInfoStore *store;
-
-  const AmtkActionInfoEntry entries[] =
-  {
-    /* action, icon, label, accel, tooltip */
-
-    { "win.latex-command-env-figure", "image-x-generic", "\\begin{_figure}", NULL,
-      N_("Figure - \\begin{figure}") },
-  };
-
-  tepl_app = tepl_application_get_default ();
-  store = tepl_application_get_app_action_info_store (tepl_app);
-
-  amtk_action_info_store_add_entries (store,
-                                      entries,
-                                      G_N_ELEMENTS (entries),
-                                      GETTEXT_PACKAGE);
-}
-
-/**
- * latexila_latex_commands_init:
- * @gtk_window: a #GtkApplicationWindow.
- *
- * Creates the #GAction's and #AmtkActionInfo's related to the LaTeX and Math
- * menus.
- */
-void
-latexila_latex_commands_init (GtkApplicationWindow *gtk_window)
-{
-  g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));
-
-  add_actions (gtk_window);
-  add_action_info_entries ();
 }

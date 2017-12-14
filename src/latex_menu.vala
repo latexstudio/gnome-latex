@@ -443,7 +443,7 @@ public class LatexMenu : Gtk.ActionGroup
 
         /* GActions */
 
-        Latexila.latex_commands_init (main_window);
+        Latexila.latex_commands_add_actions (main_window);
 
         // LaTeX: Sectioning
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::part",
