@@ -1,7 +1,7 @@
 /*
  * This file is part of LaTeXila.
  *
- * Copyright © 2010-2012 Sébastien Wilmet
+ * Copyright © 2010-2012, 2017 Sébastien Wilmet
  *
  * LaTeXila is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -336,7 +336,8 @@ public class SearchAndReplace : GLib.Object
         _entry_find.icon_press.connect ((icon_pos, event) =>
         {
             if (icon_pos == EntryIconPosition.PRIMARY)
-                menu.popup (null, null, null, event.button.button, event.button.time);
+                menu.popup_at_widget (_entry_find, Gdk.Gravity.SOUTH_WEST,
+                    Gdk.Gravity.NORTH_WEST, event);
         });
     }
 
