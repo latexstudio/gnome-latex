@@ -96,11 +96,7 @@ public class MainWindowStructure
     private void show_popup_menu (Gdk.EventButton? event)
     {
         Gtk.Menu popup_menu = _ui_manager.get_widget ("/StructurePopup") as Gtk.Menu;
-
-        if (event != null)
-            popup_menu.popup (null, null, null, event.button, event.time);
-        else
-            popup_menu.popup (null, null, null, 0, get_current_event_time ());
+        popup_menu.popup_at_pointer (event);
     }
 
     private void set_menu_insensitive ()
