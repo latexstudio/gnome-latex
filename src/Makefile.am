@@ -4,16 +4,17 @@ bin_PROGRAMS = latexila
 
 # --disable-since-check is used because LaTeXila often depends on unstable
 # versions of GNOME libraries.
-AM_VALAFLAGS =			\
-	--disable-since-check	\
-	--pkg gtk+-3.0		\
-	--pkg gtksourceview-4	\
-	--pkg Tepl-4		\
-	--pkg gspell-1		\
-	--pkg gee-0.8		\
-	--pkg posix		\
-	--target-glib=2.50	\
-	--vapidir liblatexila	\
+AM_VALAFLAGS =					\
+	--disable-since-check			\
+	--pkg gtk+-3.0				\
+	--pkg gtksourceview-4			\
+	--pkg Tepl-4				\
+	--pkg gspell-1				\
+	--pkg gee-0.8				\
+	--pkg posix				\
+	--target-glib=2.50			\
+	--vapidir liblatexila			\
+	--vapidir $(abs_builddir)/liblatexila	\
 	--pkg latexila
 
 # The valac command is always executed in the sources directory, not the build
