@@ -25,7 +25,7 @@ public class Factory : Tepl.AbstractFactoryVala
 
     public override Gtk.ApplicationWindow? create_main_window_vala (Gtk.Application gtk_app)
     {
-        return_if_fail (gtk_app is LatexilaApp);
+        return_val_if_fail (gtk_app is LatexilaApp, null);
         LatexilaApp app = gtk_app as LatexilaApp;
 
         MainWindow? active_main_window = app.get_active_main_window ();
