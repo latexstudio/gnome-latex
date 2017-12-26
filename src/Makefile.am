@@ -82,10 +82,10 @@ latexila_CPPFLAGS =			\
 	-w
 
 latexila_CFLAGS =		\
-	$(LATEXILA_CFLAGS)
+	$(DEP_CFLAGS)
 
 latexila_LDADD = 			\
-	$(LATEXILA_LIBS)		\
+	$(DEP_LIBS)			\
 	liblatexila/liblatexila.la
 
 # GResource

@@ -6,7 +6,7 @@ liblatexila_la_CPPFLAGS =		\
 	$(CODE_COVERAGE_CPPFLAGS)
 
 liblatexila_la_CFLAGS =			\
-	$(LATEXILA_CFLAGS)		\
+	$(DEP_CFLAGS)			\
 	$(WARN_CFLAGS)			\
 	$(CODE_COVERAGE_CFLAGS)		\
 	-I$(top_builddir)/src/evince
@@ -15,7 +15,7 @@ liblatexila_la_LDFLAGS = \
 	$(WARN_LDFLAGS)
 
 liblatexila_la_LIBADD =		\
-	$(LATEXILA_LIBS)	\
+	$(DEP_LIBS)		\
 	$(CODE_COVERAGE_LIBS)	\
 	../evince/libevince.la
 

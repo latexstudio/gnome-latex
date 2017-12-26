@@ -1,14 +1,14 @@
 noinst_LTLIBRARIES = libevince.la
 
-libevince_la_CFLAGS =		\
-	$(LATEXILA_CFLAGS)	\
+libevince_la_CFLAGS =	\
+	$(DEP_CFLAGS)	\
 	$(WARN_CFLAGS)
 
 libevince_la_LDFLAGS =		\
 	$(WARN_LDFLAGS)
 
 libevince_la_LIBADD =		\
-	$(LATEXILA_LIBS)
+	$(DEP_LIBS)
 
 libevince_built_sources =		\
 	evince-gdbus-generated.c	\
