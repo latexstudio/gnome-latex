@@ -7,7 +7,7 @@ AC_PREREQ([2.64])
 AC_INIT([GNOME LaTeX],
 	[3.27.2],
 	[https://bugzilla.gnome.org/enter_bug.cgi?product=latexila],
-	[latexila],
+	[gnome-latex],
 	[https://wiki.gnome.org/Apps/LaTeXila])
 
 AX_REQUIRE_DEFINED([AX_IS_RELEASE])
@@ -76,10 +76,10 @@ $2=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
      done
      echo "[$]_lcl_receval")`])
 
-adl_RECURSIVE_EVAL(["${datadir}/latexila"], [DATA_DIR])
+adl_RECURSIVE_EVAL(["${datadir}/gnome-latex"], [DATA_DIR])
 AC_DEFINE_UNQUOTED([DATA_DIR],
                    ["${DATA_DIR}"],
-		   [latexila data directory])
+		   [gnome-latex data directory])
 
 adl_RECURSIVE_EVAL(["${datadir}/icons/hicolor"], [ICONS_DIR])
 AC_DEFINE_UNQUOTED([ICONS_DIR],
