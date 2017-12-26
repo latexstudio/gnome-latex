@@ -1,11 +1,14 @@
-LaTeXila
-========
+GNOME LaTeX
+===========
 
-This is the version 3.27.2 of LaTeXila.
+This is the version 3.27.2 of GNOME LaTeX.
 
-LaTeXila is a LaTeX editor for the GNOME desktop.
+GNOME LaTeX is a LaTeX editor for the GNOME desktop.
 
-LaTeXila is released under the GNU General Public License (GPL) version 3 or
+GNOME LaTeX was previously named LaTeXila. The application has been renamed in
+December 2017.
+
+GNOME LaTeX is released under the GNU General Public License (GPL) version 3 or
 later, see the file 'COPYING' for more information.
 
 The web site:
@@ -29,8 +32,8 @@ And for building the sources:
 * Vala >= 0.34 (may be optional)
 * yelp-tools
 
-If you are installing LaTeXila from a tarball, you don't have to install Vala
-because the C code is already generated.
+If you are installing GNOME LaTeX from a tarball, you don't have to install
+Vala because the C code is already generated.
 
 Installation
 ------------
@@ -48,9 +51,9 @@ From the Git repository, the 'configure' script and the 'INSTALL' file are not
 yet generated, so you need to run 'autogen.sh' instead, which takes the same
 arguments as 'configure'.
 
-To build the latest version of LaTeXila plus its dependencies from Git, Jhbuild
-is recommended. LaTeXila is in the gnome-world moduleset. An example of a
-jhbuildrc file for LaTeXila is provided:
+To build the latest version of GNOME LaTeX plus its dependencies from Git,
+Jhbuild is recommended. GNOME LaTeX is in the gnome-world moduleset. An example
+of a jhbuildrc file for GNOME LaTeX is provided:
 
     https://wiki.gnome.org/Projects/Jhbuild
     https://people.gnome.org/~swilmet/latexila/jhbuildrc
