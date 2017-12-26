@@ -28,15 +28,15 @@ namespace Finance
 
         string title;
         if (startup)
-            title = "Welcome in LaTeXila!";
+            title = "Welcome in GNOME LaTeX!";
         else
-            title = "LaTeXila Finance";
+            title = "GNOME LaTeX Finance";
 
         Dialog dialog = new Dialog.with_buttons (title,
             parent_window,
             DialogFlags.DESTROY_WITH_PARENT,
             "_Close", ResponseType.CLOSE,
-            "LaTeXila _Fundraising", ResponseType.ACCEPT,
+            "GNOME LaTeX _Fundraising", ResponseType.ACCEPT,
             null);
 
         dialog.set_resizable (false);
@@ -54,11 +54,11 @@ namespace Finance
         label.set_markup ("<big>Did you know...</big>");
         content_area.add (label);
 
-        label = new Label ("...that you can support LaTeXila financially?");
+        label = new Label ("...that you can support GNOME LaTeX financially?");
         content_area.add (label);
 
         label = new Label (null);
-        label.set_markup ("LaTeXila is a Free/<i>Libre</i> LaTeX editor and comes" +
+        label.set_markup ("GNOME LaTeX is a Free/<i>Libre</i> LaTeX editor and comes" +
             " free of charge. But if you appreciate this software, you are encouraged" +
             " to make a donation to help its future development.");
         label.max_width_chars = 60;

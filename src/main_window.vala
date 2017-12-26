@@ -65,10 +65,10 @@ public class MainWindow : ApplicationWindow
             N_("Open the LaTeXila documentation") },
         { "HelpLatexReference", null, N_("_LaTeX Reference"), null,
             N_("The Kile LaTeX Reference"), on_help_latex_reference },
-        { "HelpFinance", null, "LaTeXila _Fundraising", null,
-            "Donate to demonstrate your appreciation of LaTeXila and help its future development" },
+        { "HelpFinance", null, "GNOME LaTeX _Fundraising", null,
+            "Donate to demonstrate your appreciation of GNOME LaTeX and help its future development" },
         { "HelpAbout", "help-about", N_("_About"), null,
-            N_("About LaTeXila") }
+            N_("About GNOME LaTeX") }
     };
 
     private const ToggleActionEntry[] _toggle_action_entries =
@@ -651,9 +651,9 @@ public class MainWindow : ApplicationWindow
                 tab.document.readonly = true;
 
                 string primary_msg =
-                    _("This file (%s) is already opened in another LaTeXila window.")
+                    _("This file (%s) is already opened in another GNOME LaTeX window.")
                     .printf (location.get_parse_name ());
-                string secondary_msg = _("LaTeXila opened this instance of the file in a non-editable way. Do you want to edit it anyway?");
+                string secondary_msg = _("GNOME LaTeX opened this instance of the file in a non-editable way. Do you want to edit it anyway?");
 
                 InfoBar infobar = new Tepl.InfoBar.simple (MessageType.WARNING,
                     primary_msg, secondary_msg);

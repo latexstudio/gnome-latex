@@ -81,7 +81,7 @@ public class LatexilaApp : Gtk.Application
             N_("Create new document"), null };
 
         options[2] = { "new-window", 0, 0, OptionArg.NONE, ref new_window,
-            N_("Create a new top-level window in an existing instance of LaTeXila"), null };
+            N_("Create a new top-level window in an existing instance of GNOME LaTeX"), null };
 
         options[3] = { null };
 
