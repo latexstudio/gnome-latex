@@ -2,7 +2,7 @@ SUBDIRS = evince liblatexila ui
 
 bin_PROGRAMS = latexila
 
-# --disable-since-check is used because LaTeXila often depends on unstable
+# --disable-since-check is used because GNOME LaTeX often depends on unstable
 # versions of GNOME libraries.
 AM_VALAFLAGS =					\
 	--disable-since-check			\

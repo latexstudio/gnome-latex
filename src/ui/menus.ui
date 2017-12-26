@@ -24,7 +24,7 @@
         <attribute name="action">app.help</attribute>
       </item>
       <item>
-        <attribute name="label">LaTeXila _Fundraising</attribute>
+        <attribute name="label">GNOME LaTeX _Fundraising</attribute>
         <attribute name="action">app.fundraising</attribute>
       </item>
       <item>

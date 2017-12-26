@@ -62,7 +62,7 @@ public class MainWindow : ApplicationWindow
         // Help
         { "Help", null, N_("_Help") },
         { "HelpContents", "help-browser", N_("_Contents"), "<Release>F1",
-            N_("Open the LaTeXila documentation") },
+            N_("Open the GNOME LaTeX documentation") },
         { "HelpLatexReference", null, N_("_LaTeX Reference"), null,
             N_("The Kile LaTeX Reference"), on_help_latex_reference },
         { "HelpFinance", null, "GNOME LaTeX _Fundraising", null,

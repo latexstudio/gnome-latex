@@ -400,9 +400,9 @@ public class MainWindowBuildTools
             update_sensitivity ();
 
             // Refresh the document structure when the build tool has finished. When the
-            // build tool is running, LaTeXila is already busy parsing the command
+            // build tool is running, GNOME LaTeX is already busy parsing the command
             // outputs. On the other hand, when the build tool has finished, maybe Evince
-            // is shown so LaTeXila has nothing to do.
+            // is shown so GNOME LaTeX has nothing to do.
             _main_window.get_main_window_structure ().refresh ();
         });
 
