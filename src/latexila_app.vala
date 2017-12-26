@@ -228,16 +228,6 @@ public class LatexilaApp : Gtk.Application
             null
         };
 
-        Gdk.Pixbuf logo = null;
-        try
-        {
-            logo = new Gdk.Pixbuf.from_file (Config.DATA_DIR + "/images/app/logo.png");
-        }
-        catch (Error e)
-        {
-            warning ("Logo: %s", e.message);
-        }
-
         Gtk.show_about_dialog (get_active_main_window (),
             "program-name", Config.PACKAGE_NAME,
             "version", Config.PACKAGE_VERSION,
@@ -249,7 +239,7 @@ public class LatexilaApp : Gtk.Application
             "title", _("About GNOME LaTeX"),
             "translator-credits", _("translator-credits"),
             "website", website,
-            "logo", logo
+            "logo-icon-name", "gnome-latex"
         );
     }
 
