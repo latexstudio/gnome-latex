@@ -239,7 +239,7 @@ public class LatexilaApp : Gtk.Application
         }
 
         Gtk.show_about_dialog (get_active_main_window (),
-            "program-name", "LaTeXila",
+            "program-name", Config.PACKAGE_NAME,
             "version", Config.PACKAGE_VERSION,
             "authors", authors,
             "artists", artists,

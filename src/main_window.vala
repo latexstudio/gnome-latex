@@ -152,7 +152,6 @@ public class MainWindow : ApplicationWindow
     public MainWindow (LatexilaApp app)
     {
         Object (application: app);
-        this.title = "LaTeXila";
 
         // Init TeplApplicationWindow GActions.
         Tepl.ApplicationWindow tepl_window =
