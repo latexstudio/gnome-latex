@@ -4,13 +4,13 @@
   <id>org.gnome.gnome-latex.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <name>LaTeXila</name>
+  <name>GNOME LaTeX</name>
   <_summary>LaTeX editor</_summary>
   <description>
     <_p>
-      LaTeXila is a LaTeX editor for the GNOME desktop. LaTeXila permits to
-      concentrate on the content and the structure of the document instead of
-      being distracted by its presentation.
+      GNOME LaTeX is a LaTeX editor for the GNOME desktop. GNOME LaTeX permits
+      to concentrate on the content and the structure of the document instead
+      of being distracted by its presentation.
     </_p>
     <_p>
       To help the writing of the LaTeX markup, auto-completion is available as
@@ -25,8 +25,8 @@
       browser.
     </_p>
     <_p>
-      LaTeXila has also other features like the spell-checking, or jumping to
-      the associated position between the .tex file and the PDF.
+      GNOME LaTeX has also other features like the spell-checking, or jumping
+      to the associated position between the .tex file and the PDF.
     </_p>
   </description>
   <screenshots>
@@ -56,7 +56,7 @@
   <url type="donation">https://liberapay.com/LaTeXila/</url>
   <url type="bugtracker">https://bugzilla.gnome.org/browse.cgi?product=latexila</url>
   <url type="translate">https://wiki.gnome.org/TranslationProject</url>
-  <translation type="gettext">latexila</translation>
+  <translation type="gettext">gnome-latex</translation>
   <update_contact>swilmet@gnome.org</update_contact>
   <developer_name>Sébastien Wilmet</developer_name>
 </component>

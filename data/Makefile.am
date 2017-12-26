@@ -10,7 +10,7 @@ desktop_DATA = org.gnome.gnome-latex.desktop
 
 @INTLTOOL_XML_RULE@
 
-appstream_XML = org.gnome.latexila.appdata.xml
+appstream_XML = org.gnome.gnome-latex.appdata.xml
 @APPSTREAM_XML_RULES@
 
 gsettings_SCHEMAS = org.gnome.latexila.gschema.xml
@@ -26,16 +26,16 @@ org.gnome.gnome-latex.service: Makefile
 		     mv $@.tmp $@
 
 EXTRA_DIST =					\
-	org.gnome.latexila.appdata.xml.in	\
+	org.gnome.gnome-latex.appdata.xml.in	\
 	org.gnome.gnome-latex.desktop.in	\
 	org.gnome.latexila.gschema.xml.in
 
 DISTCLEANFILES =			\
 	org.gnome.latexila.gschema.xml
 
-CLEANFILES =				\
-	org.gnome.latexila.appdata.xml	\
-	org.gnome.gnome-latex.desktop	\
+CLEANFILES =					\
+	org.gnome.gnome-latex.appdata.xml	\
+	org.gnome.gnome-latex.desktop		\
 	org.gnome.gnome-latex.service
 
 -include $(top_srcdir)/git.mk
