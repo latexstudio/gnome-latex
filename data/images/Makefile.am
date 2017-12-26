@@ -1,5 +1,3 @@
-SUBDIRS = app
-
 EXTRA_DIST =		\
 	arrows		\
 	delimiters	\

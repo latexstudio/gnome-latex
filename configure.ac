@@ -178,7 +178,6 @@ AC_CONFIG_FILES([
 	data/icons/scalable/Makefile
 	data/icons/scalable/apps/Makefile
 	data/images/Makefile
-	data/images/app/Makefile
 	data/templates/Makefile
 	docs/Makefile
 	docs/reference/Makefile
