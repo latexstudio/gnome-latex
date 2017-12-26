@@ -140,14 +140,14 @@ latexila_utils_replace_home_dir_with_tilde (const gchar *filename)
 /**
  * latexila_utils_register_icons:
  *
- * Register the LaTeXila icons to the #GtkIconTheme as built-in icons. For
+ * Register the GNOME LaTeX icons to the #GtkIconTheme as built-in icons. For
  * example the icon located at data/images/stock-icons/badbox.png in the
- * LaTeXila git repository will be available with the icon name "badbox". The
+ * GNOME LaTeX git repository will be available with the icon name "badbox". The
  * "stock-icons" directory name is for historical reasons and should be changed
- * when stock icons are no longer used in LaTeXila.
+ * when stock icons are no longer used in GNOME LaTeX.
  *
- * TODO: prefix icon names with "latexila-", so the badbox.png would be
- * "latexila-badbox".
+ * TODO: prefix icon names with "glatex-", so the badbox.png would be
+ * "glatex-badbox".
  */
 void
 latexila_utils_register_icons (void)

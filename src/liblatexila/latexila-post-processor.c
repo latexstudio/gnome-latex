@@ -25,7 +25,7 @@
  * When running a build tool, a post-processor is used to filter the output to
  * display only the relevant messages. The output can come from the
  * stdout/stderr of a build job command, or the contents of a log file, etc. In
- * LaTeXila only the former is currently used, but it would be more robust to
+ * GNOME LaTeX only the former is currently used, but it would be more robust to
  * read the LaTeX log file.
  *
  * For the no-output post-processor type, you should not need to create a

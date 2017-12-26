@@ -23,14 +23,14 @@
  * @short_description: Default build tools
  *
  * The #LatexilaBuildToolsDefault singleton class represents the default build
- * tools of LaTeXila. The only possible modification is to enable or disable a
- * build tool. Each default build tool has an ID. These IDs are used to load and
- * save the lists of enabled and disabled build tools. The XML file is never
- * modified by LaTeXila. But the XML file (located in data/build_tools/) can be
- * modified by a developer to change a command, add a new build tool (with a new
- * ID), etc. The changes will automatically be available to all the users when
- * upgrading to the new LaTeXila version. That's why the default build tools can
- * not be modified and are not saved to another XML file.
+ * tools of GNOME LaTeX. The only possible modification is to enable or disable
+ * a build tool. Each default build tool has an ID. These IDs are used to load
+ * and save the lists of enabled and disabled build tools. The XML file is never
+ * modified by GNOME LaTeX. But the XML file (located in data/build_tools/) can
+ * be modified by a developer to change a command, add a new build tool (with a
+ * new ID), etc. The changes will automatically be available to all the users
+ * when upgrading to the new GNOME LaTeX version. That's why the default build
+ * tools can not be modified and are not saved to another XML file.
  */
 
 #include "config.h"

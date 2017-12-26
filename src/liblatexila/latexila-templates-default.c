@@ -24,7 +24,7 @@
  * @see_also: #LatexilaTemplatesPersonal
  *
  * #LatexilaTemplatesDefault is a singleton class that stores information about
- * default templates. In LaTeXila, new documents are created from templates.
+ * default templates. In GNOME LaTeX, new documents are created from templates.
  * There are a few default templates available, and personal templates can be
  * created (see #LatexilaTemplatesPersonal).
  *
@@ -37,8 +37,8 @@
  * In the git repository, default templates are located in the data/templates/
  * directory. The templates are stored in XML format, with some chunks that are
  * translatable or not. For example the babel package (or equivalent) is added
- * to the preamble when LaTeXila is run in another language than English (and if
- * a translation is available for that other language). Also, the letter
+ * to the preamble when GNOME LaTeX is run in another language than English (and
+ * if a translation is available for that other language). Also, the letter
  * template can be completely translated, using even a different document class
  * that is more suitable for the target language.
  */

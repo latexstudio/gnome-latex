@@ -20,19 +20,19 @@
 /**
  * SECTION:synctex
  * @title: LatexilaSynctex
- * @short_description: SyncTeX support between LaTeXila and Evince
+ * @short_description: SyncTeX support between GNOME LaTeX and Evince
  *
  * The #LatexilaSynctex class (a singleton) implements the support of SyncTeX
- * between LaTeXila and the Evince PDF viewer. It is used to switch between the
- * source file(s) and the PDF, at the same position in the document. It is called
- * the forward search: source file -> PDF. And backward search: PDF -> source
- * file.
+ * between GNOME LaTeX and the Evince PDF viewer. It is used to switch between
+ * the source file(s) and the PDF, at the same position in the document. It is
+ * called the forward search: source file -> PDF. And backward search: PDF ->
+ * source file.
  *
  * It works only with PDF files, it doesn't work with DVI or PS or other
  * generated document formats.
  *
- * D-Bus is used to communicate between LaTeXila and Evince. The implementation
- * uses the asynchronous gdbus generated functions.
+ * D-Bus is used to communicate between GNOME LaTeX and Evince. The
+ * implementation uses the asynchronous gdbus generated functions.
  *
  * For the position, only the line is used, not the column. The column is a bit
  * buggy.
@@ -479,7 +479,7 @@ connect_evince_window_finish (LatexilaSynctex *synctex,
  * @synctex: the #LatexilaSynctex instance.
  * @pdf_uri: the PDF URI.
  *
- * Connects asynchronously the evince window for @pdf_uri. LaTeXila will then
+ * Connects asynchronously the evince window for @pdf_uri. GNOME LaTeX will then
  * listen the signals emitted by the evince window when the user wants to switch
  * from the PDF to the corresponding *.tex file.
  */

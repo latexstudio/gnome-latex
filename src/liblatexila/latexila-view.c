@@ -46,11 +46,11 @@ latexila_view_configure_space_drawer (GtkSourceView *view)
   /* Rationale for always drawing non-breaking spaces:
    *
    * With my Dvorak bépo keyboard layout, it is possible to type a non-breaking
-   * space. I remember that one time I inserted one by mistake in LaTeXila, and
-   * when compiling the document there was an incomprehensible error, it took me
-   * some time to figure out that there was a non-breaking space... So, I think
-   * it's better to always draw non-breaking spaces, to distinguish them from
-   * normal spaces. -- swilmet
+   * space. I remember that one time I inserted one by mistake in GNOME LaTeX,
+   * and when compiling the document there was an incomprehensible error, it
+   * took me some time to figure out that there was a non-breaking space... So,
+   * I think it's better to always draw non-breaking spaces, to distinguish them
+   * from normal spaces. -- swilmet
    */
   gtk_source_space_drawer_set_types_for_locations (space_drawer,
                                                    GTK_SOURCE_SPACE_LOCATION_ALL,
@@ -67,7 +67,7 @@ latexila_view_configure_space_drawer (GtkSourceView *view)
  *
  * Attention, this function assumes that the #GtkSourceView:indent-width is -1
  * or equal to the #GtkSourceView:tab-width, which is always the case in
- * LaTeXila (there is no #GSettings for the #GtkSourceView:indent-width).
+ * GNOME LaTeX (there is no #GSettings for the #GtkSourceView:indent-width).
  *
  * Returns: one indentation level, as a string. Free with g_free() when no
  * longer needed.

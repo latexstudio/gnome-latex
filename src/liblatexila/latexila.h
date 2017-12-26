@@ -17,7 +17,7 @@
  * along with GNOME LaTeX.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* Main header for the LaTeXila "library". Code using the library (e.g. Vala
+/* Main header for the GNOME LaTeX "library". Code using the library (e.g. Vala
  * code) should #include only this header.
  */
 
