@@ -1,6 +1,6 @@
 SUBDIRS = evince liblatexila ui
 
-bin_PROGRAMS = latexila
+bin_PROGRAMS = gnome-latex
 
 # --disable-since-check is used because GNOME LaTeX often depends on unstable
 # versions of GNOME libraries.
@@ -65,7 +65,7 @@ vala_files =				\
 	tab_label.vala			\
 	utils.vala
 
-latexila_SOURCES = 				\
+gnome_latex_SOURCES = 				\
 	$(vala_files)				\
 	$(vapidir)/config.vapi			\
 	$(vapidir)/menu_tool_action.vapi
@@ -74,17 +74,17 @@ latexila_SOURCES = 				\
 # generated C code currently triggers a lot of warnings because deprecated
 # functions are used. So by silencing the GCC warnings, we can more easily
 # scroll up the build output to see the valac warnings.
-latexila_CPPFLAGS =			\
+gnome_latex_CPPFLAGS =			\
 	-I$(top_srcdir)			\
 	-I$(srcdir)/liblatexila		\
 	-I$(builddir)/liblatexila	\
 	-include config.h		\
 	-w
 
-latexila_CFLAGS =		\
+gnome_latex_CFLAGS =	\
 	$(DEP_CFLAGS)
 
-latexila_LDADD = 			\
+gnome_latex_LDADD = 			\
 	$(DEP_LIBS)			\
 	liblatexila/liblatexila.la
 
@@ -94,13 +94,13 @@ latexila-resources.c: latexila.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) -
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/latexila.gresource.xml
 
 BUILT_SOURCES = latexila-resources.c
-nodist_latexila_SOURCES = $(BUILT_SOURCES)
+nodist_gnome_latex_SOURCES = $(BUILT_SOURCES)
 
 EXTRA_DIST = latexila.gresource.xml
 
 CLEANFILES =			\
 	$(BUILT_SOURCES)	\
 	$(vala_files:.vala=.c)	\
-	latexila_vala.stamp
+	gnome_latex_vala.stamp
 
 -include $(top_srcdir)/git.mk
