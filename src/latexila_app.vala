@@ -207,7 +207,7 @@ public class LatexilaApp : Gtk.Application
     private void about_cb ()
     {
         string comments =
-            _("LaTeXila is a LaTeX editor for the GNOME desktop");
+            _("GNOME LaTeX is a LaTeX editor for the GNOME desktop");
         string copyright = "Copyright 2009-2017 – Sébastien Wilmet";
 
         string website = "https://wiki.gnome.org/Apps/LaTeXila";
@@ -246,7 +246,7 @@ public class LatexilaApp : Gtk.Application
             "comments", comments,
             "copyright", copyright,
             "license-type", Gtk.License.GPL_3_0,
-            "title", _("About LaTeXila"),
+            "title", _("About GNOME LaTeX"),
             "translator-credits", _("translator-credits"),
             "website", website,
             "logo", logo
