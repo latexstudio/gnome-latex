@@ -47,7 +47,8 @@ namespace Finance
         content_area.margin = 12;
         content_area.margin_top = 6;
 
-        Image image = new Image.from_file (Config.DATA_DIR + "/images/app/logo.png");
+        Image image = new Image.from_icon_name ("gnome-latex", IconSize.DIALOG);
+        image.set_pixel_size (128);
         content_area.add (image);
 
         Label label = new Label (null);
