@@ -39,6 +39,7 @@ public class LatexilaApp : Gtk.Application
         Object (application_id: "org.gnome.latexila");
         set_flags (ApplicationFlags.HANDLES_OPEN);
         Environment.set_application_name (Config.PACKAGE_NAME);
+        Gtk.Window.set_default_icon_name ("gnome-latex");
 
         setup_main_option_entries ();
 
@@ -132,7 +133,6 @@ public class LatexilaApp : Gtk.Application
             set_app_menu (manual_app_menu);
         }
 
-        set_application_icons ();
         Latexila.utils_register_icons ();
         StockIcons.register_stock_icons ();
         setup_theme_extensions ();
@@ -275,30 +275,6 @@ public class LatexilaApp : Gtk.Application
         }
 
         release ();
-    }
-
-    private void set_application_icons ()
-    {
-        string[] sizes = {"16x16", "22x22", "24x24", "32x32", "48x48"};
-
-        List<Gdk.Pixbuf> list = null;
-
-        foreach (string size in sizes)
-        {
-            string filename = Path.build_filename (Config.ICONS_DIR, size,
-                "apps", "latexila.png");
-
-            try
-            {
-                list.append (new Gdk.Pixbuf.from_file (filename));
-            }
-            catch (Error e)
-            {
-                warning ("Application icon: %s", e.message);
-            }
-        }
-
-        Gtk.Window.set_default_icon_list ((owned) list);
     }
 
     private void setup_theme_extensions ()
