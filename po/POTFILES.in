@@ -2,8 +2,8 @@
 # Please keep this file sorted alphabetically.
 [encoding: UTF-8]
 data/build_tools/build_tools.pot
+data/org.gnome.gnome-latex.desktop.in
 data/org.gnome.latexila.appdata.xml.in
-data/org.gnome.latexila.desktop.in
 [type: gettext/gsettings]data/org.gnome.latexila.gschema.xml.in
 data/templates/templates.pot
 src/app_settings.vala

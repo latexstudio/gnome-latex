@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2014-2017 - Sébastien Wilmet <swilmet@gnome.org> -->
 <component type="desktop">
-  <id>org.gnome.latexila.desktop</id>
+  <id>org.gnome.gnome-latex.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>LaTeXila</name>

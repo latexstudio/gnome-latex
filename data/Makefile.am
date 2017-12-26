@@ -5,7 +5,7 @@ dist_pkgdata_DATA =	\
 	latexhelp.html
 
 desktopdir = $(datadir)/applications
-desktop_DATA = org.gnome.latexila.desktop
+desktop_DATA = org.gnome.gnome-latex.desktop
 @INTLTOOL_DESKTOP_RULE@
 
 @INTLTOOL_XML_RULE@
@@ -27,7 +27,7 @@ org.gnome.latexila.service: Makefile
 
 EXTRA_DIST =					\
 	org.gnome.latexila.appdata.xml.in	\
-	org.gnome.latexila.desktop.in		\
+	org.gnome.gnome-latex.desktop.in	\
 	org.gnome.latexila.gschema.xml.in
 
 DISTCLEANFILES =			\
@@ -35,7 +35,7 @@ DISTCLEANFILES =			\
 
 CLEANFILES =				\
 	org.gnome.latexila.appdata.xml	\
-	org.gnome.latexila.desktop	\
+	org.gnome.gnome-latex.desktop	\
 	org.gnome.latexila.service
 
 -include $(top_srcdir)/git.mk

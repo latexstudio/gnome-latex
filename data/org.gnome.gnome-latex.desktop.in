@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=LaTeXila
+Name=GNOME LaTeX
 _GenericName=LaTeX Editor
 _Comment=Edit LaTeX documents
 _Keywords=text;tex;latex;editor;documents;
-Exec=latexila %U
-Icon=latexila
+Exec=gnome-latex %U
+Icon=gnome-latex
 Terminal=false
 Type=Application
 StartupNotify=true
@@ -15,8 +15,8 @@ Actions=new-window;new-document;
 
 [Desktop Action new-window]
 _Name=Open a New Window
-Exec=latexila --new-window
+Exec=gnome-latex --new-window
 
 [Desktop Action new-document]
 _Name=Open a New Document
-Exec=latexila --new-document
+Exec=gnome-latex --new-document
