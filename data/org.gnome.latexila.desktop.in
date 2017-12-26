@@ -13,11 +13,6 @@ MimeType=text/x-tex;
 DBusActivatable=true
 Actions=new-window;new-document;
 
-X-GNOME-Bugzilla-Bugzilla=GNOME
-X-GNOME-Bugzilla-Product=latexila
-X-GNOME-Bugzilla-Component=other
-X-GNOME-Bugzilla-Version=@VERSION@
-
 [Desktop Action new-window]
 _Name=Open a New Window
 Exec=latexila --new-window

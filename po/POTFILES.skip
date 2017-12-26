@@ -1,6 +1,5 @@
 # List of source files that should *not* be translated.
 # Please keep this file sorted alphabetically.
-data/org.gnome.latexila.desktop.in
 src/app_settings.c
 src/bottom_panel.c
 src/build_tool_dialog.c
@@ -47,4 +46,3 @@ src/tab_label.c
 src/templates.c
 src/templates_dialogs.c
 src/utils.c
-sub/data/org.gnome.latexila.desktop.in

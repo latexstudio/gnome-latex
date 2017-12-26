@@ -27,11 +27,10 @@ org.gnome.latexila.service: Makefile
 
 EXTRA_DIST =					\
 	org.gnome.latexila.appdata.xml.in	\
-	org.gnome.latexila.desktop.in.in	\
+	org.gnome.latexila.desktop.in		\
 	org.gnome.latexila.gschema.xml.in
 
 DISTCLEANFILES =			\
-	org.gnome.latexila.desktop.in	\
 	org.gnome.latexila.gschema.xml
 
 CLEANFILES =				\
