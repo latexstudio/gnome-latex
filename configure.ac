@@ -4,7 +4,7 @@
 # Init Autoconf
 AC_PREREQ([2.64])
 
-AC_INIT([LaTeXila],
+AC_INIT([GNOME LaTeX],
 	[3.27.2],
 	[https://bugzilla.gnome.org/enter_bug.cgi?product=latexila],
 	[latexila],
@@ -55,15 +55,15 @@ AC_SUBST([GEE_REQUIRED_VERSION])
 # For example ${datadir} becomes ${datarootdir}, and then ${prefix}/share, and
 # finally ${prefix} is replaced by the prefix.
 #
-# Why is it used in LaTeXila?
+# Why is it used in GNOME LaTeX?
 # TL;DR: Vala.
 #
 # If the variable is needed only in C code, it is possible to pass the value
 # with -D in the CPPFLAGS in the Makefile.am, and the value will correctly be
 # interpolated.
-# This macro is used in LaTeXila because the variables are needed in Vala, the
-# variables are accessed through vapi/config.vapi, so they need to be present
-# in the config.h (the variables are added to the config.h with
+# This macro is used in GNOME LaTeX because the variables are needed in Vala,
+# the variables are accessed through vapi/config.vapi, so they need to be
+# present in the config.h (the variables are added to the config.h with
 # AC_DEFINE_UNQUOTED).
 AC_DEFUN([adl_RECURSIVE_EVAL],
 [_lcl_receval="$1"
