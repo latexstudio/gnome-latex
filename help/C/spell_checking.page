@@ -40,8 +40,8 @@
   <title>Dictionaries</title>
   <p>
     <link href="http://www.abisource.com/projects/enchant/">Enchant</link>
-    is used for the spell checking in LaTeXila. Enchant uses one or several backends
-    such as Hunspell or Aspell for the dictionaries.
+    is used for the spell checking in GNOME LaTeX. Enchant uses one or several
+    backends such as Hunspell or Aspell for the dictionaries.
   </p>
 
   <p>

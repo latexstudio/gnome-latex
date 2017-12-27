@@ -61,9 +61,9 @@
       <key>left click</key>
     </keyseq>,
     and the corresponding position in the .tex file will be opened in
-    <app>LaTeXila</app>.</p>
+    <app>GNOME LaTeX</app>.</p>
 
-  <p><app>Evince</app> has to be launched by <app>LaTeXila</app>. Else, jumping
-  from the PDF to the .tex file will not work.</p>
+  <p><app>Evince</app> has to be launched by <app>GNOME LaTeX</app>. Else,
+  jumping from the PDF to the .tex file will not work.</p>
 </section>
 </page>

@@ -1,6 +1,6 @@
 @YELP_HELP_RULES@
 
-HELP_ID = latexila
+HELP_ID = gnome-latex
 
 HELP_FILES = \
 	build_tools.page	\

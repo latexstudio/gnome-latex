@@ -78,8 +78,8 @@ $ ps2pdf document.ps</screen>
   <p>Using a higher-level tool such as Latexmk simplify a lot all this process,
   since only one command is required. Indeed, Latexmk can detect how many times the
   <cmd>latex</cmd> or <cmd>pdflatex</cmd> command must be called, and whether
-  <cmd>bibtex</cmd> or <cmd>makeindex</cmd> is required. By default, LaTeXila uses
-  Latexmk.</p>
+  <cmd>bibtex</cmd> or <cmd>makeindex</cmd> is required. By default, GNOME LaTeX
+  uses Latexmk.</p>
 </section>
 
 <section id="execute">
