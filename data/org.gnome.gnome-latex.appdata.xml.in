@@ -32,15 +32,15 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://people.gnome.org/~swilmet/latexila/screenshot-completion.png</image>
+      <image>https://people.gnome.org/~swilmet/gnome-latex/screenshot-completion.png</image>
       <_caption>Completion of LaTeX commands</_caption>
     </screenshot>
     <screenshot>
-      <image>https://people.gnome.org/~swilmet/latexila/screenshot-build-tools.png</image>
+      <image>https://people.gnome.org/~swilmet/gnome-latex/screenshot-build-tools.png</image>
       <_caption>Generating the PDF file</_caption>
     </screenshot>
     <screenshot>
-      <image>https://people.gnome.org/~swilmet/latexila/screenshot-structure.png</image>
+      <image>https://people.gnome.org/~swilmet/gnome-latex/screenshot-structure.png</image>
       <_caption>Document structure in the side panel</_caption>
     </screenshot>
   </screenshots>

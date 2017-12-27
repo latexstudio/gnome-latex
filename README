@@ -56,7 +56,7 @@ Jhbuild is recommended. GNOME LaTeX is in the gnome-world moduleset. An example
 of a jhbuildrc file for GNOME LaTeX is provided:
 
     https://wiki.gnome.org/Projects/Jhbuild
-    https://people.gnome.org/~swilmet/latexila/jhbuildrc
+    https://people.gnome.org/~swilmet/gnome-latex/jhbuildrc
 
 How to contribute
 -----------------
