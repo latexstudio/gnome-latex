@@ -4,13 +4,13 @@
 AUTOMAKE_OPTIONS = 1.6
 
 # The name of the module, e.g. 'glib'.
-DOC_MODULE = latexila
+DOC_MODULE = gnome-latex
 
 # Uncomment for versioned docs and specify the version of the module, e.g. '2'.
 #DOC_MODULE_VERSION=2
 
 # The top-level XML file (SGML in the past). You can change this if you want to.
-DOC_MAIN_SGML_FILE = latexila-docs.xml
+DOC_MAIN_SGML_FILE = gnome-latex-docs.xml
 
 # Directories containing the source code.
 # gtk-doc will search all .c and .h files beneath these paths
@@ -87,7 +87,7 @@ EXTRA_DIST +=
 # Files not to distribute
 # for --rebuild-types in $(SCAN_OPTIONS), e.g. $(DOC_MODULE).types
 # for --rebuild-sections in $(SCAN_OPTIONS) e.g. $(DOC_MODULE)-sections.txt
-DISTCLEANFILES = latexila-overrides.txt latexila.types
+DISTCLEANFILES = gnome-latex-overrides.txt gnome-latex.types
 
 # Comment this out if you want 'make check' to test you doc status
 # and run some sanity checks
