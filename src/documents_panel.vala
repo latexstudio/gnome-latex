@@ -63,7 +63,7 @@ public class DocumentsPanel : Tepl.Notebook
     {
         // automatic clean-up build files
         GLib.Settings settings =
-            new GLib.Settings ("org.gnome.latexila.preferences.latex");
+            new GLib.Settings ("org.gnome.gnome-latex.preferences.latex");
 
         if (settings.get_boolean ("no-confirm-clean")
             && settings.get_boolean ("automatic-clean"))

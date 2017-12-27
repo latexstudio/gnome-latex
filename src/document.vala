@@ -50,7 +50,7 @@ public class Document : Tepl.Buffer
         });
 
         GLib.Settings editor_settings =
-            new GLib.Settings ("org.gnome.latexila.preferences.editor");
+            new GLib.Settings ("org.gnome.gnome-latex.preferences.editor");
         editor_settings.bind ("scheme", this, "tepl-style-scheme-id",
             SettingsBindFlags.GET);
 
@@ -174,7 +174,7 @@ public class Document : Tepl.Buffer
         try
         {
             GLib.Settings settings =
-                new GLib.Settings ("org.gnome.latexila.preferences.editor");
+                new GLib.Settings ("org.gnome.gnome-latex.preferences.editor");
             bool make_backup = ! backup_made
                 && settings.get_boolean ("create-backup-copy");
 

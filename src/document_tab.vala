@@ -127,7 +127,7 @@ public class DocumentTab : Tepl.Tab
 
         /* auto save */
         GLib.Settings settings =
-            new GLib.Settings ("org.gnome.latexila.preferences.editor");
+            new GLib.Settings ("org.gnome.gnome-latex.preferences.editor");
         auto_save = settings.get_boolean ("auto-save");
         uint tmp;
         settings.get ("auto-save-interval", "u", out tmp);

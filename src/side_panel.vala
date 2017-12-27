@@ -36,7 +36,7 @@ public class SidePanel : Grid
 
     public SidePanel ()
     {
-        _settings = new GLib.Settings ("org.gnome.latexila.preferences.ui");
+        _settings = new GLib.Settings ("org.gnome.gnome-latex.preferences.ui");
         _components = new Gee.ArrayList<Grid?> ();
 
         margin_start = 6;

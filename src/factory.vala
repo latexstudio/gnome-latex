@@ -44,12 +44,12 @@ public class Factory : Tepl.AbstractFactoryVala
     private void reopen_files (LatexilaApp app)
     {
         GLib.Settings editor_settings =
-            new GLib.Settings ("org.gnome.latexila.preferences.editor");
+            new GLib.Settings ("org.gnome.gnome-latex.preferences.editor");
 
         if (editor_settings.get_boolean ("reopen-files"))
         {
             GLib.Settings window_settings =
-                new GLib.Settings ("org.gnome.latexila.state.window");
+                new GLib.Settings ("org.gnome.gnome-latex.state.window");
 
             string[] uris = window_settings.get_strv ("documents");
             File[] files = {};

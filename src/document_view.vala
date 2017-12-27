@@ -49,7 +49,7 @@ public class DocumentView : Tepl.View
         Latexila.view_configure_space_drawer (this);
 
         /* settings */
-        _editor_settings = new GLib.Settings ("org.gnome.latexila.preferences.editor");
+        _editor_settings = new GLib.Settings ("org.gnome.gnome-latex.preferences.editor");
 
         _editor_settings.bind ("forget-no-tabs", this, "smart-backspace",
             SettingsBindFlags.GET);

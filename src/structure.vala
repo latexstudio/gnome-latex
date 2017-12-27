@@ -268,13 +268,13 @@ public class Structure : Grid
         _vpaned.expand = true;
         add (_vpaned);
 
-        GLib.Settings settings = new GLib.Settings ("org.gnome.latexila.state.window");
+        GLib.Settings settings = new GLib.Settings ("org.gnome.gnome-latex.state.window");
         _vpaned.set_position (settings.get_int ("structure-paned-position"));
     }
 
     public void save_state ()
     {
-        GLib.Settings settings = new GLib.Settings ("org.gnome.latexila.state.window");
+        GLib.Settings settings = new GLib.Settings ("org.gnome.gnome-latex.state.window");
         settings.set_int ("structure-paned-position", _vpaned.get_position ());
     }
 

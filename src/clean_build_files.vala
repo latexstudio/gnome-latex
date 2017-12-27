@@ -37,7 +37,7 @@ public class CleanBuildFiles : GLib.Object
     {
         _main_window = main_window;
         _doc = doc;
-        _settings = new GLib.Settings ("org.gnome.latexila.preferences.latex");
+        _settings = new GLib.Settings ("org.gnome.gnome-latex.preferences.latex");
     }
 
     public void clean ()

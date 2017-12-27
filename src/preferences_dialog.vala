@@ -121,8 +121,8 @@ public class PreferencesDialog : Dialog
 
         string[] settings_str =
         {
-            "org.gnome.latexila.preferences.editor",
-            "org.gnome.latexila.preferences.latex"
+            "org.gnome.gnome-latex.preferences.editor",
+            "org.gnome.gnome-latex.preferences.latex"
         };
 
         foreach (string setting_str in settings_str)
@@ -137,7 +137,7 @@ public class PreferencesDialog : Dialog
     private void init_editor_tab (Builder builder)
     {
         GLib.Settings settings =
-            new GLib.Settings ("org.gnome.latexila.preferences.editor");
+            new GLib.Settings ("org.gnome.gnome-latex.preferences.editor");
 
         var display_line_nb_checkbutton =
             builder.get_object ("display_line_nb_checkbutton");
@@ -196,7 +196,7 @@ public class PreferencesDialog : Dialog
     private void init_font_and_colors_tab (Builder builder)
     {
         GLib.Settings settings =
-            new GLib.Settings ("org.gnome.latexila.preferences.editor");
+            new GLib.Settings ("org.gnome.gnome-latex.preferences.editor");
 
         var default_font_checkbutton =
             builder.get_object ("default_font_checkbutton") as Button;
@@ -267,7 +267,7 @@ public class PreferencesDialog : Dialog
     private void init_interactive_completion_setting (Builder builder)
     {
         GLib.Settings settings =
-            new GLib.Settings ("org.gnome.latexila.preferences.latex");
+            new GLib.Settings ("org.gnome.gnome-latex.preferences.latex");
 
         var interactive_comp_checkbutton =
             builder.get_object ("interactive_comp_checkbutton");
@@ -292,7 +292,7 @@ public class PreferencesDialog : Dialog
     private void init_spell_checking_settings (Builder builder)
     {
         GLib.Settings editor_settings =
-            new GLib.Settings ("org.gnome.latexila.preferences.editor");
+            new GLib.Settings ("org.gnome.gnome-latex.preferences.editor");
 
         Gspell.LanguageChooserButton spell_language_button =
             builder.get_object ("spell_language_button") as Gspell.LanguageChooserButton;
@@ -307,7 +307,7 @@ public class PreferencesDialog : Dialog
     private void init_other_tab (Builder builder)
     {
         GLib.Settings latex_settings =
-            new GLib.Settings ("org.gnome.latexila.preferences.latex");
+            new GLib.Settings ("org.gnome.gnome-latex.preferences.latex");
 
         var confirm_clean_up_checkbutton =
             builder.get_object ("confirm_clean_up_checkbutton");

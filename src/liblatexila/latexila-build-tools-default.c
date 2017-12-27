@@ -82,7 +82,7 @@ load_settings (LatexilaBuildToolsDefault *build_tools)
   GVariantIter *iter;
   gint tool_id;
 
-  settings = g_settings_new ("org.gnome.latexila.preferences.latex");
+  settings = g_settings_new ("org.gnome.gnome-latex.preferences.latex");
 
   tools = g_settings_get_value (settings, "enabled-default-build-tools");
   g_variant_get (tools, "ai", &iter);
@@ -138,7 +138,7 @@ save_settings (LatexilaBuildToolsDefault *build_tools)
   enabled_tools = g_variant_builder_end (&builder_enabled);
   disabled_tools = g_variant_builder_end (&builder_disabled);
 
-  settings = g_settings_new ("org.gnome.latexila.preferences.latex");
+  settings = g_settings_new ("org.gnome.gnome-latex.preferences.latex");
   g_settings_set_value (settings, "enabled-default-build-tools", enabled_tools);
   g_settings_set_value (settings, "disabled-default-build-tools", disabled_tools);
 

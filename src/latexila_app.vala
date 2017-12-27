@@ -36,7 +36,7 @@ public class LatexilaApp : Gtk.Application
 
     public LatexilaApp ()
     {
-        Object (application_id: "org.gnome.latexila");
+        Object (application_id: "org.gnome.gnome-latex");
         set_flags (ApplicationFlags.HANDLES_OPEN);
         Environment.set_application_name (Config.PACKAGE_NAME);
         Gtk.Window.set_default_icon_name ("gnome-latex");

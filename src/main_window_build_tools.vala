@@ -239,7 +239,7 @@ public class MainWindowBuildTools
     public void save_state ()
     {
         GLib.Settings settings =
-            new GLib.Settings ("org.gnome.latexila.preferences.ui");
+            new GLib.Settings ("org.gnome.gnome-latex.preferences.ui");
 
         ToggleAction action =
             _static_action_group.get_action ("BuildShowWarnings") as ToggleAction;
@@ -413,7 +413,7 @@ public class MainWindowBuildTools
     {
         return_if_fail (_build_view != null);
 
-        GLib.Settings settings = new GLib.Settings ("org.gnome.latexila.preferences.ui");
+        GLib.Settings settings = new GLib.Settings ("org.gnome.gnome-latex.preferences.ui");
 
         /* Show details */
 

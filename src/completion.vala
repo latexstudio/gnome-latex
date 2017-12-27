@@ -81,7 +81,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
     /* CompletionProvider is a singleton */
     private CompletionProvider ()
     {
-        _settings = new GLib.Settings ("org.gnome.latexila.preferences.latex");
+        _settings = new GLib.Settings ("org.gnome.gnome-latex.preferences.latex");
 
         // icons
         _icon_cmd = Latexila.utils_get_pixbuf_from_icon_name ("completion_cmd",

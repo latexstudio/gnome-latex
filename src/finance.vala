@@ -101,7 +101,7 @@ namespace Finance
             }
 
             GLib.Settings settings =
-                new GLib.Settings ("org.gnome.latexila.state.dialogs.finance");
+                new GLib.Settings ("org.gnome.gnome-latex.state.dialogs.finance");
 
             settings.set_boolean ("remind-later", remind_later_checkbutton.get_active ());
             break;
@@ -114,7 +114,7 @@ namespace Finance
     private bool should_show_dialog_on_startup ()
     {
         GLib.Settings settings =
-            new GLib.Settings ("org.gnome.latexila.state.dialogs.finance");
+            new GLib.Settings ("org.gnome.gnome-latex.state.dialogs.finance");
 
         string date = settings.get_string ("last-shown-date");
 
@@ -147,7 +147,7 @@ namespace Finance
     private void save_date ()
     {
         GLib.Settings settings =
-            new GLib.Settings ("org.gnome.latexila.state.dialogs.finance");
+            new GLib.Settings ("org.gnome.gnome-latex.state.dialogs.finance");
 
         DateTime time = new DateTime.now_utc ();
         string date = "%d-%d-%d".printf (time.get_year (), time.get_month (),

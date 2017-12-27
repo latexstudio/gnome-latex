@@ -504,7 +504,7 @@ public class MainWindow : ApplicationWindow
 
     private void restore_state ()
     {
-        GLib.Settings settings = new GLib.Settings ("org.gnome.latexila.state.window");
+        GLib.Settings settings = new GLib.Settings ("org.gnome.gnome-latex.state.window");
 
         /* The window itself */
 
@@ -553,7 +553,7 @@ public class MainWindow : ApplicationWindow
 
     private void show_or_hide_widgets ()
     {
-        GLib.Settings settings = new GLib.Settings ("org.gnome.latexila.preferences.ui");
+        GLib.Settings settings = new GLib.Settings ("org.gnome.gnome-latex.preferences.ui");
 
         ToggleAction action =
             _action_group.get_action ("ViewMainToolbar") as ToggleAction;
@@ -919,7 +919,7 @@ public class MainWindow : ApplicationWindow
     {
         /* state of the window */
         GLib.Settings settings_window =
-            new GLib.Settings ("org.gnome.latexila.state.window");
+            new GLib.Settings ("org.gnome.gnome-latex.state.window");
         Gdk.WindowState state = get_window ().get_state ();
         settings_window.set_int ("state", state);
 
@@ -936,7 +936,7 @@ public class MainWindow : ApplicationWindow
 
         /* ui preferences */
         GLib.Settings settings_ui =
-            new GLib.Settings ("org.gnome.latexila.preferences.ui");
+            new GLib.Settings ("org.gnome.gnome-latex.preferences.ui");
 
         // We don't bind this settings to the toggle action because when we change the
         // setting it must be applied only on the current window and not all windows.
@@ -1024,7 +1024,7 @@ public class MainWindow : ApplicationWindow
                 list_uris += doc.location.get_uri ();
         }
 
-        GLib.Settings settings = new GLib.Settings ("org.gnome.latexila.state.window");
+        GLib.Settings settings = new GLib.Settings ("org.gnome.gnome-latex.state.window");
         settings.set_strv ("documents", list_uris);
 
         if (close_all_documents ())

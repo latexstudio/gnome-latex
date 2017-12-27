@@ -60,7 +60,7 @@ public class MainWindowTools
             update_inline_spell_checker_action_state ();
         });
 
-        _editor_settings = new GLib.Settings ("org.gnome.latexila.preferences.editor");
+        _editor_settings = new GLib.Settings ("org.gnome.gnome-latex.preferences.editor");
 
         _editor_settings.changed["highlight-misspelled-words"].connect (() =>
         {

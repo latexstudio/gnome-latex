@@ -73,11 +73,11 @@ public class FileBrowser : Grid
 
     private void init_settings ()
     {
-        _settings = new GLib.Settings ("org.gnome.latexila.preferences.file-browser");
+        _settings = new GLib.Settings ("org.gnome.gnome-latex.preferences.file-browser");
         _settings.changed["show-build-files"].connect (refresh);
         _settings.changed["show-hidden-files"].connect (refresh);
 
-        _latex_settings = new GLib.Settings ("org.gnome.latexila.preferences.latex");
+        _latex_settings = new GLib.Settings ("org.gnome.gnome-latex.preferences.latex");
         _latex_settings.changed["clean-extensions"].connect (delayed_refresh);
     }
 

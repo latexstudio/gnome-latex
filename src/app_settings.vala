@@ -28,7 +28,7 @@ public class AppSettings : GLib.Settings
     /* AppSettings is a singleton */
     private AppSettings ()
     {
-        Object (schema_id: "org.gnome.latexila");
+        Object (schema_id: "org.gnome.gnome-latex");
         initialize ();
     }
 
