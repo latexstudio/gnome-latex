@@ -1,21 +1,21 @@
 <schemalist>
-  <schema id="org.gnome.latexila" path="/org/gnome/latexila/">
-    <child schema="org.gnome.latexila.preferences" name="preferences" />
-    <child schema="org.gnome.latexila.state" name="state" />
+  <schema id="org.gnome.gnome-latex" path="/org/gnome/gnome-latex/">
+    <child schema="org.gnome.gnome-latex.preferences" name="preferences" />
+    <child schema="org.gnome.gnome-latex.state" name="state" />
   </schema>
 
-  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.latexila.preferences" path="/org/gnome/latexila/preferences/">
-    <child schema="org.gnome.latexila.preferences.editor" name="editor" />
-    <child schema="org.gnome.latexila.preferences.ui" name="ui" />
-    <child schema="org.gnome.latexila.preferences.latex" name="latex" />
-    <child schema="org.gnome.latexila.preferences.file-browser" name="file-browser" />
+  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.gnome-latex.preferences" path="/org/gnome/gnome-latex/preferences/">
+    <child schema="org.gnome.gnome-latex.preferences.editor" name="editor" />
+    <child schema="org.gnome.gnome-latex.preferences.ui" name="ui" />
+    <child schema="org.gnome.gnome-latex.preferences.latex" name="latex" />
+    <child schema="org.gnome.gnome-latex.preferences.file-browser" name="file-browser" />
   </schema>
 
-  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.latexila.preferences.editor" path="/org/gnome/latexila/preferences/editor/">
+  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.gnome-latex.preferences.editor" path="/org/gnome/gnome-latex/preferences/editor/">
     <key name="use-default-font" type="b">
       <default>true</default>
       <summary>Use Default Font</summary>
-      <description>Whether to use the system's default fixed width font for editing text instead of a font specific to LaTeXila. If this option is turned off, then the font named in the "Editor Font" option will be used instead of the system font.</description>
+      <description>Whether to use the system's default fixed width font for editing text instead of a font specific to GNOME LaTeX. If this option is turned off, then the font named in the "Editor Font" option will be used instead of the system font.</description>
     </key>
     <key name="editor-font" type="s">
       <default>'Monospace 10'</default>
@@ -30,23 +30,23 @@
     <key name="create-backup-copy" type="b">
       <default>true</default>
       <summary>Create Backup Copies</summary>
-      <description>Whether LaTeXila should create backup copies for the files it saves.</description>
+      <description>Whether GNOME LaTeX should create backup copies for the files it saves.</description>
     </key>
     <key name="auto-save" type="b">
       <default>false</default>
       <summary>Autosave</summary>
-      <description>Whether LaTeXila should automatically save modified files after a time interval. You can set the time interval with the "Autosave Interval" option.</description>
+      <description>Whether GNOME LaTeX should automatically save modified files after a time interval. You can set the time interval with the "Autosave Interval" option.</description>
     </key>
     <key name="auto-save-interval" type="u">
       <range min="1" max="100" />
       <default>10</default>
       <summary>Autosave Interval</summary>
-      <description>Number of minutes after which LaTeXila will automatically save modified files. This will only take effect if the "Autosave" option is turned on.</description>
+      <description>Number of minutes after which GNOME LaTeX will automatically save modified files. This will only take effect if the "Autosave" option is turned on.</description>
     </key>
     <key name="reopen-files" type="b">
       <default>true</default>
       <summary>Reopen files on startup</summary>
-      <description>Whether LaTeXila should reopen the files that was opened the last time.</description>
+      <description>Whether GNOME LaTeX should reopen the files that was opened the last time.</description>
     </key>
     <key name="tabs-size" type="u">
       <range min="1" max="24" />
@@ -57,7 +57,7 @@
     <key name="insert-spaces" type="b">
       <default>true</default>
       <summary>Insert spaces</summary>
-      <description>Whether LaTeXila should insert spaces instead of tabs.</description>
+      <description>Whether GNOME LaTeX should insert spaces instead of tabs.</description>
     </key>
     <key name="forget-no-tabs" type="b">
       <default>true</default>
@@ -67,17 +67,17 @@
     <key name="display-line-numbers" type="b">
       <default>true</default>
       <summary>Display Line Numbers</summary>
-      <description>Whether LaTeXila should display line numbers in the editing area.</description>
+      <description>Whether GNOME LaTeX should display line numbers in the editing area.</description>
     </key>
     <key name="highlight-current-line" type="b">
       <default>true</default>
       <summary>Highlight Current Line</summary>
-      <description>Whether LaTeXila should highlight the current line.</description>
+      <description>Whether GNOME LaTeX should highlight the current line.</description>
     </key>
     <key name="bracket-matching" type="b">
       <default>true</default>
       <summary>Highlight Matching Brackets</summary>
-      <description>Whether LaTeXila should highlight matching brackets.</description>
+      <description>Whether GNOME LaTeX should highlight matching brackets.</description>
     </key>
     <key name="highlight-misspelled-words" type="b">
       <default>false</default>
@@ -91,7 +91,7 @@
     </key>
   </schema>
 
-  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.latexila.preferences.ui" path="/org/gnome/latexila/preferences/ui/">
+  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.gnome-latex.preferences.ui" path="/org/gnome/gnome-latex/preferences/ui/">
     <key name="main-toolbar-visible" type="b">
       <default>true</default>
       <summary>Main toolbar is visible</summary>
@@ -127,7 +127,7 @@
     </key>
   </schema>
 
-  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.latexila.preferences.latex" path="/org/gnome/latexila/preferences/latex/">
+  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.gnome-latex.preferences.latex" path="/org/gnome/gnome-latex/preferences/latex/">
     <key name="interactive-completion" type="b">
       <default>true</default>
       <summary>Interactive completion</summary>
@@ -165,7 +165,7 @@
     </key>
   </schema>
 
-  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.latexila.preferences.file-browser" path="/org/gnome/latexila/preferences/file-browser/">
+  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.gnome-latex.preferences.file-browser" path="/org/gnome/gnome-latex/preferences/file-browser/">
     <key name="current-directory" type="s">
       <default>''</default>
       <summary>Current directory</summary>
@@ -183,12 +183,12 @@
     </key>
   </schema>
 
-  <schema id="org.gnome.latexila.state" path="/org/gnome/latexila/state/">
-    <child schema="org.gnome.latexila.state.window" name="window" />
-    <child schema="org.gnome.latexila.state.dialogs" name="dialogs" />
+  <schema id="org.gnome.gnome-latex.state" path="/org/gnome/gnome-latex/state/">
+    <child schema="org.gnome.gnome-latex.state.window" name="window" />
+    <child schema="org.gnome.gnome-latex.state.dialogs" name="dialogs" />
   </schema>
 
-  <schema id="org.gnome.latexila.state.window" path="/org/gnome/latexila/state/window/">
+  <schema id="org.gnome.gnome-latex.state.window" path="/org/gnome/gnome-latex/state/window/">
     <key name="state" type="i">
       <default>0</default>
     </key>
@@ -209,11 +209,11 @@
     </key>
   </schema>
 
-  <schema id="org.gnome.latexila.state.dialogs" path="/org/gnome/latexila/state/dialogs/">
-    <child schema="org.gnome.latexila.state.dialogs.finance" name="finance" />
+  <schema id="org.gnome.gnome-latex.state.dialogs" path="/org/gnome/gnome-latex/state/dialogs/">
+    <child schema="org.gnome.gnome-latex.state.dialogs.finance" name="finance" />
   </schema>
 
-  <schema id="org.gnome.latexila.state.dialogs.finance" path="/org/gnome/latexila/state/dialogs/finance/">
+  <schema id="org.gnome.gnome-latex.state.dialogs.finance" path="/org/gnome/gnome-latex/state/dialogs/finance/">
     <key name="last-shown-date" type="s">
       <default>''</default>
     </key>

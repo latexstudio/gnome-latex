@@ -158,7 +158,7 @@ APPSTREAM_XML
 AC_CONFIG_FILES([
 	Makefile
 	data/Makefile
-	data/org.gnome.latexila.gschema.xml
+	data/org.gnome.gnome-latex.gschema.xml
 	data/build_tools/Makefile
 	data/icons/Makefile
 	data/icons/16x16/Makefile

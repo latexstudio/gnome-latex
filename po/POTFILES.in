@@ -4,7 +4,7 @@
 data/build_tools/build_tools.pot
 data/org.gnome.gnome-latex.appdata.xml.in
 data/org.gnome.gnome-latex.desktop.in
-[type: gettext/gsettings]data/org.gnome.latexila.gschema.xml.in
+[type: gettext/gsettings]data/org.gnome.gnome-latex.gschema.xml.in
 data/templates/templates.pot
 src/app_settings.vala
 src/bottom_panel.vala

@@ -13,7 +13,7 @@ desktop_DATA = org.gnome.gnome-latex.desktop
 appstream_XML = org.gnome.gnome-latex.appdata.xml
 @APPSTREAM_XML_RULES@
 
-gsettings_SCHEMAS = org.gnome.latexila.gschema.xml
+gsettings_SCHEMAS = org.gnome.gnome-latex.gschema.xml
 @GSETTINGS_RULES@
 
 dbusservicedir = $(datadir)/dbus-1/services
@@ -28,10 +28,10 @@ org.gnome.gnome-latex.service: Makefile
 EXTRA_DIST =					\
 	org.gnome.gnome-latex.appdata.xml.in	\
 	org.gnome.gnome-latex.desktop.in	\
-	org.gnome.latexila.gschema.xml.in
+	org.gnome.gnome-latex.gschema.xml.in
 
-DISTCLEANFILES =			\
-	org.gnome.latexila.gschema.xml
+DISTCLEANFILES =				\
+	org.gnome.gnome-latex.gschema.xml
 
 CLEANFILES =					\
 	org.gnome.gnome-latex.appdata.xml	\
