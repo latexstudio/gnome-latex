@@ -5,7 +5,7 @@ dist_ui_DATA = 			\
 	ui.xml
 
 EXTRA_DIST =			\
-	latexila.adwaita.css	\
+	gnome-latex.adwaita.css	\
 	menus.ui
 
 -include $(top_srcdir)/git.mk

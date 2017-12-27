@@ -421,7 +421,7 @@ public class MainWindow : ApplicationWindow
         edit_toolbar.set_style (ToolbarStyle.ICONS);
 
         StyleContext context = edit_toolbar.get_style_context ();
-        context.add_class ("latexila-edit-toolbar");
+        context.add_class ("gnome-latex-edit-toolbar");
 
         edit_toolbar.show_all ();
 

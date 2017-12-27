@@ -2,7 +2,7 @@
 
 <gresources>
   <gresource prefix="/org/gnome/gnome-latex">
-    <file>ui/latexila.adwaita.css</file>
+    <file>ui/gnome-latex.adwaita.css</file>
   </gresource>
 
   <gresource prefix="/org/gnome/gnome-latex/gtk">
