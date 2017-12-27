@@ -4,7 +4,7 @@
 <!--
 
 `xsltproc /usr/share/xml/docbook/stylesheet/docbook-xsl-ns/manpages/docbook.xsl \
-          latexila.1.xml'
+          gnome-latex.1.xml'
 
 A manual page <package>.<section> will be generated. You may view the
 manual page with: man -l <package>.<section>'. A typical entry in a Makefile or
@@ -13,7 +13,7 @@ Makefile.am is:
 DB2MAN = /usr/share/xml/docbook/stylesheet/docbook-xsl-ns/manpages/docbook.xsl
 XP     = xsltproc
 
-latexila.1: latexila.1.xml
+gnome-latex.1: gnome-latex.1.xml
         $(XP) $(DB2MAN) $<
 
 The xsltproc binary is found in the xsltproc package. The XSL files are in
@@ -33,9 +33,9 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
   <!ENTITY authoremail     "tanguy+debian@ortolo.eu">
   <!ENTITY mansection      "1">
   <!ENTITY mansectitle     "User Commands">
-  <!ENTITY upcommand       "LATEXILA">
-  <!ENTITY command         "latexila">
-  <!ENTITY program         "LaTeXila">
+  <!ENTITY upcommand       "GNOME-LATEX">
+  <!ENTITY command         "gnome-latex">
+  <!ENTITY program         "GNOME LaTeX">
 ]>
 
 <article xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en">
@@ -123,7 +123,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
       <varlistentry>
         <term><option>--new-window</option></term>
         <listitem>
-          <para>Create a new top-level window in an existing instance of LaTeXila</para>
+          <para>Create a new top-level window in an existing instance of GNOME LaTeX</para>
         </listitem>
       </varlistentry>
 
