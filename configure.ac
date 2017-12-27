@@ -6,7 +6,7 @@ AC_PREREQ([2.64])
 
 AC_INIT([GNOME LaTeX],
 	[3.27.2],
-	[https://bugzilla.gnome.org/enter_bug.cgi?product=latexila],
+	[https://bugzilla.gnome.org/browse.cgi?product=gnome-latex],
 	[gnome-latex],
 	[https://wiki.gnome.org/Apps/LaTeXila])
 
