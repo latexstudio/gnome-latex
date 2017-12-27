@@ -196,7 +196,7 @@ test_load (void)
                     G_CALLBACK (loaded_cb),
                     NULL);
 
-  xml_file = g_file_new_for_uri ("resource:///org/gnome/latexila/build_tools_test.xml");
+  xml_file = g_file_new_for_uri ("resource:///org/gnome/gnome-latex/build_tools_test.xml");
   g_assert (g_file_query_exists (xml_file, NULL));
 
   latexila_build_tools_load (build_tools, xml_file);

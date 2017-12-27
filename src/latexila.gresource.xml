@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <gresources>
-  <gresource prefix="/org/gnome/latexila">
+  <gresource prefix="/org/gnome/gnome-latex">
     <file>ui/latexila.adwaita.css</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/gtk">
+  <gresource prefix="/org/gnome/gnome-latex/gtk">
     <file alias="menus.ui" preprocess="xml-stripblanks">ui/menus.ui</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/icons/16x16/actions">
+  <gresource prefix="/org/gnome/gnome-latex/icons/16x16/actions">
     <file alias="compile_dvi.png" preprocess="to-pixdata">../data/icons/16x16/actions/compile_dvi.png</file>
     <file alias="compile_pdf.png" preprocess="to-pixdata">../data/icons/16x16/actions/compile_pdf.png</file>
     <file alias="compile_ps.png" preprocess="to-pixdata">../data/icons/16x16/actions/compile_ps.png</file>
@@ -39,13 +39,13 @@
     <file alias="view_log.png" preprocess="to-pixdata">../data/icons/16x16/actions/view_log.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/icons/16x16/mimetypes">
+  <gresource prefix="/org/gnome/gnome-latex/icons/16x16/mimetypes">
     <file alias="latexila-dvi.png" preprocess="to-pixdata">../data/icons/16x16/mimetypes/latexila-dvi.png</file>
     <file alias="latexila-pdf.png" preprocess="to-pixdata">../data/icons/16x16/mimetypes/latexila-pdf.png</file>
     <file alias="latexila-ps.png" preprocess="to-pixdata">../data/icons/16x16/mimetypes/latexila-ps.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/icons/24x24/actions">
+  <gresource prefix="/org/gnome/gnome-latex/icons/24x24/actions">
     <file alias="accent0.png" preprocess="to-pixdata">../data/icons/24x24/actions/accent0.png</file>
     <file alias="accent10.png" preprocess="to-pixdata">../data/icons/24x24/actions/accent10.png</file>
     <file alias="accent11.png" preprocess="to-pixdata">../data/icons/24x24/actions/accent11.png</file>
@@ -104,18 +104,18 @@
     <file alias="underline.png" preprocess="to-pixdata">../data/icons/24x24/actions/underline.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/icons/24x24/mimetypes">
+  <gresource prefix="/org/gnome/gnome-latex/icons/24x24/mimetypes">
     <file alias="latexila-dvi.png" preprocess="to-pixdata">../data/icons/24x24/mimetypes/latexila-dvi.png</file>
     <file alias="latexila-pdf.png" preprocess="to-pixdata">../data/icons/24x24/mimetypes/latexila-pdf.png</file>
     <file alias="latexila-ps.png" preprocess="to-pixdata">../data/icons/24x24/mimetypes/latexila-ps.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/icons">
+  <gresource prefix="/org/gnome/gnome-latex/icons">
     <file alias="badbox.png" preprocess="to-pixdata">../data/icons/others/badbox.png</file>
     <file alias="blackboard.png" preprocess="to-pixdata">../data/icons/others/blackboard.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/symbols/arrows">
+  <gresource prefix="/org/gnome/gnome-latex/symbols/arrows">
     <file alias="data.xml" preprocess="xml-stripblanks">../data/images/arrows/data.xml</file>
     <file alias="01.png" preprocess="to-pixdata">../data/images/arrows/01.png</file>
     <file alias="02.png" preprocess="to-pixdata">../data/images/arrows/02.png</file>
@@ -188,7 +188,7 @@
     <file alias="69.png" preprocess="to-pixdata">../data/images/arrows/69.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/symbols/delimiters">
+  <gresource prefix="/org/gnome/gnome-latex/symbols/delimiters">
     <file alias="data.xml" preprocess="xml-stripblanks">../data/images/delimiters/data.xml</file>
     <file alias="01.png" preprocess="to-pixdata">../data/images/delimiters/01.png</file>
     <file alias="02.png" preprocess="to-pixdata">../data/images/delimiters/02.png</file>
@@ -229,7 +229,7 @@
     <file alias="37.png" preprocess="to-pixdata">../data/images/delimiters/37.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/symbols/greek">
+  <gresource prefix="/org/gnome/gnome-latex/symbols/greek">
     <file alias="data.xml" preprocess="xml-stripblanks">../data/images/greek/data.xml</file>
     <file alias="01.png" preprocess="to-pixdata">../data/images/greek/01.png</file>
     <file alias="02.png" preprocess="to-pixdata">../data/images/greek/02.png</file>
@@ -284,7 +284,7 @@
     <file alias="65.png" preprocess="to-pixdata">../data/images/greek/65.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/symbols/misc-math">
+  <gresource prefix="/org/gnome/gnome-latex/symbols/misc-math">
     <file alias="data.xml" preprocess="xml-stripblanks">../data/images/misc-math/data.xml</file>
     <file alias="01.png" preprocess="to-pixdata">../data/images/misc-math/01.png</file>
     <file alias="02.png" preprocess="to-pixdata">../data/images/misc-math/02.png</file>
@@ -391,7 +391,7 @@
     <file alias="97.png" preprocess="to-pixdata">../data/images/misc-math/97.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/symbols/misc-text">
+  <gresource prefix="/org/gnome/gnome-latex/symbols/misc-text">
     <file alias="data.xml" preprocess="xml-stripblanks">../data/images/misc-text/data.xml</file>
     <file alias="001.png" preprocess="to-pixdata">../data/images/misc-text/001.png</file>
     <file alias="002.png" preprocess="to-pixdata">../data/images/misc-text/002.png</file>
@@ -530,7 +530,7 @@
     <file alias="135.png" preprocess="to-pixdata">../data/images/misc-text/135.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/symbols/operators">
+  <gresource prefix="/org/gnome/gnome-latex/symbols/operators">
     <file alias="data.xml" preprocess="xml-stripblanks">../data/images/operators/data.xml</file>
     <file alias="001.png" preprocess="to-pixdata">../data/images/operators/001.png</file>
     <file alias="002.png" preprocess="to-pixdata">../data/images/operators/002.png</file>
@@ -614,7 +614,7 @@
     <file alias="080.png" preprocess="to-pixdata">../data/images/operators/080.png</file>
   </gresource>
 
-  <gresource prefix="/org/gnome/latexila/symbols/relations">
+  <gresource prefix="/org/gnome/gnome-latex/symbols/relations">
     <file alias="data.xml" preprocess="xml-stripblanks">../data/images/relations/data.xml</file>
     <file alias="001.png" preprocess="to-pixdata">../data/images/relations/001.png</file>
     <file alias="002.png" preprocess="to-pixdata">../data/images/relations/002.png</file>

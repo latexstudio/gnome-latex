@@ -284,7 +284,7 @@ public class LatexilaApp : Gtk.Application
             if (_provider == null)
             {
                 _provider = new Gtk.CssProvider ();
-                File file = File.new_for_uri ("resource:///org/gnome/latexila/ui/latexila.adwaita.css");
+                File file = File.new_for_uri ("resource:///org/gnome/gnome-latex/ui/latexila.adwaita.css");
                 try
                 {
                     _provider.load_from_file (file);

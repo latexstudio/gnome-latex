@@ -153,7 +153,7 @@ void
 latexila_utils_register_icons (void)
 {
   gtk_icon_theme_add_resource_path (gtk_icon_theme_get_default (),
-                                    "/org/gnome/latexila/stock-icons/");
+                                    "/org/gnome/gnome-latex/stock-icons/");
 }
 
 /**

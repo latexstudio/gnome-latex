@@ -178,7 +178,7 @@ public class Symbols : GLib.Object
         try
         {
             return new Gdk.Pixbuf.from_resource (
-                "/org/gnome/latexila/symbols/" + symbol_id);
+                "/org/gnome/gnome-latex/symbols/" + symbol_id);
         }
         catch (Error e)
         {
@@ -205,7 +205,7 @@ private class NormalSymbols : Gtk.ListStore
     public NormalSymbols (string category_id)
     {
         _category_id = category_id;
-        _resource_path = @"/org/gnome/latexila/symbols/$category_id/";
+        _resource_path = @"/org/gnome/gnome-latex/symbols/$category_id/";
 
         _data = new Gee.HashMap<string, SymbolInfo?> ();
 
