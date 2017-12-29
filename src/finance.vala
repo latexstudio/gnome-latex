@@ -160,7 +160,7 @@ namespace Finance
     {
         try
         {
-            string uri = "https://liberapay.com/LaTeXila/";
+            string uri = "https://liberapay.com/GNOME-LaTeX/";
             Latexila.utils_show_uri (widget, uri, Gdk.CURRENT_TIME);
         }
         catch (Error e)
