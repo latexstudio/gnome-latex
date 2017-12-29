@@ -27,7 +27,7 @@ GNOME LaTeX has also other features like the spell-checking, or jumping
 to the associated position between the .tex file and the PDF.
   </description>
 
-  <homepage rdf:resource="https://wiki.gnome.org/Apps/LaTeXila" />
+  <homepage rdf:resource="https://wiki.gnome.org/Apps/GNOME-LaTeX" />
   <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/latexila-list" />
   <download-page rdf:resource="http://ftp.gnome.org/pub/GNOME/sources/latexila/" />
   <bug-database rdf:resource="https://bugzilla.gnome.org/browse.cgi?product=gnome-latex" />

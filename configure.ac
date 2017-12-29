@@ -8,7 +8,7 @@ AC_INIT([GNOME LaTeX],
 	[3.27.2],
 	[https://bugzilla.gnome.org/browse.cgi?product=gnome-latex],
 	[gnome-latex],
-	[https://wiki.gnome.org/Apps/LaTeXila])
+	[https://wiki.gnome.org/Apps/GNOME-LaTeX])
 
 AX_REQUIRE_DEFINED([AX_IS_RELEASE])
 AX_IS_RELEASE([git-directory])
