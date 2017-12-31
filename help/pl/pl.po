@@ -1,14 +1,14 @@
 # Polish translation for latexila help.
 # Copyright © 2017 the latexila authors.
-# This file is distributed under the same license as the latexila package.
+# This file is distributed under the same license as the latexila help.
 # Piotr Drąg <piotrdrag@gmail.com>, 2017.
 # Aviary.pl <community-poland@mozilla.org>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila-help\n"
-"POT-Creation-Date: 2017-06-28 17:57+0000\n"
-"PO-Revision-Date: 2017-08-06 21:15+0200\n"
+"POT-Creation-Date: 2017-12-27 06:53+0000\n"
+"PO-Revision-Date: 2017-12-31 22:55+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -96,13 +96,13 @@ msgid ""
 "since only one command is required. Indeed, Latexmk can detect how many "
 "times the <cmd>latex</cmd> or <cmd>pdflatex</cmd> command must be called, "
 "and whether <cmd>bibtex</cmd> or <cmd>makeindex</cmd> is required. By "
-"default, LaTeXila uses Latexmk."
+"default, GNOME LaTeX uses Latexmk."
 msgstr ""
 "Użycie narzędzia wyższego poziomu, takiego jak Latexmk, upraszcza ten "
 "proces, jako że wymaga to tylko jednego polecenia. Latexmk samo wykrywa, ile "
 "razy trzeba wywołać polecenia <cmd>latex</cmd> i <cmd>pdflatex</cmd> oraz "
 "czy wymagane są polecenia <cmd>bibtex</cmd> i <cmd>makeindex</cmd>. "
-"Domyślnie LaTeXila używa narzędzia Latexmk."
+"Domyślnie GNOME LaTeX używa narzędzia Latexmk."
 
 #. (itstool) path: section/title
 #: C/build_tools.page:86
@@ -320,8 +320,8 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/index.page:4
-msgid "LaTeXila Help"
-msgstr "LaTeXila"
+msgid "GNOME LaTeX Help"
+msgstr "GNOME LaTeX"
 
 #. (itstool) path: page/title
 #: C/projects.page:10
@@ -446,10 +446,10 @@ msgstr "Słowniki"
 #: C/spell_checking.page:41
 msgid ""
 "<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> is "
-"used for the spell checking in LaTeXila. Enchant uses one or several "
+"used for the spell checking in GNOME LaTeX. Enchant uses one or several "
 "backends such as Hunspell or Aspell for the dictionaries."
 msgstr ""
-"Do sprawdzania pisowni LaTeXila używa mechanizmu <link href=\"http://www."
+"Do sprawdzania pisowni GNOME LaTeX używa mechanizmu <link href=\"http://www."
 "abisource.com/projects/enchant/\">Enchant</link>. Korzysta on z różnych "
 "bibliotek słowników, takich jak Hunspell lub Aspell."
 
@@ -645,18 +645,18 @@ msgstr ""
 msgid ""
 "In <app>Evince</app>, press <keyseq> <key>Ctrl</key> <key>left click</key> </"
 "keyseq>, and the corresponding position in the .tex file will be opened in "
-"<app>LaTeXila</app>."
+"<app>GNOME LaTeX</app>."
 msgstr ""
 "Naciśnij klawisz <keyseq> <key>Ctrl</key> + <key>kliknij lewym przyciskiem "
 "myszy</key> </keyseq> w programie <app>Evince</app>, a odpowiednie położenie "
-"w pliku .tex zostanie otwarte w programie <app>LaTeXila</app>."
+"w pliku .tex zostanie otwarte w programie <app>GNOME LaTeX</app>."
 
 #. (itstool) path: section/p
 #: C/synctex.page:66
 msgid ""
-"<app>Evince</app> has to be launched by <app>LaTeXila</app>. Else, jumping "
-"from the PDF to the .tex file will not work."
+"<app>Evince</app> has to be launched by <app>GNOME LaTeX</app>. Else, "
+"jumping from the PDF to the .tex file will not work."
 msgstr ""
-"Program <app>Evince</app> musi zostać uruchomiony przez program "
-"<app>LaTeXila</app>. W przeciwnym wypadku przełączanie między plikiem PDF a ."
-"tex nie będzie działać."
+"Program <app>Evince</app> musi zostać uruchomiony przez program <app>GNOME "
+"LaTeX</app>. W przeciwnym wypadku przełączanie między plikiem PDF a .tex nie "
+"będzie działać."
