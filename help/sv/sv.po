@@ -1,14 +1,14 @@
 # Swedish translation for latexila help.
-# Copyright © 2016, 2017 latexila's COPYRIGHT HOLDER
+# Copyright © 2016, 2017, 2018 latexila's COPYRIGHT HOLDER
 # This file is distributed under the same license as the latexila package.
 # Josef Andersson <josef.andersson@fripost.org>, 2016.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2017.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
-"POT-Creation-Date: 2017-02-24 12:48+0000\n"
-"PO-Revision-Date: 2017-03-11 22:38+0100\n"
+"POT-Creation-Date: 2017-12-27 06:53+0000\n"
+"PO-Revision-Date: 2018-01-04 02:04+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.5\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -98,13 +98,13 @@ msgid ""
 "since only one command is required. Indeed, Latexmk can detect how many "
 "times the <cmd>latex</cmd> or <cmd>pdflatex</cmd> command must be called, "
 "and whether <cmd>bibtex</cmd> or <cmd>makeindex</cmd> is required. By "
-"default, LaTeXila uses Latexmk."
+"default, GNOME LaTeX uses Latexmk."
 msgstr ""
 "Att använda ett verktyg på högre nivå som t.ex. Latexmk förenklar en hel del "
 "av denna process eftersom endast ett kommando krävs. Latexmk kan upptäcka "
 "hur många gånger kommandot <cmd>latex</cmd> eller <cmd>pdflatex</cmd> måste "
 "anropas och huruvida <cmd>bibtex</cmd> eller <cmd>makeindex</cmd> krävs. Som "
-"standard använder LaTeXila Latexmk."
+"standard använder GNOME LaTeX Latexmk."
 
 #. (itstool) path: section/title
 #: C/build_tools.page:86
@@ -321,8 +321,8 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/index.page:4
-msgid "LaTeXila Help"
-msgstr "LaTeXila-hjälp"
+msgid "GNOME LaTeX Help"
+msgstr "Hjälp för GNOME LaTeX"
 
 #. (itstool) path: page/title
 #: C/projects.page:10
@@ -449,11 +449,11 @@ msgstr "Uppslagsverk"
 #: C/spell_checking.page:41
 msgid ""
 "<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> is "
-"used for the spell checking in LaTeXila. Enchant uses one or several "
+"used for the spell checking in GNOME LaTeX. Enchant uses one or several "
 "backends such as Hunspell or Aspell for the dictionaries."
 msgstr ""
 "<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> "
-"används för stavningskontroll i LaTeXila. Enchant använder en eller flera "
+"används för stavningskontroll i GNOME LaTeX. Enchant använder en eller flera "
 "bakändar som Hunspell eller Aspell för uppslagsverken."
 
 #. (itstool) path: section/p
@@ -647,20 +647,20 @@ msgstr ""
 msgid ""
 "In <app>Evince</app>, press <keyseq> <key>Ctrl</key> <key>left click</key> </"
 "keyseq>, and the corresponding position in the .tex file will be opened in "
-"<app>LaTeXila</app>."
+"<app>GNOME LaTeX</app>."
 msgstr ""
 "I <app>Evince</app>, tryck ned <keyseq> <key>Ctrl</key> <key>vänsterklick</"
 "key> </keyseq> och motsvarande position i .tex-filen kommer att öppnas i "
-"<app>LaTeXila</app>."
+"<app>GNOME LaTeX</app>."
 
 #. (itstool) path: section/p
 #: C/synctex.page:66
 msgid ""
-"<app>Evince</app> has to be launched by <app>LaTeXila</app>. Else, jumping "
-"from the PDF to the .tex file will not work."
+"<app>Evince</app> has to be launched by <app>GNOME LaTeX</app>. Else, "
+"jumping from the PDF to the .tex file will not work."
 msgstr ""
-"<app>Evince</app> måste startas av <app>LaTeXila</app>. Annars kommer hoppet "
-"från PDF-filen till .tex-filen inte att fungera."
+"<app>Evince</app> måste startas av <app>GNOME LaTeX</app>. Annars kommer "
+"hoppet från PDF-filen till .tex-filen inte att fungera."
 
 #~ msgid "Forward and Backward Search"
 #~ msgstr "Framåt- och bakåtsökning"
