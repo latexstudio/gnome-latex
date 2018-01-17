@@ -1,5 +1,11 @@
 GNOME LaTeX NEWS
 
+Release 3.27.2, 2018-01-17
+--------------------------
+* Rename LaTeXila to GNOME LaTeX.
+* Some code maintenance (do not use some deprecated GTK+ functions).
+* Translation updates.
+
 Release 3.27.1, 2017-12-09
 --------------------------
 * User-visible improvements:
