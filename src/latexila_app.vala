@@ -191,7 +191,7 @@ public class LatexilaApp : Gtk.Application
 
         try
         {
-            Latexila.utils_show_uri (window, "help:latexila", Gdk.CURRENT_TIME);
+            Latexila.utils_show_uri (window, "help:gnome-latex", Gdk.CURRENT_TIME);
         }
         catch (Error e)
         {
