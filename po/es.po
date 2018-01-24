@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the latexila package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2011.
 # miguel <bokerones.fritos@gmail.com>, 2012.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila 2.0\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=latexila&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-11-03 16:17+0000\n"
-"PO-Revision-Date: 2017-11-24 10:11+0100\n"
+"POT-Creation-Date: 2017-12-27 07:27+0000\n"
+"PO-Revision-Date: 2018-01-24 16:55+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -86,22 +86,25 @@ msgstr "Convertir el documento DVI a formato PostScript"
 msgid "Convert the PostScript document to the PDF format"
 msgstr "Mover el documento PostScript a una formato PDF"
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:1
-#| msgid "LaTeXila"
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:1
 msgid "LaTeX editor"
 msgstr "Editor LaTeX"
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:2
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:2
+#| msgid ""
+#| "LaTeXila is a LaTeX editor for the GNOME desktop. LaTeXila permits to "
+#| "concentrate on the content and the structure of the document instead of "
+#| "being distracted by its presentation."
 msgid ""
-"LaTeXila is a LaTeX editor for the GNOME desktop. LaTeXila permits to "
-"concentrate on the content and the structure of the document instead of "
-"being distracted by its presentation."
+"GNOME LaTeX is a LaTeX editor for the GNOME desktop, previously named "
+"LaTeXila. GNOME LaTeX permits to concentrate on the content and the "
+"structure of the document instead of being distracted by its presentation."
 msgstr ""
-"LaTeXila es un editor LaTeX para el escritorio GNOME. LaTeXila permite "
-"concentrarse en el contenido y la estructura de un documento en lugar de "
-"distraerse con su presentación."
+"GNOME LaTeX es un editor LaTeX para el escritorio GNOME, llamado "
+"anteriormente LaTeXila. Permite concentrarse en el contenido y la estructura "
+"de un documento en lugar de distraerse con su presentación."
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:3
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:3
 msgid ""
 "To help the writing of the LaTeX markup, auto-completion is available as "
 "well as menus and toolbars with the principal commands. New documents are "
@@ -115,11 +118,7 @@ msgstr ""
 "para compilar, convertir y ver un documento con una sola pulsación. Y los "
 "proyectos que contengan varios archivos .tex se gestionan fácilmente."
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:4
-#| msgid ""
-#| "A side panel contains three components: the document structure to easily "
-#| "navigate in it; lists of symbols to insert them in a document; and an "
-#| "integrated file browser."
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:4
 msgid ""
 "A side panel contains three components: the document structure to easily "
 "navigate in it; lists of symbols to insert them in a document; and a file "
@@ -129,71 +128,75 @@ msgstr ""
 "navegar fácilmente por ella; una lista de símbolos para insertarlos en el "
 "documento; y un examinador de archivos."
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:5
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:5
 #| msgid ""
-#| "LaTeXila has also other features like the spell checking, or the forward "
-#| "and backward search to switch between the .tex and the PDF."
+#| "LaTeXila has also other features like the spell-checking, or jumping to "
+#| "the associated position between the .tex file and the PDF."
 msgid ""
-"LaTeXila has also other features like the spell-checking, or jumping to the "
-"associated position between the .tex file and the PDF."
+"GNOME LaTeX has also other features like the spell-checking, or jumping to "
+"the associated position between the .tex file and the PDF."
 msgstr ""
-"LaTeXila tiene otras características como la comprobación de la ortografía, "
-"o saltar a la posición asociada entre el archivo .tex y el PDF."
+"GNOME LaTeX tiene otras características como la comprobación de la "
+"ortografía, o saltar a la posición asociada entre el archivo .tex y el PDF."
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:6
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:6
 msgid "Completion of LaTeX commands"
 msgstr "Completado de comandos de LaTeX"
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:7
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:7
 msgid "Generating the PDF file"
 msgstr "Generando el archivo PDF"
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:8
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:8
 msgid "Document structure in the side panel"
 msgstr "Estructura del documento en el panel lateral"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:1
-#| msgid "Editor"
+#: ../data/org.gnome.gnome-latex.desktop.in.h:1
 msgid "LaTeX Editor"
 msgstr "Editor LaTeX"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:2
+#: ../data/org.gnome.gnome-latex.desktop.in.h:2
 msgid "Edit LaTeX documents"
 msgstr "Editar documentos LaTeX"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:3
+#: ../data/org.gnome.gnome-latex.desktop.in.h:3
 msgid "text;tex;latex;editor;documents;"
 msgstr "texto;tex;latex;editor;documentos;"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:4
+#: ../data/org.gnome.gnome-latex.desktop.in.h:4
 msgid "Open a New Window"
 msgstr "Abrir una ventana nueva"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:5
+#: ../data/org.gnome.gnome-latex.desktop.in.h:5
 msgid "Open a New Document"
 msgstr "Abrir un documento nuevo"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:1
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:1
 msgid "Use Default Font"
 msgstr "Usar tipografía predeterminada"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:2
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:2
+#| msgid ""
+#| "Whether to use the system's default fixed width font for editing text "
+#| "instead of a font specific to LaTeXila. If this option is turned off, "
+#| "then the font named in the \"Editor Font\" option will be used instead of "
+#| "the system font."
 msgid ""
 "Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to LaTeXila. If this option is turned off, then "
-"the font named in the \"Editor Font\" option will be used instead of the "
-"system font."
+"instead of a font specific to GNOME LaTeX. If this option is turned off, "
+"then the font named in the \"Editor Font\" option will be used instead of "
+"the system font."
 msgstr ""
 "Utilizar la anchura de la tipografía predeterminada del sistema para editar "
-"texto en vez de usar la de LaTeXila  Si esta opción no está activada "
+"texto en vez de usar la de GNOME LaTeX  Si esta opción no está activada "
 "entonces se usará la tipografía especificada en la opción «Tipografía del "
 "editor» en vez de la tipografía del sistema."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:3
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:3
 msgid "Editor Font"
 msgstr "Tipografía del editor"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:4
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:4
 msgid ""
 "A custom font that will be used for the editing area. This will only take "
 "effect if the \"Use Default Font\" option is turned off."
@@ -202,62 +205,78 @@ msgstr ""
 "Sólo se aplicará si no está activada la opción «Usar tipografía "
 "predeterminada»."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:5
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:5
 msgid "Style Scheme"
 msgstr "Esquema de estilo"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:6
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:6
 msgid "The ID of a GtkSourceView Style Scheme used to color the text."
 msgstr "El ID de una ventana de esquemas de estilos usada para colorear texto."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:7
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:7
 msgid "Create Backup Copies"
 msgstr "Crea copias de respaldo"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:8
-msgid "Whether LaTeXila should create backup copies for the files it saves."
-msgstr "LaTeXila realiza copias de seguridad de los archivos que guarda."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:8
+#| msgid "Whether LaTeXila should create backup copies for the files it saves."
+msgid "Whether GNOME LaTeX should create backup copies for the files it saves."
+msgstr ""
+"Indica si GNOME LaTeX debe realizar copias de seguridad de los archivos que "
+"guarda."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:9
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:9
 msgid "Autosave"
 msgstr "Autoguardar"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:10
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:10
+#| msgid ""
+#| "Whether LaTeXila should automatically save modified files after a time "
+#| "interval. You can set the time interval with the \"Autosave Interval\" "
+#| "option."
 msgid ""
-"Whether LaTeXila should automatically save modified files after a time "
+"Whether GNOME LaTeX should automatically save modified files after a time "
 "interval. You can set the time interval with the \"Autosave Interval\" "
 "option."
 msgstr ""
-"LaTeXila guarda automáticamente los archivos modificados después de un "
-"intervalo de tiempo. Puede configurar el intervalo de tiempo con la opción "
-"«Intervalo de autoguardado»"
+"Indica si GNOME LaTeX debe guardar automáticamente los archivos modificados "
+"después de un intervalo de tiempo. Puede configurar el intervalo de tiempo "
+"con la opción «Intervalo de autoguardado»"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:11
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:11
 msgid "Autosave Interval"
 msgstr "Intervalo de autoguardado"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:12
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:12
+#| msgid ""
+#| "Number of minutes after which LaTeXila will automatically save modified "
+#| "files. This will only take effect if the \"Autosave\" option is turned on."
 msgid ""
-"Number of minutes after which LaTeXila will automatically save modified "
+"Number of minutes after which GNOME LaTeX will automatically save modified "
 "files. This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
-"Número de minutos tras los que LaTeXila guardará automáticamente los cambios "
-"de los archivos. Sólo se aplicará si la opción «Autoguardar» está activada."
+"Número de minutos tras los que GNOME LaTeX guardará automáticamente los "
+"cambios de los archivos. Sólo se aplicará si la opción «Autoguardar» está "
+"activada."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:13
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:13
 #: ../src/ui/preferences_dialog.ui.h:9
 msgid "Reopen files on startup"
 msgstr "Reabrir archivos al inicio"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:14
-msgid "Whether LaTeXila should reopen the files that was opened the last time."
-msgstr "Abrir los archivos que se abrieron la última vez."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:14
+#| msgid ""
+#| "Whether LaTeXila should reopen the files that was opened the last time."
+msgid ""
+"Whether GNOME LaTeX should reopen the files that was opened the last time."
+msgstr ""
+"Indica si GNOME LaTeX debe volver a abrir los archivos que se abrieron la "
+"última vez."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:15
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:15
 msgid "Tab Size"
 msgstr "Tamaño del tabulador"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:16
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:16
 msgid ""
 "Specifies the number of spaces that should be displayed instead of Tab "
 "characters."
@@ -265,61 +284,65 @@ msgstr ""
 "Especifica el número de espacios que mostrará en lugar de los carácteres de "
 "tabulación."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:17
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:17
 msgid "Insert spaces"
 msgstr "Insertar espacios"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:18
-msgid "Whether LaTeXila should insert spaces instead of tabs."
-msgstr "Indica si LaTeXila debe insertar espacios en lugar de tabulaciones."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:18
+#| msgid "Whether LaTeXila should insert spaces instead of tabs."
+msgid "Whether GNOME LaTeX should insert spaces instead of tabs."
+msgstr "Indica si GNOME LaTeX debe insertar espacios en lugar de tabulaciones."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:19
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:19
 msgid "Forget lack of tabulations"
 msgstr "Olvidar que no está usando tabulaciones"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:20
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:20
 msgid "Forget you are not using tabulations."
 msgstr "Olvidar que no está usando tabulaciones."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:21
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:21
 msgid "Display Line Numbers"
 msgstr "Mostrar números de línea"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:22
-msgid "Whether LaTeXila should display line numbers in the editing area."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:22
+#| msgid "Whether LaTeXila should display line numbers in the editing area."
+msgid "Whether GNOME LaTeX should display line numbers in the editing area."
 msgstr ""
-"Indica si LaTeXila debe mostrar números de línea en el área de edición."
+"Indica si GNOME LaTeX debe mostrar números de línea en el área de edición."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:23
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:23
 msgid "Highlight Current Line"
 msgstr "Resaltar la línea actual"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:24
-msgid "Whether LaTeXila should highlight the current line."
-msgstr "Indica si LaTeXila debe resaltar la línea actual."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:24
+#| msgid "Whether LaTeXila should highlight the current line."
+msgid "Whether GNOME LaTeX should highlight the current line."
+msgstr "Indica si GNOME LaTeX debe resaltar la línea actual."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:25
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:25
 msgid "Highlight Matching Brackets"
 msgstr "Resaltar corchetes coincidentes"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:26
-msgid "Whether LaTeXila should highlight matching brackets."
-msgstr "Indica si LaTeXila debe resaltar los corchetes correspondientes."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:26
+#| msgid "Whether LaTeXila should highlight matching brackets."
+msgid "Whether GNOME LaTeX should highlight matching brackets."
+msgstr "Indica si GNOME LaTeX debe resaltar los corchetes correspondientes."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:27
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:27
 msgid "Highlight Misspelled Words"
 msgstr "Resaltar las palabras mal escritas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:28
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:28
 msgid "Whether misspelled words are highlighted by default."
 msgstr ""
 "Indica si las palabras mal escritas se resaltan de manera predeterminada."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:29
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:29
 msgid "Spell Checking Language"
 msgstr "Idioma de la revisión ortográfica"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:30
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:30
 msgid ""
 "The default language used for the spell checking. Set to the empty string to "
 "take the best language available based on the environment."
@@ -327,22 +350,22 @@ msgstr ""
 "EL idioma predeterminado usado para la revisión ortográfica. Establézcalo a "
 "una cadena vacía para usar el mejor idioma disponible basado en el entorno."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:31
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:31
 msgid "Main toolbar is visible"
 msgstr "La barra de herramientas principal es visible"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:32
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:32
 msgid ""
 "Whether the main toolbar (file open, close, build, ...) should be visible."
 msgstr ""
 "La barra de herramientas principal (abrir archivo, cerrar, construir, …) "
 "debería ser visible."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:33
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:33
 msgid "Edit toolbar is visible"
 msgstr "La barra de herramientas de edición es visible"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:34
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:34
 msgid ""
 "Whether the edit toolbar (bold, italic, character sizes, ...) should be "
 "visible."
@@ -350,57 +373,57 @@ msgstr ""
 "La barra de herramientas de edición (negrita, cursiva, tamaño de carácter, "
 "…) debería ser visible."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:35
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:35
 msgid "Side panel is Visible"
 msgstr "El panel lateral es visible"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:36
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:36
 msgid ""
 "Whether the side panel at the left of editing windows should be visible."
 msgstr ""
 "El panel lateral a la izquierda de la ventana de edición debería ser visible."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:37
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:37
 msgid "Bottom panel is Visible"
 msgstr "El panel inferior es visible"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:38
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:38
 msgid "Whether the bottom panel containing the build view should be visible."
 msgstr ""
 "El panel inferior que contiene el visor de compilación debería ser visible."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:39
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:39
 msgid "Side panel component"
 msgstr "Panel lateral"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:40
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:40
 msgid ""
 "Side panel's active component. 0: Symbols. 1: File browser. 2: Structure."
 msgstr ""
 "Componente activo del panel lateral. 0: símbolos. 1: explorador de archivos. "
 "2: estructura."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:41
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:41
 msgid "Show build output warnings"
 msgstr "Mostrar advertencias de construcción"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:42
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:42
 msgid "Show build output badboxes"
 msgstr "Muestra los límites de la ventana de construcción."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:43
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:43
 msgid "Interactive completion"
 msgstr "Completado interactivo"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:44
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:44
 msgid "Automatically show LaTeX commands proposals"
 msgstr "Mostrar sugerencias de comandos LaTeX automáticamente"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:45
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:45
 msgid "Minimum number of characters for interactive completion"
 msgstr "Número mínimo de caracteres para completado interactivo"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:46
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:46
 msgid ""
 "Minimum number of characters after \"\\\" for the interactive completion of "
 "LaTeX commands"
@@ -408,73 +431,75 @@ msgstr ""
 "Número mínimo de caracteres después de «\\» para completado interactivo de "
 "comandos LaTeX"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:47
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:47
 #: ../src/ui/preferences_dialog.ui.h:22
 msgid "No confirmation when cleaning-up"
 msgstr "No confirmar al limpiar"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:48
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:48
 msgid "Automatic clean-up"
 msgstr "Limpieza automática"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:49
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:49
 msgid ""
 "Automatically clean-up files after close. no-confirm-clean must be true."
 msgstr ""
 "Limpiar automáticamente los archivos después de cerrar. «no-confirm-clean» "
 "debe ser cierto."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:50
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:50
 msgid "File extensions for the clean-up"
 msgstr "Extensiones de archivos que limpiar"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:51
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:51
 msgid "The list of file extensions for the clean-up, separated by spaces"
 msgstr "Las extensiones de archivos que limpiar, separadas por espacios."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:52
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:52
 msgid "Enabled default build tools"
 msgstr "Herramientas de construcción predeterminadas activadas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:53
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:53
 msgid "The list of the default build tools that are enabled"
 msgstr ""
 "La lista de herramientas de construcción predeterminadas que están activadas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:54
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:54
 msgid "Disabled default build tools"
 msgstr "Herramientas de construcción predeterminadas desactivadas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:55
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:55
 msgid "The list of the default build tools that are disabled"
 msgstr ""
 "La lista de herramientas de construcción predeterminada que están "
 "desactivadas."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:56
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:56
 msgid "Current directory"
 msgstr "Carpeta actual"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:57
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:57
 msgid "URI of the file browser current directory"
 msgstr "URI de la carpeta actual en el navegador de archivos."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:58 ../src/file_browser.vala:347
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:58
+#: ../src/file_browser.vala:348
 msgid "Show build files"
 msgstr "Mostrar archivos de construcción"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:59
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:59
 msgid ""
 "Show files with an extension present in preferences.latex.clean-extensions."
 msgstr ""
 "Muestra archivos con una extensión presente en «preferences.latex.clean-"
 "extensions»."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:60 ../src/file_browser.vala:355
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:60
+#: ../src/file_browser.vala:356
 msgid "Show hidden files"
 msgstr "Mostrar archivos ocultos"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:61
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:61
 msgid "Show files beginning with a dot."
 msgstr "Mostrar archivos que comienzan con un punto."
 
@@ -559,8 +584,8 @@ msgstr "Herramienta de construcción personal"
 #: ../src/liblatexila/latexila-templates-dialogs.c:128
 #: ../src/liblatexila/latexila-templates-dialogs.c:238
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:145
-#: ../src/main_window_file.vala:157 ../src/main_window.vala:758
-#: ../src/main_window.vala:815 ../src/preferences_dialog.vala:114
+#: ../src/main_window_file.vala:157 ../src/main_window.vala:760
+#: ../src/main_window.vala:817 ../src/preferences_dialog.vala:114
 #: ../src/project_dialogs.vala:31 ../src/project_dialogs.vala:122
 #: ../src/project_dialogs.vala:276 ../src/project_dialogs.vala:296
 msgid "_Cancel"
@@ -763,12 +788,12 @@ msgstr "No hay propuesta equivalente"
 msgid "Ln %d, Col %d"
 msgstr "Ln %d, Col %d"
 
-#: ../src/dialogs.vala:40 ../src/main_window.vala:757
+#: ../src/dialogs.vala:40 ../src/main_window.vala:759
 msgid "Close _without Saving"
 msgstr "Cerrar _sin guardar"
 
 #: ../src/dialogs.vala:42 ../src/main_window_file.vala:41
-#: ../src/main_window.vala:763 ../src/main_window.vala:816
+#: ../src/main_window.vala:765 ../src/main_window.vala:818
 msgid "_Save"
 msgstr "_Guardar"
 
@@ -859,7 +884,7 @@ msgid "Do you want to save the file in a safer place?"
 msgstr "¿Quiere guardar el archivo en un lugar más seguro?"
 
 #: ../src/document.vala:494 ../src/main_window_file.vala:44
-#: ../src/main_window.vala:761
+#: ../src/main_window.vala:763
 msgid "Save _As"
 msgstr "Guardar _como"
 
@@ -867,17 +892,17 @@ msgstr "Guardar _como"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../src/document_view.vala:310
+#: ../src/document_view.vala:312
 msgid "No dictionaries available for the spell checking."
 msgstr "No hay diccionarios disponibles para la corrección ortográfica."
 
 #. Help
-#: ../src/document_view.vala:312 ../src/main_window.vala:63
+#: ../src/document_view.vala:314 ../src/main_window.vala:63
 #: ../src/ui/menus.ui.h:4
 msgid "_Help"
 msgstr "Ay_uda"
 
-#: ../src/document_view.vala:313
+#: ../src/document_view.vala:315
 msgid "_OK"
 msgstr "_Aceptar"
 
@@ -893,55 +918,57 @@ msgstr "Ir a la carpeta padre"
 msgid "Go to the active document directory"
 msgstr "Ir a la carpeta del documento activo"
 
-#: ../src/file_browser.vala:289
+#: ../src/file_browser.vala:290
 msgid "Open in a file manager"
 msgstr "Abrir en un gestor de archivos"
 
-#: ../src/file_browser.vala:291
+#: ../src/file_browser.vala:292
 msgid "Open the current directory in a file manager"
 msgstr "Abrir la carpeta actual en un gestor de archivos"
 
-#: ../src/file_browser.vala:313
+#: ../src/file_browser.vala:314
 msgid "Open in a terminal"
 msgstr "Abrir en una terminal"
 
-#: ../src/file_browser.vala:314
+#: ../src/file_browser.vala:315
 msgid "Open the current directory in a terminal"
 msgstr "Abrir la carpeta actual en una terminal"
 
-#: ../src/file_browser.vala:403
+#: ../src/file_browser.vala:405
 msgid "File System"
 msgstr "Sistema de archivos"
 
 #. File browser
-#: ../src/file_browser.vala:522 ../src/main_window.vala:457
+#: ../src/file_browser.vala:524 ../src/main_window.vala:456
 msgid "File Browser"
 msgstr "Explorador de archivos"
 
-#: ../src/latexila_app.vala:78
+#: ../src/latexila_app.vala:79
 msgid "Show the application's version"
 msgstr "Mostrar la versión de la aplicación"
 
-#: ../src/latexila_app.vala:81
+#: ../src/latexila_app.vala:82
 msgid "Create new document"
 msgstr "Crear un documento nuevo"
 
-#: ../src/latexila_app.vala:84
-msgid "Create a new top-level window in an existing instance of LaTeXila"
+#: ../src/latexila_app.vala:85
+#| msgid "Create a new top-level window in an existing instance of LaTeXila"
+msgid "Create a new top-level window in an existing instance of GNOME LaTeX"
 msgstr ""
 "Crear una ventana nueva de nivel superior en una instancia existente de "
-"LaTeXila"
+"GNOME LaTeX"
 
-#: ../src/latexila_app.vala:234
-#| msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
-msgid "LaTeXila is a LaTeX editor for the GNOME desktop"
-msgstr "LaTeXila es un editor LaTeX para el escritorio GNOME"
+#: ../src/latexila_app.vala:210
+#| msgid "LaTeXila is a LaTeX editor for the GNOME desktop"
+msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
+msgstr "GNOME LaTeX es un editor LaTeX para el escritorio GNOME"
 
-#: ../src/latexila_app.vala:273 ../src/main_window.vala:71
-msgid "About LaTeXila"
-msgstr "Acerca de LaTeXila"
+#: ../src/latexila_app.vala:239 ../src/main_window.vala:71
+#| msgid "About LaTeXila"
+msgid "About GNOME LaTeX"
+msgstr "Acerca de GNOME LaTeX"
 
-#: ../src/latexila_app.vala:274
+#: ../src/latexila_app.vala:240
 msgid "translator-credits"
 msgstr ""
 "Daniel Mustieles García <daniel.mustieles@gmail.com>, 2011\n"
@@ -1018,626 +1045,623 @@ msgid "Align Right - \\begin{flushright}"
 msgstr "Alinear a la Derecha: \\begin{flushright}"
 
 #: ../src/latex_menu.vala:74
-msgid "Figure - \\begin{figure}"
-msgstr "Figura: \\begin{figure}"
-
-#: ../src/latex_menu.vala:76
 msgid "Table - \\begin{table}"
 msgstr "Tabla: \\begin{table}"
 
-#: ../src/latex_menu.vala:78
+#: ../src/latex_menu.vala:76
 msgid "Quote - \\begin{quote}"
 msgstr "Cita: \\begin{quote}"
 
-#: ../src/latex_menu.vala:80
+#: ../src/latex_menu.vala:78
 msgid "Quotation - \\begin{quotation}"
 msgstr "Cita: \\begin{quotation}"
 
-#: ../src/latex_menu.vala:82
+#: ../src/latex_menu.vala:80
 msgid "Verse - \\begin{verse}"
 msgstr "Verso: \\begin{verse}"
 
-#: ../src/latex_menu.vala:84
+#: ../src/latex_menu.vala:82
 msgid "Verbatim - \\begin{verbatim}"
 msgstr "Literal: \\begin{verbatim}"
 
-#: ../src/latex_menu.vala:86
+#: ../src/latex_menu.vala:84
 msgid "Minipage - \\begin{minipage}"
 msgstr "Minipágina: \\begin{minipage}"
 
-#: ../src/latex_menu.vala:88
+#: ../src/latex_menu.vala:86
 msgid "Title page - \\begin{titlepage}"
 msgstr "Título de la página: \\begin{titlepage}"
 
 #. LaTeX: list environments
-#: ../src/latex_menu.vala:92
+#: ../src/latex_menu.vala:90
 msgid "_List Environments"
 msgstr "_Listar entornos"
 
-#: ../src/latex_menu.vala:94
+#: ../src/latex_menu.vala:92
 msgid "Bulleted List - \\begin{itemize}"
 msgstr "Lista con topos: \\begin{itemize}"
 
-#: ../src/latex_menu.vala:96
+#: ../src/latex_menu.vala:94
 msgid "Enumeration - \\begin{enumerate}"
 msgstr "Enumeración: \\begin{enumerate}"
 
-#: ../src/latex_menu.vala:98
+#: ../src/latex_menu.vala:96
 msgid "Description - \\begin{description}"
 msgstr "Descripción: \\begin{description}"
 
-#: ../src/latex_menu.vala:100
+#: ../src/latex_menu.vala:98
 msgid "Custom list - \\begin{list}"
 msgstr "Lista personalizada: \\begin{list}"
 
-#: ../src/latex_menu.vala:102
+#: ../src/latex_menu.vala:100
 msgid "List item - \\item"
 msgstr "Elemento de lista: \\item"
 
 #. LaTeX: character sizes
-#: ../src/latex_menu.vala:106
+#: ../src/latex_menu.vala:104
 msgid "_Characters Sizes"
 msgstr "Tamaño de los _caracteres"
 
 #. LaTeX: font styles
-#: ../src/latex_menu.vala:120
+#: ../src/latex_menu.vala:118
 msgid "_Font Styles"
 msgstr "Estilos de la _tipografía"
 
-#: ../src/latex_menu.vala:122
+#: ../src/latex_menu.vala:120
 msgid "Bold - \\textbf"
 msgstr "Negrita: \\textbf"
 
-#: ../src/latex_menu.vala:124
+#: ../src/latex_menu.vala:122
 msgid "Italic - \\textit"
 msgstr "Cursiva: \\textit"
 
-#: ../src/latex_menu.vala:126
+#: ../src/latex_menu.vala:124
 msgid "Typewriter - \\texttt"
 msgstr "Máquina de escribir: \\texttt"
 
-#: ../src/latex_menu.vala:128
+#: ../src/latex_menu.vala:126
 msgid "Slanted - \\textsl"
 msgstr "Inclinada: \\textsl"
 
-#: ../src/latex_menu.vala:130
+#: ../src/latex_menu.vala:128
 msgid "Small Capitals - \\textsc"
 msgstr "Mayúsculas pequeñas: \\testsc"
 
-#: ../src/latex_menu.vala:132
+#: ../src/latex_menu.vala:130
 msgid "Sans Serif - \\textsf"
 msgstr "Sans Serif: \\textsf"
 
-#: ../src/latex_menu.vala:134
+#: ../src/latex_menu.vala:132
 msgid "Emphasized - \\emph"
 msgstr "Enfatizado: \\emph"
 
-#: ../src/latex_menu.vala:136
+#: ../src/latex_menu.vala:134
 msgid "Underline - \\underline"
 msgstr "Subrayado: \\underline"
 
-#: ../src/latex_menu.vala:138
+#: ../src/latex_menu.vala:136
 msgid "_Font Family"
 msgstr "_Familia tipográfica"
 
-#: ../src/latex_menu.vala:140
+#: ../src/latex_menu.vala:138
 msgid "Roman - \\rmfamily"
 msgstr "Roman: \\rmfamily"
 
-#: ../src/latex_menu.vala:142
+#: ../src/latex_menu.vala:140
 msgid "Sans Serif - \\sffamily"
 msgstr "Sans Serif: \\sffamily"
 
-#: ../src/latex_menu.vala:144
+#: ../src/latex_menu.vala:142
 msgid "Monospace - \\ttfamily"
 msgstr "Monospace: \\ttfamily"
 
-#: ../src/latex_menu.vala:146
+#: ../src/latex_menu.vala:144
 msgid "F_ont Series"
 msgstr "_Series de tipografías"
 
-#: ../src/latex_menu.vala:148
+#: ../src/latex_menu.vala:146
 msgid "Medium - \\mdseries"
 msgstr "Medio: \\mdseries"
 
-#: ../src/latex_menu.vala:150
+#: ../src/latex_menu.vala:148
 msgid "Bold - \\bfseries"
 msgstr "Negrita: \\bfseries"
 
-#: ../src/latex_menu.vala:152
+#: ../src/latex_menu.vala:150
 msgid "Fo_nt Shape"
 msgstr "For_ma de la tipografía"
 
-#: ../src/latex_menu.vala:154
+#: ../src/latex_menu.vala:152
 msgid "Upright - \\upshape"
 msgstr "Dunhill: \\upshape"
 
-#: ../src/latex_menu.vala:156
+#: ../src/latex_menu.vala:154
 msgid "Italic - \\itshape"
 msgstr "Cursiva: \\itshape"
 
-#: ../src/latex_menu.vala:158
+#: ../src/latex_menu.vala:156
 msgid "Slanted - \\slshape"
 msgstr "Inclinada: \\slshape"
 
-#: ../src/latex_menu.vala:160
+#: ../src/latex_menu.vala:158
 msgid "Small Capitals - \\scshape"
 msgstr "Mayúsculas pequeñas: \\scshape"
 
 #. LaTeX: Tabular
-#: ../src/latex_menu.vala:164
+#: ../src/latex_menu.vala:162
 msgid "_Tabular"
 msgstr "_Tabular"
 
-#: ../src/latex_menu.vala:166
+#: ../src/latex_menu.vala:164
 msgid "Tabbing - \\begin{tabbing}"
 msgstr "Tabulación: \\begin{tabbing}"
 
-#: ../src/latex_menu.vala:168
+#: ../src/latex_menu.vala:166
 msgid "Tabular - \\begin{tabular}"
 msgstr "Tabular: \\begin{tabular}"
 
-#: ../src/latex_menu.vala:170
+#: ../src/latex_menu.vala:168
 msgid "Multicolumn - \\multicolumn"
 msgstr "Multicolumna: \\multicolumn"
 
-#: ../src/latex_menu.vala:172
+#: ../src/latex_menu.vala:170
 msgid "Horizontal line - \\hline"
 msgstr "Línea horizontal: \\hline"
 
-#: ../src/latex_menu.vala:174
+#: ../src/latex_menu.vala:172
 msgid "Vertical line - \\vline"
 msgstr "Línea vertical: \\vline"
 
-#: ../src/latex_menu.vala:176
+#: ../src/latex_menu.vala:174
 msgid "Horizontal line (columns specified) - \\cline"
 msgstr "Línea horizontal (columnas especificadas): \\cline"
 
-#: ../src/latex_menu.vala:182
+#: ../src/latex_menu.vala:180
 msgid "Frame - \\begin{frame}"
 msgstr "Marco: \\begin{marco}"
 
-#: ../src/latex_menu.vala:184
+#: ../src/latex_menu.vala:182
 msgid "Block - \\begin{block}"
 msgstr "Bloque: \\begin{block}"
 
-#: ../src/latex_menu.vala:186
+#: ../src/latex_menu.vala:184
 msgid "Two columns - \\begin{columns}"
 msgstr "Dos columnas: \\begin{columns}"
 
 #. LaTeX: Spacing
-#: ../src/latex_menu.vala:190
+#: ../src/latex_menu.vala:188
 msgid "_Spacing"
 msgstr "_Espaciado"
 
-#: ../src/latex_menu.vala:191
+#: ../src/latex_menu.vala:189
 msgid "New _Line"
 msgstr "_Línea nueva"
 
-#: ../src/latex_menu.vala:192
+#: ../src/latex_menu.vala:190
 msgid "New Line - \\\\"
 msgstr "Línea nueva: \\\\"
 
-#: ../src/latex_menu.vala:194
+#: ../src/latex_menu.vala:192
 msgid "New page - \\newpage"
 msgstr "Página nueva: \\newpage"
 
-#: ../src/latex_menu.vala:196
+#: ../src/latex_menu.vala:194
 msgid "Line break - \\linebreak"
 msgstr "Salto de línea: \\linebreak"
 
-#: ../src/latex_menu.vala:198
+#: ../src/latex_menu.vala:196
 msgid "Page break - \\pagebreak"
 msgstr "Salto de página: \\pagebreak"
 
-#: ../src/latex_menu.vala:200
+#: ../src/latex_menu.vala:198
 msgid "Big skip - \\bigskip"
 msgstr "Salto grande: \\bigskip"
 
-#: ../src/latex_menu.vala:202
+#: ../src/latex_menu.vala:200
 msgid "Medium skip - \\medskip"
 msgstr "Salto medio: \\medskip"
 
-#: ../src/latex_menu.vala:204
+#: ../src/latex_menu.vala:202
 msgid "Horizontal space - \\hspace"
 msgstr "Espacio horizontal: \\hspace"
 
-#: ../src/latex_menu.vala:206
+#: ../src/latex_menu.vala:204
 msgid "Vertical space - \\vspace"
 msgstr "Espacio vertical: \\vspace"
 
-#: ../src/latex_menu.vala:208
+#: ../src/latex_menu.vala:206
 msgid "No paragraph indentation - \\noindent"
 msgstr "Sin sangría de párrafo: \\noindent"
 
 #. LaTeX: International accents
-#: ../src/latex_menu.vala:212
+#: ../src/latex_menu.vala:210
 msgid "International _Accents"
 msgstr "_Acentos internacionales"
 
-#: ../src/latex_menu.vala:213
+#: ../src/latex_menu.vala:211
 msgid "Acute accent - \\'"
 msgstr "Acento agudo: \\'"
 
-#: ../src/latex_menu.vala:214
+#: ../src/latex_menu.vala:212
 msgid "Grave accent - \\`"
 msgstr "Acento grave: \\`"
 
-#: ../src/latex_menu.vala:215
+#: ../src/latex_menu.vala:213
 msgid "Circumflex accent - \\^"
 msgstr "Acento circunflejo: \\^"
 
-#: ../src/latex_menu.vala:216
+#: ../src/latex_menu.vala:214
 msgid "Trema - \\\""
 msgstr "Diéresis: \\\""
 
-#: ../src/latex_menu.vala:217
+#: ../src/latex_menu.vala:215
 msgid "Tilde - \\~"
 msgstr "Tilde: \\~"
 
-#: ../src/latex_menu.vala:218
+#: ../src/latex_menu.vala:216
 msgid "Macron - \\="
 msgstr "Macrón: \\="
 
-#: ../src/latex_menu.vala:219
+#: ../src/latex_menu.vala:217
 msgid "Dot above - \\."
 msgstr "Punto por encima: \\."
 
-#: ../src/latex_menu.vala:220
+#: ../src/latex_menu.vala:218
 msgid "Caron - \\v"
 msgstr "Carón: \\v"
 
-#: ../src/latex_menu.vala:221
+#: ../src/latex_menu.vala:219
 msgid "Breve - \\u"
 msgstr "Breve: \\u"
 
-#: ../src/latex_menu.vala:223
+#: ../src/latex_menu.vala:221
 msgid "Double acute accent - \\H"
 msgstr "Acento agudo doble: \\H"
 
-#: ../src/latex_menu.vala:224
+#: ../src/latex_menu.vala:222
 msgid "Cedilla - \\c"
 msgstr "Cedilla: \\:"
 
-#: ../src/latex_menu.vala:225
+#: ../src/latex_menu.vala:223
 msgid "Ogonek - \\k"
 msgstr "Colita: \\k"
 
-#: ../src/latex_menu.vala:226
+#: ../src/latex_menu.vala:224
 msgid "Dot below - \\d"
 msgstr "Punto por debajo: \\d"
 
-#: ../src/latex_menu.vala:227
+#: ../src/latex_menu.vala:225
 msgid "Macron below - \\b"
 msgstr "Macrón por debajo: \\b"
 
-#: ../src/latex_menu.vala:228
+#: ../src/latex_menu.vala:226
 msgid "Ring - \\r"
 msgstr "Anillo: \\r"
 
-#: ../src/latex_menu.vala:229
+#: ../src/latex_menu.vala:227
 msgid "Tie - \\t"
 msgstr "Tilde: \\~"
 
-#. LaTeX: Others
-#: ../src/latex_menu.vala:233
+#. LaTeX: Misc
+#: ../src/latex_menu.vala:231
 msgid "_Misc"
 msgstr "_Miscelánea"
 
-#: ../src/latex_menu.vala:235
+#: ../src/latex_menu.vala:233
 msgid "Document class - \\documentclass"
 msgstr "Clase de documento: \\documentclass"
 
-#: ../src/latex_menu.vala:237
+#: ../src/latex_menu.vala:235
 msgid "Use package - \\usepackage"
 msgstr "Usar paquete: \\usepackage"
 
-#: ../src/latex_menu.vala:238
+#: ../src/latex_menu.vala:236
 msgid "_AMS packages"
 msgstr "Paquetes _AMS"
 
-#: ../src/latex_menu.vala:239
+#: ../src/latex_menu.vala:237
 msgid "AMS packages"
 msgstr "Paquetes AMS"
 
-#: ../src/latex_menu.vala:240
+#: ../src/latex_menu.vala:238
 msgid "Author - \\author"
 msgstr "Autor: \\author"
 
-#: ../src/latex_menu.vala:241
+#: ../src/latex_menu.vala:239
 msgid "Title - \\title"
 msgstr "Título: \\title"
 
-#: ../src/latex_menu.vala:243
+#: ../src/latex_menu.vala:241
 msgid "Content of the document - \\begin{document}"
 msgstr "Contenido del documento: \\begin{document}"
 
-#: ../src/latex_menu.vala:245
+#: ../src/latex_menu.vala:243
 msgid "Make title - \\maketitle"
 msgstr "Construir título: \\maketitle"
 
-#: ../src/latex_menu.vala:247
+#: ../src/latex_menu.vala:245
 msgid "Table of contents - \\tableofcontents"
 msgstr "Tabla de contenidos: \\tableofcontents"
 
-#: ../src/latex_menu.vala:249
+#: ../src/latex_menu.vala:247
 msgid "Abstract - \\begin{abstract}"
 msgstr "Resumen: \\begin{abstract}"
 
-#: ../src/latex_menu.vala:251
+#: ../src/latex_menu.vala:249
 msgid "Include an image (graphicx package) - \\includegraphics"
 msgstr "Incluir una imagen (paquete «graphicx»): \\includegraphics"
 
-#: ../src/latex_menu.vala:254
+#: ../src/latex_menu.vala:251
 msgid "Include a file - \\input"
 msgstr "Incluir un archivo: \\input"
 
 #. Math
-#: ../src/latex_menu.vala:258
+#: ../src/latex_menu.vala:255
 msgid "_Math"
 msgstr "_Matemáticas"
 
 #. Math Environments
-#: ../src/latex_menu.vala:262
+#: ../src/latex_menu.vala:259
 msgid "_Math Environments"
 msgstr "Entornos _matemáticos"
 
-#: ../src/latex_menu.vala:263
+#: ../src/latex_menu.vala:260
 msgid "_Mathematical Environment - $...$"
 msgstr "Entorno _matemático: $…$"
 
-#: ../src/latex_menu.vala:264
+#: ../src/latex_menu.vala:261
 msgid "Mathematical Environment - $...$"
 msgstr "Entorno Matemático: $…$"
 
-#: ../src/latex_menu.vala:265
+#: ../src/latex_menu.vala:262
 msgid "_Centered Formula - \\[...\\]"
 msgstr "Fórmula _centrada: \\[…\\]"
 
-#: ../src/latex_menu.vala:266
+#: ../src/latex_menu.vala:263
 msgid "Centered Formula - \\[...\\]"
 msgstr "Fórmula centrada: \\[…\\]"
 
-#: ../src/latex_menu.vala:268
+#: ../src/latex_menu.vala:265
 msgid "_Numbered Equation - \\begin{equation}"
 msgstr "Ecuación _numerada: \\begin{equation}"
 
-#: ../src/latex_menu.vala:269
+#: ../src/latex_menu.vala:266
 msgid "Numbered Equation - \\begin{equation}"
 msgstr "Ecuación numerada: \\begin{equation}"
 
-#: ../src/latex_menu.vala:270
+#: ../src/latex_menu.vala:267
 msgid "_Array of Equations - \\begin{align*}"
 msgstr "_Vector de ecuaciones: \\begin{align*}"
 
-#: ../src/latex_menu.vala:271
+#: ../src/latex_menu.vala:268
 msgid "Array of Equations - \\begin{align*}"
 msgstr "Vector de Ecuaciones: \\begin{align*}"
 
-#: ../src/latex_menu.vala:273
+#: ../src/latex_menu.vala:270
 msgid "Numbered Array of _Equations - \\begin{align}"
 msgstr "Vector numerado de _ecuaciones: \\begin{align}"
 
-#: ../src/latex_menu.vala:274
+#: ../src/latex_menu.vala:271
 msgid "Numbered Array of Equations - \\begin{align}"
 msgstr "Vector numerado de ecuaciones: \\begin{align}"
 
-#: ../src/latex_menu.vala:277
+#. Math misc
+#: ../src/latex_menu.vala:275
 msgid "_Superscript - ^{}"
 msgstr "_Superíndice: ^{}"
 
-#: ../src/latex_menu.vala:278
+#: ../src/latex_menu.vala:276
 msgid "Superscript - ^{}"
 msgstr "Superíndice: ^{}"
 
-#: ../src/latex_menu.vala:279
+#: ../src/latex_menu.vala:277
 msgid "Su_bscript - __{}"
 msgstr "Su_bíndice: __{}"
 
-#: ../src/latex_menu.vala:280
+#: ../src/latex_menu.vala:278
 msgid "Subscript - _{}"
 msgstr "Subíndice: _{}"
 
-#: ../src/latex_menu.vala:281
+#: ../src/latex_menu.vala:279
 msgid "_Fraction - \\frac{}{}"
 msgstr "_Fracción: \\frac{}{}"
 
-#: ../src/latex_menu.vala:282
+#: ../src/latex_menu.vala:280
 msgid "Fraction - \\frac{}{}"
 msgstr "Fracción: \\frac{}{}"
 
-#: ../src/latex_menu.vala:283
+#: ../src/latex_menu.vala:281
 msgid "Square _Root - \\sqrt{}"
 msgstr "_Raíz cuadrada: \\sqrt{}"
 
-#: ../src/latex_menu.vala:284
+#: ../src/latex_menu.vala:282
 msgid "Square Root - \\sqrt{}"
 msgstr "Raíz cuadrada: \\sqrt{}"
 
-#: ../src/latex_menu.vala:285
+#: ../src/latex_menu.vala:283
 msgid "_N-th Root - \\sqrt[]{}"
 msgstr "Raíz e_nésima: \\sqrt[]{}"
 
-#: ../src/latex_menu.vala:286
+#: ../src/latex_menu.vala:284
 msgid "N-th Root - \\sqrt[]{}"
 msgstr "Raíz enésima: \\sqrt[]{}"
 
 #. Math functions
-#: ../src/latex_menu.vala:290
+#: ../src/latex_menu.vala:288
 msgid "Math _Functions"
 msgstr "_Funciones matemáticas"
 
 #. Math Font Styles
-#: ../src/latex_menu.vala:324
+#: ../src/latex_menu.vala:322
 msgid "Math Font _Styles"
 msgstr "E_stilos de la tipografía matemática"
 
-#: ../src/latex_menu.vala:326
+#: ../src/latex_menu.vala:324
 msgid "Roman - \\mathrm"
 msgstr "Roman: \\mathrm"
 
-#: ../src/latex_menu.vala:328
+#: ../src/latex_menu.vala:326
 msgid "Italic - \\mathit"
 msgstr "Cursiva: \\mathit"
 
-#: ../src/latex_menu.vala:330
+#: ../src/latex_menu.vala:328
 msgid "Bold - \\mathbf"
 msgstr "Negrita: \\mathbf"
 
-#: ../src/latex_menu.vala:332
+#: ../src/latex_menu.vala:330
 msgid "Sans Serif - \\mathsf"
 msgstr "Sans Serif: \\mathsf"
 
-#: ../src/latex_menu.vala:334
+#: ../src/latex_menu.vala:332
 msgid "Typewriter - \\mathtt"
 msgstr "Máquina de escribir: \\mathtt"
 
-#: ../src/latex_menu.vala:336
+#: ../src/latex_menu.vala:334
 msgid "Calligraphic - \\mathcal"
 msgstr "Caligrafía: \\mathcal"
 
-#: ../src/latex_menu.vala:338
+#: ../src/latex_menu.vala:336
 msgid "Blackboard (uppercase only)  - \\mathbb (amsfonts package)"
 msgstr "Pizarra (sólo en mayúsculas): \\mathbb (paquete «amsfonts»)"
 
-#: ../src/latex_menu.vala:341
+#: ../src/latex_menu.vala:338
 msgid "Euler Fraktur - \\mathfrak (amsfonts package)"
 msgstr "Euler Fraktur: \\mathfrak (paquete «amsfonts»)"
 
 #. Math Accents
-#: ../src/latex_menu.vala:346
+#: ../src/latex_menu.vala:342
 msgid "Math _Accents"
 msgstr "_Acentos matemáticos"
 
 #. Math Spaces
-#: ../src/latex_menu.vala:367
+#: ../src/latex_menu.vala:357
 msgid "Math _Spaces"
 msgstr "E_spacios matemáticos"
 
-#: ../src/latex_menu.vala:368
+#: ../src/latex_menu.vala:358
 msgid "_Small"
 msgstr "_Pequeña"
 
-#: ../src/latex_menu.vala:369
+#: ../src/latex_menu.vala:359
 msgid "Small - \\,"
 msgstr "Pequeña: \\,"
 
-#: ../src/latex_menu.vala:370
+#: ../src/latex_menu.vala:360
 msgid "_Medium"
 msgstr "_Media"
 
-#: ../src/latex_menu.vala:371
+#: ../src/latex_menu.vala:361
 msgid "Medium - \\:"
 msgstr "Media: \\:"
 
-#: ../src/latex_menu.vala:372
+#: ../src/latex_menu.vala:362
 msgid "_Large"
 msgstr "_Grande"
 
-#: ../src/latex_menu.vala:373
+#: ../src/latex_menu.vala:363
 msgid "Large - \\;"
 msgstr "Grande: \\;"
 
 #. Math: Left Delimiters
-#: ../src/latex_menu.vala:379
+#: ../src/latex_menu.vala:369
 msgid "_Left Delimiters"
 msgstr "Delimitadores por la _izquierda"
 
-#: ../src/latex_menu.vala:380
+#: ../src/latex_menu.vala:370
 msgid "left ("
 msgstr "( izquierdo"
 
-#: ../src/latex_menu.vala:382
+#: ../src/latex_menu.vala:372
 msgid "left ["
 msgstr "[ izquierdo"
 
-#: ../src/latex_menu.vala:384
+#: ../src/latex_menu.vala:374
 msgid "left { "
 msgstr "{ izquierdo"
 
-#: ../src/latex_menu.vala:386
+#: ../src/latex_menu.vala:376
 msgid "left <"
 msgstr "< izquierdo"
 
-#: ../src/latex_menu.vala:388
+#: ../src/latex_menu.vala:378
 msgid "left )"
 msgstr ") izquierdo"
 
-#: ../src/latex_menu.vala:390
+#: ../src/latex_menu.vala:380
 msgid "left ]"
 msgstr "] izquierdo"
 
-#: ../src/latex_menu.vala:392
+#: ../src/latex_menu.vala:382
 msgid "left  }"
 msgstr "} izquierdo"
 
-#: ../src/latex_menu.vala:394
+#: ../src/latex_menu.vala:384
 msgid "left >"
 msgstr "> izquierdo"
 
-#: ../src/latex_menu.vala:396
+#: ../src/latex_menu.vala:386
 msgid "left ."
 msgstr ". izquierdo"
 
 #. Math: Right Delimiters
-#: ../src/latex_menu.vala:401
+#: ../src/latex_menu.vala:391
 msgid "Right _Delimiters"
 msgstr "_Delimitadores por la derecha"
 
-#: ../src/latex_menu.vala:402
+#: ../src/latex_menu.vala:392
 msgid "right )"
 msgstr ") derecho"
 
-#: ../src/latex_menu.vala:404
+#: ../src/latex_menu.vala:394
 msgid "right ]"
 msgstr "] derecho"
 
-#: ../src/latex_menu.vala:406
+#: ../src/latex_menu.vala:396
 msgid "right  }"
 msgstr "} derecho"
 
-#: ../src/latex_menu.vala:408
+#: ../src/latex_menu.vala:398
 msgid "right >"
 msgstr "> derecho"
 
-#: ../src/latex_menu.vala:410
+#: ../src/latex_menu.vala:400
 msgid "right ("
 msgstr "( derecho"
 
-#: ../src/latex_menu.vala:412
+#: ../src/latex_menu.vala:402
 msgid "right ["
 msgstr "[ derecho"
 
-#: ../src/latex_menu.vala:414
+#: ../src/latex_menu.vala:404
 msgid "right { "
 msgstr "{ derecho"
 
-#: ../src/latex_menu.vala:416
+#: ../src/latex_menu.vala:406
 msgid "right <"
 msgstr "< derecho"
 
-#: ../src/latex_menu.vala:418
+#: ../src/latex_menu.vala:408
 msgid "right ."
 msgstr ". derecho"
 
 #. menus under toolitems
-#: ../src/latex_menu.vala:433
+#: ../src/latex_menu.vala:423
 msgid "Sectioning"
 msgstr "Seccionamiento"
 
-#: ../src/latex_menu.vala:436
+#: ../src/latex_menu.vala:426
 msgid "Characters Sizes"
 msgstr "Tamaño de caracteres"
 
-#: ../src/latex_menu.vala:439
+#: ../src/latex_menu.vala:429
 msgid "References"
 msgstr "Referencias"
 
-#: ../src/latex_menu.vala:442
+#: ../src/latex_menu.vala:432
 msgid "Presentation Environments"
 msgstr "Entornos de presentación"
 
-#: ../src/latex_menu.vala:445
+#: ../src/latex_menu.vala:435
 msgid "Math Environments"
 msgstr "Entornos matemáticos"
 
@@ -1660,6 +1684,10 @@ msgstr "Falló al abrir «%s»:"
 #, c-format
 msgid "Open %s"
 msgstr "Abrir %s"
+
+#: ../src/liblatexila/latexila-latex-commands.c:51
+msgid "Figure - \\begin{figure}"
+msgstr "Figura: \\begin{figure}"
 
 #: ../src/liblatexila/latexila-synctex.c:192
 msgid "Impossible to do the forward search."
@@ -2259,8 +2287,9 @@ msgid "_Contents"
 msgstr "Índ_ice"
 
 #: ../src/main_window.vala:65
-msgid "Open the LaTeXila documentation"
-msgstr "Abrir la documentación de LaTeXila"
+#| msgid "Open the LaTeXila documentation"
+msgid "Open the GNOME LaTeX documentation"
+msgstr "Abrir la documentación de GNOME LaTeX"
 
 #: ../src/main_window.vala:66
 msgid "_LaTeX Reference"
@@ -2308,41 +2337,45 @@ msgid "Show or hide the bottom panel"
 msgstr "Mostrar u ocultar el panel inferior"
 
 #. Symbols
-#: ../src/main_window.vala:453
+#: ../src/main_window.vala:452
 msgid "Symbols"
 msgstr "Símbolos"
 
-#: ../src/main_window.vala:462
+#: ../src/main_window.vala:461
 msgid "Structure"
 msgstr "Estructura"
 
-#: ../src/main_window.vala:655
+#: ../src/main_window.vala:654
 #, c-format
-msgid "This file (%s) is already opened in another LaTeXila window."
-msgstr "Este archivo (%s) ya esta abierto en otra ventana de LaTeXila."
+#| msgid "This file (%s) is already opened in another LaTeXila window."
+msgid "This file (%s) is already opened in another GNOME LaTeX window."
+msgstr "Este archivo (%s) ya esta abierto en otra ventana de GNOME LaTeX."
 
-#: ../src/main_window.vala:657
+#: ../src/main_window.vala:656
+#| msgid ""
+#| "LaTeXila opened this instance of the file in a non-editable way. Do you "
+#| "want to edit it anyway?"
 msgid ""
-"LaTeXila opened this instance of the file in a non-editable way. Do you want "
-"to edit it anyway?"
+"GNOME LaTeX opened this instance of the file in a non-editable way. Do you "
+"want to edit it anyway?"
 msgstr ""
-"LaTeXila abrió esta instancia del archivo en una forma no editable.¿Quiere "
-"editarlo de todas formas?"
+"GNOME LaTeX abrió esta instancia del archivo en una forma no editable."
+"¿Quiere editarlo de todas formas?"
 
-#: ../src/main_window.vala:661
+#: ../src/main_window.vala:660
 msgid "Edit Anyway"
 msgstr "Editar de todas formas"
 
-#: ../src/main_window.vala:662
+#: ../src/main_window.vala:661
 msgid "Don't Edit"
 msgstr "No editar"
 
-#: ../src/main_window.vala:754
+#: ../src/main_window.vala:756
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
 msgstr "¿Guardar los cambios del documento «%s» antes de cerrar?"
 
-#: ../src/main_window.vala:813
+#: ../src/main_window.vala:815
 msgid "Save File"
 msgstr "Guardar Archivo"
 
@@ -2472,20 +2505,20 @@ msgstr "Sensible a capitalización"
 msgid "Entire words only"
 msgstr "Solo palabras completas"
 
-#: ../src/search.vala:468
+#: ../src/search.vala:469
 msgid "Not found"
 msgstr "No encontrado"
 
 #. Translators: the first %d is the position of the current search occurrence,
 #. * and the second %d is the total number of search occurrences.
 #.
-#: ../src/search.vala:485
+#: ../src/search.vala:486
 #, c-format
 msgid "Match %d of %d"
 msgstr "%d de %d coincidencias"
 
 #. Translators: %d is the total number of search occurrences.
-#: ../src/search.vala:490
+#: ../src/search.vala:491
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
