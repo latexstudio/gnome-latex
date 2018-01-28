@@ -1,13 +1,13 @@
 # Czech translation for latexila.
 # Copyright (C) 2011 latexila's COPYRIGHT HOLDER
 # This file is distributed under the same license as the latexila package.
-# Marek Černocký <marek@manet.cz>, 2011, 2012, 2013, 2015, 2017.
+# Marek Černocký <marek@manet.cz>, 2011, 2012, 2013, 2015, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
-"POT-Creation-Date: 2017-01-26 12:21+0000\n"
-"PO-Revision-Date: 2017-02-11 10:13+0100\n"
+"POT-Creation-Date: 2017-12-27 06:53+0000\n"
+"PO-Revision-Date: 2018-01-28 13:18+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -92,13 +92,14 @@ msgid ""
 "since only one command is required. Indeed, Latexmk can detect how many "
 "times the <cmd>latex</cmd> or <cmd>pdflatex</cmd> command must be called, "
 "and whether <cmd>bibtex</cmd> or <cmd>makeindex</cmd> is required. By "
-"default, LaTeXila uses Latexmk."
+"default, GNOME LaTeX uses Latexmk."
 msgstr ""
 "Použití nástrojů vyšší úrovně, jako je Latexmk, zjednodušuje velkou část "
 "tohoto procesu, protože stačí jediný příkaz. Je samozřejmostí, že umí tyto "
 "nástroje zjistit, kolikrát se musí zavolat příkazy <cmd>latex</cmd> nebo "
 "<cmd>pdflatex</cmd> a zda je potřeba příkaz <cmd>bibtex</cmd> nebo "
-"<cmd>makeindex</cmd>. Jako výchozí používá aplikace LaTeXila nástroj Latexmk."
+"<cmd>makeindex</cmd>. Jako výchozí používá aplikace LaTeX GNOME nástroj "
+"Latexmk."
 
 #. (itstool) path: section/title
 #: C/build_tools.page:86
@@ -317,8 +318,8 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/index.page:4
-msgid "LaTeXila Help"
-msgstr "Nápověda k aplikaci LaTeXila"
+msgid "GNOME LaTeX Help"
+msgstr "Nápověda k aplikaci LaTeX GNOME"
 
 #. (itstool) path: page/title
 #: C/projects.page:10
@@ -445,10 +446,10 @@ msgstr "Slovníky"
 #: C/spell_checking.page:41
 msgid ""
 "<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> is "
-"used for the spell checking in LaTeXila. Enchant uses one or several "
+"used for the spell checking in GNOME LaTeX. Enchant uses one or several "
 "backends such as Hunspell or Aspell for the dictionaries."
 msgstr ""
-"Pro kontrolu pravopisu využívá LaTeXila projekt <link href=\"http://www."
+"Pro kontrolu pravopisu využívá LaTeX GNOME projekt <link href=\"http://www."
 "abisource.com/projects/enchant/\">Enchant</link>. Enchant umí jako slovník "
 "využít jeden či více programů jako je Hunspell nebo Aspell."
 
@@ -641,17 +642,17 @@ msgstr ""
 msgid ""
 "In <app>Evince</app>, press <keyseq> <key>Ctrl</key> <key>left click</key> </"
 "keyseq>, and the corresponding position in the .tex file will be opened in "
-"<app>LaTeXila</app>."
+"<app>GNOME LaTeX</app>."
 msgstr ""
 "V aplikaci <app>Evince</app> zmáčkněte <keyseq> <key>Ctrl</key> <key>levé "
-"kliknutí</key> </keyseq> a v aplikaci <app>LaTeXila</app> se otevře "
+"kliknutí</key> </keyseq> a v aplikaci <app>LaTeX GNOME</app> se otevře "
 "příslušné místo v souboru .tex."
 
 #. (itstool) path: section/p
 #: C/synctex.page:66
 msgid ""
-"<app>Evince</app> has to be launched by <app>LaTeXila</app>. Else, jumping "
-"from the PDF to the .tex file will not work."
+"<app>Evince</app> has to be launched by <app>GNOME LaTeX</app>. Else, "
+"jumping from the PDF to the .tex file will not work."
 msgstr ""
-"Aplikace <app>Evince</app> musí být spuštěna z aplikace <app>LaTeXila</app>. "
+"Aplikace <app>Evince</app> musí být spuštěna z aplikace <app>LaTeX GNOME</app>. "
 "Jinak přechod z PDF do souboru .tex nebude fungovat."
