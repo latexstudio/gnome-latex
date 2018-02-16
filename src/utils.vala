@@ -210,11 +210,11 @@ namespace Utils
 
         // go to the common dir
         uint nb_remaining_origin_dirs = origin_dirs.length () - nb_common_dirs;
-        for (uint i = 0 ; i < nb_remaining_origin_dirs ; i++)
+        for (uint i = 0; i < nb_remaining_origin_dirs; i++)
             relative_path += "../";
 
         // go to the target dir
-        for (uint i = nb_common_dirs ; i < target_dirs.length () ; i++)
+        for (uint i = nb_common_dirs; i < target_dirs.length (); i++)
         {
             File cur_target_dir = target_dirs.nth_data (i);
             relative_path += cur_target_dir.get_basename () + "/";

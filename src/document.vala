@@ -355,7 +355,7 @@ public class Document : Tepl.Buffer
 
         begin_user_action ();
 
-        for (int line_num = start_line ; line_num <= end_line ; line_num++)
+        for (int line_num = start_line; line_num <= end_line; line_num++)
         {
             if (cur_iter.ends_line ())
                 // Don't insert a trailing space.
@@ -380,7 +380,7 @@ public class Document : Tepl.Buffer
 
         begin_user_action ();
 
-        for (int i = start_line ; i <= end_line ; i++)
+        for (int i = start_line; i <= end_line; i++)
         {
             get_iter_at_line (out start, i);
 

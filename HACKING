@@ -29,10 +29,10 @@ For Vala:
     - Curly braces are always on a separate line.
     - For one-line blocks (if, for, while, etc), no curly braces.
     - Some spaces almost everywhere:
-        - function (blah);                // not function(blah);
-        - int num = 5;                    // not int num=5;
-        - if (! foo)                      // not if (!foo)
-        - for (int i = 0 ; i < max ; i++) // not for(int i=0;i<max;i++)
+        - function (blah);              // not function(blah);
+        - int num = 5;                  // not int num=5;
+        - if (! foo)                    // not if (!foo)
+        - for (int i = 0; i < max; i++) // not for(int i=0;i<max;i++)
         - etc...
     - Do not use 'var' for declaring variables, unless the type is very long.
       The type of a variable is useful to understand the code, it is a form of
@@ -44,7 +44,6 @@ For C:
     - No maximum line length (but short lines are better).
     - Spacing differences with Vala:
     	- if (!foo)
-	- for (int i = 0; i < max; i++)
     - Note that the GNU coding style was previously used, all the *.c files
       have been converted to the GtkSourceView coding style with the uncrustify
       config file (see the scripts/ directory in the GtkSourceView git

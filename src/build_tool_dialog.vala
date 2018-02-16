@@ -206,7 +206,7 @@ public class BuildToolDialog : GLib.Object
             typeof (string) // the name of the post processor
         );
 
-        for (int type = 0 ; type < Latexila.PostProcessorType.NB_TYPES ; type++)
+        for (int type = 0; type < Latexila.PostProcessorType.NB_TYPES; type++)
         {
             unowned string name = Latexila.PostProcessor.get_name_from_type (
                 (Latexila.PostProcessorType) type);

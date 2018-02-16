@@ -129,7 +129,7 @@ public class MainWindowDocuments
 
         unowned SList<RadioAction> group = null;
 
-        for (int doc_num = 0 ; doc_num < nb_docs ; doc_num++)
+        for (int doc_num = 0; doc_num < nb_docs; doc_num++)
         {
             DocumentTab tab = _documents_panel.get_nth_page (doc_num) as DocumentTab;
             string action_name = get_list_action_name (doc_num);

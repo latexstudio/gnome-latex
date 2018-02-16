@@ -169,7 +169,7 @@ public class MostUsedSymbols : GLib.Object
                 string id = null;
                 int num = 0;
 
-                for (int i = 0 ; i < attr_names.length ; i++)
+                for (int i = 0; i < attr_names.length; i++)
                 {
                     switch (attr_names[i])
                     {

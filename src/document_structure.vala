@@ -603,7 +603,7 @@ public class DocumentStructure : GLib.Object
 
     private void clear_all_structure_marks ()
     {
-        for (int i = 0 ; i < _nb_marks ; i++)
+        for (int i = 0; i < _nb_marks; i++)
         {
             string mark_name = MARK_NAME_PREFIX + i.to_string ();
             TextMark? mark = _doc.get_mark (mark_name);
@@ -1106,7 +1106,7 @@ public class DocumentStructure : GLib.Object
 
         /* Do the same for all the children */
         int nb_children = _model.iter_n_children (tree_iter);
-        for (int child_num = 0 ; child_num < nb_children ; child_num++)
+        for (int child_num = 0; child_num < nb_children; child_num++)
         {
             TreeIter child_iter;
             bool child_iter_set = _model.iter_nth_child (out child_iter, tree_iter,

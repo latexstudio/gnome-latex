@@ -292,7 +292,7 @@ private class NormalSymbols : Gtk.ListStore
                 symbol.package_required = null;
                 string icon_file = null;
 
-                for (int i = 0 ; i < attr_names.length ; i++)
+                for (int i = 0; i < attr_names.length; i++)
                 {
                     switch (attr_names[i])
                     {

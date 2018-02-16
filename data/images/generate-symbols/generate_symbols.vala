@@ -76,7 +76,7 @@ private class GenerateSymbols : Object
                 break;
 
             case "documentclass":
-                for (int i = 0 ; i < attr_names.length ; i++)
+                for (int i = 0; i < attr_names.length; i++)
                 {
                     switch (attr_names[i])
                     {
@@ -91,7 +91,7 @@ private class GenerateSymbols : Object
                 break;
 
             case "preamble":
-                for (int i = 0 ; i < attr_names.length ; i++)
+                for (int i = 0; i < attr_names.length; i++)
                 {
                     switch (attr_names[i])
                     {
@@ -106,7 +106,7 @@ private class GenerateSymbols : Object
                 break;
 
             case "convert":
-                for (int i = 0 ; i < attr_names.length ; i++)
+                for (int i = 0; i < attr_names.length; i++)
                 {
                     switch (attr_names[i])
                     {
@@ -126,7 +126,7 @@ private class GenerateSymbols : Object
                 symbol.name = null;
                 symbol.math = false;
                 symbol.package = null;
-                for (int i = 0 ; i < attr_names.length ; i++)
+                for (int i = 0; i < attr_names.length; i++)
                 {
                     switch (attr_names[i])
                     {
@@ -153,7 +153,7 @@ private class GenerateSymbols : Object
                 break;
 
             case "document":
-                for (int i = 0 ; i < attr_names.length ; i++)
+                for (int i = 0; i < attr_names.length; i++)
                 {
                     switch (attr_names[i])
                     {

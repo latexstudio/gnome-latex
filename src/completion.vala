@@ -846,7 +846,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
         throws MarkupError
     {
         _current_command = CompletionCommand ();
-        for (int attr_num = 0 ; attr_num < attr_names.length ; attr_num++)
+        for (int attr_num = 0; attr_num < attr_names.length; attr_num++)
         {
             switch (attr_names[attr_num])
             {
@@ -875,7 +875,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
         _current_arg = CompletionArgument ();
         _current_arg.optional = false;
 
-        for (int attr_num = 0 ; attr_num < attr_names.length ; attr_num++)
+        for (int attr_num = 0; attr_num < attr_names.length; attr_num++)
         {
             switch (attr_names[attr_num])
             {
@@ -899,7 +899,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
     {
         _current_choice = CompletionChoice ();
 
-        for (int attr_num = 0 ; attr_num < attr_names.length ; attr_num++)
+        for (int attr_num = 0; attr_num < attr_names.length; attr_num++)
         {
             switch (attr_names[attr_num])
             {

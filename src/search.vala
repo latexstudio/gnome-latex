@@ -72,7 +72,7 @@ public class GotoLine : Grid
         string text = entry.get_text ();
 
         // check if all characters are digits
-        for (int i = 0 ; i < text.length ; i++)
+        for (int i = 0; i < text.length; i++)
         {
             unichar c = text[i];
             if (! c.isdigit ())

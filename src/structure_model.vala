@@ -328,7 +328,7 @@ public class StructureModel : TreeModel, GLib.Object
         unowned int[] indices = path.get_indices ();
 
         unowned Node<StructData?> node = _tree;
-        for (int cur_depth = 0 ; cur_depth < depth ; cur_depth++)
+        for (int cur_depth = 0; cur_depth < depth; cur_depth++)
         {
             int indice = indices[cur_depth];
             if (indice < 0 || node.n_children () <= indice)
@@ -781,7 +781,7 @@ public class StructureModel : TreeModel, GLib.Object
         var list = get_list (node.data.type);
         return_val_if_fail (list != null, -1);
 
-        for (int num = 0 ; num < list.size ; num++)
+        for (int num = 0; num < list.size; num++)
         {
             if (list[num] == node)
                 return num;

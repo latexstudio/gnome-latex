@@ -584,7 +584,7 @@ public class MainWindow : ApplicationWindow
     {
         Gee.List<Document> all_documents = new Gee.LinkedList<Document> ();
         int nb_documents = _documents_panel.get_n_pages ();
-        for (int i = 0 ; i < nb_documents ; i++)
+        for (int i = 0; i < nb_documents; i++)
         {
             DocumentTab tab = _documents_panel.get_nth_page (i) as DocumentTab;
             all_documents.add (tab.document);
@@ -614,7 +614,7 @@ public class MainWindow : ApplicationWindow
 
         int nb_documents = _documents_panel.get_n_pages ();
 
-        for (int i = 0 ; i < nb_documents ; i++)
+        for (int i = 0; i < nb_documents; i++)
         {
             DocumentTab tab = _documents_panel.get_nth_page (i) as DocumentTab;
             all_views.add (tab.document_view);

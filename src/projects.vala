@@ -186,7 +186,7 @@ public class Projects
             if (doc.location == null)
                 continue;
 
-            for (int i = 0 ; i < projects.size ; i++)
+            for (int i = 0; i < projects.size; i++)
             {
                 if (doc.location.has_prefix (projects[i].directory))
                 {
@@ -207,7 +207,7 @@ public class Projects
 
             case "project":
                 Project project = Project ();
-                for (int i = 0 ; i < attr_names.length ; i++)
+                for (int i = 0; i < attr_names.length; i++)
                 {
                     switch (attr_names[i])
                     {
