@@ -37,28 +37,34 @@
 static gint
 get_extension_position (const gchar *filename)
 {
-  const gchar *pos;
-  gint length;
+	const gchar *pos;
+	gint length;
 
-  if (filename == NULL)
-    return 0;
+	if (filename == NULL)
+	{
+		return 0;
+	}
 
-  length = strlen (filename);
-  pos = filename + length;
-  g_assert (pos[0] == '\0');
+	length = strlen (filename);
+	pos = filename + length;
+	g_assert (pos[0] == '\0');
 
-  while (TRUE)
-    {
-      pos = g_utf8_find_prev_char (filename, pos);
+	while (TRUE)
+	{
+		pos = g_utf8_find_prev_char (filename, pos);
 
-      if (pos == NULL || pos[0] == '/')
-        break;
+		if (pos == NULL || pos[0] == '/')
+		{
+			break;
+		}
 
-      if (pos[0] == '.')
-        return pos - filename;
-    }
+		if (pos[0] == '.')
+		{
+			return pos - filename;
+		}
+	}
 
-  return length;
+	return length;
 }
 
 /**
@@ -70,7 +76,7 @@ get_extension_position (const gchar *filename)
 gchar *
 latexila_utils_get_shortname (const gchar *filename)
 {
-  return g_strndup (filename, get_extension_position (filename));
+	return g_strndup (filename, get_extension_position (filename));
 }
 
 /**
@@ -83,8 +89,9 @@ latexila_utils_get_shortname (const gchar *filename)
 gchar *
 latexila_utils_get_extension (const gchar *filename)
 {
-  gint pos = get_extension_position (filename);
-  return g_ascii_strdown (filename + pos, -1);
+	gint pos = get_extension_position (filename);
+
+	return g_ascii_strdown (filename + pos, -1);
 }
 
 /**
@@ -101,40 +108,44 @@ latexila_utils_get_extension (const gchar *filename)
 gchar *
 latexila_utils_replace_home_dir_with_tilde (const gchar *filename)
 {
-  gchar *tmp;
-  gchar *home;
+	gchar *tmp;
+	gchar *home;
 
-  g_return_val_if_fail (filename != NULL, NULL);
+	g_return_val_if_fail (filename != NULL, NULL);
 
-  /* Note that g_get_home_dir returns a const string */
-  tmp = (gchar *) g_get_home_dir ();
+	/* Note that g_get_home_dir returns a const string */
+	tmp = (gchar *) g_get_home_dir ();
 
-  if (tmp == NULL)
-    return g_strdup (filename);
+	if (tmp == NULL)
+	{
+		return g_strdup (filename);
+	}
 
-  home = g_filename_to_utf8 (tmp, -1, NULL, NULL, NULL);
-  if (home == NULL)
-    return g_strdup (filename);
+	home = g_filename_to_utf8 (tmp, -1, NULL, NULL, NULL);
+	if (home == NULL)
+	{
+		return g_strdup (filename);
+	}
 
-  if (strcmp (filename, home) == 0)
-    {
-      g_free (home);
-      return g_strdup ("~");
-    }
+	if (strcmp (filename, home) == 0)
+	{
+		g_free (home);
+		return g_strdup ("~");
+	}
 
-  tmp = home;
-  home = g_strdup_printf ("%s/", tmp);
-  g_free (tmp);
+	tmp = home;
+	home = g_strdup_printf ("%s/", tmp);
+	g_free (tmp);
 
-  if (g_str_has_prefix (filename, home))
-    {
-      gchar *res = g_strdup_printf ("~/%s", filename + strlen (home));
-      g_free (home);
-      return res;
-    }
+	if (g_str_has_prefix (filename, home))
+	{
+		gchar *res = g_strdup_printf ("~/%s", filename + strlen (home));
+		g_free (home);
+		return res;
+	}
 
-  g_free (home);
-  return g_strdup (filename);
+	g_free (home);
+	return g_strdup (filename);
 }
 
 /**
@@ -152,8 +163,8 @@ latexila_utils_replace_home_dir_with_tilde (const gchar *filename)
 void
 latexila_utils_register_icons (void)
 {
-  gtk_icon_theme_add_resource_path (gtk_icon_theme_get_default (),
-                                    "/org/gnome/gnome-latex/stock-icons/");
+	gtk_icon_theme_add_resource_path (gtk_icon_theme_get_default (),
+					  "/org/gnome/gnome-latex/stock-icons/");
 }
 
 /**
@@ -165,27 +176,27 @@ latexila_utils_register_icons (void)
  */
 GdkPixbuf *
 latexila_utils_get_pixbuf_from_icon_name (const gchar *icon_name,
-                                          GtkIconSize  icon_size)
+					  GtkIconSize  icon_size)
 {
-  gint size;
-  GdkPixbuf *pixbuf;
-  GError *error = NULL;
+	gint size;
+	GdkPixbuf *pixbuf;
+	GError *error = NULL;
 
-  gtk_icon_size_lookup (icon_size, &size, NULL);
+	gtk_icon_size_lookup (icon_size, &size, NULL);
 
-  pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-                                     icon_name,
-                                     size,
-                                     0,
-                                     &error);
+	pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
+					   icon_name,
+					   size,
+					   0,
+					   &error);
 
-  if (error != NULL)
-    {
-      g_warning ("Error when loading icon \"%s\": %s", icon_name, error->message);
-      g_error_free (error);
-    }
+	if (error != NULL)
+	{
+		g_warning ("Error when loading icon \"%s\": %s", icon_name, error->message);
+		g_error_free (error);
+	}
 
-  return pixbuf;
+	return pixbuf;
 }
 
 /**
@@ -200,24 +211,28 @@ latexila_utils_get_pixbuf_from_icon_name (const gchar *icon_name,
  */
 gchar *
 latexila_utils_str_replace (const gchar *string,
-                            const gchar *search,
-                            const gchar *replacement)
+			    const gchar *search,
+			    const gchar *replacement)
 {
-  gchar **chunks;
-  gchar *ret;
+	gchar **chunks;
+	gchar *ret;
 
-  g_return_val_if_fail (string != NULL, NULL);
-  g_return_val_if_fail (search != NULL, NULL);
-  g_return_val_if_fail (replacement != NULL, NULL);
+	g_return_val_if_fail (string != NULL, NULL);
+	g_return_val_if_fail (search != NULL, NULL);
+	g_return_val_if_fail (replacement != NULL, NULL);
 
-  chunks = g_strsplit (string, search, -1);
-  if (chunks != NULL && chunks[0] != NULL)
-    ret = g_strjoinv (replacement, chunks);
-  else
-    ret = g_strdup (string);
+	chunks = g_strsplit (string, search, -1);
+	if (chunks != NULL && chunks[0] != NULL)
+	{
+		ret = g_strjoinv (replacement, chunks);
+	}
+	else
+	{
+		ret = g_strdup (string);
+	}
 
-  g_strfreev (chunks);
-  return ret;
+	g_strfreev (chunks);
+	return ret;
 }
 
 /**
@@ -233,17 +248,17 @@ latexila_utils_str_replace (const gchar *string,
  */
 void
 latexila_utils_file_query_exists_async (GFile               *file,
-                                        GCancellable        *cancellable,
-                                        GAsyncReadyCallback  callback,
-                                        gpointer             user_data)
+					GCancellable        *cancellable,
+					GAsyncReadyCallback  callback,
+					gpointer             user_data)
 {
-  g_file_query_info_async (file,
-                           G_FILE_ATTRIBUTE_STANDARD_TYPE,
-                           G_FILE_QUERY_INFO_NONE,
-                           G_PRIORITY_DEFAULT,
-                           cancellable,
-                           callback,
-                           user_data);
+	g_file_query_info_async (file,
+				 G_FILE_ATTRIBUTE_STANDARD_TYPE,
+				 G_FILE_QUERY_INFO_NONE,
+				 G_PRIORITY_DEFAULT,
+				 cancellable,
+				 callback,
+				 user_data);
 }
 
 /**
@@ -260,46 +275,46 @@ latexila_utils_file_query_exists_async (GFile               *file,
  */
 gboolean
 latexila_utils_file_query_exists_finish (GFile        *file,
-                                         GAsyncResult *result)
+					 GAsyncResult *result)
 {
-  GFileInfo *info = g_file_query_info_finish (file, result, NULL);
+	GFileInfo *info = g_file_query_info_finish (file, result, NULL);
 
-  if (info != NULL)
-    {
-      g_object_unref (info);
-      return TRUE;
-    }
+	if (info != NULL)
+	{
+		g_object_unref (info);
+		return TRUE;
+	}
 
-  return FALSE;
+	return FALSE;
 }
 
 static gboolean
 default_document_viewer_is_evince (const gchar *uri)
 {
-  GFile *file;
-  GAppInfo *app_info;
-  const gchar *executable;
-  gboolean ret;
-  GError *error = NULL;
+	GFile *file;
+	GAppInfo *app_info;
+	const gchar *executable;
+	gboolean ret;
+	GError *error = NULL;
 
-  file = g_file_new_for_uri (uri);
-  app_info = g_file_query_default_handler (file, NULL, &error);
-  g_object_unref (file);
+	file = g_file_new_for_uri (uri);
+	app_info = g_file_query_default_handler (file, NULL, &error);
+	g_object_unref (file);
 
-  if (error != NULL)
-    {
-      g_warning ("Impossible to know if evince is the default document viewer: %s",
-                 error->message);
+	if (error != NULL)
+	{
+		g_warning ("Impossible to know if evince is the default document viewer: %s",
+			   error->message);
 
-      g_error_free (error);
-      return FALSE;
-    }
+		g_error_free (error);
+		return FALSE;
+	}
 
-  executable = g_app_info_get_executable (app_info);
-  ret = strstr (executable, "evince") != NULL;
+	executable = g_app_info_get_executable (app_info);
+	ret = strstr (executable, "evince") != NULL;
 
-  g_object_unref (app_info);
-  return ret;
+	g_object_unref (app_info);
+	return ret;
 }
 
 /**
@@ -315,39 +330,41 @@ default_document_viewer_is_evince (const gchar *uri)
  */
 void
 latexila_utils_show_uri (GtkWidget    *widget,
-                         const gchar  *uri,
-                         guint32       timestamp,
-                         GError      **error)
+			 const gchar  *uri,
+			 guint32       timestamp,
+			 GError      **error)
 {
-  GtkWindow *parent = NULL;
+	GtkWindow *parent = NULL;
 
-  g_return_if_fail (widget == NULL || GTK_IS_WIDGET (widget));
-  g_return_if_fail (uri != NULL);
-  g_return_if_fail (error == NULL || *error == NULL);
+	g_return_if_fail (widget == NULL || GTK_IS_WIDGET (widget));
+	g_return_if_fail (uri != NULL);
+	g_return_if_fail (error == NULL || *error == NULL);
 
-  if (widget != NULL)
-    {
-      GtkWidget *toplevel;
+	if (widget != NULL)
+	{
+		GtkWidget *toplevel;
 
-      toplevel = gtk_widget_get_toplevel (widget);
-      if (gtk_widget_is_toplevel (toplevel) &&
-          GTK_IS_WINDOW (toplevel))
-        parent = GTK_WINDOW (toplevel);
-    }
+		toplevel = gtk_widget_get_toplevel (widget);
+		if (gtk_widget_is_toplevel (toplevel) &&
+		    GTK_IS_WINDOW (toplevel))
+		{
+			parent = GTK_WINDOW (toplevel);
+		}
+	}
 
-  if (gtk_show_uri_on_window (parent, uri, timestamp, error))
-    {
-      gchar *extension = latexila_utils_get_extension (uri);
+	if (gtk_show_uri_on_window (parent, uri, timestamp, error))
+	{
+		gchar *extension = latexila_utils_get_extension (uri);
 
-      if (g_strcmp0 (extension, ".pdf") == 0 &&
-          default_document_viewer_is_evince (uri))
-        {
-          LatexilaSynctex *synctex = latexila_synctex_get_instance ();
-          latexila_synctex_connect_evince_window (synctex, uri);
-        }
+		if (g_strcmp0 (extension, ".pdf") == 0 &&
+		    default_document_viewer_is_evince (uri))
+		{
+			LatexilaSynctex *synctex = latexila_synctex_get_instance ();
+			latexila_synctex_connect_evince_window (synctex, uri);
+		}
 
-      g_free (extension);
-    }
+		g_free (extension);
+	}
 }
 
 /**
@@ -365,30 +382,30 @@ latexila_utils_show_uri (GtkWidget    *widget,
  */
 GtkWidget *
 latexila_utils_get_dialog_component (const gchar *title,
-                                     GtkWidget   *widget)
+				     GtkWidget   *widget)
 {
-  GtkContainer *grid;
-  GtkWidget *label;
-  gchar *markup;
+	GtkContainer *grid;
+	GtkWidget *label;
+	gchar *markup;
 
-  grid = GTK_CONTAINER (gtk_grid_new ());
-  gtk_orientable_set_orientation (GTK_ORIENTABLE (grid), GTK_ORIENTATION_VERTICAL);
-  gtk_grid_set_row_spacing (GTK_GRID (grid), 6);
-  gtk_container_set_border_width (grid, 6);
+	grid = GTK_CONTAINER (gtk_grid_new ());
+	gtk_orientable_set_orientation (GTK_ORIENTABLE (grid), GTK_ORIENTATION_VERTICAL);
+	gtk_grid_set_row_spacing (GTK_GRID (grid), 6);
+	gtk_container_set_border_width (grid, 6);
 
-  /* Title in bold, left-aligned. */
-  label = gtk_label_new (NULL);
-  markup = g_strdup_printf ("<b>%s</b>", title);
-  gtk_label_set_markup (GTK_LABEL (label), markup);
-  gtk_widget_set_halign (label, GTK_ALIGN_START);
-  gtk_container_add (grid, label);
+	/* Title in bold, left-aligned. */
+	label = gtk_label_new (NULL);
+	markup = g_strdup_printf ("<b>%s</b>", title);
+	gtk_label_set_markup (GTK_LABEL (label), markup);
+	gtk_widget_set_halign (label, GTK_ALIGN_START);
+	gtk_container_add (grid, label);
 
-  /* Left margin for the widget. */
-  gtk_widget_set_margin_start (widget, 12);
-  gtk_container_add (grid, widget);
+	/* Left margin for the widget. */
+	gtk_widget_set_margin_start (widget, 12);
+	gtk_container_add (grid, widget);
 
-  g_free (markup);
-  return GTK_WIDGET (grid);
+	g_free (markup);
+	return GTK_WIDGET (grid);
 }
 
 /**
@@ -404,37 +421,39 @@ latexila_utils_get_dialog_component (const gchar *title,
  */
 gboolean
 latexila_utils_create_parent_directories (GFile   *file,
-                                          GError **error)
+					  GError **error)
 {
-  GFile *parent;
-  GError *my_error = NULL;
+	GFile *parent;
+	GError *my_error = NULL;
 
-  g_return_val_if_fail (G_IS_FILE (file), FALSE);
-  g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+	g_return_val_if_fail (G_IS_FILE (file), FALSE);
+	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
-  parent = g_file_get_parent (file);
+	parent = g_file_get_parent (file);
 
-  if (parent == NULL)
-    return TRUE;
+	if (parent == NULL)
+	{
+		return TRUE;
+	}
 
-  g_file_make_directory_with_parents (parent, NULL, &my_error);
-  g_object_unref (parent);
+	g_file_make_directory_with_parents (parent, NULL, &my_error);
+	g_object_unref (parent);
 
-  if (my_error != NULL)
-    {
-      if (g_error_matches (my_error, G_IO_ERROR, G_IO_ERROR_EXISTS))
-        {
-          g_error_free (my_error);
-          return TRUE;
-        }
-      else
-        {
-          g_propagate_error (error, my_error);
-          return FALSE;
-        }
-    }
+	if (my_error != NULL)
+	{
+		if (g_error_matches (my_error, G_IO_ERROR, G_IO_ERROR_EXISTS))
+		{
+			g_error_free (my_error);
+			return TRUE;
+		}
+		else
+		{
+			g_propagate_error (error, my_error);
+			return FALSE;
+		}
+	}
 
-  return TRUE;
+	return TRUE;
 }
 
 /**
@@ -449,23 +468,23 @@ latexila_utils_create_parent_directories (GFile   *file,
  */
 GtkWidget *
 latexila_utils_join_widgets (GtkWidget *widget_top,
-                             GtkWidget *widget_bottom)
+			     GtkWidget *widget_bottom)
 {
-  GtkStyleContext *context;
-  GtkBox *vbox;
+	GtkStyleContext *context;
+	GtkBox *vbox;
 
-  g_return_val_if_fail (GTK_IS_WIDGET (widget_top), NULL);
-  g_return_val_if_fail (GTK_IS_WIDGET (widget_bottom), NULL);
+	g_return_val_if_fail (GTK_IS_WIDGET (widget_top), NULL);
+	g_return_val_if_fail (GTK_IS_WIDGET (widget_bottom), NULL);
 
-  context = gtk_widget_get_style_context (widget_top);
-  gtk_style_context_set_junction_sides (context, GTK_JUNCTION_BOTTOM);
+	context = gtk_widget_get_style_context (widget_top);
+	gtk_style_context_set_junction_sides (context, GTK_JUNCTION_BOTTOM);
 
-  context = gtk_widget_get_style_context (widget_bottom);
-  gtk_style_context_set_junction_sides (context, GTK_JUNCTION_TOP);
+	context = gtk_widget_get_style_context (widget_bottom);
+	gtk_style_context_set_junction_sides (context, GTK_JUNCTION_TOP);
 
-  vbox = GTK_BOX (gtk_box_new (GTK_ORIENTATION_VERTICAL, 0));
-  gtk_box_pack_start (vbox, widget_top, TRUE, TRUE, 0);
-  gtk_box_pack_start (vbox, widget_bottom, FALSE, FALSE, 0);
+	vbox = GTK_BOX (gtk_box_new (GTK_ORIENTATION_VERTICAL, 0));
+	gtk_box_pack_start (vbox, widget_top, TRUE, TRUE, 0);
+	gtk_box_pack_start (vbox, widget_bottom, FALSE, FALSE, 0);
 
-  return GTK_WIDGET (vbox);
+	return GTK_WIDGET (vbox);
 }

@@ -24,11 +24,11 @@
 void
 latexila_templates_init_store (GtkListStore *store)
 {
-  GType types[] = {G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_FILE};
+	GType types[] = {G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_FILE};
 
-  gtk_list_store_set_column_types (store,
-                                   LATEXILA_TEMPLATES_N_COLUMNS,
-                                   types);
+	gtk_list_store_set_column_types (store,
+					 LATEXILA_TEMPLATES_N_COLUMNS,
+					 types);
 }
 
 /* For compatibility reasons. @config_icon_name is the string stored in the rc
@@ -40,47 +40,59 @@ latexila_templates_init_store (GtkListStore *store)
 static const gchar *
 get_pixbuf_icon_name (const gchar *config_icon_name)
 {
-  g_return_val_if_fail (config_icon_name != NULL, NULL);
+	g_return_val_if_fail (config_icon_name != NULL, NULL);
 
-  if (g_str_equal (config_icon_name, "empty"))
-    return "text-x-preview";
+	if (g_str_equal (config_icon_name, "empty"))
+	{
+		return "text-x-preview";
+	}
 
-  if (g_str_equal (config_icon_name, "article"))
-    return "text-x-generic";
+	if (g_str_equal (config_icon_name, "article"))
+	{
+		return "text-x-generic";
+	}
 
-  if (g_str_equal (config_icon_name, "report"))
-    return "x-office-document";
+	if (g_str_equal (config_icon_name, "report"))
+	{
+		return "x-office-document";
+	}
 
-  if (g_str_equal (config_icon_name, "book"))
-    return "accessories-dictionary";
+	if (g_str_equal (config_icon_name, "book"))
+	{
+		return "accessories-dictionary";
+	}
 
-  if (g_str_equal (config_icon_name, "letter"))
-    return "emblem-mail";
+	if (g_str_equal (config_icon_name, "letter"))
+	{
+		return "emblem-mail";
+	}
 
-  if (g_str_equal (config_icon_name, "beamer"))
-    return "x-office-presentation";
+	if (g_str_equal (config_icon_name, "beamer"))
+	{
+		return "x-office-presentation";
+	}
 
-  g_return_val_if_reached (NULL);
+	g_return_val_if_reached (NULL);
 }
 
 void
 latexila_templates_add_template (GtkListStore *store,
-                                 const gchar  *name,
-                                 const gchar  *config_icon_name,
-                                 GFile        *file)
+				 const gchar  *name,
+				 const gchar  *config_icon_name,
+				 GFile        *file)
 {
-  GtkTreeIter iter;
-  const gchar *pixbuf_icon_name;
+	GtkTreeIter iter;
+	const gchar *pixbuf_icon_name;
 
-  pixbuf_icon_name = get_pixbuf_icon_name (config_icon_name);
+	pixbuf_icon_name = get_pixbuf_icon_name (config_icon_name);
 
-  gtk_list_store_append (store, &iter);
-  gtk_list_store_set (store, &iter,
-                      LATEXILA_TEMPLATES_COLUMN_PIXBUF_ICON_NAME, pixbuf_icon_name,
-                      LATEXILA_TEMPLATES_COLUMN_CONFIG_ICON_NAME, config_icon_name,
-                      LATEXILA_TEMPLATES_COLUMN_NAME, name,
-                      LATEXILA_TEMPLATES_COLUMN_FILE, file,
-                      -1);
+	gtk_list_store_append (store, &iter);
+	gtk_list_store_set (store, &iter,
+			    LATEXILA_TEMPLATES_COLUMN_PIXBUF_ICON_NAME, pixbuf_icon_name,
+			    LATEXILA_TEMPLATES_COLUMN_CONFIG_ICON_NAME, config_icon_name,
+			    LATEXILA_TEMPLATES_COLUMN_NAME, name,
+			    LATEXILA_TEMPLATES_COLUMN_FILE, file,
+			    -1);
 }
 
 /**
@@ -92,41 +104,41 @@ latexila_templates_add_template (GtkListStore *store,
 GtkTreeView *
 latexila_templates_get_view (GtkListStore *store)
 {
-  GtkTreeView *view;
-  GtkTreeSelection *selection;
-  GtkCellRenderer *renderer;
-  GtkTreeViewColumn *column;
+	GtkTreeView *view;
+	GtkTreeSelection *selection;
+	GtkCellRenderer *renderer;
+	GtkTreeViewColumn *column;
 
-  view = GTK_TREE_VIEW (gtk_tree_view_new_with_model (GTK_TREE_MODEL (store)));
-  gtk_tree_view_set_headers_visible (view, FALSE);
-  gtk_widget_set_hexpand (GTK_WIDGET (view), TRUE);
-  gtk_widget_set_vexpand (GTK_WIDGET (view), TRUE);
+	view = GTK_TREE_VIEW (gtk_tree_view_new_with_model (GTK_TREE_MODEL (store)));
+	gtk_tree_view_set_headers_visible (view, FALSE);
+	gtk_widget_set_hexpand (GTK_WIDGET (view), TRUE);
+	gtk_widget_set_vexpand (GTK_WIDGET (view), TRUE);
 
-  selection = gtk_tree_view_get_selection (view);
-  gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+	selection = gtk_tree_view_get_selection (view);
+	gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
-  /* Icon */
-  renderer = gtk_cell_renderer_pixbuf_new ();
-  g_object_set (renderer, "stock-size", GTK_ICON_SIZE_BUTTON, NULL);
+	/* Icon */
+	renderer = gtk_cell_renderer_pixbuf_new ();
+	g_object_set (renderer, "stock-size", GTK_ICON_SIZE_BUTTON, NULL);
 
-  column = gtk_tree_view_column_new_with_attributes (NULL,
-                                                     renderer,
-                                                     "icon-name",
-                                                     LATEXILA_TEMPLATES_COLUMN_PIXBUF_ICON_NAME,
-                                                     NULL);
+	column = gtk_tree_view_column_new_with_attributes (NULL,
+							   renderer,
+							   "icon-name",
+							   LATEXILA_TEMPLATES_COLUMN_PIXBUF_ICON_NAME,
+							   NULL);
 
-  gtk_tree_view_append_column (view, column);
+	gtk_tree_view_append_column (view, column);
 
-  /* Name */
-  renderer = gtk_cell_renderer_text_new ();
+	/* Name */
+	renderer = gtk_cell_renderer_text_new ();
 
-  column = gtk_tree_view_column_new_with_attributes (NULL,
-                                                     renderer,
-                                                     "text",
-                                                     LATEXILA_TEMPLATES_COLUMN_NAME,
-                                                     NULL);
+	column = gtk_tree_view_column_new_with_attributes (NULL,
+							   renderer,
+							   "text",
+							   LATEXILA_TEMPLATES_COLUMN_NAME,
+							   NULL);
 
-  gtk_tree_view_append_column (view, column);
+	gtk_tree_view_append_column (view, column);
 
-  return view;
+	return view;
 }

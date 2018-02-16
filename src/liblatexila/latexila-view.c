@@ -37,26 +37,26 @@
 void
 latexila_view_configure_space_drawer (GtkSourceView *view)
 {
-  GtkSourceSpaceDrawer *space_drawer;
+	GtkSourceSpaceDrawer *space_drawer;
 
-  g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-  space_drawer = gtk_source_view_get_space_drawer (view);
+	space_drawer = gtk_source_view_get_space_drawer (view);
 
-  /* Rationale for always drawing non-breaking spaces:
-   *
-   * With my Dvorak bépo keyboard layout, it is possible to type a non-breaking
-   * space. I remember that one time I inserted one by mistake in GNOME LaTeX,
-   * and when compiling the document there was an incomprehensible error, it
-   * took me some time to figure out that there was a non-breaking space... So,
-   * I think it's better to always draw non-breaking spaces, to distinguish them
-   * from normal spaces. -- swilmet
-   */
-  gtk_source_space_drawer_set_types_for_locations (space_drawer,
-                                                   GTK_SOURCE_SPACE_LOCATION_ALL,
-                                                   GTK_SOURCE_SPACE_TYPE_NBSP);
+	/* Rationale for always drawing non-breaking spaces:
+	 *
+	 * With my Dvorak bépo keyboard layout, it is possible to type a non-breaking
+	 * space. I remember that one time I inserted one by mistake in GNOME LaTeX,
+	 * and when compiling the document there was an incomprehensible error, it
+	 * took me some time to figure out that there was a non-breaking space... So,
+	 * I think it's better to always draw non-breaking spaces, to distinguish them
+	 * from normal spaces. -- swilmet
+	 */
+	gtk_source_space_drawer_set_types_for_locations (space_drawer,
+							 GTK_SOURCE_SPACE_LOCATION_ALL,
+							 GTK_SOURCE_SPACE_TYPE_NBSP);
 
-  gtk_source_space_drawer_set_enable_matrix (space_drawer, TRUE);
+	gtk_source_space_drawer_set_enable_matrix (space_drawer, TRUE);
 }
 
 /**
@@ -75,17 +75,19 @@ latexila_view_configure_space_drawer (GtkSourceView *view)
 gchar *
 latexila_view_get_indentation_style (GtkSourceView *view)
 {
-  guint tab_width;
-  gint indent_width;
+	guint tab_width;
+	gint indent_width;
 
-  g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
 
-  tab_width = gtk_source_view_get_tab_width (view);
-  indent_width = gtk_source_view_get_indent_width (view);
-  g_return_val_if_fail (indent_width == -1 || indent_width == (gint)tab_width, NULL);
+	tab_width = gtk_source_view_get_tab_width (view);
+	indent_width = gtk_source_view_get_indent_width (view);
+	g_return_val_if_fail (indent_width == -1 || indent_width == (gint)tab_width, NULL);
 
-  if (gtk_source_view_get_insert_spaces_instead_of_tabs (view))
-    return g_strnfill (tab_width, ' ');
+	if (gtk_source_view_get_insert_spaces_instead_of_tabs (view))
+	{
+		return g_strnfill (tab_width, ' ');
+	}
 
-  return g_strdup ("\t");
+	return g_strdup ("\t");
 }
