@@ -39,10 +39,9 @@ For Vala:
       self-documentation.
 
 For C:
-    - Follow the GNU coding style:
-      https://developer.gnome.org/programming-guidelines/stable/c-coding-style.html.en
+    - Follow the same coding style as GtkSourceView:
+      https://git.gnome.org/browse/gtksourceview/tree/HACKING
     - No maximum line length (but short lines are better).
-    - Only /* ... */ comments (for C89 compatibility).
     - Spacing differences with Vala:
     	- if (!foo)
 	- for (int i = 0; i < max; i++)
