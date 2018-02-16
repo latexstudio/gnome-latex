@@ -45,3 +45,15 @@ For C:
     - Spacing differences with Vala:
     	- if (!foo)
 	- for (int i = 0; i < max; i++)
+    - Note that the GNU coding style was previously used, all the *.c files
+      have been converted to the GtkSourceView coding style with the uncrustify
+      config file (see the scripts/ directory in the GtkSourceView git
+      repository). The uncrustify config file is maybe not perfect, if you see
+      a problem the config file can be improved and re-run on all *.c files.
+      The *.h files have *not* been adapted, because there is no script
+      available to correctly format function prototypes with the GNOME
+      conventions, so here is the rule: when you *modify* a *.h file, please
+      convert it first to the GtkSourceView coding style (mainly to change the
+      indentation to use tabs), thanks! That way, all the *.h files will be
+      converted over time. And in the future there will maybe be a script to do
+      it.
