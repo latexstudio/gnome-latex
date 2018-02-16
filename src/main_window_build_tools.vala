@@ -133,7 +133,7 @@ public class MainWindowBuildTools
             as GLib.SimpleAction;
 
         // a build tool can not be modified when it is running
-        preferences_action.set_enabled (! build_tool_is_running);
+        preferences_action.set_enabled (!build_tool_is_running);
 
         Gtk.Action clean_action = _static_action_group.get_action ("BuildClean");
         Gtk.Action view_log_action = _static_action_group.get_action ("BuildViewLog");
@@ -214,7 +214,7 @@ public class MainWindowBuildTools
     private void update_build_tool_sensitivity (Latexila.BuildTool tool,
         string action_name)
     {
-        if (! tool.enabled)
+        if (!tool.enabled)
             return;
 
         Gtk.Action action = _dynamic_action_group.get_action (action_name);
@@ -315,7 +315,7 @@ public class MainWindowBuildTools
     private void add_dynamic_action (Latexila.BuildTool build_tool, string action_name,
         ref int accel_num)
     {
-        if (! build_tool.enabled)
+        if (!build_tool.enabled)
             return;
 
         Gtk.Action action = new Gtk.Action (action_name, build_tool.label,

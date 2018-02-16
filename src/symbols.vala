@@ -226,7 +226,7 @@ private class NormalSymbols : Gtk.ListStore
         command = null;
         package = null;
 
-        if (! _data.has_key (icon_file))
+        if (!_data.has_key (icon_file))
             return false;
 
         SymbolInfo info = _data[icon_file];

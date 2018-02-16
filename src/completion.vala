@@ -152,7 +152,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
             return true;
         }
 
-        if (! iter.starts_word ())
+        if (!iter.starts_word ())
             iter.backward_visible_word_start ();
 
         prev = iter;
@@ -203,7 +203,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
 
     private void populate_command (SourceCompletionContext context, string cmd)
     {
-        if (! is_user_request (context))
+        if (!is_user_request (context))
         {
             uint min_nb_chars;
             _settings.get ("interactive-completion-num", "u", out min_nb_chars);
@@ -227,7 +227,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
     private void populate_argument (SourceCompletionContext context, ArgumentContext info)
     {
         // invalid argument's command
-        if (! _commands.has_key (info.cmd_name))
+        if (!_commands.has_key (info.cmd_name))
         {
             show_no_proposals (context);
             return;
@@ -537,7 +537,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
         while (text.get_prev_char (ref index, out cur_char))
         {
             if ((cur_char == '[' || cur_char == '{')
-                && ! Utils.char_is_escaped (text, index))
+                && !Utils.char_is_escaped (text, index))
             {
                 break;
             }
@@ -578,7 +578,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
             }
 
             // A LaTeX command contains only normal letters and '*'.
-            if (! cur_char.isalpha () && cur_char != '*')
+            if (!cur_char.isalpha () && cur_char != '*')
                 break;
         }
 
@@ -600,12 +600,12 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
         while (true)
         {
             unichar cur_char;
-            if (! text.get_prev_char (ref cur_index, out cur_char))
+            if (!text.get_prev_char (ref cur_index, out cur_char))
                 return false;
 
             // End of the argument's contents.
             bool opening_bracket = cur_char == '{' || cur_char == '[';
-            if (opening_bracket && ! Utils.char_is_escaped (text, cur_index))
+            if (opening_bracket && !Utils.char_is_escaped (text, cur_index))
             {
                 info.args_types.insert (0, cur_char == '[');
                 info.arg_contents = text[cur_index + 1 : last_index];
@@ -620,7 +620,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
         while (true)
         {
             unichar cur_char;
-            if (! text.get_prev_char (ref cur_index, out cur_char))
+            if (!text.get_prev_char (ref cur_index, out cur_char))
                 return false;
 
             // In the contents of a previous argument.
@@ -650,7 +650,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
             }
 
             // Spaces are allowed between arguments.
-            else if (! cur_char.isspace ())
+            else if (!cur_char.isspace ())
                 return false;
         }
     }
@@ -734,7 +734,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
                     break;
 
                 // missing non-optional argument
-                else if (! all_args[num].optional)
+                else if (!all_args[num].optional)
                     return -1;
 
                 num++;
@@ -751,7 +751,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
         string text_to_insert = cmd.name;
         foreach (CompletionArgument arg in cmd.args)
         {
-            if (! arg.optional)
+            if (!arg.optional)
                 text_to_insert += "{}";
         }
         return text_to_insert;

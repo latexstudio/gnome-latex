@@ -72,7 +72,7 @@ public class MostUsedSymbols : GLib.Object
     {
         TreeIter iter;
 
-        if (! get_iter_at_symbol_id (id, out iter))
+        if (!get_iter_at_symbol_id (id, out iter))
             add_symbol (id, 1);
         else
         {
@@ -88,7 +88,7 @@ public class MostUsedSymbols : GLib.Object
 
     private bool get_iter_at_symbol_id (string id, out TreeIter iter)
     {
-        if (! _store.get_iter_first (out iter))
+        if (!_store.get_iter_first (out iter))
             return false;
 
         do
@@ -113,7 +113,7 @@ public class MostUsedSymbols : GLib.Object
 
         string command;
         string tooltip;
-        if (! Symbols.get_default ().get_symbol_info (id, out command, out tooltip))
+        if (!Symbols.get_default ().get_symbol_info (id, out command, out tooltip))
             return;
 
         TreeIter iter;
@@ -138,7 +138,7 @@ public class MostUsedSymbols : GLib.Object
     private void load_data ()
     {
         File file = get_xml_file ();
-        if (! file.query_exists ())
+        if (!file.query_exists ())
             return;
 
         string? contents = Utils.load_file (file);
@@ -203,7 +203,7 @@ public class MostUsedSymbols : GLib.Object
 
     public void save ()
     {
-        if (! _modified)
+        if (!_modified)
             return;
 
         _modified = false;
@@ -211,7 +211,7 @@ public class MostUsedSymbols : GLib.Object
         File file = get_xml_file ();
 
         TreeIter iter;
-        bool is_empty = ! _store.get_iter_first (out iter);
+        bool is_empty = !_store.get_iter_first (out iter);
 
         if (is_empty)
         {

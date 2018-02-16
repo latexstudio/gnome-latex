@@ -628,14 +628,14 @@ public class MainWindow : ApplicationWindow
         /* check if the document is already opened */
         foreach (Window window in LatexilaApp.get_instance ().get_windows ())
         {
-            if (! (window is MainWindow))
+            if (!(window is MainWindow))
                 continue;
 
             MainWindow w = window as MainWindow;
 
             foreach (Document doc in w.get_documents ())
             {
-                if (doc.location == null || ! location.equal (doc.location))
+                if (doc.location == null || !location.equal (doc.location))
                     continue;
 
                 /* the document is already opened in this window */
@@ -735,7 +735,7 @@ public class MainWindow : ApplicationWindow
         _main_window_edit.update_sensitivity ();
         _main_window_tools.update_sensitivity ();
 
-        if (! this.get_visible ())
+        if (!this.get_visible ())
             this.present ();
 
         return tab;
@@ -747,7 +747,7 @@ public class MainWindow : ApplicationWindow
         /* If document not saved
          * Ask the user if he wants to save the file, or close without saving, or cancel
          */
-        if (! force_close && tab.get_buffer ().get_modified ())
+        if (!force_close && tab.get_buffer ().get_modified ())
         {
             Dialog dialog = new MessageDialog (this,
                 DialogFlags.DESTROY_WITH_PARENT,
@@ -802,7 +802,7 @@ public class MainWindow : ApplicationWindow
     // return true if the document has been saved
     public bool save_document (Document doc, bool force_save_as)
     {
-        if (! force_save_as && doc.location != null)
+        if (!force_save_as && doc.location != null)
         {
             doc.save ();
 

@@ -46,7 +46,7 @@ namespace Utils
             if (cur_char != '\\')
                 break;
 
-            escaped = ! escaped;
+            escaped = !escaped;
         }
 
         return escaped;
@@ -108,7 +108,7 @@ namespace Utils
 
     public void delete_file (File file)
     {
-        if (! file.query_exists ())
+        if (!file.query_exists ())
             return;
 
         try
@@ -179,13 +179,13 @@ namespace Utils
         List<File> target_dirs = new List<File> ();
         List<File> origin_dirs = new List<File> ();
 
-        while (target_parent != null && ! target_parent.equal (common_dir))
+        while (target_parent != null && !target_parent.equal (common_dir))
         {
             target_dirs.prepend (target_parent);
             target_parent = target_parent.get_parent ();
         }
 
-        while (origin_dir != null && ! origin_dir.equal (common_dir))
+        while (origin_dir != null && !origin_dir.equal (common_dir))
         {
             origin_dirs.prepend (origin_dir);
             origin_dir = origin_dir.get_parent ();
@@ -197,7 +197,7 @@ namespace Utils
         {
             File cur_target_dir = target_dirs.nth_data (dir_index);
             File cur_origin_dir = origin_dirs.nth_data (dir_index);
-            if (! cur_target_dir.equal (cur_origin_dir))
+            if (!cur_target_dir.equal (cur_origin_dir))
                 break;
 
             dir_index++;

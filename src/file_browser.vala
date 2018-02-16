@@ -158,7 +158,7 @@ public class FileBrowser : Grid
         {
             TreeModel model = _list_store as TreeModel;
             TreeIter iter;
-            if (! model.get_iter (out iter, path))
+            if (!model.get_iter (out iter, path))
                 return;
 
             string basename;
@@ -477,7 +477,7 @@ public class FileBrowser : Grid
                 break;
 
             string basename = info.get_display_name ();
-            if (basename[0] == '.' && ! show_hidden_files)
+            if (basename[0] == '.' && !show_hidden_files)
                 continue;
 
             FileType type = info.get_file_type ();
@@ -487,7 +487,7 @@ public class FileBrowser : Grid
                 continue;
             }
 
-            if (! show_build_files)
+            if (!show_build_files)
             {
                 bool is_build_file = false;
 
@@ -603,7 +603,7 @@ public class FileBrowser : Grid
 
     private void set_directory (File directory, bool force = false)
     {
-        if (! force && _current_directory == directory)
+        if (!force && _current_directory == directory)
             return;
 
         _current_directory = directory;

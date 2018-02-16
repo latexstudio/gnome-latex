@@ -52,13 +52,13 @@ public class DocumentTab : Tepl.Tab
 
             _auto_save_interval = value;
 
-            if (! _auto_save)
+            if (!_auto_save)
                 return;
 
             if (auto_save_timeout > 0)
             {
                 return_if_fail (document.location != null);
-                return_if_fail (! document.readonly);
+                return_if_fail (!document.readonly);
                 remove_auto_save_timeout ();
                 install_auto_save_timeout ();
             }
@@ -81,19 +81,19 @@ public class DocumentTab : Tepl.Tab
             _auto_save = value;
 
             if (_auto_save && auto_save_timeout <= 0 && document.location != null
-                && ! document.readonly)
+                && !document.readonly)
             {
                 install_auto_save_timeout ();
                 return;
             }
 
-            if (! _auto_save && auto_save_timeout > 0)
+            if (!_auto_save && auto_save_timeout > 0)
             {
                 remove_auto_save_timeout ();
                 return;
             }
 
-            return_if_fail ((! _auto_save && auto_save_timeout <= 0)
+            return_if_fail ((!_auto_save && auto_save_timeout <= 0)
                 || document.location == null || document.readonly);
         }
     }
@@ -156,7 +156,7 @@ public class DocumentTab : Tepl.Tab
             return false;
 
         // if file was never saved or is remote we do not check
-        if (! get_buffer ().get_file ().is_local ())
+        if (!get_buffer ().get_file ().is_local ())
             return false;
 
         if (document.is_externally_modified ())
@@ -208,7 +208,7 @@ public class DocumentTab : Tepl.Tab
     {
         return_val_if_fail (auto_save_timeout <= 0, false);
 
-        if (auto_save && document.location != null && ! document.readonly)
+        if (auto_save && document.location != null && !document.readonly)
         {
             install_auto_save_timeout ();
             return true;
@@ -228,7 +228,7 @@ public class DocumentTab : Tepl.Tab
     private bool on_auto_save ()
     {
         return_val_if_fail (document.location != null, false);
-        return_val_if_fail (! document.readonly, false);
+        return_val_if_fail (!document.readonly, false);
         return_val_if_fail (auto_save_timeout > 0, false);
         return_val_if_fail (auto_save, false);
         return_val_if_fail (auto_save_interval > 0, false);

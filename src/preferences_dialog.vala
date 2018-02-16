@@ -329,12 +329,12 @@ public class PreferencesDialog : Dialog
         bool must_be_enabled = true)
     {
         bool val = settings.get_boolean (key);
-        widget.set_sensitive (must_be_enabled ? val : ! val);
+        widget.set_sensitive (must_be_enabled ? val : !val);
 
         settings.changed[key].connect ((setting, k) =>
         {
             bool v = setting.get_boolean (k);
-            widget.set_sensitive (must_be_enabled ? v : ! v);
+            widget.set_sensitive (must_be_enabled ? v : !v);
         });
     }
 

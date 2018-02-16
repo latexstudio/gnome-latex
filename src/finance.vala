@@ -23,7 +23,7 @@ namespace Finance
 {
     public void show_dialog (Window parent_window, bool startup)
     {
-        if (startup && ! should_show_dialog_on_startup ())
+        if (startup && !should_show_dialog_on_startup ())
             return;
 
         string title;

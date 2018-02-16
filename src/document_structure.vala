@@ -159,7 +159,7 @@ public class DocumentStructure : GLib.Object
                 bool item_found = search_low_level_item (line_text, start_index, out type,
                     out contents, out start_match_index, out end_match_index);
 
-                if (! item_found)
+                if (!item_found)
                     break;
 
                 TextIter iter = line_iter;
@@ -215,13 +215,13 @@ public class DocumentStructure : GLib.Object
         while (match_info.matches ())
         {
             int after_char_index;
-            if (! match_info.fetch_pos (0, out start_match_index, out after_char_index))
+            if (!match_info.fetch_pos (0, out start_match_index, out after_char_index))
             {
                 warning ("Structure parsing: position can not be fetched");
                 return false;
             }
 
-            if (! Utils.char_is_escaped (line, start_match_index))
+            if (!Utils.char_is_escaped (line, start_match_index))
             {
                 string char_matched = match_info.fetch (0);
 
@@ -323,7 +323,7 @@ public class DocumentStructure : GLib.Object
             return true;
         }
 
-        if (contents == "document" && ! is_begin_env)
+        if (contents == "document" && !is_begin_env)
         {
             type = StructType.END_DOCUMENT;
             return true;
@@ -342,7 +342,7 @@ public class DocumentStructure : GLib.Object
         string after_backslash_text = line.substring (after_backslash_index);
 
         MatchInfo match_info;
-        if (! _command_name_regex.match (after_backslash_text, 0, out match_info))
+        if (!_command_name_regex.match (after_backslash_text, 0, out match_info))
             return null;
 
         int pos;
@@ -375,14 +375,14 @@ public class DocumentStructure : GLib.Object
         {
             int next_index = cur_index;
             unichar cur_char;
-            bool end = ! line.get_next_char (ref next_index, out cur_char);
+            bool end = !line.get_next_char (ref next_index, out cur_char);
 
             if (in_optional_arg)
             {
                 switch (cur_char)
                 {
                     case ']':
-                        if (! Utils.char_is_escaped (line, cur_index))
+                        if (!Utils.char_is_escaped (line, cur_index))
                         {
                             if (0 < additional_bracket_level)
                                 additional_bracket_level--;
@@ -392,7 +392,7 @@ public class DocumentStructure : GLib.Object
                         break;
 
                     case '[':
-                        if (! Utils.char_is_escaped (line, cur_index))
+                        if (!Utils.char_is_escaped (line, cur_index))
                             additional_bracket_level++;
                         break;
                 }
@@ -440,12 +440,12 @@ public class DocumentStructure : GLib.Object
         {
             int next_index = cur_index;
             unichar cur_char;
-            bool end = ! line.get_next_char (ref next_index, out cur_char);
+            bool end = !line.get_next_char (ref next_index, out cur_char);
 
-            if (cur_char == '{' && ! Utils.char_is_escaped (line, cur_index))
+            if (cur_char == '{' && !Utils.char_is_escaped (line, cur_index))
                 brace_level++;
 
-            else if (cur_char == '}' && ! Utils.char_is_escaped (line, cur_index))
+            else if (cur_char == '}' && !Utils.char_is_escaped (line, cur_index))
             {
                 if (brace_level > 0)
                     brace_level--;
@@ -482,7 +482,7 @@ public class DocumentStructure : GLib.Object
         string text_after = line.substring (after_percent_index).strip ();
 
         MatchInfo match_info;
-        if (! _comment_regex.match (text_after, 0, out match_info))
+        if (!_comment_regex.match (text_after, 0, out match_info))
             return false;
 
         string type_str = match_info.fetch_named ("type");
@@ -683,7 +683,7 @@ public class DocumentStructure : GLib.Object
         begin_line.set_line_offset (0);
 
         TextIter end_line = iter;
-        if (! iter.ends_line ())
+        if (!iter.ends_line ())
             end_line.forward_to_line_end ();
 
         TextBuffer buffer = iter.get_buffer ();
@@ -702,7 +702,7 @@ public class DocumentStructure : GLib.Object
 
         if (action_type == StructAction.COMMENT)
         {
-            if (! comment_item (tree_iter))
+            if (!comment_item (tree_iter))
                 throw new StructError.DATA_OUTDATED ("");
 
             _model.delete (tree_iter);
@@ -724,7 +724,7 @@ public class DocumentStructure : GLib.Object
             bool success = shift_item (tree_iter, shift_right, out doc_modified);
             _doc.end_user_action ();
 
-            if (! success)
+            if (!success)
             {
                 if (doc_modified)
                     _doc.undo ();
@@ -745,7 +745,7 @@ public class DocumentStructure : GLib.Object
         TextIter end_iter;
         bool found = get_exact_item_bounds (tree_iter, out start_iter, out end_iter);
 
-        if (! found)
+        if (!found)
             throw new StructError.DATA_OUTDATED ("");
 
         if (start_iter.get_line () != end_iter.get_line ())
@@ -804,7 +804,7 @@ public class DocumentStructure : GLib.Object
         }
 
         /* comment a simple item */
-        if (! Structure.is_section (type))
+        if (!Structure.is_section (type))
         {
             _doc.comment_between (start_iter, end_iter, end_iter_set);
             return true;
@@ -832,7 +832,7 @@ public class DocumentStructure : GLib.Object
             bool end_of_file;
             end_iter = get_end_document_iter (out end_of_file);
             end_iter_set = true;
-            go_one_line_backward = ! end_of_file;
+            go_one_line_backward = !end_of_file;
         }
 
         else
@@ -847,7 +847,7 @@ public class DocumentStructure : GLib.Object
 
         if (go_one_line_backward)
         {
-            if (! end_iter.backward_line ())
+            if (!end_iter.backward_line ())
                 end_iter_set = false;
         }
 
@@ -880,7 +880,7 @@ public class DocumentStructure : GLib.Object
         bool found = get_low_level_item_bounds (item_type, item_contents, start_iter,
             true, out end_iter);
 
-        if (! found)
+        if (!found)
             return false;
 
         /* search 'end_iter' */
@@ -951,7 +951,7 @@ public class DocumentStructure : GLib.Object
             out contents, out start_match_index, out end_match_index);
 
         // If an item is found, it should be located at exactly the same place.
-        if (! found || start_index != start_match_index)
+        if (!found || start_index != start_match_index)
             return false;
 
         if (contents == null)
@@ -1050,7 +1050,7 @@ public class DocumentStructure : GLib.Object
         else
             return_val_if_fail (type != StructType.PART, false);
 
-        if (! Structure.is_section (type))
+        if (!Structure.is_section (type))
             return true;
 
         /* Get the markup name, do some checks, etc. */
@@ -1113,7 +1113,7 @@ public class DocumentStructure : GLib.Object
                 child_num);
             return_val_if_fail (child_iter_set, false);
 
-            if (! shift_item (child_iter, shift_right))
+            if (!shift_item (child_iter, shift_right))
                 return false;
         }
 

@@ -186,7 +186,7 @@ public class StructureModel : TreeModel, GLib.Object
         return_val_if_fail (iter_is_valid (iter), false);
 
         unowned Node<StructData?> node = get_node_from_iter (iter);
-        return ! node.is_leaf ();
+        return !node.is_leaf ();
     }
 
     public int iter_n_children (TreeIter? iter)
@@ -348,7 +348,7 @@ public class StructureModel : TreeModel, GLib.Object
         TreePath path = new TreePath ();
         unowned Node<StructData?> node = get_node_from_iter (iter);
 
-        while (! node.is_root ())
+        while (!node.is_root ())
         {
             int pos = node.parent.child_position (node);
             path.prepend_index (pos);
@@ -411,12 +411,12 @@ public class StructureModel : TreeModel, GLib.Object
     // the section. If null is returned, the end of the section is the end of the doc.
     public TreeIter? get_next_sibling_or_parent (TreeIter section_iter) throws StructError
     {
-        if (! iter_is_valid (section_iter))
+        if (!iter_is_valid (section_iter))
             throw new StructError.GENERAL ("iter is not valid.");
 
         unowned Node<StructData?> cur_node = get_node_from_iter (section_iter);
 
-        if (! Structure.is_section (cur_node.data.type))
+        if (!Structure.is_section (cur_node.data.type))
             throw new StructError.GENERAL ("iter is not a section.");
 
         while (cur_node != null && cur_node != _tree)
@@ -562,7 +562,7 @@ public class StructureModel : TreeModel, GLib.Object
         if (type == StructType.SUBPARAGRAPH)
             return true;
 
-        if (! Structure.is_section (type))
+        if (!Structure.is_section (type))
             return false;
 
         unowned Node<StructData?>? child = node.first_child ();
@@ -581,7 +581,7 @@ public class StructureModel : TreeModel, GLib.Object
         new_stamp ();
         _nb_nodes++;
 
-        if (! emit_signals)
+        if (!emit_signals)
             return;
 
         TreeIter item_iter = create_iter_at_node (node);
@@ -635,7 +635,7 @@ public class StructureModel : TreeModel, GLib.Object
 
     private void shift_node (Node<StructData?> node, bool shift_right)
     {
-        if (! Structure.is_section (node.data.type))
+        if (!Structure.is_section (node.data.type))
             return;
 
         if (shift_right)
@@ -715,7 +715,7 @@ public class StructureModel : TreeModel, GLib.Object
     private void search_end_node ()
     {
         _end_node = _tree;
-        while (! _end_node.is_leaf ())
+        while (!_end_node.is_leaf ())
             _end_node = _end_node.last_child ();
     }
 

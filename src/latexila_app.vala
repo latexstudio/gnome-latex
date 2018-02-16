@@ -374,7 +374,7 @@ public class LatexilaApp : Gtk.Application
         synctex.backward_search.connect ((tex_uri, line, timestamp) =>
         {
             File tex_file = File.new_for_uri (tex_uri);
-            if (! tex_file.query_exists ())
+            if (!tex_file.query_exists ())
             {
                 warning (@"Backward search: the file \"$tex_uri\" doesn't exist.");
                 return;

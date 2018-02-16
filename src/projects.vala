@@ -38,7 +38,7 @@ public class Projects
 
         /* load projects from the XML file */
         File file = get_xml_file ();
-        if (! file.query_exists ())
+        if (!file.query_exists ())
             return;
 
         string? contents = Utils.load_file (file);
@@ -240,7 +240,7 @@ public class Projects
 
     public void save ()
     {
-        if (! modified)
+        if (!modified)
             return;
 
         File file = get_xml_file ();

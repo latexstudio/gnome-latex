@@ -193,7 +193,7 @@ public class MainWindowDocuments
         return_if_fail (_documents_panel != null);
 
         RadioAction radio_action = action as RadioAction;
-        if (! radio_action.get_active ())
+        if (!radio_action.get_active ())
             return;
 
         _documents_panel.set_current_page (radio_action.get_current_value ());

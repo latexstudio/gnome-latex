@@ -39,7 +39,7 @@ public class DocumentView : Tepl.View
 
         doc.notify["readonly"].connect ((d, p) =>
         {
-            this.editable = ! ((Document) d).readonly;
+            this.editable = !((Document) d).readonly;
         });
 
         wrap_mode = WrapMode.WORD;
@@ -289,7 +289,7 @@ public class DocumentView : Tepl.View
     {
         Gspell.TextView gspell_view =
             Gspell.TextView.get_from_gtk_text_view (this as TextView);
-        if (! gspell_view.inline_spell_checking)
+        if (!gspell_view.inline_spell_checking)
             return;
 
         Gspell.Checker? spell_checker = get_spell_checker ();

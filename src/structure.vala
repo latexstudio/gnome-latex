@@ -209,9 +209,9 @@ public class Structure : Grid
 
         button.clicked.connect (() =>
         {
-            if (! button.get_active ())
+            if (!button.get_active ())
             {
-                if (! _list_is_hidden && type == _current_list_type)
+                if (!_list_is_hidden && type == _current_list_type)
                 {
                     _list_is_hidden = true;
                     _list_view_sw.hide ();
@@ -256,7 +256,7 @@ public class Structure : Grid
 
         TreePath tree_path = selected_rows.nth_data (0);
         TreeIter tree_iter;
-        if (! _model.get_iter (out tree_iter, tree_path))
+        if (!_model.get_iter (out tree_iter, tree_path))
             return_if_reached ();
 
         select_simple_list_item (tree_iter);
@@ -390,7 +390,7 @@ public class Structure : Grid
 
     private bool select_list_row (TreePath list_path)
     {
-        if (! _first_select)
+        if (!_first_select)
         {
             _first_select = true;
             return true;
@@ -428,7 +428,7 @@ public class Structure : Grid
         _first_select = true;
 
         TreeIter tree_iter;
-        if (! _model.get_iter (out tree_iter, tree_path))
+        if (!_model.get_iter (out tree_iter, tree_path))
             return_val_if_reached (false);
 
         TextMark mark;
@@ -453,7 +453,7 @@ public class Structure : Grid
         item_selected (type);
 
         /* select the corresponding item in the simple list */
-        if (! first_select)
+        if (!first_select)
             return true;
 
         select_simple_list_item (tree_iter);
@@ -478,7 +478,7 @@ public class Structure : Grid
         Gee.ArrayList<StructType> current_list_types =
             get_simple_list_types (_current_list_type);
 
-        if (! current_list_types.contains (type))
+        if (!current_list_types.contains (type))
             return;
 
         int row_num = _model.get_list_num_from_tree_iter (tree_iter);
@@ -498,7 +498,7 @@ public class Structure : Grid
     // For example, the list of TODOs and FIXMEs.
     private Gee.ArrayList<StructType> get_simple_list_types (StructType type)
     {
-        return_val_if_fail (! is_section (type), null);
+        return_val_if_fail (!is_section (type), null);
 
         Gee.ArrayList<StructType> types = new Gee.ArrayList<StructType> ();
 
@@ -698,7 +698,7 @@ public class Structure : Grid
             string uri = referenced_file.get_uri ();
             file_to_open = File.new_for_uri (uri + ".tex");
 
-            if (! file_to_open.query_exists ())
+            if (!file_to_open.query_exists ())
             {
                 warning ("Structure: the file '%s' doesn't exist.",
                     file_to_open.get_parse_name ());

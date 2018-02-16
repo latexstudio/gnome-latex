@@ -236,14 +236,14 @@ int main (string[] args)
     }
 
     File xml_file = File.new_for_commandline_arg (args[1]);
-    if (! xml_file.query_exists ())
+    if (!xml_file.query_exists ())
     {
         stderr.printf ("'%s' does not exist.\n", args[1]);
         return 1;
     }
 
     File dir = File.new_for_commandline_arg (args[2]);
-    if (! dir.query_exists ())
+    if (!dir.query_exists ())
     {
         stderr.printf ("'%s' does not exist.\n", args[2]);
         return 1;

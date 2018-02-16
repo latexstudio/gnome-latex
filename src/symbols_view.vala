@@ -80,7 +80,7 @@ public class SymbolsView : Grid
         {
             TreeIter iter = {};
 
-            if (! _combo_box.get_active_iter (out iter))
+            if (!_combo_box.get_active_iter (out iter))
                 return;
 
             Gtk.ListStore store;

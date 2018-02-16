@@ -202,7 +202,7 @@ public class BuildToolsPreferences : GLib.Object
             TreeModel model = store as TreeModel;
             model.get (iter, BuildToolColumn.ENABLED, out enabled);
 
-            enabled = ! enabled;
+            enabled = !enabled;
             store.set (iter, BuildToolColumn.ENABLED, enabled);
 
             int num = int.parse (path_string);

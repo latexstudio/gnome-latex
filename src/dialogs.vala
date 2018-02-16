@@ -106,7 +106,7 @@ namespace Dialogs
             store.get_iter (out iter, path);
             store.get (iter, UnsavedDocColumn.SAVE, out active, -1);
             // inverse the value
-            store.set (iter, UnsavedDocColumn.SAVE, ! active, -1);
+            store.set (iter, UnsavedDocColumn.SAVE, !active, -1);
         });
 
         TreeViewColumn column = new TreeViewColumn.with_attributes ("Save?", renderer1,
@@ -146,7 +146,7 @@ namespace Dialogs
             // close all saved documents
             foreach (Document doc in window.get_documents ())
             {
-                if (! doc.get_modified ())
+                if (!doc.get_modified ())
                     window.close_tab (doc.tab);
             }
 

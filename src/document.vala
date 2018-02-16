@@ -159,7 +159,7 @@ public class Document : Tepl.Buffer
         return_if_fail (location != null);
 
         // if not modified, don't save
-        if (! force && ! new_file && ! get_modified ())
+        if (!force && !new_file && !get_modified ())
             return;
 
         // we use get_text () to exclude undisplayed text
@@ -175,7 +175,7 @@ public class Document : Tepl.Buffer
         {
             GLib.Settings settings =
                 new GLib.Settings ("org.gnome.gnome-latex.preferences.editor");
-            bool make_backup = ! backup_made
+            bool make_backup = !backup_made
                 && settings.get_boolean ("create-backup-copy");
 
             string? etag = check_file_changed_on_disk ? _etag : null;
@@ -190,7 +190,7 @@ public class Document : Tepl.Buffer
 
             // check if parent directories exist, if not, create it
             File parent = location.get_parent ();
-            if (parent != null && ! parent.query_exists ())
+            if (parent != null && !parent.query_exists ())
                 parent.make_directory_with_parents ();
 
             location.replace_contents (text.data, etag, make_backup,

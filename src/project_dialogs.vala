@@ -82,7 +82,7 @@ namespace ProjectDialogs
                 continue;
 
             // main file not in directory
-            if (! main_file_is_in_directory (dialog, main_file, directory))
+            if (!main_file_is_in_directory (dialog, main_file, directory))
                 continue;
 
             // try to add the project
@@ -162,7 +162,7 @@ namespace ProjectDialogs
                 continue;
 
             // main file not in directory
-            if (! main_file_is_in_directory (dialog, main_file, project.directory))
+            if (!main_file_is_in_directory (dialog, main_file, project.directory))
                 continue;
 
             ret = Projects.get_default ().change_main_file (project_id, main_file);

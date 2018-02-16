@@ -75,7 +75,7 @@ public class GotoLine : Grid
         for (int i = 0; i < text.length; i++)
         {
             unichar c = text[i];
-            if (! c.isdigit ())
+            if (!c.isdigit ())
             {
                 ErrorEntry.add_error (entry);
                 return;
@@ -435,7 +435,7 @@ public class SearchAndReplace : GLib.Object
         });
 
         bool readonly = _main_window.active_document.readonly;
-        _replace_grid.set_sensitive (! readonly);
+        _replace_grid.set_sensitive (!readonly);
 
         doc.mark_set.connect (mark_set_cb);
     }
@@ -526,7 +526,7 @@ public class SearchAndReplace : GLib.Object
 
         try
         {
-            if (! _search_context.replace (match_start, match_end,
+            if (!_search_context.replace (match_start, match_end,
                 _entry_replace.text, -1))
                 search_forward ();
         }

@@ -42,7 +42,7 @@ public class CleanBuildFiles : GLib.Object
 
     public void clean ()
     {
-        if (! _doc.is_main_file_a_tex_file ())
+        if (!_doc.is_main_file_a_tex_file ())
             return;
 
         Gee.ArrayList<File> files_to_delete;
@@ -66,7 +66,7 @@ public class CleanBuildFiles : GLib.Object
 
         if (files_to_delete.size == 0)
         {
-            if (! no_confirm)
+            if (!no_confirm)
                 show_info_no_file ();
             return;
         }
@@ -219,7 +219,7 @@ public class CleanBuildFiles : GLib.Object
             store.get_iter (out iter, path);
             store.get (iter, CleanFileColumn.DELETE, out active);
             // inverse the value
-            store.set (iter, CleanFileColumn.DELETE, ! active);
+            store.set (iter, CleanFileColumn.DELETE, !active);
         });
 
         TreeViewColumn column = new TreeViewColumn.with_attributes ("Delete?",
