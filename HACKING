@@ -37,11 +37,37 @@ For Vala:
     - Do not use 'var' for declaring variables, unless the type is very long.
       The type of a variable is useful to understand the code, it is a form of
       self-documentation.
+    - Functions with a lot of parameters: when exceeding 90 characters, add a
+      newline + one indentation level (the same for function declarations and
+      function calls):
+
+            function_call (a_long_parameter1, a_long_parameter2, a_long_parameter3,
+                a_long_parameter4, a_long_parameter5, a_long_parameter6,
+                a_long_parameter7, a_long_parameter8);
 
 For C:
     - Follow the same coding style as GtkSourceView:
       https://git.gnome.org/browse/gtksourceview/tree/HACKING
     - No maximum line length (but short lines are better).
+    - Function declarations: follow the same style as what the
+      gcu-lineup-parameters script does, see:
+      https://github.com/swilmet/gnome-c-utils
+    - Function calls with a lot of parameters: one parameter per line, aligned
+      on the opening parenthesis:
+
+	function_call (a_long_parameter1,
+		       a_long_parameter2,
+		       a_long_parameter3);
+
+      In some cases, groups of parameters can be on the same line, when the
+      parameters are related (typically a string + value). For example with
+      g_object_new() to set properties:
+
+	return g_object_new (NAMESPACE_TYPE_CLASSNAME,
+			     "property1", value1,
+			     "property2", value2,
+			     NULL);
+
     - Note that the GNU coding style was previously used, all the *.c files
       have been converted to the GtkSourceView coding style with the uncrustify
       config file (see the scripts/ directory in the GtkSourceView git
