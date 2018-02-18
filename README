@@ -51,9 +51,9 @@ From the Git repository, the 'configure' script and the 'INSTALL' file are not
 yet generated, so you need to run 'autogen.sh' instead, which takes the same
 arguments as 'configure'.
 
-To build the latest version of GNOME LaTeX plus its dependencies from Git,
-Jhbuild is recommended. GNOME LaTeX is in the gnome-world moduleset. An example
-of a jhbuildrc file for GNOME LaTeX is provided:
+To build the latest version of gnome-latex plus its dependencies from Git,
+Jhbuild is recommended. gnome-latex is in the gnome-world moduleset. An example
+of a jhbuildrc file is provided:
 
     https://wiki.gnome.org/Projects/Jhbuild
     https://people.gnome.org/~swilmet/gnome-latex/jhbuildrc
