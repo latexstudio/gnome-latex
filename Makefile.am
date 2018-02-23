@@ -9,8 +9,8 @@ AM_DISTCHECK_CONFIGURE_FLAGS =	\
 	--enable-appstream-util
 
 EXTRA_DIST =			\
+	gnome-latex.doap	\
 	HACKING			\
-	latexila.doap		\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in
