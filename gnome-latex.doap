@@ -5,7 +5,7 @@
          xmlns:gnome="http://api.gnome.org/doap-extensions#"
          xmlns="http://usefulinc.com/ns/doap#">
 
-  <name xml:lang="en">latexila</name>
+  <name xml:lang="en">gnome-latex</name>
   <shortdesc xml:lang="en">GNOME LaTeX, a LaTeX editor</shortdesc>
   <description xml:lang="en">
 GNOME LaTeX is a LaTeX editor for the GNOME desktop, previously named
@@ -30,7 +30,7 @@ to the associated position between the .tex file and the PDF.
   <homepage rdf:resource="https://wiki.gnome.org/Apps/GNOME-LaTeX" />
   <mailing-list rdf:resource="https://mail.gnome.org/mailman/listinfo/latexila-list" />
   <download-page rdf:resource="https://download.gnome.org/sources/gnome-latex/" />
-  <bug-database rdf:resource="https://bugzilla.gnome.org/browse.cgi?product=gnome-latex" />
+  <bug-database rdf:resource="https://gitlab.gnome.org/GNOME/gnome-latex/issues" />
 
   <programming-language>C</programming-language>
   <programming-language>Vala</programming-language>
