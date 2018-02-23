@@ -6,7 +6,7 @@ AC_PREREQ([2.64])
 
 AC_INIT([GNOME LaTeX],
 	[3.27.3],
-	[https://bugzilla.gnome.org/browse.cgi?product=gnome-latex],
+	[https://gitlab.gnome.org/GNOME/gnome-latex/issues],
 	[gnome-latex],
 	[https://wiki.gnome.org/Apps/GNOME-LaTeX])
 

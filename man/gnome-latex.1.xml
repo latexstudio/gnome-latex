@@ -171,10 +171,5 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
       reopens the files that were open last time it was used. This behaviour
       can be disabled in the program preferences.</para>
   </refsection>
-
-  <refsection xml:id="bugs"><info><title>BUGS</title></info>
-    <para>The upstream <acronym>BTS</acronym> can be found
-      at <uri xlink:href="https://bugzilla.gnome.org/browse.cgi?product=gnome-latex">https://bugzilla.gnome.org/browse.cgi?product=gnome-latex</uri>.</para>
-  </refsection>
 </refentry>
 </article>

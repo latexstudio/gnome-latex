@@ -59,7 +59,7 @@
   </provides>
   <url type="homepage">https://wiki.gnome.org/Apps/GNOME-LaTeX</url>
   <url type="donation">https://liberapay.com/GNOME-LaTeX/</url>
-  <url type="bugtracker">https://bugzilla.gnome.org/browse.cgi?product=gnome-latex</url>
+  <url type="bugtracker">https://gitlab.gnome.org/GNOME/gnome-latex/issues</url>
   <url type="translate">https://wiki.gnome.org/TranslationProject</url>
   <translation type="gettext">gnome-latex</translation>
   <update_contact>swilmet@gnome.org</update_contact>
