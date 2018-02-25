@@ -355,14 +355,11 @@ public class LatexMenu : Gtk.ActionGroup
         // Math Spaces
 
         { "MathSpaces", null, N_("Math _Spaces") },
-        { "MathSpaceSmall", null, N_("_Small"), null,
-            N_("Small - \\,"), on_math_space_small },
-        { "MathSpaceMedium", null, N_("_Medium"), null,
-            N_("Medium - \\:"), on_math_space_medium },
-        { "MathSpaceLarge", null, N_("_Large"), null,
-            N_("Large - \\;"), on_math_space_large },
-        { "MathSpaceQuad", null, "\\_quad", null, null, on_math_space_quad },
-        { "MathSpaceQquad", null, "\\qqu_ad", null, null, on_math_space_qquad },
+        { "MathSpaceSmall", null, N_("_Small"), null, N_("Small - \\,") },
+        { "MathSpaceMedium", null, N_("_Medium"), null, N_("Medium - \\:") },
+        { "MathSpaceLarge", null, N_("_Large"), null, N_("Large - \\;") },
+        { "MathSpaceQuad", null, "\\_quad", null, null },
+        { "MathSpaceQquad", null, "\\qqu_ad", null, null },
 
         // Math: Left Delimiters
 
@@ -799,6 +796,18 @@ public class LatexMenu : Gtk.ActionGroup
             this, "MathAccentDdot");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-braces::mathring",
             this, "MathAccentRing");
+
+        // Math Spaces
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-spaces-small",
+            this, "MathSpaceSmall");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-spaces-medium",
+            this, "MathSpaceMedium");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-spaces-large",
+            this, "MathSpaceLarge");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::quad",
+            this, "MathSpaceQuad");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::qquad",
+            this, "MathSpaceQquad");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -817,33 +826,6 @@ public class LatexMenu : Gtk.ActionGroup
 
         Latexila.latex_commands_insert_text (tepl_window, text_before, text_after,
             text_if_no_selection);
-    }
-
-    /* Math Spaces */
-
-    public void on_math_space_small ()
-    {
-        text_buffer_insert ("\\, ", "");
-    }
-
-    public void on_math_space_medium ()
-    {
-        text_buffer_insert ("\\: ", "");
-    }
-
-    public void on_math_space_large ()
-    {
-        text_buffer_insert ("\\; ", "");
-    }
-
-    public void on_math_space_quad ()
-    {
-        text_buffer_insert ("\\quad ", "");
-    }
-
-    public void on_math_space_qquad ()
-    {
-        text_buffer_insert ("\\qquad ", "");
     }
 
     /* Left Delimiters */
