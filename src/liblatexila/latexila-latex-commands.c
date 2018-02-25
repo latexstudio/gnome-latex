@@ -700,36 +700,6 @@ math_command_misc_nth_root_cb (GSimpleAction *action,
 	latexila_latex_commands_insert_text (tepl_window, "\\sqrt[]{", "}", NULL);
 }
 
-static void
-math_command_spaces_small_cb (GSimpleAction *action,
-			      GVariant      *parameter,
-		              gpointer       user_data)
-{
-	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
-
-	latexila_latex_commands_insert_text (tepl_window, "\\, ", "", NULL);
-}
-
-static void
-math_command_spaces_medium_cb (GSimpleAction *action,
-			       GVariant      *parameter,
-		               gpointer       user_data)
-{
-	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
-
-	latexila_latex_commands_insert_text (tepl_window, "\\: ", "", NULL);
-}
-
-static void
-math_command_spaces_large_cb (GSimpleAction *action,
-			      GVariant      *parameter,
-		              gpointer       user_data)
-{
-	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
-
-	latexila_latex_commands_insert_text (tepl_window, "\\; ", "", NULL);
-}
-
 /**
  * latexila_latex_commands_add_actions:
  * @gtk_window: a #GtkApplicationWindow.
@@ -769,9 +739,6 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
 		{ "math-command-misc-subscript", math_command_misc_subscript_cb },
 		{ "math-command-misc-frac", math_command_misc_frac_cb },
 		{ "math-command-misc-nth-root", math_command_misc_nth_root_cb },
-		{ "math-command-spaces-small", math_command_spaces_math_space_small_cb },
-		{ "math-command-spaces-medium", math_command_spaces_math_space_medium_cb },
-		{ "math-command-spaces-large", math_command_spaces_math_space_large_cb },
 	};
 
 	g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));
