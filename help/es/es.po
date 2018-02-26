@@ -2,15 +2,15 @@
 # Copyright (C) 2011 latexila's COPYRIGHT HOLDER
 # This file is distributed under the same license as the latexila package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2015.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2015, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
-"POT-Creation-Date: 2015-09-26 18:24+0000\n"
-"PO-Revision-Date: 2015-10-08 15:35+0200\n"
+"POT-Creation-Date: 2018-02-23 15:43+0000\n"
+"PO-Revision-Date: 2018-02-26 10:06+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2015"
+msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2018"
 
 #. (itstool) path: page/title
 #: C/build_tools.page:10
@@ -391,12 +391,15 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/projects.page:39
+#| msgid ""
+#| "The <link xref=\"synctex#forward_search\">forward search</link> works for "
+#| "a secondary file of a project."
 msgid ""
-"The <link xref=\"synctex#forward_search\">forward search</link> works for a "
-"secondary file of a project."
+"<link xref=\"synctex#from_tex_to_pdf\">Jumping from a .tex file to the PDF</"
+"link> works for a secondary .tex file belonging to a project."
 msgstr ""
-"La <link xref=\"synctex#forward_search\">búsqueda hacia adelante</link> "
-"funciona para un archivo o proyecto secundario."
+"<link xref=\"synctex#from_tex_to_pdf\">Saltar de un archivo .tex al PDF </"
+"link> funciona para un archivo .tex secundario que pertenezca al proyecto."
 
 #. (itstool) path: page/title
 #: C/spell_checking.page:10
@@ -415,11 +418,6 @@ msgstr "Usar la corrección ortográfica"
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:18
-#| msgid ""
-#| "By default, when a LaTeX command is typed, proposals will be shown after "
-#| "two characters. This can be configured in the preferences dialog: "
-#| "<guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu\">Preferences</"
-#| "gui> <gui style=\"tab\">Other</gui> </guiseq>"
 msgid ""
 "The default spell checking settings can be changed in the preferences "
 "dialog: <guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu"
@@ -440,9 +438,6 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:32
-#| msgid ""
-#| "Once the spell checking is activated, the misspelled words will be "
-#| "underlined in red. A right click on a misspelled word will show proposals."
 msgid ""
 "If you activate the <gui style=\"menu\">Highlight Misspelled Words</gui> "
 "option, the misspelled words will be underlined in red in the document. A "
@@ -470,9 +465,6 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:47
-#| msgid ""
-#| "If your language is not listed when doing a right click, install a "
-#| "dictionary for one of the supported backends."
 msgid ""
 "If your language is not listed, install a dictionary for one of the "
 "supported backends."
@@ -573,17 +565,20 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/synctex.page:10
-msgid "Forward and Backward Search"
-msgstr "Búsqueda hacia adelanta y hacia atrás"
+msgid "Jumping Between .tex and PDF"
+msgstr "Saltar entre .tex y PDF"
 
 #. (itstool) path: synopsis/p
 #: C/synctex.page:13
+#| msgid ""
+#| "Synchronization between the document's *.tex files and the resulting PDF "
+#| "output, opened with the <app>Evince</app> document viewer."
 msgid ""
-"Synchronization between the document's *.tex files and the resulting PDF "
-"output, opened with the <app>Evince</app> document viewer."
+"Jumping between the document's *.tex files and the resulting PDF output, "
+"opened with the <app>Evince</app> document viewer."
 msgstr ""
-"Sincronización entre los archivos del documento .tex y el PDF de resultante, "
-"abierto con el visor de documentos <app>Evince</app>."
+"Saltar entre los archivos .tex del documento y el PDF resultante, abierto "
+"con el visor de documentos <app>Evince</app>."
 
 #. (itstool) path: note/p
 #: C/synctex.page:18
@@ -596,31 +591,39 @@ msgstr ""
 
 #. (itstool) path: section/title
 #: C/synctex.page:23
-msgid "Forward Search: from .tex to PDF"
-msgstr "Búsqueda hacia adelante: de .tex a PDF"
+#| msgid "Forward Search: from .tex to PDF"
+msgid "Jumping from .tex to PDF"
+msgstr "Saltar de .tex a PDF"
 
 #. (itstool) path: section/p
 #: C/synctex.page:25
+#| msgid ""
+#| "From a certain position in the .tex source file, jump to the "
+#| "corresponding position in the PDF file."
 msgid ""
 "From a certain position in the .tex source file, jump to the corresponding "
-"position in the PDF file."
+"position in the PDF file. Also called “forward search”."
 msgstr ""
-"Saltar a la posición correspondiente en un archivo PDF desde un archivo . "
-"tex fuente."
+"Saltar a la posición correspondiente en el archivo PDF desde un archivo .tex "
+"fuente. También llamado «búsqueda hacia adelante»."
 
 #. (itstool) path: section/p
 #: C/synctex.page:28
-msgid "There are different ways to do a forward search:"
-msgstr "Hay varias maneras de hacer una búsqueda hacia adelante:"
+#| msgid "There are different ways to do a forward search:"
+msgid "There are different ways to do this action:"
+msgstr "Hay varias maneras de hacer esto:"
 
 #. (itstool) path: item/p
 #: C/synctex.page:30
+#| msgid ""
+#| "In the menu: <guiseq> <gui style=\"menu\">Search</gui> <gui style=\"menu"
+#| "\">Search Forward</gui> </guiseq>"
 msgid ""
 "In the menu: <guiseq> <gui style=\"menu\">Search</gui> <gui style=\"menu"
-"\">Search Forward</gui> </guiseq>"
+"\">Jump to PDF</gui> </guiseq>"
 msgstr ""
 "En el menú: <guiseq> <gui style=\"menu\">Buscar</gui> <gui style=\"menu"
-"\">Buscar hacia adelante</gui> </guiseq>"
+"\">Saltar al PDF</gui> </guiseq>"
 
 #. (itstool) path: item/p
 #: C/synctex.page:36
@@ -630,26 +633,44 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/synctex.page:44
+#| msgid ""
+#| "If a document is split into several .tex files, create a <link xref="
+#| "\"projects\">project</link>. There is no need to mention the main file "
+#| "with a LaTeX comment in each secondary .tex file, like it is explained in "
+#| "the <link href=\"help:evince/synctex-search#forward-search\"> "
+#| "<app>Evince</app> documentation. </link>"
 msgid ""
 "If a document is split into several .tex files, create a <link xref="
-"\"projects\">project</link>. There is no need to mention the main file with "
-"a LaTeX comment in each secondary .tex file, like it is explained in the "
-"<link href=\"help:evince/synctex-search#forward-search\"> <app>Evince</app> "
-"documentation. </link>"
+"\"projects\">project</link>. Unlike what is explained in the <link href="
+"\"help:evince/synctex-search#forward-search\"> <app>Evince</app> "
+"documentation </link>, there is no need to mention the main file with a "
+"LaTeX comment in each secondary .tex file."
 msgstr ""
 "Si se divide un documento en varios archivos .tex, cree un <link xref="
-"\"projects\">proyecto</link>. No es necesario mencionar cada archivo "
-"principal con un comentario LaTeX en cada archivo .tex secundario, como se "
-"explica en la documentación de <link href=\"help:evince/synctex-"
-"search#forward-search\"> <app>Evince</app></link>."
+"\"projects\">proyecto</link>. A diferencia de lo que se explica en la <link "
+"href=\"help:evince/synctex-search#forward-search\">documentación de "
+"<app>Evince</app></link> no es necesario hacer referencia al archivo "
+"principal con un comentario LaTeX en cada archivo .tex secundario."
 
 #. (itstool) path: section/title
 #: C/synctex.page:53
-msgid "Backward Search"
-msgstr "Búsqueda hacia atrás"
+msgid "Jumping from PDF to .tex"
+msgstr "Saltar entre PDF y .tex"
 
 #. (itstool) path: section/p
 #: C/synctex.page:55
+#| msgid ""
+#| "From a certain position in the .tex source file, jump to the "
+#| "corresponding position in the PDF file."
+msgid ""
+"From a certain position in the PDF file, jump to the corresponding position "
+"in the .tex source file. Also called “backward search”."
+msgstr ""
+"Saltar a la posición correspondiente en el archivo .tex fuente desde un "
+"archivo .PDF. También llamado «búsqueda hacia atrás»."
+
+#. (itstool) path: section/p
+#: C/synctex.page:58
 msgid ""
 "In <app>Evince</app>, press <keyseq> <key>Ctrl</key> <key>left click</key> </"
 "keyseq>, and the corresponding position in the .tex file will be opened in "
@@ -660,13 +681,22 @@ msgstr ""
 "archivo .tex en <app>LaTeXila</app>."
 
 #. (itstool) path: section/p
-#: C/synctex.page:63
+#: C/synctex.page:66
+#| msgid ""
+#| "<app>Evince</app> have to be launched by <app>LaTeXila</app>. Else, the "
+#| "backward search will not work."
 msgid ""
-"<app>Evince</app> have to be launched by <app>LaTeXila</app>. Else, the "
-"backward search will not work."
+"<app>Evince</app> has to be launched by <app>LaTeXila</app>. Else, jumping "
+"from the PDF to the .tex file will not work."
 msgstr ""
-"<app>Latexila</app> debe lanzar <app>Evince</app>. Si no, la búsqueda hacia "
-"atrás no funcionará."
+"<app>Latexila</app> debe lanzar <app>Evince</app>. Si no, saltar desde el "
+"PDF al .tex no funcionará."
+
+#~ msgid "Forward and Backward Search"
+#~ msgstr "Búsqueda hacia adelanta y hacia atrás"
+
+#~ msgid "Backward Search"
+#~ msgstr "Búsqueda hacia atrás"
 
 #~ msgid ""
 #~ "The spell checking can be activated or disabled via the menu: <guiseq> "
