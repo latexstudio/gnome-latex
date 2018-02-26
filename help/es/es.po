@@ -2,13 +2,13 @@
 # Copyright (C) 2011 latexila's COPYRIGHT HOLDER
 # This file is distributed under the same license as the latexila package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2015, 2017.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2015, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
-"POT-Creation-Date: 2017-06-28 17:57+0000\n"
-"PO-Revision-Date: 2017-11-30 11:52+0100\n"
+"POT-Creation-Date: 2018-02-23 17:48+0000\n"
+"PO-Revision-Date: 2018-02-26 10:11+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -89,18 +89,24 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/build_tools.page:78
+#| msgid ""
+#| "Using a higher-level tool such as Latexmk simplify a lot all this "
+#| "process, since only one command is required. Indeed, Latexmk can detect "
+#| "how many times the <cmd>latex</cmd> or <cmd>pdflatex</cmd> command must "
+#| "be called, and whether <cmd>bibtex</cmd> or <cmd>makeindex</cmd> is "
+#| "required. By default, LaTeXila uses Latexmk."
 msgid ""
 "Using a higher-level tool such as Latexmk simplify a lot all this process, "
 "since only one command is required. Indeed, Latexmk can detect how many "
 "times the <cmd>latex</cmd> or <cmd>pdflatex</cmd> command must be called, "
 "and whether <cmd>bibtex</cmd> or <cmd>makeindex</cmd> is required. By "
-"default, LaTeXila uses Latexmk."
+"default, GNOME LaTeX uses Latexmk."
 msgstr ""
 "Usar una herramienta de alto nivel como Latexmk simplifica mucho este "
 "proceso, ya que sólo se requiere un comando. En realidad, Latexmk puede "
 "detectar cuántas veces se deben usar los comandos <cmd>latex</cmd> o "
 "<cmd>pdflatex</cmd>, y si se necesita <cmd>bibtex</cmd> o <cmd>makeindex</"
-"cmd>. De manera predeterminada, LaTeXila usa Latexmk."
+"cmd>. De manera predeterminada, GNOME LaTeX usa Latexmk."
 
 #. (itstool) path: section/title
 #: C/build_tools.page:86
@@ -324,8 +330,9 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/index.page:4
-msgid "LaTeXila Help"
-msgstr "Ayuda de LaTeXila"
+#| msgid "LaTeXila Help"
+msgid "GNOME LaTeX Help"
+msgstr "Ayuda de GNOME LaTeX"
 
 #. (itstool) path: page/title
 #: C/projects.page:10
@@ -391,9 +398,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/projects.page:39
-#| msgid ""
-#| "The <link xref=\"synctex#forward_search\">forward search</link> works for "
-#| "a secondary file of a project."
 msgid ""
 "<link xref=\"synctex#from_tex_to_pdf\">Jumping from a .tex file to the PDF</"
 "link> works for a secondary .tex file belonging to a project."
@@ -454,13 +458,17 @@ msgstr "Diccionarios"
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:41
+#| msgid ""
+#| "<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> "
+#| "is used for the spell checking in LaTeXila. Enchant uses one or several "
+#| "backends such as Hunspell or Aspell for the dictionaries."
 msgid ""
 "<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> is "
-"used for the spell checking in LaTeXila. Enchant uses one or several "
+"used for the spell checking in GNOME LaTeX. Enchant uses one or several "
 "backends such as Hunspell or Aspell for the dictionaries."
 msgstr ""
 "<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> se "
-"usa para comprobar la ortografía en LaTeXila. Enchant usa uno de los "
+"usa para comprobar la ortografía en GNOME LaTeX. Enchant usa uno de los "
 "diversos «backends», tales como Hunspell o Aspell para los diccionarios."
 
 #. (itstool) path: section/p
@@ -570,9 +578,6 @@ msgstr "Saltar entre el .tex y el PDF"
 
 #. (itstool) path: synopsis/p
 #: C/synctex.page:13
-#| msgid ""
-#| "Synchronization between the document's *.tex files and the resulting PDF "
-#| "output, opened with the <app>Evince</app> document viewer."
 msgid ""
 "Jumping between the document's *.tex files and the resulting PDF output, "
 "opened with the <app>Evince</app> document viewer."
@@ -591,15 +596,11 @@ msgstr ""
 
 #. (itstool) path: section/title
 #: C/synctex.page:23
-#| msgid "Forward Search: from .tex to PDF"
 msgid "Jumping from .tex to PDF"
 msgstr "Saltar desde el .tex al PDF"
 
 #. (itstool) path: section/p
 #: C/synctex.page:25
-#| msgid ""
-#| "From a certain position in the .tex source file, jump to the "
-#| "corresponding position in the PDF file."
 msgid ""
 "From a certain position in the .tex source file, jump to the corresponding "
 "position in the PDF file. Also called “forward search”."
@@ -609,15 +610,11 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/synctex.page:28
-#| msgid "There are different ways to do a forward search:"
 msgid "There are different ways to do this action:"
 msgstr "Hay varias maneras de hacer esto:"
 
 #. (itstool) path: item/p
 #: C/synctex.page:30
-#| msgid ""
-#| "In the menu: <guiseq> <gui style=\"menu\">Search</gui> <gui style=\"menu"
-#| "\">Search Forward</gui> </guiseq>"
 msgid ""
 "In the menu: <guiseq> <gui style=\"menu\">Search</gui> <gui style=\"menu"
 "\">Jump to PDF</gui> </guiseq>"
@@ -633,12 +630,6 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/synctex.page:44
-#| msgid ""
-#| "If a document is split into several .tex files, create a <link xref="
-#| "\"projects\">project</link>. There is no need to mention the main file "
-#| "with a LaTeX comment in each secondary .tex file, like it is explained in "
-#| "the <link href=\"help:evince/synctex-search#forward-search\"> "
-#| "<app>Evince</app> documentation. </link>"
 msgid ""
 "If a document is split into several .tex files, create a <link xref="
 "\"projects\">project</link>. Unlike what is explained in the <link href="
@@ -659,9 +650,6 @@ msgstr "Saltar desde el PDF al .tex"
 
 #. (itstool) path: section/p
 #: C/synctex.page:55
-#| msgid ""
-#| "From a certain position in the .tex source file, jump to the "
-#| "corresponding position in the PDF file."
 msgid ""
 "From a certain position in the PDF file, jump to the corresponding position "
 "in the .tex source file. Also called “backward search”."
@@ -672,25 +660,29 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/synctex.page:58
+#| msgid ""
+#| "In <app>Evince</app>, press <keyseq> <key>Ctrl</key> <key>left click</"
+#| "key> </keyseq>, and the corresponding position in the .tex file will be "
+#| "opened in <app>LaTeXila</app>."
 msgid ""
 "In <app>Evince</app>, press <keyseq> <key>Ctrl</key> <key>left click</key> </"
 "keyseq>, and the corresponding position in the .tex file will be opened in "
-"<app>LaTeXila</app>."
+"<app>GNOME LaTeX</app>."
 msgstr ""
 "En <app>Evince</app>, pulse <keyseq> <key>Ctrl</key> <key>pulsación "
 "izquierda</key> </keyseq>, y se abrirá la correspondiente posición del "
-"archivo .tex en <app>LaTeXila</app>."
+"archivo .tex en <app>GNOME LaTeX</app>."
 
 #. (itstool) path: section/p
 #: C/synctex.page:66
 #| msgid ""
-#| "<app>Evince</app> have to be launched by <app>LaTeXila</app>. Else, the "
-#| "backward search will not work."
+#| "<app>Evince</app> has to be launched by <app>LaTeXila</app>. Else, "
+#| "jumping from the PDF to the .tex file will not work."
 msgid ""
-"<app>Evince</app> has to be launched by <app>LaTeXila</app>. Else, jumping "
-"from the PDF to the .tex file will not work."
+"<app>Evince</app> has to be launched by <app>GNOME LaTeX</app>. Else, "
+"jumping from the PDF to the .tex file will not work."
 msgstr ""
-"<app>Latexila</app> debe lanzar <app>Evince</app>. Si no, la función de "
+"<app>GNOME LaTeX</app> debe lanzar <app>Evince</app>. Si no, la función de "
 "saltar del PDF al .tex funcionará."
 
 #~ msgid "Forward and Backward Search"
