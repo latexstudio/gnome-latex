@@ -820,6 +820,96 @@ math_command_delimiter_left9_cb (GSimpleAction *action,
 	latexila_latex_commands_insert_text (tepl_window, "\\left. ", "", NULL);
 }
 
+static void
+math_command_delimiter_right1_cb (GSimpleAction *action,
+				  GVariant      *parameter,
+		              	  gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\right) ", "", NULL);
+}
+
+static void
+math_command_delimiter_right2_cb (GSimpleAction *action,
+				  GVariant      *parameter,
+		              	  gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\right] ", "", NULL);
+}
+
+static void
+math_command_delimiter_right3_cb (GSimpleAction *action,
+				  GVariant      *parameter,
+		              	  gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\right\\rbrace ", "", NULL);
+}
+
+static void
+math_command_delimiter_right4_cb (GSimpleAction *action,
+				  GVariant      *parameter,
+		              	  gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\right\\rangle ", "", NULL);
+}
+
+static void
+math_command_delimiter_right5_cb (GSimpleAction *action,
+				  GVariant      *parameter,
+		              	  gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\right( ", "", NULL);
+}
+
+static void
+math_command_delimiter_right6_cb (GSimpleAction *action,
+				  GVariant      *parameter,
+		              	  gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\right[ ", "", NULL);
+}
+
+static void
+math_command_delimiter_right7_cb (GSimpleAction *action,
+				  GVariant      *parameter,
+		              	  gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\right\\lbrace ", "", NULL);
+}
+
+static void
+math_command_delimiter_right8_cb (GSimpleAction *action,
+				  GVariant      *parameter,
+		              	  gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\right\\langle ", "", NULL);
+}
+
+static void
+math_command_delimiter_right9_cb (GSimpleAction *action,
+				  GVariant      *parameter,
+		              	  gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\right. ", "", NULL);
+}
+
 /**
  * latexila_latex_commands_add_actions:
  * @gtk_window: a #GtkApplicationWindow.
@@ -871,6 +961,15 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
 		{ "math-command-delimiter-left7", math_command_delimiter_left7_cb },
 		{ "math-command-delimiter-left8", math_command_delimiter_left8_cb },
 		{ "math-command-delimiter-left9", math_command_delimiter_left9_cb },
+		{ "math-command-delimiter-right1", math_command_delimiter_right1_cb },
+		{ "math-command-delimiter-right2", math_command_delimiter_right2_cb },
+		{ "math-command-delimiter-right3", math_command_delimiter_right3_cb },
+		{ "math-command-delimiter-right4", math_command_delimiter_right4_cb },
+		{ "math-command-delimiter-right5", math_command_delimiter_right5_cb },
+		{ "math-command-delimiter-right6", math_command_delimiter_right6_cb },
+		{ "math-command-delimiter-right7", math_command_delimiter_right7_cb },
+		{ "math-command-delimiter-right8", math_command_delimiter_right8_cb },
+		{ "math-command-delimiter-right9", math_command_delimiter_right9_cb },
 	};
 
 	g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));
