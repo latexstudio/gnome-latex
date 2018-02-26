@@ -364,24 +364,15 @@ public class LatexMenu : Gtk.ActionGroup
         // Math: Left Delimiters
 
         { "MathLeftDelimiters", "delimiters-left", N_("_Left Delimiters") },
-        { "MathLeftDelimiter1", null, N_("left ("), null,
-            null, on_math_left_delimiter_1 },
-        { "MathLeftDelimiter2", null, N_("left ["), null,
-            null, on_math_left_delimiter_2 },
-        { "MathLeftDelimiter3", null, N_("left { "), null,
-            null, on_math_left_delimiter_3 },
-        { "MathLeftDelimiter4", null, N_("left <"), null,
-            null, on_math_left_delimiter_4 },
-        { "MathLeftDelimiter5", null, N_("left )"), null,
-            null, on_math_left_delimiter_5 },
-        { "MathLeftDelimiter6", null, N_("left ]"), null,
-            null, on_math_left_delimiter_6 },
-        { "MathLeftDelimiter7", null, N_("left  }"), null,
-            null, on_math_left_delimiter_7 },
-        { "MathLeftDelimiter8", null, N_("left >"), null,
-            null, on_math_left_delimiter_8 },
-        { "MathLeftDelimiter9", null, N_("left ."), null,
-            null, on_math_left_delimiter_9 },
+        { "MathLeftDelimiter1", null, N_("left ("), null, null },
+        { "MathLeftDelimiter2", null, N_("left ["), null, null },
+        { "MathLeftDelimiter3", null, N_("left { "), null, null },
+        { "MathLeftDelimiter4", null, N_("left <"), null, null },
+        { "MathLeftDelimiter5", null, N_("left )"), null, null },
+        { "MathLeftDelimiter6", null, N_("left ]"), null, null },
+        { "MathLeftDelimiter7", null, N_("left  }"), null, null },
+        { "MathLeftDelimiter8", null, N_("left >"), null, null },
+        { "MathLeftDelimiter9", null, N_("left ."), null, null },
 
         // Math: Right Delimiters
 
@@ -808,6 +799,26 @@ public class LatexMenu : Gtk.ActionGroup
             this, "MathSpaceQuad");
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "latex-command-with-space::qquad",
             this, "MathSpaceQquad");
+
+        // Math Left Delimiters
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-delimiter-left1",
+            this, "MathLeftDelimiter1");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-delimiter-left2",
+            this, "MathLeftDelimiter2");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-delimiter-left3",
+            this, "MathLeftDelimiter3");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-delimiter-left4",
+            this, "MathLeftDelimiter4");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-delimiter-left5",
+            this, "MathLeftDelimiter5");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-delimiter-left6",
+            this, "MathLeftDelimiter6");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-delimiter-left7",
+            this, "MathLeftDelimiter7");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-delimiter-left8",
+            this, "MathLeftDelimiter8");
+        Amtk.utils_bind_g_action_to_gtk_action (main_window, "math-command-delimiter-left9",
+            this, "MathLeftDelimiter9");
     }
 
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
@@ -828,52 +839,7 @@ public class LatexMenu : Gtk.ActionGroup
             text_if_no_selection);
     }
 
-    /* Left Delimiters */
-
-    public void on_math_left_delimiter_1 ()
-    {
-        text_buffer_insert ("\\left( ", "");
-    }
-
-    public void on_math_left_delimiter_2 ()
-    {
-        text_buffer_insert ("\\left[ ", "");
-    }
-
-    public void on_math_left_delimiter_3 ()
-    {
-        text_buffer_insert ("\\left\\lbrace ", "");
-    }
-
-    public void on_math_left_delimiter_4 ()
-    {
-        text_buffer_insert ("\\left\\langle ", "");
-    }
-
-    public void on_math_left_delimiter_5 ()
-    {
-        text_buffer_insert ("\\left) ", "");
-    }
-
-    public void on_math_left_delimiter_6 ()
-    {
-        text_buffer_insert ("\\left] ", "");
-    }
-
-    public void on_math_left_delimiter_7 ()
-    {
-        text_buffer_insert ("\\left\\rbrace ", "");
-    }
-
-    public void on_math_left_delimiter_8 ()
-    {
-        text_buffer_insert ("\\left\\rangle ", "");
-    }
-
-    public void on_math_left_delimiter_9 ()
-    {
-        text_buffer_insert ("\\left. ", "");
-    }
+    /* Right Delimiters */
 
     public void on_math_right_delimiter_1 ()
     {

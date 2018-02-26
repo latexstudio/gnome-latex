@@ -730,6 +730,96 @@ math_command_spaces_large_cb (GSimpleAction *action,
 	latexila_latex_commands_insert_text (tepl_window, "\\; ", "", NULL);
 }
 
+static void
+math_command_delimiter_left1_cb (GSimpleAction *action,
+				 GVariant      *parameter,
+		              	 gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\left( ", "", NULL);
+}
+
+static void
+math_command_delimiter_left2_cb (GSimpleAction *action,
+				 GVariant      *parameter,
+		              	 gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\left[ ", "", NULL);
+}
+
+static void
+math_command_delimiter_left3_cb (GSimpleAction *action,
+				 GVariant      *parameter,
+		              	 gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\left\\lbrace ", "", NULL);
+}
+
+static void
+math_command_delimiter_left4_cb (GSimpleAction *action,
+				 GVariant      *parameter,
+		              	 gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\left\\langle ", "", NULL);
+}
+
+static void
+math_command_delimiter_left5_cb (GSimpleAction *action,
+				 GVariant      *parameter,
+		              	 gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\left) ", "", NULL);
+}
+
+static void
+math_command_delimiter_left6_cb (GSimpleAction *action,
+				 GVariant      *parameter,
+		              	 gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\left] ", "", NULL);
+}
+
+static void
+math_command_delimiter_left7_cb (GSimpleAction *action,
+				 GVariant      *parameter,
+		              	 gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\left\\rbrace ", "", NULL);
+}
+
+static void
+math_command_delimiter_left8_cb (GSimpleAction *action,
+				 GVariant      *parameter,
+		              	 gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\left\\rangle ", "", NULL);
+}
+
+static void
+math_command_delimiter_left9_cb (GSimpleAction *action,
+				 GVariant      *parameter,
+		              	 gpointer       user_data)
+{
+	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
+
+	latexila_latex_commands_insert_text (tepl_window, "\\left. ", "", NULL);
+}
+
 /**
  * latexila_latex_commands_add_actions:
  * @gtk_window: a #GtkApplicationWindow.
@@ -772,6 +862,15 @@ latexila_latex_commands_add_actions (GtkApplicationWindow *gtk_window)
 		{ "math-command-spaces-small", math_command_spaces_small_cb },
 		{ "math-command-spaces-medium", math_command_spaces_medium_cb },
 		{ "math-command-spaces-large", math_command_spaces_large_cb },
+		{ "math-command-delimiter-left1", math_command_delimiter_left1_cb },
+		{ "math-command-delimiter-left2", math_command_delimiter_left2_cb },
+		{ "math-command-delimiter-left3", math_command_delimiter_left3_cb },
+		{ "math-command-delimiter-left4", math_command_delimiter_left4_cb },
+		{ "math-command-delimiter-left5", math_command_delimiter_left5_cb },
+		{ "math-command-delimiter-left6", math_command_delimiter_left6_cb },
+		{ "math-command-delimiter-left7", math_command_delimiter_left7_cb },
+		{ "math-command-delimiter-left8", math_command_delimiter_left8_cb },
+		{ "math-command-delimiter-left9", math_command_delimiter_left9_cb },
 	};
 
 	g_return_if_fail (GTK_IS_APPLICATION_WINDOW (gtk_window));
