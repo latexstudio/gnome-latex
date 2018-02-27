@@ -41,7 +41,7 @@ public class MainWindow : ApplicationWindow
         { "Search", null, N_("_Search") },
         { "SearchFind", "edit-find", N_("_Find"), "<Control>F",
             N_("Search for text"), on_search_find },
-        { "SearchReplace", "edit-find-replace", N_("Find and _Replace"), "<Control>R",
+        { "SearchReplace", "edit-find-replace", N_("Find and _Replace"), "<Control>H",
             N_("Search for and replace text"), on_search_replace },
         { "SearchGoToLine", "go-jump", N_("_Go to Line..."), "<Control>G",
             N_("Go to a specific line"), on_search_goto_line },
