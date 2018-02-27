@@ -703,7 +703,7 @@ math_command_misc_nth_root_cb (GSimpleAction *action,
 static void
 math_command_spaces_small_cb (GSimpleAction *action,
 			      GVariant      *parameter,
-		              gpointer       user_data)
+			      gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -713,7 +713,7 @@ math_command_spaces_small_cb (GSimpleAction *action,
 static void
 math_command_spaces_medium_cb (GSimpleAction *action,
 			       GVariant      *parameter,
-		               gpointer       user_data)
+			       gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -723,7 +723,7 @@ math_command_spaces_medium_cb (GSimpleAction *action,
 static void
 math_command_spaces_large_cb (GSimpleAction *action,
 			      GVariant      *parameter,
-		              gpointer       user_data)
+			      gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -733,7 +733,7 @@ math_command_spaces_large_cb (GSimpleAction *action,
 static void
 math_command_delimiter_left1_cb (GSimpleAction *action,
 				 GVariant      *parameter,
-		              	 gpointer       user_data)
+				 gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -743,7 +743,7 @@ math_command_delimiter_left1_cb (GSimpleAction *action,
 static void
 math_command_delimiter_left2_cb (GSimpleAction *action,
 				 GVariant      *parameter,
-		              	 gpointer       user_data)
+				 gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -753,7 +753,7 @@ math_command_delimiter_left2_cb (GSimpleAction *action,
 static void
 math_command_delimiter_left3_cb (GSimpleAction *action,
 				 GVariant      *parameter,
-		              	 gpointer       user_data)
+				 gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -763,7 +763,7 @@ math_command_delimiter_left3_cb (GSimpleAction *action,
 static void
 math_command_delimiter_left4_cb (GSimpleAction *action,
 				 GVariant      *parameter,
-		              	 gpointer       user_data)
+				 gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -773,7 +773,7 @@ math_command_delimiter_left4_cb (GSimpleAction *action,
 static void
 math_command_delimiter_left5_cb (GSimpleAction *action,
 				 GVariant      *parameter,
-		              	 gpointer       user_data)
+				 gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -783,7 +783,7 @@ math_command_delimiter_left5_cb (GSimpleAction *action,
 static void
 math_command_delimiter_left6_cb (GSimpleAction *action,
 				 GVariant      *parameter,
-		              	 gpointer       user_data)
+				 gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -793,7 +793,7 @@ math_command_delimiter_left6_cb (GSimpleAction *action,
 static void
 math_command_delimiter_left7_cb (GSimpleAction *action,
 				 GVariant      *parameter,
-		              	 gpointer       user_data)
+				 gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -803,7 +803,7 @@ math_command_delimiter_left7_cb (GSimpleAction *action,
 static void
 math_command_delimiter_left8_cb (GSimpleAction *action,
 				 GVariant      *parameter,
-		              	 gpointer       user_data)
+				 gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -813,7 +813,7 @@ math_command_delimiter_left8_cb (GSimpleAction *action,
 static void
 math_command_delimiter_left9_cb (GSimpleAction *action,
 				 GVariant      *parameter,
-		              	 gpointer       user_data)
+				 gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -823,7 +823,7 @@ math_command_delimiter_left9_cb (GSimpleAction *action,
 static void
 math_command_delimiter_right1_cb (GSimpleAction *action,
 				  GVariant      *parameter,
-		              	  gpointer       user_data)
+				  gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -833,7 +833,7 @@ math_command_delimiter_right1_cb (GSimpleAction *action,
 static void
 math_command_delimiter_right2_cb (GSimpleAction *action,
 				  GVariant      *parameter,
-		              	  gpointer       user_data)
+				  gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -843,7 +843,7 @@ math_command_delimiter_right2_cb (GSimpleAction *action,
 static void
 math_command_delimiter_right3_cb (GSimpleAction *action,
 				  GVariant      *parameter,
-		              	  gpointer       user_data)
+				  gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -853,7 +853,7 @@ math_command_delimiter_right3_cb (GSimpleAction *action,
 static void
 math_command_delimiter_right4_cb (GSimpleAction *action,
 				  GVariant      *parameter,
-		              	  gpointer       user_data)
+				  gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -863,7 +863,7 @@ math_command_delimiter_right4_cb (GSimpleAction *action,
 static void
 math_command_delimiter_right5_cb (GSimpleAction *action,
 				  GVariant      *parameter,
-		              	  gpointer       user_data)
+				  gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -873,7 +873,7 @@ math_command_delimiter_right5_cb (GSimpleAction *action,
 static void
 math_command_delimiter_right6_cb (GSimpleAction *action,
 				  GVariant      *parameter,
-		              	  gpointer       user_data)
+				  gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -883,7 +883,7 @@ math_command_delimiter_right6_cb (GSimpleAction *action,
 static void
 math_command_delimiter_right7_cb (GSimpleAction *action,
 				  GVariant      *parameter,
-		              	  gpointer       user_data)
+				  gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -893,7 +893,7 @@ math_command_delimiter_right7_cb (GSimpleAction *action,
 static void
 math_command_delimiter_right8_cb (GSimpleAction *action,
 				  GVariant      *parameter,
-		              	  gpointer       user_data)
+				  gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
@@ -903,7 +903,7 @@ math_command_delimiter_right8_cb (GSimpleAction *action,
 static void
 math_command_delimiter_right9_cb (GSimpleAction *action,
 				  GVariant      *parameter,
-		              	  gpointer       user_data)
+				  gpointer       user_data)
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
