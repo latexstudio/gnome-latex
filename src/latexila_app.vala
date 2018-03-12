@@ -208,7 +208,7 @@ public class LatexilaApp : Gtk.Application
     {
         string comments =
             _("GNOME LaTeX is a LaTeX editor for the GNOME desktop");
-        string copyright = "Copyright 2009-2017 – Sébastien Wilmet";
+        string copyright = "Copyright 2009-2018 – Sébastien Wilmet";
 
         string website = "https://wiki.gnome.org/Apps/GNOME-LaTeX";
 
