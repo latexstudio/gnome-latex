@@ -7,16 +7,16 @@
   <link type="guide" xref="index" />
 </info>
 
-<title>Spell Checking</title>
+<title>Spell-Checking</title>
 
 <synopsis>
   <p>The purpose is to correct spelling mistakes easily.</p>
 </synopsis>
 
 <section id="use">
-  <title>Use the spell checking</title>
+  <title>Use the spell-checking</title>
   <p>
-    The default spell checking settings can be changed in the preferences dialog:
+    The default spell-checking settings can be changed in the preferences dialog:
     <guiseq>
       <gui style="menu">Edit</gui>
       <gui style="menu">Preferences</gui>
@@ -39,14 +39,19 @@
 <section id="dictionaries">
   <title>Dictionaries</title>
   <p>
-    <link href="http://www.abisource.com/projects/enchant/">Enchant</link>
-    is used for the spell checking in GNOME LaTeX. Enchant uses one or several
-    backends such as Hunspell or Aspell for the dictionaries.
+    <link href="https://wiki.gnome.org/Projects/gspell">gspell</link> is used
+    for the spell-checking in GNOME LaTeX. gspell uses
+    <link href="https://abiword.github.io/enchant/">Enchant</link>, which in
+    turn supports several backends such as Hunspell or Aspell for the
+    dictionaries. The Aspell backend doesn't work well with gspell, Hunspell is
+    preferred. If dictionaries for both Aspell and Hunspell are installed for
+    the same language, by default Enchant prefers the Hunspell one.
   </p>
 
   <p>
-    If your language is not listed, install a dictionary for one of the
-    supported backends.
+    If your language is not listed in GNOME LaTeX, install a dictionary for one
+    of the supported Enchant backends (for most languages the best choice is to
+    install an Hunspell dictionary).
   </p>
 </section>
 </page>
