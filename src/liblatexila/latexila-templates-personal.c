@@ -241,7 +241,7 @@ latexila_templates_personal_get_instance (void)
  *
  * Gets the contents of a personal template.
  *
- * TODO load contents asynchronously, with a #GtkSourceFileLoader.
+ * TODO load contents asynchronously.
  *
  * Returns: the personal template's contents. Free with g_free().
  */
