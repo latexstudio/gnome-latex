@@ -1,7 +1,16 @@
+<!--
+     When modifying this GSettings schema, don't forget to update the list of
+     keys in latexila_utils_migrate_latexila_to_gnome_latex_gsettings().
+-->
+
 <schemalist>
   <schema id="org.gnome.gnome-latex" path="/org/gnome/gnome-latex/">
     <child schema="org.gnome.gnome-latex.preferences" name="preferences" />
     <child schema="org.gnome.gnome-latex.state" name="state" />
+
+    <key name="latexila-to-gnome-latex-migration-done" type="b">
+      <default>false</default>
+    </key>
   </schema>
 
   <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.gnome-latex.preferences" path="/org/gnome/gnome-latex/preferences/">

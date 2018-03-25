@@ -1,7 +1,7 @@
 /*
  * This file is part of GNOME LaTeX.
  *
- * Copyright (C) 2014-2015 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2014-2015, 2018 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GNOME LaTeX is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,48 +26,50 @@ G_BEGIN_DECLS
 
 /* File utilities */
 
-gchar *         latexila_utils_get_shortname                    (const gchar *filename);
+gchar *		latexila_utils_get_shortname			(const gchar *filename);
 
-gchar *         latexila_utils_get_extension                    (const gchar *filename);
+gchar *		latexila_utils_get_extension			(const gchar *filename);
 
-gchar *         latexila_utils_replace_home_dir_with_tilde      (const gchar *filename);
+gchar *		latexila_utils_replace_home_dir_with_tilde	(const gchar *filename);
 
-void            latexila_utils_file_query_exists_async          (GFile               *file,
-                                                                 GCancellable        *cancellable,
-                                                                 GAsyncReadyCallback  callback,
-                                                                 gpointer             user_data);
+void		latexila_utils_file_query_exists_async		(GFile               *file,
+								 GCancellable        *cancellable,
+								 GAsyncReadyCallback  callback,
+								 gpointer             user_data);
 
-gboolean        latexila_utils_file_query_exists_finish         (GFile        *file,
-                                                                 GAsyncResult *result);
+gboolean	latexila_utils_file_query_exists_finish		(GFile        *file,
+								 GAsyncResult *result);
 
-gboolean        latexila_utils_create_parent_directories        (GFile   *file,
-                                                                 GError **error);
+gboolean	latexila_utils_create_parent_directories	(GFile   *file,
+								 GError **error);
 
-void            latexila_utils_show_uri                         (GtkWidget    *widget,
-                                                                 const gchar  *uri,
-                                                                 guint32       timestamp,
-                                                                 GError      **error);
+void		latexila_utils_show_uri				(GtkWidget    *widget,
+								 const gchar  *uri,
+								 guint32       timestamp,
+								 GError      **error);
 
 /* UI utilities */
 
-GtkWidget *     latexila_utils_get_dialog_component             (const gchar *title,
-                                                                 GtkWidget   *widget);
+GtkWidget *	latexila_utils_get_dialog_component		(const gchar *title,
+								 GtkWidget   *widget);
 
-GtkWidget *     latexila_utils_join_widgets                     (GtkWidget *widget_top,
-                                                                 GtkWidget *widget_bottom);
+GtkWidget *	latexila_utils_join_widgets			(GtkWidget *widget_top,
+								 GtkWidget *widget_bottom);
 
-GdkPixbuf *     latexila_utils_get_pixbuf_from_icon_name        (const gchar *icon_name,
-                                                                 GtkIconSize  icon_size);
+GdkPixbuf *	latexila_utils_get_pixbuf_from_icon_name	(const gchar *icon_name,
+								 GtkIconSize  icon_size);
 
 /* String utilities */
 
-gchar *         latexila_utils_str_replace                      (const gchar *string,
-                                                                 const gchar *search,
-                                                                 const gchar *replacement);
+gchar *		latexila_utils_str_replace			(const gchar *string,
+								 const gchar *search,
+								 const gchar *replacement);
 
 /* Others */
 
-void            latexila_utils_register_icons                   (void);
+void		latexila_utils_register_icons			(void);
+
+void		latexila_utils_migrate_latexila_to_gnome_latex_gsettings (void);
 
 G_END_DECLS
 

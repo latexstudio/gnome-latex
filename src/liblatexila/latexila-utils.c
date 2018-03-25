@@ -6,7 +6,7 @@
  * Copyright (C) 2000, 2002 - Chema Celorio, Paolo Maggi
  * Copyright (C) 2003-2005 - Paolo Maggi
  *
- * Copyright (C) 2014, 2015, 2017 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2014, 2015, 2017, 2018 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GNOME LaTeX is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@
 
 #include "latexila-utils.h"
 #include <string.h>
+#include "dh-dconf-migration.h"
 #include "latexila-synctex.h"
 
 static gint
@@ -487,4 +488,96 @@ latexila_utils_join_widgets (GtkWidget *widget_top,
 	gtk_box_pack_start (vbox, widget_bottom, FALSE, FALSE, 0);
 
 	return GTK_WIDGET (vbox);
+}
+
+/**
+ * latexila_utils_migrate_latexila_to_gnome_latex_gsettings:
+ *
+ * Migrates the #GSettings values from LaTeXila to GNOME LaTeX, so that users
+ * don't lose all their settings.
+ */
+void
+latexila_utils_migrate_latexila_to_gnome_latex_gsettings (void)
+{
+	GSettings *settings;
+	DhDconfMigration *migration;
+	gint i;
+
+	const gchar *keys[] =
+	{
+		"preferences/editor/auto-save",
+		"preferences/editor/auto-save-interval",
+		"preferences/editor/bracket-matching",
+		"preferences/editor/create-backup-copy",
+		"preferences/editor/display-line-numbers",
+		"preferences/editor/editor-font",
+		"preferences/editor/forget-no-tabs",
+		"preferences/editor/highlight-current-line",
+		"preferences/editor/highlight-misspelled-words",
+		"preferences/editor/insert-spaces",
+		"preferences/editor/reopen-files",
+		"preferences/editor/scheme",
+		"preferences/editor/spell-checking-language",
+		"preferences/editor/tabs-size",
+		"preferences/editor/use-default-font",
+		"preferences/file-browser/current-directory",
+		"preferences/file-browser/show-build-files",
+		"preferences/file-browser/show-hidden-files",
+		"preferences/latex/automatic-clean",
+		"preferences/latex/clean-extensions",
+		"preferences/latex/disabled-default-build-tools",
+		"preferences/latex/enabled-default-build-tools",
+		"preferences/latex/interactive-completion",
+		"preferences/latex/interactive-completion-num",
+		"preferences/latex/no-confirm-clean",
+		"preferences/ui/bottom-panel-visible",
+		"preferences/ui/edit-toolbar-visible",
+		"preferences/ui/main-toolbar-visible",
+		"preferences/ui/show-build-badboxes",
+		"preferences/ui/show-build-warnings",
+		"preferences/ui/side-panel-component",
+		"preferences/ui/side-panel-visible",
+		"state/dialogs/finance/last-shown-date",
+		"state/dialogs/finance/remind-later",
+		"state/window/documents",
+		"state/window/side-panel-size",
+		"state/window/size",
+		"state/window/state",
+		"state/window/structure-paned-position",
+		"state/window/vertical-paned-position",
+		NULL
+	};
+
+	settings = g_settings_new ("org.gnome.gnome-latex");
+	if (g_settings_get_boolean (settings, "latexila-to-gnome-latex-migration-done"))
+	{
+		goto out;
+	}
+
+	migration = _dh_dconf_migration_new ();
+
+	for (i = 0; keys[i] != NULL; i++)
+	{
+		const gchar *cur_key = keys[i];
+		gchar *cur_glatex_key;
+		gchar *cur_latexila_key;
+
+		cur_glatex_key = g_strconcat ("/org/gnome/gnome-latex/", cur_key, NULL);
+		cur_latexila_key = g_strconcat ("/org/gnome/latexila/", cur_key, NULL);
+
+		_dh_dconf_migration_migrate_key (migration,
+						 cur_glatex_key,
+						 cur_latexila_key,
+						 NULL);
+
+		g_free (cur_glatex_key);
+		g_free (cur_latexila_key);
+	}
+
+	_dh_dconf_migration_free (migration);
+
+	g_settings_set_boolean (settings, "latexila-to-gnome-latex-migration-done", TRUE);
+
+out:
+	g_object_unref (settings);
 }

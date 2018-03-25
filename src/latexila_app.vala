@@ -1,7 +1,7 @@
 /*
  * This file is part of GNOME LaTeX.
  *
- * Copyright © 2010-2015, 2017 Sébastien Wilmet
+ * Copyright © 2010-2015, 2017, 2018 Sébastien Wilmet
  *
  * GNOME LaTeX is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -118,6 +118,8 @@ public class LatexilaApp : Gtk.Application
     private void startup_cb ()
     {
         hold ();
+
+        Latexila.utils_migrate_latexila_to_gnome_latex_gsettings ();
 
         add_action_entries (_app_actions, this);
         Latexila.latex_commands_add_action_infos (this);
