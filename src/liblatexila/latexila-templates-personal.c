@@ -26,9 +26,8 @@
  * #LatexilaTemplatesPersonal is a singleton class that stores information about
  * pesonal templates.
  *
- * Personal templates are stored in the ~/.local/share/latexila/ directory.
- * There is a templatesrc file that stores the list of names, icons and
- * files.
+ * Personal templates are stored in the `~/.local/share/gnome-latex/` directory.
+ * There is a templatesrc file that stores the list of names, icons and files.
  */
 
 #include "config.h"
@@ -43,6 +42,8 @@ struct _LatexilaTemplatesPersonal
 	GtkListStore parent;
 };
 
+#define RC_FILE_GROUP_NAME "Personal templates"
+
 G_DEFINE_TYPE (LatexilaTemplatesPersonal, latexila_templates_personal, GTK_TYPE_LIST_STORE)
 
 static void
@@ -53,27 +54,19 @@ latexila_templates_personal_class_init (LatexilaTemplatesPersonalClass *klass)
 static GFile *
 get_rc_file (void)
 {
-	gchar *path;
-	GFile *rc_file;
-
-	path = g_build_filename (g_get_user_data_dir (), "latexila", "templatesrc", NULL);
-	rc_file = g_file_new_for_path (path);
-
-	g_free (path);
-	return rc_file;
+	return g_file_new_build_filename (g_get_user_data_dir (),
+					  "gnome-latex",
+					  "templatesrc",
+					  NULL);
 }
 
 static GFile *
 get_personal_template_file_by_filename (const gchar *filename)
 {
-	gchar *path;
-	GFile *template_file;
-
-	path = g_build_filename (g_get_user_data_dir (), "latexila", filename, NULL);
-	template_file = g_file_new_for_path (path);
-
-	g_free (path);
-	return template_file;
+	return g_file_new_build_filename (g_get_user_data_dir (),
+					  "gnome-latex",
+					  filename,
+					  NULL);
 }
 
 static GFile *
@@ -132,14 +125,14 @@ load_rc_file (LatexilaTemplatesPersonal *templates)
 		goto out;
 	}
 
-	names = g_key_file_get_string_list (key_file, PACKAGE_NAME, "names", &n_names, &error);
+	names = g_key_file_get_string_list (key_file, RC_FILE_GROUP_NAME, "names", &n_names, &error);
 
 	if (error != NULL)
 	{
 		goto out;
 	}
 
-	icons = g_key_file_get_string_list (key_file, PACKAGE_NAME, "icons", &n_icons, &error);
+	icons = g_key_file_get_string_list (key_file, RC_FILE_GROUP_NAME, "icons", &n_icons, &error);
 
 	if (error != NULL)
 	{
@@ -148,7 +141,7 @@ load_rc_file (LatexilaTemplatesPersonal *templates)
 
 	g_return_if_fail (n_names == n_icons);
 
-	has_files = g_key_file_has_key (key_file, PACKAGE_NAME, "files", &error);
+	has_files = g_key_file_has_key (key_file, RC_FILE_GROUP_NAME, "files", &error);
 
 	if (error != NULL)
 	{
@@ -157,7 +150,7 @@ load_rc_file (LatexilaTemplatesPersonal *templates)
 
 	if (has_files)
 	{
-		files = g_key_file_get_string_list (key_file, PACKAGE_NAME, "files", &n_files, &error);
+		files = g_key_file_get_string_list (key_file, RC_FILE_GROUP_NAME, "files", &n_files, &error);
 
 		if (error != NULL)
 		{
@@ -355,19 +348,19 @@ save_rc_file (LatexilaTemplatesPersonal  *templates,
 	key_file = g_key_file_new ();
 
 	g_key_file_set_string_list (key_file,
-				    PACKAGE_NAME,
+				    RC_FILE_GROUP_NAME,
 				    "names",
 				    (const gchar * const *) names,
 				    personal_templates_count);
 
 	g_key_file_set_string_list (key_file,
-				    PACKAGE_NAME,
+				    RC_FILE_GROUP_NAME,
 				    "icons",
 				    (const gchar * const *) icons,
 				    personal_templates_count);
 
 	g_key_file_set_string_list (key_file,
-				    PACKAGE_NAME,
+				    RC_FILE_GROUP_NAME,
 				    "files",
 				    (const gchar * const *) files,
 				    personal_templates_count);

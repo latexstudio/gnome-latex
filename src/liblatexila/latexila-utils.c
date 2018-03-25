@@ -663,6 +663,165 @@ migrate_latexila_to_gnome_latex_personal_build_tools (void)
 	g_object_unref (glatex_file);
 }
 
+static void
+migrate_latexila_to_gnome_latex_personal_templates_tex_files (void)
+{
+	GFile *latexila_dir;
+	GFile *glatex_dir;
+	GFileEnumerator *enumerator;
+	GError *error = NULL;
+
+	latexila_dir = g_file_new_build_filename (g_get_user_data_dir (),
+						  "latexila",
+						  NULL);
+	glatex_dir = g_file_new_build_filename (g_get_user_data_dir (),
+						"gnome-latex",
+						NULL);
+
+	enumerator = g_file_enumerate_children (latexila_dir,
+						G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
+						G_FILE_QUERY_INFO_NONE,
+						NULL,
+						&error);
+
+	if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
+	{
+		g_clear_error (&error);
+		goto out;
+	}
+
+	if (enumerator == NULL || error != NULL)
+	{
+		goto out;
+	}
+
+	while (TRUE)
+	{
+		GFileInfo *child_file_info;
+		GFile *child_file;
+		const gchar *child_name;
+		GFile *glatex_child_file;
+
+		g_file_enumerator_iterate (enumerator, &child_file_info, &child_file, NULL, &error);
+		if (child_file == NULL || error != NULL)
+		{
+			break;
+		}
+
+		child_name = g_file_info_get_display_name (child_file_info);
+		if (child_name == NULL || !g_str_has_suffix (child_name, ".tex"))
+		{
+			continue;
+		}
+
+		glatex_child_file = g_file_get_child (glatex_dir, child_name);
+		migrate_latexila_to_gnome_latex_copy_file (child_file, glatex_child_file);
+		g_object_unref (glatex_child_file);
+	}
+
+out:
+	if (error != NULL)
+	{
+		g_warning ("Error when migrating LaTeXila to GNOME LaTeX personal templates: %s",
+			   error->message);
+		g_clear_error (&error);
+	}
+
+	g_object_unref (latexila_dir);
+	g_object_unref (glatex_dir);
+	g_clear_object (&enumerator);
+}
+
+#define TEMPLATES_RC_FILE_OLD_GROUP_NAME "[LaTeXila]\n"
+#define TEMPLATES_RC_FILE_NEW_GROUP_NAME "[Personal templates]\n"
+
+static void
+migrate_latexila_to_gnome_latex_personal_templates_rc_file (void)
+{
+	GFile *latexila_file;
+	gchar *content = NULL;
+	GFile *glatex_file = NULL;
+	GFileOutputStream *output_stream = NULL;
+	GError *error = NULL;
+
+	/* Load old RC file. */
+	latexila_file = g_file_new_build_filename (g_get_user_data_dir (),
+						   "latexila",
+						   "templatesrc",
+						   NULL);
+
+	g_file_load_contents (latexila_file, NULL, &content, NULL, NULL, &error);
+
+	if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
+	{
+		g_clear_error (&error);
+		goto out;
+	}
+
+	if (error != NULL || content == NULL)
+	{
+		goto out;
+	}
+
+	/* Modify group name. */
+	if (g_str_has_prefix (content, TEMPLATES_RC_FILE_OLD_GROUP_NAME))
+	{
+		gchar *modified_content;
+
+		modified_content = g_strconcat (TEMPLATES_RC_FILE_NEW_GROUP_NAME,
+						content + strlen (TEMPLATES_RC_FILE_OLD_GROUP_NAME),
+						NULL);
+		g_free (content);
+		content = modified_content;
+	}
+
+	/* Save to new location. */
+	glatex_file = g_file_new_build_filename (g_get_user_data_dir (),
+						 "gnome-latex",
+						 "templatesrc",
+						 NULL);
+
+	output_stream = g_file_create (glatex_file, G_FILE_CREATE_NONE, NULL, &error);
+
+	if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_EXISTS))
+	{
+		g_clear_error (&error);
+		goto out;
+	}
+
+	if (error != NULL || output_stream == NULL)
+	{
+		goto out;
+	}
+
+	g_output_stream_write_all (G_OUTPUT_STREAM (output_stream),
+				   content,
+				   strlen (content),
+				   NULL,
+				   NULL,
+				   &error);
+
+out:
+	if (error != NULL)
+	{
+		g_warning ("Error when migrating LaTeXila to GNOME LaTeX personal templates: %s",
+			   error->message);
+		g_clear_error (&error);
+	}
+
+	g_object_unref (latexila_file);
+	g_free (content);
+	g_clear_object (&glatex_file);
+	g_clear_object (&output_stream);
+}
+
+static void
+migrate_latexila_to_gnome_latex_personal_templates (void)
+{
+	migrate_latexila_to_gnome_latex_personal_templates_tex_files ();
+	migrate_latexila_to_gnome_latex_personal_templates_rc_file ();
+}
+
 /**
  * latexila_utils_migrate_latexila_to_gnome_latex:
  *
@@ -682,6 +841,7 @@ latexila_utils_migrate_latexila_to_gnome_latex (void)
 		migrate_latexila_to_gnome_latex_most_used_symbols ();
 		migrate_latexila_to_gnome_latex_projects ();
 		migrate_latexila_to_gnome_latex_personal_build_tools ();
+		migrate_latexila_to_gnome_latex_personal_templates ();
 
 		g_settings_set_boolean (settings, "latexila-to-gnome-latex-migration-done", TRUE);
 	}
