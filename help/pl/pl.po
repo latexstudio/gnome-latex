@@ -1,14 +1,14 @@
 # Polish translation for latexila help.
-# Copyright © 2017 the latexila authors.
+# Copyright © 2017-2018 the latexila authors.
 # This file is distributed under the same license as the latexila help.
-# Piotr Drąg <piotrdrag@gmail.com>, 2017.
-# Aviary.pl <community-poland@mozilla.org>, 2017.
+# Piotr Drąg <piotrdrag@gmail.com>, 2017-2018.
+# Aviary.pl <community-poland@mozilla.org>, 2017-2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila-help\n"
-"POT-Creation-Date: 2017-12-27 06:53+0000\n"
-"PO-Revision-Date: 2017-12-31 22:55+0100\n"
+"POT-Creation-Date: 2018-03-24 17:55+0000\n"
+"PO-Revision-Date: 2018-03-25 21:38+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
-"Piotr Drąg <piotrdrag@gmail.com>, 2017\n"
-"Aviary.pl <community-poland@mozilla.org>, 2017"
+"Piotr Drąg <piotrdrag@gmail.com>, 2017-2018\n"
+"Aviary.pl <community-poland@mozilla.org>, 2017-2018"
 
 #. (itstool) path: page/title
 #: C/build_tools.page:10
@@ -393,7 +393,7 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/spell_checking.page:10
-msgid "Spell Checking"
+msgid "Spell-Checking"
 msgstr "Sprawdzanie pisowni"
 
 #. (itstool) path: synopsis/p
@@ -403,13 +403,13 @@ msgstr "Sprawdzanie pisowni ułatwia poprawianie błędów."
 
 #. (itstool) path: section/title
 #: C/spell_checking.page:17
-msgid "Use the spell checking"
+msgid "Use the spell-checking"
 msgstr "Używanie sprawdzania pisowni"
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:18
 msgid ""
-"The default spell checking settings can be changed in the preferences "
+"The default spell-checking settings can be changed in the preferences "
 "dialog: <guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu"
 "\">Preferences</gui> <gui style=\"tab\">Other</gui> </guiseq>"
 msgstr ""
@@ -445,22 +445,33 @@ msgstr "Słowniki"
 #. (itstool) path: section/p
 #: C/spell_checking.page:41
 msgid ""
-"<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> is "
-"used for the spell checking in GNOME LaTeX. Enchant uses one or several "
-"backends such as Hunspell or Aspell for the dictionaries."
+"<link href=\"https://wiki.gnome.org/Projects/gspell\">gspell</link> is used "
+"for the spell-checking in GNOME LaTeX. gspell uses <link href=\"https://"
+"abiword.github.io/enchant/\">Enchant</link>, which in turn supports several "
+"backends such as Hunspell or Aspell for the dictionaries. The Aspell backend "
+"doesn't work well with gspell, Hunspell is preferred. If dictionaries for "
+"both Aspell and Hunspell are installed for the same language, by default "
+"Enchant prefers the Hunspell one."
 msgstr ""
-"Do sprawdzania pisowni GNOME LaTeX używa mechanizmu <link href=\"http://www."
-"abisource.com/projects/enchant/\">Enchant</link>. Korzysta on z różnych "
-"bibliotek słowników, takich jak Hunspell lub Aspell."
+"Do sprawdzania pisowni w GNOME LaTeX używana jest biblioteka <link href="
+"\"https://wiki.gnome.org/Projects/gspell\">gspell</link>. gspell używa "
+"biblioteki <link href=\"https://abiword.github.io/enchant/\">Enchant</link>, "
+"która z kolei obsługuje kilka mechanizmów słowników, takich jak Hunspell czy "
+"Aspell. Mechanizm Aspell nie działa najlepiej z biblioteką gspell, więc "
+"preferowany jest mechanizm Hunspell. Jeśli dla tego samego języka "
+"zainstalowane są słowniki dla Aspell i Hunspell, to domyślnie Enchant "
+"preferuje słownik Hunspell."
 
 #. (itstool) path: section/p
-#: C/spell_checking.page:47
+#: C/spell_checking.page:51
 msgid ""
-"If your language is not listed, install a dictionary for one of the "
-"supported backends."
+"If your language is not listed in GNOME LaTeX, install a dictionary for one "
+"of the supported Enchant backends (for most languages the best choice is to "
+"install an Hunspell dictionary)."
 msgstr ""
-"Jeśli języka nie ma na liście, to zainstaluj jego słownik dla jednej "
-"z obsługiwanych bibliotek."
+"Jeśli języka nie ma na liście, to zainstaluj jego słownik dla jednego "
+"z obsługiwanych mechanizmów Enchant (dla większości języków najlepiej jest "
+"zainstalować słownik Hunspell)."
 
 #. (itstool) path: page/title
 #: C/structure.page:10
