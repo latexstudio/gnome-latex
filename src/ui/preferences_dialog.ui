@@ -579,8 +579,8 @@
                   <object class="GtkLabel" id="label3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="tooltip_text" translatable="yes">The spell checking settings can also be changed on a file-by-file basis via the Tools menu.</property>
-                    <property name="label" translatable="yes">Default Spell Checking Settings</property>
+                    <property name="tooltip_text" translatable="yes">The spell-checking settings can also be changed on a file-by-file basis via the Tools menu.</property>
+                    <property name="label" translatable="yes">Default Spell-Checking Settings</property>
                     <property name="xalign">0</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>

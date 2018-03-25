@@ -85,7 +85,7 @@ public class DocumentView : Tepl.View
             warning ("Completion: %s", e.message);
         }
 
-        // spell checking
+        // spell-checking
         init_spell_checking ();
 
         // forward search
@@ -148,7 +148,7 @@ public class DocumentView : Tepl.View
         });
     }
 
-    /* Spell checking */
+    /* Spell-checking */
 
     private void init_spell_checking ()
     {
@@ -309,7 +309,7 @@ public class DocumentView : Tepl.View
             DialogFlags.DESTROY_WITH_PARENT,
             MessageType.ERROR,
             ButtonsType.NONE,
-            "%s", _("No dictionaries available for the spell checking."));
+            "%s", _("No dictionaries available for the spell-checking."));
 
         dialog.add_buttons (_("_Help"), ResponseType.HELP,
             _("_OK"), ResponseType.OK,

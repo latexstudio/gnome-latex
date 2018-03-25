@@ -29,7 +29,7 @@ public class MainWindowTools
         { "ToolsSpellCheckerDialog", null, N_("_Check Spelling…"), null,
             N_("Check the spelling of the current document"), on_spell_checker_dialog },
         { "ToolsSetSpellLanguage", null, N_("_Set Language…"), null,
-            N_("Set the language used for the spell checking for the current document"),
+            N_("Set the language used for the spell-checking for the current document"),
             on_set_language }
     };
 
@@ -119,7 +119,7 @@ public class MainWindowTools
 
         view.launch_spell_checker_dialog ();
 
-        // If the spell checker is used, save the language since it's probably
+        // If the spell-checker is used, save the language since it's probably
         // correct. If it isn't correct, the language will be changed and the
         // metadata will also be saved.
         view.save_spell_language_metadata ();
