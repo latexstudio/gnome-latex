@@ -19,8 +19,7 @@ liblatexila_la_LIBADD =		\
 	$(CODE_COVERAGE_LIBS)	\
 	../evince/libevince.la
 
-liblatexila_headers =				\
-	dh-dconf-migration.h			\
+liblatexila_public_headers =			\
 	latexila.h				\
 	latexila-build-job.h			\
 	latexila-build-tool.h			\
@@ -34,17 +33,16 @@ liblatexila_headers =				\
 	latexila-post-processor-latex.h		\
 	latexila-post-processor-latexmk.h	\
 	latexila-synctex.h			\
-	latexila-templates-common.h		\
 	latexila-templates-default.h		\
 	latexila-templates-dialogs.h		\
 	latexila-templates-manage-dialog.h	\
 	latexila-templates-personal.h		\
 	latexila-types.h			\
 	latexila-utils.h			\
-	latexila-view.h
+	latexila-view.h				\
+	$(NULL)
 
-liblatexila_sources =				\
-	dh-dconf-migration.c			\
+liblatexila_public_c_files =			\
 	latexila-build-job.c			\
 	latexila-build-tool.c			\
 	latexila-build-tools.c			\
@@ -57,27 +55,41 @@ liblatexila_sources =				\
 	latexila-post-processor-latex.c		\
 	latexila-post-processor-latexmk.c	\
 	latexila-synctex.c			\
-	latexila-templates-common.c		\
 	latexila-templates-default.c		\
 	latexila-templates-dialogs.c		\
 	latexila-templates-manage-dialog.c	\
 	latexila-templates-personal.c		\
 	latexila-utils.c			\
-	latexila-view.c
+	latexila-view.c				\
+	$(NULL)
 
-liblatexila_built_sources =	\
-	latexila-enum-types.c	\
-	latexila-enum-types.h
+liblatexila_private_headers =			\
+	dh-dconf-migration.h			\
+	latexila-templates-common.h		\
+	$(NULL)
 
-liblatexila_la_SOURCES = 	\
-	$(liblatexila_headers)	\
-	$(liblatexila_sources)
+liblatexila_private_c_files =			\
+	dh-dconf-migration.c			\
+	latexila-templates-common.c		\
+	$(NULL)
 
-nodist_liblatexila_la_SOURCES = $(liblatexila_built_sources)
+liblatexila_public_built_sources =	\
+	latexila-enum-types.c		\
+	latexila-enum-types.h		\
+	$(NULL)
 
-BUILT_SOURCES = $(liblatexila_built_sources)
+liblatexila_la_SOURCES =		\
+	$(liblatexila_public_headers)	\
+	$(liblatexila_public_c_files)	\
+	$(liblatexila_private_headers)	\
+	$(liblatexila_private_c_files)	\
+	$(NULL)
 
-ENUM_TYPES = $(liblatexila_headers)
+nodist_liblatexila_la_SOURCES = $(liblatexila_public_built_sources)
+
+BUILT_SOURCES = $(liblatexila_public_built_sources)
+
+ENUM_TYPES = $(liblatexila_public_headers)
 
 latexila-enum-types.h: latexila-enum-types.h.template $(ENUM_TYPES) $(GLIB_MKENUMS)
 	$(AM_V_GEN) (cd $(srcdir) && $(GLIB_MKENUMS) --template latexila-enum-types.h.template $(ENUM_TYPES)) > $@
@@ -108,7 +120,11 @@ Latexila.gir: liblatexila.la
 Latexila_gir_NAMESPACE = Latexila
 Latexila_gir_INCLUDES = Gtk-3.0 GtkSource-4 Tepl-4
 Latexila_gir_LIBS = liblatexila.la
-Latexila_gir_FILES = $(liblatexila_la_SOURCES) $(nodist_liblatexila_la_SOURCES)
+Latexila_gir_FILES =				\
+	$(liblatexila_public_headers)		\
+	$(liblatexila_public_c_files)		\
+	$(liblatexila_public_built_sources)	\
+	$(NULL)
 Latexila_gir_SCANNERFLAGS = $(WARN_SCANNERFLAGS)
 
 noinst_DATA += Latexila.gir Latexila.typelib
