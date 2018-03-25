@@ -109,6 +109,7 @@ PKG_CHECK_MODULES([DEP], [
 	tepl-4 >= ${TEPL_REQUIRED_VERSION}
 	gspell-1 >= ${GSPELL_REQUIRED_VERSION}
 	gee-0.8 >= ${GEE_REQUIRED_VERSION}
+	dconf
 	gsettings-desktop-schemas
 ])
 

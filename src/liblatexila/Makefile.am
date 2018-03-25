@@ -20,6 +20,7 @@ liblatexila_la_LIBADD =		\
 	../evince/libevince.la
 
 liblatexila_headers =				\
+	dh-dconf-migration.h			\
 	latexila.h				\
 	latexila-build-job.h			\
 	latexila-build-tool.h			\
@@ -43,6 +44,7 @@ liblatexila_headers =				\
 	latexila-view.h
 
 liblatexila_sources =				\
+	dh-dconf-migration.c			\
 	latexila-build-job.c			\
 	latexila-build-tool.c			\
 	latexila-build-tools.c			\
