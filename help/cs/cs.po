@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
-"POT-Creation-Date: 2017-12-27 06:53+0000\n"
-"PO-Revision-Date: 2018-01-28 13:18+0100\n"
+"POT-Creation-Date: 2018-03-24 17:55+0000\n"
+"PO-Revision-Date: 2018-03-25 08:28+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -393,7 +393,7 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/spell_checking.page:10
-msgid "Spell Checking"
+msgid "Spell-Checking"
 msgstr "Kontrola pravopisu"
 
 #. (itstool) path: synopsis/p
@@ -403,13 +403,13 @@ msgstr "Slouží ke snadné opravě překlepů v pravopisu."
 
 #. (itstool) path: section/title
 #: C/spell_checking.page:17
-msgid "Use the spell checking"
+msgid "Use the spell-checking"
 msgstr "Používání kontroly pravopisu"
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:18
 msgid ""
-"The default spell checking settings can be changed in the preferences "
+"The default spell-checking settings can be changed in the preferences "
 "dialog: <guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu"
 "\">Preferences</gui> <gui style=\"tab\">Other</gui> </guiseq>"
 msgstr ""
@@ -445,22 +445,32 @@ msgstr "Slovníky"
 #. (itstool) path: section/p
 #: C/spell_checking.page:41
 msgid ""
-"<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> is "
-"used for the spell checking in GNOME LaTeX. Enchant uses one or several "
-"backends such as Hunspell or Aspell for the dictionaries."
+"<link href=\"https://wiki.gnome.org/Projects/gspell\">gspell</link> is used "
+"for the spell-checking in GNOME LaTeX. gspell uses <link href=\"https://"
+"abiword.github.io/enchant/\">Enchant</link>, which in turn supports several "
+"backends such as Hunspell or Aspell for the dictionaries. The Aspell backend "
+"doesn't work well with gspell, Hunspell is preferred. If dictionaries for "
+"both Aspell and Hunspell are installed for the same language, by default "
+"Enchant prefers the Hunspell one."
 msgstr ""
-"Pro kontrolu pravopisu využívá LaTeX GNOME projekt <link href=\"http://www."
-"abisource.com/projects/enchant/\">Enchant</link>. Enchant umí jako slovník "
-"využít jeden či více programů jako je Hunspell nebo Aspell."
+"Pro kontrolu pravopisu využívá LaTeX GNOME projekt <link href=\"https://wiki."
+"gnome.org/Projects/gspell\">gspell</link>. gspell je založený na projektu "
+"<link href=\"https://abiword.github.io/enchant/\">Enchant</link>, který "
+"podporuje několik různých knihoven se slovníky, jako jsou Hunspell nebo "
+"Aspell. Přednost je dána knihovně Hunspell, protože Aspell nefunguje s "
+"gspell úplně správně. Pokud jsou nainstalované slovníky pro tentýž jazyk z "
+"obou zmíněných knihoven, použije Enchant jako výchozí Hunspell."
 
 #. (itstool) path: section/p
-#: C/spell_checking.page:47
+#: C/spell_checking.page:51
 msgid ""
-"If your language is not listed, install a dictionary for one of the "
-"supported backends."
+"If your language is not listed in GNOME LaTeX, install a dictionary for one "
+"of the supported Enchant backends (for most languages the best choice is to "
+"install an Hunspell dictionary)."
 msgstr ""
-"Pokud váš jazyk není v seznamu, nainstalujte slovník pro některý z "
-"podporovaných programů."
+"Pokud váš jazyk není na seznamu v LaTeX GNOME, nainstalujte slovník pro "
+"některou z knihoven podporovanou programem Enchant (pro většinu jazyků je "
+"nejlepší volbou nainstalovat slovník Hunspell)."
 
 #. (itstool) path: page/title
 #: C/structure.page:10
@@ -654,5 +664,5 @@ msgid ""
 "<app>Evince</app> has to be launched by <app>GNOME LaTeX</app>. Else, "
 "jumping from the PDF to the .tex file will not work."
 msgstr ""
-"Aplikace <app>Evince</app> musí být spuštěna z aplikace <app>LaTeX GNOME</app>. "
-"Jinak přechod z PDF do souboru .tex nebude fungovat."
+"Aplikace <app>Evince</app> musí být spuštěna z aplikace <app>LaTeX GNOME</"
+"app>. Jinak přechod z PDF do souboru .tex nebude fungovat."
