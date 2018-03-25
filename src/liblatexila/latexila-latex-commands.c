@@ -1,7 +1,8 @@
 /*
  * This file is part of GNOME LaTeX.
  *
- * Copyright (C) 2017 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2017-2018 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2018 - Robert Griesel <r.griesel@gmail.com>
  *
  * GNOME LaTeX is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,14 +65,11 @@ latexila_latex_commands_add_action_infos (GtkApplication *gtk_app)
 
 /* Util functions */
 
-/* Temporarily public, will be made private when all GActions for the LaTeX and
- * Math menus are implemented.
- */
-void
-latexila_latex_commands_insert_text (TeplApplicationWindow *tepl_window,
-				     const gchar           *text_before,
-				     const gchar           *text_after,
-				     const gchar           *text_if_no_selection)
+static void
+insert_text (TeplApplicationWindow *tepl_window,
+	     const gchar           *text_before,
+	     const gchar           *text_after,
+	     const gchar           *text_if_no_selection)
 {
 	TeplView *view;
 	GtkTextBuffer *buffer;
@@ -174,8 +172,7 @@ get_indentation (TeplApplicationWindow *tepl_window)
 }
 
 /* When it doesn't make sense to have the selected text between @text_before and
- * @text_after when calling latexila_latex_commands_insert_text(), call this
- * function first.
+ * @text_after when calling insert_text(), call this function first.
  */
 static void
 deselect_text (TeplApplicationWindow *tepl_window)
@@ -214,7 +211,7 @@ latex_command_simple_cb (GSimpleAction *action,
 	command = g_variant_get_string (parameter, NULL);
 	text_before = g_strdup_printf ("\\%s", command);
 
-	latexila_latex_commands_insert_text (tepl_window, text_before, "", NULL);
+	insert_text (tepl_window, text_before, "", NULL);
 
 	g_free (text_before);
 }
@@ -231,7 +228,7 @@ latex_command_with_braces_cb (GSimpleAction *action,
 	command = g_variant_get_string (parameter, NULL);
 	text_before = g_strdup_printf ("\\%s{", command);
 
-	latexila_latex_commands_insert_text (tepl_window, text_before, "}", NULL);
+	insert_text (tepl_window, text_before, "}", NULL);
 
 	g_free (text_before);
 }
@@ -248,7 +245,7 @@ latex_command_with_space_cb (GSimpleAction *action,
 	command = g_variant_get_string (parameter, NULL);
 	text_before = g_strdup_printf ("\\%s ", command);
 
-	latexila_latex_commands_insert_text (tepl_window, text_before, "", NULL);
+	insert_text (tepl_window, text_before, "", NULL);
 
 	g_free (text_before);
 }
@@ -265,7 +262,7 @@ latex_command_with_newline_cb (GSimpleAction *action,
 	command = g_variant_get_string (parameter, NULL);
 	text_before = g_strdup_printf ("\\%s\n", command);
 
-	latexila_latex_commands_insert_text (tepl_window, text_before, "", NULL);
+	insert_text (tepl_window, text_before, "", NULL);
 
 	g_free (text_before);
 }
@@ -284,7 +281,7 @@ latex_command_env_simple_cb (GSimpleAction *action,
 	text_before = g_strdup_printf ("\\begin{%s}\n", environment);
 	text_after = g_strdup_printf ("\n\\end{%s}", environment);
 
-	latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+	insert_text (tepl_window, text_before, text_after, NULL);
 
 	g_free (text_before);
 	g_free (text_after);
@@ -318,7 +315,7 @@ latex_command_env_figure_cb (GSimpleAction *action,
 				      indent);
 
 	deselect_text (tepl_window);
-	latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+	insert_text (tepl_window, text_before, text_after, NULL);
 
 	g_free (indent);
 	g_free (text_before);
@@ -360,7 +357,7 @@ latex_command_env_table_cb (GSimpleAction *action,
 				      indent);
 
 	deselect_text (tepl_window);
-	latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+	insert_text (tepl_window, text_before, text_after, NULL);
 
 	g_free (indent);
 	g_free (text_before);
@@ -390,7 +387,7 @@ latex_command_list_env_simple_cb (GSimpleAction *action,
 	text_after = g_strdup_printf ("\n\\end{%s}", list_env);
 
 	deselect_text (tepl_window);
-	latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+	insert_text (tepl_window, text_before, text_after, NULL);
 
 	g_free (indent);
 	g_free (text_before);
@@ -416,7 +413,7 @@ latex_command_list_env_description_cb (GSimpleAction *action,
 	text_after = g_strdup_printf ("] \n\\end{description}");
 
 	deselect_text (tepl_window);
-	latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+	insert_text (tepl_window, text_before, text_after, NULL);
 
 	g_free (indent);
 	g_free (text_before);
@@ -436,7 +433,7 @@ latex_command_list_env_list_cb (GSimpleAction *action,
 	text_after = g_strdup_printf ("}{}\n%s\\item \n\\end{list}", indent);
 
 	deselect_text (tepl_window);
-	latexila_latex_commands_insert_text (tepl_window, "\\begin{list}{", text_after, NULL);
+	insert_text (tepl_window, "\\begin{list}{", text_after, NULL);
 
 	g_free (indent);
 	g_free (text_after);
@@ -475,10 +472,10 @@ latex_command_char_style_cb (GSimpleAction *action,
 		text_if_no_selection = g_strdup_printf ("\\%s ", style);
 	}
 
-	latexila_latex_commands_insert_text (tepl_window,
-					     text_before,
-					     text_after,
-					     text_if_no_selection);
+	insert_text (tepl_window,
+		     text_before,
+		     text_after,
+		     text_if_no_selection);
 
 	g_free (text_before);
 	g_free (text_after);
@@ -503,10 +500,10 @@ latex_command_tabular_tabular_cb (GSimpleAction *action,
 				      indent);
 
 	deselect_text (tepl_window);
-	latexila_latex_commands_insert_text (tepl_window,
-					     "\\begin{tabular}{cc",
-					     text_after,
-					     NULL);
+	insert_text (tepl_window,
+		     "\\begin{tabular}{cc",
+		     text_after,
+		     NULL);
 
 	g_free (indent);
 	g_free (text_after);
@@ -519,7 +516,7 @@ latex_command_tabular_multicolumn_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\multicolumn{}{}{", "}", NULL);
+	insert_text (tepl_window, "\\multicolumn{}{}{", "}", NULL);
 }
 
 static void
@@ -529,7 +526,7 @@ latex_command_tabular_cline_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\cline{", "-}", NULL);
+	insert_text (tepl_window, "\\cline{", "-}", NULL);
 }
 
 static void
@@ -548,10 +545,10 @@ latex_command_presentation_frame_cb (GSimpleAction *action,
 				       indent,
 				       indent);
 
-	latexila_latex_commands_insert_text (tepl_window,
-					     text_before,
-					     "\n\\end{frame}",
-					     NULL);
+	insert_text (tepl_window,
+		     text_before,
+		     "\n\\end{frame}",
+		     NULL);
 
 	g_free (indent);
 	g_free (text_before);
@@ -564,10 +561,10 @@ latex_command_presentation_block_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window,
-					     "\\begin{block}{}\n",
-					     "\n\\end{block}",
-					     NULL);
+	insert_text (tepl_window,
+		     "\\begin{block}{}\n",
+		     "\n\\end{block}",
+		     NULL);
 }
 
 static void
@@ -595,7 +592,7 @@ latex_command_presentation_columns_cb (GSimpleAction *action,
 				      indent,
 				      indent);
 
-	latexila_latex_commands_insert_text (tepl_window, text_before, text_after, NULL);
+	insert_text (tepl_window, text_before, text_after, NULL);
 
 	g_free (indent);
 	g_free (text_before);
@@ -609,7 +606,7 @@ latex_command_spacing_new_line_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\\\\n", "", NULL);
+	insert_text (tepl_window, "\\\\\n", "", NULL);
 }
 
 static void
@@ -619,12 +616,12 @@ latex_command_ams_packages_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window,
-					     "\\usepackage{amsmath}\n"
-					     "\\usepackage{amsfonts}\n"
-					     "\\usepackage{amssymb}",
-					     "",
-					     NULL);
+	insert_text (tepl_window,
+		     "\\usepackage{amsmath}\n"
+		     "\\usepackage{amsfonts}\n"
+		     "\\usepackage{amssymb}",
+		     "",
+		     NULL);
 }
 
 static void
@@ -634,7 +631,7 @@ math_command_env_normal_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "$ ", " $", NULL);
+	insert_text (tepl_window, "$ ", " $", NULL);
 }
 
 static void
@@ -644,7 +641,7 @@ math_command_env_centered_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\[ ", " \\]", NULL);
+	insert_text (tepl_window, "\\[ ", " \\]", NULL);
 }
 
 static void
@@ -654,10 +651,10 @@ math_command_env_array_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window,
-					     "\\begin{align*}\n",
-					     "\n\\end{align*}",
-					     NULL);
+	insert_text (tepl_window,
+		     "\\begin{align*}\n",
+		     "\n\\end{align*}",
+		     NULL);
 }
 
 static void
@@ -667,7 +664,7 @@ math_command_misc_superscript_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "^{", "}", NULL);
+	insert_text (tepl_window, "^{", "}", NULL);
 }
 
 static void
@@ -677,7 +674,7 @@ math_command_misc_subscript_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "_{", "}", NULL);
+	insert_text (tepl_window, "_{", "}", NULL);
 }
 
 static void
@@ -687,7 +684,7 @@ math_command_misc_frac_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\frac{", "}{}", NULL);
+	insert_text (tepl_window, "\\frac{", "}{}", NULL);
 }
 
 static void
@@ -697,7 +694,7 @@ math_command_misc_nth_root_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\sqrt[]{", "}", NULL);
+	insert_text (tepl_window, "\\sqrt[]{", "}", NULL);
 }
 
 static void
@@ -707,7 +704,7 @@ math_command_spaces_small_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\, ", "", NULL);
+	insert_text (tepl_window, "\\, ", "", NULL);
 }
 
 static void
@@ -717,7 +714,7 @@ math_command_spaces_medium_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\: ", "", NULL);
+	insert_text (tepl_window, "\\: ", "", NULL);
 }
 
 static void
@@ -727,7 +724,7 @@ math_command_spaces_large_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\; ", "", NULL);
+	insert_text (tepl_window, "\\; ", "", NULL);
 }
 
 static void
@@ -737,7 +734,7 @@ math_command_delimiter_left1_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\left( ", "", NULL);
+	insert_text (tepl_window, "\\left( ", "", NULL);
 }
 
 static void
@@ -747,7 +744,7 @@ math_command_delimiter_left2_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\left[ ", "", NULL);
+	insert_text (tepl_window, "\\left[ ", "", NULL);
 }
 
 static void
@@ -757,7 +754,7 @@ math_command_delimiter_left3_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\left\\lbrace ", "", NULL);
+	insert_text (tepl_window, "\\left\\lbrace ", "", NULL);
 }
 
 static void
@@ -767,7 +764,7 @@ math_command_delimiter_left4_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\left\\langle ", "", NULL);
+	insert_text (tepl_window, "\\left\\langle ", "", NULL);
 }
 
 static void
@@ -777,7 +774,7 @@ math_command_delimiter_left5_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\left) ", "", NULL);
+	insert_text (tepl_window, "\\left) ", "", NULL);
 }
 
 static void
@@ -787,7 +784,7 @@ math_command_delimiter_left6_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\left] ", "", NULL);
+	insert_text (tepl_window, "\\left] ", "", NULL);
 }
 
 static void
@@ -797,7 +794,7 @@ math_command_delimiter_left7_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\left\\rbrace ", "", NULL);
+	insert_text (tepl_window, "\\left\\rbrace ", "", NULL);
 }
 
 static void
@@ -807,7 +804,7 @@ math_command_delimiter_left8_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\left\\rangle ", "", NULL);
+	insert_text (tepl_window, "\\left\\rangle ", "", NULL);
 }
 
 static void
@@ -817,7 +814,7 @@ math_command_delimiter_left9_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\left. ", "", NULL);
+	insert_text (tepl_window, "\\left. ", "", NULL);
 }
 
 static void
@@ -827,7 +824,7 @@ math_command_delimiter_right1_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\right) ", "", NULL);
+	insert_text (tepl_window, "\\right) ", "", NULL);
 }
 
 static void
@@ -837,7 +834,7 @@ math_command_delimiter_right2_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\right] ", "", NULL);
+	insert_text (tepl_window, "\\right] ", "", NULL);
 }
 
 static void
@@ -847,7 +844,7 @@ math_command_delimiter_right3_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\right\\rbrace ", "", NULL);
+	insert_text (tepl_window, "\\right\\rbrace ", "", NULL);
 }
 
 static void
@@ -857,7 +854,7 @@ math_command_delimiter_right4_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\right\\rangle ", "", NULL);
+	insert_text (tepl_window, "\\right\\rangle ", "", NULL);
 }
 
 static void
@@ -867,7 +864,7 @@ math_command_delimiter_right5_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\right( ", "", NULL);
+	insert_text (tepl_window, "\\right( ", "", NULL);
 }
 
 static void
@@ -877,7 +874,7 @@ math_command_delimiter_right6_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\right[ ", "", NULL);
+	insert_text (tepl_window, "\\right[ ", "", NULL);
 }
 
 static void
@@ -887,7 +884,7 @@ math_command_delimiter_right7_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\right\\lbrace ", "", NULL);
+	insert_text (tepl_window, "\\right\\lbrace ", "", NULL);
 }
 
 static void
@@ -897,7 +894,7 @@ math_command_delimiter_right8_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\right\\langle ", "", NULL);
+	insert_text (tepl_window, "\\right\\langle ", "", NULL);
 }
 
 static void
@@ -907,7 +904,7 @@ math_command_delimiter_right9_cb (GSimpleAction *action,
 {
 	TeplApplicationWindow *tepl_window = TEPL_APPLICATION_WINDOW (user_data);
 
-	latexila_latex_commands_insert_text (tepl_window, "\\right. ", "", NULL);
+	insert_text (tepl_window, "\\right. ", "", NULL);
 }
 
 /**

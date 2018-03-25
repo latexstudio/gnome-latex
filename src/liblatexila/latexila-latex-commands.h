@@ -1,7 +1,7 @@
 /*
  * This file is part of GNOME LaTeX.
  *
- * Copyright (C) 2017 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2017-2018 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GNOME LaTeX is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,14 +24,9 @@
 
 G_BEGIN_DECLS
 
-void      latexila_latex_commands_add_action_infos  (GtkApplication *gtk_app);
+void	latexila_latex_commands_add_action_infos	(GtkApplication *gtk_app);
 
-void      latexila_latex_commands_add_actions       (GtkApplicationWindow *gtk_window);
-
-void      latexila_latex_commands_insert_text       (TeplApplicationWindow *tepl_window,
-                                                     const gchar           *text_before,
-                                                     const gchar           *text_after,
-                                                     const gchar           *text_if_no_selection);
+void	latexila_latex_commands_add_actions		(GtkApplicationWindow *gtk_window);
 
 G_END_DECLS
 

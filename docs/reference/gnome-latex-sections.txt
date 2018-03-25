@@ -134,7 +134,6 @@ latexila_build_view_get_type
 <FILE>latex-commands</FILE>
 latexila_latex_commands_add_action_infos
 latexila_latex_commands_add_actions
-latexila_latex_commands_insert_text
 </SECTION>
 
 <SECTION>
