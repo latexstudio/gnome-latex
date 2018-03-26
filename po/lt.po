@@ -1,15 +1,14 @@
 # Lithuanian translation for latexila.
 # Copyright (C) 2013 latexila's COPYRIGHT HOLDER
 # This file is distributed under the same license as the latexila package.
-# Aurimas Černius <aurisc4@gmail.com>, 2013, 2014, 2015, 2016, 2017.
+# Aurimas Černius <aurisc4@gmail.com>, 2013, 2014, 2015, 2016, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=latexila&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-10-29 10:43+0000\n"
-"PO-Revision-Date: 2017-10-29 19:23+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
+"POT-Creation-Date: 2018-03-25 09:10+0000\n"
+"PO-Revision-Date: 2018-03-26 22:30+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -85,21 +84,22 @@ msgstr "Konvertuoti DVI dokumentą į PistScript formatą"
 msgid "Convert the PostScript document to the PDF format"
 msgstr "Konvertuoti PostScript dokumentą į PDF formatą"
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:1
-msgid "Integrated LaTeX environment"
-msgstr "Integruota LaTeX aplinka"
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:1
+#| msgid "LaTeXila"
+msgid "LaTeX editor"
+msgstr "LaTeX redaktorius"
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:2
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:2
 msgid ""
-"LaTeXila is an integrated LaTeX environment for the GNOME desktop. The idea "
-"of LaTeXila is to always deal directly with the LaTeX code, while "
-"simplifying as most as possible the writing of this LaTeX code."
+"GNOME LaTeX is a LaTeX editor for the GNOME desktop, previously named "
+"LaTeXila. GNOME LaTeX permits to concentrate on the content and the "
+"structure of the document instead of being distracted by its presentation."
 msgstr ""
-"LaTeXila yra integruota LaTeX aplinka GNOME darbalaukiui. LaTeXila siekia "
-"tiesiosiai dirbti su LaTeX kodu, tuo pat metu kiek galima supaprastinant "
-"LaTeX kodo rašymą."
+"GNOME LaTeX yra LaTeX redaktorius GNOME darbalaukiui, anksčiau vadintas "
+"LaTeXila. GNOME LaTeX leidžia koncentruotis į turinį bei dokumento "
+"struktūrą, užuot blaškiusis dėl jo pavaizdavimo."
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:3
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:3
 msgid ""
 "To help the writing of the LaTeX markup, auto-completion is available as "
 "well as menus and toolbars with the principal commands. New documents are "
@@ -112,80 +112,90 @@ msgstr ""
 "šablonus. Yra mygtukai kompiliavimui, konvertavimui ir dokumento peržiūrai "
 "vienu paspaudimu. Projektai iš keleto .tex failų yra lengvai tvarkomi."
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:4
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:4
+#| msgid ""
+#| "A side panel contains three components: the document structure to easily "
+#| "navigate in it; lists of symbols to insert them in a document; and an "
+#| "integrated file browser."
 msgid ""
 "A side panel contains three components: the document structure to easily "
-"navigate in it; lists of symbols to insert them in a document; and an "
-"integrated file browser."
+"navigate in it; lists of symbols to insert them in a document; and a file "
+"browser."
 msgstr ""
 "Šoninis skydelis turi tris komponentus: dokumento struktūra lengvai "
 "navigacijai jame; simbolių sąrašas įterpimui į dokumentą; integruota failų "
 "naršyklė."
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:5
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:5
 #| msgid ""
-#| "LaTeXila has also other features like the spell checking, or the forward "
-#| "and backward search to switch between the .tex and the PDF."
+#| "LaTeXila has also other features like the spell-checking, or jumping to "
+#| "the associated position between the .tex file and the PDF."
 msgid ""
-"LaTeXila has also other features like the spell-checking, or jumping to the "
-"associated position between the .tex file and the PDF."
+"GNOME LaTeX has also other features like the spell-checking, or jumping to "
+"the associated position between the .tex file and the PDF."
 msgstr ""
-"LaTeXila taip pat turi kitų savybių, tokių kaip rašybos tikrinimas bei "
+"GNOME LaTeX taip pat turi kitų savybių, tokių kaip rašybos tikrinimas bei "
 "paieška pirmyn ir atgal persijungimui tarp .tex ir PDF."
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:6
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:6
 msgid "Completion of LaTeX commands"
 msgstr "LaTeX komandų užbaigimas"
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:7
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:7
 msgid "Generating the PDF file"
 msgstr "Generuojamas PDF failas"
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:8
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:8
 msgid "Document structure in the side panel"
 msgstr "Dokumento struktūra šoniniame polangyje"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:1
-msgid "Integrated LaTeX Environment"
-msgstr "Integruota LaTeX aplinka"
+#: ../data/org.gnome.gnome-latex.desktop.in.h:1
+#| msgid "Editor"
+msgid "LaTeX Editor"
+msgstr "LaTeX redaktorius"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:2
+#: ../data/org.gnome.gnome-latex.desktop.in.h:2
 msgid "Edit LaTeX documents"
 msgstr "Redaguoti LaTeX dokumentus"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:3
+#: ../data/org.gnome.gnome-latex.desktop.in.h:3
 msgid "text;tex;latex;editor;documents;"
 msgstr "tekstas;tex;latex;redaktorius;dokumentai;"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:4
+#: ../data/org.gnome.gnome-latex.desktop.in.h:4
 msgid "Open a New Window"
 msgstr "Atverti naują langą"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:5
+#: ../data/org.gnome.gnome-latex.desktop.in.h:5
 msgid "Open a New Document"
 msgstr "Atverti naują dokumentą"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:1
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:1
 msgid "Use Default Font"
 msgstr "Naudoti numatytąjį šriftą"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:2
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:2
+#| msgid ""
+#| "Whether to use the system's default fixed width font for editing text "
+#| "instead of a font specific to LaTeXila. If this option is turned off, "
+#| "then the font named in the \"Editor Font\" option will be used instead of "
+#| "the system font."
 msgid ""
 "Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to LaTeXila. If this option is turned off, then "
-"the font named in the \"Editor Font\" option will be used instead of the "
-"system font."
+"instead of a font specific to GNOME LaTeX. If this option is turned off, "
+"then the font named in the \"Editor Font\" option will be used instead of "
+"the system font."
 msgstr ""
 "Ar naudoti sistemos numatytąjį fiksuoto pločio šriftą teksto redagavimui "
-"vietoj atskiro LaTeXila šrifto. Jei šis parametras yra išjungtas, tuomet "
+"vietoj atskiro GNOME LaTeX šrifto. Jei šis parametras yra išjungtas, tuomet "
 "vietoj sisteminio šrifto bus naudojamas šriftas, nurodytas parametre "
 "„Redaktoriaus šriftas“."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:3
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:3
 msgid "Editor Font"
 msgstr "Redaktoriaus šriftas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:4
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:4
 msgid ""
 "A custom font that will be used for the editing area. This will only take "
 "effect if the \"Use Default Font\" option is turned off."
@@ -193,142 +203,162 @@ msgstr ""
 "Pasirinktinis šriftas, kuris bus naudojamas redagavimui. Turi prasmę tik jei "
 "parametras „Naudoti numatytąjį šriftą“ yra išjungtas."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:5
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:5
 msgid "Style Scheme"
 msgstr "Stiliaus schema"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:6
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:6
 msgid "The ID of a GtkSourceView Style Scheme used to color the text."
 msgstr "GtkSourceView stiliaus schemos ID, naudojamas teksto spalvinimui."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:7
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:7
 msgid "Create Backup Copies"
 msgstr "Kurti atsargines kopijas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:8
-msgid "Whether LaTeXila should create backup copies for the files it saves."
-msgstr "Ar LaTeXila turėtų kurti atsargines kopijas įrašomiems failams."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:8
+#| msgid "Whether LaTeXila should create backup copies for the files it saves."
+msgid "Whether GNOME LaTeX should create backup copies for the files it saves."
+msgstr "Ar GNOME LaTeX turėtų kurti atsargines kopijas įrašomiems failams."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:9
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:9
 msgid "Autosave"
 msgstr "Automatinis įrašymas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:10
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:10
+#| msgid ""
+#| "Whether LaTeXila should automatically save modified files after a time "
+#| "interval. You can set the time interval with the \"Autosave Interval\" "
+#| "option."
 msgid ""
-"Whether LaTeXila should automatically save modified files after a time "
+"Whether GNOME LaTeX should automatically save modified files after a time "
 "interval. You can set the time interval with the \"Autosave Interval\" "
 "option."
 msgstr ""
-"Ar LaTeXila turėtų periodiškai automatiškai įrašyti pakeistus failus. Laiko "
-"intervalą galite nurodyti parametru „Automatinio įrašymo intervalas“."
+"Ar GNOME LaTeX turėtų periodiškai automatiškai įrašyti pakeistus failus. "
+"Laiko intervalą galite nurodyti parametru „Automatinio įrašymo intervalas“."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:11
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:11
 msgid "Autosave Interval"
 msgstr "Automatinio įrašymo intervalas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:12
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:12
+#| msgid ""
+#| "Number of minutes after which LaTeXila will automatically save modified "
+#| "files. This will only take effect if the \"Autosave\" option is turned on."
 msgid ""
-"Number of minutes after which LaTeXila will automatically save modified "
+"Number of minutes after which GNOME LaTeX will automatically save modified "
 "files. This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
-"Minučių skaičius, po kurio LaTeXila automatiškai įrašys pakeistus failus. "
+"Minučių skaičius, po kurio GNOME LaTeX automatiškai įrašys pakeistus failus. "
 "Turi prasmę tik jei parametras „Automatiškai įrašyti“ yra įjungtas."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:13
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:13
 #: ../src/ui/preferences_dialog.ui.h:9
 msgid "Reopen files on startup"
 msgstr "Paleidžiant atverti failus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:14
-msgid "Whether LaTeXila should reopen the files that was opened the last time."
-msgstr "Ar LaTeXila turėtų atverti failus, kurie buvo atverti praeitą kartą."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:14
+#| msgid ""
+#| "Whether LaTeXila should reopen the files that was opened the last time."
+msgid ""
+"Whether GNOME LaTeX should reopen the files that was opened the last time."
+msgstr ""
+"Ar GNOME LaTeX turėtų atverti failus, kurie buvo atverti praeitą kartą."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:15
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:15
 msgid "Tab Size"
 msgstr "Tab dydis"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:16
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:16
 msgid ""
 "Specifies the number of spaces that should be displayed instead of Tab "
 "characters."
 msgstr "Nurodo tarpų skaičių, kuris turėtų būti rodomas vietoj Tab simbolių."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:17
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:17
 msgid "Insert spaces"
 msgstr "Įterpti tarpus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:18
-msgid "Whether LaTeXila should insert spaces instead of tabs."
-msgstr "Ar LaTeXila turėtų įterpti tarpus vietoj tabuliacijos."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:18
+#| msgid "Whether LaTeXila should insert spaces instead of tabs."
+msgid "Whether GNOME LaTeX should insert spaces instead of tabs."
+msgstr "Ar GNOME LaTeX turėtų įterpti tarpus vietoj tabuliacijos."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:19
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:19
 msgid "Forget lack of tabulations"
 msgstr "Pamiršti tabuliacijos trūkumą"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:20
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:20
 msgid "Forget you are not using tabulations."
 msgstr "Pamiršti, jei nenaudojate tabuliacijos."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:21
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:21
 msgid "Display Line Numbers"
 msgstr "Rodyti eilučių numerius"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:22
-msgid "Whether LaTeXila should display line numbers in the editing area."
-msgstr "Ar LaTeXila turėtų rodyti eilučių numerius redagavimo vietoje."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:22
+#| msgid "Whether LaTeXila should display line numbers in the editing area."
+msgid "Whether GNOME LaTeX should display line numbers in the editing area."
+msgstr "Ar GNOME LaTeX turėtų rodyti eilučių numerius redagavimo vietoje."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:23
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:23
 msgid "Highlight Current Line"
 msgstr "Paryškinti dabartinę eilutę"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:24
-msgid "Whether LaTeXila should highlight the current line."
-msgstr "Ar LaTeXila turėtų paryškinti dabartinę eilutę."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:24
+#| msgid "Whether LaTeXila should highlight the current line."
+msgid "Whether GNOME LaTeX should highlight the current line."
+msgstr "Ar GNOME LaTeX turėtų paryškinti dabartinę eilutę."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:25
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:25
 msgid "Highlight Matching Brackets"
 msgstr "Paryškinti porinius skliaustus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:26
-msgid "Whether LaTeXila should highlight matching brackets."
-msgstr "Ar LaTeXila turėtų paryškinti porinius skliaustus."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:26
+#| msgid "Whether LaTeXila should highlight matching brackets."
+msgid "Whether GNOME LaTeX should highlight matching brackets."
+msgstr "Ar GNOME LaTeX turėtų paryškinti porinius skliaustus."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:27
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:27
 msgid "Highlight Misspelled Words"
 msgstr "Paryškinti neteisingai parašytus žodžius"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:28
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:28
 msgid "Whether misspelled words are highlighted by default."
 msgstr "Ar numatytai paryškinami blogai parašyti žodžiai."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:29
-msgid "Spell Checking Language"
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:29
+#| msgid "Spell Checking Language"
+msgid "Spell-Checking Language"
 msgstr "Rašybos tikrinimo kalba"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:30
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:30
+#| msgid ""
+#| "The default language used for the spell checking. Set to the empty string "
+#| "to take the best language available based on the environment."
 msgid ""
-"The default language used for the spell checking. Set to the empty string to "
+"The default language used for the spell-checking. Set to the empty string to "
 "take the best language available based on the environment."
 msgstr ""
 "Numatytoji kalba rašybos tikrinimui. Nustatyti į tuščia simbolių eilutę "
 "geriausios kalbos pasirinkimui pagal aplinką."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:31
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:31
 msgid "Main toolbar is visible"
 msgstr "Pagrindinė įrankinė yra matoma"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:32
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:32
 msgid ""
 "Whether the main toolbar (file open, close, build, ...) should be visible."
 msgstr ""
 "Ar pagrindinė įrankinė (failo atvėrimas, užvėrimas, kūrimas, ...) turėtų "
 "būti matoma."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:33
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:33
 msgid "Edit toolbar is visible"
 msgstr "Redagavimo įrankinė yra matoma"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:34
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:34
 msgid ""
 "Whether the edit toolbar (bold, italic, character sizes, ...) should be "
 "visible."
@@ -336,123 +366,125 @@ msgstr ""
 "Ar redagavimo įrankinė (pusjuodis, kursyvas, simbolių dydžiai, ...) turėtų "
 "būti matomi."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:35
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:35
 msgid "Side panel is Visible"
 msgstr "Šoninis polangis yra matomas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:36
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:36
 msgid ""
 "Whether the side panel at the left of editing windows should be visible."
 msgstr "Ar šoninis polangis redagavimo langų kairėje turi būti matomas."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:37
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:37
 msgid "Bottom panel is Visible"
 msgstr "Apatinis polangis yra matomas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:38
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:38
 msgid "Whether the bottom panel containing the build view should be visible."
 msgstr "Ar apatinis polangis su kūrimo vaizdu turi būti matomas."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:39
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:39
 msgid "Side panel component"
 msgstr "Šoninio polangio komponentas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:40
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:40
 msgid ""
 "Side panel's active component. 0: Symbols. 1: File browser. 2: Structure."
 msgstr ""
 "Šoninio polangio aktyvusis komponentas. 0: simboliai, 1: failų naršyklė, 2: "
 "struktūra."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:41
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:41
 msgid "Show build output warnings"
 msgstr "Rodyti kūrimo išvesties įspėjimus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:42
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:42
 msgid "Show build output badboxes"
 msgstr "Rodyti kūrimo išvesties blogus elementus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:43
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:43
 msgid "Interactive completion"
 msgstr "Interaktyvus užbaigimas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:44
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:44
 msgid "Automatically show LaTeX commands proposals"
 msgstr "Automatiškai rodyti LaTeX komandų siūlymus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:45
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:45
 msgid "Minimum number of characters for interactive completion"
 msgstr "Mažiausias simbolių skaičius interaktyviam užbaigimui"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:46
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:46
 msgid ""
 "Minimum number of characters after \"\\\" for the interactive completion of "
 "LaTeX commands"
 msgstr ""
 "Mažiausias simbolių skaičius po „\\“ interaktyviam LaTeX komandų užbaigimui"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:47
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:47
 #: ../src/ui/preferences_dialog.ui.h:22
 msgid "No confirmation when cleaning-up"
 msgstr "Neklausti patvirtinimo išvalant"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:48
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:48
 msgid "Automatic clean-up"
 msgstr "Automatinis išvalymas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:49
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:49
 msgid ""
 "Automatically clean-up files after close. no-confirm-clean must be true."
 msgstr ""
 "Automatiškai išvalyti failus po užvėrimo. no-confirm-clean turi būti "
 "teigiamas."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:50
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:50
 msgid "File extensions for the clean-up"
 msgstr "Failų plėtiniai išvalymui"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:51
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:51
 msgid "The list of file extensions for the clean-up, separated by spaces"
 msgstr "Failų plėtinių sąrašas išvalymui, skiriama tarpais"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:52
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:52
 msgid "Enabled default build tools"
 msgstr "Įjungti numatytieji kūrimo įrankiai"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:53
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:53
 msgid "The list of the default build tools that are enabled"
 msgstr "Numatytųjų įjungtų kūrimo įrankių sąrašas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:54
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:54
 msgid "Disabled default build tools"
 msgstr "Išjungti numatytieji kūrimo įrankiai"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:55
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:55
 msgid "The list of the default build tools that are disabled"
 msgstr "Numatytųjų išjungtų kūrimo įrankių sąrašas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:56
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:56
 msgid "Current directory"
 msgstr "Dabartinis aplankas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:57
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:57
 msgid "URI of the file browser current directory"
 msgstr "Failų naršyklės dabartinio aplanko URI"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:58 ../src/file_browser.vala:347
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:58
+#: ../src/file_browser.vala:348
 msgid "Show build files"
 msgstr "Rodyti kūrimo failus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:59
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:59
 msgid ""
 "Show files with an extension present in preferences.latex.clean-extensions."
 msgstr "Rodyti failus su plėtiniu iš preferences.latex.clean-extensions."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:60 ../src/file_browser.vala:355
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:60
+#: ../src/file_browser.vala:356
 msgid "Show hidden files"
 msgstr "Rodyti paslėptus failus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:61
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:61
 msgid "Show files beginning with a dot."
 msgstr "Rodyti failus, prasidedančius tašku."
 
@@ -534,11 +566,11 @@ msgstr "Asmeninis kūrimo įrankis"
 #: ../src/build_tool_dialog.vala:72 ../src/build_tools_preferences.vala:335
 #: ../src/clean_build_files.vala:242 ../src/dialogs.vala:41
 #: ../src/document_tab.vala:178
-#: ../src/liblatexila/latexila-templates-dialogs.c:128
+#: ../src/liblatexila/latexila-templates-dialogs.c:130
 #: ../src/liblatexila/latexila-templates-dialogs.c:238
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:145
-#: ../src/main_window_file.vala:157 ../src/main_window.vala:758
-#: ../src/main_window.vala:815 ../src/preferences_dialog.vala:114
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:147
+#: ../src/main_window_file.vala:157 ../src/main_window.vala:760
+#: ../src/main_window.vala:817 ../src/preferences_dialog.vala:114
 #: ../src/project_dialogs.vala:31 ../src/project_dialogs.vala:122
 #: ../src/project_dialogs.vala:276 ../src/project_dialogs.vala:296
 msgid "_Cancel"
@@ -587,12 +619,12 @@ msgid "Remove"
 msgstr "Pašalinti"
 
 #: ../src/build_tool_dialog.vala:318 ../src/build_tools_preferences.vala:354
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:282
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:286
 msgid "Move up"
 msgstr "Perkelti aukštyn"
 
 #: ../src/build_tool_dialog.vala:369 ../src/build_tools_preferences.vala:406
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:294
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:298
 msgid "Move down"
 msgstr "Nuleisti žemyn"
 
@@ -706,7 +738,7 @@ msgid "Do you really want to delete the build tool \"%s\"?"
 msgstr "Ar tikrai norite ištrinti kūrimo įrankį „%s“?"
 
 #: ../src/build_tools_preferences.vala:336 ../src/clean_build_files.vala:243
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:146
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:148
 #: ../src/main_window_edit.vala:51 ../src/main_window_structure.vala:38
 #: ../src/project_dialogs.vala:242 ../src/project_dialogs.vala:277
 msgid "_Delete"
@@ -736,12 +768,12 @@ msgstr "Nėra atitinkančio siūlymo"
 msgid "Ln %d, Col %d"
 msgstr "Eil %d, Stlp %d"
 
-#: ../src/dialogs.vala:40 ../src/main_window.vala:757
+#: ../src/dialogs.vala:40 ../src/main_window.vala:759
 msgid "Close _without Saving"
 msgstr "Užverti _neįrašant"
 
 #: ../src/dialogs.vala:42 ../src/main_window_file.vala:41
-#: ../src/main_window.vala:763 ../src/main_window.vala:816
+#: ../src/main_window.vala:765 ../src/main_window.vala:818
 msgid "_Save"
 msgstr "Į_rašyti"
 
@@ -832,7 +864,7 @@ msgid "Do you want to save the file in a safer place?"
 msgstr "Ar norite įrašyti failą į saugesnę vietą?"
 
 #: ../src/document.vala:494 ../src/main_window_file.vala:44
-#: ../src/main_window.vala:761
+#: ../src/main_window.vala:763
 msgid "Save _As"
 msgstr "Įrašyti _taip"
 
@@ -840,17 +872,18 @@ msgstr "Įrašyti _taip"
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-#: ../src/document_view.vala:310
-msgid "No dictionaries available for the spell checking."
+#: ../src/document_view.vala:312
+#| msgid "No dictionaries available for the spell checking."
+msgid "No dictionaries available for the spell-checking."
 msgstr "Nėra žodynų rašybos tikrinimui."
 
 #. Help
-#: ../src/document_view.vala:312 ../src/main_window.vala:63
+#: ../src/document_view.vala:314 ../src/main_window.vala:63
 #: ../src/ui/menus.ui.h:4
 msgid "_Help"
 msgstr "_Žinynas"
 
-#: ../src/document_view.vala:313
+#: ../src/document_view.vala:315
 msgid "_OK"
 msgstr "_Gerai"
 
@@ -866,52 +899,55 @@ msgstr "Eiti į tėvinį aplanką"
 msgid "Go to the active document directory"
 msgstr "Eiti į aktyvaus dokumento aplanką"
 
-#: ../src/file_browser.vala:289
+#: ../src/file_browser.vala:290
 msgid "Open in a file manager"
 msgstr "Atverti failų tvarkytuvę"
 
-#: ../src/file_browser.vala:291
+#: ../src/file_browser.vala:292
 msgid "Open the current directory in a file manager"
 msgstr "Atverti dabartinį aplanką failų tvarkytuvėje"
 
-#: ../src/file_browser.vala:313
+#: ../src/file_browser.vala:314
 msgid "Open in a terminal"
 msgstr "Atverti terminale"
 
-#: ../src/file_browser.vala:314
+#: ../src/file_browser.vala:315
 msgid "Open the current directory in a terminal"
 msgstr "Atverti dabartinį aplanką terminale"
 
-#: ../src/file_browser.vala:403
+#: ../src/file_browser.vala:405
 msgid "File System"
 msgstr "Failų sistema"
 
 #. File browser
-#: ../src/file_browser.vala:522 ../src/main_window.vala:457
+#: ../src/file_browser.vala:524 ../src/main_window.vala:456
 msgid "File Browser"
 msgstr "Failų naršyklė"
 
-#: ../src/latexila_app.vala:78
+#: ../src/latexila_app.vala:79
 msgid "Show the application's version"
 msgstr "Rodyti programos versiją"
 
-#: ../src/latexila_app.vala:81
+#: ../src/latexila_app.vala:82
 msgid "Create new document"
 msgstr "Sukurti naują dokumentą"
 
-#: ../src/latexila_app.vala:84
-msgid "Create a new top-level window in an existing instance of LaTeXila"
-msgstr "Sukurti naują aukščiausio lygio langą veikiančioje LaTeXila"
+#: ../src/latexila_app.vala:85
+#| msgid "Create a new top-level window in an existing instance of LaTeXila"
+msgid "Create a new top-level window in an existing instance of GNOME LaTeX"
+msgstr "Sukurti naują aukščiausio lygio langą veikiančioje GNOME LaTeX"
 
-#: ../src/latexila_app.vala:234
-msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
-msgstr "LaTeXila yra integruota LaTeX aplinka GNOME darbalaukiui"
+#: ../src/latexila_app.vala:210
+#| msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
+msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
+msgstr "GNOME LaTeX yra integruota LaTeX aplinka GNOME darbalaukiui"
 
-#: ../src/latexila_app.vala:273 ../src/main_window.vala:71
-msgid "About LaTeXila"
-msgstr "Apie LaTeXila"
+#: ../src/latexila_app.vala:239 ../src/main_window.vala:71
+#| msgid "About LaTeXila"
+msgid "About GNOME LaTeX"
+msgstr "Apie GNOME LaTeX"
 
-#: ../src/latexila_app.vala:274
+#: ../src/latexila_app.vala:240
 msgid "translator-credits"
 msgstr ""
 "Išvertė:\n"
@@ -988,667 +1024,668 @@ msgid "Align Right - \\begin{flushright}"
 msgstr "Dešinė lygiuotė - \\begin{flushright}"
 
 #: ../src/latex_menu.vala:74
-msgid "Figure - \\begin{figure}"
-msgstr "Paveikslėlis - \\begin{figure}"
-
-#: ../src/latex_menu.vala:76
 msgid "Table - \\begin{table}"
 msgstr "Lentelė - \\begin{table}"
 
-#: ../src/latex_menu.vala:78
+#: ../src/latex_menu.vala:76
 msgid "Quote - \\begin{quote}"
 msgstr "Kabutė - \\begin{quote}"
 
-#: ../src/latex_menu.vala:80
+#: ../src/latex_menu.vala:78
 msgid "Quotation - \\begin{quotation}"
 msgstr "Citata - \\begin{quotation}"
 
-#: ../src/latex_menu.vala:82
+#: ../src/latex_menu.vala:80
 msgid "Verse - \\begin{verse}"
 msgstr "Strofa - \\begin{verse}"
 
-#: ../src/latex_menu.vala:84
+#: ../src/latex_menu.vala:82
 msgid "Verbatim - \\begin{verbatim}"
 msgstr "Tiesioginis - \\begin{verbatim}"
 
-#: ../src/latex_menu.vala:86
+#: ../src/latex_menu.vala:84
 msgid "Minipage - \\begin{minipage}"
 msgstr "Mini-puslapis - \\begin{minipage}"
 
-#: ../src/latex_menu.vala:88
+#: ../src/latex_menu.vala:86
 msgid "Title page - \\begin{titlepage}"
 msgstr "Titulinis puslapis - \\begin{titlepage}"
 
 #. LaTeX: list environments
-#: ../src/latex_menu.vala:92
+#: ../src/latex_menu.vala:90
 msgid "_List Environments"
 msgstr "Iš_vardinti aplinkos kintamuosius"
 
-#: ../src/latex_menu.vala:94
+#: ../src/latex_menu.vala:92
 msgid "Bulleted List - \\begin{itemize}"
 msgstr "Punktų sąrašas - \\begin{itemize}"
 
-#: ../src/latex_menu.vala:96
+#: ../src/latex_menu.vala:94
 msgid "Enumeration - \\begin{enumerate}"
 msgstr "Išvardinimas - \\begin{enumerate}"
 
-#: ../src/latex_menu.vala:98
+#: ../src/latex_menu.vala:96
 msgid "Description - \\begin{description}"
 msgstr "Aprašymas - \\begin{description}"
 
-#: ../src/latex_menu.vala:100
+#: ../src/latex_menu.vala:98
 msgid "Custom list - \\begin{list}"
 msgstr "Pasirinktinis sąrašas - \\begin{list}"
 
-#: ../src/latex_menu.vala:102
+#: ../src/latex_menu.vala:100
 msgid "List item - \\item"
 msgstr "Sąrašo elementas - \\item"
 
 #. LaTeX: character sizes
-#: ../src/latex_menu.vala:106
+#: ../src/latex_menu.vala:104
 msgid "_Characters Sizes"
 msgstr "_Simbolių dydžiai"
 
 #. LaTeX: font styles
-#: ../src/latex_menu.vala:120
+#: ../src/latex_menu.vala:118
 msgid "_Font Styles"
 msgstr "Šri_ftų stiliai"
 
-#: ../src/latex_menu.vala:122
+#: ../src/latex_menu.vala:120
 msgid "Bold - \\textbf"
 msgstr "Pusjuodis - \\textbf"
 
-#: ../src/latex_menu.vala:124
+#: ../src/latex_menu.vala:122
 msgid "Italic - \\textit"
 msgstr "Kursyvas - \\textit"
 
-#: ../src/latex_menu.vala:126
+#: ../src/latex_menu.vala:124
 msgid "Typewriter - \\texttt"
 msgstr "Spausdinimo mašinėlės - \\texttt"
 
-#: ../src/latex_menu.vala:128
+#: ../src/latex_menu.vala:126
 msgid "Slanted - \\textsl"
 msgstr "Nuožulnus - \\textsl"
 
-#: ../src/latex_menu.vala:130
+#: ../src/latex_menu.vala:128
 msgid "Small Capitals - \\textsc"
 msgstr "Mažos didžiosios - \\textsc"
 
-#: ../src/latex_menu.vala:132
+#: ../src/latex_menu.vala:130
 msgid "Sans Serif - \\textsf"
 msgstr "Be užraitų - \\textsf"
 
-#: ../src/latex_menu.vala:134
+#: ../src/latex_menu.vala:132
 msgid "Emphasized - \\emph"
 msgstr "Akcentuotas - \\emph"
 
-#: ../src/latex_menu.vala:136
+#: ../src/latex_menu.vala:134
 msgid "Underline - \\underline"
 msgstr "Pabrauktas - \\underline"
 
-#: ../src/latex_menu.vala:138
+#: ../src/latex_menu.vala:136
 msgid "_Font Family"
 msgstr "Šri_ftų šeima"
 
-#: ../src/latex_menu.vala:140
+#: ../src/latex_menu.vala:138
 msgid "Roman - \\rmfamily"
 msgstr "Roman - \\rmfamily"
 
-#: ../src/latex_menu.vala:142
+#: ../src/latex_menu.vala:140
 msgid "Sans Serif - \\sffamily"
 msgstr "Be užraitų - \\sffamily"
 
-#: ../src/latex_menu.vala:144
+#: ../src/latex_menu.vala:142
 msgid "Monospace - \\ttfamily"
 msgstr "Lygiapločiai - \\ttfamily"
 
-#: ../src/latex_menu.vala:146
+#: ../src/latex_menu.vala:144
 msgid "F_ont Series"
 msgstr "Š_riftų sekos"
 
-#: ../src/latex_menu.vala:148
+#: ../src/latex_menu.vala:146
 msgid "Medium - \\mdseries"
 msgstr "Vidutiniai - \\mdseries"
 
-#: ../src/latex_menu.vala:150
+#: ../src/latex_menu.vala:148
 msgid "Bold - \\bfseries"
 msgstr "Pusjuodžiai - \\bfseries"
 
-#: ../src/latex_menu.vala:152
+#: ../src/latex_menu.vala:150
 msgid "Fo_nt Shape"
 msgstr "Šr_ifto forma"
 
-#: ../src/latex_menu.vala:154
+#: ../src/latex_menu.vala:152
 msgid "Upright - \\upshape"
 msgstr "Vertikalus - \\upshape"
 
-#: ../src/latex_menu.vala:156
+#: ../src/latex_menu.vala:154
 msgid "Italic - \\itshape"
 msgstr "Kursyvas - \\itshape"
 
-#: ../src/latex_menu.vala:158
+#: ../src/latex_menu.vala:156
 msgid "Slanted - \\slshape"
 msgstr "Nuožulnus - \\slshape"
 
-#: ../src/latex_menu.vala:160
+#: ../src/latex_menu.vala:158
 msgid "Small Capitals - \\scshape"
 msgstr "Mažos didžiosios - \\scshape"
 
 #. LaTeX: Tabular
-#: ../src/latex_menu.vala:164
+#: ../src/latex_menu.vala:162
 msgid "_Tabular"
 msgstr "_Tabuliacinis"
 
-#: ../src/latex_menu.vala:166
+#: ../src/latex_menu.vala:164
 msgid "Tabbing - \\begin{tabbing}"
 msgstr "Tabuliacija - \\begin{tabbing}"
 
-#: ../src/latex_menu.vala:168
+#: ../src/latex_menu.vala:166
 msgid "Tabular - \\begin{tabular}"
 msgstr "Tabuliacinis - \\begin{tabular}"
 
-#: ../src/latex_menu.vala:170
+#: ../src/latex_menu.vala:168
 msgid "Multicolumn - \\multicolumn"
 msgstr "Daugelio stulpelių - \\multicolumn"
 
-#: ../src/latex_menu.vala:172
+#: ../src/latex_menu.vala:170
 msgid "Horizontal line - \\hline"
 msgstr "Horizontali linija - \\hline"
 
-#: ../src/latex_menu.vala:174
+#: ../src/latex_menu.vala:172
 msgid "Vertical line - \\vline"
 msgstr "Vertikali linija - \\vline"
 
-#: ../src/latex_menu.vala:176
+#: ../src/latex_menu.vala:174
 msgid "Horizontal line (columns specified) - \\cline"
 msgstr "Horizontali linija (nurodyti stulpeliai) - \\cline"
 
-#: ../src/latex_menu.vala:182
+#: ../src/latex_menu.vala:180
 msgid "Frame - \\begin{frame}"
 msgstr "Rėmelis - \\begin{frame}"
 
-#: ../src/latex_menu.vala:184
+#: ../src/latex_menu.vala:182
 msgid "Block - \\begin{block}"
 msgstr "Blokas - \\begin{block}"
 
-#: ../src/latex_menu.vala:186
+#: ../src/latex_menu.vala:184
 msgid "Two columns - \\begin{columns}"
 msgstr "Du stulpeliai - \\begin{columns}"
 
 #. LaTeX: Spacing
-#: ../src/latex_menu.vala:190
+#: ../src/latex_menu.vala:188
 msgid "_Spacing"
 msgstr "_Tarpai"
 
-#: ../src/latex_menu.vala:191
+#: ../src/latex_menu.vala:189
 msgid "New _Line"
 msgstr "Nauja ei_lutė"
 
-#: ../src/latex_menu.vala:192
+#: ../src/latex_menu.vala:190
 msgid "New Line - \\\\"
 msgstr "Nauja eilutė - \\\\"
 
-#: ../src/latex_menu.vala:194
+#: ../src/latex_menu.vala:192
 msgid "New page - \\newpage"
 msgstr "Naujas puslapis - \\newpage"
 
-#: ../src/latex_menu.vala:196
+#: ../src/latex_menu.vala:194
 msgid "Line break - \\linebreak"
 msgstr "Eilutės laužtė - \\linebreak"
 
-#: ../src/latex_menu.vala:198
+#: ../src/latex_menu.vala:196
 msgid "Page break - \\pagebreak"
 msgstr "Puslapio laužtė - \\pagebreak"
 
-#: ../src/latex_menu.vala:200
+#: ../src/latex_menu.vala:198
 msgid "Big skip - \\bigskip"
 msgstr "Didelis tarpas - \\bigskip"
 
-#: ../src/latex_menu.vala:202
+#: ../src/latex_menu.vala:200
 msgid "Medium skip - \\medskip"
 msgstr "Vidutinis tarpas - \\medskip"
 
-#: ../src/latex_menu.vala:204
+#: ../src/latex_menu.vala:202
 msgid "Horizontal space - \\hspace"
 msgstr "Horizontalus tarpas - \\hspace"
 
-#: ../src/latex_menu.vala:206
+#: ../src/latex_menu.vala:204
 msgid "Vertical space - \\vspace"
 msgstr "Vertikalus tarpas - \\vspace"
 
-#: ../src/latex_menu.vala:208
+#: ../src/latex_menu.vala:206
 msgid "No paragraph indentation - \\noindent"
 msgstr "Nėra pastraipos įtraukos - \\noindent"
 
 #. LaTeX: International accents
-#: ../src/latex_menu.vala:212
+#: ../src/latex_menu.vala:210
 msgid "International _Accents"
 msgstr "_Diakritiniai ženklai"
 
-#: ../src/latex_menu.vala:213
+#: ../src/latex_menu.vala:211
 msgid "Acute accent - \\'"
 msgstr "Dešininis kirtis - \\'"
 
-#: ../src/latex_menu.vala:214
+#: ../src/latex_menu.vala:212
 msgid "Grave accent - \\`"
 msgstr "Kairinis kirtis - \\`"
 
-#: ../src/latex_menu.vala:215
+#: ../src/latex_menu.vala:213
 msgid "Circumflex accent - \\^"
 msgstr "Stogelis - \\^"
 
-#: ../src/latex_menu.vala:216
+#: ../src/latex_menu.vala:214
 msgid "Trema - \\\""
 msgstr "Dvitaškis diakritas - \\\""
 
-#: ../src/latex_menu.vala:217
+#: ../src/latex_menu.vala:215
 msgid "Tilde - \\~"
 msgstr "Riestinis kirtis - \\~"
 
-#: ../src/latex_menu.vala:218
+#: ../src/latex_menu.vala:216
 msgid "Macron - \\="
 msgstr "Brūkšnys - \\="
 
-#: ../src/latex_menu.vala:219
+#: ../src/latex_menu.vala:217
 msgid "Dot above - \\."
 msgstr "Taškas viršuje - \\."
 
-#: ../src/latex_menu.vala:220
+#: ../src/latex_menu.vala:218
 msgid "Caron - \\v"
 msgstr "Varnelė - \\v"
 
-#: ../src/latex_menu.vala:221
+#: ../src/latex_menu.vala:219
 msgid "Breve - \\u"
 msgstr "Lankelis - \\u"
 
-#: ../src/latex_menu.vala:223
+#: ../src/latex_menu.vala:221
 msgid "Double acute accent - \\H"
 msgstr "Dvigubas dešininis kirtis - \\H"
 
-#: ../src/latex_menu.vala:224
+#: ../src/latex_menu.vala:222
 msgid "Cedilla - \\c"
 msgstr "Nosinė atgal - \\c"
 
-#: ../src/latex_menu.vala:225
+#: ../src/latex_menu.vala:223
 msgid "Ogonek - \\k"
 msgstr "Nosinė pirmyn - \\k"
 
-#: ../src/latex_menu.vala:226
+#: ../src/latex_menu.vala:224
 msgid "Dot below - \\d"
 msgstr "Taškas apačioje - \\d"
 
-#: ../src/latex_menu.vala:227
+#: ../src/latex_menu.vala:225
 msgid "Macron below - \\b"
 msgstr "Brūkšnys apačioje - \\b"
 
-#: ../src/latex_menu.vala:228
+#: ../src/latex_menu.vala:226
 msgid "Ring - \\r"
 msgstr "Žiedas - \\r"
 
-#: ../src/latex_menu.vala:229
+#: ../src/latex_menu.vala:227
 msgid "Tie - \\t"
 msgstr "Apjungimas - \\t"
 
-#. LaTeX: Others
-#: ../src/latex_menu.vala:233
+#. LaTeX: Misc
+#: ../src/latex_menu.vala:231
 msgid "_Misc"
 msgstr "Į_vairūs"
 
-#: ../src/latex_menu.vala:235
+#: ../src/latex_menu.vala:233
 msgid "Document class - \\documentclass"
 msgstr "Dokumento klasė - \\documentclass"
 
-#: ../src/latex_menu.vala:237
+#: ../src/latex_menu.vala:235
 msgid "Use package - \\usepackage"
 msgstr "Naudoti paketą - \\usepackage"
 
-#: ../src/latex_menu.vala:238
+#: ../src/latex_menu.vala:236
 msgid "_AMS packages"
 msgstr "_AMS paketai"
 
-#: ../src/latex_menu.vala:239
+#: ../src/latex_menu.vala:237
 msgid "AMS packages"
 msgstr "AMS paketai"
 
-#: ../src/latex_menu.vala:240
+#: ../src/latex_menu.vala:238
 msgid "Author - \\author"
 msgstr "Autorius - \\author"
 
-#: ../src/latex_menu.vala:241
+#: ../src/latex_menu.vala:239
 msgid "Title - \\title"
 msgstr "Pavadinimas - \\title"
 
-#: ../src/latex_menu.vala:243
+#: ../src/latex_menu.vala:241
 msgid "Content of the document - \\begin{document}"
 msgstr "Dokumento turinys - \\begin{document}"
 
-#: ../src/latex_menu.vala:245
+#: ../src/latex_menu.vala:243
 msgid "Make title - \\maketitle"
 msgstr "Sukurti pavadinimą - \\maketitle"
 
-#: ../src/latex_menu.vala:247
+#: ../src/latex_menu.vala:245
 msgid "Table of contents - \\tableofcontents"
 msgstr "Turinys - \\tableofcontents"
 
-#: ../src/latex_menu.vala:249
+#: ../src/latex_menu.vala:247
 msgid "Abstract - \\begin{abstract}"
 msgstr "Įžanga - \\begin{abstract}"
 
-#: ../src/latex_menu.vala:251
+#: ../src/latex_menu.vala:249
 msgid "Include an image (graphicx package) - \\includegraphics"
 msgstr "Įterpti paveikslėlį (graphicx paketas) - \\includegraphics"
 
-#: ../src/latex_menu.vala:254
+#: ../src/latex_menu.vala:251
 msgid "Include a file - \\input"
 msgstr "Įterpti failą - \\input"
 
 #. Math
-#: ../src/latex_menu.vala:258
+#: ../src/latex_menu.vala:255
 msgid "_Math"
 msgstr "_Matematika"
 
 #. Math Environments
-#: ../src/latex_menu.vala:262
+#: ../src/latex_menu.vala:259
 msgid "_Math Environments"
 msgstr "_Matematikos aplinkos"
 
-#: ../src/latex_menu.vala:263
+#: ../src/latex_menu.vala:260
 msgid "_Mathematical Environment - $...$"
 msgstr "_Matematinė aplinka - $...$"
 
-#: ../src/latex_menu.vala:264
+#: ../src/latex_menu.vala:261
 msgid "Mathematical Environment - $...$"
 msgstr "Matematinė aplinka - $...$"
 
-#: ../src/latex_menu.vala:265
+#: ../src/latex_menu.vala:262
 msgid "_Centered Formula - \\[...\\]"
 msgstr "_Centruota formlė - \\[...\\]"
 
-#: ../src/latex_menu.vala:266
+#: ../src/latex_menu.vala:263
 msgid "Centered Formula - \\[...\\]"
 msgstr "Centruota formlė - \\[...\\]"
 
-#: ../src/latex_menu.vala:268
+#: ../src/latex_menu.vala:265
 msgid "_Numbered Equation - \\begin{equation}"
 msgstr "_Numeruota lygtis - \\begin{equation}"
 
-#: ../src/latex_menu.vala:269
+#: ../src/latex_menu.vala:266
 msgid "Numbered Equation - \\begin{equation}"
 msgstr "Numeruota lygtis - \\begin{equation}"
 
-#: ../src/latex_menu.vala:270
+#: ../src/latex_menu.vala:267
 msgid "_Array of Equations - \\begin{align*}"
 msgstr "_Lygčių sistema - \\begin{align*}"
 
-#: ../src/latex_menu.vala:271
+#: ../src/latex_menu.vala:268
 msgid "Array of Equations - \\begin{align*}"
 msgstr "Lygčių sistema - \\begin{align*}"
 
-#: ../src/latex_menu.vala:273
+#: ../src/latex_menu.vala:270
 msgid "Numbered Array of _Equations - \\begin{align}"
 msgstr "Num_eruota lygčių sistema - \\begin{align}"
 
-#: ../src/latex_menu.vala:274
+#: ../src/latex_menu.vala:271
 msgid "Numbered Array of Equations - \\begin{align}"
 msgstr "Numeruota lygčių sistema - \\begin{align}"
 
-#: ../src/latex_menu.vala:277
+#. Math misc
+#: ../src/latex_menu.vala:275
 msgid "_Superscript - ^{}"
 msgstr "_Viršutinis indeksas - ^{}"
 
-#: ../src/latex_menu.vala:278
+#: ../src/latex_menu.vala:276
 msgid "Superscript - ^{}"
 msgstr "Viršutinis indeksas - ^{}"
 
-#: ../src/latex_menu.vala:279
+#: ../src/latex_menu.vala:277
 msgid "Su_bscript - __{}"
 msgstr "_Apatinis indeksas - __{}"
 
-#: ../src/latex_menu.vala:280
+#: ../src/latex_menu.vala:278
 msgid "Subscript - _{}"
 msgstr "Apatinis indeksas - __{}"
 
-#: ../src/latex_menu.vala:281
+#: ../src/latex_menu.vala:279
 msgid "_Fraction - \\frac{}{}"
 msgstr "_Trupmena - \\frac{}{}"
 
-#: ../src/latex_menu.vala:282
+#: ../src/latex_menu.vala:280
 msgid "Fraction - \\frac{}{}"
 msgstr "Trupmena - \\frac{}{}"
 
-#: ../src/latex_menu.vala:283
+#: ../src/latex_menu.vala:281
 msgid "Square _Root - \\sqrt{}"
 msgstr "_Kvadratinė šaknis - \\sqrt{}"
 
-#: ../src/latex_menu.vala:284
+#: ../src/latex_menu.vala:282
 msgid "Square Root - \\sqrt{}"
 msgstr "Kvadratinė šaknis - \\sqrt{}"
 
-#: ../src/latex_menu.vala:285
+#: ../src/latex_menu.vala:283
 msgid "_N-th Root - \\sqrt[]{}"
 msgstr "_N-tojo laipsnio šaknis - \\sqrt[]{}"
 
-#: ../src/latex_menu.vala:286
+#: ../src/latex_menu.vala:284
 msgid "N-th Root - \\sqrt[]{}"
 msgstr "N-tojo laipsnio šaknis - \\sqrt[]{}"
 
 #. Math functions
-#: ../src/latex_menu.vala:290
+#: ../src/latex_menu.vala:288
 msgid "Math _Functions"
 msgstr "Matematikos _funkcijos"
 
 #. Math Font Styles
-#: ../src/latex_menu.vala:324
+#: ../src/latex_menu.vala:322
 msgid "Math Font _Styles"
 msgstr "Matematikos šriftų _stiliai"
 
-#: ../src/latex_menu.vala:326
+#: ../src/latex_menu.vala:324
 msgid "Roman - \\mathrm"
 msgstr "Roman - \\mathrm"
 
-#: ../src/latex_menu.vala:328
+#: ../src/latex_menu.vala:326
 msgid "Italic - \\mathit"
 msgstr "Kursyvas - \\mathit"
 
-#: ../src/latex_menu.vala:330
+#: ../src/latex_menu.vala:328
 msgid "Bold - \\mathbf"
 msgstr "Pusjuodis - \\mathbf"
 
-#: ../src/latex_menu.vala:332
+#: ../src/latex_menu.vala:330
 msgid "Sans Serif - \\mathsf"
 msgstr "Be užraitų - \\mathsf"
 
-#: ../src/latex_menu.vala:334
+#: ../src/latex_menu.vala:332
 msgid "Typewriter - \\mathtt"
 msgstr "Spausdinimo mašinėlės - \\mathtt"
 
-#: ../src/latex_menu.vala:336
+#: ../src/latex_menu.vala:334
 msgid "Calligraphic - \\mathcal"
 msgstr "Kaligrafinis - \\mathcal"
 
-#: ../src/latex_menu.vala:338
+#: ../src/latex_menu.vala:336
 msgid "Blackboard (uppercase only)  - \\mathbb (amsfonts package)"
 msgstr "Lentos (tik didžiosiomis)  - \\mathbb (amsfonts paketas)"
 
-#: ../src/latex_menu.vala:341
+#: ../src/latex_menu.vala:338
 msgid "Euler Fraktur - \\mathfrak (amsfonts package)"
 msgstr "Euler Fraktur - \\mathfrak (amsfonts paketas)"
 
 #. Math Accents
-#: ../src/latex_menu.vala:346
+#: ../src/latex_menu.vala:342
 msgid "Math _Accents"
 msgstr "Matematikos _diakritiniai ženklai"
 
 #. Math Spaces
-#: ../src/latex_menu.vala:367
+#: ../src/latex_menu.vala:357
 msgid "Math _Spaces"
 msgstr "Matematikos _tarpai"
 
-#: ../src/latex_menu.vala:368
+#: ../src/latex_menu.vala:358
 msgid "_Small"
 msgstr "_Mažas"
 
-#: ../src/latex_menu.vala:369
+#: ../src/latex_menu.vala:358
 msgid "Small - \\,"
 msgstr "Mažas - \\,"
 
-#: ../src/latex_menu.vala:370
+#: ../src/latex_menu.vala:359
 msgid "_Medium"
 msgstr "_Vidutinis"
 
-#: ../src/latex_menu.vala:371
+#: ../src/latex_menu.vala:359
 msgid "Medium - \\:"
 msgstr "Vidutinis - \\:"
 
-#: ../src/latex_menu.vala:372
+#: ../src/latex_menu.vala:360
 msgid "_Large"
 msgstr "_Didelis"
 
-#: ../src/latex_menu.vala:373
+#: ../src/latex_menu.vala:360
 msgid "Large - \\;"
 msgstr "Didelis - \\;"
 
 #. Math: Left Delimiters
-#: ../src/latex_menu.vala:379
+#: ../src/latex_menu.vala:366
 msgid "_Left Delimiters"
 msgstr "_Kairieji riboženkliai"
 
-#: ../src/latex_menu.vala:380
+#: ../src/latex_menu.vala:367
 msgid "left ("
 msgstr "kairysis ("
 
-#: ../src/latex_menu.vala:382
+#: ../src/latex_menu.vala:368
 msgid "left ["
 msgstr "kairysis ["
 
-#: ../src/latex_menu.vala:384
+#: ../src/latex_menu.vala:369
 msgid "left { "
 msgstr "kairysis {"
 
-#: ../src/latex_menu.vala:386
+#: ../src/latex_menu.vala:370
 msgid "left <"
 msgstr "kairysis <"
 
-#: ../src/latex_menu.vala:388
+#: ../src/latex_menu.vala:371
 msgid "left )"
 msgstr "kairysis )"
 
-#: ../src/latex_menu.vala:390
+#: ../src/latex_menu.vala:372
 msgid "left ]"
 msgstr "kairysis ]"
 
-#: ../src/latex_menu.vala:392
+#: ../src/latex_menu.vala:373
 msgid "left  }"
 msgstr "kairysis }"
 
-#: ../src/latex_menu.vala:394
+#: ../src/latex_menu.vala:374
 msgid "left >"
 msgstr "kairysis >"
 
-#: ../src/latex_menu.vala:396
+#: ../src/latex_menu.vala:375
 msgid "left ."
 msgstr "kairysis ."
 
 #. Math: Right Delimiters
-#: ../src/latex_menu.vala:401
+#: ../src/latex_menu.vala:379
 msgid "Right _Delimiters"
 msgstr "Dešinieji _riboženkliai"
 
-#: ../src/latex_menu.vala:402
+#: ../src/latex_menu.vala:380
 msgid "right )"
 msgstr "dešinysis )"
 
-#: ../src/latex_menu.vala:404
+#: ../src/latex_menu.vala:381
 msgid "right ]"
 msgstr "dešinysis ]"
 
-#: ../src/latex_menu.vala:406
+#: ../src/latex_menu.vala:382
 msgid "right  }"
 msgstr "dešinysis }"
 
-#: ../src/latex_menu.vala:408
+#: ../src/latex_menu.vala:383
 msgid "right >"
 msgstr "dešinysis >"
 
-#: ../src/latex_menu.vala:410
+#: ../src/latex_menu.vala:384
 msgid "right ("
 msgstr "dešinysis ("
 
-#: ../src/latex_menu.vala:412
+#: ../src/latex_menu.vala:385
 msgid "right ["
 msgstr "dešinysis ["
 
-#: ../src/latex_menu.vala:414
+#: ../src/latex_menu.vala:386
 msgid "right { "
 msgstr "dešinysis {"
 
-#: ../src/latex_menu.vala:416
+#: ../src/latex_menu.vala:387
 msgid "right <"
 msgstr "dešinysis <"
 
-#: ../src/latex_menu.vala:418
+#: ../src/latex_menu.vala:388
 msgid "right ."
 msgstr "dešinysis ."
 
 #. menus under toolitems
-#: ../src/latex_menu.vala:433
+#: ../src/latex_menu.vala:402
 msgid "Sectioning"
 msgstr "Skiltys"
 
-#: ../src/latex_menu.vala:436
+#: ../src/latex_menu.vala:405
 msgid "Characters Sizes"
 msgstr "Simbolių dydžiai"
 
-#: ../src/latex_menu.vala:439
+#: ../src/latex_menu.vala:408
 msgid "References"
 msgstr "Rodyklės"
 
-#: ../src/latex_menu.vala:442
+#: ../src/latex_menu.vala:411
 msgid "Presentation Environments"
 msgstr "Pateikčių aplinkos"
 
-#: ../src/latex_menu.vala:445
+#: ../src/latex_menu.vala:414
 msgid "Math Environments"
 msgstr "Matematikos aplinkos"
 
-#: ../src/liblatexila/latexila-build-job.c:359
+#: ../src/liblatexila/latexila-build-job.c:365
 #, c-format
 msgid "%s doesn't seem to be installed."
 msgstr "Atrodo %s neįdiegtas."
 
-#: ../src/liblatexila/latexila-build-tool.c:547
+#: ../src/liblatexila/latexila-build-tool.c:555
 #, c-format
 msgid "The file '%s' doesn't exist."
 msgstr "Failo „%s“ nėra."
 
-#: ../src/liblatexila/latexila-build-tool.c:575
+#: ../src/liblatexila/latexila-build-tool.c:583
 #, c-format
 msgid "Failed to open '%s':"
 msgstr "Nepavyko atverti „%s“:"
 
-#: ../src/liblatexila/latexila-build-tool.c:677
+#: ../src/liblatexila/latexila-build-tool.c:689
 #, c-format
 msgid "Open %s"
 msgstr "Atverti %s"
 
-#: ../src/liblatexila/latexila-synctex.c:192
+#: ../src/liblatexila/latexila-latex-commands.c:51
+msgid "Figure - \\begin{figure}"
+msgstr "Paveikslėlis - \\begin{figure}"
+
+#: ../src/liblatexila/latexila-synctex.c:194
 msgid "Impossible to do the forward search."
 msgstr "Neįmanoma atlikti paieškos pirmyn."
 
-#: ../src/liblatexila/latexila-synctex.c:529
+#: ../src/liblatexila/latexila-synctex.c:531
 msgid "Can not communicate with evince."
 msgstr "Nepavyksta komunikuoti su evince."
 
-#: ../src/liblatexila/latexila-synctex.c:559
+#: ../src/liblatexila/latexila-synctex.c:561
 #, c-format
 msgid "The file \"%s\" doesn't exist."
 msgstr "Failo „%s“ nėra."
 
-#: ../src/liblatexila/latexila-synctex.c:593
+#: ../src/liblatexila/latexila-synctex.c:595
 msgid "The PDF file doesn't exist."
 msgstr "PDF failo nėra."
 
-#: ../src/liblatexila/latexila-synctex.c:644
+#: ../src/liblatexila/latexila-synctex.c:646
 msgid "The document is not saved."
 msgstr "Dokumentas neįrašytas."
 
@@ -1684,11 +1721,11 @@ msgstr "Numatytieji šablonai"
 msgid "Personal Templates"
 msgstr "Asmeniniai šablonai"
 
-#: ../src/liblatexila/latexila-templates-dialogs.c:122
+#: ../src/liblatexila/latexila-templates-dialogs.c:124
 msgid "New File..."
 msgstr "Naujas failas..."
 
-#: ../src/liblatexila/latexila-templates-dialogs.c:129
+#: ../src/liblatexila/latexila-templates-dialogs.c:131
 #: ../src/main_window_file.vala:32
 msgid "_New"
 msgstr "_Naujas"
@@ -1710,29 +1747,29 @@ msgstr "Naujo šablono pavadinimas"
 msgid "Choose an icon"
 msgstr "Pasirinkite piktogramą"
 
-#: ../src/liblatexila/latexila-templates-dialogs.c:332
+#: ../src/liblatexila/latexila-templates-dialogs.c:336
 msgid "Impossible to create the personal template."
 msgstr "Neįmanoma sukurti asmeninio šablono."
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:141
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:143
 #, c-format
 msgid "Do you really want to delete the template “%s”?"
 msgstr "Ar tikrai norite ištrinti šabloną „%s“?"
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:168
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:170
 #, c-format
 msgid "Error when deleting the template “%s”."
 msgstr "Klaida trinant šabloną „%s“."
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:226
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:230
 msgid "Error when moving the template."
 msgstr "Klaida perkeliant šabloną."
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:270
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:274
 msgid "Delete"
 msgstr "Trinti"
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:362
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:366
 msgid "Manage Personal Templates"
 msgstr "Tvarkyti asmeninius šablonus"
 
@@ -2102,7 +2139,9 @@ msgid "_Set Language…"
 msgstr "_Nustatyti kalbą…"
 
 #: ../src/main_window_tools.vala:32
-msgid "Set the language used for the spell checking for the current document"
+#| msgid ""
+#| "Set the language used for the spell checking for the current document"
+msgid "Set the language used for the spell-checking for the current document"
 msgstr "Nustatyti rašybos tikrinimo kalbą dabartiniam dokumentui"
 
 #: ../src/main_window_tools.vala:38
@@ -2225,8 +2264,9 @@ msgid "_Contents"
 msgstr "_Turinys"
 
 #: ../src/main_window.vala:65
-msgid "Open the LaTeXila documentation"
-msgstr "Atverti LaTeXila dokumentaciją"
+#| msgid "Open the LaTeXila documentation"
+msgid "Open the GNOME LaTeX documentation"
+msgstr "Atverti GNOME LaTeX dokumentaciją"
 
 #: ../src/main_window.vala:66
 msgid "_LaTeX Reference"
@@ -2274,40 +2314,44 @@ msgid "Show or hide the bottom panel"
 msgstr "Rodyti arba slėpti apatinį skydelį"
 
 #. Symbols
-#: ../src/main_window.vala:453
+#: ../src/main_window.vala:452
 msgid "Symbols"
 msgstr "Simboliai"
 
-#: ../src/main_window.vala:462
+#: ../src/main_window.vala:461
 msgid "Structure"
 msgstr "Struktūra"
 
-#: ../src/main_window.vala:655
+#: ../src/main_window.vala:654
 #, c-format
-msgid "This file (%s) is already opened in another LaTeXila window."
-msgstr "Failas (%s) jau atvertas kitame LaTeXila lange."
+#| msgid "This file (%s) is already opened in another LaTeXila window."
+msgid "This file (%s) is already opened in another GNOME LaTeX window."
+msgstr "Failas (%s) jau atvertas kitame GNOME LaTeX lange."
 
-#: ../src/main_window.vala:657
+#: ../src/main_window.vala:656
+#| msgid ""
+#| "LaTeXila opened this instance of the file in a non-editable way. Do you "
+#| "want to edit it anyway?"
 msgid ""
-"LaTeXila opened this instance of the file in a non-editable way. Do you want "
-"to edit it anyway?"
+"GNOME LaTeX opened this instance of the file in a non-editable way. Do you "
+"want to edit it anyway?"
 msgstr ""
-"LaTeXila atvėrė šį failą ne redagavimui. Ar vistiek norite jį redaguoti?"
+"GNOME LaTeX atvėrė šį failą ne redagavimui. Ar vistiek norite jį redaguoti?"
 
-#: ../src/main_window.vala:661
+#: ../src/main_window.vala:660
 msgid "Edit Anyway"
 msgstr "Vistiek redaguoti"
 
-#: ../src/main_window.vala:662
+#: ../src/main_window.vala:661
 msgid "Don't Edit"
 msgstr "Neredaguoti"
 
-#: ../src/main_window.vala:754
+#: ../src/main_window.vala:756
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
 msgstr "Įrašyti dokumento „%s“ pakeitimus prieš užveriant?"
 
-#: ../src/main_window.vala:813
+#: ../src/main_window.vala:815
 msgid "Save File"
 msgstr "Įrašyti failą"
 
@@ -2439,20 +2483,20 @@ msgstr "Skirti raidžių registrą"
 msgid "Entire words only"
 msgstr "Tik visus žodžius"
 
-#: ../src/search.vala:468
+#: ../src/search.vala:469
 msgid "Not found"
 msgstr "Nerasta"
 
 #. Translators: the first %d is the position of the current search occurrence,
 #. * and the second %d is the total number of search occurrences.
 #.
-#: ../src/search.vala:485
+#: ../src/search.vala:486
 #, c-format
 msgid "Match %d of %d"
 msgstr "Atitikmuo %d iš %d"
 
 #. Translators: %d is the total number of search occurrences.
-#: ../src/search.vala:490
+#: ../src/search.vala:491
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
@@ -2687,15 +2731,19 @@ msgid "Automatically clean-up files after close"
 msgstr "Automatiškai išvalyti failus po užvėrimo"
 
 #: ../src/ui/preferences_dialog.ui.h:24
+#| msgid ""
+#| "The spell checking settings can also be changed on a file-by-file basis "
+#| "via the Tools menu."
 msgid ""
-"The spell checking settings can also be changed on a file-by-file basis via "
+"The spell-checking settings can also be changed on a file-by-file basis via "
 "the Tools menu."
 msgstr ""
 "Rašybos tikrinimo nustatymus taip pat galima keisti kiekvienam failui per "
 "įrankių meniu."
 
 #: ../src/ui/preferences_dialog.ui.h:25
-msgid "Default Spell Checking Settings"
+#| msgid "Default Spell Checking Settings"
+msgid "Default Spell-Checking Settings"
 msgstr "Numatytieji rašybos tikrinimo nustatymai"
 
 #: ../src/ui/preferences_dialog.ui.h:26
@@ -2709,6 +2757,21 @@ msgstr "Paryškinti blogai parašytus žodžius"
 #: ../src/ui/preferences_dialog.ui.h:28
 msgid "Other"
 msgstr "Kita"
+
+#~ msgid "Integrated LaTeX environment"
+#~ msgstr "Integruota LaTeX aplinka"
+
+#~ msgid ""
+#~ "LaTeXila is an integrated LaTeX environment for the GNOME desktop. The "
+#~ "idea of LaTeXila is to always deal directly with the LaTeX code, while "
+#~ "simplifying as most as possible the writing of this LaTeX code."
+#~ msgstr ""
+#~ "LaTeXila yra integruota LaTeX aplinka GNOME darbalaukiui. LaTeXila siekia "
+#~ "tiesiosiai dirbti su LaTeX kodu, tuo pat metu kiek galima supaprastinant "
+#~ "LaTeX kodo rašymą."
+
+#~ msgid "Integrated LaTeX Environment"
+#~ msgstr "Integruota LaTeX aplinka"
 
 #~ msgid "Close document"
 #~ msgstr "Užverti dokumentą"
@@ -2757,9 +2820,6 @@ msgstr "Kita"
 
 #~ msgid "Activate or disable the spell checking"
 #~ msgstr "Įjungti ar išjungti rašybos tikrinimą"
-
-#~ msgid "LaTeXila"
-#~ msgstr "LaTeXila"
 
 #~ msgid "Build Tool"
 #~ msgstr "Kūrimo įrankis"
