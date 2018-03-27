@@ -605,9 +605,9 @@ migrate_latexila_to_gnome_latex_most_used_symbols (void)
 		     NULL, NULL, NULL,
 		     &error);
 
-	if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_EXISTS))
+	if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND) ||
+	    g_error_matches (error, G_IO_ERROR, G_IO_ERROR_EXISTS))
 	{
-		/* Do not overwrite @glatex_file if it already exists. */
 		g_clear_error (&error);
 	}
 
