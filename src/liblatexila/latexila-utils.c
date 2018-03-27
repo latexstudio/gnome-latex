@@ -827,6 +827,8 @@ migrate_latexila_to_gnome_latex_personal_templates (void)
  *
  * Migrates the #GSettings values and user data/config files from LaTeXila to
  * GNOME LaTeX, so that users don't lose all their settings.
+ *
+ * TODO in >= 2025: delete this code.
  */
 void
 latexila_utils_migrate_latexila_to_gnome_latex (void)
