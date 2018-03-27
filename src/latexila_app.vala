@@ -366,7 +366,7 @@ public class LatexilaApp : Gtk.Application
     private string get_accel_filename ()
     {
         return Path.build_filename (Environment.get_user_config_dir (),
-            "latexila", "accels");
+            "gnome-latex", "accels");
     }
 
     private void support_backward_search ()
