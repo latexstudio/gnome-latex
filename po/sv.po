@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: latexila\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
-"POT-Creation-Date: 2018-02-23 15:42+0000\n"
-"PO-Revision-Date: 2018-03-11 21:56+0100\n"
+"POT-Creation-Date: 2018-03-25 09:10+0000\n"
+"PO-Revision-Date: 2018-03-27 23:18+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -306,12 +306,12 @@ msgid "Whether misspelled words are highlighted by default."
 msgstr "Huruvida felstavade ord ska markeras som standard."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:29
-msgid "Spell Checking Language"
+msgid "Spell-Checking Language"
 msgstr "Språk för stavningskontroll"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:30
 msgid ""
-"The default language used for the spell checking. Set to the empty string to "
+"The default language used for the spell-checking. Set to the empty string to "
 "take the best language available based on the environment."
 msgstr ""
 "Standardspråket som används för stavningskontroll. Anges som tom sträng för "
@@ -846,7 +846,7 @@ msgid "Cancel"
 msgstr "Avbryt"
 
 #: ../src/document_view.vala:312
-msgid "No dictionaries available for the spell checking."
+msgid "No dictionaries available for the spell-checking."
 msgstr "Inga ordböcker tillgängliga för stavningskontroll."
 
 #. Help
@@ -1493,126 +1493,126 @@ msgstr "Matematik_blanksteg"
 msgid "_Small"
 msgstr "_Litet"
 
-#: ../src/latex_menu.vala:359
+#: ../src/latex_menu.vala:358
 msgid "Small - \\,"
 msgstr "Litet - \\,"
 
-#: ../src/latex_menu.vala:360
+#: ../src/latex_menu.vala:359
 msgid "_Medium"
 msgstr "_Medel"
 
-#: ../src/latex_menu.vala:361
+#: ../src/latex_menu.vala:359
 msgid "Medium - \\:"
 msgstr "Medel - \\:"
 
-#: ../src/latex_menu.vala:362
+#: ../src/latex_menu.vala:360
 msgid "_Large"
 msgstr "_Stort"
 
-#: ../src/latex_menu.vala:363
+#: ../src/latex_menu.vala:360
 msgid "Large - \\;"
 msgstr "Stort - \\;"
 
 #. Math: Left Delimiters
-#: ../src/latex_menu.vala:369
+#: ../src/latex_menu.vala:366
 msgid "_Left Delimiters"
 msgstr "_Vänsteravgränsare"
 
-#: ../src/latex_menu.vala:370
+#: ../src/latex_menu.vala:367
 msgid "left ("
 msgstr "vänster ("
 
-#: ../src/latex_menu.vala:372
+#: ../src/latex_menu.vala:368
 msgid "left ["
 msgstr "vänster ["
 
-#: ../src/latex_menu.vala:374
+#: ../src/latex_menu.vala:369
 msgid "left { "
 msgstr "vänster { "
 
-#: ../src/latex_menu.vala:376
+#: ../src/latex_menu.vala:370
 msgid "left <"
 msgstr "vänster <"
 
-#: ../src/latex_menu.vala:378
+#: ../src/latex_menu.vala:371
 msgid "left )"
 msgstr "vänster )"
 
-#: ../src/latex_menu.vala:380
+#: ../src/latex_menu.vala:372
 msgid "left ]"
 msgstr "vänster ]"
 
-#: ../src/latex_menu.vala:382
+#: ../src/latex_menu.vala:373
 msgid "left  }"
 msgstr "vänster  }"
 
-#: ../src/latex_menu.vala:384
+#: ../src/latex_menu.vala:374
 msgid "left >"
 msgstr "vänster >"
 
-#: ../src/latex_menu.vala:386
+#: ../src/latex_menu.vala:375
 msgid "left ."
 msgstr "vänster ."
 
 #. Math: Right Delimiters
-#: ../src/latex_menu.vala:391
+#: ../src/latex_menu.vala:379
 msgid "Right _Delimiters"
 msgstr "_Högeravgränsare"
 
-#: ../src/latex_menu.vala:392
+#: ../src/latex_menu.vala:380
 msgid "right )"
 msgstr "höger )"
 
-#: ../src/latex_menu.vala:394
+#: ../src/latex_menu.vala:381
 msgid "right ]"
 msgstr "höger ]"
 
-#: ../src/latex_menu.vala:396
+#: ../src/latex_menu.vala:382
 msgid "right  }"
 msgstr "höger  }"
 
-#: ../src/latex_menu.vala:398
+#: ../src/latex_menu.vala:383
 msgid "right >"
 msgstr "höger >"
 
-#: ../src/latex_menu.vala:400
+#: ../src/latex_menu.vala:384
 msgid "right ("
 msgstr "höger ("
 
-#: ../src/latex_menu.vala:402
+#: ../src/latex_menu.vala:385
 msgid "right ["
 msgstr "höger ["
 
-#: ../src/latex_menu.vala:404
+#: ../src/latex_menu.vala:386
 msgid "right { "
 msgstr "höger { "
 
-#: ../src/latex_menu.vala:406
+#: ../src/latex_menu.vala:387
 msgid "right <"
 msgstr "höger <"
 
-#: ../src/latex_menu.vala:408
+#: ../src/latex_menu.vala:388
 msgid "right ."
 msgstr "höger ."
 
 #. menus under toolitems
-#: ../src/latex_menu.vala:423
+#: ../src/latex_menu.vala:402
 msgid "Sectioning"
 msgstr "Indelning"
 
-#: ../src/latex_menu.vala:426
+#: ../src/latex_menu.vala:405
 msgid "Characters Sizes"
 msgstr "Teckenstorlekar"
 
-#: ../src/latex_menu.vala:429
+#: ../src/latex_menu.vala:408
 msgid "References"
 msgstr "Referenser"
 
-#: ../src/latex_menu.vala:432
+#: ../src/latex_menu.vala:411
 msgid "Presentation Environments"
 msgstr "Presentationsmiljöer"
 
-#: ../src/latex_menu.vala:435
+#: ../src/latex_menu.vala:414
 msgid "Math Environments"
 msgstr "Matematikmiljöer"
 
@@ -2111,7 +2111,7 @@ msgid "_Set Language…"
 msgstr "Ställ in _språk…"
 
 #: ../src/main_window_tools.vala:32
-msgid "Set the language used for the spell checking for the current document"
+msgid "Set the language used for the spell-checking for the current document"
 msgstr ""
 "Ställ in språket som används för stavningskontrollen i det aktuella "
 "dokumentet"
@@ -2697,14 +2697,14 @@ msgstr "Städa automatiskt upp filer efter stängning"
 
 #: ../src/ui/preferences_dialog.ui.h:24
 msgid ""
-"The spell checking settings can also be changed on a file-by-file basis via "
+"The spell-checking settings can also be changed on a file-by-file basis via "
 "the Tools menu."
 msgstr ""
 "Inställningarna för stavningskontroll kan också ändras för varje fil via "
 "verktygsmenyn."
 
 #: ../src/ui/preferences_dialog.ui.h:25
-msgid "Default Spell Checking Settings"
+msgid "Default Spell-Checking Settings"
 msgstr "Standardinställningar för stavningskontroll"
 
 #: ../src/ui/preferences_dialog.ui.h:26
