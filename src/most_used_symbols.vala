@@ -130,7 +130,7 @@ public class MostUsedSymbols : GLib.Object
     private File get_xml_file ()
     {
         string path = Path.build_filename (Environment.get_user_data_dir (),
-            "latexila", "most_used_symbols.xml");
+            "gnome-latex", "most_used_symbols.xml");
 
         return File.new_for_path (path);
     }

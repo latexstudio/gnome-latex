@@ -18,7 +18,7 @@ The web site:
 Dependencies
 ------------
 
-* GLib >= 2.50
+* GLib >= 2.56
 * GTK+ >= 3.22
 * GtkSourceView >= 4.0
 * Tepl >= 3.99.1 - https://wiki.gnome.org/Projects/Tepl
