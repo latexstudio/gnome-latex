@@ -493,7 +493,6 @@ latexila_utils_join_widgets (GtkWidget *widget_top,
 static void
 migrate_latexila_to_gnome_latex_gsettings (void)
 {
-	GSettings *settings;
 	DhDconfMigration *migration;
 	gint i;
 
@@ -542,12 +541,6 @@ migrate_latexila_to_gnome_latex_gsettings (void)
 		NULL
 	};
 
-	settings = g_settings_new ("org.gnome.gnome-latex");
-	if (g_settings_get_boolean (settings, "latexila-to-gnome-latex-migration-done"))
-	{
-		goto out;
-	}
-
 	migration = _dh_dconf_migration_new ();
 
 	for (i = 0; keys[i] != NULL; i++)
@@ -569,11 +562,6 @@ migrate_latexila_to_gnome_latex_gsettings (void)
 	}
 
 	_dh_dconf_migration_free (migration);
-
-	g_settings_set_boolean (settings, "latexila-to-gnome-latex-migration-done", TRUE);
-
-out:
-	g_object_unref (settings);
 }
 
 static void
@@ -632,6 +620,17 @@ out:
 void
 latexila_utils_migrate_latexila_to_gnome_latex (void)
 {
-	migrate_latexila_to_gnome_latex_gsettings ();
-	migrate_latexila_to_gnome_latex_most_used_symbols ();
+	GSettings *settings;
+
+	settings = g_settings_new ("org.gnome.gnome-latex");
+
+	if (!g_settings_get_boolean (settings, "latexila-to-gnome-latex-migration-done"))
+	{
+		migrate_latexila_to_gnome_latex_gsettings ();
+		migrate_latexila_to_gnome_latex_most_used_symbols ();
+
+		g_settings_set_boolean (settings, "latexila-to-gnome-latex-migration-done", TRUE);
+	}
+
+	g_object_unref (settings);
 }
