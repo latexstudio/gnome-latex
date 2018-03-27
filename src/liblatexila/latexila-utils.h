@@ -69,7 +69,7 @@ gchar *		latexila_utils_str_replace			(const gchar *string,
 
 void		latexila_utils_register_icons			(void);
 
-void		latexila_utils_migrate_latexila_to_gnome_latex_gsettings (void);
+void		latexila_utils_migrate_latexila_to_gnome_latex	(void);
 
 G_END_DECLS
 

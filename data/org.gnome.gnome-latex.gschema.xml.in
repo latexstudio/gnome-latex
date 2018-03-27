@@ -1,6 +1,6 @@
 <!--
      When modifying this GSettings schema, don't forget to update the list of
-     keys in latexila_utils_migrate_latexila_to_gnome_latex_gsettings().
+     keys in latexila_utils_migrate_latexila_to_gnome_latex().
 -->
 
 <schemalist>

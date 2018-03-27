@@ -490,14 +490,8 @@ latexila_utils_join_widgets (GtkWidget *widget_top,
 	return GTK_WIDGET (vbox);
 }
 
-/**
- * latexila_utils_migrate_latexila_to_gnome_latex_gsettings:
- *
- * Migrates the #GSettings values from LaTeXila to GNOME LaTeX, so that users
- * don't lose all their settings.
- */
-void
-latexila_utils_migrate_latexila_to_gnome_latex_gsettings (void)
+static void
+migrate_latexila_to_gnome_latex_gsettings (void)
 {
 	GSettings *settings;
 	DhDconfMigration *migration;
@@ -580,4 +574,16 @@ latexila_utils_migrate_latexila_to_gnome_latex_gsettings (void)
 
 out:
 	g_object_unref (settings);
+}
+
+/**
+ * latexila_utils_migrate_latexila_to_gnome_latex:
+ *
+ * Migrates the #GSettings values from LaTeXila to GNOME LaTeX, so that users
+ * don't lose all their settings.
+ */
+void
+latexila_utils_migrate_latexila_to_gnome_latex (void)
+{
+	migrate_latexila_to_gnome_latex_gsettings ();
 }
