@@ -67,18 +67,10 @@ latexila_build_tools_personal_class_init (LatexilaBuildToolsPersonalClass *klass
 static GFile *
 get_xml_file (void)
 {
-	gchar *path;
-	GFile *file;
-
-	path = g_build_filename (g_get_user_config_dir (),
-				 "latexila",
-				 "build_tools.xml",
-				 NULL);
-
-	file = g_file_new_for_path (path);
-	g_free (path);
-
-	return file;
+	return g_file_new_build_filename (g_get_user_config_dir (),
+					  "gnome-latex",
+					  "build_tools.xml",
+					  NULL);
 }
 
 static void

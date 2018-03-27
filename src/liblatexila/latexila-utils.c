@@ -641,6 +641,28 @@ migrate_latexila_to_gnome_latex_projects (void)
 	g_object_unref (glatex_file);
 }
 
+static void
+migrate_latexila_to_gnome_latex_personal_build_tools (void)
+{
+	GFile *latexila_file;
+	GFile *glatex_file;
+
+	latexila_file = g_file_new_build_filename (g_get_user_config_dir (),
+						   "latexila",
+						   "build_tools.xml",
+						   NULL);
+
+	glatex_file = g_file_new_build_filename (g_get_user_config_dir (),
+						 "gnome-latex",
+						 "build_tools.xml",
+						 NULL);
+
+	migrate_latexila_to_gnome_latex_copy_file (latexila_file, glatex_file);
+
+	g_object_unref (latexila_file);
+	g_object_unref (glatex_file);
+}
+
 /**
  * latexila_utils_migrate_latexila_to_gnome_latex:
  *
@@ -659,6 +681,7 @@ latexila_utils_migrate_latexila_to_gnome_latex (void)
 		migrate_latexila_to_gnome_latex_gsettings ();
 		migrate_latexila_to_gnome_latex_most_used_symbols ();
 		migrate_latexila_to_gnome_latex_projects ();
+		migrate_latexila_to_gnome_latex_personal_build_tools ();
 
 		g_settings_set_boolean (settings, "latexila-to-gnome-latex-migration-done", TRUE);
 	}
