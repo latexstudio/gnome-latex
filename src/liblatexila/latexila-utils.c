@@ -565,21 +565,10 @@ migrate_latexila_to_gnome_latex_gsettings (void)
 }
 
 static void
-migrate_latexila_to_gnome_latex_most_used_symbols (void)
+migrate_latexila_to_gnome_latex_copy_file (GFile *latexila_file,
+					   GFile *glatex_file)
 {
-	GFile *latexila_file;
-	GFile *glatex_file;
 	GError *error = NULL;
-
-	latexila_file = g_file_new_build_filename (g_get_user_data_dir (),
-						   "latexila",
-						   "most_used_symbols.xml",
-						   NULL);
-
-	glatex_file = g_file_new_build_filename (g_get_user_data_dir (),
-						 "gnome-latex",
-						 "most_used_symbols.xml",
-						 NULL);
 
 	latexila_utils_create_parent_directories (glatex_file, &error);
 	if (error != NULL)
@@ -602,10 +591,51 @@ migrate_latexila_to_gnome_latex_most_used_symbols (void)
 out:
 	if (error != NULL)
 	{
-		g_warning ("Error when migrating LaTeXila to GNOME LaTeX most used symbols: %s",
+		g_warning ("Error when migrating LaTeXila to GNOME LaTeX user data file: %s",
 			   error->message);
 		g_clear_error (&error);
 	}
+}
+
+static void
+migrate_latexila_to_gnome_latex_most_used_symbols (void)
+{
+	GFile *latexila_file;
+	GFile *glatex_file;
+
+	latexila_file = g_file_new_build_filename (g_get_user_data_dir (),
+						   "latexila",
+						   "most_used_symbols.xml",
+						   NULL);
+
+	glatex_file = g_file_new_build_filename (g_get_user_data_dir (),
+						 "gnome-latex",
+						 "most_used_symbols.xml",
+						 NULL);
+
+	migrate_latexila_to_gnome_latex_copy_file (latexila_file, glatex_file);
+
+	g_object_unref (latexila_file);
+	g_object_unref (glatex_file);
+}
+
+static void
+migrate_latexila_to_gnome_latex_projects (void)
+{
+	GFile *latexila_file;
+	GFile *glatex_file;
+
+	latexila_file = g_file_new_build_filename (g_get_user_data_dir (),
+						   "latexila",
+						   "projects.xml",
+						   NULL);
+
+	glatex_file = g_file_new_build_filename (g_get_user_data_dir (),
+						 "gnome-latex",
+						 "projects.xml",
+						 NULL);
+
+	migrate_latexila_to_gnome_latex_copy_file (latexila_file, glatex_file);
 
 	g_object_unref (latexila_file);
 	g_object_unref (glatex_file);
@@ -628,6 +658,7 @@ latexila_utils_migrate_latexila_to_gnome_latex (void)
 	{
 		migrate_latexila_to_gnome_latex_gsettings ();
 		migrate_latexila_to_gnome_latex_most_used_symbols ();
+		migrate_latexila_to_gnome_latex_projects ();
 
 		g_settings_set_boolean (settings, "latexila-to-gnome-latex-migration-done", TRUE);
 	}

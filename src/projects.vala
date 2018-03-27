@@ -234,7 +234,7 @@ public class Projects
     private File get_xml_file ()
     {
         string path = Path.build_filename (Environment.get_user_data_dir (),
-            "latexila", "projects.xml", null);
+            "gnome-latex", "projects.xml", null);
         return File.new_for_path (path);
     }
 
