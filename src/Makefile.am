@@ -90,13 +90,13 @@ gnome_latex_LDADD = 			\
 
 # GResource
 
-latexila-resources.c: latexila.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/latexila.gresource.xml)
-	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/latexila.gresource.xml
+glatex-resources.c: glatex.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/glatex.gresource.xml)
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/glatex.gresource.xml
 
-BUILT_SOURCES = latexila-resources.c
+BUILT_SOURCES = glatex-resources.c
 nodist_gnome_latex_SOURCES = $(BUILT_SOURCES)
 
-EXTRA_DIST = latexila.gresource.xml
+EXTRA_DIST = glatex.gresource.xml
 
 CLEANFILES =			\
 	$(BUILT_SOURCES)	\
