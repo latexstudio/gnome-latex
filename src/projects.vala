@@ -80,7 +80,7 @@ public class Projects
 
     private void update_all_menus ()
     {
-        foreach (Gtk.Window window in LatexilaApp.get_instance ().get_windows ())
+        foreach (Gtk.Window window in GlatexApp.get_instance ().get_windows ())
         {
             if (window is MainWindow)
             {
@@ -108,7 +108,7 @@ public class Projects
         modified = true;
 
         // find if some opened documents are belonging to the new project
-        Gee.List<Document> docs = LatexilaApp.get_instance ().get_documents ();
+        Gee.List<Document> docs = GlatexApp.get_instance ().get_documents ();
         foreach (Document doc in docs)
         {
             if (doc.project_id != -1 || doc.location == null)
@@ -139,7 +139,7 @@ public class Projects
         modified = true;
 
         // refresh docs
-        Gee.List<Document> docs = LatexilaApp.get_instance ().get_documents ();
+        Gee.List<Document> docs = GlatexApp.get_instance ().get_documents ();
         foreach (Document doc in docs)
         {
             if (doc.project_id == num)
@@ -156,7 +156,7 @@ public class Projects
         modified = true;
 
         // refresh docs
-        Gee.List<Document> docs = LatexilaApp.get_instance ().get_documents ();
+        Gee.List<Document> docs = GlatexApp.get_instance ().get_documents ();
         foreach (Document doc in docs)
         {
             if (doc.project_id == num)
@@ -178,7 +178,7 @@ public class Projects
 
     private void update_all_documents ()
     {
-        Gee.List<Document> docs = LatexilaApp.get_instance ().get_documents ();
+        Gee.List<Document> docs = GlatexApp.get_instance ().get_documents ();
         foreach (Document doc in docs)
         {
             doc.project_id = -1;

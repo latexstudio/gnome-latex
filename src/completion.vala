@@ -371,7 +371,7 @@ public class CompletionProvider : GLib.Object, SourceCompletionProvider
 
         _calltip_window_label.set_markup (markup);
 
-        MainWindow? window = LatexilaApp.get_instance ().get_active_main_window ();
+        MainWindow? window = GlatexApp.get_instance ().get_active_main_window ();
         return_if_fail (window != null);
 
         _calltip_window.set_transient_for (window);

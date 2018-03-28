@@ -36,7 +36,7 @@ int main (string[] argv)
     Factory factory = new Factory ();
     factory.set_singleton_vala ();
 
-    LatexilaApp app = new LatexilaApp ();
+    GlatexApp app = new GlatexApp ();
     int status = app.run (argv);
 
     Tepl.finalize ();

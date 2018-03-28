@@ -40,7 +40,7 @@ vala_files =				\
 	factory.vala			\
 	file_browser.vala		\
 	finance.vala			\
-	latexila_app.vala		\
+	glatex_app.vala			\
 	latex_menu.vala			\
 	main.vala			\
 	main_window_build_tools.vala	\

@@ -25,8 +25,8 @@ public class Factory : Tepl.AbstractFactoryVala
 
     public override Gtk.ApplicationWindow? create_main_window_vala (Gtk.Application gtk_app)
     {
-        return_val_if_fail (gtk_app is LatexilaApp, null);
-        LatexilaApp app = gtk_app as LatexilaApp;
+        return_val_if_fail (gtk_app is GlatexApp, null);
+        GlatexApp app = gtk_app as GlatexApp;
 
         MainWindow? active_main_window = app.get_active_main_window ();
         if (active_main_window != null)
@@ -41,7 +41,7 @@ public class Factory : Tepl.AbstractFactoryVala
         return new_window;
     }
 
-    private void reopen_files (LatexilaApp app)
+    private void reopen_files (GlatexApp app)
     {
         GLib.Settings editor_settings =
             new GLib.Settings ("org.gnome.gnome-latex.preferences.editor");

@@ -88,7 +88,7 @@ public class MainWindowEdit
 
         ui_manager.insert_action_group (_action_group, 0);
 
-        LatexilaApp app = LatexilaApp.get_instance ();
+        GlatexApp app = GlatexApp.get_instance ();
 
         Amtk.utils_bind_g_action_to_gtk_action (main_window, "tepl-undo",
             _action_group, "EditUndo");

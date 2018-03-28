@@ -23,7 +23,7 @@ src/encodings.vala
 src/error_entry.vala
 src/file_browser.vala
 src/finance.vala
-src/latexila_app.vala
+src/glatex_app.vala
 src/latex_menu.vala
 src/liblatexila/dh-dconf-migration.c
 src/liblatexila/latexila-build-job.c

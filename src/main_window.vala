@@ -149,7 +149,7 @@ public class MainWindow : ApplicationWindow
     /*************************************************************************/
     // Construction
 
-    public MainWindow (LatexilaApp app)
+    public MainWindow (GlatexApp app)
     {
         Object (application: app);
 
@@ -347,7 +347,7 @@ public class MainWindow : ApplicationWindow
 
         add_accel_group (_ui_manager.get_accel_group ());
 
-        LatexilaApp app = LatexilaApp.get_instance ();
+        GlatexApp app = GlatexApp.get_instance ();
         Amtk.utils_bind_g_action_to_gtk_action (app, "quit",
             _action_group, "FileQuit");
         Amtk.utils_bind_g_action_to_gtk_action (app, "help",
@@ -537,7 +537,7 @@ public class MainWindow : ApplicationWindow
         Gtk.drag_dest_add_uri_targets (this);
         drag_data_received.connect ((dc, x, y, selection_data, info, time) =>
         {
-            LatexilaApp app = LatexilaApp.get_instance ();
+            GlatexApp app = GlatexApp.get_instance ();
 
             File[] files = {};
             foreach (string uri in selection_data.get_uris ())
@@ -626,7 +626,7 @@ public class MainWindow : ApplicationWindow
     public DocumentTab? open_document (File location, bool jump_to = true)
     {
         /* check if the document is already opened */
-        foreach (Window window in LatexilaApp.get_instance ().get_windows ())
+        foreach (Window window in GlatexApp.get_instance ().get_windows ())
         {
             if (!(window is MainWindow))
                 continue;

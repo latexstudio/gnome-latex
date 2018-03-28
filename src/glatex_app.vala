@@ -19,7 +19,7 @@
  * Author: Sébastien Wilmet
  */
 
-public class LatexilaApp : Gtk.Application
+public class GlatexApp : Gtk.Application
 {
     static Gtk.CssProvider? _provider = null;
 
@@ -34,7 +34,7 @@ public class LatexilaApp : Gtk.Application
         { "quit", quit_cb }
     };
 
-    public LatexilaApp ()
+    public GlatexApp ()
     {
         Object (application_id: "org.gnome.gnome-latex");
         set_flags (ApplicationFlags.HANDLES_OPEN);
@@ -51,9 +51,9 @@ public class LatexilaApp : Gtk.Application
         tepl_app.handle_activate ();
     }
 
-    public static LatexilaApp get_instance ()
+    public static GlatexApp get_instance ()
     {
-        return GLib.Application.get_default () as LatexilaApp;
+        return GLib.Application.get_default () as GlatexApp;
     }
 
     public MainWindow? get_active_main_window ()

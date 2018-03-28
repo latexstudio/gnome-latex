@@ -82,7 +82,7 @@ public class MainWindowBuildTools
 
         ui_manager.insert_action_group (_static_action_group, 0);
 
-        LatexilaApp app = LatexilaApp.get_instance ();
+        GlatexApp app = GlatexApp.get_instance ();
         Amtk.utils_bind_g_action_to_gtk_action (app, "manage-build-tools",
             _static_action_group, "BuildToolsPreferences");
 
@@ -128,7 +128,7 @@ public class MainWindowBuildTools
         Gtk.Action stop_exec_action = _static_action_group.get_action ("BuildStopExecution");
         stop_exec_action.set_sensitive (build_tool_is_running);
 
-        LatexilaApp app = LatexilaApp.get_instance ();
+        GlatexApp app = GlatexApp.get_instance ();
         GLib.SimpleAction preferences_action = app.lookup_action ("manage-build-tools")
             as GLib.SimpleAction;
 
@@ -374,7 +374,7 @@ public class MainWindowBuildTools
             // Save all the documents belonging to the project
             else
             {
-                Gee.List<Document> docs = LatexilaApp.get_instance ().get_documents ();
+                Gee.List<Document> docs = GlatexApp.get_instance ().get_documents ();
                 foreach (Document doc in docs)
                 {
                     if (doc.project_id == project_id)

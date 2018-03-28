@@ -18,7 +18,7 @@ src/encodings.c
 src/error_entry.c
 src/file_browser.c
 src/finance.c
-src/latexila_app.c
+src/glatex_app.c
 src/latex_menu.c
 src/main.c
 src/main_window_build_tools.c
