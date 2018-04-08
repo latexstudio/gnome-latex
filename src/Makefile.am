@@ -12,7 +12,7 @@ AM_VALAFLAGS =					\
 	--pkg gspell-1				\
 	--pkg gee-0.8				\
 	--pkg posix				\
-	--target-glib=2.50			\
+	--target-glib=@GLIB_REQUIRED_VERSION@	\
 	--vapidir liblatexila			\
 	--vapidir $(abs_builddir)/liblatexila	\
 	--pkg latexila
