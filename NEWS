@@ -1,5 +1,27 @@
 GNOME LaTeX NEWS
 
+Release 3.28.0, 2018-04-08
+--------------------------
+* Changes for packagers:
+ - New dependency: dconf.
+ - Note that since the 3.27.2 version, the project has been renamed from
+   latexila to gnome-latex.
+
+* User-visible changes:
+ - On first launch of GNOME LaTeX, import LaTeXila settings and user
+   data/config files.
+ - Change Find and Replace shortcut to Ctrl+H, to be like in gedit (thanks to
+   Robert Griesel).
+ - Update/improve the user documentation for the spell-checking.
+ - Translation updates.
+
+* Under the hood changes:
+ - Project moved to GNOME GitLab.
+ - Apply GtkSourceView coding style to *.c files.
+ - Reduce delta between Vala and C coding styles.
+ - Improve documentation for contributors.
+ - Finish to port the Math menu to GAction (thanks to Robert Griesel).
+
 Release 3.27.2, 2018-01-17
 --------------------------
 * Rename LaTeXila to GNOME LaTeX.
