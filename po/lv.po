@@ -1,116 +1,196 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013.
+# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=latexila&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-07 22:26+0000\n"
-"PO-Revision-Date: 2013-10-13 13:36+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
+"POT-Creation-Date: 2018-02-23 15:42+0000\n"
+"PO-Revision-Date: 2018-04-10 20:04+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
-"2);\n"
-"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
+" 2);\n"
+"X-Generator: Lokalize 2.0\n"
 
-#: build_tools.xml:43(tool/label) ../src/build_tool_dialog.vala:166
+#. (itstool) path: tool/label
+#: build_tools.xml:43 ../src/build_tool_dialog.vala:165
 msgid "View PDF"
 msgstr "Skatīt PDF"
 
-#: build_tools.xml:44(tool/description)
+#. (itstool) path: tool/description
+#: build_tools.xml:44
 msgid "View the PDF file"
 msgstr "Skatīt PDF datn"
 
-#: build_tools.xml:49(tool/label) ../src/build_tool_dialog.vala:165
+#. (itstool) path: tool/label
+#: build_tools.xml:49 ../src/build_tool_dialog.vala:164
 msgid "View DVI"
 msgstr "Skatīt DVI"
 
-#: build_tools.xml:50(tool/description)
+#. (itstool) path: tool/description
+#: build_tools.xml:50
 msgid "View the DVI file"
 msgstr "Skatīt DVI datni"
 
-#: build_tools.xml:55(tool/label) ../src/build_tool_dialog.vala:167
+#. (itstool) path: tool/label
+#: build_tools.xml:55 ../src/build_tool_dialog.vala:166
 msgid "View PS"
 msgstr "Skatīt PS"
 
-#: build_tools.xml:56(tool/description)
+#. (itstool) path: tool/description
+#: build_tools.xml:56
 msgid "View the PostScript file"
 msgstr "Skatīt PostScript datni"
 
-#: build_tools.xml:64(tool/description)
+#. (itstool) path: tool/description
+#: build_tools.xml:64
 msgid "Create a PDF file from LaTeX sources with the \"pdflatex\" command"
 msgstr "Izveidot PDF datni no LaTeX pirmkoda ar “pdflatex” komandu"
 
-#: build_tools.xml:70(tool/description)
+#. (itstool) path: tool/description
+#: build_tools.xml:70
 msgid "Create a DVI file from LaTeX sources with the \"latex\" command"
 msgstr "Izveidot DVI datni no LaTeX pirmkoda ar “latex” komandu"
 
-#: build_tools.xml:78(tool/description)
+#. (itstool) path: tool/description
+#: build_tools.xml:78
 msgid "Run BibTeX (bibliography)"
 msgstr "Izpildīt BibTeX (bibliogrāfija)"
 
-#: build_tools.xml:84(tool/description)
+#. (itstool) path: tool/description
+#: build_tools.xml:84
 msgid "Run MakeIndex"
 msgstr "Izpildīt MakeIndex"
 
-#: build_tools.xml:92(tool/description)
+#. (itstool) path: tool/description
+#: build_tools.xml:92
 msgid "Convert the DVI document to the PDF format"
 msgstr "Pārveidot DVI dokumentu PDF formātā"
 
-#: build_tools.xml:98(tool/description)
+#. (itstool) path: tool/description
+#: build_tools.xml:98
 msgid "Convert the DVI document to the PostScript format"
 msgstr "Pārveidot DVI dokumentu PostScript formātā"
 
-#: build_tools.xml:104(tool/description)
+#. (itstool) path: tool/description
+#: build_tools.xml:104
 msgid "Convert the PostScript document to the PDF format"
 msgstr "Pārveidot PostScript dokumentu PDF formātā"
 
-#: ../data/latexila.desktop.in.in.h:1
-msgid "LaTeXila"
-msgstr "LaTeXila"
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:1
+#| msgid "LaTeXila"
+msgid "LaTeX editor"
+msgstr "LaTeX redaktors"
 
-#: ../data/latexila.desktop.in.in.h:2
-msgid "Integrated LaTeX Environment"
-msgstr "Integrēta LaTeX vide"
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:2
+msgid ""
+"GNOME LaTeX is a LaTeX editor for the GNOME desktop, previously named "
+"LaTeXila. GNOME LaTeX permits to concentrate on the content and the "
+"structure of the document instead of being distracted by its presentation."
+msgstr ""
+"GNOME LaTeX ir LaTeX redaktors GNOME videi, iepriekš dēvēts par "
+"LaTeXila. GNOME LaTeX ļauj koncentrēties uz dokumenta saturu un struktūru,"
+" nevis tā prezentāciju."
 
-#: ../data/latexila.desktop.in.in.h:3
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:3
+msgid ""
+"To help the writing of the LaTeX markup, auto-completion is available as "
+"well as menus and toolbars with the principal commands. New documents are "
+"created from templates. There are buttons to compile, convert and view a "
+"document in one click. And projects containing several .tex files are "
+"managed easily."
+msgstr ""
+"Lai palīdzētu rakstīt LaTeX atzīmes, ir pieejama automātiskā pabeigšana, kā"
+" arī izvēlnes un rīkjoslas ar galvenajām komandām. Jauni dokumenti tiek"
+" veidoti no veidnēm. Ir pieejamas kompilēšanas, konvertēšanas un gatava"
+" dokumenta skatīšanas pogas, kas ir viena klikšķa attālumā. Projekti satur"
+" vairākas .tex datnes, kas ir viegli pārvaldāmas."
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:4
+msgid ""
+"A side panel contains three components: the document structure to easily "
+"navigate in it; lists of symbols to insert them in a document; and a file "
+"browser."
+msgstr ""
+"Sānu joslā ir trīs komponentes — dokumenta struktūra, lai varētu tajā viegli"
+" pārvietoties; saraksts ar simboliem, kurus var ievietot dokumentā un datņu"
+" pārlūks."
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:5
+msgid ""
+"GNOME LaTeX has also other features like the spell-checking, or jumping to "
+"the associated position between the .tex file and the PDF."
+msgstr ""
+"GNOME LaTeX ir arī citas iespējas, piemēram, pareizrakstības pārbaude un"
+" pāriešana uz atbilstošo vietu starp .tex datni un PDF."
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:6
+msgid "Completion of LaTeX commands"
+msgstr "LaTeX komandu pabeigšana"
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:7
+#| msgid "View the PDF file"
+msgid "Generating the PDF file"
+msgstr "Ģenerē PDF datni"
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:8
+#| msgid "Show or hide the side panel"
+msgid "Document structure in the side panel"
+msgstr "Dokumenta struktūra ir sānu panelī"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:1
+#| msgid "Editor"
+msgid "LaTeX Editor"
+msgstr "LaTeX redaktors"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:2
 msgid "Edit LaTeX documents"
 msgstr "Rediģēt LaTeX dokumentus"
 
-#: ../data/latexila.desktop.in.in.h:4
+#: ../data/org.gnome.gnome-latex.desktop.in.h:3
+msgid "text;tex;latex;editor;documents;"
+msgstr "teksts;tex;latex;redaktors;dokumenti;"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:4
 msgid "Open a New Window"
 msgstr "Atvērt jaunu logu"
 
-#: ../data/latexila.desktop.in.in.h:5
+#: ../data/org.gnome.gnome-latex.desktop.in.h:5
 msgid "Open a New Document"
 msgstr "Atvērt jaunu dokumentu"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:1
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:1
 msgid "Use Default Font"
 msgstr "Lietot noklusējuma fontu"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:2
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:2
+#| msgid ""
+#| "Whether to use the system's default fixed width font for editing text "
+#| "instead of a font specific to LaTeXila. If this option is turned off, "
+#| "then the font named in the \"Editor Font\" option will be used instead of "
+#| "the system font."
 msgid ""
 "Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to LaTeXila. If this option is turned off, then "
-"the font named in the \"Editor Font\" option will be used instead of the "
-"system font."
+"instead of a font specific to GNOME LaTeX. If this option is turned off, "
+"then the font named in the \"Editor Font\" option will be used instead of "
+"the system font."
 msgstr ""
 "Vai teksta rediģēšanai lietot sistēmas noklusēto fiksēta platuma fontu nevis "
-"LaTeXila specifisko fontu. Ja šī iespēja ir izslēgta, tad opcijā “Redaktora "
+"GNOME LaTeX specifisko fontu. Ja šī iespēja ir izslēgta, tad opcijā"
+" “Redaktora "
 "fonts” norādītais fonts tiks lietots sistēmas fonta vietā."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:3
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:3
 msgid "Editor Font"
 msgstr "Redaktora fonts"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:4
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:4
 msgid ""
 "A custom font that will be used for the editing area. This will only take "
 "effect if the \"Use Default Font\" option is turned off."
@@ -118,129 +198,162 @@ msgstr ""
 "Pielāgots fonts, kas tiks izmantos rediģēšanas laukā. Šī iespēja darbosies "
 "tikai tad, ja būs izslēgta “Lietot noklusējuma fontu” iespēja."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:5
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:5
 msgid "Style Scheme"
 msgstr "Stila shēma"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:6
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:6
 msgid "The ID of a GtkSourceView Style Scheme used to color the text."
 msgstr "GtkSourceView stila shēmas ID, kas tiks izmantota teksta krāsošanai."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:7
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:7
 msgid "Create Backup Copies"
 msgstr "Izveidot rezerves kopijas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:8
-msgid "Whether LaTeXila should create backup copies for the files it saves."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:8
+#| msgid "Whether LaTeXila should create backup copies for the files it saves."
+msgid "Whether GNOME LaTeX should create backup copies for the files it saves."
 msgstr ""
-"Vai LaTeXila vajadzētu izveidot rezerves kopijas datnēm, ko tā saglabā."
+"Vai GNOME LaTeX vajadzētu izveidot rezerves kopijas datnēm, ko tā saglabā."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:9
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:9
 msgid "Autosave"
 msgstr "Automātiski saglabāt"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:10
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:10
+#| msgid ""
+#| "Whether LaTeXila should automatically save modified files after a time "
+#| "interval. You can set the time interval with the \"Autosave Interval\" "
+#| "option."
 msgid ""
-"Whether LaTeXila should automatically save modified files after a time "
+"Whether GNOME LaTeX should automatically save modified files after a time "
 "interval. You can set the time interval with the \"Autosave Interval\" "
 "option."
 msgstr ""
-"Vai LaTeXila automātiski jāsaglabā izmainītās datnes pēc laika intervāla. "
+"Vai GNOME LaTeX automātiski jāsaglabā izmainītās datnes pēc laika intervāla. "
 "Jūs varat iestatīt šo laika intervālu ar “Automātiskās saglabāšanas "
 "intervāls” opciju."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:11
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:11
 msgid "Autosave Interval"
 msgstr "Automātiskās saglabāšanas intervāls"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:12
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:12
+#| msgid ""
+#| "Number of minutes after which LaTeXila will automatically save modified "
+#| "files. This will only take effect if the \"Autosave\" option is turned on."
 msgid ""
-"Number of minutes after which LaTeXila will automatically save modified "
+"Number of minutes after which GNOME LaTeX will automatically save modified "
 "files. This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
-"Minūšu skaits, pēc kurām LaTeXila automātiski saglabās izmainītās datnes. Šī "
+"Minūšu skaits, pēc kurām GNOME LaTeX automātiski saglabās izmainītās datnes."
+" Šī "
 "funkcija strādās tikai tad, ja opcija “Automātiski saglabāt” būs ieslēgta."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:13
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:13
 #: ../src/ui/preferences_dialog.ui.h:9
 msgid "Reopen files on startup"
 msgstr "Startējoties atkal atvērt datnes"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:14
-msgid "Whether LaTeXila should reopen the files that was opened the last time."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:14
+#| msgid ""
+#| "Whether LaTeXila should reopen the files that was opened the last time."
+msgid ""
+"Whether GNOME LaTeX should reopen the files that was opened the last time."
 msgstr ""
-"Vai LaTeXila vajadzētu atkārtoti atvērt datnes, kas bija atvērtas "
+"Vai GNOME LaTeX vajadzētu atkārtoti atvērt datnes, kas bija atvērtas "
 "iepriekšējā reizē."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:15
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:15
 msgid "Tab Size"
 msgstr "Tabulācijas izmērs"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:16
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:16
 msgid ""
 "Specifies the number of spaces that should be displayed instead of Tab "
 "characters."
 msgstr "Nosaka atstarpju skaitu, kuru rādīt tabulācijas rakstzīmju vietā."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:17
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:17
 msgid "Insert spaces"
 msgstr "Ievietot atstarpes"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:18
-msgid "Whether LaTeXila should insert spaces instead of tabs."
-msgstr "Vai LaTeXila būtu jāievieto atstarpes tabulāciju vietā."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:18
+#| msgid "Whether LaTeXila should insert spaces instead of tabs."
+msgid "Whether GNOME LaTeX should insert spaces instead of tabs."
+msgstr "Vai GNOME LaTeX būtu jāievieto atstarpes tabulāciju vietā."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:19
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:19
 msgid "Forget lack of tabulations"
 msgstr "Aizmirstiet tabulāciju trūkumu"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:20
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:20
 msgid "Forget you are not using tabulations."
 msgstr "Aizmirstiet, ka neizmantojat tabulācijas."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:21
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:21
 msgid "Display Line Numbers"
 msgstr "Rādīt rindu numurus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:22
-msgid "Whether LaTeXila should display line numbers in the editing area."
-msgstr "Vai LaTeXila rediģēšanas laukā būtu jārāda rindu numuri."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:22
+#| msgid "Whether LaTeXila should display line numbers in the editing area."
+msgid "Whether GNOME LaTeX should display line numbers in the editing area."
+msgstr "Vai GNOME LaTeX rediģēšanas laukā būtu jārāda rindu numuri."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:23
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:23
 msgid "Highlight Current Line"
 msgstr "Izcelt aktīvo rindu"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:24
-msgid "Whether LaTeXila should highlight the current line."
-msgstr "Vai LaTeXila būtu jāizceļ tekošā rinda."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:24
+#| msgid "Whether LaTeXila should highlight the current line."
+msgid "Whether GNOME LaTeX should highlight the current line."
+msgstr "Vai GNOME LaTeX būtu jāizceļ tekošā rinda."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:25
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:25
 msgid "Highlight Matching Brackets"
 msgstr "Izcelt savstarpēji saistītās iekavas"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:26
-msgid "Whether LaTeXila should highlight matching brackets."
-msgstr "Vai LaTeXila būtu jāizceļ savstarpēji atbilstošas iekavas."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:26
+#| msgid "Whether LaTeXila should highlight matching brackets."
+msgid "Whether GNOME LaTeX should highlight matching brackets."
+msgstr "Vai GNOME LaTeX būtu jāizceļ savstarpēji atbilstošas iekavas."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:27
-msgid "Spell checking"
-msgstr "Pareizrakstības pārbaude"
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:27
+msgid "Highlight Misspelled Words"
+msgstr "Izcelt nepareizi uzrakstītos vārdus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:28
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:28
+msgid "Whether misspelled words are highlighted by default."
+msgstr "Vai nepareizi uzrakstītos vārdus izcelt pēc noklusējuma."
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:29
+#| msgid "Spell checking"
+msgid "Spell Checking Language"
+msgstr "Pareizrakstības pārbaudes valoda"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:30
+msgid ""
+"The default language used for the spell checking. Set to the empty string to "
+"take the best language available based on the environment."
+msgstr ""
+"Noklusējuma valoda, ko izmantot pareizrakstības pārbaudei. Iestatiet kā tukšu"
+" virkni, lai valodu izvēlētos, balstoties uz vidi."
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:31
 msgid "Main toolbar is visible"
 msgstr "Galvenā rīkjosla ir redzama"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:29
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:32
 msgid ""
 "Whether the main toolbar (file open, close, build, ...) should be visible."
 msgstr ""
 "Vai galvenajai rīkjoslai (atvērt datni, aizvērt, būvēt, ...) jābūt redzamai."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:30
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:33
 msgid "Edit toolbar is visible"
 msgstr "Redaktora rīkjosla ir redzama"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:31
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:34
 msgid ""
 "Whether the edit toolbar (bold, italic, character sizes, ...) should be "
 "visible."
@@ -248,131 +361,131 @@ msgstr ""
 "Vai redaktora rīkjoslai (treknraksts, slīpraksts, rakstzīmju izmēri, ...) "
 "jābūt redzamai."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:32
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:35
 msgid "Side panel is Visible"
 msgstr "Sānu rūts ir redzama"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:33
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:36
 msgid ""
 "Whether the side panel at the left of editing windows should be visible."
 msgstr "Vai rūtij rediģēšanas loga kreisajā malā būtu jābūt redzamai."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:34
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:37
 msgid "Bottom panel is Visible"
 msgstr "Apakšējā rūts ir redzama"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:35
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:38
 msgid "Whether the bottom panel containing the build view should be visible."
 msgstr "Vai apakšējai rūtij, kurā ir būvēšanas skats, ir jābūt redzamai."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:36
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:39
 msgid "Side panel component"
 msgstr "Sānu rūts komponente"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:37
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:40
 msgid ""
 "Side panel's active component. 0: Symbols. 1: File browser. 2: Structure."
 msgstr ""
 "Sānu rūts aktīvā komponente. 0: simboli. 1: datņu pārlūks. 2: struktūra."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:38
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:41
 msgid "Show build output warnings"
 msgstr "Rādīt būvēšanas izvades brīdinājumus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:39
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:42
 msgid "Show build output badboxes"
 msgstr "Rādīt būvēšanas izvades sliktās kastes"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:40
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:43
 msgid "Interactive completion"
 msgstr "Interaktīva pabeigšana"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:41
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:44
 msgid "Automatically show LaTeX commands proposals"
 msgstr "Automātiski rādīt LaTeX komandu piedāvājumus"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:42
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:45
 msgid "Minimum number of characters for interactive completion"
 msgstr "Minimālais rakstzīmju skaits interaktīvai pabeigšanai"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:43
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:46
 msgid ""
 "Minimum number of characters after \"\\\" for the interactive completion of "
 "LaTeX commands"
 msgstr ""
 "Minimālais rakstzīmju skaits pēc “\\” interaktīvai LaTeX komandu pabeigšanai"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:44
-#: ../src/ui/preferences_dialog.ui.h:19
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:47
+#: ../src/ui/preferences_dialog.ui.h:22
 msgid "No confirmation when cleaning-up"
 msgstr "Neprasīt apstiprinājumu, kad uzkopj"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:45
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:48
 msgid "Automatic clean-up"
 msgstr "Automātiski uzkopt"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:46
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:49
 msgid ""
 "Automatically clean-up files after close. no-confirm-clean must be true."
 msgstr ""
 "Automātiski attīrīt datnes pēc aizvēršanas. Jābūt atzīmētam no-confirm-clean."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:47
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:50
 msgid "File extensions for the clean-up"
 msgstr "Datņu paplašinājumi uzkopšanai"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:48
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:51
 msgid "The list of file extensions for the clean-up, separated by spaces"
 msgstr "Datņu paplašinājumu saraksts uzkopšanai; atdalīti ar atstarpēm"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:49
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:52
 msgid "Enabled default build tools"
 msgstr "Aktivētie noklusējuma būvēšanas rīki"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:50
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:53
 msgid "The list of the default build tools that are enabled"
 msgstr "Saraksts ar noklusējuma būvēšanas rīkiem, kas ir aktivēti"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:51
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:54
 msgid "Disabled default build tools"
 msgstr "Deaktivētie noklusējuma būvēšanas rīki"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:52
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:55
 msgid "The list of the default build tools that are disabled"
 msgstr "Saraksts ar noklusējuma būvēšanas rīkiem, kas ir deaktivēti"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:53
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:56
 msgid "Current directory"
 msgstr "Pašreizējā direktorija"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:54
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:57
 msgid "URI of the file browser current directory"
 msgstr "Datņu pārlūka pašreizējās direktorijas URI"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:55
-#: ../src/file_browser.vala:281
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:58
+#: ../src/file_browser.vala:348
 msgid "Show build files"
 msgstr "Rādīt būvēšanas datnes"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:56
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:59
 msgid ""
 "Show files with an extension present in preferences.latex.clean-extensions."
 msgstr ""
 "Rādīt datnes ar paplašinājumiem, kas atrodas preferences.latex.clean-"
 "extensions."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:57
-#: ../src/file_browser.vala:289
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:60
+#: ../src/file_browser.vala:356
 msgid "Show hidden files"
 msgstr "Rādīt slēptas datnes"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.in.h:58
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:61
 msgid "Show files beginning with a dot."
 msgstr "Rādīt datnes, kas sākas ar punktu."
 
+#. (itstool) path: template/babel
 #. This must be translated by a usepackage LaTeX command.
-#: article.xml:8(template/babel) beamer.xml:8(template/babel)
-#: book.xml:8(template/babel) report.xml:8(template/babel)
+#: article.xml:8 beamer.xml:8 book.xml:8 report.xml:8
 #, no-wrap
 msgid ""
 "\n"
@@ -381,8 +494,8 @@ msgstr ""
 "\n"
 "% babel pakotne vai ekvivalenta\n"
 
-#. There is a helper script in data/templates/tex2po.sh
-#: letter.xml:2(template/translatableChunk)
+#. (itstool) path: template/translatableChunk
+#: letter.xml:2
 #, no-wrap
 msgid ""
 "\n"
@@ -396,8 +509,8 @@ msgid ""
 "\n"
 "\\begin{document}\n"
 "\n"
-"\\begin{letter}{Destination\\\\Address of the destination\\\\Phone number of "
-"the destination}\n"
+"\\begin{letter}{Destination\\\\Address of the destination\\\\Phone number of"
+" the destination}\n"
 "\n"
 "\\opening{Dear Sir,}\n"
 "\n"
@@ -442,167 +555,196 @@ msgstr ""
 msgid "Hide panel"
 msgstr "Slēpt rūti"
 
-#: ../src/build_tool_dialog.vala:81
-msgid "Build Tool (read-only)"
-msgstr "Būvēšanas rīks (tikai lasāms)"
+#: ../src/build_tool_dialog.vala:71
+#| msgid "Personal build tools"
+msgid "Personal Build Tool"
+msgstr "Personīgais būvēšanas rīks"
 
-#: ../src/build_tool_dialog.vala:88
-msgid "Build Tool"
-msgstr "Būvēšanas rīks"
+#: ../src/build_tool_dialog.vala:72 ../src/build_tools_preferences.vala:335
+#: ../src/clean_build_files.vala:242 ../src/dialogs.vala:41
+#: ../src/document_tab.vala:178
+#: ../src/liblatexila/latexila-templates-dialogs.c:130
+#: ../src/liblatexila/latexila-templates-dialogs.c:238
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:147
+#: ../src/main_window_file.vala:157 ../src/main_window.vala:760
+#: ../src/main_window.vala:817 ../src/preferences_dialog.vala:114
+#: ../src/project_dialogs.vala:31 ../src/project_dialogs.vala:122
+#: ../src/project_dialogs.vala:276 ../src/project_dialogs.vala:296
+msgid "_Cancel"
+msgstr "At_celt"
 
-#. icon stock-id
+#: ../src/build_tool_dialog.vala:73 ../src/project_dialogs.vala:123
+msgid "_Apply"
+msgstr "_Pielietot"
+
+#: ../src/build_tool_dialog.vala:77
+#| msgid "Build Tool (read-only)"
+msgid "Default Build Tool (read-only)"
+msgstr "Noklusējuma būvēšanas rīks (tikai lasāms)"
+
+#. icon-name
 #. label
-#: ../src/build_tool_dialog.vala:159
+#: ../src/build_tool_dialog.vala:158
 msgid "Execute"
 msgstr "Izpildīt"
 
-#: ../src/build_tool_dialog.vala:163
+#: ../src/build_tool_dialog.vala:162
 msgid "Convert"
 msgstr "Konvertēt"
 
-#: ../src/build_tool_dialog.vala:164
+#. FIXME don't use Stock
+#: ../src/build_tool_dialog.vala:163
 msgid "View File"
 msgstr "Skatīt datni"
 
-#: ../src/build_tool_dialog.vala:228
+#. In all cases, the text must be selectable, but there is no property
+#. for that. So set as editable, but in read-only mode the edited text
+#. isn't changed (see below).
+#: ../src/build_tool_dialog.vala:231
 msgid "Commands"
 msgstr "Komandas"
 
-#: ../src/build_tool_dialog.vala:238
+#: ../src/build_tool_dialog.vala:241
 msgid "Post Processor"
 msgstr "Pēcprocesors"
 
-#: ../src/build_tool_dialog.vala:265 ../src/build_tools_preferences.vala:289
+#: ../src/build_tool_dialog.vala:271 ../src/build_tools_preferences.vala:297
 msgid "Add..."
 msgstr "Pievienot..."
 
-#: ../src/build_tool_dialog.vala:282 ../src/build_tools_preferences.vala:306
+#: ../src/build_tool_dialog.vala:288 ../src/build_tools_preferences.vala:314
 msgid "Remove"
 msgstr "Izņemt"
 
-#: ../src/build_tool_dialog.vala:312 ../src/build_tools_preferences.vala:346
+#: ../src/build_tool_dialog.vala:318 ../src/build_tools_preferences.vala:354
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:286
 msgid "Move up"
 msgstr "Pārvietot augšup"
 
-#: ../src/build_tool_dialog.vala:363 ../src/build_tools_preferences.vala:398
+#: ../src/build_tool_dialog.vala:369 ../src/build_tools_preferences.vala:406
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:298
 msgid "Move down"
 msgstr "Pārvietot lejup"
 
-#: ../src/build_tool_dialog.vala:563 ../src/build_tools_preferences.vala:181
-#: ../src/latex_menu.vala:52 ../src/structure.vala:777
+#: ../src/build_tool_dialog.vala:573 ../src/build_tools_preferences.vala:177
+#: ../src/latex_menu.vala:52 ../src/structure.vala:783
 msgid "Label"
 msgstr "Etiķete"
 
-#: ../src/build_tool_dialog.vala:568
+#: ../src/build_tool_dialog.vala:578
 msgid "You can select this arrow and copy/paste it!"
 msgstr "Jūs varat izvēlēties šo bultu un kopēt / ielīmēt to!"
 
-#: ../src/build_tool_dialog.vala:584
+#: ../src/build_tool_dialog.vala:594
 msgid "Description"
 msgstr "Apraksts"
 
-#: ../src/build_tool_dialog.vala:590
+#: ../src/build_tool_dialog.vala:600
 msgid "File extensions for which the build tool can be executed."
 msgstr "Datņu paplašinājumi, uz kā var izpildīt būvēšanas rīku."
 
-#: ../src/build_tool_dialog.vala:591
+#: ../src/build_tool_dialog.vala:601
 msgid "The extensions are separated by spaces."
 msgstr "Paplašinājumus atdala ar atstarpēm."
 
-#: ../src/build_tool_dialog.vala:592
+#: ../src/build_tool_dialog.vala:602
 msgid "If it is empty, all extensions are allowed."
 msgstr "Ja tukšs, ir atļauti visi paplašinājumi."
 
-#: ../src/build_tool_dialog.vala:594
+#: ../src/build_tool_dialog.vala:604
 msgid "Extensions"
 msgstr "Paplašinājumi"
 
-#: ../src/build_tool_dialog.vala:599
+#: ../src/build_tool_dialog.vala:609
 msgid "Icon"
 msgstr "Ikona"
 
 #. Placeholders
-#: ../src/build_tool_dialog.vala:606
+#: ../src/build_tool_dialog.vala:616
 msgid "Placeholders:"
 msgstr "Vietturi:"
 
-#: ../src/build_tool_dialog.vala:610
+#: ../src/build_tool_dialog.vala:620
 msgid "The active document's filename."
 msgstr "Aktīvā dokumenta datnes nosaukums."
 
-#: ../src/build_tool_dialog.vala:611 ../src/build_tool_dialog.vala:616
+#: ../src/build_tool_dialog.vala:621 ../src/build_tool_dialog.vala:626
 msgid "If the active document belongs to a project, the main file is chosen."
 msgstr "Ja aktīvais dokuments pieder projektam, tiks izvēlēta galvenā datne."
 
-#: ../src/build_tool_dialog.vala:615
+#: ../src/build_tool_dialog.vala:625
 msgid "The active document's filename without its extension."
 msgstr "Aktīvā dokumenta datnes nosaukums bez tā paplašinājuma."
 
-#: ../src/build_tool_dialog.vala:659
+#: ../src/build_tool_dialog.vala:675
 msgid "Jobs"
 msgstr "Darbi"
 
-#: ../src/build_tool_dialog.vala:665
+#: ../src/build_tool_dialog.vala:681
 msgid "List of files to open after executing the build jobs."
 msgstr "Saraksts ar datnēm, ko atvērt pēc būvēšanas darbu izpildes."
 
-#: ../src/build_tool_dialog.vala:666
+#: ../src/build_tool_dialog.vala:682
 msgid "The files are separated by spaces."
 msgstr "Datnes tiek atdalītas ar atstarpēm."
 
-#: ../src/build_tool_dialog.vala:667
+#: ../src/build_tool_dialog.vala:683
 msgid "You should use the placeholders to specify the files."
 msgstr "Jums vajadzētu izmantot vietturus, lai norādītu datnes."
 
-#: ../src/build_tool_dialog.vala:670
+#: ../src/build_tool_dialog.vala:686
 msgid "Files to open"
 msgstr "Datnes, ko atvērt"
 
-#: ../src/build_tool_runner.vala:191
-#, c-format
-msgid "%s doesn't seem to be installed."
-msgstr "Neizskatās, ka %s ir uzinstalēts."
-
-#: ../src/build_tool_runner.vala:263
-#, c-format
-msgid "Open %s"
-msgstr "Atvērt %s"
-
-#: ../src/build_tool_runner.vala:272
-#, c-format
-msgid "The file '%s' doesn't exist."
-msgstr "Datne “%s” neeksistē."
-
-#: ../src/build_tool_runner.vala:289
-#, c-format
-msgid "Failed to open '%s':"
-msgstr "Neizdevās atvērt “%s”:"
-
-#: ../src/build_tools_preferences.vala:53
+#: ../src/build_tools_preferences.vala:57
 msgid "Build Tools"
 msgstr "Būvēšanas rīki"
 
-#: ../src/build_tools_preferences.vala:109
-msgid "Default build tools"
+#: ../src/build_tools_preferences.vala:113
+#| msgid "Default build tools"
+msgid "Default Build Tools"
 msgstr "Noklusējuma būvēšanas rīki"
 
-#: ../src/build_tools_preferences.vala:129
-msgid "Personal build tools"
+#: ../src/build_tools_preferences.vala:134
+#| msgid "Personal build tools"
+msgid "Personal Build Tools"
 msgstr "Personīgie būvēšanas rīki"
 
-#: ../src/build_tools_preferences.vala:172
+#: ../src/build_tools_preferences.vala:168
 msgid "Enabled"
 msgstr "Aktivēts"
 
-#: ../src/build_tools_preferences.vala:274
+#: ../src/build_tools_preferences.vala:241
+msgid "View the properties (read-only)"
+msgstr "Skatīt īpašības (tikai lasāms)"
+
+#: ../src/build_tools_preferences.vala:246
+#| msgid "Quit the program"
+msgid "Edit the properties"
+msgstr "Rediģēt īpašības"
+
+#: ../src/build_tools_preferences.vala:266
+#| msgid "Create Backup Copies"
+msgid "Create a copy"
+msgstr "Izveidot kopiju"
+
+#: ../src/build_tools_preferences.vala:281
 #, c-format
 msgid "%s [copy]"
 msgstr "%s [kopija]"
 
-#: ../src/build_tools_preferences.vala:324
+#: ../src/build_tools_preferences.vala:332
 #, c-format
 msgid "Do you really want to delete the build tool \"%s\"?"
 msgstr "Vai tiešām vēlaties dzēst būvēšanas rīku “%s”?"
+
+#: ../src/build_tools_preferences.vala:336 ../src/clean_build_files.vala:243
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:148
+#: ../src/main_window_edit.vala:51 ../src/main_window_structure.vala:38
+#: ../src/project_dialogs.vala:242 ../src/project_dialogs.vala:277
+#| msgid "delete"
+msgid "_Delete"
+msgstr "_Dzēst"
 
 #: ../src/clean_build_files.vala:267
 msgid "Do you really want to delete these files?"
@@ -617,20 +759,27 @@ msgstr "Izvēlieties datnes, ko vēlaties dzēst:"
 msgid "No build file to clean up."
 msgstr "Nav būvēšanas datnes, ko uzkopt."
 
-#: ../src/completion.vala:315
+#: ../src/completion.vala:334
 msgid "No matching proposal"
 msgstr "Nav atbilstošu priekšlikumu"
 
 #. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for
 #. "Column". Please, use abbreviations if possible.
-#: ../src/custom_statusbar.vala:41
+#: ../src/custom_statusbar.vala:45
 #, c-format
 msgid "Ln %d, Col %d"
 msgstr "Rin %d, kol %d"
 
-#: ../src/dialogs.vala:40 ../src/main_window.vala:754
-msgid "Close without Saving"
+#: ../src/dialogs.vala:40 ../src/main_window.vala:759
+#| msgid "Close without Saving"
+msgid "Close _without Saving"
 msgstr "Aizvērt nesaglabājot"
+
+#: ../src/dialogs.vala:42 ../src/main_window_file.vala:41
+#: ../src/main_window.vala:765 ../src/main_window.vala:818
+#| msgid "_Save All"
+msgid "_Save"
+msgstr "_Saglabāt"
 
 #: ../src/dialogs.vala:66
 #, c-format
@@ -652,140 +801,196 @@ msgstr "Ja nesaglabāsiet, visas izmaiņas tiks neatgriezeniski zaudētas."
 msgid "The structure item already contains a sub-paragraph."
 msgstr "Struktūras vienums jau satur apakšrindkopu."
 
-#: ../src/document_tab.vala:173
-msgid "Close document"
-msgstr "Aizvērt dokumentu"
-
-#. main file
-#: ../src/document_tab.vala:233 ../src/project_dialogs.vala:44
-#: ../src/project_dialogs.vala:47 ../src/project_dialogs.vala:139
-#: ../src/project_dialogs.vala:142 ../src/project_dialogs.vala:216
-msgid "Main File"
-msgstr "Galvenā datne"
-
-#: ../src/document_tab.vala:235
-msgid "Main File:"
-msgstr "Galvenā datne:"
-
-#: ../src/document_tab.vala:259
+#: ../src/document_tab.vala:147
 #, c-format
 msgid "Activate '%s'"
 msgstr "Aktivizēt “%s”"
 
-#: ../src/document_tab.vala:278
+#: ../src/document_tab.vala:166
 #, c-format
 msgid "The file %s changed on disk."
 msgstr "Datne %s ir mainījusies uz diska."
 
-#: ../src/document_tab.vala:283
+#: ../src/document_tab.vala:171
 msgid "Do you want to drop your changes and reload the file?"
 msgstr "Vai vēlaties atmest izmaiņas un no jauna atvērt datni?"
 
-#: ../src/document_tab.vala:285
+#: ../src/document_tab.vala:173
 msgid "Do you want to reload the file?"
 msgstr "Vai vēlaties vēlreiz ielādēt šo datni?"
 
-#: ../src/document_tab.vala:289
-msgid "Reload"
-msgstr "Pārlādēt"
+#: ../src/document_tab.vala:177
+#| msgid "Reload"
+msgid "_Reload"
+msgstr "Pā_rlādēt"
 
-#: ../src/document.vala:121
+#: ../src/document.vala:128
 #, c-format
 msgid "Impossible to load the file '%s'."
 msgstr "Nevar ielādēt datni “%s”."
 
-#: ../src/document.vala:197
+#: ../src/document.vala:210
 #, c-format
 msgid "The file %s has been modified since reading it."
 msgstr "Kopš nolasīšanas datne %s ir rediģēta."
 
-#: ../src/document.vala:200
+#: ../src/document.vala:213
 msgid "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
 "Ja saglabāsiet to visas citur veiktās izmaiņas varētu tikt pazaudētas. Vai "
 "tomēr saglabāt?"
 
-#: ../src/document.vala:203
-msgid "Save Anyway"
-msgstr "Tomēr saglabāt"
-
-#: ../src/document.vala:205
-msgid "Don't Save"
-msgstr "Nesaglabāt"
-
 #: ../src/document.vala:217
+#| msgid "Save Anyway"
+msgid "_Save Anyway"
+msgstr "Tomēr _saglabāt"
+
+#: ../src/document.vala:218
+#| msgid "Don't Save"
+msgid "_Don't Save"
+msgstr "_Nesaglabāt"
+
+#: ../src/document.vala:235
 msgid "Impossible to save the file."
 msgstr "Nevar saglabāt datni."
 
-#: ../src/document.vala:242
+#: ../src/document.vala:263
 msgid "Error trying to convert the document to UTF-8"
 msgstr "Kļūda, mēģinot konvertēt dokumentu uz UTF-8"
 
-#: ../src/document.vala:296
-msgid "Unsaved Document"
-msgstr "Nesaglabāts dokuments"
-
-#: ../src/document.vala:575
+#: ../src/document.vala:492
 msgid ""
 "The file has a temporary location. The data can be lost after rebooting your "
 "computer."
 msgstr "Datnei ir pagaidu vieta. Dati var pazust pēc datora pārstartēšanas."
 
-#: ../src/document.vala:576
+#: ../src/document.vala:493
 msgid "Do you want to save the file in a safer place?"
 msgstr "Vai vēlaties saglabāt šo datni drošākā vietā?"
 
-#: ../src/file_browser.vala:216
+#: ../src/document.vala:494 ../src/main_window_file.vala:44
+#: ../src/main_window.vala:763
+#| msgid "_Save All"
+msgid "Save _As"
+msgstr "S_aglabāt kā"
+
+#: ../src/document.vala:495
+msgid "Cancel"
+msgstr "Atcelt"
+
+#: ../src/document_view.vala:312
+#| msgid "Activate or disable the spell checking"
+msgid "No dictionaries available for the spell checking."
+msgstr "Preizrakstības pārbaudei nav pieejamu vārdnīcu"
+
+#. Help
+#: ../src/document_view.vala:314 ../src/main_window.vala:63
+#: ../src/ui/menus.ui.h:4
+msgid "_Help"
+msgstr "_Palīdzība"
+
+#: ../src/document_view.vala:315
+msgid "_OK"
+msgstr "_Labi"
+
+#: ../src/file_browser.vala:219
 msgid "Go to the home directory"
 msgstr "Iet uz mājas direktoriju"
 
-#: ../src/file_browser.vala:231
+#: ../src/file_browser.vala:234
 msgid "Go to the parent directory"
 msgstr "Iet uz vecāka direktoriju"
 
-#: ../src/file_browser.vala:247
+#: ../src/file_browser.vala:250
 msgid "Go to the active document directory"
 msgstr "Iet uz aktīvā dokumenta direktoriju"
 
-#: ../src/file_browser.vala:336
+#: ../src/file_browser.vala:290
+#| msgid "Open a file"
+msgid "Open in a file manager"
+msgstr "Atvērt datņu pārvaldniekā"
+
+#: ../src/file_browser.vala:292
+#| msgid "Save the current file with a different name"
+msgid "Open the current directory in a file manager"
+msgstr "Atvērt pašreizējo direktoriju datņu pārvaldniekā"
+
+#: ../src/file_browser.vala:314
+#| msgid "Open a file"
+msgid "Open in a terminal"
+msgstr "Atvērt terminālī"
+
+#: ../src/file_browser.vala:315
+#| msgid "Save the current file with a different name"
+msgid "Open the current directory in a terminal"
+msgstr "Atvērt pašreizējo direktoriju terminālī"
+
+#: ../src/file_browser.vala:405
 msgid "File System"
 msgstr "Datņu sistēma"
 
 #. File browser
-#: ../src/file_browser.vala:455 ../src/main_window.vala:393
+#: ../src/file_browser.vala:524 ../src/main_window.vala:456
 msgid "File Browser"
 msgstr "Datņu pārlūks"
+
+#: ../src/latexila_app.vala:79
+msgid "Show the application's version"
+msgstr "Rādīt lietotnes versiju"
+
+#: ../src/latexila_app.vala:82
+msgid "Create new document"
+msgstr "Izveidot jaunu dokumentu"
+
+#: ../src/latexila_app.vala:85
+#| msgid "Create a new top-level window in an existing instance of LaTeXila"
+msgid "Create a new top-level window in an existing instance of GNOME LaTeX"
+msgstr "Izveidot jaunu virslīmeņa logu esošajā GNOME LaTeX instancē"
+
+#: ../src/latexila_app.vala:210
+#| msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
+msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
+msgstr "GNOME LaTeX ir LaTeX redaktors the GNOME darbvirsmā"
+
+#: ../src/latexila_app.vala:239 ../src/main_window.vala:71
+#| msgid "About LaTeXila"
+msgid "About GNOME LaTeX"
+msgstr "Par GNOME LaTeX"
+
+#: ../src/latexila_app.vala:240
+msgid "translator-credits"
+msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
 #. LaTeX: Sectioning
 #: ../src/latex_menu.vala:32
 msgid "_Sectioning"
 msgstr "Vir_sraksti"
 
-#: ../src/latex_menu.vala:34 ../src/structure.vala:770
+#: ../src/latex_menu.vala:34 ../src/structure.vala:776
 msgid "Part"
 msgstr "Daļa"
 
-#: ../src/latex_menu.vala:36 ../src/structure.vala:771
+#: ../src/latex_menu.vala:36 ../src/structure.vala:777
 msgid "Chapter"
 msgstr "Nodaļa"
 
-#: ../src/latex_menu.vala:38 ../src/structure.vala:772
+#: ../src/latex_menu.vala:38 ../src/structure.vala:778
 msgid "Section"
 msgstr "Sadaļa"
 
-#: ../src/latex_menu.vala:40 ../src/structure.vala:773
+#: ../src/latex_menu.vala:40 ../src/structure.vala:779
 msgid "Sub-section"
 msgstr "Apakšsadaļa"
 
-#: ../src/latex_menu.vala:42 ../src/structure.vala:774
+#: ../src/latex_menu.vala:42 ../src/structure.vala:780
 msgid "Sub-sub-section"
 msgstr "Apakšapakšsadaļa"
 
-#: ../src/latex_menu.vala:44 ../src/structure.vala:775
+#: ../src/latex_menu.vala:44 ../src/structure.vala:781
 msgid "Paragraph"
 msgstr "Rindkopa"
 
-#: ../src/latex_menu.vala:46 ../src/structure.vala:776
+#: ../src/latex_menu.vala:46 ../src/structure.vala:782
 msgid "Sub-paragraph"
 msgstr "Apakšrindkopa"
 
@@ -827,659 +1032,760 @@ msgid "Align Right - \\begin{flushright}"
 msgstr "Līdzināt pie labās — \\begin{flushright}"
 
 #: ../src/latex_menu.vala:74
-msgid "Figure - \\begin{figure}"
-msgstr "Attēls — \\begin{figure}"
-
-#: ../src/latex_menu.vala:76
 msgid "Table - \\begin{table}"
 msgstr "Tabula — \\begin{table}"
 
-#: ../src/latex_menu.vala:78
+#: ../src/latex_menu.vala:76
 msgid "Quote - \\begin{quote}"
 msgstr "Citāts — \\begin{quote}"
 
-#: ../src/latex_menu.vala:80
+#: ../src/latex_menu.vala:78
 msgid "Quotation - \\begin{quotation}"
 msgstr "Citējums — \\begin{quotation}"
 
-#: ../src/latex_menu.vala:82
+#: ../src/latex_menu.vala:80
 msgid "Verse - \\begin{verse}"
 msgstr "Dzeja — \\begin{verse}"
 
-#: ../src/latex_menu.vala:84
+#: ../src/latex_menu.vala:82
 msgid "Verbatim - \\begin{verbatim}"
 msgstr "Burtiski — \\begin{verbatim}"
 
-#: ../src/latex_menu.vala:86
+#: ../src/latex_menu.vala:84
 msgid "Minipage - \\begin{minipage}"
 msgstr "Minilapa — \\begin{minipage}"
 
-#: ../src/latex_menu.vala:88
+#: ../src/latex_menu.vala:86
 msgid "Title page - \\begin{titlepage}"
 msgstr "Titullapa — \\begin{titlepage}"
 
 #. LaTeX: list environments
-#: ../src/latex_menu.vala:92
+#: ../src/latex_menu.vala:90
 msgid "_List Environments"
 msgstr "_Sarakstu vides"
 
-#: ../src/latex_menu.vala:94
+#: ../src/latex_menu.vala:92
 msgid "Bulleted List - \\begin{itemize}"
 msgstr "Aizzīmēts saraksts — \\begin{itemize}"
 
-#: ../src/latex_menu.vala:96
+#: ../src/latex_menu.vala:94
 msgid "Enumeration - \\begin{enumerate}"
 msgstr "Numurēts saraksts — \\begin{enumerate}"
 
-#: ../src/latex_menu.vala:98
+#: ../src/latex_menu.vala:96
 msgid "Description - \\begin{description}"
 msgstr "Apraksts — \\begin{description}"
 
-#: ../src/latex_menu.vala:100
+#: ../src/latex_menu.vala:98
 msgid "Custom list - \\begin{list}"
 msgstr "Pielāgots saraksts — \\begin{list}"
 
-#: ../src/latex_menu.vala:102
+#: ../src/latex_menu.vala:100
 msgid "List item - \\item"
 msgstr "Saraksta elements — \\item"
 
 #. LaTeX: character sizes
-#: ../src/latex_menu.vala:106
+#: ../src/latex_menu.vala:104
 msgid "_Characters Sizes"
 msgstr "_Rakstzīmju izmēri"
 
 #. LaTeX: font styles
-#: ../src/latex_menu.vala:130
+#: ../src/latex_menu.vala:118
 msgid "_Font Styles"
 msgstr "_Fontu stili"
 
-#: ../src/latex_menu.vala:132
+#: ../src/latex_menu.vala:120
 msgid "Bold - \\textbf"
 msgstr "Treknraksts — \\textbf"
 
-#: ../src/latex_menu.vala:134
+#: ../src/latex_menu.vala:122
 msgid "Italic - \\textit"
 msgstr "Kursīvs — \\textit"
 
-#: ../src/latex_menu.vala:136
+#: ../src/latex_menu.vala:124
 msgid "Typewriter - \\texttt"
 msgstr "Rakstāmmašīna — \\texttt"
 
-#: ../src/latex_menu.vala:138
+#: ../src/latex_menu.vala:126
 msgid "Slanted - \\textsl"
 msgstr "Slīpraksts — \\textit"
 
-#: ../src/latex_menu.vala:140
+#: ../src/latex_menu.vala:128
 msgid "Small Capitals - \\textsc"
 msgstr "Mazi lielie burti — \\textsc"
 
-#: ../src/latex_menu.vala:142
+#: ../src/latex_menu.vala:130
 msgid "Sans Serif - \\textsf"
 msgstr "Bezrēdzes — \\textsf"
 
-#: ../src/latex_menu.vala:144
+#: ../src/latex_menu.vala:132
 msgid "Emphasized - \\emph"
 msgstr "Uzsvērts — \\emph"
 
-#: ../src/latex_menu.vala:146
+#: ../src/latex_menu.vala:134
 msgid "Underline - \\underline"
 msgstr "Pasvītrots — \\underline"
 
-#: ../src/latex_menu.vala:148
+#: ../src/latex_menu.vala:136
 msgid "_Font Family"
 msgstr "_Fontu saime"
 
-#: ../src/latex_menu.vala:150
+#: ../src/latex_menu.vala:138
 msgid "Roman - \\rmfamily"
 msgstr "Latīņu — \\rmfamily"
 
-#: ../src/latex_menu.vala:152
+#: ../src/latex_menu.vala:140
 msgid "Sans Serif - \\sffamily"
 msgstr "Bezrēdzes — \\sffamily"
 
-#: ../src/latex_menu.vala:154
+#: ../src/latex_menu.vala:142
 msgid "Monospace - \\ttfamily"
 msgstr "Vienplatuma — \\ttfamily"
 
-#: ../src/latex_menu.vala:156
+#: ../src/latex_menu.vala:144
 msgid "F_ont Series"
 msgstr "F_ontu sērijas"
 
-#: ../src/latex_menu.vala:158
+#: ../src/latex_menu.vala:146
 msgid "Medium - \\mdseries"
 msgstr "Vidējs — \\mdseries"
 
-#: ../src/latex_menu.vala:160
+#: ../src/latex_menu.vala:148
 msgid "Bold - \\bfseries"
 msgstr "Treknraksts — \\bfseries"
 
-#: ../src/latex_menu.vala:162
+#: ../src/latex_menu.vala:150
 msgid "Fo_nt Shape"
 msgstr "Fo_ntu forma"
 
-#: ../src/latex_menu.vala:164
+#: ../src/latex_menu.vala:152
 msgid "Upright - \\upshape"
 msgstr "Taisni — \\upshape"
 
-#: ../src/latex_menu.vala:166
+#: ../src/latex_menu.vala:154
 msgid "Italic - \\itshape"
 msgstr "Kursīvs — \\itshape"
 
-#: ../src/latex_menu.vala:168
+#: ../src/latex_menu.vala:156
 msgid "Slanted - \\slshape"
 msgstr "Slīpraksts — \\slshape"
 
-#: ../src/latex_menu.vala:170
+#: ../src/latex_menu.vala:158
 msgid "Small Capitals - \\scshape"
 msgstr "Mazi lielie burti — \\scshape"
 
 #. LaTeX: Tabular
-#: ../src/latex_menu.vala:174
+#: ../src/latex_menu.vala:162
 msgid "_Tabular"
 msgstr "_Tabula"
 
-#: ../src/latex_menu.vala:176
+#: ../src/latex_menu.vala:164
 msgid "Tabbing - \\begin{tabbing}"
 msgstr "Tabulēšana — \\begin{tabbing}"
 
-#: ../src/latex_menu.vala:178
+#: ../src/latex_menu.vala:166
 msgid "Tabular - \\begin{tabular}"
 msgstr "Tabular — \\begin{tabular}"
 
-#: ../src/latex_menu.vala:180
+#: ../src/latex_menu.vala:168
 msgid "Multicolumn - \\multicolumn"
 msgstr "Vairākkolonnu — \\multicolumn"
 
-#: ../src/latex_menu.vala:182
+#: ../src/latex_menu.vala:170
 msgid "Horizontal line - \\hline"
 msgstr "Horizontāla līnija — \\hline"
 
-#: ../src/latex_menu.vala:184
+#: ../src/latex_menu.vala:172
 msgid "Vertical line - \\vline"
 msgstr "Vertikāla līnija — \\vline"
 
-#: ../src/latex_menu.vala:186
+#: ../src/latex_menu.vala:174
 msgid "Horizontal line (columns specified) - \\cline"
 msgstr "Horizontāla līnija (kolonnas norādītas) — \\cline"
 
-#: ../src/latex_menu.vala:192
+#: ../src/latex_menu.vala:180
 msgid "Frame - \\begin{frame}"
 msgstr "Ietvars — \\begin{frame}"
 
-#: ../src/latex_menu.vala:194
+#: ../src/latex_menu.vala:182
 msgid "Block - \\begin{block}"
 msgstr "Bloks — \\begin{block}"
 
-#: ../src/latex_menu.vala:196
+#: ../src/latex_menu.vala:184
 msgid "Two columns - \\begin{columns}"
 msgstr "Divas kolonnas — \\begin{columns}"
 
 #. LaTeX: Spacing
-#: ../src/latex_menu.vala:200
+#: ../src/latex_menu.vala:188
 msgid "_Spacing"
 msgstr "At_starpes"
 
-#: ../src/latex_menu.vala:201
+#: ../src/latex_menu.vala:189
 msgid "New _Line"
 msgstr "Jauna _rinda"
 
-#: ../src/latex_menu.vala:202
+#: ../src/latex_menu.vala:190
 msgid "New Line - \\\\"
 msgstr "Jauna rinda — \\\\"
 
-#: ../src/latex_menu.vala:204
+#: ../src/latex_menu.vala:192
 msgid "New page - \\newpage"
 msgstr "Jauna lapa — \\newpage"
 
-#: ../src/latex_menu.vala:206
+#: ../src/latex_menu.vala:194
 msgid "Line break - \\linebreak"
 msgstr "Rindas pārtraukums — \\linebreak"
 
-#: ../src/latex_menu.vala:208
+#: ../src/latex_menu.vala:196
 msgid "Page break - \\pagebreak"
 msgstr "Lapas pārtraukums — \\pagebreak"
 
-#: ../src/latex_menu.vala:210
+#: ../src/latex_menu.vala:198
 msgid "Big skip - \\bigskip"
 msgstr "Liels atstatums — \\bigskip"
 
-#: ../src/latex_menu.vala:212
+#: ../src/latex_menu.vala:200
 msgid "Medium skip - \\medskip"
 msgstr "Vidējs atstatums — \\medskip"
 
-#: ../src/latex_menu.vala:214
+#: ../src/latex_menu.vala:202
 msgid "Horizontal space - \\hspace"
 msgstr "Horizontāla atstarpe — \\hspace"
 
-#: ../src/latex_menu.vala:216
+#: ../src/latex_menu.vala:204
 msgid "Vertical space - \\vspace"
 msgstr "Vertikāla atstarpe — \\vspace"
 
-#: ../src/latex_menu.vala:218
+#: ../src/latex_menu.vala:206
 msgid "No paragraph indentation - \\noindent"
 msgstr "Bez rindkopas atkāpes — \\noindent"
 
 #. LaTeX: International accents
-#: ../src/latex_menu.vala:222
+#: ../src/latex_menu.vala:210
 msgid "International _Accents"
 msgstr "Starptautiski _akcenti"
 
-#: ../src/latex_menu.vala:223
+#: ../src/latex_menu.vala:211
 msgid "Acute accent - \\'"
 msgstr "Akūts akcents — \\'"
 
-#: ../src/latex_menu.vala:224
+#: ../src/latex_menu.vala:212
 msgid "Grave accent - \\`"
 msgstr "Gravis akcents — \\`"
 
-#: ../src/latex_menu.vala:225
+#: ../src/latex_menu.vala:213
 msgid "Circumflex accent - \\^"
 msgstr "Jumtiņa akcents — \\^"
 
-#: ../src/latex_menu.vala:226
+#: ../src/latex_menu.vala:214
 msgid "Trema - \\\""
 msgstr "Trema — \\\""
 
-#: ../src/latex_menu.vala:227
+#: ../src/latex_menu.vala:215
 msgid "Tilde - \\~"
 msgstr "Tilde — \\~"
 
-#: ../src/latex_menu.vala:228
+#: ../src/latex_menu.vala:216
 msgid "Macron - \\="
 msgstr "Garumzīme — \\="
 
-#: ../src/latex_menu.vala:229
+#: ../src/latex_menu.vala:217
 msgid "Dot above - \\."
 msgstr "Punkts virs — \\."
 
-#: ../src/latex_menu.vala:230
+#: ../src/latex_menu.vala:218
 msgid "Caron - \\v"
 msgstr "Caron — \\v"
 
-#: ../src/latex_menu.vala:231
+#: ../src/latex_menu.vala:219
 msgid "Breve - \\u"
 msgstr "Īsuma zīme — \\u"
 
-#: ../src/latex_menu.vala:233
+#: ../src/latex_menu.vala:221
 msgid "Double acute accent - \\H"
 msgstr "Dubults akūts akcents — \\H"
 
-#: ../src/latex_menu.vala:234
+#: ../src/latex_menu.vala:222
 msgid "Cedilla - \\c"
 msgstr "Sediļa — \\c"
 
-#: ../src/latex_menu.vala:235
+#: ../src/latex_menu.vala:223
 msgid "Ogonek - \\k"
 msgstr "Ogonek — \\k"
 
-#: ../src/latex_menu.vala:236
+#: ../src/latex_menu.vala:224
 msgid "Dot below - \\d"
 msgstr "Punkts zem — \\d"
 
-#: ../src/latex_menu.vala:237
+#: ../src/latex_menu.vala:225
 msgid "Macron below - \\b"
 msgstr "Garumzīme zem — \\b"
 
-#: ../src/latex_menu.vala:238
+#: ../src/latex_menu.vala:226
 msgid "Ring - \\r"
 msgstr "Aplis — \\r"
 
-#: ../src/latex_menu.vala:239
+#: ../src/latex_menu.vala:227
 msgid "Tie - \\t"
 msgstr "Saite — \\t"
 
-#. LaTeX: Others
-#: ../src/latex_menu.vala:243
+#. LaTeX: Misc
+#: ../src/latex_menu.vala:231
 msgid "_Misc"
 msgstr "_Dažādi"
 
-#: ../src/latex_menu.vala:245
+#: ../src/latex_menu.vala:233
 msgid "Document class - \\documentclass"
 msgstr "Dokumenta klase — \\documentclass"
 
-#: ../src/latex_menu.vala:247
+#: ../src/latex_menu.vala:235
 msgid "Use package - \\usepackage"
 msgstr "Lietot pakotni — \\usepackage"
 
-#: ../src/latex_menu.vala:248
+#: ../src/latex_menu.vala:236
 msgid "_AMS packages"
 msgstr "_AMS pakotnes"
 
-#: ../src/latex_menu.vala:249
+#: ../src/latex_menu.vala:237
 msgid "AMS packages"
 msgstr "AMS pakotnes"
 
-#: ../src/latex_menu.vala:250
+#: ../src/latex_menu.vala:238
 msgid "Author - \\author"
 msgstr "Autors — \\author"
 
-#: ../src/latex_menu.vala:251
+#: ../src/latex_menu.vala:239
 msgid "Title - \\title"
 msgstr "Virsraksts — \\title"
 
-#: ../src/latex_menu.vala:253
+#: ../src/latex_menu.vala:241
 msgid "Content of the document - \\begin{document}"
 msgstr "Dokumenta saturs — \\begin{document}"
 
-#: ../src/latex_menu.vala:255
+#: ../src/latex_menu.vala:243
 msgid "Make title - \\maketitle"
 msgstr "Veidot titullapu — \\maketitle"
 
-#: ../src/latex_menu.vala:257
+#: ../src/latex_menu.vala:245
 msgid "Table of contents - \\tableofcontents"
 msgstr "Satura rādītājs — \\tableofcontents"
 
-#: ../src/latex_menu.vala:259
+#: ../src/latex_menu.vala:247
 msgid "Abstract - \\begin{abstract}"
 msgstr "Anotācija — \\begin{abstract}"
 
-#: ../src/latex_menu.vala:261
+#: ../src/latex_menu.vala:249
 msgid "Include an image (graphicx package) - \\includegraphics"
 msgstr "Iekļaut attēlu (graphicx pakotne) — \\includegraphics"
 
-#: ../src/latex_menu.vala:264
+#: ../src/latex_menu.vala:251
 msgid "Include a file - \\input"
 msgstr "Iekļaut datni — \\input"
 
 #. Math
-#: ../src/latex_menu.vala:268
+#: ../src/latex_menu.vala:255
 msgid "_Math"
 msgstr "_Matemātika"
 
 #. Math Environments
-#: ../src/latex_menu.vala:272
+#: ../src/latex_menu.vala:259
 msgid "_Math Environments"
 msgstr "_Matemātikas vides"
 
-#: ../src/latex_menu.vala:273
+#: ../src/latex_menu.vala:260
 msgid "_Mathematical Environment - $...$"
 msgstr "_Matemātikas vide - $...$"
 
-#: ../src/latex_menu.vala:274
+#: ../src/latex_menu.vala:261
 msgid "Mathematical Environment - $...$"
 msgstr "Matemātikas vide - $...$"
 
-#: ../src/latex_menu.vala:275
+#: ../src/latex_menu.vala:262
 msgid "_Centered Formula - \\[...\\]"
 msgstr "_Centrēta formula — \\[...\\]"
 
-#: ../src/latex_menu.vala:276
+#: ../src/latex_menu.vala:263
 msgid "Centered Formula - \\[...\\]"
 msgstr "Centrēta formula — \\[...\\]"
 
-#: ../src/latex_menu.vala:278
+#: ../src/latex_menu.vala:265
 msgid "_Numbered Equation - \\begin{equation}"
 msgstr "_Numurēts vienādojums — \\begin{equation}"
 
-#: ../src/latex_menu.vala:279
+#: ../src/latex_menu.vala:266
 msgid "Numbered Equation - \\begin{equation}"
 msgstr "Numurēts vienādojums — \\begin{equation}"
 
-#: ../src/latex_menu.vala:280
+#: ../src/latex_menu.vala:267
 msgid "_Array of Equations - \\begin{align*}"
 msgstr "Vienādojumu m_asīvs — \\begin{align*}"
 
-#: ../src/latex_menu.vala:281
+#: ../src/latex_menu.vala:268
 msgid "Array of Equations - \\begin{align*}"
 msgstr "Vienādojumu masīvs — \\begin{align*}"
 
-#: ../src/latex_menu.vala:283
+#: ../src/latex_menu.vala:270
 msgid "Numbered Array of _Equations - \\begin{align}"
 msgstr "Numurēts _vienādojumu masīvs — \\begin{align}"
 
-#: ../src/latex_menu.vala:284
+#: ../src/latex_menu.vala:271
 msgid "Numbered Array of Equations - \\begin{align}"
 msgstr "Numurēts vienādojumu masīvs — \\begin{align}"
 
-#: ../src/latex_menu.vala:287
+#. Math misc
+#: ../src/latex_menu.vala:275
 msgid "_Superscript - ^{}"
 msgstr "_Augšraksts — ^{}"
 
-#: ../src/latex_menu.vala:288
+#: ../src/latex_menu.vala:276
 msgid "Superscript - ^{}"
 msgstr "Augšraksts — ^{}"
 
-#: ../src/latex_menu.vala:289
+#: ../src/latex_menu.vala:277
 msgid "Su_bscript - __{}"
 msgstr "A_pakšraksts — __{}"
 
-#: ../src/latex_menu.vala:290
+#: ../src/latex_menu.vala:278
 msgid "Subscript - _{}"
 msgstr "Apakšraksts — _{}"
 
-#: ../src/latex_menu.vala:291
+#: ../src/latex_menu.vala:279
 msgid "_Fraction - \\frac{}{}"
 msgstr "_Daļa — \\frac{}{}"
 
-#: ../src/latex_menu.vala:292
+#: ../src/latex_menu.vala:280
 msgid "Fraction - \\frac{}{}"
 msgstr "Daļa — \\frac{}{}"
 
-#: ../src/latex_menu.vala:293
+#: ../src/latex_menu.vala:281
 msgid "Square _Root - \\sqrt{}"
 msgstr "Kvad_rātsakne — \\sqrt{}"
 
-#: ../src/latex_menu.vala:294
+#: ../src/latex_menu.vala:282
 msgid "Square Root - \\sqrt{}"
 msgstr "Kvadrātsakne — \\sqrt{}"
 
-#: ../src/latex_menu.vala:295
+#: ../src/latex_menu.vala:283
 msgid "_N-th Root - \\sqrt[]{}"
 msgstr "_N-tā sakne — \\sqrt[]{}"
 
-#: ../src/latex_menu.vala:296
+#: ../src/latex_menu.vala:284
 msgid "N-th Root - \\sqrt[]{}"
 msgstr "N-tā sakne — \\sqrt[]{}"
 
 #. Math functions
-#: ../src/latex_menu.vala:300
+#: ../src/latex_menu.vala:288
 msgid "Math _Functions"
 msgstr "Matemātikas _funkcijas"
 
 #. Math Font Styles
-#: ../src/latex_menu.vala:334
+#: ../src/latex_menu.vala:322
 msgid "Math Font _Styles"
 msgstr "Matemātikas _fontu stili"
 
-#: ../src/latex_menu.vala:336
+#: ../src/latex_menu.vala:324
 msgid "Roman - \\mathrm"
 msgstr "Latīņu — \\mathrm"
 
-#: ../src/latex_menu.vala:338
+#: ../src/latex_menu.vala:326
 msgid "Italic - \\mathit"
 msgstr "Kursīvs — \\mathit"
 
-#: ../src/latex_menu.vala:340
+#: ../src/latex_menu.vala:328
 msgid "Bold - \\mathbf"
 msgstr "Treknraksts — \\mathbf"
 
-#: ../src/latex_menu.vala:342
+#: ../src/latex_menu.vala:330
 msgid "Sans Serif - \\mathsf"
 msgstr "Bezrēdzes — \\mathsf"
 
-#: ../src/latex_menu.vala:344
+#: ../src/latex_menu.vala:332
 msgid "Typewriter - \\mathtt"
 msgstr "Rakstāmmašīna — \\mathtt"
 
-#: ../src/latex_menu.vala:346
+#: ../src/latex_menu.vala:334
 msgid "Calligraphic - \\mathcal"
 msgstr "Kaligrāfiskais — \\mathcal"
 
-#: ../src/latex_menu.vala:348
+#: ../src/latex_menu.vala:336
 msgid "Blackboard (uppercase only)  - \\mathbb (amsfonts package)"
 msgstr "Tāfele (tikai lielie burti) — \\mathbb (amsfonts pakotne)"
 
-#: ../src/latex_menu.vala:351
+#: ../src/latex_menu.vala:338
 msgid "Euler Fraktur - \\mathfrak (amsfonts package)"
 msgstr "Gotu raksts — \\mathfrak (amsfonts pakotne)"
 
 #. Math Accents
-#: ../src/latex_menu.vala:356
+#: ../src/latex_menu.vala:342
 msgid "Math _Accents"
 msgstr "Matemātikas _akcenti"
 
 #. Math Spaces
-#: ../src/latex_menu.vala:377
+#: ../src/latex_menu.vala:357
 msgid "Math _Spaces"
 msgstr "Matemātikas at_starpes"
 
-#: ../src/latex_menu.vala:378
+#: ../src/latex_menu.vala:358
 msgid "_Small"
 msgstr "_Maza"
 
-#: ../src/latex_menu.vala:379
+#: ../src/latex_menu.vala:359
 msgid "Small - \\,"
 msgstr "Maza — \\,"
 
-#: ../src/latex_menu.vala:380
+#: ../src/latex_menu.vala:360
 msgid "_Medium"
 msgstr "_Vidēja"
 
-#: ../src/latex_menu.vala:381
+#: ../src/latex_menu.vala:361
 msgid "Medium - \\:"
 msgstr "Vidēja — \\:"
 
-#: ../src/latex_menu.vala:382
+#: ../src/latex_menu.vala:362
 msgid "_Large"
 msgstr "_Liela"
 
-#: ../src/latex_menu.vala:383
+#: ../src/latex_menu.vala:363
 msgid "Large - \\;"
 msgstr "_Liela — \\;"
 
 #. Math: Left Delimiters
-#: ../src/latex_menu.vala:389
+#: ../src/latex_menu.vala:369
 msgid "_Left Delimiters"
 msgstr "_Kreisie atdalītāji"
 
-#: ../src/latex_menu.vala:390
+#: ../src/latex_menu.vala:370
 msgid "left ("
 msgstr "kreisais ("
 
-#: ../src/latex_menu.vala:392
+#: ../src/latex_menu.vala:372
 msgid "left ["
 msgstr "kreisais ["
 
-#: ../src/latex_menu.vala:394
+#: ../src/latex_menu.vala:374
 msgid "left { "
 msgstr "kreisais { "
 
-#: ../src/latex_menu.vala:396
+#: ../src/latex_menu.vala:376
 msgid "left <"
 msgstr "kreisais <"
 
-#: ../src/latex_menu.vala:398
+#: ../src/latex_menu.vala:378
 msgid "left )"
 msgstr "kreisais )"
 
-#: ../src/latex_menu.vala:400
+#: ../src/latex_menu.vala:380
 msgid "left ]"
 msgstr "kreisais ]"
 
-#: ../src/latex_menu.vala:402
+#: ../src/latex_menu.vala:382
 msgid "left  }"
 msgstr "kreisais }"
 
-#: ../src/latex_menu.vala:404
+#: ../src/latex_menu.vala:384
 msgid "left >"
 msgstr "kreisais >"
 
-#: ../src/latex_menu.vala:406
+#: ../src/latex_menu.vala:386
 msgid "left ."
 msgstr "kreisais ."
 
 #. Math: Right Delimiters
-#: ../src/latex_menu.vala:411
+#: ../src/latex_menu.vala:391
 msgid "Right _Delimiters"
 msgstr "Labie at_dalītāji"
 
-#: ../src/latex_menu.vala:412
+#: ../src/latex_menu.vala:392
 msgid "right )"
 msgstr "labais )"
 
-#: ../src/latex_menu.vala:414
+#: ../src/latex_menu.vala:394
 msgid "right ]"
 msgstr "labais ]"
 
-#: ../src/latex_menu.vala:416
+#: ../src/latex_menu.vala:396
 msgid "right  }"
 msgstr "labais }"
 
-#: ../src/latex_menu.vala:418
+#: ../src/latex_menu.vala:398
 msgid "right >"
 msgstr "labais >"
 
-#: ../src/latex_menu.vala:420
+#: ../src/latex_menu.vala:400
 msgid "right ("
 msgstr "labais ("
 
-#: ../src/latex_menu.vala:422
+#: ../src/latex_menu.vala:402
 msgid "right ["
 msgstr "labais ["
 
-#: ../src/latex_menu.vala:424
+#: ../src/latex_menu.vala:404
 msgid "right { "
 msgstr "labais { "
 
-#: ../src/latex_menu.vala:426
+#: ../src/latex_menu.vala:406
 msgid "right <"
 msgstr "labais <"
 
-#: ../src/latex_menu.vala:428
+#: ../src/latex_menu.vala:408
 msgid "right ."
 msgstr "labais ."
 
 #. menus under toolitems
-#: ../src/latex_menu.vala:443
+#: ../src/latex_menu.vala:423
 msgid "Sectioning"
 msgstr "Virsraksti"
 
-#: ../src/latex_menu.vala:446
+#: ../src/latex_menu.vala:426
 msgid "Characters Sizes"
 msgstr "Rakstzīmju izmēri"
 
-#: ../src/latex_menu.vala:449
+#: ../src/latex_menu.vala:429
 msgid "References"
 msgstr "Norādes"
 
-#: ../src/latex_menu.vala:452
+#: ../src/latex_menu.vala:432
 msgid "Presentation Environments"
 msgstr "Prezentācijas vides"
 
-#: ../src/latex_menu.vala:455
+#: ../src/latex_menu.vala:435
 msgid "Math Environments"
 msgstr "Matemātikas vides"
 
-#: ../src/latex_menu.vala:458
-msgid "Left Delimiters"
-msgstr "Kreisie atdalītāji"
-
-#: ../src/latex_menu.vala:461
-msgid "Right Delimiters"
-msgstr "Labie atdalītāji"
-
-#: ../src/main.vala:51
-msgid "Show the application's version"
-msgstr "Rādīt lietotnes versiju"
-
-#: ../src/main.vala:54
-msgid "Create new document"
-msgstr "Izveidot jaunu dokumentu"
-
-#: ../src/main.vala:57
-msgid "Create a new top-level window in an existing instance of LaTeXila"
-msgstr "Izveidot jaunu virslīmeņa logu esošajā LaTeXila instancē"
-
-#: ../src/main.vala:66
-msgid "- Integrated LaTeX Environment for GNOME"
-msgstr "- Integrēta LaTeX vide GNOME darbvirsmā"
-
-#: ../src/main.vala:78
+#: ../src/liblatexila/latexila-build-job.c:365
 #, c-format
-msgid "Run '%s --help' to see a full list of available command line options.\n"
-msgstr ""
-"Palaidiet '%s --help', lai redzētu pilnu pieejamo komandrindas iespēju "
-"sarakstu.\n"
+msgid "%s doesn't seem to be installed."
+msgstr "Neizskatās, ka %s ir uzinstalēts."
+
+#: ../src/liblatexila/latexila-build-tool.c:555
+#, c-format
+msgid "The file '%s' doesn't exist."
+msgstr "Datne “%s” neeksistē."
+
+#: ../src/liblatexila/latexila-build-tool.c:583
+#, c-format
+msgid "Failed to open '%s':"
+msgstr "Neizdevās atvērt “%s”:"
+
+#: ../src/liblatexila/latexila-build-tool.c:689
+#, c-format
+msgid "Open %s"
+msgstr "Atvērt %s"
+
+#: ../src/liblatexila/latexila-latex-commands.c:51
+msgid "Figure - \\begin{figure}"
+msgstr "Attēls — \\begin{figure}"
+
+#: ../src/liblatexila/latexila-synctex.c:194
+msgid "Impossible to do the forward search."
+msgstr "Nevar meklēt uz priekšu."
+
+#: ../src/liblatexila/latexila-synctex.c:531
+msgid "Can not communicate with evince."
+msgstr "Nevar sazināties ar evince."
+
+#: ../src/liblatexila/latexila-synctex.c:561
+#, c-format
+msgid "The file \"%s\" doesn't exist."
+msgstr "Datne “%s” neeksistē."
+
+#: ../src/liblatexila/latexila-synctex.c:595
+msgid "The PDF file doesn't exist."
+msgstr "PDF datne neeksistē."
+
+#: ../src/liblatexila/latexila-synctex.c:646
+msgid "The document is not saved."
+msgstr "Dokuments nav saglabāts."
+
+#: ../src/liblatexila/latexila-templates-default.c:90
+msgid "Empty"
+msgstr "Tukšs"
+
+#: ../src/liblatexila/latexila-templates-default.c:94
+msgid "Article"
+msgstr "Raksts"
+
+#: ../src/liblatexila/latexila-templates-default.c:95
+msgid "Report"
+msgstr "Atskaite"
+
+#: ../src/liblatexila/latexila-templates-default.c:96
+msgid "Book"
+msgstr "Grāmata"
+
+#: ../src/liblatexila/latexila-templates-default.c:97
+msgid "Letter"
+msgstr "Vēstule"
+
+#: ../src/liblatexila/latexila-templates-default.c:98
+msgid "Presentation"
+msgstr "Prezentācija"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:50
+#| msgid "Default templates"
+msgid "Default Templates"
+msgstr "Noklusējuma veidnes"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:62
+#| msgid "Personal templates"
+msgid "Personal Templates"
+msgstr "Personiskās veidnes"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:124
+msgid "New File..."
+msgstr "Jauna datne..."
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:131
+#: ../src/main_window_file.vala:32
+msgid "_New"
+msgstr "Jau_ns"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:232
+msgid "New Template..."
+msgstr "Jauna veidne..."
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:239
+#: ../src/project_dialogs.vala:32
+msgid "Crea_te"
+msgstr "Izveido_t"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:249
+msgid "Name of the new template"
+msgstr "Jaunās veidnes nosaukums"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:267
+msgid "Choose an icon"
+msgstr "Izvēlieties ikonu"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:336
+#| msgid "Impossible to save the file."
+msgid "Impossible to create the personal template."
+msgstr "Nevar izveidot personīgo veidni."
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:143
+#, c-format
+#| msgid "Do you really want to delete these files?"
+msgid "Do you really want to delete the template “%s”?"
+msgstr "Vai tiešām vēlaties dzēst veidni “%s”?"
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:170
+#, c-format
+msgid "Error when deleting the template “%s”."
+msgstr "Kļūda, dzēšot veidni “%s”."
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:230
+msgid "Error when moving the template."
+msgstr "Kļūda, pārvietojot veidni."
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:274
+#| msgid "delete"
+msgid "Delete"
+msgstr "Dzēst"
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:366
+#| msgid "Personal templates"
+msgid "Manage Personal Templates"
+msgstr "Pārvaldīt personiskās veidnes"
 
 #: ../src/main_window_build_tools.vala:28
 msgid "_Build"
@@ -1509,7 +1815,7 @@ msgstr "Skatīt žurnā_lu"
 msgid "View Log"
 msgstr "Skatīt žurnālu"
 
-#: ../src/main_window_build_tools.vala:40
+#: ../src/main_window_build_tools.vala:40 ../src/ui/menus.ui.h:3
 msgid "_Manage Build Tools"
 msgstr "_Pārvaldīt būvēšanas rīkus"
 
@@ -1589,26 +1895,46 @@ msgstr "Pārvietot pašreizējo dokumentu uz jaunu logu"
 msgid "_Edit"
 msgstr "R_ediģēt"
 
+#: ../src/main_window_edit.vala:32
+msgid "_Undo"
+msgstr "Atsa_ukt"
+
 #: ../src/main_window_edit.vala:33
 msgid "Undo the last action"
 msgstr "Atsaukt pēdējo darbību"
+
+#: ../src/main_window_edit.vala:35
+msgid "_Redo"
+msgstr "Ata_tsaukt"
 
 #: ../src/main_window_edit.vala:36
 msgid "Redo the last undone action"
 msgstr "Atcelt pēdējās darbības atsaukšanu"
 
+#: ../src/main_window_edit.vala:38 ../src/main_window_structure.vala:32
+msgid "Cu_t"
+msgstr "Izgriez_t"
+
 #: ../src/main_window_edit.vala:39
 msgid "Cut the selection"
 msgstr "Izgriezt izvēlēto"
+
+#: ../src/main_window_edit.vala:41 ../src/main_window_structure.vala:35
+msgid "_Copy"
+msgstr "_Kopēt"
 
 #: ../src/main_window_edit.vala:42
 msgid "Copy the selection"
 msgstr "Kopēt izvēlēto"
 
-#. No shortcut here because if the shortcut is null, Ctrl+V is used for the _all_
+#. No shortcut here because if the shortcut is null, Ctrl+V is used for _all_
 #. the window. In this case Ctrl+V in the search text entry would be broken (the
 #. text is pasted in the document instead of the entry).
 #. Anyway if we press Ctrl+V when the cursor is in the document, no problem.
+#: ../src/main_window_edit.vala:48
+msgid "_Paste"
+msgstr "_Ielīmēt"
+
 #: ../src/main_window_edit.vala:49
 msgid "Paste the clipboard"
 msgstr "Ielīmēt starpliktuves saturu"
@@ -1617,33 +1943,66 @@ msgstr "Ielīmēt starpliktuves saturu"
 msgid "Delete the selected text"
 msgstr "Dzēst izvēlēto tekstu"
 
+#: ../src/main_window_edit.vala:54
+#| msgid "_Select"
+msgid "Select _All"
+msgstr "Izvēlēties _visu"
+
 #: ../src/main_window_edit.vala:55
 msgid "Select the entire document"
 msgstr "Izvēlēties visu dokumentu"
 
-#: ../src/main_window_edit.vala:57 ../src/main_window_structure.vala:44
+#: ../src/main_window_edit.vala:57
+msgid "_Indent"
+msgstr "P_ielikt atkāpi"
+
+#: ../src/main_window_edit.vala:58
+#| msgid "Delete the selected text"
+msgid "Indent the selected lines"
+msgstr "Palielināt izvēlēto rindu atkāpi"
+
+#: ../src/main_window_edit.vala:60
+msgid "_Unindent"
+msgstr "N_oņemt atkāpi"
+
+#: ../src/main_window_edit.vala:61
+#| msgid "Delete the selected text"
+msgid "Unindent the selected lines"
+msgstr "Atcelt atkāpi izvēlētajām rindām"
+
+#: ../src/main_window_edit.vala:63 ../src/main_window_structure.vala:44
 msgid "_Comment"
 msgstr "_Komentēt"
 
-#: ../src/main_window_edit.vala:58
+#: ../src/main_window_edit.vala:64
 msgid "Comment the selected lines (add the character \"%\")"
 msgstr "Komentēt izvēlētās rindiņas (pievienot rakstzīmi “%”)"
 
-#: ../src/main_window_edit.vala:61
+#: ../src/main_window_edit.vala:67
 msgid "_Uncomment"
 msgstr "_Atkomentēt"
 
-#: ../src/main_window_edit.vala:62
+#: ../src/main_window_edit.vala:68
 msgid "Uncomment the selected lines (remove the character \"%\")"
 msgstr "Atkomentēt izvēlētās rindiņas (izņemt rakstzīmi “%”)"
 
-#: ../src/main_window_edit.vala:66
-msgid "Configure the application"
-msgstr "Konfigurēt lietotni"
+#: ../src/main_window_edit.vala:71
+#| msgid "_Comment"
+msgid "_Completion"
+msgstr "_Pabeigšana"
 
 #: ../src/main_window_edit.vala:72
-msgid "Activate or disable the spell checking"
-msgstr "Aktivēt vai deaktivēt pareizrakstības pārbaudi"
+msgid "Complete the LaTeX command"
+msgstr "Pabeigt LaTeX komandu"
+
+#: ../src/main_window_edit.vala:74 ../src/ui/menus.ui.h:2
+#| msgid "Preferences"
+msgid "_Preferences"
+msgstr "_Iestatījumi"
+
+#: ../src/main_window_edit.vala:75
+msgid "Configure the application"
+msgstr "Konfigurēt lietotni"
 
 #: ../src/main_window_file.vala:30
 msgid "_File"
@@ -1661,7 +2020,12 @@ msgstr "Jauns _logs"
 msgid "Create a new window"
 msgstr "Izveidot jaunu logu"
 
-#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:85
+#: ../src/main_window_file.vala:38 ../src/main_window_file.vala:158
+#| msgid "_Open File"
+msgid "_Open"
+msgstr "_Atvērt"
+
+#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:90
 msgid "Open a file"
 msgstr "Atvērt datni"
 
@@ -1682,12 +2046,19 @@ msgid "Create a new template from the current document"
 msgstr "Izveidot jaunu veidni no dotā dokumenta"
 
 #: ../src/main_window_file.vala:50
-msgid "_Delete Template..."
-msgstr "_Dzēst veidni..."
+#| msgid "Personal templates"
+msgid "_Manage Personal Templates..."
+msgstr "_Pārvaldīt personiskās veidnes..."
 
 #: ../src/main_window_file.vala:51
-msgid "Delete personal template(s)"
-msgstr "Dzēst personīgo(-ās) veidni(-es)"
+#| msgid "Your personal templates"
+msgid "Manage personal templates"
+msgstr "Pārvaldīt personiskās veidnes"
+
+#: ../src/main_window_file.vala:53
+#| msgid "Close"
+msgid "_Close"
+msgstr "_Aizvērt"
 
 #: ../src/main_window_file.vala:54
 msgid "Close the current file"
@@ -1702,21 +2073,21 @@ msgstr "Atvē_rt nesenos"
 msgid "Open recently used files"
 msgstr "Atvērt nesen izmantotās datnes"
 
-#: ../src/main_window_file.vala:86
+#: ../src/main_window_file.vala:91
 msgid "Open a recently used file"
 msgstr "Atvērt nesen lietotu datni"
 
-#: ../src/main_window_file.vala:143
+#: ../src/main_window_file.vala:154
 msgid "Open Files"
 msgstr "Atvērt datnes"
 
 #. Filter: by default show only .tex and .bib files
-#: ../src/main_window_file.vala:157
+#: ../src/main_window_file.vala:177
 msgid "All LaTeX Files"
 msgstr "Visas LaTeX datnes"
 
 #. All files filter
-#: ../src/main_window_file.vala:164
+#: ../src/main_window_file.vala:184
 msgid "All Files"
 msgstr "Visas datnes"
 
@@ -1772,6 +2143,41 @@ msgstr "_Atvērt datni"
 msgid "Open the file referenced by the selected structure item"
 msgstr "Atvērt datni, uz ko norāda izvēlētais struktūras vienums"
 
+#: ../src/main_window_tools.vala:28
+msgid "_Tools"
+msgstr "_Rīki"
+
+#: ../src/main_window_tools.vala:29
+msgid "_Check Spelling…"
+msgstr "_Pārbaudīt pareizrakstību…"
+
+#: ../src/main_window_tools.vala:30
+#| msgid "Change the main file of the current project"
+msgid "Check the spelling of the current document"
+msgstr "Pārbaudīt pašreizējā dokumenta pareizrakstību"
+
+#: ../src/main_window_tools.vala:31
+#| msgid "Languages"
+msgid "_Set Language…"
+msgstr "Ie_statīt valodu…"
+
+#: ../src/main_window_tools.vala:32
+#| msgid "Create a new template from the current document"
+msgid "Set the language used for the spell checking for the current document"
+msgstr "Iestatiet valodu pareizrakstības pārbaudei pašreizējam dokumentam"
+
+#: ../src/main_window_tools.vala:38
+msgid "_Highlight Misspelled Words"
+msgstr "_Izcelt nepareizi uzrakstītos vārdus"
+
+#: ../src/main_window_tools.vala:39
+msgid "Highlight misspelled words in the current document"
+msgstr "Izcelt nepareizi uzrakstītos vārdus pašreizējā dokumentā"
+
+#: ../src/main_window.vala:28 ../src/ui/menus.ui.h:6
+msgid "_Quit"
+msgstr "_Iziet"
+
 #: ../src/main_window.vala:29
 msgid "Quit the program"
 msgstr "Iziet no programmas"
@@ -1810,9 +2216,18 @@ msgstr "Atstatīt fontu izmēru"
 msgid "_Search"
 msgstr "_Meklēt"
 
+#: ../src/main_window.vala:42
+msgid "_Find"
+msgstr "_Meklēt"
+
 #: ../src/main_window.vala:43
 msgid "Search for text"
 msgstr "Meklēt tekstu"
+
+#: ../src/main_window.vala:44
+#| msgid "Clear Replace"
+msgid "Find and _Replace"
+msgstr "Meklēt un _aizvietot"
 
 #: ../src/main_window.vala:45
 msgid "Search for and replace text"
@@ -1827,237 +2242,235 @@ msgid "Go to a specific line"
 msgstr "Pāriet uz norādīto rindu"
 
 #: ../src/main_window.vala:48
-msgid "_Search Forward"
-msgstr "_Meklēt uz priekšu"
+msgid "_Jump to PDF"
+msgstr "Pārle_kt uz PDF"
 
 #: ../src/main_window.vala:49
-msgid "Jump to the associated position in the PDF file"
-msgstr "Pārlekt uz saistīto vietu PDF datnē"
+msgid ""
+"Jump to the associated position in the PDF file. Another shortcut: Ctrl"
+"+click, which works in both directions."
+msgstr ""
+"Pārlekt uz saistīto vietu PDF datnē. Cita saīsne: Ctrl+klikšķis, kas darbojas"
+" abos virzienos."
 
 #. Projects
-#: ../src/main_window.vala:52
+#: ../src/main_window.vala:53
 msgid "_Projects"
 msgstr "_Projekti"
 
-#: ../src/main_window.vala:53
+#: ../src/main_window.vala:54
 msgid "_New Project"
 msgstr "Jau_ns projekts"
 
-#: ../src/main_window.vala:54
+#: ../src/main_window.vala:55
 msgid "Create a new project"
 msgstr "Izveidot jaunu projektu"
 
-#: ../src/main_window.vala:55
+#: ../src/main_window.vala:56
 msgid "_Configure Current Project"
 msgstr "_Konfigurēt šo projektu"
 
-#: ../src/main_window.vala:56
+#: ../src/main_window.vala:57
 msgid "Change the main file of the current project"
 msgstr "Mainīt šī projekta galveno datni"
 
-#: ../src/main_window.vala:58
+#: ../src/main_window.vala:59
 msgid "_Manage Projects"
 msgstr "_Pārvaldīt projektus"
 
-#: ../src/main_window.vala:59 ../src/project_dialogs.vala:183
+#: ../src/main_window.vala:60 ../src/project_dialogs.vala:187
 msgid "Manage Projects"
 msgstr "Pārvaldīt projektus"
 
-#. Help
-#: ../src/main_window.vala:62
-msgid "_Help"
-msgstr "_Palīdzība"
-
-#: ../src/main_window.vala:63
+#: ../src/main_window.vala:64
 msgid "_Contents"
 msgstr "_Saturs"
 
-#: ../src/main_window.vala:64
-msgid "Open the LaTeXila documentation"
-msgstr "Atvērt LaTeXila dokumentāciju"
-
 #: ../src/main_window.vala:65
+#| msgid "Open the LaTeXila documentation"
+msgid "Open the GNOME LaTeX documentation"
+msgstr "Atvērt GNOME LaTeX dokumentāciju"
+
+#: ../src/main_window.vala:66
 msgid "_LaTeX Reference"
 msgstr "_LaTeX norāde"
 
-#: ../src/main_window.vala:66
+#: ../src/main_window.vala:67
 msgid "The Kile LaTeX Reference"
 msgstr "Kile LaTeX norāde"
 
-#: ../src/main_window.vala:68 ../src/main_window.vala:1212
-msgid "About LaTeXila"
-msgstr "Par LaTeXila"
+#: ../src/main_window.vala:70 ../src/ui/menus.ui.h:5
+msgid "_About"
+msgstr "P_ar"
 
-#: ../src/main_window.vala:73
+#: ../src/main_window.vala:76
 msgid "_Main Toolbar"
 msgstr "_Galvenā rīkjosla"
 
-#: ../src/main_window.vala:74
+#: ../src/main_window.vala:77
 msgid "Show or hide the main toolbar"
 msgstr "Rādīt vai slēpt galveno rīkjoslu"
 
 #. Translators: "Edit" here is an adjective.
-#: ../src/main_window.vala:76
+#: ../src/main_window.vala:79
 msgid "_Edit Toolbar"
 msgstr "R_ediģēt rīkjoslu"
 
-#: ../src/main_window.vala:77
+#: ../src/main_window.vala:80
 msgid "Show or hide the edit toolbar"
 msgstr "Rādīt vai slēpt rediģēto rīkjoslu"
 
-#: ../src/main_window.vala:78
+#: ../src/main_window.vala:81
 msgid "_Side panel"
 msgstr "_Sānu rūts"
 
-#: ../src/main_window.vala:79
+#: ../src/main_window.vala:82
 msgid "Show or hide the side panel"
 msgstr "Rādīt vai slēpt sānu rūti"
 
-#: ../src/main_window.vala:80
+#: ../src/main_window.vala:83
 msgid "_Bottom panel"
 msgstr "_Apakšējā rūts"
 
-#: ../src/main_window.vala:81
+#: ../src/main_window.vala:84
 msgid "Show or hide the bottom panel"
 msgstr "Rādīt vai slēpt apakšējo rūti"
 
 #. Symbols
-#: ../src/main_window.vala:389
+#: ../src/main_window.vala:452
 msgid "Symbols"
 msgstr "Simboli"
 
-#: ../src/main_window.vala:398
+#: ../src/main_window.vala:461
 msgid "Structure"
 msgstr "Struktūra"
 
-#: ../src/main_window.vala:644
+#: ../src/main_window.vala:654
 #, c-format
-msgid "This file (%s) is already opened in another LaTeXila window."
-msgstr "Datne (%s) jau ir atvērta kādā citā LaTeXila logā."
+#| msgid "This file (%s) is already opened in another LaTeXila window."
+msgid "This file (%s) is already opened in another GNOME LaTeX window."
+msgstr "Datne (%s) jau ir atvērta kādā citā GNOME LaTeX logā."
 
-#: ../src/main_window.vala:646
+#: ../src/main_window.vala:656
+#| msgid ""
+#| "LaTeXila opened this instance of the file in a non-editable way. Do you "
+#| "want to edit it anyway?"
 msgid ""
-"LaTeXila opened this instance of the file in a non-editable way. Do you want "
-"to edit it anyway?"
+"GNOME LaTeX opened this instance of the file in a non-editable way. Do you "
+"want to edit it anyway?"
 msgstr ""
-"LaTeXila ir atvēris šo datnes versiju režīmā, kas neparedz tā rediģēšanu. "
+"GNOME LaTeX ir atvēris šo datnes versiju režīmā, kas neparedz tā rediģēšanu. "
 "Vai tomēr vēlaties rediģēt šo datni?"
 
-#: ../src/main_window.vala:649
+#: ../src/main_window.vala:660
 msgid "Edit Anyway"
 msgstr "Tomēr rediģēt"
 
-#: ../src/main_window.vala:650
+#: ../src/main_window.vala:661
 msgid "Don't Edit"
 msgstr "Nerediģēt"
 
-#: ../src/main_window.vala:751
+#: ../src/main_window.vala:756
 #, c-format
 msgid "Save changes to document \"%s\" before closing?"
 msgstr "Vai pirms aizvēršanas saglabāt izmaiņas dokumentā “%s”?"
 
-#: ../src/main_window.vala:831
-msgid "Read-Only"
-msgstr "Tikai lasāms"
-
-#: ../src/main_window.vala:845
+#: ../src/main_window.vala:815
 msgid "Save File"
 msgstr "Saglabāt datni"
 
-#: ../src/main_window.vala:880
-#, c-format
-msgid "A file named \"%s\" already exists. Do you want to replace it?"
-msgstr "Datne “%s” jau eksistē. Vai vēlaties to aizvietot?"
-
-#: ../src/main_window.vala:885 ../src/search.vala:182
-msgid "Replace"
-msgstr "Aizvietot"
-
-#: ../src/main_window.vala:1174
-msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
-msgstr "LaTeXila ir integrēta LaTeX vide the GNOME darbvirsmā"
-
-#: ../src/main_window.vala:1213
-msgid "translator-credits"
-msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
-
-#: ../src/post_processors.vala:188
-msgid "Latexmk messages"
-msgstr "Latexmk ziņojumi"
-
-#: ../src/preferences_dialog.vala:31
+#: ../src/preferences_dialog.vala:33
 msgid "Preferences"
 msgstr "Iestatījumi"
 
 #. reset all button
-#: ../src/preferences_dialog.vala:36 ../src/utils.vala:400
-msgid "Reset All"
-msgstr "Atstatīt visus"
+#: ../src/preferences_dialog.vala:42 ../src/preferences_dialog.vala:115
+#| msgid "Reset All"
+msgid "_Reset All"
+msgstr "_Atstatīt visus"
 
-#: ../src/preferences_dialog.vala:39
+#: ../src/preferences_dialog.vala:43
 msgid "Reset all preferences"
 msgstr "Atstatīt visus iestatījumus"
 
-#: ../src/preferences_dialog.vala:118
+#: ../src/preferences_dialog.vala:112
 msgid "Do you really want to reset all preferences?"
 msgstr "Vai tiešām vēlaties atstatīt visus iestatījumus?"
 
-#: ../src/preferences_dialog.vala:191
+#: ../src/preferences_dialog.vala:189
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minūte"
 msgstr[1] "minūtes"
 msgstr[2] "minūšu"
 
-#: ../src/preferences_dialog.vala:291
+#: ../src/preferences_dialog.vala:289
 msgid "character"
 msgid_plural "characters"
 msgstr[0] "rakstzīme"
 msgstr[1] "rakstzīmes"
 msgstr[2] "rakstzīmju"
 
-#: ../src/preferences_dialog.vala:331
+#: ../src/preferences_dialog.vala:344
 #, c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "Izmantot sistēmas fiksētā platuma fontu (%s)"
 
-#: ../src/project_dialogs.vala:26
+#: ../src/project_dialogs.vala:28
 msgid "New Project"
 msgstr "Jauns projekts"
 
 #. directory
-#: ../src/project_dialogs.vala:36 ../src/project_dialogs.vala:40
-#: ../src/project_dialogs.vala:203
+#: ../src/project_dialogs.vala:40 ../src/project_dialogs.vala:42
+#: ../src/project_dialogs.vala:204
 msgid "Directory"
 msgstr "Direktorija"
 
-#: ../src/project_dialogs.vala:101
+#. main file
+#: ../src/project_dialogs.vala:46 ../src/project_dialogs.vala:48
+#: ../src/project_dialogs.vala:142 ../src/project_dialogs.vala:144
+#: ../src/project_dialogs.vala:217
+msgid "Main File"
+msgstr "Galvenā datne"
+
+#: ../src/project_dialogs.vala:102
 #, c-format
 msgid "There is a conflict with the project \"%s\"."
 msgstr "Projektā “%s” ir konflikts."
 
-#: ../src/project_dialogs.vala:116
+#: ../src/project_dialogs.vala:119
 msgid "Configure Project"
 msgstr "Konfigurēt projektu"
 
-#: ../src/project_dialogs.vala:134
+#: ../src/project_dialogs.vala:137
 msgid "Location of the project"
 msgstr "Projekta atrašanās vieta"
 
-#: ../src/project_dialogs.vala:243 ../src/project_dialogs.vala:300
-msgid "Clear All"
-msgstr "Attīrīt visu"
+#: ../src/project_dialogs.vala:241
+#| msgid "_Projects"
+msgid "_Properties"
+msgstr "Ī_pašības"
 
-#: ../src/project_dialogs.vala:275
+#: ../src/project_dialogs.vala:243
+#| msgid "Clear All"
+msgid "_Clear All"
+msgstr "Attīrīt _visu"
+
+#: ../src/project_dialogs.vala:273
 #, c-format
 msgid "Do you really want to delete the project \"%s\"?"
 msgstr "Vai tiešām vēlaties dzēst projektu “%s”?"
 
-#: ../src/project_dialogs.vala:296
+#: ../src/project_dialogs.vala:294
 msgid "Do you really want to clear all projects?"
 msgstr "Vai tiešām vēlaties attīrīt visus projektus?"
 
-#: ../src/project_dialogs.vala:328
+#: ../src/project_dialogs.vala:297
+#| msgid "Clear All"
+msgid "Clear _All"
+msgstr "_Attīrīt visu"
+
+#: ../src/project_dialogs.vala:321
 msgid "The Main File is not in the directory."
 msgstr "Galvenā datne nav direktorijā."
 
@@ -2069,144 +2482,147 @@ msgstr "Iet uz rindu:"
 msgid "Line you want to move the cursor to"
 msgstr "Rinda uz kuru vēlaties pārcelt kursoru"
 
-#: ../src/search.vala:174
+#: ../src/search.vala:172
 msgid "Replace with"
 msgstr "Aizvietot ar"
 
+#: ../src/search.vala:180
+msgid "Replace"
+msgstr "Aizvietot"
+
 #. replace all: image + label
-#: ../src/search.vala:186
+#: ../src/search.vala:184
 msgid "Replace All"
 msgstr "Aizvietot visus"
 
-#: ../src/search.vala:195
+#: ../src/search.vala:194
 msgid "All"
 msgstr "Visi"
 
-#: ../src/search.vala:305
+#: ../src/search.vala:308
 msgid "Search for"
 msgstr "Meklēt"
 
-#: ../src/search.vala:316
+#: ../src/search.vala:319
 msgid "Case sensitive"
 msgstr "Reģistrjutīgs"
 
-#: ../src/search.vala:319
+#: ../src/search.vala:322
 msgid "Entire words only"
 msgstr "Tikai veseli vārdi"
 
-#: ../src/search.vala:465
+#: ../src/search.vala:469
 msgid "Not found"
 msgstr "Nav atrasts"
 
 #. Translators: the first %d is the position of the current search occurrence,
 #. * and the second %d is the total number of search occurrences.
 #.
-#: ../src/search.vala:482
+#: ../src/search.vala:486
 #, c-format
 msgid "Match %d of %d"
 msgstr "Atbilstība %d no %d"
 
 #. Translators: %d is the total number of search occurrences.
-#: ../src/search.vala:487
+#: ../src/search.vala:491
 #, c-format
-#| msgid "%u matches"
 msgid "%d match"
 msgid_plural "%d matches"
 msgstr[0] "%d atbilstība"
 msgstr[1] "%d atbilstības"
 msgstr[2] "%d atbilstību"
 
-#: ../src/structure.vala:158
+#: ../src/structure.vala:164
 msgid "Refresh"
 msgstr "Atsvaidzināt"
 
-#: ../src/structure.vala:172
+#: ../src/structure.vala:179
 msgid "Collapse All"
 msgstr "Sakļaut visu"
 
-#: ../src/structure.vala:182
+#: ../src/structure.vala:189
 msgid "Show labels"
 msgstr "Rādīt etiķetes"
 
-#: ../src/structure.vala:183
+#: ../src/structure.vala:190
 msgid "Show included files"
 msgstr "Rādīt iekļautās datnes"
 
-#: ../src/structure.vala:184
+#: ../src/structure.vala:191
 msgid "Show tables"
 msgstr "Rādīt tabulas"
 
-#: ../src/structure.vala:185
+#: ../src/structure.vala:192
 msgid "Show figures and images"
 msgstr "Rādīt ilustrācijas un attēlus"
 
 #. Translators: do not translate the words TODO and FIXME. They are special
 #. comments that can be inserted in LaTeX documents.
-#: ../src/structure.vala:188
+#: ../src/structure.vala:195
 msgid "Show TODOs and FIXMEs"
 msgstr "Rādīt TODO un FIXME"
 
-#: ../src/structure.vala:628
+#: ../src/structure.vala:634
 #, c-format
 msgid "Structure action error: %s"
 msgstr "Struktūras darbības kļūda — %s"
 
-#: ../src/structure.vala:633
+#: ../src/structure.vala:639
 msgid "The structure data seems outdated. Please refresh the structure."
 msgstr ""
 "Izskatās, ka struktūras dati ir novecojuši. Lūdzu, atsvaidziniet struktūru."
 
 #. Translators: it's a verb
-#: ../src/structure.vala:724
+#: ../src/structure.vala:730
 msgid "cut"
 msgstr "izgriezt"
 
 #. Translators: it's a verb
-#: ../src/structure.vala:726
+#: ../src/structure.vala:732
 msgid "copy"
 msgstr "kopēt"
 
-#: ../src/structure.vala:727
+#: ../src/structure.vala:733
 msgid "delete"
 msgstr "dzēst"
 
-#: ../src/structure.vala:728
+#: ../src/structure.vala:734
 msgid "select"
 msgstr "izvēlēties"
 
 #. Translators: it's a verb
-#: ../src/structure.vala:730
+#: ../src/structure.vala:736
 msgid "comment"
 msgstr "komentēt"
 
 #. Translators: it's a verb
-#: ../src/structure.vala:732
+#: ../src/structure.vala:738
 msgid "shift left"
 msgstr "bīdīt pa kreisi"
 
 #. Translators: it's a verb
-#: ../src/structure.vala:734
+#: ../src/structure.vala:740
 msgid "shift right"
 msgstr "bīdīt pa labi"
 
-#: ../src/structure.vala:735
+#: ../src/structure.vala:741
 msgid "open file"
 msgstr "atvērt datni"
 
-#: ../src/structure.vala:780
+#: ../src/structure.vala:786
 msgid "Table"
 msgstr "Tabula"
 
 #. Translators: "Figure" here means a diagram (\begin{figure}...\end{figure})
-#: ../src/structure.vala:782
+#: ../src/structure.vala:788
 msgid "Figure"
 msgstr "Ilustrācija"
 
-#: ../src/structure.vala:783
+#: ../src/structure.vala:789
 msgid "Image"
 msgstr "Attēls"
 
-#: ../src/structure.vala:784
+#: ../src/structure.vala:790
 msgid "File included"
 msgstr "Datne iekļauta"
 
@@ -2242,82 +2658,29 @@ msgstr "Dažādi teksta"
 msgid "Most Used"
 msgstr "Biežāk izmantotie"
 
-#: ../src/synctex.vala:84
-msgid "The document is not saved."
-msgstr "Dokuments nav saglabāts."
+#: ../src/symbols_view.vala:157
+#| msgid "Clear All"
+msgid "_Clear"
+msgstr "_Attīrīt"
 
-#: ../src/synctex.vala:91
-msgid "The PDF file doesn't exist."
-msgstr "PDF datne neeksistē."
+#: ../src/symbols_view.vala:159
+#| msgid "Number of most used symbols:"
+msgid "Clear most used symbols"
+msgstr "Attīrīt biežāk izmantots simbolus"
 
-#: ../src/synctex.vala:100
-#, c-format
-msgid "The file \"%s\" doesn't exist."
-msgstr "Datne “%s” neeksistē."
+#: ../src/tab_label.vala:48
+#| msgid "open file"
+msgid "Project main file"
+msgstr "Projekta galvenā datne"
 
-#: ../src/synctex.vala:107
-msgid "Can not communicate with evince."
-msgstr "Nevar sazināties ar evince."
+#: ../src/tab_label.vala:51
+msgid "Project main file:"
+msgstr "Projekta galvenā datne:"
 
-#: ../src/synctex.vala:125
-msgid "Impossible to do the forward search."
-msgstr "Nevar meklēt uz priekšu."
-
-#: ../src/templates_dialogs.vala:34
-msgid "New File..."
-msgstr "Jauna datne..."
-
-#: ../src/templates_dialogs.vala:55
-msgid "Default templates"
-msgstr "Noklusētās veidnes"
-
-#: ../src/templates_dialogs.vala:64
-msgid "Your personal templates"
-msgstr "Jūsu personiskās sagataves"
-
-#: ../src/templates_dialogs.vala:173
-msgid "New Template..."
-msgstr "Jauna sagatave..."
-
-#: ../src/templates_dialogs.vala:185
-msgid "Name of the new template"
-msgstr "Jaunās sagataves nosaukums"
-
-#: ../src/templates_dialogs.vala:198
-msgid "Choose an icon"
-msgstr "Izvēlieties ikonu"
-
-#: ../src/templates_dialogs.vala:242
-msgid "Delete Template(s)..."
-msgstr "Dzēst sagatavi(-es)"
-
-#: ../src/templates_dialogs.vala:259
-msgid "Personal templates"
-msgstr "Personiskās sagataves"
-
-#: ../src/templates.vala:75
-msgid "Empty"
-msgstr "Tukšs"
-
-#: ../src/templates.vala:77
-msgid "Article"
-msgstr "Raksts"
-
-#: ../src/templates.vala:78
-msgid "Report"
-msgstr "Atskaite"
-
-#: ../src/templates.vala:79
-msgid "Book"
-msgstr "Grāmata"
-
-#: ../src/templates.vala:80
-msgid "Letter"
-msgstr "Vēstule"
-
-#: ../src/templates.vala:81
-msgid "Presentation"
-msgstr "Prezentācija"
+#: ../src/ui/menus.ui.h:1
+#| msgid "New _Window"
+msgid "_New Window"
+msgstr "Jau_ns logs"
 
 #: ../src/ui/preferences_dialog.ui.h:1
 msgid "Display line numbers"
@@ -2381,28 +2744,103 @@ msgid "Font & Colors"
 msgstr "Fonti un krāsas"
 
 #: ../src/ui/preferences_dialog.ui.h:18
-msgid "File Clean-Up"
-msgstr "Datņu uzkopšana"
-
-#: ../src/ui/preferences_dialog.ui.h:20
-msgid "Automatically clean-up files after close"
-msgstr "Automātiski attīrīt datnes pēc aizvēršanas"
-
-#: ../src/ui/preferences_dialog.ui.h:21
 msgid "Interactive completion after"
 msgstr "Interaktīva pabeigšana pēc"
 
-#: ../src/ui/preferences_dialog.ui.h:22
+#: ../src/ui/preferences_dialog.ui.h:19
 msgid "Number of characters after &apos;\\&apos;"
 msgstr "Rakstzīmju skaits pēc &apos;\\&apos;"
 
-#: ../src/ui/preferences_dialog.ui.h:23
+#: ../src/ui/preferences_dialog.ui.h:20
 msgid "Number of characters after '\\'"
 msgstr "Rakstzīmju skaits pēc '\\'"
 
+#: ../src/ui/preferences_dialog.ui.h:21
+msgid "File Clean-Up"
+msgstr "Datņu uzkopšana"
+
+#: ../src/ui/preferences_dialog.ui.h:23
+msgid "Automatically clean-up files after close"
+msgstr "Automātiski attīrīt datnes pēc aizvēršanas"
+
 #: ../src/ui/preferences_dialog.ui.h:24
+msgid ""
+"The spell checking settings can also be changed on a file-by-file basis via "
+"the Tools menu."
+msgstr ""
+"Pareizrakstības pārbaudes iestatījumus var arī mainīt katrai datnei"
+" atsevišķi, izmantojot rīku izvēlni."
+
+#: ../src/ui/preferences_dialog.ui.h:25
+msgid "Default Spell Checking Settings"
+msgstr "Noklusējuma pareizrakstības pārbaudes iestatījumi"
+
+#: ../src/ui/preferences_dialog.ui.h:26
+#| msgid "Languages"
+msgid "Language:"
+msgstr "Valoda:"
+
+#: ../src/ui/preferences_dialog.ui.h:27
+msgid "Highlight misspelled words"
+msgstr "Izcelt nepareizi uzrakstītos vārdus"
+
+#: ../src/ui/preferences_dialog.ui.h:28
 msgid "Other"
 msgstr "Citi"
+
+#~ msgid "Integrated LaTeX Environment"
+#~ msgstr "Integrēta LaTeX vide"
+
+#~ msgid "Build Tool"
+#~ msgstr "Būvēšanas rīks"
+
+#~ msgid "Close document"
+#~ msgstr "Aizvērt dokumentu"
+
+#~ msgid "Main File:"
+#~ msgstr "Galvenā datne:"
+
+#~ msgid "Unsaved Document"
+#~ msgstr "Nesaglabāts dokuments"
+
+#~ msgid "Left Delimiters"
+#~ msgstr "Kreisie atdalītāji"
+
+#~ msgid "Right Delimiters"
+#~ msgstr "Labie atdalītāji"
+
+#~ msgid "- Integrated LaTeX Environment for GNOME"
+#~ msgstr "- Integrēta LaTeX vide GNOME darbvirsmā"
+
+#~ msgid ""
+#~ "Run '%s --help' to see a full list of available command line options.\n"
+#~ msgstr ""
+#~ "Palaidiet '%s --help', lai redzētu pilnu pieejamo komandrindas iespēju "
+#~ "sarakstu.\n"
+
+#~ msgid "_Delete Template..."
+#~ msgstr "_Dzēst veidni..."
+
+#~ msgid "Delete personal template(s)"
+#~ msgstr "Dzēst personīgo(-ās) veidni(-es)"
+
+#~ msgid "_Search Forward"
+#~ msgstr "_Meklēt uz priekšu"
+
+#~ msgid "Jump to the associated position in the PDF file"
+#~ msgstr "Pārlekt uz saistīto vietu PDF datnē"
+
+#~ msgid "Read-Only"
+#~ msgstr "Tikai lasāms"
+
+#~ msgid "A file named \"%s\" already exists. Do you want to replace it?"
+#~ msgstr "Datne “%s” jau eksistē. Vai vēlaties to aizvietot?"
+
+#~ msgid "Latexmk messages"
+#~ msgstr "Latexmk ziņojumi"
+
+#~ msgid "Delete Template(s)..."
+#~ msgstr "Dzēst sagatavi(-es)"
 
 #~ msgid "Interactive completion min chars"
 #~ msgstr "Interaktīva pabeigšana min. rakstz."
@@ -2421,9 +2859,6 @@ msgstr "Citi"
 
 #~ msgid "Ignore All"
 #~ msgstr "Ignorēt visus"
-
-#~ msgid "Languages"
-#~ msgstr "Valodas"
 
 #~ msgid "enchant error for language: %s"
 #~ msgstr "enchant kļūda valodai: %s"
@@ -2466,9 +2901,6 @@ msgstr "Citi"
 #~ msgid "Reset"
 #~ msgstr "Atstatīt"
 
-#~ msgid "Number of most used symbols:"
-#~ msgstr "Biežāk izmantoto simbolu skaits:"
-
 #~ msgid "Show only files with these extensions"
 #~ msgstr "Rādīt tikai failus ar šiem paplašinājumiem"
 
@@ -2498,12 +2930,6 @@ msgstr "Citi"
 
 #~ msgid "Find next"
 #~ msgstr "Atrast nākamo"
-
-#~ msgid "Close"
-#~ msgstr "Aizvērt"
-
-#~ msgid "Clear Replace"
-#~ msgstr "Attīrīt aizvietošanu"
 
 #~ msgid "Toggle between search and replace mode"
 #~ msgstr "Pārslēgties starp meklēšanas un aizvietošanas režīmiem"
