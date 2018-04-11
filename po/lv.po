@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
-"POT-Creation-Date: 2018-02-23 15:42+0000\n"
-"PO-Revision-Date: 2018-04-10 20:04+0200\n"
+"POT-Creation-Date: 2018-04-10 17:07+0000\n"
+"PO-Revision-Date: 2018-04-11 18:00+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -84,7 +84,6 @@ msgid "Convert the PostScript document to the PDF format"
 msgstr "Pārveidot PostScript dokumentu PDF formātā"
 
 #: ../data/org.gnome.gnome-latex.appdata.xml.in.h:1
-#| msgid "LaTeXila"
 msgid "LaTeX editor"
 msgstr "LaTeX redaktors"
 
@@ -94,9 +93,9 @@ msgid ""
 "LaTeXila. GNOME LaTeX permits to concentrate on the content and the "
 "structure of the document instead of being distracted by its presentation."
 msgstr ""
-"GNOME LaTeX ir LaTeX redaktors GNOME videi, iepriekš dēvēts par "
-"LaTeXila. GNOME LaTeX ļauj koncentrēties uz dokumenta saturu un struktūru,"
-" nevis tā prezentāciju."
+"GNOME LaTeX ir LaTeX redaktors GNOME videi, iepriekš dēvēts par LaTeXila. "
+"GNOME LaTeX ļauj koncentrēties uz dokumenta saturu un struktūru, nevis tā "
+"prezentāciju."
 
 #: ../data/org.gnome.gnome-latex.appdata.xml.in.h:3
 msgid ""
@@ -106,11 +105,11 @@ msgid ""
 "document in one click. And projects containing several .tex files are "
 "managed easily."
 msgstr ""
-"Lai palīdzētu rakstīt LaTeX atzīmes, ir pieejama automātiskā pabeigšana, kā"
-" arī izvēlnes un rīkjoslas ar galvenajām komandām. Jauni dokumenti tiek"
-" veidoti no veidnēm. Ir pieejamas kompilēšanas, konvertēšanas un gatava"
-" dokumenta skatīšanas pogas, kas ir viena klikšķa attālumā. Projekti satur"
-" vairākas .tex datnes, kas ir viegli pārvaldāmas."
+"Lai palīdzētu rakstīt LaTeX atzīmes, ir pieejama automātiskā pabeigšana, kā "
+"arī izvēlnes un rīkjoslas ar galvenajām komandām. Jauni dokumenti tiek "
+"veidoti no veidnēm. Ir pieejamas kompilēšanas, konvertēšanas un gatava "
+"dokumenta skatīšanas pogas, kas ir viena klikšķa attālumā. Projekti satur "
+"vairākas .tex datnes, kas ir viegli pārvaldāmas."
 
 #: ../data/org.gnome.gnome-latex.appdata.xml.in.h:4
 msgid ""
@@ -118,34 +117,31 @@ msgid ""
 "navigate in it; lists of symbols to insert them in a document; and a file "
 "browser."
 msgstr ""
-"Sānu joslā ir trīs komponentes — dokumenta struktūra, lai varētu tajā viegli"
-" pārvietoties; saraksts ar simboliem, kurus var ievietot dokumentā un datņu"
-" pārlūks."
+"Sānu joslā ir trīs komponentes — dokumenta struktūra, lai varētu tajā viegli "
+"pārvietoties; saraksts ar simboliem, kurus var ievietot dokumentā un datņu "
+"pārlūks."
 
 #: ../data/org.gnome.gnome-latex.appdata.xml.in.h:5
 msgid ""
 "GNOME LaTeX has also other features like the spell-checking, or jumping to "
 "the associated position between the .tex file and the PDF."
 msgstr ""
-"GNOME LaTeX ir arī citas iespējas, piemēram, pareizrakstības pārbaude un"
-" pāriešana uz atbilstošo vietu starp .tex datni un PDF."
+"GNOME LaTeX ir arī citas iespējas, piemēram, pareizrakstības pārbaude un "
+"pāriešana uz atbilstošo vietu starp .tex datni un PDF."
 
 #: ../data/org.gnome.gnome-latex.appdata.xml.in.h:6
 msgid "Completion of LaTeX commands"
 msgstr "LaTeX komandu pabeigšana"
 
 #: ../data/org.gnome.gnome-latex.appdata.xml.in.h:7
-#| msgid "View the PDF file"
 msgid "Generating the PDF file"
 msgstr "Ģenerē PDF datni"
 
 #: ../data/org.gnome.gnome-latex.appdata.xml.in.h:8
-#| msgid "Show or hide the side panel"
 msgid "Document structure in the side panel"
 msgstr "Dokumenta struktūra ir sānu panelī"
 
 #: ../data/org.gnome.gnome-latex.desktop.in.h:1
-#| msgid "Editor"
 msgid "LaTeX Editor"
 msgstr "LaTeX redaktors"
 
@@ -170,11 +166,6 @@ msgid "Use Default Font"
 msgstr "Lietot noklusējuma fontu"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:2
-#| msgid ""
-#| "Whether to use the system's default fixed width font for editing text "
-#| "instead of a font specific to LaTeXila. If this option is turned off, "
-#| "then the font named in the \"Editor Font\" option will be used instead of "
-#| "the system font."
 msgid ""
 "Whether to use the system's default fixed width font for editing text "
 "instead of a font specific to GNOME LaTeX. If this option is turned off, "
@@ -182,9 +173,8 @@ msgid ""
 "the system font."
 msgstr ""
 "Vai teksta rediģēšanai lietot sistēmas noklusēto fiksēta platuma fontu nevis "
-"GNOME LaTeX specifisko fontu. Ja šī iespēja ir izslēgta, tad opcijā"
-" “Redaktora "
-"fonts” norādītais fonts tiks lietots sistēmas fonta vietā."
+"GNOME LaTeX specifisko fontu. Ja šī iespēja ir izslēgta, tad opcijā "
+"“Redaktora fonts” norādītais fonts tiks lietots sistēmas fonta vietā."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:3
 msgid "Editor Font"
@@ -211,7 +201,6 @@ msgid "Create Backup Copies"
 msgstr "Izveidot rezerves kopijas"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:8
-#| msgid "Whether LaTeXila should create backup copies for the files it saves."
 msgid "Whether GNOME LaTeX should create backup copies for the files it saves."
 msgstr ""
 "Vai GNOME LaTeX vajadzētu izveidot rezerves kopijas datnēm, ko tā saglabā."
@@ -221,10 +210,6 @@ msgid "Autosave"
 msgstr "Automātiski saglabāt"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:10
-#| msgid ""
-#| "Whether LaTeXila should automatically save modified files after a time "
-#| "interval. You can set the time interval with the \"Autosave Interval\" "
-#| "option."
 msgid ""
 "Whether GNOME LaTeX should automatically save modified files after a time "
 "interval. You can set the time interval with the \"Autosave Interval\" "
@@ -239,16 +224,12 @@ msgid "Autosave Interval"
 msgstr "Automātiskās saglabāšanas intervāls"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:12
-#| msgid ""
-#| "Number of minutes after which LaTeXila will automatically save modified "
-#| "files. This will only take effect if the \"Autosave\" option is turned on."
 msgid ""
 "Number of minutes after which GNOME LaTeX will automatically save modified "
 "files. This will only take effect if the \"Autosave\" option is turned on."
 msgstr ""
-"Minūšu skaits, pēc kurām GNOME LaTeX automātiski saglabās izmainītās datnes."
-" Šī "
-"funkcija strādās tikai tad, ja opcija “Automātiski saglabāt” būs ieslēgta."
+"Minūšu skaits, pēc kurām GNOME LaTeX automātiski saglabās izmainītās datnes. "
+"Šī funkcija strādās tikai tad, ja opcija “Automātiski saglabāt” būs ieslēgta."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:13
 #: ../src/ui/preferences_dialog.ui.h:9
@@ -256,8 +237,6 @@ msgid "Reopen files on startup"
 msgstr "Startējoties atkal atvērt datnes"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:14
-#| msgid ""
-#| "Whether LaTeXila should reopen the files that was opened the last time."
 msgid ""
 "Whether GNOME LaTeX should reopen the files that was opened the last time."
 msgstr ""
@@ -279,7 +258,6 @@ msgid "Insert spaces"
 msgstr "Ievietot atstarpes"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:18
-#| msgid "Whether LaTeXila should insert spaces instead of tabs."
 msgid "Whether GNOME LaTeX should insert spaces instead of tabs."
 msgstr "Vai GNOME LaTeX būtu jāievieto atstarpes tabulāciju vietā."
 
@@ -296,7 +274,6 @@ msgid "Display Line Numbers"
 msgstr "Rādīt rindu numurus"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:22
-#| msgid "Whether LaTeXila should display line numbers in the editing area."
 msgid "Whether GNOME LaTeX should display line numbers in the editing area."
 msgstr "Vai GNOME LaTeX rediģēšanas laukā būtu jārāda rindu numuri."
 
@@ -305,7 +282,6 @@ msgid "Highlight Current Line"
 msgstr "Izcelt aktīvo rindu"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:24
-#| msgid "Whether LaTeXila should highlight the current line."
 msgid "Whether GNOME LaTeX should highlight the current line."
 msgstr "Vai GNOME LaTeX būtu jāizceļ tekošā rinda."
 
@@ -314,7 +290,6 @@ msgid "Highlight Matching Brackets"
 msgstr "Izcelt savstarpēji saistītās iekavas"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:26
-#| msgid "Whether LaTeXila should highlight matching brackets."
 msgid "Whether GNOME LaTeX should highlight matching brackets."
 msgstr "Vai GNOME LaTeX būtu jāizceļ savstarpēji atbilstošas iekavas."
 
@@ -327,17 +302,20 @@ msgid "Whether misspelled words are highlighted by default."
 msgstr "Vai nepareizi uzrakstītos vārdus izcelt pēc noklusējuma."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:29
-#| msgid "Spell checking"
-msgid "Spell Checking Language"
+#| msgid "Spell Checking Language"
+msgid "Spell-Checking Language"
 msgstr "Pareizrakstības pārbaudes valoda"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:30
+#| msgid ""
+#| "The default language used for the spell checking. Set to the empty string "
+#| "to take the best language available based on the environment."
 msgid ""
-"The default language used for the spell checking. Set to the empty string to "
+"The default language used for the spell-checking. Set to the empty string to "
 "take the best language available based on the environment."
 msgstr ""
-"Noklusējuma valoda, ko izmantot pareizrakstības pārbaudei. Iestatiet kā tukšu"
-" virkni, lai valodu izvēlētos, balstoties uz vidi."
+"Noklusējuma valoda, ko izmantot pareizrakstības pārbaudei. Iestatiet kā "
+"tukšu virkni, lai valodu izvēlētos, balstoties uz vidi."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:31
 msgid "Main toolbar is visible"
@@ -556,7 +534,6 @@ msgid "Hide panel"
 msgstr "Slēpt rūti"
 
 #: ../src/build_tool_dialog.vala:71
-#| msgid "Personal build tools"
 msgid "Personal Build Tool"
 msgstr "Personīgais būvēšanas rīks"
 
@@ -578,7 +555,6 @@ msgid "_Apply"
 msgstr "_Pielietot"
 
 #: ../src/build_tool_dialog.vala:77
-#| msgid "Build Tool (read-only)"
 msgid "Default Build Tool (read-only)"
 msgstr "Noklusējuma būvēšanas rīks (tikai lasāms)"
 
@@ -701,12 +677,10 @@ msgid "Build Tools"
 msgstr "Būvēšanas rīki"
 
 #: ../src/build_tools_preferences.vala:113
-#| msgid "Default build tools"
 msgid "Default Build Tools"
 msgstr "Noklusējuma būvēšanas rīki"
 
 #: ../src/build_tools_preferences.vala:134
-#| msgid "Personal build tools"
 msgid "Personal Build Tools"
 msgstr "Personīgie būvēšanas rīki"
 
@@ -719,12 +693,10 @@ msgid "View the properties (read-only)"
 msgstr "Skatīt īpašības (tikai lasāms)"
 
 #: ../src/build_tools_preferences.vala:246
-#| msgid "Quit the program"
 msgid "Edit the properties"
 msgstr "Rediģēt īpašības"
 
 #: ../src/build_tools_preferences.vala:266
-#| msgid "Create Backup Copies"
 msgid "Create a copy"
 msgstr "Izveidot kopiju"
 
@@ -742,7 +714,6 @@ msgstr "Vai tiešām vēlaties dzēst būvēšanas rīku “%s”?"
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:148
 #: ../src/main_window_edit.vala:51 ../src/main_window_structure.vala:38
 #: ../src/project_dialogs.vala:242 ../src/project_dialogs.vala:277
-#| msgid "delete"
 msgid "_Delete"
 msgstr "_Dzēst"
 
@@ -771,13 +742,11 @@ msgid "Ln %d, Col %d"
 msgstr "Rin %d, kol %d"
 
 #: ../src/dialogs.vala:40 ../src/main_window.vala:759
-#| msgid "Close without Saving"
 msgid "Close _without Saving"
 msgstr "Aizvērt nesaglabājot"
 
 #: ../src/dialogs.vala:42 ../src/main_window_file.vala:41
 #: ../src/main_window.vala:765 ../src/main_window.vala:818
-#| msgid "_Save All"
 msgid "_Save"
 msgstr "_Saglabāt"
 
@@ -820,7 +789,6 @@ msgid "Do you want to reload the file?"
 msgstr "Vai vēlaties vēlreiz ielādēt šo datni?"
 
 #: ../src/document_tab.vala:177
-#| msgid "Reload"
 msgid "_Reload"
 msgstr "Pā_rlādēt"
 
@@ -841,12 +809,10 @@ msgstr ""
 "tomēr saglabāt?"
 
 #: ../src/document.vala:217
-#| msgid "Save Anyway"
 msgid "_Save Anyway"
 msgstr "Tomēr _saglabāt"
 
 #: ../src/document.vala:218
-#| msgid "Don't Save"
 msgid "_Don't Save"
 msgstr "_Nesaglabāt"
 
@@ -870,7 +836,6 @@ msgstr "Vai vēlaties saglabāt šo datni drošākā vietā?"
 
 #: ../src/document.vala:494 ../src/main_window_file.vala:44
 #: ../src/main_window.vala:763
-#| msgid "_Save All"
 msgid "Save _As"
 msgstr "S_aglabāt kā"
 
@@ -879,8 +844,8 @@ msgid "Cancel"
 msgstr "Atcelt"
 
 #: ../src/document_view.vala:312
-#| msgid "Activate or disable the spell checking"
-msgid "No dictionaries available for the spell checking."
+#| msgid "No dictionaries available for the spell checking."
+msgid "No dictionaries available for the spell-checking."
 msgstr "Preizrakstības pārbaudei nav pieejamu vārdnīcu"
 
 #. Help
@@ -906,22 +871,18 @@ msgid "Go to the active document directory"
 msgstr "Iet uz aktīvā dokumenta direktoriju"
 
 #: ../src/file_browser.vala:290
-#| msgid "Open a file"
 msgid "Open in a file manager"
 msgstr "Atvērt datņu pārvaldniekā"
 
 #: ../src/file_browser.vala:292
-#| msgid "Save the current file with a different name"
 msgid "Open the current directory in a file manager"
 msgstr "Atvērt pašreizējo direktoriju datņu pārvaldniekā"
 
 #: ../src/file_browser.vala:314
-#| msgid "Open a file"
 msgid "Open in a terminal"
 msgstr "Atvērt terminālī"
 
 #: ../src/file_browser.vala:315
-#| msgid "Save the current file with a different name"
 msgid "Open the current directory in a terminal"
 msgstr "Atvērt pašreizējo direktoriju terminālī"
 
@@ -934,30 +895,27 @@ msgstr "Datņu sistēma"
 msgid "File Browser"
 msgstr "Datņu pārlūks"
 
-#: ../src/latexila_app.vala:79
+#: ../src/glatex_app.vala:79
 msgid "Show the application's version"
 msgstr "Rādīt lietotnes versiju"
 
-#: ../src/latexila_app.vala:82
+#: ../src/glatex_app.vala:82
 msgid "Create new document"
 msgstr "Izveidot jaunu dokumentu"
 
-#: ../src/latexila_app.vala:85
-#| msgid "Create a new top-level window in an existing instance of LaTeXila"
+#: ../src/glatex_app.vala:85
 msgid "Create a new top-level window in an existing instance of GNOME LaTeX"
 msgstr "Izveidot jaunu virslīmeņa logu esošajā GNOME LaTeX instancē"
 
-#: ../src/latexila_app.vala:210
-#| msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
+#: ../src/glatex_app.vala:212
 msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
 msgstr "GNOME LaTeX ir LaTeX redaktors the GNOME darbvirsmā"
 
-#: ../src/latexila_app.vala:239 ../src/main_window.vala:71
-#| msgid "About LaTeXila"
+#: ../src/glatex_app.vala:241 ../src/main_window.vala:71
 msgid "About GNOME LaTeX"
 msgstr "Par GNOME LaTeX"
 
-#: ../src/latexila_app.vala:240
+#: ../src/glatex_app.vala:242
 msgid "translator-credits"
 msgstr "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
@@ -1529,126 +1487,126 @@ msgstr "Matemātikas at_starpes"
 msgid "_Small"
 msgstr "_Maza"
 
-#: ../src/latex_menu.vala:359
+#: ../src/latex_menu.vala:358
 msgid "Small - \\,"
 msgstr "Maza — \\,"
 
-#: ../src/latex_menu.vala:360
+#: ../src/latex_menu.vala:359
 msgid "_Medium"
 msgstr "_Vidēja"
 
-#: ../src/latex_menu.vala:361
+#: ../src/latex_menu.vala:359
 msgid "Medium - \\:"
 msgstr "Vidēja — \\:"
 
-#: ../src/latex_menu.vala:362
+#: ../src/latex_menu.vala:360
 msgid "_Large"
 msgstr "_Liela"
 
-#: ../src/latex_menu.vala:363
+#: ../src/latex_menu.vala:360
 msgid "Large - \\;"
 msgstr "_Liela — \\;"
 
 #. Math: Left Delimiters
-#: ../src/latex_menu.vala:369
+#: ../src/latex_menu.vala:366
 msgid "_Left Delimiters"
 msgstr "_Kreisie atdalītāji"
 
-#: ../src/latex_menu.vala:370
+#: ../src/latex_menu.vala:367
 msgid "left ("
 msgstr "kreisais ("
 
-#: ../src/latex_menu.vala:372
+#: ../src/latex_menu.vala:368
 msgid "left ["
 msgstr "kreisais ["
 
-#: ../src/latex_menu.vala:374
+#: ../src/latex_menu.vala:369
 msgid "left { "
 msgstr "kreisais { "
 
-#: ../src/latex_menu.vala:376
+#: ../src/latex_menu.vala:370
 msgid "left <"
 msgstr "kreisais <"
 
-#: ../src/latex_menu.vala:378
+#: ../src/latex_menu.vala:371
 msgid "left )"
 msgstr "kreisais )"
 
-#: ../src/latex_menu.vala:380
+#: ../src/latex_menu.vala:372
 msgid "left ]"
 msgstr "kreisais ]"
 
-#: ../src/latex_menu.vala:382
+#: ../src/latex_menu.vala:373
 msgid "left  }"
 msgstr "kreisais }"
 
-#: ../src/latex_menu.vala:384
+#: ../src/latex_menu.vala:374
 msgid "left >"
 msgstr "kreisais >"
 
-#: ../src/latex_menu.vala:386
+#: ../src/latex_menu.vala:375
 msgid "left ."
 msgstr "kreisais ."
 
 #. Math: Right Delimiters
-#: ../src/latex_menu.vala:391
+#: ../src/latex_menu.vala:379
 msgid "Right _Delimiters"
 msgstr "Labie at_dalītāji"
 
-#: ../src/latex_menu.vala:392
+#: ../src/latex_menu.vala:380
 msgid "right )"
 msgstr "labais )"
 
-#: ../src/latex_menu.vala:394
+#: ../src/latex_menu.vala:381
 msgid "right ]"
 msgstr "labais ]"
 
-#: ../src/latex_menu.vala:396
+#: ../src/latex_menu.vala:382
 msgid "right  }"
 msgstr "labais }"
 
-#: ../src/latex_menu.vala:398
+#: ../src/latex_menu.vala:383
 msgid "right >"
 msgstr "labais >"
 
-#: ../src/latex_menu.vala:400
+#: ../src/latex_menu.vala:384
 msgid "right ("
 msgstr "labais ("
 
-#: ../src/latex_menu.vala:402
+#: ../src/latex_menu.vala:385
 msgid "right ["
 msgstr "labais ["
 
-#: ../src/latex_menu.vala:404
+#: ../src/latex_menu.vala:386
 msgid "right { "
 msgstr "labais { "
 
-#: ../src/latex_menu.vala:406
+#: ../src/latex_menu.vala:387
 msgid "right <"
 msgstr "labais <"
 
-#: ../src/latex_menu.vala:408
+#: ../src/latex_menu.vala:388
 msgid "right ."
 msgstr "labais ."
 
 #. menus under toolitems
-#: ../src/latex_menu.vala:423
+#: ../src/latex_menu.vala:402
 msgid "Sectioning"
 msgstr "Virsraksti"
 
-#: ../src/latex_menu.vala:426
+#: ../src/latex_menu.vala:405
 msgid "Characters Sizes"
 msgstr "Rakstzīmju izmēri"
 
-#: ../src/latex_menu.vala:429
+#: ../src/latex_menu.vala:408
 msgid "References"
 msgstr "Norādes"
 
-#: ../src/latex_menu.vala:432
+#: ../src/latex_menu.vala:411
 msgid "Presentation Environments"
 msgstr "Prezentācijas vides"
 
-#: ../src/latex_menu.vala:435
+#: ../src/latex_menu.vala:414
 msgid "Math Environments"
 msgstr "Matemātikas vides"
 
@@ -1672,7 +1630,7 @@ msgstr "Neizdevās atvērt “%s”:"
 msgid "Open %s"
 msgstr "Atvērt %s"
 
-#: ../src/liblatexila/latexila-latex-commands.c:51
+#: ../src/liblatexila/latexila-latex-commands.c:52
 msgid "Figure - \\begin{figure}"
 msgstr "Attēls — \\begin{figure}"
 
@@ -1722,12 +1680,10 @@ msgid "Presentation"
 msgstr "Prezentācija"
 
 #: ../src/liblatexila/latexila-templates-dialogs.c:50
-#| msgid "Default templates"
 msgid "Default Templates"
 msgstr "Noklusējuma veidnes"
 
 #: ../src/liblatexila/latexila-templates-dialogs.c:62
-#| msgid "Personal templates"
 msgid "Personal Templates"
 msgstr "Personiskās veidnes"
 
@@ -1758,13 +1714,11 @@ msgid "Choose an icon"
 msgstr "Izvēlieties ikonu"
 
 #: ../src/liblatexila/latexila-templates-dialogs.c:336
-#| msgid "Impossible to save the file."
 msgid "Impossible to create the personal template."
 msgstr "Nevar izveidot personīgo veidni."
 
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:143
 #, c-format
-#| msgid "Do you really want to delete these files?"
 msgid "Do you really want to delete the template “%s”?"
 msgstr "Vai tiešām vēlaties dzēst veidni “%s”?"
 
@@ -1778,12 +1732,10 @@ msgid "Error when moving the template."
 msgstr "Kļūda, pārvietojot veidni."
 
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:274
-#| msgid "delete"
 msgid "Delete"
 msgstr "Dzēst"
 
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:366
-#| msgid "Personal templates"
 msgid "Manage Personal Templates"
 msgstr "Pārvaldīt personiskās veidnes"
 
@@ -1944,7 +1896,6 @@ msgid "Delete the selected text"
 msgstr "Dzēst izvēlēto tekstu"
 
 #: ../src/main_window_edit.vala:54
-#| msgid "_Select"
 msgid "Select _All"
 msgstr "Izvēlēties _visu"
 
@@ -1957,7 +1908,6 @@ msgid "_Indent"
 msgstr "P_ielikt atkāpi"
 
 #: ../src/main_window_edit.vala:58
-#| msgid "Delete the selected text"
 msgid "Indent the selected lines"
 msgstr "Palielināt izvēlēto rindu atkāpi"
 
@@ -1966,7 +1916,6 @@ msgid "_Unindent"
 msgstr "N_oņemt atkāpi"
 
 #: ../src/main_window_edit.vala:61
-#| msgid "Delete the selected text"
 msgid "Unindent the selected lines"
 msgstr "Atcelt atkāpi izvēlētajām rindām"
 
@@ -1987,7 +1936,6 @@ msgid "Uncomment the selected lines (remove the character \"%\")"
 msgstr "Atkomentēt izvēlētās rindiņas (izņemt rakstzīmi “%”)"
 
 #: ../src/main_window_edit.vala:71
-#| msgid "_Comment"
 msgid "_Completion"
 msgstr "_Pabeigšana"
 
@@ -1996,7 +1944,6 @@ msgid "Complete the LaTeX command"
 msgstr "Pabeigt LaTeX komandu"
 
 #: ../src/main_window_edit.vala:74 ../src/ui/menus.ui.h:2
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "_Iestatījumi"
 
@@ -2021,7 +1968,6 @@ msgid "Create a new window"
 msgstr "Izveidot jaunu logu"
 
 #: ../src/main_window_file.vala:38 ../src/main_window_file.vala:158
-#| msgid "_Open File"
 msgid "_Open"
 msgstr "_Atvērt"
 
@@ -2046,17 +1992,14 @@ msgid "Create a new template from the current document"
 msgstr "Izveidot jaunu veidni no dotā dokumenta"
 
 #: ../src/main_window_file.vala:50
-#| msgid "Personal templates"
 msgid "_Manage Personal Templates..."
 msgstr "_Pārvaldīt personiskās veidnes..."
 
 #: ../src/main_window_file.vala:51
-#| msgid "Your personal templates"
 msgid "Manage personal templates"
 msgstr "Pārvaldīt personiskās veidnes"
 
 #: ../src/main_window_file.vala:53
-#| msgid "Close"
 msgid "_Close"
 msgstr "_Aizvērt"
 
@@ -2152,18 +2095,17 @@ msgid "_Check Spelling…"
 msgstr "_Pārbaudīt pareizrakstību…"
 
 #: ../src/main_window_tools.vala:30
-#| msgid "Change the main file of the current project"
 msgid "Check the spelling of the current document"
 msgstr "Pārbaudīt pašreizējā dokumenta pareizrakstību"
 
 #: ../src/main_window_tools.vala:31
-#| msgid "Languages"
 msgid "_Set Language…"
 msgstr "Ie_statīt valodu…"
 
 #: ../src/main_window_tools.vala:32
-#| msgid "Create a new template from the current document"
-msgid "Set the language used for the spell checking for the current document"
+#| msgid ""
+#| "Set the language used for the spell checking for the current document"
+msgid "Set the language used for the spell-checking for the current document"
 msgstr "Iestatiet valodu pareizrakstības pārbaudei pašreizējam dokumentam"
 
 #: ../src/main_window_tools.vala:38
@@ -2225,7 +2167,6 @@ msgid "Search for text"
 msgstr "Meklēt tekstu"
 
 #: ../src/main_window.vala:44
-#| msgid "Clear Replace"
 msgid "Find and _Replace"
 msgstr "Meklēt un _aizvietot"
 
@@ -2250,8 +2191,8 @@ msgid ""
 "Jump to the associated position in the PDF file. Another shortcut: Ctrl"
 "+click, which works in both directions."
 msgstr ""
-"Pārlekt uz saistīto vietu PDF datnē. Cita saīsne: Ctrl+klikšķis, kas darbojas"
-" abos virzienos."
+"Pārlekt uz saistīto vietu PDF datnē. Cita saīsne: Ctrl+klikšķis, kas "
+"darbojas abos virzienos."
 
 #. Projects
 #: ../src/main_window.vala:53
@@ -2287,7 +2228,6 @@ msgid "_Contents"
 msgstr "_Saturs"
 
 #: ../src/main_window.vala:65
-#| msgid "Open the LaTeXila documentation"
 msgid "Open the GNOME LaTeX documentation"
 msgstr "Atvērt GNOME LaTeX dokumentāciju"
 
@@ -2347,14 +2287,10 @@ msgstr "Struktūra"
 
 #: ../src/main_window.vala:654
 #, c-format
-#| msgid "This file (%s) is already opened in another LaTeXila window."
 msgid "This file (%s) is already opened in another GNOME LaTeX window."
 msgstr "Datne (%s) jau ir atvērta kādā citā GNOME LaTeX logā."
 
 #: ../src/main_window.vala:656
-#| msgid ""
-#| "LaTeXila opened this instance of the file in a non-editable way. Do you "
-#| "want to edit it anyway?"
 msgid ""
 "GNOME LaTeX opened this instance of the file in a non-editable way. Do you "
 "want to edit it anyway?"
@@ -2385,7 +2321,6 @@ msgstr "Iestatījumi"
 
 #. reset all button
 #: ../src/preferences_dialog.vala:42 ../src/preferences_dialog.vala:115
-#| msgid "Reset All"
 msgid "_Reset All"
 msgstr "_Atstatīt visus"
 
@@ -2447,12 +2382,10 @@ msgid "Location of the project"
 msgstr "Projekta atrašanās vieta"
 
 #: ../src/project_dialogs.vala:241
-#| msgid "_Projects"
 msgid "_Properties"
 msgstr "Ī_pašības"
 
 #: ../src/project_dialogs.vala:243
-#| msgid "Clear All"
 msgid "_Clear All"
 msgstr "Attīrīt _visu"
 
@@ -2466,7 +2399,6 @@ msgid "Do you really want to clear all projects?"
 msgstr "Vai tiešām vēlaties attīrīt visus projektus?"
 
 #: ../src/project_dialogs.vala:297
-#| msgid "Clear All"
 msgid "Clear _All"
 msgstr "_Attīrīt visu"
 
@@ -2659,17 +2591,14 @@ msgid "Most Used"
 msgstr "Biežāk izmantotie"
 
 #: ../src/symbols_view.vala:157
-#| msgid "Clear All"
 msgid "_Clear"
 msgstr "_Attīrīt"
 
 #: ../src/symbols_view.vala:159
-#| msgid "Number of most used symbols:"
 msgid "Clear most used symbols"
 msgstr "Attīrīt biežāk izmantots simbolus"
 
 #: ../src/tab_label.vala:48
-#| msgid "open file"
 msgid "Project main file"
 msgstr "Projekta galvenā datne"
 
@@ -2678,7 +2607,6 @@ msgid "Project main file:"
 msgstr "Projekta galvenā datne:"
 
 #: ../src/ui/menus.ui.h:1
-#| msgid "New _Window"
 msgid "_New Window"
 msgstr "Jau_ns logs"
 
@@ -2764,19 +2692,22 @@ msgid "Automatically clean-up files after close"
 msgstr "Automātiski attīrīt datnes pēc aizvēršanas"
 
 #: ../src/ui/preferences_dialog.ui.h:24
+#| msgid ""
+#| "The spell checking settings can also be changed on a file-by-file basis "
+#| "via the Tools menu."
 msgid ""
-"The spell checking settings can also be changed on a file-by-file basis via "
+"The spell-checking settings can also be changed on a file-by-file basis via "
 "the Tools menu."
 msgstr ""
-"Pareizrakstības pārbaudes iestatījumus var arī mainīt katrai datnei"
-" atsevišķi, izmantojot rīku izvēlni."
+"Pareizrakstības pārbaudes iestatījumus var arī mainīt katrai datnei "
+"atsevišķi, izmantojot rīku izvēlni."
 
 #: ../src/ui/preferences_dialog.ui.h:25
-msgid "Default Spell Checking Settings"
+#| msgid "Default Spell Checking Settings"
+msgid "Default Spell-Checking Settings"
 msgstr "Noklusējuma pareizrakstības pārbaudes iestatījumi"
 
 #: ../src/ui/preferences_dialog.ui.h:26
-#| msgid "Languages"
 msgid "Language:"
 msgstr "Valoda:"
 
