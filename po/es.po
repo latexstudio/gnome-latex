@@ -8,10 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila 2.0\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=latexila&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-12-27 07:27+0000\n"
-"PO-Revision-Date: 2018-01-24 16:55+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
+"POT-Creation-Date: 2018-04-11 10:50+0000\n"
+"PO-Revision-Date: 2018-04-20 12:56+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -91,10 +90,6 @@ msgid "LaTeX editor"
 msgstr "Editor LaTeX"
 
 #: ../data/org.gnome.gnome-latex.appdata.xml.in.h:2
-#| msgid ""
-#| "LaTeXila is a LaTeX editor for the GNOME desktop. LaTeXila permits to "
-#| "concentrate on the content and the structure of the document instead of "
-#| "being distracted by its presentation."
 msgid ""
 "GNOME LaTeX is a LaTeX editor for the GNOME desktop, previously named "
 "LaTeXila. GNOME LaTeX permits to concentrate on the content and the "
@@ -129,9 +124,6 @@ msgstr ""
 "documento; y un examinador de archivos."
 
 #: ../data/org.gnome.gnome-latex.appdata.xml.in.h:5
-#| msgid ""
-#| "LaTeXila has also other features like the spell-checking, or jumping to "
-#| "the associated position between the .tex file and the PDF."
 msgid ""
 "GNOME LaTeX has also other features like the spell-checking, or jumping to "
 "the associated position between the .tex file and the PDF."
@@ -176,11 +168,6 @@ msgid "Use Default Font"
 msgstr "Usar tipografía predeterminada"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:2
-#| msgid ""
-#| "Whether to use the system's default fixed width font for editing text "
-#| "instead of a font specific to LaTeXila. If this option is turned off, "
-#| "then the font named in the \"Editor Font\" option will be used instead of "
-#| "the system font."
 msgid ""
 "Whether to use the system's default fixed width font for editing text "
 "instead of a font specific to GNOME LaTeX. If this option is turned off, "
@@ -218,7 +205,6 @@ msgid "Create Backup Copies"
 msgstr "Crea copias de respaldo"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:8
-#| msgid "Whether LaTeXila should create backup copies for the files it saves."
 msgid "Whether GNOME LaTeX should create backup copies for the files it saves."
 msgstr ""
 "Indica si GNOME LaTeX debe realizar copias de seguridad de los archivos que "
@@ -229,10 +215,6 @@ msgid "Autosave"
 msgstr "Autoguardar"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:10
-#| msgid ""
-#| "Whether LaTeXila should automatically save modified files after a time "
-#| "interval. You can set the time interval with the \"Autosave Interval\" "
-#| "option."
 msgid ""
 "Whether GNOME LaTeX should automatically save modified files after a time "
 "interval. You can set the time interval with the \"Autosave Interval\" "
@@ -247,9 +229,6 @@ msgid "Autosave Interval"
 msgstr "Intervalo de autoguardado"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:12
-#| msgid ""
-#| "Number of minutes after which LaTeXila will automatically save modified "
-#| "files. This will only take effect if the \"Autosave\" option is turned on."
 msgid ""
 "Number of minutes after which GNOME LaTeX will automatically save modified "
 "files. This will only take effect if the \"Autosave\" option is turned on."
@@ -264,8 +243,6 @@ msgid "Reopen files on startup"
 msgstr "Reabrir archivos al inicio"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:14
-#| msgid ""
-#| "Whether LaTeXila should reopen the files that was opened the last time."
 msgid ""
 "Whether GNOME LaTeX should reopen the files that was opened the last time."
 msgstr ""
@@ -289,7 +266,6 @@ msgid "Insert spaces"
 msgstr "Insertar espacios"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:18
-#| msgid "Whether LaTeXila should insert spaces instead of tabs."
 msgid "Whether GNOME LaTeX should insert spaces instead of tabs."
 msgstr "Indica si GNOME LaTeX debe insertar espacios en lugar de tabulaciones."
 
@@ -306,7 +282,6 @@ msgid "Display Line Numbers"
 msgstr "Mostrar números de línea"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:22
-#| msgid "Whether LaTeXila should display line numbers in the editing area."
 msgid "Whether GNOME LaTeX should display line numbers in the editing area."
 msgstr ""
 "Indica si GNOME LaTeX debe mostrar números de línea en el área de edición."
@@ -316,7 +291,6 @@ msgid "Highlight Current Line"
 msgstr "Resaltar la línea actual"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:24
-#| msgid "Whether LaTeXila should highlight the current line."
 msgid "Whether GNOME LaTeX should highlight the current line."
 msgstr "Indica si GNOME LaTeX debe resaltar la línea actual."
 
@@ -325,7 +299,6 @@ msgid "Highlight Matching Brackets"
 msgstr "Resaltar corchetes coincidentes"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:26
-#| msgid "Whether LaTeXila should highlight matching brackets."
 msgid "Whether GNOME LaTeX should highlight matching brackets."
 msgstr "Indica si GNOME LaTeX debe resaltar los corchetes correspondientes."
 
@@ -339,12 +312,16 @@ msgstr ""
 "Indica si las palabras mal escritas se resaltan de manera predeterminada."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:29
-msgid "Spell Checking Language"
+#| msgid "Spell Checking Language"
+msgid "Spell-Checking Language"
 msgstr "Idioma de la revisión ortográfica"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:30
+#| msgid ""
+#| "The default language used for the spell checking. Set to the empty string "
+#| "to take the best language available based on the environment."
 msgid ""
-"The default language used for the spell checking. Set to the empty string to "
+"The default language used for the spell-checking. Set to the empty string to "
 "take the best language available based on the environment."
 msgstr ""
 "EL idioma predeterminado usado para la revisión ortográfica. Establézcalo a "
@@ -581,9 +558,9 @@ msgstr "Herramienta de construcción personal"
 #: ../src/build_tool_dialog.vala:72 ../src/build_tools_preferences.vala:335
 #: ../src/clean_build_files.vala:242 ../src/dialogs.vala:41
 #: ../src/document_tab.vala:178
-#: ../src/liblatexila/latexila-templates-dialogs.c:128
+#: ../src/liblatexila/latexila-templates-dialogs.c:130
 #: ../src/liblatexila/latexila-templates-dialogs.c:238
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:145
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:147
 #: ../src/main_window_file.vala:157 ../src/main_window.vala:760
 #: ../src/main_window.vala:817 ../src/preferences_dialog.vala:114
 #: ../src/project_dialogs.vala:31 ../src/project_dialogs.vala:122
@@ -634,12 +611,12 @@ msgid "Remove"
 msgstr "Quitar"
 
 #: ../src/build_tool_dialog.vala:318 ../src/build_tools_preferences.vala:354
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:282
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:286
 msgid "Move up"
 msgstr "Subir"
 
 #: ../src/build_tool_dialog.vala:369 ../src/build_tools_preferences.vala:406
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:294
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:298
 msgid "Move down"
 msgstr "Bajar"
 
@@ -758,7 +735,7 @@ msgid "Do you really want to delete the build tool \"%s\"?"
 msgstr "¿Realmente quiere eliminar la herramienta de construcción «%s»?"
 
 #: ../src/build_tools_preferences.vala:336 ../src/clean_build_files.vala:243
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:146
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:148
 #: ../src/main_window_edit.vala:51 ../src/main_window_structure.vala:38
 #: ../src/project_dialogs.vala:242 ../src/project_dialogs.vala:277
 msgid "_Delete"
@@ -893,8 +870,9 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #: ../src/document_view.vala:312
-msgid "No dictionaries available for the spell checking."
-msgstr "No hay diccionarios disponibles para la corrección ortográfica."
+#| msgid "No dictionaries available for the spell checking."
+msgid "No dictionaries available for the spell-checking."
+msgstr "No hay diccionarios disponibles para la revisión ortográfica."
 
 #. Help
 #: ../src/document_view.vala:314 ../src/main_window.vala:63
@@ -943,32 +921,29 @@ msgstr "Sistema de archivos"
 msgid "File Browser"
 msgstr "Explorador de archivos"
 
-#: ../src/latexila_app.vala:79
+#: ../src/glatex_app.vala:79
 msgid "Show the application's version"
 msgstr "Mostrar la versión de la aplicación"
 
-#: ../src/latexila_app.vala:82
+#: ../src/glatex_app.vala:82
 msgid "Create new document"
 msgstr "Crear un documento nuevo"
 
-#: ../src/latexila_app.vala:85
-#| msgid "Create a new top-level window in an existing instance of LaTeXila"
+#: ../src/glatex_app.vala:85
 msgid "Create a new top-level window in an existing instance of GNOME LaTeX"
 msgstr ""
 "Crear una ventana nueva de nivel superior en una instancia existente de "
 "GNOME LaTeX"
 
-#: ../src/latexila_app.vala:210
-#| msgid "LaTeXila is a LaTeX editor for the GNOME desktop"
+#: ../src/glatex_app.vala:212
 msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
 msgstr "GNOME LaTeX es un editor LaTeX para el escritorio GNOME"
 
-#: ../src/latexila_app.vala:239 ../src/main_window.vala:71
-#| msgid "About LaTeXila"
+#: ../src/glatex_app.vala:241 ../src/main_window.vala:71
 msgid "About GNOME LaTeX"
 msgstr "Acerca de GNOME LaTeX"
 
-#: ../src/latexila_app.vala:240
+#: ../src/glatex_app.vala:242
 msgid "translator-credits"
 msgstr ""
 "Daniel Mustieles García <daniel.mustieles@gmail.com>, 2011\n"
@@ -1542,171 +1517,171 @@ msgstr "E_spacios matemáticos"
 msgid "_Small"
 msgstr "_Pequeña"
 
-#: ../src/latex_menu.vala:359
+#: ../src/latex_menu.vala:358
 msgid "Small - \\,"
 msgstr "Pequeña: \\,"
 
-#: ../src/latex_menu.vala:360
+#: ../src/latex_menu.vala:359
 msgid "_Medium"
 msgstr "_Media"
 
-#: ../src/latex_menu.vala:361
+#: ../src/latex_menu.vala:359
 msgid "Medium - \\:"
 msgstr "Media: \\:"
 
-#: ../src/latex_menu.vala:362
+#: ../src/latex_menu.vala:360
 msgid "_Large"
 msgstr "_Grande"
 
-#: ../src/latex_menu.vala:363
+#: ../src/latex_menu.vala:360
 msgid "Large - \\;"
 msgstr "Grande: \\;"
 
 #. Math: Left Delimiters
-#: ../src/latex_menu.vala:369
+#: ../src/latex_menu.vala:366
 msgid "_Left Delimiters"
 msgstr "Delimitadores por la _izquierda"
 
-#: ../src/latex_menu.vala:370
+#: ../src/latex_menu.vala:367
 msgid "left ("
 msgstr "( izquierdo"
 
-#: ../src/latex_menu.vala:372
+#: ../src/latex_menu.vala:368
 msgid "left ["
 msgstr "[ izquierdo"
 
-#: ../src/latex_menu.vala:374
+#: ../src/latex_menu.vala:369
 msgid "left { "
 msgstr "{ izquierdo"
 
-#: ../src/latex_menu.vala:376
+#: ../src/latex_menu.vala:370
 msgid "left <"
 msgstr "< izquierdo"
 
-#: ../src/latex_menu.vala:378
+#: ../src/latex_menu.vala:371
 msgid "left )"
 msgstr ") izquierdo"
 
-#: ../src/latex_menu.vala:380
+#: ../src/latex_menu.vala:372
 msgid "left ]"
 msgstr "] izquierdo"
 
-#: ../src/latex_menu.vala:382
+#: ../src/latex_menu.vala:373
 msgid "left  }"
 msgstr "} izquierdo"
 
-#: ../src/latex_menu.vala:384
+#: ../src/latex_menu.vala:374
 msgid "left >"
 msgstr "> izquierdo"
 
-#: ../src/latex_menu.vala:386
+#: ../src/latex_menu.vala:375
 msgid "left ."
 msgstr ". izquierdo"
 
 #. Math: Right Delimiters
-#: ../src/latex_menu.vala:391
+#: ../src/latex_menu.vala:379
 msgid "Right _Delimiters"
 msgstr "_Delimitadores por la derecha"
 
-#: ../src/latex_menu.vala:392
+#: ../src/latex_menu.vala:380
 msgid "right )"
 msgstr ") derecho"
 
-#: ../src/latex_menu.vala:394
+#: ../src/latex_menu.vala:381
 msgid "right ]"
 msgstr "] derecho"
 
-#: ../src/latex_menu.vala:396
+#: ../src/latex_menu.vala:382
 msgid "right  }"
 msgstr "} derecho"
 
-#: ../src/latex_menu.vala:398
+#: ../src/latex_menu.vala:383
 msgid "right >"
 msgstr "> derecho"
 
-#: ../src/latex_menu.vala:400
+#: ../src/latex_menu.vala:384
 msgid "right ("
 msgstr "( derecho"
 
-#: ../src/latex_menu.vala:402
+#: ../src/latex_menu.vala:385
 msgid "right ["
 msgstr "[ derecho"
 
-#: ../src/latex_menu.vala:404
+#: ../src/latex_menu.vala:386
 msgid "right { "
 msgstr "{ derecho"
 
-#: ../src/latex_menu.vala:406
+#: ../src/latex_menu.vala:387
 msgid "right <"
 msgstr "< derecho"
 
-#: ../src/latex_menu.vala:408
+#: ../src/latex_menu.vala:388
 msgid "right ."
 msgstr ". derecho"
 
 #. menus under toolitems
-#: ../src/latex_menu.vala:423
+#: ../src/latex_menu.vala:402
 msgid "Sectioning"
 msgstr "Seccionamiento"
 
-#: ../src/latex_menu.vala:426
+#: ../src/latex_menu.vala:405
 msgid "Characters Sizes"
 msgstr "Tamaño de caracteres"
 
-#: ../src/latex_menu.vala:429
+#: ../src/latex_menu.vala:408
 msgid "References"
 msgstr "Referencias"
 
-#: ../src/latex_menu.vala:432
+#: ../src/latex_menu.vala:411
 msgid "Presentation Environments"
 msgstr "Entornos de presentación"
 
-#: ../src/latex_menu.vala:435
+#: ../src/latex_menu.vala:414
 msgid "Math Environments"
 msgstr "Entornos matemáticos"
 
-#: ../src/liblatexila/latexila-build-job.c:359
+#: ../src/liblatexila/latexila-build-job.c:365
 #, c-format
 msgid "%s doesn't seem to be installed."
 msgstr "parece que %s no está instalado."
 
-#: ../src/liblatexila/latexila-build-tool.c:547
+#: ../src/liblatexila/latexila-build-tool.c:555
 #, c-format
 msgid "The file '%s' doesn't exist."
 msgstr "El archivo «%s» no existe."
 
-#: ../src/liblatexila/latexila-build-tool.c:575
+#: ../src/liblatexila/latexila-build-tool.c:583
 #, c-format
 msgid "Failed to open '%s':"
 msgstr "Falló al abrir «%s»:"
 
-#: ../src/liblatexila/latexila-build-tool.c:677
+#: ../src/liblatexila/latexila-build-tool.c:689
 #, c-format
 msgid "Open %s"
 msgstr "Abrir %s"
 
-#: ../src/liblatexila/latexila-latex-commands.c:51
+#: ../src/liblatexila/latexila-latex-commands.c:52
 msgid "Figure - \\begin{figure}"
 msgstr "Figura: \\begin{figure}"
 
-#: ../src/liblatexila/latexila-synctex.c:192
+#: ../src/liblatexila/latexila-synctex.c:194
 msgid "Impossible to do the forward search."
 msgstr "No se puede hacer la búsqueda hacia adelante."
 
-#: ../src/liblatexila/latexila-synctex.c:529
+#: ../src/liblatexila/latexila-synctex.c:531
 msgid "Can not communicate with evince."
 msgstr "No se puede comunicar con Evince."
 
-#: ../src/liblatexila/latexila-synctex.c:559
+#: ../src/liblatexila/latexila-synctex.c:561
 #, c-format
 msgid "The file \"%s\" doesn't exist."
 msgstr "El archivo «%s» no existe."
 
-#: ../src/liblatexila/latexila-synctex.c:593
+#: ../src/liblatexila/latexila-synctex.c:595
 msgid "The PDF file doesn't exist."
 msgstr "El archivo PDF no existe."
 
-#: ../src/liblatexila/latexila-synctex.c:644
+#: ../src/liblatexila/latexila-synctex.c:646
 msgid "The document is not saved."
 msgstr "No se ha guardado el documento."
 
@@ -1742,11 +1717,11 @@ msgstr "Plantillas predeterminadas"
 msgid "Personal Templates"
 msgstr "Plantillas personales"
 
-#: ../src/liblatexila/latexila-templates-dialogs.c:122
+#: ../src/liblatexila/latexila-templates-dialogs.c:124
 msgid "New File..."
 msgstr "Archivo nuevo…"
 
-#: ../src/liblatexila/latexila-templates-dialogs.c:129
+#: ../src/liblatexila/latexila-templates-dialogs.c:131
 #: ../src/main_window_file.vala:32
 msgid "_New"
 msgstr "_Nuevo"
@@ -1768,29 +1743,29 @@ msgstr "Nombre de la plantilla nueva"
 msgid "Choose an icon"
 msgstr "Elija un icono"
 
-#: ../src/liblatexila/latexila-templates-dialogs.c:332
+#: ../src/liblatexila/latexila-templates-dialogs.c:336
 msgid "Impossible to create the personal template."
 msgstr "No se puede crear la plantilla personal."
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:141
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:143
 #, c-format
 msgid "Do you really want to delete the template “%s”?"
 msgstr "¿Realmente quiere eliminar la plantilla «%s»?"
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:168
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:170
 #, c-format
 msgid "Error when deleting the template “%s”."
 msgstr "Error al eliminar la plantilla «%s»."
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:226
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:230
 msgid "Error when moving the template."
 msgstr "Error al mover la plantilla."
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:270
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:274
 msgid "Delete"
 msgstr "Eliminar"
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:362
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:366
 msgid "Manage Personal Templates"
 msgstr "Gestionar plantillas personales"
 
@@ -2163,7 +2138,9 @@ msgid "_Set Language…"
 msgstr "_Establecer idioma…"
 
 #: ../src/main_window_tools.vala:32
-msgid "Set the language used for the spell checking for the current document"
+#| msgid ""
+#| "Set the language used for the spell checking for the current document"
+msgid "Set the language used for the spell-checking for the current document"
 msgstr ""
 "Establecer el idioma usado para comprobar la ortografía del documento actual"
 
@@ -2287,7 +2264,6 @@ msgid "_Contents"
 msgstr "Índ_ice"
 
 #: ../src/main_window.vala:65
-#| msgid "Open the LaTeXila documentation"
 msgid "Open the GNOME LaTeX documentation"
 msgstr "Abrir la documentación de GNOME LaTeX"
 
@@ -2347,14 +2323,10 @@ msgstr "Estructura"
 
 #: ../src/main_window.vala:654
 #, c-format
-#| msgid "This file (%s) is already opened in another LaTeXila window."
 msgid "This file (%s) is already opened in another GNOME LaTeX window."
 msgstr "Este archivo (%s) ya esta abierto en otra ventana de GNOME LaTeX."
 
 #: ../src/main_window.vala:656
-#| msgid ""
-#| "LaTeXila opened this instance of the file in a non-editable way. Do you "
-#| "want to edit it anyway?"
 msgid ""
 "GNOME LaTeX opened this instance of the file in a non-editable way. Do you "
 "want to edit it anyway?"
@@ -2752,15 +2724,19 @@ msgid "Automatically clean-up files after close"
 msgstr "Limpiar automáticamente los archivos después de cerrar"
 
 #: ../src/ui/preferences_dialog.ui.h:24
+#| msgid ""
+#| "The spell checking settings can also be changed on a file-by-file basis "
+#| "via the Tools menu."
 msgid ""
-"The spell checking settings can also be changed on a file-by-file basis via "
+"The spell-checking settings can also be changed on a file-by-file basis via "
 "the Tools menu."
 msgstr ""
 "La configuración de la revisión ortográfica también se puede cambiar archivo "
-"por archivo mediante en menú de Herramientas."
+"por archivo mediante el menú de Herramientas."
 
 #: ../src/ui/preferences_dialog.ui.h:25
-msgid "Default Spell Checking Settings"
+#| msgid "Default Spell Checking Settings"
+msgid "Default Spell-Checking Settings"
 msgstr "Configuración predeterminada de la revisión ortográfica"
 
 #: ../src/ui/preferences_dialog.ui.h:26
