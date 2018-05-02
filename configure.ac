@@ -102,9 +102,22 @@ PKG_CHECK_MODULES([DEP], [
 	tepl-4 >= ${TEPL_REQUIRED_VERSION}
 	gspell-1 >= ${GSPELL_REQUIRED_VERSION}
 	gee-0.8 >= ${GEE_REQUIRED_VERSION}
-	dconf
 	gsettings-desktop-schemas
 ])
+
+AC_ARG_ENABLE([dconf_migration],[AS_HELP_STRING([--disable-dconf-migration],[do not add support for dconf migration])],[enable_dconf_migration=$enableval],[enable_dconf_migration=check])
+FOUND_DCONF_MIGRATION=
+if test x$enable_dconf_migration != xno ; then
+	PKG_CHECK_MODULES([DCONF_DEP], [dconf], [
+		FOUND_DCONF_MIGRATION=yes
+		AC_DEFINE([HAVE_DCONF_MIGRATION], [], [Enable DConf migration support])
+		], [FOUND_DCONF_MIGRATION=no])
+	if test x$enable_dconf_migration = xyes && test x$FOUND_DCONF_MIGRATION = xno ; then
+		AC_MSG_ERROR([Enabling dconf migration support requires the presence of dconf])
+	fi
+fi
+
+AM_CONDITIONAL([DCONF_MIGRATION_BUILD], [test x$FOUND_DCONF_MIGRATION = xyes])
 
 # Native Language Support
 AX_REQUIRE_DEFINED([IT_PROG_INTLTOOL])

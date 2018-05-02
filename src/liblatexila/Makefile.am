@@ -7,6 +7,7 @@ liblatexila_la_CPPFLAGS =		\
 
 liblatexila_la_CFLAGS =			\
 	$(DEP_CFLAGS)			\
+	$(DCONF_DEP_CFLAGS)		\
 	$(WARN_CFLAGS)			\
 	$(CODE_COVERAGE_CFLAGS)		\
 	-I$(top_builddir)/src/evince
@@ -16,6 +17,7 @@ liblatexila_la_LDFLAGS = \
 
 liblatexila_la_LIBADD =		\
 	$(DEP_LIBS)		\
+	$(DCONF_DEP_LIBS)	\
 	$(CODE_COVERAGE_LIBS)	\
 	../evince/libevince.la
 
@@ -64,14 +66,24 @@ liblatexila_public_c_files =			\
 	$(NULL)
 
 liblatexila_private_headers =			\
-	dh-dconf-migration.h			\
 	latexila-templates-common.h		\
 	$(NULL)
 
+if DCONF_MIGRATION_BUILD
+liblatexila_private_headers +=			\
+	dh-dconf-migration.h			\
+	$(NULL)
+endif
+
 liblatexila_private_c_files =			\
-	dh-dconf-migration.c			\
 	latexila-templates-common.c		\
 	$(NULL)
+
+if DCONF_MIGRATION_BUILD
+liblatexila_private_c_files +=			\
+	dh-dconf-migration.c			\
+	$(NULL)
+endif
 
 liblatexila_public_built_sources =	\
 	latexila-enum-types.c		\
