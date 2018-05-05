@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-latex master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
-"POT-Creation-Date: 2018-02-23 15:42+0000\n"
-"PO-Revision-Date: 2018-03-04 21:59+0100\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"POT-Creation-Date: 2018-04-11 10:50+0000\n"
+"PO-Revision-Date: 2018-05-01 20:13+0200\n"
+"Last-Translator: Meskó Balázs <mesko.balazs@fsf.hu>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. (itstool) path: tool/label
@@ -110,8 +110,8 @@ msgstr ""
 "A LaTeX jelölőnyelv írásában való segítségnyújtásként automatikus "
 "kiegészítés érhető el, valamint menük és eszköztárak a főbb parancsokkal. Az "
 "új dokumentumok sablonok alapján készülnek. A dokumentumok fordítása, "
-"átalakítása és megtekintése egyetlen gombnyomással lehetséges. Valamint a sok "
-".tex fájlt tartalmazó projektek is könnyedén kezelhetőek."
+"átalakítása és megtekintése egyetlen gombnyomással lehetséges. Valamint a "
+"sok .tex fájlt tartalmazó projektek is könnyedén kezelhetőek."
 
 #: ../data/org.gnome.gnome-latex.appdata.xml.in.h:4
 msgid ""
@@ -305,12 +305,12 @@ msgid "Whether misspelled words are highlighted by default."
 msgstr "Emelje-e ki a helyesírási hibás szavakat alapértelmezetten."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:29
-msgid "Spell Checking Language"
+msgid "Spell-Checking Language"
 msgstr "Helyesírás-ellenőrzés nyelve"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:30
 msgid ""
-"The default language used for the spell checking. Set to the empty string to "
+"The default language used for the spell-checking. Set to the empty string to "
 "take the best language available based on the environment."
 msgstr ""
 "A helyesírás-ellenőrzéshez használt alapértelmezett nyelv. Állítsa üres "
@@ -488,8 +488,7 @@ msgid ""
 "\n"
 "\\begin{document}\n"
 "\n"
-"\\begin{letter}{Destination\\\\Address of the destination\\\\Phone number of "
-"the destination}\n"
+"\\begin{letter}{Destination\\\\Address of the destination\\\\Phone number of the destination}\n"
 "\n"
 "\\opening{Dear Sir,}\n"
 "\n"
@@ -845,7 +844,7 @@ msgid "Cancel"
 msgstr "Mégse"
 
 #: ../src/document_view.vala:312
-msgid "No dictionaries available for the spell checking."
+msgid "No dictionaries available for the spell-checking."
 msgstr "Nem érhető el szótár a helyesírás-ellenőrzéshez."
 
 #. Help
@@ -895,28 +894,28 @@ msgstr "Fájlrendszer"
 msgid "File Browser"
 msgstr "Fájlböngésző"
 
-#: ../src/latexila_app.vala:79
+#: ../src/glatex_app.vala:79
 msgid "Show the application's version"
 msgstr "Az alkalmazás verziószámának megjelenítése"
 
-#: ../src/latexila_app.vala:82
+#: ../src/glatex_app.vala:82
 msgid "Create new document"
 msgstr "Új dokumentum létrehozása"
 
-#: ../src/latexila_app.vala:85
+#: ../src/glatex_app.vala:85
 msgid "Create a new top-level window in an existing instance of GNOME LaTeX"
 msgstr ""
 "Új felső szintű ablak létrehozása a GNOME LaTeX egy már futó példányában"
 
-#: ../src/latexila_app.vala:210
+#: ../src/glatex_app.vala:212
 msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
 msgstr "A GNOME LaTeX egy LaTeX szerkesztő a GNOME asztali környezethez"
 
-#: ../src/latexila_app.vala:239 ../src/main_window.vala:71
+#: ../src/glatex_app.vala:241 ../src/main_window.vala:71
 msgid "About GNOME LaTeX"
 msgstr "A GNOME LaTeX névjegye"
 
-#: ../src/latexila_app.vala:240
+#: ../src/glatex_app.vala:242
 msgid "translator-credits"
 msgstr ""
 "Anca Tibor Attila <anca dot tibor at posteo dot de>\n"
@@ -1492,126 +1491,126 @@ msgstr "Matematikai _szóközök"
 msgid "_Small"
 msgstr "_Kicsi"
 
-#: ../src/latex_menu.vala:359
+#: ../src/latex_menu.vala:358
 msgid "Small - \\,"
 msgstr "Kicsi - \\,"
 
-#: ../src/latex_menu.vala:360
+#: ../src/latex_menu.vala:359
 msgid "_Medium"
 msgstr "Kö_zepes"
 
-#: ../src/latex_menu.vala:361
+#: ../src/latex_menu.vala:359
 msgid "Medium - \\:"
 msgstr "Közepes - \\:"
 
-#: ../src/latex_menu.vala:362
+#: ../src/latex_menu.vala:360
 msgid "_Large"
 msgstr "_Nagy"
 
-#: ../src/latex_menu.vala:363
+#: ../src/latex_menu.vala:360
 msgid "Large - \\;"
 msgstr "Nagy - \\;"
 
 #. Math: Left Delimiters
-#: ../src/latex_menu.vala:369
+#: ../src/latex_menu.vala:366
 msgid "_Left Delimiters"
 msgstr "_Bal oldali elválasztók"
 
-#: ../src/latex_menu.vala:370
+#: ../src/latex_menu.vala:367
 msgid "left ("
 msgstr "bal ("
 
-#: ../src/latex_menu.vala:372
+#: ../src/latex_menu.vala:368
 msgid "left ["
 msgstr "bal ["
 
-#: ../src/latex_menu.vala:374
+#: ../src/latex_menu.vala:369
 msgid "left { "
 msgstr "bal { "
 
-#: ../src/latex_menu.vala:376
+#: ../src/latex_menu.vala:370
 msgid "left <"
 msgstr "bal <"
 
-#: ../src/latex_menu.vala:378
+#: ../src/latex_menu.vala:371
 msgid "left )"
 msgstr "bal )"
 
-#: ../src/latex_menu.vala:380
+#: ../src/latex_menu.vala:372
 msgid "left ]"
 msgstr "bal ]"
 
-#: ../src/latex_menu.vala:382
+#: ../src/latex_menu.vala:373
 msgid "left  }"
 msgstr "bal  }"
 
-#: ../src/latex_menu.vala:384
+#: ../src/latex_menu.vala:374
 msgid "left >"
 msgstr "bal >"
 
-#: ../src/latex_menu.vala:386
+#: ../src/latex_menu.vala:375
 msgid "left ."
 msgstr "bal ."
 
 #. Math: Right Delimiters
-#: ../src/latex_menu.vala:391
+#: ../src/latex_menu.vala:379
 msgid "Right _Delimiters"
 msgstr "_Jobb oldali elválasztók"
 
-#: ../src/latex_menu.vala:392
+#: ../src/latex_menu.vala:380
 msgid "right )"
 msgstr "jobb )"
 
-#: ../src/latex_menu.vala:394
+#: ../src/latex_menu.vala:381
 msgid "right ]"
 msgstr "jobb ]"
 
-#: ../src/latex_menu.vala:396
+#: ../src/latex_menu.vala:382
 msgid "right  }"
 msgstr "jobb  }"
 
-#: ../src/latex_menu.vala:398
+#: ../src/latex_menu.vala:383
 msgid "right >"
 msgstr "jobb >"
 
-#: ../src/latex_menu.vala:400
+#: ../src/latex_menu.vala:384
 msgid "right ("
 msgstr "jobb ("
 
-#: ../src/latex_menu.vala:402
+#: ../src/latex_menu.vala:385
 msgid "right ["
 msgstr "jobb ["
 
-#: ../src/latex_menu.vala:404
+#: ../src/latex_menu.vala:386
 msgid "right { "
 msgstr "jobb { "
 
-#: ../src/latex_menu.vala:406
+#: ../src/latex_menu.vala:387
 msgid "right <"
 msgstr "jobb <"
 
-#: ../src/latex_menu.vala:408
+#: ../src/latex_menu.vala:388
 msgid "right ."
 msgstr "jobb ."
 
 #. menus under toolitems
-#: ../src/latex_menu.vala:423
+#: ../src/latex_menu.vala:402
 msgid "Sectioning"
 msgstr "Szakaszolás"
 
-#: ../src/latex_menu.vala:426
+#: ../src/latex_menu.vala:405
 msgid "Characters Sizes"
 msgstr "Karakterméretek"
 
-#: ../src/latex_menu.vala:429
+#: ../src/latex_menu.vala:408
 msgid "References"
 msgstr "Hivatkozások"
 
-#: ../src/latex_menu.vala:432
+#: ../src/latex_menu.vala:411
 msgid "Presentation Environments"
 msgstr "Bemutató környezetek"
 
-#: ../src/latex_menu.vala:435
+#: ../src/latex_menu.vala:414
 msgid "Math Environments"
 msgstr "Matematikai környezetek"
 
@@ -1635,7 +1634,7 @@ msgstr "A(z) „%s” megnyitása sikertelen:"
 msgid "Open %s"
 msgstr "%s megnyitása"
 
-#: ../src/liblatexila/latexila-latex-commands.c:51
+#: ../src/liblatexila/latexila-latex-commands.c:52
 msgid "Figure - \\begin{figure}"
 msgstr "Ábra - \\begin{figure}"
 
@@ -2108,7 +2107,7 @@ msgid "_Set Language…"
 msgstr "Nyelv _beállítása…"
 
 #: ../src/main_window_tools.vala:32
-msgid "Set the language used for the spell checking for the current document"
+msgid "Set the language used for the spell-checking for the current document"
 msgstr "A jelenlegi dokumentum helyesírás-ellenőrzési nyelvének beállítása"
 
 #: ../src/main_window_tools.vala:38
@@ -2692,14 +2691,14 @@ msgstr "Fájlok automatikus tisztítása bezárás után"
 
 #: ../src/ui/preferences_dialog.ui.h:24
 msgid ""
-"The spell checking settings can also be changed on a file-by-file basis via "
+"The spell-checking settings can also be changed on a file-by-file basis via "
 "the Tools menu."
 msgstr ""
 "A helyesírás-ellenőrzési beállítások fájlonkénti alapon is megváltoztathatók "
 "az Eszközök menün keresztül."
 
 #: ../src/ui/preferences_dialog.ui.h:25
-msgid "Default Spell Checking Settings"
+msgid "Default Spell-Checking Settings"
 msgstr "Alapértelmezett helyesírás-ellenőrzési beállítások"
 
 #: ../src/ui/preferences_dialog.ui.h:26
@@ -2713,4 +2712,3 @@ msgstr "Helyesírási hibás szavak kiemelése"
 #: ../src/ui/preferences_dialog.ui.h:28
 msgid "Other"
 msgstr "Egyéb"
-
