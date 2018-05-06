@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
-"POT-Creation-Date: 2018-02-26 09:15+0000\n"
-"PO-Revision-Date: 2018-02-27 21:44+0100\n"
+"POT-Creation-Date: 2018-04-11 10:50+0000\n"
+"PO-Revision-Date: 2018-05-06 11:26+0200\n"
 "Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -399,7 +399,7 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/spell_checking.page:10
-msgid "Spell Checking"
+msgid "Spell-Checking"
 msgstr "Rechtschreibprüfung"
 
 #. (itstool) path: synopsis/p
@@ -409,18 +409,18 @@ msgstr "Ziel ist es, Rechtschreibfehler leicht korrigieren zu können."
 
 #. (itstool) path: section/title
 #: C/spell_checking.page:17
-msgid "Use the spell checking"
+msgid "Use the spell-checking"
 msgstr "Die Rechtschreibprüfung verwenden"
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:18
 msgid ""
-"The default spell checking settings can be changed in the preferences "
+"The default spell-checking settings can be changed in the preferences "
 "dialog: <guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu"
 "\">Preferences</gui> <gui style=\"tab\">Other</gui> </guiseq>"
 msgstr ""
 "Die Vorgabeeinstellungen der Rechtschreibprüfung können im "
-"Einstellungsdialog geändert werden: <guiseq><gui style=\"menu\">Bearbeiten</"
+"Einstellungsdialog geändert werden: <guiseq> <gui style=\"menu\">Bearbeiten</"
 "gui><gui style=\"menu\">Einstellungen</gui><gui style=\"tab\">Andere</gui> </"
 "guiseq>"
 
@@ -453,22 +453,33 @@ msgstr "Wörterbücher"
 #. (itstool) path: section/p
 #: C/spell_checking.page:41
 msgid ""
-"<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> is "
-"used for the spell checking in GNOME LaTeX. Enchant uses one or several "
-"backends such as Hunspell or Aspell for the dictionaries."
+"<link href=\"https://wiki.gnome.org/Projects/gspell\">gspell</link> is used "
+"for the spell-checking in GNOME LaTeX. gspell uses <link href=\"https://"
+"abiword.github.io/enchant/\">Enchant</link>, which in turn supports several "
+"backends such as Hunspell or Aspell for the dictionaries. The Aspell backend "
+"doesn't work well with gspell, Hunspell is preferred. If dictionaries for "
+"both Aspell and Hunspell are installed for the same language, by default "
+"Enchant prefers the Hunspell one."
 msgstr ""
-"<link href=\"http://www.abisource.com/projects/enchant/\"> Enchant </link> "
-"wird für die Rechtschreibprüfung in GNOME LaTeX verwendet. Enchant benutzt "
-"eines der Backends Hunspell oder Aspell als Wörterbuch."
+"Für die Rechtschreibprüfung in GNOME LaTeX wird <link href=\"https://wiki."
+"gnome.org/Projects/gspell\">gspell</link> verwendet. Dieses nutzt <link href="
+"\"https://abiword.github.io/enchant/\">Enchant</link>, welches wiederum "
+"verschiedene Backends wie Hunspell oder Aspell für die Wörterbücher "
+"unterstützt. Das Aspell-Backend funktioniert mit gspell nicht wirklich gut, "
+"Hunspell sollte bevorzugt werden. Falls für eine Sprache sowohl Aspell- als "
+"auch Hunspell-Wörterbücher installiert sind, zieht Enchant die Hunspell-"
+"Variante standardmäßig vor."
 
 #. (itstool) path: section/p
-#: C/spell_checking.page:47
+#: C/spell_checking.page:51
 msgid ""
-"If your language is not listed, install a dictionary for one of the "
-"supported backends."
+"If your language is not listed in GNOME LaTeX, install a dictionary for one "
+"of the supported Enchant backends (for most languages the best choice is to "
+"install an Hunspell dictionary)."
 msgstr ""
-"Wenn Ihre Sprache nicht angeführt ist, installieren Sie ein Wörterbuch für "
-"eines der unterstützten Programme."
+"Wenn Ihre Sprache in GNOME LaTeX nicht aufgeführt ist, installieren Sie ein "
+"Wörterbuch für eines der Enchant-Backends (für die meisten Sprachen ist die "
+"Installation eines Hunspell-Wörterbuchs die beste Wahl)."
 
 #. (itstool) path: page/title
 #: C/structure.page:10
@@ -620,7 +631,7 @@ msgstr ""
 msgid "By pressing <keyseq> <key>Ctrl</key> <key>left click</key> </keyseq>"
 msgstr ""
 "Durch gedrückt halten von <key>Strg</key> und Klicken mit der linken "
-"Maustaste."
+"Maustaste"
 
 #. (itstool) path: section/p
 #: C/synctex.page:44
