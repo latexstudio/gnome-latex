@@ -835,7 +835,7 @@ public class LatexMenu : Gtk.ActionGroup
     private Gtk.Action get_menu_tool_action (string name, string? label, string? icon_name)
     {
         Gtk.Action action = new MenuToolAction (name, label, label, icon_name);
-        Activatable menu_tool_button = (Activatable) new MenuToolButton (null, null);
+        MenuToolButton menu_tool_button = new MenuToolButton (null, null);
         menu_tool_button.set_related_action (action);
         return action;
     }
