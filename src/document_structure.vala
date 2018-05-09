@@ -33,7 +33,7 @@ public class DocumentStructure : GLib.Object
         string? first_caption;
     }
 
-    private unowned Document _doc;
+    private weak Document? _doc = null;
     private int _nb_marks = 0;
     private const string MARK_NAME_PREFIX = "struct_item_";
     private TextMark? _end_document_mark = null;
@@ -134,6 +134,9 @@ public class DocumentStructure : GLib.Object
     // Parse the document. Returns false if finished, true otherwise.
     private bool parse_impl ()
     {
+        if (_doc == null)
+            return false;
+
         if (_measure_parsing_time)
         {
             if (_timer == null)
@@ -716,6 +719,9 @@ public class DocumentStructure : GLib.Object
         out bool refresh_simple_list) throws StructError
     {
         refresh_simple_list = false;
+
+        if (_doc == null)
+            return;
 
         /* Comment */
 
