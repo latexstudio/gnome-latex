@@ -59,6 +59,8 @@ public class DocumentStructure : GLib.Object
 
     private static string[] _section_names = null;
 
+    private uint _idle_id = 0;
+
     public bool parsing_done { get; private set; default = false; }
 
     public DocumentStructure (Document doc)
@@ -87,6 +89,15 @@ public class DocumentStructure : GLib.Object
         }
     }
 
+    ~DocumentStructure ()
+    {
+        if (_idle_id != 0)
+        {
+            Source.remove (_idle_id);
+            _idle_id = 0;
+        }
+    }
+
     public void parse ()
     {
         // reset
@@ -98,9 +109,17 @@ public class DocumentStructure : GLib.Object
         _end_document_mark = null;
         clear_all_structure_marks ();
 
-        Idle.add (() =>
+        if (_idle_id != 0)
+            Source.remove (_idle_id);
+
+        _idle_id = Idle.add (() =>
         {
-            return parse_impl ();
+            bool ret = parse_impl ();
+
+            if (!ret)
+                _idle_id = 0;
+
+            return ret;
         });
     }
 
