@@ -69,20 +69,13 @@ liblatexila_private_headers =			\
 	latexila-templates-common.h		\
 	$(NULL)
 
-if DCONF_MIGRATION_BUILD
-liblatexila_private_headers +=			\
-	dh-dconf-migration.h			\
-	$(NULL)
-endif
-
 liblatexila_private_c_files =			\
 	latexila-templates-common.c		\
 	$(NULL)
 
 if DCONF_MIGRATION_BUILD
-liblatexila_private_c_files +=			\
-	dh-dconf-migration.c			\
-	$(NULL)
+liblatexila_private_headers += dh-dconf-migration.h
+liblatexila_private_c_files += dh-dconf-migration.c
 endif
 
 liblatexila_public_built_sources =	\
