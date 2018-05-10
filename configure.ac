@@ -112,19 +112,21 @@ PKG_CHECK_MODULES([DEP], [
 	gsettings-desktop-schemas
 ])
 
-AC_ARG_ENABLE([dconf_migration],[AS_HELP_STRING([--disable-dconf-migration],[do not add support for dconf migration])],[enable_dconf_migration=$enableval],[enable_dconf_migration=check])
-FOUND_DCONF_MIGRATION=
-if test x$enable_dconf_migration != xno ; then
-	PKG_CHECK_MODULES([DCONF_DEP], [dconf], [
-		FOUND_DCONF_MIGRATION=yes
-		AC_DEFINE([HAVE_DCONF_MIGRATION], [], [Enable DConf migration support])
-		], [FOUND_DCONF_MIGRATION=no])
-	if test x$enable_dconf_migration = xyes && test x$FOUND_DCONF_MIGRATION = xno ; then
-		AC_MSG_ERROR([Enabling dconf migration support requires the presence of dconf])
-	fi
+# dconf migration option
+AC_ARG_ENABLE([dconf_migration],
+	      [AS_HELP_STRING([--disable-dconf-migration],
+			      [do not add support for latexila to gnome-latex dconf migration])],
+	      [enable_dconf_migration=$enableval],
+	      [enable_dconf_migration=yes])
+
+if test x$enable_dconf_migration = xyes; then
+	PKG_CHECK_MODULES([DCONF_DEP], [dconf])
+	AC_DEFINE_UNQUOTED([HAVE_DCONF_MIGRATION], [1], [Whether dconf migration is supported])
+else
+	AC_DEFINE_UNQUOTED([HAVE_DCONF_MIGRATION], [0], [Whether dconf migration is supported])
 fi
 
-AM_CONDITIONAL([DCONF_MIGRATION_BUILD], [test x$FOUND_DCONF_MIGRATION = xyes])
+AM_CONDITIONAL([DCONF_MIGRATION_BUILD], [test x$enable_dconf_migration = xyes])
 
 # Native Language Support
 AX_REQUIRE_DEFINED([IT_PROG_INTLTOOL])
@@ -228,4 +230,5 @@ Configuration:
 	GObject introspection:	${found_introspection}
 	Generate latexila.vapi:	${enable_vala}
 	Code coverage:		${enable_code_coverage}
+	dconf migration:	${enable_dconf_migration}
 "

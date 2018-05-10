@@ -33,10 +33,11 @@
 #include "config.h"
 #include "latexila-utils.h"
 #include <string.h>
-#ifdef HAVE_DCONF_MIGRATION
+#include "latexila-synctex.h"
+
+#if HAVE_DCONF_MIGRATION
 #include "dh-dconf-migration.h"
 #endif
-#include "latexila-synctex.h"
 
 static gint
 get_extension_position (const gchar *filename)
@@ -496,8 +497,7 @@ latexila_utils_join_widgets (GtkWidget *widget_top,
 static void
 migrate_latexila_to_gnome_latex_gsettings (void)
 {
-
-#ifdef HAVE_DCONF_MIGRATION
+#if HAVE_DCONF_MIGRATION
 	DhDconfMigration *migration;
 	gint i;
 
@@ -568,7 +568,7 @@ migrate_latexila_to_gnome_latex_gsettings (void)
 
 	_dh_dconf_migration_free (migration);
 #else
-	g_warning("dconf migration not supported!");
+	g_warning ("LaTeXila -> GNOME LaTeX dconf migration not supported.");
 #endif
 }
 
