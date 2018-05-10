@@ -24,8 +24,9 @@ Dependencies
 * Tepl >= 4.0 - https://wiki.gnome.org/Projects/Tepl
 * gspell >= 1.0
 * gee-0.8 >= 0.10
-* dconf
 * gsettings-desktop-schemas
+* dconf (optional, recommended on Linux, can be disabled with
+  --disable-dconf-migration)
 * Latexmk >= 4.31 (optional, but strongly recommended)
 
 And for building the sources:
