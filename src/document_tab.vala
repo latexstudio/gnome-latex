@@ -144,7 +144,7 @@ public class DocumentTab : Tepl.Tab
 
     public string get_menu_tip ()
     {
-        return _("Activate '%s'").printf (document.get_uri_for_display ());
+        return _("Activate “%s”").printf (document.get_uri_for_display ());
     }
 
     private bool view_focused_in ()

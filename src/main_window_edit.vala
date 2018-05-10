@@ -61,11 +61,11 @@ public class MainWindowEdit
             N_("Unindent the selected lines") },
 
         { "EditComment", null, N_("_Comment"), "<Control>M",
-            N_("Comment the selected lines (add the character \"%\")"),
+            N_("Comment the selected lines (add the character “%”)"),
             on_comment },
 
         { "EditUncomment", null, N_("_Uncomment"), "<Shift><Control>M",
-            N_("Uncomment the selected lines (remove the character \"%\")"),
+            N_("Uncomment the selected lines (remove the character “%”)"),
             on_uncomment },
 
         { "EditCompletion", null, N_("_Completion"), "<Control>space",

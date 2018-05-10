@@ -566,7 +566,7 @@ synctex_file_query_exists_cb (GFile             *synctex_file,
 	if (!synctex_file_exists)
 	{
 		gchar *basename = g_file_get_basename (synctex_file);
-		gchar *message = g_strdup_printf (_ ("The file \"%s\" doesn't exist."), basename);
+		gchar *message = g_strdup_printf (_ ("The file “%s” doesn’t exist."), basename);
 
 		show_warning (message);
 
@@ -600,7 +600,7 @@ pdf_file_query_exists_cb (GFile             *pdf_file,
 
 	if (!pdf_file_exists)
 	{
-		show_warning (_ ("The PDF file doesn't exist."));
+		show_warning (_ ("The PDF file doesn’t exist."));
 		forward_search_data_free (data);
 		return;
 	}

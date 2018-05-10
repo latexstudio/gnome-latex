@@ -126,7 +126,7 @@ namespace Dialogs
 
         /* secondary label */
         Label secondary_label = new Label (
-            _("If you don't save, all your changes will be permanently lost."));
+            _("If you don’t save, all your changes will be permanently lost."));
         secondary_label.set_line_wrap (true);
         secondary_label.set_halign (Align.START);
         secondary_label.set_selectable (true);

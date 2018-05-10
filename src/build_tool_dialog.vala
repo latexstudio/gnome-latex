@@ -268,7 +268,7 @@ public class BuildToolDialog : GLib.Object
     {
         ToolButton add_button = new ToolButton (null, null);
         add_button.set_icon_name ("list-add-symbolic");
-        add_button.set_tooltip_text (_("Add..."));
+        add_button.set_tooltip_text (_("Add…"));
 
         add_button.clicked.connect (() =>
         {
@@ -617,12 +617,12 @@ public class BuildToolDialog : GLib.Object
 
         Label placeholder_filename = new Label ("$filename");
         placeholder_filename.set_tooltip_text (
-            _("The active document's filename.") + "\n" +
+            _("The active document’s filename.") + "\n" +
             _("If the active document belongs to a project, the main file is chosen."));
 
         Label placeholder_shortname = new Label ("$shortname");
         placeholder_shortname.set_tooltip_text (
-            _("The active document's filename without its extension.") + "\n" +
+            _("The active document’s filename without its extension.") + "\n" +
             _("If the active document belongs to a project, the main file is chosen."));
 
         Grid placeholders_grid = new Grid ();

@@ -121,7 +121,7 @@ latexila_templates_dialogs_open (GtkWindow *parent_window)
 
 	dialog = g_object_new (GTK_TYPE_DIALOG,
 			       "use-header-bar", TRUE,
-			       "title", _ ("New File..."),
+			       "title", _ ("New File…"),
 			       "destroy-with-parent", TRUE,
 			       "transient-for", parent_window,
 			       NULL);
@@ -229,7 +229,7 @@ latexila_templates_dialogs_create_template (GtkWindow   *parent_window,
 
 	dialog = g_object_new (GTK_TYPE_DIALOG,
 			       "use-header-bar", TRUE,
-			       "title", _ ("New Template..."),
+			       "title", _ ("New Template…"),
 			       "destroy-with-parent", TRUE,
 			       "transient-for", parent_window,
 			       NULL);

@@ -552,7 +552,7 @@ query_exists_cb (GFile        *file,
 						     LATEXILA_BUILD_STATE_FAILED);
 
 		msg = latexila_build_msg_new ();
-		msg->text = g_strdup_printf (_ ("The file '%s' doesn't exist."), uri);
+		msg->text = g_strdup_printf (_ ("The file “%s” doesn’t exist."), uri);
 		msg->type = LATEXILA_BUILD_MSG_TYPE_ERROR;
 
 		latexila_build_view_append_single_message (data->build_view,
@@ -580,7 +580,7 @@ query_exists_cb (GFile        *file,
 						     LATEXILA_BUILD_STATE_FAILED);
 
 		msg = latexila_build_msg_new ();
-		msg->text = g_strdup_printf (_ ("Failed to open '%s':"), uri);
+		msg->text = g_strdup_printf (_ ("Failed to open “%s”:"), uri);
 		msg->type = LATEXILA_BUILD_MSG_TYPE_ERROR;
 
 		latexila_build_view_append_single_message (data->build_view,

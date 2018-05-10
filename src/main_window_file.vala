@@ -44,10 +44,10 @@ public class MainWindowFile
         { "FileSaveAs", "document-save-as", N_("Save _As"), "<Shift><Control>S",
             N_("Save the current file with a different name"), on_file_save_as },
 
-        { "FileCreateTemplate", null, N_("Create _Template From Document..."), null,
+        { "FileCreateTemplate", null, N_("Create _Template From Document…"), null,
             N_("Create a new template from the current document"), on_create_template },
 
-        { "FileManageTemplates", null, N_("_Manage Personal Templates..."), null,
+        { "FileManageTemplates", null, N_("_Manage Personal Templates…"), null,
             N_("Manage personal templates"), on_manage_templates },
 
         { "FileClose", "window-close", N_("_Close"), "<Control>W",

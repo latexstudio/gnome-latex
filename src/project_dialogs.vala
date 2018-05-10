@@ -99,7 +99,7 @@ namespace ProjectDialogs
                 DialogFlags.DESTROY_WITH_PARENT,
                 MessageType.ERROR,
                 ButtonsType.OK,
-                _("There is a conflict with the project \"%s\"."),
+                _("There is a conflict with the project “%s”."),
                 Latexila.utils_replace_home_dir_with_tilde (conflict.get_parse_name ()) + "/");
             error_dialog.run ();
             error_dialog.destroy ();
@@ -270,7 +270,7 @@ namespace ProjectDialogs
             Dialog delete_dialog = new MessageDialog (dialog,
                 DialogFlags.DESTROY_WITH_PARENT,
                 MessageType.QUESTION, ButtonsType.NONE,
-                _("Do you really want to delete the project \"%s\"?"),
+                _("Do you really want to delete the project “%s”?"),
                 directory);
 
             delete_dialog.add_buttons (_("_Cancel"), ResponseType.CANCEL,

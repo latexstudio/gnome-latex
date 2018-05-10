@@ -125,7 +125,7 @@ public class Document : Tepl.Buffer
 
             if (tab != null)
             {
-                string primary_msg = _("Impossible to load the file '%s'.")
+                string primary_msg = _("Impossible to load the file “%s”.")
                     .printf (location.get_parse_name ());
                 Tepl.InfoBar infobar = new Tepl.InfoBar.simple (MessageType.ERROR,
                     primary_msg, e.message);
@@ -215,7 +215,7 @@ public class Document : Tepl.Buffer
                 Tepl.InfoBar infobar = new Tepl.InfoBar.simple (MessageType.WARNING,
                     primary_msg, secondary_msg);
                 infobar.add_button (_("_Save Anyway"), ResponseType.YES);
-                infobar.add_button (_("_Don't Save"), ResponseType.CANCEL);
+                infobar.add_button (_("_Don’t Save"), ResponseType.CANCEL);
                 tab.add_info_bar (infobar);
                 infobar.show ();
 

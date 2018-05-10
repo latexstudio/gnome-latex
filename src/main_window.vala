@@ -43,7 +43,7 @@ public class MainWindow : ApplicationWindow
             N_("Search for text"), on_search_find },
         { "SearchReplace", "edit-find-replace", N_("Find and _Replace"), "<Control>H",
             N_("Search for and replace text"), on_search_replace },
-        { "SearchGoToLine", "go-jump", N_("_Go to Line..."), "<Control>G",
+        { "SearchGoToLine", "go-jump", N_("_Go to Line…"), "<Control>G",
             N_("Go to a specific line"), on_search_goto_line },
         { "SearchForward", null, N_("_Jump to PDF"), "<Control><Alt>F",
             N_("Jump to the associated position in the PDF file. Another shortcut: Ctrl+click, which works in both directions."),
@@ -658,7 +658,7 @@ public class MainWindow : ApplicationWindow
                 InfoBar infobar = new Tepl.InfoBar.simple (MessageType.WARNING,
                     primary_msg, secondary_msg);
                 infobar.add_button (_("Edit Anyway"), ResponseType.YES);
-                infobar.add_button (_("Don't Edit"), ResponseType.NO);
+                infobar.add_button (_("Don’t Edit"), ResponseType.NO);
                 tab.add_info_bar (infobar);
                 infobar.show ();
 
@@ -753,7 +753,7 @@ public class MainWindow : ApplicationWindow
                 DialogFlags.DESTROY_WITH_PARENT,
                 MessageType.QUESTION,
                 ButtonsType.NONE,
-                _("Save changes to document \"%s\" before closing?"),
+                _("Save changes to document “%s” before closing?"),
                 tab.get_buffer ().get_file ().get_short_name ());
 
             dialog.add_buttons (_("Close _without Saving"), ResponseType.CLOSE,

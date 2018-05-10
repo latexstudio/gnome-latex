@@ -362,7 +362,7 @@ display_error (GTask       *task,
 		if (command_name != NULL)
 		{
 			g_free (build_msg->text);
-			build_msg->text = g_strdup_printf (_ ("%s doesn't seem to be installed."), command_name);
+			build_msg->text = g_strdup_printf (_ ("%s doesn’t seem to be installed."), command_name);
 
 			latexila_build_view_append_single_message (data->build_view,
 								   &data->job_title,

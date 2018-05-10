@@ -61,13 +61,13 @@
 
   <tool id="12" enabled="false" extensions=".tex" icon="compile_pdf">
     <label its:translate="no">LaTeX → PDF (pdflatex)</label>
-    <description>Create a PDF file from LaTeX sources with the "pdflatex" command</description>
+    <description>Create a PDF file from LaTeX sources with the “pdflatex” command</description>
     <job postProcessor="latex">pdflatex -interaction=nonstopmode -synctex=1 $filename</job>
   </tool>
 
   <tool id="13" enabled="false" extensions=".tex" icon="compile_dvi">
     <label its:translate="no">LaTeX → DVI (latex)</label>
-    <description>Create a DVI file from LaTeX sources with the "latex" command</description>
+    <description>Create a DVI file from LaTeX sources with the “latex” command</description>
     <job postProcessor="latex">latex -interaction=nonstopmode -synctex=1 $filename</job>
   </tool>
 

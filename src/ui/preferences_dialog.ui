@@ -459,8 +459,8 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="has_tooltip">True</property>
-                    <property name="tooltip_markup" translatable="yes">Number of characters after &amp;apos;\&amp;apos;</property>
-                    <property name="tooltip_text" translatable="yes">Number of characters after '\'</property>
+                    <property name="tooltip_markup" translatable="yes">Number of characters after “\”</property>
+                    <property name="tooltip_text" translatable="yes">Number of characters after “\”</property>
                     <property name="invisible_char">●</property>
                     <property name="primary_icon_activatable">False</property>
                     <property name="secondary_icon_activatable">False</property>

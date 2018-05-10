@@ -76,7 +76,7 @@ public class GlatexApp : Gtk.Application
         OptionEntry[] options = new OptionEntry[4];
 
         options[0] = { "version", 'V', 0, OptionArg.NONE, ref show_version,
-            N_("Show the application's version"), null };
+            N_("Show the application’s version"), null };
 
         options[1] = { "new-document", 'n', 0, OptionArg.NONE, ref new_document,
             N_("Create new document"), null };

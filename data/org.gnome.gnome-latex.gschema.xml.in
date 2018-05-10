@@ -24,12 +24,12 @@
     <key name="use-default-font" type="b">
       <default>true</default>
       <summary>Use Default Font</summary>
-      <description>Whether to use the system's default fixed width font for editing text instead of a font specific to GNOME LaTeX. If this option is turned off, then the font named in the "Editor Font" option will be used instead of the system font.</description>
+      <description>Whether to use the system’s default fixed width font for editing text instead of a font specific to GNOME LaTeX. If this option is turned off, then the font named in the “Editor Font” option will be used instead of the system font.</description>
     </key>
     <key name="editor-font" type="s">
       <default>'Monospace 10'</default>
       <summary>Editor Font</summary>
-      <description>A custom font that will be used for the editing area. This will only take effect if the "Use Default Font" option is turned off.</description>
+      <description>A custom font that will be used for the editing area. This will only take effect if the “Use Default Font” option is turned off.</description>
     </key>
     <key name="scheme" type="s">
       <default>'tango'</default>
@@ -44,13 +44,13 @@
     <key name="auto-save" type="b">
       <default>false</default>
       <summary>Autosave</summary>
-      <description>Whether GNOME LaTeX should automatically save modified files after a time interval. You can set the time interval with the "Autosave Interval" option.</description>
+      <description>Whether GNOME LaTeX should automatically save modified files after a time interval. You can set the time interval with the “Autosave Interval” option.</description>
     </key>
     <key name="auto-save-interval" type="u">
       <range min="1" max="100" />
       <default>10</default>
       <summary>Autosave Interval</summary>
-      <description>Number of minutes after which GNOME LaTeX will automatically save modified files. This will only take effect if the "Autosave" option is turned on.</description>
+      <description>Number of minutes after which GNOME LaTeX will automatically save modified files. This will only take effect if the “Autosave” option is turned on.</description>
     </key>
     <key name="reopen-files" type="b">
       <default>true</default>
@@ -104,12 +104,12 @@
     <key name="main-toolbar-visible" type="b">
       <default>true</default>
       <summary>Main toolbar is visible</summary>
-      <description>Whether the main toolbar (file open, close, build, ...) should be visible.</description>
+      <description>Whether the main toolbar (file open, close, build…) should be visible.</description>
     </key>
     <key name="edit-toolbar-visible" type="b">
       <default>true</default>
       <summary>Edit toolbar is visible</summary>
-      <description>Whether the edit toolbar (bold, italic, character sizes, ...) should be visible.</description>
+      <description>Whether the edit toolbar (bold, italic, character sizes…) should be visible.</description>
     </key>
     <key name="side-panel-visible" type="b">
       <default>true</default>
@@ -124,7 +124,7 @@
     <key name="side-panel-component" type="i">
       <default>0</default>
       <summary>Side panel component</summary>
-      <description>Side panel's active component. 0: Symbols. 1: File browser. 2: Structure.</description>
+      <description>Side panel’s active component. 0: Symbols. 1: File browser. 2: Structure.</description>
     </key>
     <key name="show-build-warnings" type="b">
       <default>true</default>
@@ -146,7 +146,7 @@
       <range min="0" max="8" />
       <default>2</default>
       <summary>Minimum number of characters for interactive completion</summary>
-      <description>Minimum number of characters after "\" for the interactive completion of LaTeX commands</description>
+      <description>Minimum number of characters after “\” for the interactive completion of LaTeX commands</description>
     </key>
     <key name="no-confirm-clean" type="b">
       <default>false</default>

@@ -294,7 +294,7 @@ public class BuildToolsPreferences : GLib.Object
     {
         ToolButton add_button = new ToolButton (null, null);
         add_button.set_icon_name ("list-add-symbolic");
-        add_button.set_tooltip_text (_("Add..."));
+        add_button.set_tooltip_text (_("Add…"));
 
         add_button.clicked.connect (() =>
         {
@@ -329,7 +329,7 @@ public class BuildToolsPreferences : GLib.Object
             Dialog dialog = new MessageDialog (_dialog,
                 DialogFlags.DESTROY_WITH_PARENT | DialogFlags.MODAL,
                 MessageType.QUESTION, ButtonsType.NONE,
-                _("Do you really want to delete the build tool \"%s\"?"),
+                _("Do you really want to delete the build tool “%s”?"),
                 label);
 
             dialog.add_buttons (_("_Cancel"), ResponseType.CANCEL,
