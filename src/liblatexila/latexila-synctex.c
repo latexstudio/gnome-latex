@@ -476,6 +476,14 @@ connect_evince_window_finish (LatexilaSynctex *synctex,
 	g_task_propagate_boolean (G_TASK (result), NULL);
 }
 
+static void
+connect_evince_window_simple_cb (GObject      *source_object,
+				 GAsyncResult *result,
+				 gpointer      user_data)
+{
+	connect_evince_window_finish (LATEXILA_SYNCTEX (source_object), result);
+}
+
 /**
  * latexila_synctex_connect_evince_window:
  * @synctex: the #LatexilaSynctex instance.
@@ -491,7 +499,7 @@ latexila_synctex_connect_evince_window (LatexilaSynctex *synctex,
 {
 	connect_evince_window_async (synctex,
 				     pdf_uri,
-				     (GAsyncReadyCallback) connect_evince_window_finish,
+				     connect_evince_window_simple_cb,
 				     NULL);
 }
 
