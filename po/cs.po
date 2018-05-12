@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
-"POT-Creation-Date: 2018-03-25 09:10+0000\n"
-"PO-Revision-Date: 2018-04-05 23:36+0200\n"
+"POT-Creation-Date: 2018-05-11 08:29+0000\n"
+"PO-Revision-Date: 2018-05-11 22:56+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -164,31 +164,30 @@ msgstr "Otevřít nový dokument"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:1
 msgid "Use Default Font"
-msgstr "Používat výchozí písmo"
+msgstr "Používat výchozí font"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:2
 msgid ""
-"Whether to use the system's default fixed width font for editing text "
+"Whether to use the system’s default fixed width font for editing text "
 "instead of a font specific to GNOME LaTeX. If this option is turned off, "
-"then the font named in the \"Editor Font\" option will be used instead of "
-"the system font."
+"then the font named in the “Editor Font” option will be used instead of the "
+"system font."
 msgstr ""
-"Zda pro úpravy textu používat výchozí systémové písmo s pevnou šířkou "
-"namísto písma určeného pro LaTeX GNOME. Když je tato volby vypnutá, použije "
-"se namísto systémového písma písmo s názvem uvedeným ve volbě „Písmo "
-"editoru“."
+"Zda pro úpravy textu používat výchozí systémový font s pevnou šířkou namísto "
+"fontu určeného pro LaTeX GNOME. Když je tato volba vypnutá, použije se "
+"namísto systémového font font s názvem uvedeným ve volbě „Font editoru“."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:3
 msgid "Editor Font"
-msgstr "Písmo editoru"
+msgstr "Font editoru"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:4
 msgid ""
 "A custom font that will be used for the editing area. This will only take "
-"effect if the \"Use Default Font\" option is turned off."
+"effect if the “Use Default Font” option is turned off."
 msgstr ""
-"Vlastní písmo, které bude použito pro oblast úprav. Má vliv jen v případě, "
-"že je vypnuta volba „Používat výchozí písmo“."
+"Vlastní font, který bude použit pro oblast úprav. Má vliv jen v případě, že "
+"je vypnuta volba „Používat výchozí font“."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:5
 msgid "Style Scheme"
@@ -213,8 +212,7 @@ msgstr "Automatické ukládání"
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:10
 msgid ""
 "Whether GNOME LaTeX should automatically save modified files after a time "
-"interval. You can set the time interval with the \"Autosave Interval\" "
-"option."
+"interval. You can set the time interval with the “Autosave Interval” option."
 msgstr ""
 "Zda by měl LaTeX GNOME automaticky po určitém časovém úseku ukládat změněné "
 "soubory. Časový interval můžete nastavit pomocí volby „Interval "
@@ -227,10 +225,10 @@ msgstr "Interval automatického ukládání"
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:12
 msgid ""
 "Number of minutes after which GNOME LaTeX will automatically save modified "
-"files. This will only take effect if the \"Autosave\" option is turned on."
+"files. This will only take effect if the “Autosave” option is turned on."
 msgstr ""
-"Počet minut, po kterém LaTeX GNOME automaticky uloží změněné soubory. Má "
-"vliv jen v případě, že je zapnutá volba „Automatické ukládání“."
+"Počet minut, po kterém LaTeX GNOME pravidelně automaticky ukládá změněné "
+"soubory. Má vliv jen v případě, že je zapnutá volba „Automatické ukládání“."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:13
 #: ../src/ui/preferences_dialog.ui.h:9
@@ -320,8 +318,7 @@ msgid "Main toolbar is visible"
 msgstr "Hlavní nástrojová lišta je viditelná"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:32
-msgid ""
-"Whether the main toolbar (file open, close, build, ...) should be visible."
+msgid "Whether the main toolbar (file open, close, build…) should be visible."
 msgstr ""
 "Zda by hlavní nástrojová lišta (otevřít soubor, zavřít, sestavit, …) měla "
 "být viditelná."
@@ -332,10 +329,9 @@ msgstr "Lišta úprav je viditelná"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:34
 msgid ""
-"Whether the edit toolbar (bold, italic, character sizes, ...) should be "
-"visible."
+"Whether the edit toolbar (bold, italic, character sizes…) should be visible."
 msgstr ""
-"Zda by lišta úprav (tučné, kurzíva, velikosti znaků, …) měla být viditelná."
+"Zda by lišta úprav (tučný, kurzíva, velikosti znaků, …) měla být viditelná."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:35
 msgid "Side panel is Visible"
@@ -361,7 +357,7 @@ msgstr "Součást postranního panelu"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:40
 msgid ""
-"Side panel's active component. 0: Symbols. 1: File browser. 2: Structure."
+"Side panel’s active component. 0: Symbols. 1: File browser. 2: Structure."
 msgstr ""
 "Aktivní součást postranního panelu. 0: symboly, 1: prohlížeč souborů, 2: "
 "struktura"
@@ -388,13 +384,13 @@ msgstr "Minimální počet znaků pro interaktivní doplňování"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:46
 msgid ""
-"Minimum number of characters after \"\\\" for the interactive completion of "
+"Minimum number of characters after “\\” for the interactive completion of "
 "LaTeX commands"
 msgstr ""
 "Minimální počet znaků za „\\“ pro interaktivní doplňování příkazů LaTeX."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:47
-#: ../src/ui/preferences_dialog.ui.h:22
+#: ../src/ui/preferences_dialog.ui.h:21
 msgid "No confirmation when cleaning-up"
 msgstr "Mazat nepotřebné bez potvrzování"
 
@@ -588,7 +584,7 @@ msgid "Post Processor"
 msgstr "Dodatečné zpracování"
 
 #: ../src/build_tool_dialog.vala:271 ../src/build_tools_preferences.vala:297
-msgid "Add..."
+msgid "Add…"
 msgstr "Přidat…"
 
 #: ../src/build_tool_dialog.vala:288 ../src/build_tools_preferences.vala:314
@@ -606,7 +602,7 @@ msgid "Move down"
 msgstr "Posunout níž"
 
 #: ../src/build_tool_dialog.vala:573 ../src/build_tools_preferences.vala:177
-#: ../src/latex_menu.vala:52 ../src/structure.vala:783
+#: ../src/liblatexila/latexila-latex-commands.c:71 ../src/structure.vala:783
 msgid "Label"
 msgstr "Návěští"
 
@@ -644,7 +640,7 @@ msgid "Placeholders:"
 msgstr "Zástupné proměnné:"
 
 #: ../src/build_tool_dialog.vala:620
-msgid "The active document's filename."
+msgid "The active document’s filename."
 msgstr "Název souboru s aktivním dokumentem."
 
 #: ../src/build_tool_dialog.vala:621 ../src/build_tool_dialog.vala:626
@@ -652,8 +648,8 @@ msgid "If the active document belongs to a project, the main file is chosen."
 msgstr "Jestliže aktivní dokument náleží k projektu, je zvolen hlavní soubor."
 
 #: ../src/build_tool_dialog.vala:625
-msgid "The active document's filename without its extension."
-msgstr "Název souboru bez přípony s aktivním dokumentem."
+msgid "The active document’s filename without its extension."
+msgstr "Název souboru s aktivním dokumentem, bez přípony."
 
 #: ../src/build_tool_dialog.vala:675
 msgid "Jobs"
@@ -710,8 +706,8 @@ msgstr "%s [kopie]"
 
 #: ../src/build_tools_preferences.vala:332
 #, c-format
-msgid "Do you really want to delete the build tool \"%s\"?"
-msgstr "Chcete opravdu smazat nástroj pro sestavení „%s“?"
+msgid "Do you really want to delete the build tool “%s”?"
+msgstr "Chcete opravdu smazat sestavovací nástroj „%s“?"
 
 #: ../src/build_tools_preferences.vala:336 ../src/clean_build_files.vala:243
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:148
@@ -766,7 +762,7 @@ msgid "Select the documents you want to save:"
 msgstr "Vyberte dokumenty, které chcete uložit:"
 
 #: ../src/dialogs.vala:129
-msgid "If you don't save, all your changes will be permanently lost."
+msgid "If you don’t save, all your changes will be permanently lost."
 msgstr "Pokud neprovedete uložení, všechny vaše změny budou trvale ztraceny."
 
 #: ../src/document_structure.vala:720
@@ -775,7 +771,7 @@ msgstr "Položka struktury již obsahuje podřízený odstavec."
 
 #: ../src/document_tab.vala:147
 #, c-format
-msgid "Activate '%s'"
+msgid "Activate “%s”"
 msgstr "Aktivovat „%s“"
 
 #: ../src/document_tab.vala:166
@@ -797,7 +793,7 @@ msgstr "Z_novu načíst"
 
 #: ../src/document.vala:128
 #, c-format
-msgid "Impossible to load the file '%s'."
+msgid "Impossible to load the file “%s”."
 msgstr "Soubor „%s“ není možné načíst."
 
 #: ../src/document.vala:210
@@ -815,7 +811,7 @@ msgid "_Save Anyway"
 msgstr "Přesto _uložit"
 
 #: ../src/document.vala:218
-msgid "_Don't Save"
+msgid "_Don’t Save"
 msgstr "Neuklá_dat"
 
 #: ../src/document.vala:235
@@ -897,734 +893,148 @@ msgstr "Souborový systém"
 msgid "File Browser"
 msgstr "Procházení souborů"
 
-#: ../src/latexila_app.vala:79
-msgid "Show the application's version"
+#: ../src/glatex_app.vala:79
+msgid "Show the application’s version"
 msgstr "Zobrazit verzi aplikace"
 
-#: ../src/latexila_app.vala:82
+#: ../src/glatex_app.vala:82
 msgid "Create new document"
 msgstr "Vytvořit nový dokument"
 
-#: ../src/latexila_app.vala:85
+#: ../src/glatex_app.vala:85
 msgid "Create a new top-level window in an existing instance of GNOME LaTeX"
 msgstr "Vytvořit nové okno nejvyšší úrovně ve stávající instanci LaTeX GNOME"
 
-#: ../src/latexila_app.vala:210
+#: ../src/glatex_app.vala:212
 msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
 msgstr "LaTeX GNOME je editor dokumentů ve formátu LaTeX pro GNOME"
 
-#: ../src/latexila_app.vala:239 ../src/main_window.vala:71
+#: ../src/glatex_app.vala:241 ../src/main_window.vala:71
 msgid "About GNOME LaTeX"
 msgstr "O aplikaci LaTeX GNOME"
 
-#: ../src/latexila_app.vala:240
+#: ../src/glatex_app.vala:242
 msgid "translator-credits"
 msgstr "Marek Černocký <marek@manet.cz>"
 
-#. LaTeX: Sectioning
-#: ../src/latex_menu.vala:32
+#. Sections and sub-sections
+#. LaTeX
+#: ../src/latex_menu.vala:30
 msgid "_Sectioning"
 msgstr "Č_lenění"
 
-#: ../src/latex_menu.vala:34 ../src/structure.vala:776
-msgid "Part"
-msgstr "Část"
-
-#: ../src/latex_menu.vala:36 ../src/structure.vala:777
-msgid "Chapter"
-msgstr "Kapitola"
-
-#: ../src/latex_menu.vala:38 ../src/structure.vala:778
-msgid "Section"
-msgstr "Oddíl"
-
-#: ../src/latex_menu.vala:40 ../src/structure.vala:779
-msgid "Sub-section"
-msgstr "Pododdíl"
-
-#: ../src/latex_menu.vala:42 ../src/structure.vala:780
-msgid "Sub-sub-section"
-msgstr "Podpododdíl"
-
-#: ../src/latex_menu.vala:44 ../src/structure.vala:781
-msgid "Paragraph"
-msgstr "Odstavec"
-
-#: ../src/latex_menu.vala:46 ../src/structure.vala:782
-msgid "Sub-paragraph"
-msgstr "Podřízený odstavec"
-
-#. LaTeX: References
-#: ../src/latex_menu.vala:50
+#: ../src/latex_menu.vala:31
 msgid "_References"
 msgstr "Od_kazy"
 
-#: ../src/latex_menu.vala:54
-msgid "Reference to a label"
-msgstr "Odkaz na návěští"
-
-#: ../src/latex_menu.vala:56
-msgid "Page reference to a label"
-msgstr "Stránkový odkaz na návěští"
-
-#: ../src/latex_menu.vala:58
-msgid "Add a word to the index"
-msgstr "Přidat slovo do rejstříku"
-
-#: ../src/latex_menu.vala:60
-msgid "Footnote"
-msgstr "Poznámka pod čarou"
-
-#: ../src/latex_menu.vala:62
-msgid "Reference to a bibliography item"
-msgstr "Odkaz na bibliografickou položku"
-
-#: ../src/latex_menu.vala:68
-msgid "Center - \\begin{center}"
-msgstr "Vystředit – \\begin{center}"
-
-#: ../src/latex_menu.vala:70
-msgid "Align Left - \\begin{flushleft}"
-msgstr "Zarovnat vlevo – \\begin{flushleft}"
-
-#: ../src/latex_menu.vala:72
-msgid "Align Right - \\begin{flushright}"
-msgstr "Zarovnat vpravo – \\begin{flushright}"
-
-#: ../src/latex_menu.vala:74
-msgid "Table - \\begin{table}"
-msgstr "Tabulka – \\begin{table}"
-
-#: ../src/latex_menu.vala:76
-msgid "Quote - \\begin{quote}"
-msgstr "Cituji – \\begin{quote}"
-
-#: ../src/latex_menu.vala:78
-msgid "Quotation - \\begin{quotation}"
-msgstr "Citace – \\begin{quotation}"
-
-#: ../src/latex_menu.vala:80
-msgid "Verse - \\begin{verse}"
-msgstr "Verš – \\begin{verse}"
-
-#: ../src/latex_menu.vala:82
-msgid "Verbatim - \\begin{verbatim}"
-msgstr "Doslovně – \\begin{verbatim}"
-
-#: ../src/latex_menu.vala:84
-msgid "Minipage - \\begin{minipage}"
-msgstr "Ministránka – \\begin{minipage}"
-
-#: ../src/latex_menu.vala:86
-msgid "Title page - \\begin{titlepage}"
-msgstr "Titulní stránka – \\begin{titlepage}"
-
-#. LaTeX: list environments
-#: ../src/latex_menu.vala:90
+#: ../src/latex_menu.vala:33
 msgid "_List Environments"
 msgstr "_Seznamy"
 
-#: ../src/latex_menu.vala:92
-msgid "Bulleted List - \\begin{itemize}"
-msgstr "Seznam s odrážkami – \\begin{itemize}"
-
-#: ../src/latex_menu.vala:94
-msgid "Enumeration - \\begin{enumerate}"
-msgstr "Výčtový seznam – \\begin{enumerate}"
-
-#: ../src/latex_menu.vala:96
-msgid "Description - \\begin{description}"
-msgstr "Popis – \\begin{description}"
-
-#: ../src/latex_menu.vala:98
-msgid "Custom list - \\begin{list}"
-msgstr "Vlastní seznam – \\begin{list}"
-
-#: ../src/latex_menu.vala:100
-msgid "List item - \\item"
-msgstr "Položka seznamu – \\item"
-
-#. LaTeX: character sizes
-#: ../src/latex_menu.vala:104
+#: ../src/latex_menu.vala:34
 msgid "_Characters Sizes"
 msgstr "_Velikosti znaků"
 
-#. LaTeX: font styles
-#: ../src/latex_menu.vala:118
+#: ../src/latex_menu.vala:35
 msgid "_Font Styles"
-msgstr "Styly _písma"
+msgstr "Styly _fontu"
 
-#: ../src/latex_menu.vala:120
-msgid "Bold - \\textbf"
-msgstr "Tučné – \\textbf"
-
-#: ../src/latex_menu.vala:122
-msgid "Italic - \\textit"
-msgstr "Kurzíva – \\textit"
-
-#: ../src/latex_menu.vala:124
-msgid "Typewriter - \\texttt"
-msgstr "Strojopisné – \\texttt"
-
-#: ../src/latex_menu.vala:126
-msgid "Slanted - \\textsl"
-msgstr "Skloněné – \\textsl"
-
-#: ../src/latex_menu.vala:128
-msgid "Small Capitals - \\textsc"
-msgstr "Malé kapitálky – \\textsc"
-
-#: ../src/latex_menu.vala:130
-msgid "Sans Serif - \\textsf"
-msgstr "Bezpatkové – \\textsf"
-
-#: ../src/latex_menu.vala:132
-msgid "Emphasized - \\emph"
-msgstr "Zvýrazněné – \\emph"
-
-#: ../src/latex_menu.vala:134
-msgid "Underline - \\underline"
-msgstr "Podtržené – \\underline"
-
-#: ../src/latex_menu.vala:136
+#: ../src/latex_menu.vala:36
 msgid "_Font Family"
-msgstr "_Rodina písma"
+msgstr "_Rodina fontu"
 
-#: ../src/latex_menu.vala:138
-msgid "Roman - \\rmfamily"
-msgstr "Patkové – \\rmfamily"
-
-#: ../src/latex_menu.vala:140
-msgid "Sans Serif - \\sffamily"
-msgstr "Bezpatkové – \\sffamily"
-
-#: ../src/latex_menu.vala:142
-msgid "Monospace - \\ttfamily"
-msgstr "S pevnou šířkou – \\ttfamily"
-
-#: ../src/latex_menu.vala:144
+#: ../src/latex_menu.vala:37
 msgid "F_ont Series"
-msgstr "Ř_ady písma"
+msgstr "Ř_adyfontu"
 
-#: ../src/latex_menu.vala:146
-msgid "Medium - \\mdseries"
-msgstr "Střední – \\mdseries"
-
-#: ../src/latex_menu.vala:148
-msgid "Bold - \\bfseries"
-msgstr "Tučné – \\bfseries"
-
-#: ../src/latex_menu.vala:150
+#: ../src/latex_menu.vala:38
 msgid "Fo_nt Shape"
-msgstr "_Tvar písma"
+msgstr "_Tvar fontu"
 
-#: ../src/latex_menu.vala:152
-msgid "Upright - \\upshape"
-msgstr "Normální – \\upshape"
-
-#: ../src/latex_menu.vala:154
-msgid "Italic - \\itshape"
-msgstr "Kurzíva – \\itshape"
-
-#: ../src/latex_menu.vala:156
-msgid "Slanted - \\slshape"
-msgstr "Skloněné – \\slshape"
-
-#: ../src/latex_menu.vala:158
-msgid "Small Capitals - \\scshape"
-msgstr "Malé kapitálky – \\scshape"
-
-#. LaTeX: Tabular
-#: ../src/latex_menu.vala:162
+#: ../src/latex_menu.vala:39
 msgid "_Tabular"
 msgstr "_Tabulky"
 
-#: ../src/latex_menu.vala:164
-msgid "Tabbing - \\begin{tabbing}"
-msgstr "Tabulátory – \\begin{tabbing}"
-
-#: ../src/latex_menu.vala:166
-msgid "Tabular - \\begin{tabular}"
-msgstr "Tabulka – \\begin{tabular}"
-
-#: ../src/latex_menu.vala:168
-msgid "Multicolumn - \\multicolumn"
-msgstr "Více sloupců – \\multicolumn"
-
-#: ../src/latex_menu.vala:170
-msgid "Horizontal line - \\hline"
-msgstr "Vodorovná čára – \\hline"
-
-#: ../src/latex_menu.vala:172
-msgid "Vertical line - \\vline"
-msgstr "Svislá čára – \\vline"
-
-#: ../src/latex_menu.vala:174
-msgid "Horizontal line (columns specified) - \\cline"
-msgstr "Vodorovná čára (přes zadané sloupce) – \\cline"
-
-#: ../src/latex_menu.vala:180
-msgid "Frame - \\begin{frame}"
-msgstr "Rám – \\begin{frame}"
-
-#: ../src/latex_menu.vala:182
-msgid "Block - \\begin{block}"
-msgstr "Blok – \\begin{block}"
-
-#: ../src/latex_menu.vala:184
-msgid "Two columns - \\begin{columns}"
-msgstr "Dva sloupce – \\begin{columns}"
-
-#. LaTeX: Spacing
-#: ../src/latex_menu.vala:188
+#: ../src/latex_menu.vala:41
 msgid "_Spacing"
 msgstr "_Mezery"
 
-#: ../src/latex_menu.vala:189
-msgid "New _Line"
-msgstr "Nový řá_dek"
-
-#: ../src/latex_menu.vala:190
-msgid "New Line - \\\\"
-msgstr "Nový řádek – \\\\"
-
-#: ../src/latex_menu.vala:192
-msgid "New page - \\newpage"
-msgstr "Nová stránka – \\newpage"
-
-#: ../src/latex_menu.vala:194
-msgid "Line break - \\linebreak"
-msgstr "Zalomení řádku – \\linebreak"
-
-#: ../src/latex_menu.vala:196
-msgid "Page break - \\pagebreak"
-msgstr "Zalomení stránky – \\pagebreak"
-
-#: ../src/latex_menu.vala:198
-msgid "Big skip - \\bigskip"
-msgstr "Velké odskočení - \\bigskip"
-
-#: ../src/latex_menu.vala:200
-msgid "Medium skip - \\medskip"
-msgstr "Střední odskočení – \\medskip"
-
-#: ../src/latex_menu.vala:202
-msgid "Horizontal space - \\hspace"
-msgstr "Vodorovné volné místo – \\hspace"
-
-#: ../src/latex_menu.vala:204
-msgid "Vertical space - \\vspace"
-msgstr "Svislé volné místo – \\vspace"
-
-#: ../src/latex_menu.vala:206
-msgid "No paragraph indentation - \\noindent"
-msgstr "Potlačení odsazení odstavce – \\noindent"
-
-#. LaTeX: International accents
-#: ../src/latex_menu.vala:210
+#: ../src/latex_menu.vala:42
 msgid "International _Accents"
 msgstr "Diakritická znaménka"
 
-#: ../src/latex_menu.vala:211
-msgid "Acute accent - \\'"
-msgstr "Čárka – \\'"
-
-#: ../src/latex_menu.vala:212
-msgid "Grave accent - \\`"
-msgstr "Těžký akcent – \\`"
-
-#: ../src/latex_menu.vala:213
-msgid "Circumflex accent - \\^"
-msgstr "Stříška – \\^"
-
-#: ../src/latex_menu.vala:214
-msgid "Trema - \\\""
-msgstr "Přehláska – \\\""
-
-#: ../src/latex_menu.vala:215
-msgid "Tilde - \\~"
-msgstr "Tilda – \\~"
-
-#: ../src/latex_menu.vala:216
-msgid "Macron - \\="
-msgstr "Vodorovná čárka – \\="
-
-#: ../src/latex_menu.vala:217
-msgid "Dot above - \\."
-msgstr "Tečka nad – \\."
-
-#: ../src/latex_menu.vala:218
-msgid "Caron - \\v"
-msgstr "Háček – \\v"
-
-#: ../src/latex_menu.vala:219
-msgid "Breve - \\u"
-msgstr "Oblouček (breve) – \\u"
-
-#: ../src/latex_menu.vala:221
-msgid "Double acute accent - \\H"
-msgstr "Dvojitá čárka – \\H"
-
-#: ../src/latex_menu.vala:222
-msgid "Cedilla - \\c"
-msgstr "Sedil – \\c"
-
-#: ../src/latex_menu.vala:223
-msgid "Ogonek - \\k"
-msgstr "Ocásek – \\k"
-
-#: ../src/latex_menu.vala:224
-msgid "Dot below - \\d"
-msgstr "Tečka pod – \\d"
-
-#: ../src/latex_menu.vala:225
-msgid "Macron below - \\b"
-msgstr "Vodorovná čárka pod – \\b"
-
-#: ../src/latex_menu.vala:226
-msgid "Ring - \\r"
-msgstr "Kroužek – \\r"
-
-#: ../src/latex_menu.vala:227
-msgid "Tie - \\t"
-msgstr "Obrácený oblouček – \\t"
-
-#. LaTeX: Misc
-#: ../src/latex_menu.vala:231
+#: ../src/latex_menu.vala:43
 msgid "_Misc"
 msgstr "Růz_né"
 
-#: ../src/latex_menu.vala:233
-msgid "Document class - \\documentclass"
-msgstr "Třída dokumentu – \\documentclass"
-
-#: ../src/latex_menu.vala:235
-msgid "Use package - \\usepackage"
-msgstr "Použít balíček – \\usepackage"
-
-#: ../src/latex_menu.vala:236
-msgid "_AMS packages"
-msgstr "Balíčky _AMS"
-
-#: ../src/latex_menu.vala:237
-msgid "AMS packages"
-msgstr "Balíčky AMS"
-
-#: ../src/latex_menu.vala:238
-msgid "Author - \\author"
-msgstr "Autor – \\author"
-
-#: ../src/latex_menu.vala:239
-msgid "Title - \\title"
-msgstr "Název – \\title"
-
-#: ../src/latex_menu.vala:241
-msgid "Content of the document - \\begin{document}"
-msgstr "Vlastní obsah dokumentu – \\begin{document}"
-
-#: ../src/latex_menu.vala:243
-msgid "Make title - \\maketitle"
-msgstr "Vytvořit titul – \\maketitle"
-
-#: ../src/latex_menu.vala:245
-msgid "Table of contents - \\tableofcontents"
-msgstr "Obsah – \\tableofcontents"
-
-#: ../src/latex_menu.vala:247
-msgid "Abstract - \\begin{abstract}"
-msgstr "Úvod – \\begin{abstract}"
-
-#: ../src/latex_menu.vala:249
-msgid "Include an image (graphicx package) - \\includegraphics"
-msgstr "Vložit obrázek (balíček graphicx) – \\includegraphics"
-
-#: ../src/latex_menu.vala:251
-msgid "Include a file - \\input"
-msgstr "Vložit soubor – \\input"
-
 #. Math
-#: ../src/latex_menu.vala:255
+#: ../src/latex_menu.vala:46
 msgid "_Math"
 msgstr "_Matematika"
 
-#. Math Environments
-#: ../src/latex_menu.vala:259
+#: ../src/latex_menu.vala:47
 msgid "_Math Environments"
 msgstr "_Matematické prostředí"
 
-#: ../src/latex_menu.vala:260
-msgid "_Mathematical Environment - $...$"
-msgstr "_Matematické prostředí – $...$"
-
-#: ../src/latex_menu.vala:261
-msgid "Mathematical Environment - $...$"
-msgstr "Matematické prostředí – $...$"
-
-#: ../src/latex_menu.vala:262
-msgid "_Centered Formula - \\[...\\]"
-msgstr "Vzore_c na střed – \\[...\\]"
-
-#: ../src/latex_menu.vala:263
-msgid "Centered Formula - \\[...\\]"
-msgstr "Vzorec na střed – \\[...\\]"
-
-#: ../src/latex_menu.vala:265
-msgid "_Numbered Equation - \\begin{equation}"
-msgstr "Očíslova_ný vzorec – \\begin{equation}"
-
-#: ../src/latex_menu.vala:266
-msgid "Numbered Equation - \\begin{equation}"
-msgstr "Očíslovaný vzorec – \\begin{equation}"
-
-#: ../src/latex_menu.vala:267
-msgid "_Array of Equations - \\begin{align*}"
-msgstr "Séri_e vzorců – \\begin{align*}"
-
-#: ../src/latex_menu.vala:268
-msgid "Array of Equations - \\begin{align*}"
-msgstr "Série vzorců – \\begin{align*}"
-
-#: ../src/latex_menu.vala:270
-msgid "Numbered Array of _Equations - \\begin{align}"
-msgstr "Očíslovaná série vz_orců – \\begin{align}"
-
-#: ../src/latex_menu.vala:271
-msgid "Numbered Array of Equations - \\begin{align}"
-msgstr "Očíslovaná série vzorců – \\begin{align}"
-
-#. Math misc
-#: ../src/latex_menu.vala:275
-msgid "_Superscript - ^{}"
-msgstr "_Horní index – ^{}"
-
-#: ../src/latex_menu.vala:276
-msgid "Superscript - ^{}"
-msgstr "Horní index – ^{}"
-
-#: ../src/latex_menu.vala:277
-msgid "Su_bscript - __{}"
-msgstr "_Dolní index – __{}"
-
-#: ../src/latex_menu.vala:278
-msgid "Subscript - _{}"
-msgstr "Dolní index – _{}"
-
-#: ../src/latex_menu.vala:279
-msgid "_Fraction - \\frac{}{}"
-msgstr "_Zlomek – \\frac{}{}"
-
-#: ../src/latex_menu.vala:280
-msgid "Fraction - \\frac{}{}"
-msgstr "Zlomek – \\frac{}{}"
-
-#: ../src/latex_menu.vala:281
-msgid "Square _Root - \\sqrt{}"
-msgstr "Dr_uhá odmocnina – \\sqrt{}"
-
-#: ../src/latex_menu.vala:282
-msgid "Square Root - \\sqrt{}"
-msgstr "Druhá odmocnina – \\sqrt{}"
-
-#: ../src/latex_menu.vala:283
-msgid "_N-th Root - \\sqrt[]{}"
-msgstr "_N-tá odmocnina – \\sqrt[]{}"
-
-#: ../src/latex_menu.vala:284
-msgid "N-th Root - \\sqrt[]{}"
-msgstr "N-tá odmocnina – \\sqrt[]{}"
-
-#. Math functions
-#: ../src/latex_menu.vala:288
+#: ../src/latex_menu.vala:48
 msgid "Math _Functions"
 msgstr "Matematické _funkce"
 
-#. Math Font Styles
-#: ../src/latex_menu.vala:322
+#: ../src/latex_menu.vala:49
 msgid "Math Font _Styles"
 msgstr "_Styly matematických písem"
 
-#: ../src/latex_menu.vala:324
-msgid "Roman - \\mathrm"
-msgstr "Patkové – \\mathrm"
-
-#: ../src/latex_menu.vala:326
-msgid "Italic - \\mathit"
-msgstr "Kurzíva – \\mathit"
-
-#: ../src/latex_menu.vala:328
-msgid "Bold - \\mathbf"
-msgstr "Tučné – \\mathbf"
-
-#: ../src/latex_menu.vala:330
-msgid "Sans Serif - \\mathsf"
-msgstr "Bezpatkové – \\mathsf"
-
-#: ../src/latex_menu.vala:332
-msgid "Typewriter - \\mathtt"
-msgstr "Strojopisné – \\mathtt"
-
-#: ../src/latex_menu.vala:334
-msgid "Calligraphic - \\mathcal"
-msgstr "Kaligrafické – \\mathcal"
-
-#: ../src/latex_menu.vala:336
-msgid "Blackboard (uppercase only)  - \\mathbb (amsfonts package)"
-msgstr "Blackboard (pouze velká) – \\mathbb (balíček amsfonts)"
-
-#: ../src/latex_menu.vala:338
-msgid "Euler Fraktur - \\mathfrak (amsfonts package)"
-msgstr "Euler Fraktur – \\mathfrak (balíček amsfonts)"
-
-#. Math Accents
-#: ../src/latex_menu.vala:342
+#: ../src/latex_menu.vala:50
 msgid "Math _Accents"
 msgstr "Matematická diakritická zn_aménka"
 
-#. Math Spaces
-#: ../src/latex_menu.vala:357
+#: ../src/latex_menu.vala:51
 msgid "Math _Spaces"
 msgstr "Matematické m_ezery"
 
-#: ../src/latex_menu.vala:358
-msgid "_Small"
-msgstr "_Malá"
-
-#: ../src/latex_menu.vala:358
-msgid "Small - \\,"
-msgstr "Malá – \\,"
-
-#: ../src/latex_menu.vala:359
-msgid "_Medium"
-msgstr "Střed_ní"
-
-#: ../src/latex_menu.vala:359
-msgid "Medium - \\:"
-msgstr "Střední – \\:"
-
-#: ../src/latex_menu.vala:360
-msgid "_Large"
-msgstr "Ve_lká"
-
-#: ../src/latex_menu.vala:360
-msgid "Large - \\;"
-msgstr "Ve_lká – \\;"
-
-#. Math: Left Delimiters
-#: ../src/latex_menu.vala:366
+#: ../src/latex_menu.vala:52
 msgid "_Left Delimiters"
 msgstr "Oddělovače z_leva"
 
-#: ../src/latex_menu.vala:367
-msgid "left ("
-msgstr "levá ("
-
-#: ../src/latex_menu.vala:368
-msgid "left ["
-msgstr "levá ["
-
-#: ../src/latex_menu.vala:369
-msgid "left { "
-msgstr "levá { "
-
-#: ../src/latex_menu.vala:370
-msgid "left <"
-msgstr "levá <"
-
-#: ../src/latex_menu.vala:371
-msgid "left )"
-msgstr "levá )"
-
-#: ../src/latex_menu.vala:372
-msgid "left ]"
-msgstr "levá ]"
-
-#: ../src/latex_menu.vala:373
-msgid "left  }"
-msgstr "levá  }"
-
-#: ../src/latex_menu.vala:374
-msgid "left >"
-msgstr "levá >"
-
-#: ../src/latex_menu.vala:375
-msgid "left ."
-msgstr "levá ."
-
-#. Math: Right Delimiters
-#: ../src/latex_menu.vala:379
+#: ../src/latex_menu.vala:53
 msgid "Right _Delimiters"
 msgstr "Oddělovače zp_rava"
 
-#: ../src/latex_menu.vala:380
-msgid "right )"
-msgstr "pravá )"
-
-#: ../src/latex_menu.vala:381
-msgid "right ]"
-msgstr "pravá ]"
-
-#: ../src/latex_menu.vala:382
-msgid "right  }"
-msgstr "pravá }"
-
-#: ../src/latex_menu.vala:383
-msgid "right >"
-msgstr "pravá >"
-
-#: ../src/latex_menu.vala:384
-msgid "right ("
-msgstr "pravá ("
-
-#: ../src/latex_menu.vala:385
-msgid "right ["
-msgstr "pravá ["
-
-#: ../src/latex_menu.vala:386
-msgid "right { "
-msgstr "pravá { "
-
-#: ../src/latex_menu.vala:387
-msgid "right <"
-msgstr "pravá <"
-
-#: ../src/latex_menu.vala:388
-msgid "right ."
-msgstr "pravá ."
-
 #. menus under toolitems
-#: ../src/latex_menu.vala:402
+#: ../src/latex_menu.vala:67
 msgid "Sectioning"
 msgstr "Členění"
 
-#: ../src/latex_menu.vala:405
+#: ../src/latex_menu.vala:70
 msgid "Characters Sizes"
 msgstr "Velikosti znaků"
 
-#: ../src/latex_menu.vala:408
+#: ../src/latex_menu.vala:73
 msgid "References"
 msgstr "Odkazy"
 
-#: ../src/latex_menu.vala:411
+#: ../src/latex_menu.vala:76
 msgid "Presentation Environments"
 msgstr "Prezentační prostředí"
 
-#: ../src/latex_menu.vala:414
+#: ../src/latex_menu.vala:79
 msgid "Math Environments"
 msgstr "Matematická prostředí"
 
 #: ../src/liblatexila/latexila-build-job.c:365
 #, c-format
-msgid "%s doesn't seem to be installed."
+msgid "%s doesn’t seem to be installed."
 msgstr "Vypadá to, že %s není nainstalován."
 
 #: ../src/liblatexila/latexila-build-tool.c:555
+#: ../src/liblatexila/latexila-synctex.c:569
 #, c-format
-msgid "The file '%s' doesn't exist."
+msgid "The file “%s” doesn’t exist."
 msgstr "Soubor „%s“ neexistuje."
 
 #: ../src/liblatexila/latexila-build-tool.c:583
 #, c-format
-msgid "Failed to open '%s':"
+msgid "Failed to open “%s”:"
 msgstr "Selhalo otevření „%s“:"
 
 #: ../src/liblatexila/latexila-build-tool.c:689
@@ -1632,28 +1042,602 @@ msgstr "Selhalo otevření „%s“:"
 msgid "Open %s"
 msgstr "Otevřít %s"
 
-#: ../src/liblatexila/latexila-latex-commands.c:51
-msgid "Figure - \\begin{figure}"
+#: ../src/liblatexila/latexila-latex-commands.c:54 ../src/structure.vala:776
+msgid "Part"
+msgstr "Část"
+
+#: ../src/liblatexila/latexila-latex-commands.c:56 ../src/structure.vala:777
+msgid "Chapter"
+msgstr "Kapitola"
+
+#: ../src/liblatexila/latexila-latex-commands.c:58 ../src/structure.vala:778
+msgid "Section"
+msgstr "Oddíl"
+
+#: ../src/liblatexila/latexila-latex-commands.c:60 ../src/structure.vala:779
+msgid "Sub-section"
+msgstr "Pododdíl"
+
+#: ../src/liblatexila/latexila-latex-commands.c:62 ../src/structure.vala:780
+msgid "Sub-sub-section"
+msgstr "Podpododdíl"
+
+#: ../src/liblatexila/latexila-latex-commands.c:64 ../src/structure.vala:781
+msgid "Paragraph"
+msgstr "Odstavec"
+
+#: ../src/liblatexila/latexila-latex-commands.c:66 ../src/structure.vala:782
+msgid "Sub-paragraph"
+msgstr "Podřízený odstavec"
+
+#: ../src/liblatexila/latexila-latex-commands.c:73
+msgid "Reference to a label"
+msgstr "Odkaz na návěští"
+
+#: ../src/liblatexila/latexila-latex-commands.c:75
+msgid "Page reference to a label"
+msgstr "Stránkový odkaz na návěští"
+
+#: ../src/liblatexila/latexila-latex-commands.c:77
+msgid "Add a word to the index"
+msgstr "Přidat slovo do rejstříku"
+
+#: ../src/liblatexila/latexila-latex-commands.c:79
+msgid "Footnote"
+msgstr "Poznámka pod čarou"
+
+#: ../src/liblatexila/latexila-latex-commands.c:81
+msgid "Reference to a bibliography item"
+msgstr "Odkaz na bibliografickou položku"
+
+#: ../src/liblatexila/latexila-latex-commands.c:86
+msgid "Center — \\begin{center}"
+msgstr "Vystředit – \\begin{center}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:88
+msgid "Align Left — \\begin{flushleft}"
+msgstr "Zarovnat vlevo – \\begin{flushleft}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:90
+msgid "Align Right — \\begin{flushright}"
+msgstr "Zarovnat vpravo – \\begin{flushright}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:92
+msgid "Figure — \\begin{figure}"
 msgstr "Obrázek – \\begin{figure}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:94
+msgid "Table — \\begin{table}"
+msgstr "Tabulka – \\begin{table}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:96
+msgid "Quote — \\begin{quote}"
+msgstr "Cituji – \\begin{quote}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:98
+msgid "Quotation — \\begin{quotation}"
+msgstr "Citace – \\begin{quotation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:100
+msgid "Verse — \\begin{verse}"
+msgstr "Verš – \\begin{verse}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:102
+msgid "Verbatim — \\begin{verbatim}"
+msgstr "Doslovně – \\begin{verbatim}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:104
+msgid "Minipage — \\begin{minipage}"
+msgstr "Ministránka – \\begin{minipage}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:106
+msgid "Title page — \\begin{titlepage}"
+msgstr "Titulní stránka – \\begin{titlepage}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:111
+msgid "Bulleted List — \\begin{itemize}"
+msgstr "Seznam s odrážkami – \\begin{itemize}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:113
+msgid "Enumeration — \\begin{enumerate}"
+msgstr "Výčtový seznam – \\begin{enumerate}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:115
+msgid "Description — \\begin{description}"
+msgstr "Popis – \\begin{description}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:117
+msgid "Custom list — \\begin{list}"
+msgstr "Vlastní seznam – \\begin{list}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:119
+msgid "List item — \\item"
+msgstr "Položka seznamu – \\item"
+
+#: ../src/liblatexila/latexila-latex-commands.c:137
+msgid "Bold — \\textbf"
+msgstr "Tučný – \\textbf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:139
+msgid "Italic — \\textit"
+msgstr "Kurzíva – \\textit"
+
+#: ../src/liblatexila/latexila-latex-commands.c:141
+msgid "Typewriter — \\texttt"
+msgstr "Strojopisný – \\texttt"
+
+#: ../src/liblatexila/latexila-latex-commands.c:143
+msgid "Slanted — \\textsl"
+msgstr "Skloněný – \\textsl"
+
+#: ../src/liblatexila/latexila-latex-commands.c:145
+msgid "Small Capitals — \\textsc"
+msgstr "Malé kapitálky – \\textsc"
+
+#: ../src/liblatexila/latexila-latex-commands.c:147
+msgid "Sans Serif — \\textsf"
+msgstr "Bezpatkový – \\textsf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:149
+msgid "Emphasized — \\emph"
+msgstr "Zvýrazněný – \\emph"
+
+#: ../src/liblatexila/latexila-latex-commands.c:151
+msgid "Underline — \\underline"
+msgstr "Podtržený – \\underline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:154
+msgid "Roman — \\rmfamily"
+msgstr "Patkový – \\rmfamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:156
+msgid "Sans Serif — \\sffamily"
+msgstr "Bezpatkový – \\sffamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:158
+msgid "Monospace — \\ttfamily"
+msgstr "S pevnou šířkou – \\ttfamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:161
+msgid "Medium — \\mdseries"
+msgstr "Střední – \\mdseries"
+
+#: ../src/liblatexila/latexila-latex-commands.c:163
+msgid "Bold — \\bfseries"
+msgstr "Tučný – \\bfseries"
+
+#: ../src/liblatexila/latexila-latex-commands.c:166
+msgid "Upright — \\upshape"
+msgstr "Normální – \\upshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:168
+msgid "Italic — \\itshape"
+msgstr "Kurzíva – \\itshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:170
+msgid "Slanted — \\slshape"
+msgstr "Skloněný – \\slshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:172
+msgid "Small Capitals — \\scshape"
+msgstr "Malé kapitálky – \\scshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:177
+msgid "Tabbing — \\begin{tabbing}"
+msgstr "Tabulátory – \\begin{tabbing}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:179
+msgid "Tabular — \\begin{tabular}"
+msgstr "Tabulka – \\begin{tabular}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:181
+msgid "Multicolumn — \\multicolumn"
+msgstr "Více sloupců – \\multicolumn"
+
+#: ../src/liblatexila/latexila-latex-commands.c:183
+msgid "Horizontal line — \\hline"
+msgstr "Vodorovná čára – \\hline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:185
+msgid "Vertical line — \\vline"
+msgstr "Svislá čára – \\vline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:187
+msgid "Horizontal line (columns specified) — \\cline"
+msgstr "Vodorovná čára (přes zadané sloupce) – \\cline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:192
+msgid "Frame — \\begin{frame}"
+msgstr "Rám – \\begin{frame}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:194
+msgid "Block — \\begin{block}"
+msgstr "Blok – \\begin{block}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:196
+msgid "Two columns — \\begin{columns}"
+msgstr "Dva sloupce – \\begin{columns}"
+
+#. LaTeX: Spacing
+#: ../src/liblatexila/latexila-latex-commands.c:200
+msgid "New _Line"
+msgstr "Nový řá_dek"
+
+#: ../src/liblatexila/latexila-latex-commands.c:201
+msgid "New Line — \\\\"
+msgstr "Nový řádek – \\\\"
+
+#: ../src/liblatexila/latexila-latex-commands.c:203
+msgid "New page — \\newpage"
+msgstr "Nová stránka – \\newpage"
+
+#: ../src/liblatexila/latexila-latex-commands.c:205
+msgid "Line break — \\linebreak"
+msgstr "Zalomení řádku – \\linebreak"
+
+#: ../src/liblatexila/latexila-latex-commands.c:207
+msgid "Page break — \\pagebreak"
+msgstr "Zalomení stránky – \\pagebreak"
+
+#: ../src/liblatexila/latexila-latex-commands.c:209
+msgid "Big skip — \\bigskip"
+msgstr "Velké odskočení - \\bigskip"
+
+#: ../src/liblatexila/latexila-latex-commands.c:211
+msgid "Medium skip — \\medskip"
+msgstr "Střední odskočení – \\medskip"
+
+#: ../src/liblatexila/latexila-latex-commands.c:213
+msgid "Horizontal space — \\hspace"
+msgstr "Vodorovné volné místo – \\hspace"
+
+#: ../src/liblatexila/latexila-latex-commands.c:215
+msgid "Vertical space — \\vspace"
+msgstr "Svislé volné místo – \\vspace"
+
+#: ../src/liblatexila/latexila-latex-commands.c:217
+msgid "No paragraph indentation — \\noindent"
+msgstr "Potlačení odsazení odstavce – \\noindent"
+
+#. LaTeX: International accents
+#: ../src/liblatexila/latexila-latex-commands.c:221
+msgid "Acute accent — \\'"
+msgstr "Čárka – \\'"
+
+#: ../src/liblatexila/latexila-latex-commands.c:222
+msgid "Grave accent — \\`"
+msgstr "Těžký akcent – \\`"
+
+#: ../src/liblatexila/latexila-latex-commands.c:223
+msgid "Circumflex accent — \\^"
+msgstr "Stříška – \\^"
+
+#: ../src/liblatexila/latexila-latex-commands.c:224
+msgid "Trema — \\\""
+msgstr "Přehláska – \\\""
+
+#: ../src/liblatexila/latexila-latex-commands.c:225
+msgid "Tilde — \\~"
+msgstr "Tilda – \\~"
+
+#: ../src/liblatexila/latexila-latex-commands.c:226
+msgid "Macron — \\="
+msgstr "Vodorovná čárka – \\="
+
+#: ../src/liblatexila/latexila-latex-commands.c:227
+msgid "Dot above — \\."
+msgstr "Tečka nad – \\."
+
+#: ../src/liblatexila/latexila-latex-commands.c:228
+msgid "Caron — \\v"
+msgstr "Háček – \\v"
+
+#: ../src/liblatexila/latexila-latex-commands.c:229
+msgid "Breve — \\u"
+msgstr "Oblouček (breve) – \\u"
+
+#: ../src/liblatexila/latexila-latex-commands.c:231
+msgid "Double acute accent — \\H"
+msgstr "Dvojitá čárka – \\H"
+
+#: ../src/liblatexila/latexila-latex-commands.c:232
+msgid "Cedilla — \\c"
+msgstr "Sedil – \\c"
+
+#: ../src/liblatexila/latexila-latex-commands.c:233
+msgid "Ogonek — \\k"
+msgstr "Ocásek – \\k"
+
+#: ../src/liblatexila/latexila-latex-commands.c:234
+msgid "Dot below — \\d"
+msgstr "Tečka pod – \\d"
+
+#: ../src/liblatexila/latexila-latex-commands.c:235
+msgid "Macron below — \\b"
+msgstr "Vodorovná čárka pod – \\b"
+
+#: ../src/liblatexila/latexila-latex-commands.c:236
+msgid "Ring — \\r"
+msgstr "Kroužek – \\r"
+
+#: ../src/liblatexila/latexila-latex-commands.c:237
+msgid "Tie — \\t"
+msgstr "Obrácený oblouček – \\t"
+
+#: ../src/liblatexila/latexila-latex-commands.c:242
+msgid "Document class — \\documentclass"
+msgstr "Třída dokumentu – \\documentclass"
+
+#: ../src/liblatexila/latexila-latex-commands.c:244
+msgid "Use package — \\usepackage"
+msgstr "Použít balíček – \\usepackage"
+
+#: ../src/liblatexila/latexila-latex-commands.c:245
+msgid "_AMS packages"
+msgstr "Balíčky _AMS"
+
+#: ../src/liblatexila/latexila-latex-commands.c:246
+msgid "AMS packages"
+msgstr "Balíčky AMS"
+
+#: ../src/liblatexila/latexila-latex-commands.c:247
+msgid "Author — \\author"
+msgstr "Autor – \\author"
+
+#: ../src/liblatexila/latexila-latex-commands.c:248
+msgid "Title — \\title"
+msgstr "Název – \\title"
+
+#: ../src/liblatexila/latexila-latex-commands.c:250
+msgid "Content of the document — \\begin{document}"
+msgstr "Vlastní obsah dokumentu – \\begin{document}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:252
+msgid "Make title — \\maketitle"
+msgstr "Vytvořit titul – \\maketitle"
+
+#: ../src/liblatexila/latexila-latex-commands.c:254
+msgid "Table of contents — \\tableofcontents"
+msgstr "Obsah – \\tableofcontents"
+
+#: ../src/liblatexila/latexila-latex-commands.c:256
+msgid "Abstract — \\begin{abstract}"
+msgstr "Úvod – \\begin{abstract}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:258
+msgid "Include an image (graphicx package) — \\includegraphics"
+msgstr "Vložit obrázek (balíček graphicx) – \\includegraphics"
+
+#: ../src/liblatexila/latexila-latex-commands.c:260
+msgid "Include a file — \\input"
+msgstr "Vložit soubor – \\input"
+
+#. Math Environments
+#: ../src/liblatexila/latexila-latex-commands.c:264
+msgid "_Mathematical Environment — $…$"
+msgstr "_Matematické prostředí – $…$"
+
+#: ../src/liblatexila/latexila-latex-commands.c:265
+msgid "Mathematical Environment — $…$"
+msgstr "Matematické prostředí – $…$"
+
+#: ../src/liblatexila/latexila-latex-commands.c:266
+msgid "_Centered Formula — \\[…\\]"
+msgstr "Vzore_c na střed – \\[…\\]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:267
+msgid "Centered Formula — \\[…\\]"
+msgstr "Vzorec na střed – \\[…\\]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:269
+msgid "_Numbered Equation — \\begin{equation}"
+msgstr "Očíslova_ný vzorec – \\begin{equation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:270
+msgid "Numbered Equation — \\begin{equation}"
+msgstr "Očíslovaný vzorec – \\begin{equation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:271
+msgid "_Array of Equations — \\begin{align*}"
+msgstr "Séri_e vzorců – \\begin{align*}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:272
+msgid "Array of Equations — \\begin{align*}"
+msgstr "Série vzorců – \\begin{align*}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:274
+msgid "Numbered Array of _Equations — \\begin{align}"
+msgstr "Očíslovaná série vz_orců – \\begin{align}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:275
+msgid "Numbered Array of Equations — \\begin{align}"
+msgstr "Očíslovaná série vzorců – \\begin{align}"
+
+#. Math misc
+#: ../src/liblatexila/latexila-latex-commands.c:279
+msgid "_Superscript — ^{}"
+msgstr "_Horní index – ^{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:280
+msgid "Superscript — ^{}"
+msgstr "Horní index – ^{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:281
+msgid "Su_bscript — __{}"
+msgstr "_Dolní index – __{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:282
+msgid "Subscript — _{}"
+msgstr "Dolní index – _{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:283
+msgid "_Fraction — \\frac{}{}"
+msgstr "_Zlomek – \\frac{}{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:284
+msgid "Fraction — \\frac{}{}"
+msgstr "Zlomek – \\frac{}{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:285
+msgid "Square _Root — \\sqrt{}"
+msgstr "Dr_uhá odmocnina – \\sqrt{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:286
+msgid "Square Root — \\sqrt{}"
+msgstr "Druhá odmocnina – \\sqrt{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:287
+msgid "_N-th Root — \\sqrt[]{}"
+msgstr "_N-tá odmocnina – \\sqrt[]{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:288
+msgid "N-th Root — \\sqrt[]{}"
+msgstr "N-tá odmocnina – \\sqrt[]{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:326
+msgid "Roman — \\mathrm"
+msgstr "Patkový – \\mathrm"
+
+#: ../src/liblatexila/latexila-latex-commands.c:328
+msgid "Italic — \\mathit"
+msgstr "Kurzíva – \\mathit"
+
+#: ../src/liblatexila/latexila-latex-commands.c:330
+msgid "Bold — \\mathbf"
+msgstr "Tučný – \\mathbf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:332
+msgid "Sans Serif — \\mathsf"
+msgstr "Bezpatkový – \\mathsf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:334
+msgid "Typewriter — \\mathtt"
+msgstr "Strojopisný – \\mathtt"
+
+#: ../src/liblatexila/latexila-latex-commands.c:336
+msgid "Calligraphic — \\mathcal"
+msgstr "Kaligrafický – \\mathcal"
+
+#: ../src/liblatexila/latexila-latex-commands.c:338
+msgid "Blackboard (uppercase only) — \\mathbb (amsfonts package)"
+msgstr "Blackboard (pouze velká) – \\mathbb (balíček amsfonts)"
+
+#: ../src/liblatexila/latexila-latex-commands.c:340
+msgid "Euler Fraktur — \\mathfrak (amsfonts package)"
+msgstr "Euler Fraktur – \\mathfrak (balíček amsfonts)"
+
+#. Math Spaces
+#: ../src/liblatexila/latexila-latex-commands.c:358
+msgid "_Small"
+msgstr "_Malá"
+
+#: ../src/liblatexila/latexila-latex-commands.c:358
+msgid "Small — \\,"
+msgstr "Malá – \\,"
+
+#: ../src/liblatexila/latexila-latex-commands.c:359
+msgid "_Medium"
+msgstr "Střed_ní"
+
+#: ../src/liblatexila/latexila-latex-commands.c:359
+msgid "Medium — \\:"
+msgstr "Střední – \\:"
+
+#: ../src/liblatexila/latexila-latex-commands.c:360
+msgid "_Large"
+msgstr "Ve_lká"
+
+#: ../src/liblatexila/latexila-latex-commands.c:360
+msgid "Large — \\;"
+msgstr "Ve_lká – \\;"
+
+#. Math: Left Delimiters
+#: ../src/liblatexila/latexila-latex-commands.c:366
+msgid "left ("
+msgstr "levá ("
+
+#: ../src/liblatexila/latexila-latex-commands.c:367
+msgid "left ["
+msgstr "levá ["
+
+#: ../src/liblatexila/latexila-latex-commands.c:368
+msgid "left { "
+msgstr "levá { "
+
+#: ../src/liblatexila/latexila-latex-commands.c:369
+msgid "left <"
+msgstr "levá <"
+
+#: ../src/liblatexila/latexila-latex-commands.c:370
+msgid "left )"
+msgstr "levá )"
+
+#: ../src/liblatexila/latexila-latex-commands.c:371
+msgid "left ]"
+msgstr "levá ]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:372
+msgid "left  }"
+msgstr "levá  }"
+
+#: ../src/liblatexila/latexila-latex-commands.c:373
+msgid "left >"
+msgstr "levá >"
+
+#: ../src/liblatexila/latexila-latex-commands.c:374
+msgid "left ."
+msgstr "levá ."
+
+#. Math: Right Delimiters
+#: ../src/liblatexila/latexila-latex-commands.c:378
+msgid "right )"
+msgstr "pravá )"
+
+#: ../src/liblatexila/latexila-latex-commands.c:379
+msgid "right ]"
+msgstr "pravá ]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:380
+msgid "right  }"
+msgstr "pravá }"
+
+#: ../src/liblatexila/latexila-latex-commands.c:381
+msgid "right >"
+msgstr "pravá >"
+
+#: ../src/liblatexila/latexila-latex-commands.c:382
+msgid "right ("
+msgstr "pravá ("
+
+#: ../src/liblatexila/latexila-latex-commands.c:383
+msgid "right ["
+msgstr "pravá ["
+
+#: ../src/liblatexila/latexila-latex-commands.c:384
+msgid "right { "
+msgstr "pravá { "
+
+#: ../src/liblatexila/latexila-latex-commands.c:385
+msgid "right <"
+msgstr "pravá <"
+
+#: ../src/liblatexila/latexila-latex-commands.c:386
+msgid "right ."
+msgstr "pravá ."
 
 #: ../src/liblatexila/latexila-synctex.c:194
 msgid "Impossible to do the forward search."
 msgstr "Není možné hledat směrem vpřed."
 
-#: ../src/liblatexila/latexila-synctex.c:531
+#: ../src/liblatexila/latexila-synctex.c:539
 msgid "Can not communicate with evince."
 msgstr "Nelze komunikovat s aplikací evince."
 
-#: ../src/liblatexila/latexila-synctex.c:561
-#, c-format
-msgid "The file \"%s\" doesn't exist."
-msgstr "Soubor „%s“ neexistuje."
-
-#: ../src/liblatexila/latexila-synctex.c:595
-msgid "The PDF file doesn't exist."
+#: ../src/liblatexila/latexila-synctex.c:603
+msgid "The PDF file doesn’t exist."
 msgstr "Soubor PDF neexistuje."
 
-#: ../src/liblatexila/latexila-synctex.c:646
+#: ../src/liblatexila/latexila-synctex.c:654
 msgid "The document is not saved."
 msgstr "Dokument není uložen."
 
@@ -1690,7 +1674,7 @@ msgid "Personal Templates"
 msgstr "Osobní šablony"
 
 #: ../src/liblatexila/latexila-templates-dialogs.c:124
-msgid "New File..."
+msgid "New File…"
 msgstr "Nový soubor…"
 
 #: ../src/liblatexila/latexila-templates-dialogs.c:131
@@ -1699,7 +1683,7 @@ msgid "_New"
 msgstr "_Nový"
 
 #: ../src/liblatexila/latexila-templates-dialogs.c:232
-msgid "New Template..."
+msgid "New Template…"
 msgstr "Nová šablona…"
 
 #: ../src/liblatexila/latexila-templates-dialogs.c:239
@@ -1926,7 +1910,7 @@ msgid "_Comment"
 msgstr "Zako_mentovat"
 
 #: ../src/main_window_edit.vala:64
-msgid "Comment the selected lines (add the character \"%\")"
+msgid "Comment the selected lines (add the character “%”)"
 msgstr "Označit vybrané řádky jako komentář (přidat znak „%“)"
 
 #: ../src/main_window_edit.vala:67
@@ -1934,7 +1918,7 @@ msgid "_Uncomment"
 msgstr "_Odkomentovat"
 
 #: ../src/main_window_edit.vala:68
-msgid "Uncomment the selected lines (remove the character \"%\")"
+msgid "Uncomment the selected lines (remove the character “%”)"
 msgstr "Zrušit označení vybraných řádků jako komentář (odstranit znak „%“)"
 
 #: ../src/main_window_edit.vala:71
@@ -1986,7 +1970,7 @@ msgid "Save the current file with a different name"
 msgstr "Uložit aktuální soubor pod jiným názvem"
 
 #: ../src/main_window_file.vala:47
-msgid "Create _Template From Document..."
+msgid "Create _Template From Document…"
 msgstr "Vytvořit šablonu z dokumen_tu…"
 
 #: ../src/main_window_file.vala:48
@@ -1994,8 +1978,8 @@ msgid "Create a new template from the current document"
 msgstr "Vytvořit novou šablonu z aktuálního dokumentu"
 
 #: ../src/main_window_file.vala:50
-msgid "_Manage Personal Templates..."
-msgstr "_Spravovat osobní šablony…"
+msgid "_Manage Personal Templates…"
+msgstr "_Správa osobních šablon…"
 
 #: ../src/main_window_file.vala:51
 msgid "Manage personal templates"
@@ -2137,7 +2121,7 @@ msgstr "Př_iblížit"
 
 #: ../src/main_window.vala:34
 msgid "Enlarge the font"
-msgstr "Zvětšit písmo"
+msgstr "Zvětšit font"
 
 #: ../src/main_window.vala:35
 msgid "Zoom _Out"
@@ -2145,7 +2129,7 @@ msgstr "_Oddálit"
 
 #: ../src/main_window.vala:36
 msgid "Shrink the font"
-msgstr "Zmenšit písmo"
+msgstr "Zmenšit font"
 
 #: ../src/main_window.vala:37
 msgid "_Reset Zoom"
@@ -2153,7 +2137,7 @@ msgstr "_Základní přiblížení"
 
 #: ../src/main_window.vala:38
 msgid "Reset the size of the font"
-msgstr "Vrátit velikost písma na základní"
+msgstr "Vrátit velikost fontu na základní"
 
 #. Search
 #: ../src/main_window.vala:41
@@ -2177,7 +2161,7 @@ msgid "Search for and replace text"
 msgstr "Hledat a nahradit text"
 
 #: ../src/main_window.vala:46
-msgid "_Go to Line..."
+msgid "_Go to Line…"
 msgstr "_Přejít na řádek…"
 
 #: ../src/main_window.vala:47
@@ -2305,12 +2289,12 @@ msgid "Edit Anyway"
 msgstr "Přesto upravit"
 
 #: ../src/main_window.vala:661
-msgid "Don't Edit"
+msgid "Don’t Edit"
 msgstr "Neupravovat"
 
 #: ../src/main_window.vala:756
 #, c-format
-msgid "Save changes to document \"%s\" before closing?"
+msgid "Save changes to document “%s” before closing?"
 msgstr "Uložit před zavřením změny v dokumentu „%s“?"
 
 #: ../src/main_window.vala:815
@@ -2351,7 +2335,7 @@ msgstr[2] "znacích"
 #: ../src/preferences_dialog.vala:344
 #, c-format
 msgid "Use the system fixed width font (%s)"
-msgstr "Použít systémové písmo s pevnou šířkou (%s)"
+msgstr "Použít systémový font s pevnou šířkou (%s)"
 
 #: ../src/project_dialogs.vala:28
 msgid "New Project"
@@ -2372,7 +2356,7 @@ msgstr "Hlavní soubor"
 
 #: ../src/project_dialogs.vala:102
 #, c-format
-msgid "There is a conflict with the project \"%s\"."
+msgid "There is a conflict with the project “%s”."
 msgstr "Došlo ke konfliktu s projektem „%s“."
 
 #: ../src/project_dialogs.vala:119
@@ -2393,7 +2377,7 @@ msgstr "V_ymazat vše"
 
 #: ../src/project_dialogs.vala:273
 #, c-format
-msgid "Do you really want to delete the project \"%s\"?"
+msgid "Do you really want to delete the project “%s”?"
 msgstr "Chcete opravdu odstranit projekt „%s“?"
 
 #: ../src/project_dialogs.vala:294
@@ -2649,20 +2633,20 @@ msgstr "Editor"
 
 #: ../src/ui/preferences_dialog.ui.h:11
 msgid "Font"
-msgstr "Písmo"
+msgstr "Font"
 
 #: ../src/ui/preferences_dialog.ui.h:13
 #, no-c-format
 msgid "_Use the system fixed width font (%s)"
-msgstr "Po_užívat systémové písmo s pevnou šířkou (%s)"
+msgstr "Po_užívat systémový font s pevnou šířkou (%s)"
 
 #: ../src/ui/preferences_dialog.ui.h:14
 msgid "Editor _font: "
-msgstr "_Písmo editoru:"
+msgstr "_Font editoru:"
 
 #: ../src/ui/preferences_dialog.ui.h:15
 msgid "Pick the editor font"
-msgstr "Výběr písma editoru"
+msgstr "Výběr fontu editoru"
 
 #: ../src/ui/preferences_dialog.ui.h:16
 msgid "Color Scheme"
@@ -2670,29 +2654,25 @@ msgstr "Barevné schéma"
 
 #: ../src/ui/preferences_dialog.ui.h:17
 msgid "Font & Colors"
-msgstr "Písmo a barvy"
+msgstr "Font a barvy"
 
 #: ../src/ui/preferences_dialog.ui.h:18
 msgid "Interactive completion after"
 msgstr "Automaticky doplňovat po"
 
 #: ../src/ui/preferences_dialog.ui.h:19
-msgid "Number of characters after &apos;\\&apos;"
+msgid "Number of characters after “\\”"
 msgstr "Počet znaků za „\\“"
 
 #: ../src/ui/preferences_dialog.ui.h:20
-msgid "Number of characters after '\\'"
-msgstr "Počet znaků za „\\“"
-
-#: ../src/ui/preferences_dialog.ui.h:21
 msgid "File Clean-Up"
 msgstr "Mazat nepotřebné soubory"
 
-#: ../src/ui/preferences_dialog.ui.h:23
+#: ../src/ui/preferences_dialog.ui.h:22
 msgid "Automatically clean-up files after close"
 msgstr "Po zavření automaticky vymazat nepotřebné soubory"
 
-#: ../src/ui/preferences_dialog.ui.h:24
+#: ../src/ui/preferences_dialog.ui.h:23
 msgid ""
 "The spell-checking settings can also be changed on a file-by-file basis via "
 "the Tools menu."
@@ -2700,18 +2680,18 @@ msgstr ""
 "Nastavení kontroly pravopisu lze měnit také soubor od souboru přes nabídku "
 "Nástroje."
 
-#: ../src/ui/preferences_dialog.ui.h:25
+#: ../src/ui/preferences_dialog.ui.h:24
 msgid "Default Spell-Checking Settings"
 msgstr "Výchozí nastavení kontroly pravopisu"
 
-#: ../src/ui/preferences_dialog.ui.h:26
+#: ../src/ui/preferences_dialog.ui.h:25
 msgid "Language:"
 msgstr "Jazyk:"
 
-#: ../src/ui/preferences_dialog.ui.h:27
+#: ../src/ui/preferences_dialog.ui.h:26
 msgid "Highlight misspelled words"
 msgstr "Zvýrazňovat pravopisné chyby"
 
-#: ../src/ui/preferences_dialog.ui.h:28
+#: ../src/ui/preferences_dialog.ui.h:27
 msgid "Other"
 msgstr "Ostatní"
