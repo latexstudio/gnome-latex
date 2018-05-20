@@ -1,11 +1,16 @@
 GNOME LaTeX NEWS
 
-Release 3.28.1, 2018-xx-yy (not yet released)
+Release 3.28.1, 2018-05-20
 --------------------------
 * Warning for packagers:
-  For the vala code you must keep the generated C code from the tarball,
+  For the Vala code you must keep the generated C code from the tarball,
   because if the C code is re-generated with valac >= 0.41 then gnome-latex
   will have various crashes.
+
+* New configure build option: --disable-dconf-migration, intended to be used
+  only on OSes where dconf cannot be installed.
+
+* Translation updates.
 
 Release 3.28.0, 2018-04-08
 --------------------------
