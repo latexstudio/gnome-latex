@@ -471,6 +471,9 @@ latexila_utils_create_parent_directories (GFile   *file,
  * Returns: (transfer floating): a #GtkContainer containing @widget_top and
  * @widget_bottom.
  */
+/* TODO try to simply add the GTK_STYLE_CLASS_LINKED class to the
+ * GtkStyleContext of a GtkGrid.
+ */
 GtkWidget *
 latexila_utils_join_widgets (GtkWidget *widget_top,
 			     GtkWidget *widget_bottom)
