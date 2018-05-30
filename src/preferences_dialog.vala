@@ -157,7 +157,8 @@ public class PreferencesDialog : Dialog
         Widget forget_no_tabs = builder.get_object ("forget_no_tabs") as Widget;
         settings.bind ("forget-no-tabs", forget_no_tabs, "active",
             SettingsBindFlags.DEFAULT);
-        set_sensitivity (settings, "insert-spaces", forget_no_tabs);
+        insert_spaces_checkbutton.bind_property ("active", forget_no_tabs, "sensitive",
+            BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
 
         var hl_current_line_checkbutton =
             builder.get_object ("hl_current_line_checkbutton");
@@ -182,7 +183,8 @@ public class PreferencesDialog : Dialog
         set_spin_button_range (autosave_spinbutton, settings, "auto-save-interval");
         settings.bind ("auto-save-interval", autosave_spinbutton, "value",
             SettingsBindFlags.DEFAULT);
-        set_sensitivity (settings, "auto-save", autosave_spinbutton);
+        autosave_checkbutton.bind_property ("active", autosave_spinbutton, "sensitive",
+            BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
 
         Label autosave_label = builder.get_object ("autosave_label") as Label;
         set_plural (autosave_label, settings, "auto-save-interval",
@@ -215,7 +217,9 @@ public class PreferencesDialog : Dialog
             SettingsBindFlags.DEFAULT);
 
         var font_hbox = builder.get_object ("font_hbox") as Widget;
-        set_sensitivity (settings, "use-default-font", font_hbox, false);
+        default_font_checkbutton.bind_property ("active", font_hbox, "sensitive",
+            BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE |
+            BindingFlags.INVERT_BOOLEAN);
 
         TreeView schemes_treeview = builder.get_object ("schemes_treeview") as TreeView;
         string current_scheme_id = settings.get_string ("scheme");
@@ -280,8 +284,9 @@ public class PreferencesDialog : Dialog
             "interactive-completion-num");
         settings.bind ("interactive-completion-num", interactive_comp_spinbutton, "value",
             SettingsBindFlags.DEFAULT);
-        set_sensitivity (settings, "interactive-completion",
-            interactive_comp_spinbutton);
+        interactive_comp_checkbutton.bind_property ("active",
+            interactive_comp_spinbutton, "sensitive",
+            BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
 
         Label interactive_comp_label =
             builder.get_object ("interactive_comp_label") as Label;
@@ -318,24 +323,12 @@ public class PreferencesDialog : Dialog
             builder.get_object ("auto_clean_up_checkbutton") as Widget;
         latex_settings.bind ("automatic-clean", auto_clean_up_checkbutton, "active",
             SettingsBindFlags.DEFAULT);
-        set_sensitivity (latex_settings, "no-confirm-clean", auto_clean_up_checkbutton);
+        confirm_clean_up_checkbutton.bind_property ("active", auto_clean_up_checkbutton,
+            "sensitive", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
 
         var clean_up_entry = builder.get_object ("clean_up_entry");
         latex_settings.bind ("clean-extensions", clean_up_entry, "text",
             SettingsBindFlags.DEFAULT);
-    }
-
-    private void set_sensitivity (GLib.Settings settings, string key, Widget widget,
-        bool must_be_enabled = true)
-    {
-        bool val = settings.get_boolean (key);
-        widget.set_sensitive (must_be_enabled ? val : !val);
-
-        settings.changed[key].connect ((setting, k) =>
-        {
-            bool v = setting.get_boolean (k);
-            widget.set_sensitive (must_be_enabled ? v : !v);
-        });
     }
 
     private void set_system_font_label (Button button)
