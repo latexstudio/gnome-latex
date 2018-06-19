@@ -43,7 +43,7 @@ public class MainWindow : ApplicationWindow
             N_("Search for text"), on_search_find },
         { "SearchReplace", "edit-find-replace", N_("Find and _Replace"), "<Control>H",
             N_("Search for and replace text"), on_search_replace },
-        { "SearchGoToLine", "go-jump", N_("_Go to Line…"), "<Control>G",
+        { "SearchGoToLine", "go-jump", N_("_Go to Line…"), "<Control>L",
             N_("Go to a specific line"), on_search_goto_line },
         { "SearchForward", null, N_("_Jump to PDF"), "<Control><Alt>F",
             N_("Jump to the associated position in the PDF file. Another shortcut: Ctrl+click, which works in both directions."),
