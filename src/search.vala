@@ -222,27 +222,12 @@ public class SearchAndReplace : GLib.Object
 
         button_close.clicked.connect (hide);
 
-        button_previous.clicked.connect (() =>
-        {
-            if (_search_context == null)
-                return;
-
-            TextIter iter;
-            TextIter match_start;
-            TextIter match_end;
-
-            Document doc = _search_context.get_buffer () as Document;
-            doc.get_selection_bounds (out iter, null);
-
-            if (_search_context.backward (iter, out match_start, out match_end, null))
-            {
-                doc.select_range (match_start, match_end);
-                doc.tab.view.scroll_to_cursor ();
-            }
-        });
-
         button_next.clicked.connect (search_forward);
         _entry_find.activate.connect (search_forward);
+        _entry_find.next_match.connect (search_forward);
+
+        button_previous.clicked.connect (search_backward);
+        _entry_find.previous_match.connect (search_backward);
 
         _entry_find.changed.connect (() =>
         {
@@ -275,6 +260,7 @@ public class SearchAndReplace : GLib.Object
             }
         });
 
+        _entry_find.stop_search.connect (hide);
         _entry_find.key_press_event.connect ((event) =>
         {
             switch (event.keyval)
@@ -283,10 +269,6 @@ public class SearchAndReplace : GLib.Object
                     // TAB in find => go to replace
                     show_search_and_replace ();
                     _entry_replace.grab_focus ();
-                    return true;
-
-                case Gdk.Key.Escape:
-                    hide ();
                     return true;
 
                 default:
@@ -506,6 +488,25 @@ public class SearchAndReplace : GLib.Object
         doc.get_selection_bounds (null, out iter);
 
         if (_search_context.forward (iter, out match_start, out match_end, null))
+        {
+            doc.select_range (match_start, match_end);
+            doc.tab.view.scroll_to_cursor ();
+        }
+    }
+
+    private void search_backward ()
+    {
+        if (_search_context == null)
+            return;
+
+        TextIter iter;
+        TextIter match_start;
+        TextIter match_end;
+
+        Document doc = _search_context.get_buffer () as Document;
+        doc.get_selection_bounds (out iter, null);
+
+        if (_search_context.backward (iter, out match_start, out match_end, null))
         {
             doc.select_range (match_start, match_end);
             doc.tab.view.scroll_to_cursor ();
