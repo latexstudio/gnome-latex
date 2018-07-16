@@ -1,5 +1,11 @@
 GNOME LaTeX NEWS
 
+Release 3.30.0, 2018-07-16
+--------------------------
+* Change go-to-line shortcut from Ctrl+G to Ctrl+L.
+* Adapt some Vala code to make it work with valac >= 0.42.
+* Translation updates.
+
 Release 3.28.1, 2018-05-20
 --------------------------
 * Warning for packagers:
