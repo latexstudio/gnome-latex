@@ -1,5 +1,11 @@
 GNOME LaTeX NEWS
 
+Release 3.30.1, 2018-07-25
+--------------------------
+* Come back to valac 0.40, more crashes have been discovered when gnome-latex
+  is compiled with valac git master (what will become valac 0.42).
+* Translation updates.
+
 Release 3.30.0, 2018-07-16
 --------------------------
 * Change go-to-line shortcut from Ctrl+G to Ctrl+L.
