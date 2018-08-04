@@ -39,7 +39,6 @@ vala_files =				\
 	error_entry.vala		\
 	factory.vala			\
 	file_browser.vala		\
-	finance.vala			\
 	glatex_app.vala			\
 	latex_menu.vala			\
 	main.vala			\

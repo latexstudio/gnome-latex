@@ -538,8 +538,6 @@ migrate_latexila_to_gnome_latex_gsettings (void)
 		"preferences/ui/show-build-warnings",
 		"preferences/ui/side-panel-component",
 		"preferences/ui/side-panel-visible",
-		"state/dialogs/finance/last-shown-date",
-		"state/dialogs/finance/remind-later",
 		"state/window/documents",
 		"state/window/side-panel-size",
 		"state/window/size",

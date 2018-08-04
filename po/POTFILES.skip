@@ -17,7 +17,6 @@ src/document_view.c
 src/encodings.c
 src/error_entry.c
 src/file_browser.c
-src/finance.c
 src/glatex_app.c
 src/latex_menu.c
 src/main.c

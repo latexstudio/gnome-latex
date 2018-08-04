@@ -65,8 +65,6 @@ public class MainWindow : ApplicationWindow
             N_("Open the GNOME LaTeX documentation") },
         { "HelpLatexReference", null, N_("_LaTeX Reference"), null,
             N_("The Kile LaTeX Reference"), on_help_latex_reference },
-        { "HelpFinance", null, "GNOME LaTeX _Fundraising", null,
-            "Donate to demonstrate your appreciation of GNOME LaTeX and help its future development" },
         { "HelpAbout", "help-about", N_("_About"), null,
             N_("About GNOME LaTeX") }
     };
@@ -305,8 +303,6 @@ public class MainWindow : ApplicationWindow
         restore_state ();
         show_or_hide_widgets ();
         show ();
-
-        Finance.show_dialog (this, true);
     }
 
     // Force to show icons in the menu.
@@ -352,8 +348,6 @@ public class MainWindow : ApplicationWindow
             _action_group, "FileQuit");
         Amtk.utils_bind_g_action_to_gtk_action (app, "help",
             _action_group, "HelpContents");
-        Amtk.utils_bind_g_action_to_gtk_action (app, "fundraising",
-            _action_group, "HelpFinance");
         Amtk.utils_bind_g_action_to_gtk_action (app, "about",
             _action_group, "HelpAbout");
 

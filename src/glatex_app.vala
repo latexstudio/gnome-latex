@@ -29,7 +29,6 @@ public class GlatexApp : Gtk.Application
         { "preferences", preferences_cb },
         { "manage-build-tools", manage_build_tools_cb },
         { "help", help_cb },
-        { "fundraising", fundraising_cb },
         { "about", about_cb },
         { "quit", quit_cb }
     };
@@ -199,11 +198,6 @@ public class GlatexApp : Gtk.Application
         {
             warning ("Impossible to open the documentation: %s", e.message);
         }
-    }
-
-    private void fundraising_cb ()
-    {
-        Finance.show_dialog (get_active_main_window (), false);
     }
 
     private void about_cb ()
