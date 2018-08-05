@@ -1,5 +1,38 @@
-How to contribute to GNOME LaTeX
-================================
+How to not contribute to GNOME LaTeX
+====================================
+
+Contributions are no longer welcomed and will not be reviewed or accepted. If
+you want to work on gnome-latex, please fork the project. The reason is
+because, from my experience, new maintainers want to add features that don't
+follow the gnome-latex principles for the user experience [1], and I would
+still like to use my application the way I've developed it. And in case I want
+to come back and maintain again gnome-latex in the future, I would like it to
+be in the same state that I've left it, to avoid the need to fork my own
+project.
+
+[1] https://blogs.gnome.org/swilmet/2012/08/19/latexila-some-principles-for-the-user-experience/
+
+Notes to potential developers who want to fork gnome-latex
+----------------------------------------------------------
+
+I wrote the Vala code when I was a beginner, so some parts may be ugly and not
+well implemented. The liblatexila, written in C, is much better implemented.
+
+For the build tools, parsing the commands output is quite fragile, especially
+the output of latexmk. And the latex post-processor is full of heuristics, some
+warning/error messages are not extracted correctly. With retrospection, it was
+a bad idea to implement it like that. To have a more robust implementation, it
+would have been better to parse the log file and have a log viewer, see:
+https://gitlab.gnome.org/GNOME/gnome-latex/issues/30
+In general for my other projects I now try to avoid implementing features that
+have a fragile implementation (i.e. something not based on stable APIs, or with
+heuristics, etc).
+For gnome-latex, if the build tools break in the future, a solution is to
+create a container with an older version of TeX Live bundled (or at least an
+older version of latexmk bundled).
+
+Previous content of this file:
+==============================
 
 GNOME LaTeX is hosted on the GNOME GitLab instance, you can fork the repository
 and then do a merge request:
