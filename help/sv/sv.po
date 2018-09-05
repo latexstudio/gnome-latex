@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
-"POT-Creation-Date: 2017-12-27 06:53+0000\n"
-"PO-Revision-Date: 2018-01-04 02:04+0100\n"
+"POT-Creation-Date: 2018-04-11 16:00+0000\n"
+"PO-Revision-Date: 2018-09-05 22:42+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -396,7 +396,7 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/spell_checking.page:10
-msgid "Spell Checking"
+msgid "Spell-Checking"
 msgstr "Stavningskontroll"
 
 #. (itstool) path: synopsis/p
@@ -406,13 +406,13 @@ msgstr "Syftet är att enkelt rätta felstavningar."
 
 #. (itstool) path: section/title
 #: C/spell_checking.page:17
-msgid "Use the spell checking"
+msgid "Use the spell-checking"
 msgstr "Använd stavningskontrollen"
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:18
 msgid ""
-"The default spell checking settings can be changed in the preferences "
+"The default spell-checking settings can be changed in the preferences "
 "dialog: <guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu"
 "\">Preferences</gui> <gui style=\"tab\">Other</gui> </guiseq>"
 msgstr ""
@@ -448,22 +448,32 @@ msgstr "Uppslagsverk"
 #. (itstool) path: section/p
 #: C/spell_checking.page:41
 msgid ""
-"<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> is "
-"used for the spell checking in GNOME LaTeX. Enchant uses one or several "
-"backends such as Hunspell or Aspell for the dictionaries."
+"<link href=\"https://wiki.gnome.org/Projects/gspell\">gspell</link> is used "
+"for the spell-checking in GNOME LaTeX. gspell uses <link href=\"https://"
+"abiword.github.io/enchant/\">Enchant</link>, which in turn supports several "
+"backends such as Hunspell or Aspell for the dictionaries. The Aspell backend "
+"doesn't work well with gspell, Hunspell is preferred. If dictionaries for "
+"both Aspell and Hunspell are installed for the same language, by default "
+"Enchant prefers the Hunspell one."
 msgstr ""
-"<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> "
-"används för stavningskontroll i GNOME LaTeX. Enchant använder en eller flera "
-"bakändar som Hunspell eller Aspell för uppslagsverken."
+"<link href=\"https://wiki.gnome.org/Projects/gspell\">gspell</link> används "
+"för stavningskontrollen i GNOME LaTeX. gspell använder <link href=\"https://"
+"abiword.github.io/enchant/\">Enchant</link>, vilket i sin tur stöder flera "
+"bakändar så som Hunspell eller Aspell för uppslagsverken. Aspell-bakänden "
+"fungerar inte bra med gspell, Hunspell är att föredra. Om uppslagsverk för "
+"både Aspell och Hunspell installerats för samma språk föredrar Enchant som "
+"standard det för Hunspell."
 
 #. (itstool) path: section/p
-#: C/spell_checking.page:47
+#: C/spell_checking.page:51
 msgid ""
-"If your language is not listed, install a dictionary for one of the "
-"supported backends."
+"If your language is not listed in GNOME LaTeX, install a dictionary for one "
+"of the supported Enchant backends (for most languages the best choice is to "
+"install an Hunspell dictionary)."
 msgstr ""
-"Om ditt språk inte listas, installera ett uppslagsverk för en av de bakändar "
-"som stöds."
+"Om ditt språk inte listas i GNOME LaTeX, installera ett uppslagsverk för en "
+"av de Enchant-bakändar som stöds (för de flesta språk är det bästa valet att "
+"installera ett Hunspell-uppslagsverk)."
 
 #. (itstool) path: page/title
 #: C/structure.page:10
@@ -661,6 +671,15 @@ msgid ""
 msgstr ""
 "<app>Evince</app> måste startas av <app>GNOME LaTeX</app>. Annars kommer "
 "hoppet från PDF-filen till .tex-filen inte att fungera."
+
+#~ msgid ""
+#~ "<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> "
+#~ "is used for the spell checking in GNOME LaTeX. Enchant uses one or "
+#~ "several backends such as Hunspell or Aspell for the dictionaries."
+#~ msgstr ""
+#~ "<link href=\"http://www.abisource.com/projects/enchant/\">Enchant</link> "
+#~ "används för stavningskontroll i GNOME LaTeX. Enchant använder en eller "
+#~ "flera bakändar som Hunspell eller Aspell för uppslagsverken."
 
 #~ msgid "Forward and Backward Search"
 #~ msgstr "Framåt- och bakåtsökning"
