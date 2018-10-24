@@ -123,17 +123,6 @@ public class GlatexApp : Gtk.Application
         add_action_entries (_app_actions, this);
         Latexila.latex_commands_add_action_infos (this);
 
-        GLib.MenuModel manual_app_menu = get_menu_by_id ("manual-app-menu");
-        if (manual_app_menu == null)
-            warning ("manual-app-menu not available.");
-
-        // The menubar contains everything, so we don't need the fallback app
-        // menu on desktops that don't support app menus (e.g. on Xfce).
-        if (prefers_app_menu ())
-        {
-            set_app_menu (manual_app_menu);
-        }
-
         Latexila.utils_register_icons ();
         StockIcons.register_stock_icons ();
         setup_theme_extensions ();
