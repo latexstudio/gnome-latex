@@ -1,7 +1,0 @@
-FILE(GLOB logo *.png)
-INSTALL(FILES ${logo} DESTINATION ${DATA_DIR}/images/logo)
-INSTALL(FILES icon16.png DESTINATION share/icons/hicolor/16x16 RENAME latexila.png)
-INSTALL(FILES icon22.png DESTINATION share/icons/hicolor/22x22 RENAME latexila.png)
-INSTALL(FILES icon24.png DESTINATION share/icons/hicolor/24x24 RENAME latexila.png)
-INSTALL(FILES icon32.png DESTINATION share/icons/hicolor/32x32 RENAME latexila.png)
-INSTALL(FILES icon48.png DESTINATION share/icons/hicolor/48x48 RENAME latexila.png)
