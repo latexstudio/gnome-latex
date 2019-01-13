@@ -13,6 +13,7 @@
     "--filesystem=home",
     "--share=ipc",
     "--socket=session-bus",
+    "--filesystem=xdg-run/dconf",
     "--talk-name=ca.desrt.dconf",
     "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
     "--talk-name=org.freedesktop.Notifications",
@@ -46,7 +47,8 @@
       "sources" : [
         {
           "type" : "git",
-          "url" : "https://gitlab.gnome.org/GNOME/gtksourceview.git"
+          "url" : "https://gitlab.gnome.org/GNOME/gtksourceview.git",
+          "tag" : "4.0.3"
         }
       ]
     },
