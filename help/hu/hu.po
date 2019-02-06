@@ -1,17 +1,17 @@
 # Hungarian translation for LaTeXila help.
-# Copyright (C) 2014-2016 Free Software Foundation, Inc.
-# This file is distributed under the same license as the user help.
+# Copyright (C) 2014, 2016, 2019 Free Software Foundation, Inc.
+# This file is distributed under the same license as the LaTeXila help.
 #
 # Anca Tibor Attila <anca dot tibor at posteo dot de>, 2014.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2014.
-# Balázs Úr <urbalazs at gmail dot com>, 2016.
+# Balázs Úr <urbalazs at gmail dot com>, 2016, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: LaTeXila_help master\n"
-"POT-Creation-Date: 2016-01-05 15:01+0000\n"
-"PO-Revision-Date: 2016-08-19 22:16+0200\n"
+"POT-Creation-Date: 2018-02-23 15:43+0000\n"
+"PO-Revision-Date: 2019-02-06 23:22+0100\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
-"Language-Team: Hungarian <openscope at gmail dot com>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -394,11 +394,11 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/projects.page:39
 msgid ""
-"The <link xref=\"synctex#forward_search\">forward search</link> works for a "
-"secondary file of a project."
+"<link xref=\"synctex#from_tex_to_pdf\">Jumping from a .tex file to the PDF</"
+"link> works for a secondary .tex file belonging to a project."
 msgstr ""
-"Az <link xref=\"synctex#forward_search\">előre ugró keresés</link> a projekt "
-"egy másodlagos fájljával működik."
+"Az <link xref=\"synctex#from_tex_to_pdf\">ugrás egy .tex fájlból a PDF-re</"
+"link> a projekthez tartozó másodlagos .tex fájlnál működik."
 
 #. (itstool) path: page/title
 #: C/spell_checking.page:10
@@ -417,19 +417,15 @@ msgstr "A helyesírás-ellenőrzés használata"
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:18
-#| msgid ""
-#| "By default, when a LaTeX command is typed, proposals will be shown after "
-#| "two characters. This can be configured in the preferences dialog: "
-#| "<guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu\">Preferences</"
-#| "gui> <gui style=\"tab\">Other</gui> </guiseq>"
 msgid ""
 "The default spell checking settings can be changed in the preferences "
 "dialog: <guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu"
 "\">Preferences</gui> <gui style=\"tab\">Other</gui> </guiseq>"
 msgstr ""
 "Az alapértelmezett helyesírás-ellenőrzési beállítások megváltoztathatók a "
-"beállítások párbeszédablakban: <guiseq> <gui style=\"menu\">Szerkesztés</gui> "
-"<gui style=\"menu\">Beállítások</gui> <gui style=\"tab\">Egyéb</gui> </guiseq>"
+"beállítások párbeszédablakban: <guiseq> <gui style=\"menu\">Szerkesztés</"
+"gui> <gui style=\"menu\">Beállítások</gui> <gui style=\"tab\">Egyéb</gui> </"
+"guiseq>"
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:27
@@ -437,23 +433,20 @@ msgid ""
 "The settings can also be changed on a file-by-file basis via the <gui style="
 "\"menu\">Tools</gui> menu."
 msgstr ""
-"A beállítások fájlonkénti alapon is megváltoztathatók az <gui style=\"menu\">"
-"Eszközök</gui> menün keresztül."
+"A beállítások fájlonkénti alapon is megváltoztathatók az <gui style=\"menu"
+"\">Eszközök</gui> menün keresztül."
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:32
-#| msgid ""
-#| "Once the spell checking is activated, the misspelled words will be "
-#| "underlined in red. A right click on a misspelled word will show proposals."
 msgid ""
 "If you activate the <gui style=\"menu\">Highlight Misspelled Words</gui> "
 "option, the misspelled words will be underlined in red in the document. A "
 "right click on a misspelled word will show proposals."
 msgstr ""
 "Ha bekapcsolja a <gui style=\"menu\">Helytelenül írt szavak kiemelése</gui> "
-"lehetőséget, akkor a helytelenül írt szavak "
-"pirossal lesznek aláhúzva a dokumentumban. Ha a jobb egérgombbal rákattint "
-"egy helytelenül írt szóra, akkor javaslatok fognak megjelenni."
+"lehetőséget, akkor a helytelenül írt szavak pirossal lesznek aláhúzva a "
+"dokumentumban. Ha a jobb egérgombbal rákattint egy helytelenül írt szóra, "
+"akkor javaslatok fognak megjelenni."
 
 #. (itstool) path: section/title
 #: C/spell_checking.page:40
@@ -474,9 +467,6 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:47
-#| msgid ""
-#| "If your language is not listed when doing a right click, install a "
-#| "dictionary for one of the supported backends."
 msgid ""
 "If your language is not listed, install a dictionary for one of the "
 "supported backends."
@@ -578,17 +568,17 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/synctex.page:10
-msgid "Forward and Backward Search"
-msgstr "Előre és hátra ugró keresés"
+msgid "Jumping Between .tex and PDF"
+msgstr "Ugrás a .tex és a PDF között"
 
 #. (itstool) path: synopsis/p
 #: C/synctex.page:13
 msgid ""
-"Synchronization between the document's *.tex files and the resulting PDF "
-"output, opened with the <app>Evince</app> document viewer."
+"Jumping between the document's *.tex files and the resulting PDF output, "
+"opened with the <app>Evince</app> document viewer."
 msgstr ""
-"A dokumentum .tex fájljai és az <app>Evince</app> dokumentummegjelenítő "
-"által megnyitott PDF kimenet közötti szinkronizáció."
+"A dokumentum .tex fájljai és az <app>Evince</app> dokumentummegjelenítővel "
+"megnyitott eredményül kapott PDF kimenet közötti ugrás."
 
 #. (itstool) path: note/p
 #: C/synctex.page:18
@@ -601,31 +591,32 @@ msgstr ""
 
 #. (itstool) path: section/title
 #: C/synctex.page:23
-msgid "Forward Search: from .tex to PDF"
-msgstr "Előre ugró keresés: .tex-ből PDF-be"
+msgid "Jumping from .tex to PDF"
+msgstr "Ugrás .tex-ből PDF-be"
 
 #. (itstool) path: section/p
 #: C/synctex.page:25
 msgid ""
 "From a certain position in the .tex source file, jump to the corresponding "
-"position in the PDF file."
+"position in the PDF file. Also called “forward search”."
 msgstr ""
-"A .tex forrásfájl egy adott pontjáról a PDF fájl megfelelő pontjára ugrik."
+"Ugrás a .tex forrásfájl egy adott pontjáról a PDF fájl megfelelő pontjára. "
+"Ezt „előremenő keresésnek” is hívják."
 
 #. (itstool) path: section/p
 #: C/synctex.page:28
-msgid "There are different ways to do a forward search:"
-msgstr "Az előre ugró keresésnek több módja van:"
+msgid "There are different ways to do this action:"
+msgstr "Különböző módok vannak a művelet elvégzéséhez:"
 
 # The gui Search forward should have the style "menuitem" in the original help file.
 #. (itstool) path: item/p
 #: C/synctex.page:30
 msgid ""
 "In the menu: <guiseq> <gui style=\"menu\">Search</gui> <gui style=\"menu"
-"\">Search Forward</gui> </guiseq>"
+"\">Jump to PDF</gui> </guiseq>"
 msgstr ""
-"A <guiseq><gui style=\"menu\">Keresés</gui><gui style=\"menu\">Keresés "
-"előre</gui></guiseq> menüpont segítségével"
+"A menüben: <guiseq> <gui style=\"menu\">Keresés</gui> <gui style=\"menu"
+"\">Ugrás PDF-hez</gui> </guiseq>"
 
 #. (itstool) path: item/p
 #: C/synctex.page:36
@@ -637,24 +628,33 @@ msgstr ""
 #: C/synctex.page:44
 msgid ""
 "If a document is split into several .tex files, create a <link xref="
-"\"projects\">project</link>. There is no need to mention the main file with "
-"a LaTeX comment in each secondary .tex file, like it is explained in the "
-"<link href=\"help:evince/synctex-search#forward-search\"> <app>Evince</app> "
-"documentation. </link>"
+"\"projects\">project</link>. Unlike what is explained in the <link href="
+"\"help:evince/synctex-search#forward-search\"> <app>Evince</app> "
+"documentation </link>, there is no need to mention the main file with a "
+"LaTeX comment in each secondary .tex file."
 msgstr ""
-"Ha egy dokumentum több .tex fájlra terjed ki, akkor hozzon létre egy <link "
-"xref=\"projects\">projektet</link>. Az <link href=\"help:evince/synctex-"
-"search#forward-search\"><app>Evince</app> dokumentációjában</link> "
+"Ha egy dokumentum több .tex fájlra van felosztva, akkor hozzon létre egy "
+"<link xref=\"projects\">projektet</link>. Az <link href=\"help:evince/"
+"synctex-search#forward-search\"><app>Evince</app> dokumentációjában</link> "
 "leírtakkal ellentétben nincs szükség arra, hogy minden egyes másodlagos .tex "
-"fájlban LaTeX-parancs utaljon a fő .tex fájlra."
+"fájlban LaTeX-parancs utaljon a fő fájlra."
 
 #. (itstool) path: section/title
 #: C/synctex.page:53
-msgid "Backward Search"
-msgstr "Hátra ugró keresés"
+msgid "Jumping from PDF to .tex"
+msgstr "Ugrás PDF-ből .tex-be"
 
 #. (itstool) path: section/p
 #: C/synctex.page:55
+msgid ""
+"From a certain position in the PDF file, jump to the corresponding position "
+"in the .tex source file. Also called “backward search”."
+msgstr ""
+"Ugrás a PDF fájl egy adott pontjáról a .tex forrásfájl megfelelő pontjára. "
+"Ezt „visszafelé menő keresésnek” is hívják."
+
+#. (itstool) path: section/p
+#: C/synctex.page:58
 msgid ""
 "In <app>Evince</app>, press <keyseq> <key>Ctrl</key> <key>left click</key> </"
 "keyseq>, and the corresponding position in the .tex file will be opened in "
@@ -665,11 +665,11 @@ msgstr ""
 "fájl megfelelő pozíciójára ugrik."
 
 #. (itstool) path: section/p
-#: C/synctex.page:63
+#: C/synctex.page:66
 msgid ""
-"<app>Evince</app> have to be launched by <app>LaTeXila</app>. Else, the "
-"backward search will not work."
+"<app>Evince</app> has to be launched by <app>LaTeXila</app>. Else, jumping "
+"from the PDF to the .tex file will not work."
 msgstr ""
-"Az <app>Evince</app> alkalmazást a <app>LaTeXila</app> kell indítsa, másképp "
-"nem működik a hátra ugró keresés."
+"Az <app>Evince</app> alkalmazást a <app>LaTeXila</app> programnak kell "
+"indítania. Egyébként a PDF-ből a .tex fájlra ugrás nem fog működni."
 
