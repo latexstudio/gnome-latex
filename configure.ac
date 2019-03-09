@@ -180,12 +180,10 @@ AC_CONFIG_FILES([
 	data/icons/32x32/apps/Makefile
 	data/icons/48x48/Makefile
 	data/icons/48x48/apps/Makefile
-	data/icons/128x128/Makefile
-	data/icons/128x128/apps/Makefile
 	data/icons/256x256/Makefile
 	data/icons/256x256/apps/Makefile
-	data/icons/scalable/Makefile
-	data/icons/scalable/apps/Makefile
+	data/icons/symbolic/Makefile
+	data/icons/symbolic/apps/Makefile
 	data/images/Makefile
 	data/templates/Makefile
 	docs/Makefile
