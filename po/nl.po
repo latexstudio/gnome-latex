@@ -5,24 +5,27 @@
 #
 # Sébastien Wilmet <sebastien.wilmet@gmail.com>, 2011.
 # Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2013, 2014.
+# Nathan Follens <nthn@unseen.is>, 2019.
+#
+# abstract = samenvatting, of toch abstract? Worden abstracts in LaTeX gebruikt voor iets anders dan 'abstracts' in wetenschappelijke artikels? - Nathan
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila 2.0\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=latexila&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-20 19:50+0000\n"
-"PO-Revision-Date: 2014-08-31 17:35+0200\n"
-"Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
+"POT-Creation-Date: 2018-10-24 15:29+0000\n"
+"PO-Revision-Date: 2019-03-09 18:26+0100\n"
+"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #. (itstool) path: tool/label
-#: build_tools.xml:43 ../src/build_tool_dialog.vala:166
+#: build_tools.xml:43 ../src/build_tool_dialog.vala:165
 msgid "View PDF"
 msgstr "PDF bekijken"
 
@@ -32,7 +35,7 @@ msgid "View the PDF file"
 msgstr "Het PDF-bestand bekijken"
 
 #. (itstool) path: tool/label
-#: build_tools.xml:49 ../src/build_tool_dialog.vala:165
+#: build_tools.xml:49 ../src/build_tool_dialog.vala:164
 msgid "View DVI"
 msgstr "DVI bekijken"
 
@@ -42,24 +45,24 @@ msgid "View the DVI file"
 msgstr "Het DVI-bestand bekijken"
 
 #. (itstool) path: tool/label
-#: build_tools.xml:55 ../src/build_tool_dialog.vala:167
+#: build_tools.xml:55 ../src/build_tool_dialog.vala:166
 msgid "View PS"
 msgstr "PS bekijken"
 
 #. (itstool) path: tool/description
 #: build_tools.xml:56
 msgid "View the PostScript file"
-msgstr "het PostScript-bestand bekijken"
+msgstr "Het PostScript-bestand bekijken"
 
 #. (itstool) path: tool/description
 #: build_tools.xml:64
 msgid "Create a PDF file from LaTeX sources with the \"pdflatex\" command"
-msgstr "Een PDF-bestand van LaTeX-bronnen maken met het commando \"pdflatex\""
+msgstr "Een PDF-bestand van LaTeX-bronnen maken met het commando ‘pdflatex’"
 
 #. (itstool) path: tool/description
 #: build_tools.xml:70
 msgid "Create a DVI file from LaTeX sources with the \"latex\" command"
-msgstr "Een DVI-bestand van LaTeX-bronnen maken met het commando \"latex\""
+msgstr "Een DVI-bestand van LaTeX-bronnen maken met het commando ‘latex’"
 
 #. (itstool) path: tool/description
 #: build_tools.xml:78
@@ -86,166 +89,175 @@ msgstr "Het DVI-document converteren naar PostScript-formaat"
 msgid "Convert the PostScript document to the PDF format"
 msgstr "Het PostScript-document converteren naar PDF-formaat"
 
-#: ../data/latexila.appdata.xml.in.h:1
-msgid ""
-"LaTeXila is an integrated LaTeX environment for the GNOME desktop. The idea "
-"of LaTeXila is to always deal directly with the LaTeX code, while "
-"simplifying as most as possible the writing of this LaTeX code."
-msgstr ""
-"LaTeXila is een geïntegreerde LaTeX-omgeving voor de Gnome-werkomgeving. De "
-"bedoeling van LaTeXila is om altijd direct met de LaTeX-code te werken, "
-"waarbij "
-"het schrijven van deze LaTeX-code zoveel mogelijk vereenvoudigd wordt."
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:1
+msgid "LaTeX editor"
+msgstr "LaTeX-verwerker"
 
-#: ../data/latexila.appdata.xml.in.h:2
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:2
+msgid ""
+"GNOME LaTeX is a LaTeX editor for the GNOME desktop, previously named "
+"LaTeXila. GNOME LaTeX permits to concentrate on the content and the "
+"structure of the document instead of being distracted by its presentation."
+msgstr ""
+"Gnome LaTeX is een LaTeX-verwerker voor Gnome, vroeger bekend onder de naam "
+"LaTeXila. Gnome LaTeX laat u toe zich te richten op de inhoud en de "
+"structuur van het document, in plaats van afgeleid te zijn door de "
+"presentatie ervan."
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:3
 msgid ""
 "To help the writing of the LaTeX markup, auto-completion is available as "
-"well as menus and toolbars with the principal commands."
+"well as menus and toolbars with the principal commands. New documents are "
+"created from templates. There are buttons to compile, convert and view a "
+"document in one click. And projects containing several .tex files are "
+"managed easily."
 msgstr ""
-"Om te helpen bij het schrijven van de LaTeX-code is autoaanvulling "
-"beschikbaar, "
-"evenals menu's en werkbalken met daarin de belangrijkste opdrachten."
+"Om u te helpen bij het schrijven van de LaTeX-opmaak, staat automatisch "
+"aanvullen ter uwer beschikking, evenals menu’s en werkbalken met de meest "
+"gebruikte opdrachten. Sjablonen vormen de basis voor het aanmaken van nieuwe "
+"documenten. Er zijn knoppen voor het compileren, converteren en bekijken van "
+"een document via één klik. En het is eenvoudig om projecten met daarin "
+"verschillende .tex-bestanden te beheren."
 
-#: ../data/latexila.appdata.xml.in.h:3
-msgid ""
-"New documents are created from templates. There are buttons to compile, "
-"convert and view a document in one click. And projects containing several ."
-"tex files are managed easily."
-msgstr ""
-"Sjablonen vormen de basis voor het aanmaken van nieuwe documenten. Er zijn "
-"knoppen voor het compileren, converteren en bekijken van een document via "
-"één klik. En het is eenvoudig om projecten met daarin verschillende "
-".tex-bestanden "
-"te beheren."
-
-#: ../data/latexila.appdata.xml.in.h:4
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:4
 msgid ""
 "A side panel contains three components: the document structure to easily "
-"navigate in it; lists of symbols to insert them in a document; and an "
-"integrated file browser."
+"navigate in it; lists of symbols to insert them in a document; and a file "
+"browser."
 msgstr ""
-"Het zijpaneel bevat drie componenten: de documentstructuur waar u gemakkelijk "
-"doorheen navigeert, lijsten met symbolen die in het document ingevoegd kunnen "
-"worden, "
-"en een geïntegreerde bestandsverkenner."
+"Het zijpaneel bevat drie componenten: de documentstructuur waar u "
+"gemakkelijk doorheen navigeert, lijsten met symbolen die in het document "
+"ingevoegd kunnen worden, en een geïntegreerde bestandsverkenner."
 
-#: ../data/latexila.appdata.xml.in.h:5
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:5
 msgid ""
-"LaTeXila has also other features like the spell checking, or the forward and "
-"backward search to switch between the .tex and the PDF."
+"GNOME LaTeX has also other features like the spell-checking, or jumping to "
+"the associated position between the .tex file and the PDF."
 msgstr ""
-"LaTeXila heeft ook andere functies zoals spellingscontrole, of de "
-"mogelijkheid "
-"om naar voren en naar achteren te zoeken om te wisselen tussen het "
-".tex-bestand en het PDF-bestand."
+"Gnome LaTeX heeft ook andere functies zoals spellingscontrole, of "
+"onmiddellijk te springen naar de geassocieerde positie tussen het .tex- en "
+"het PDF-bestand."
 
-#: ../data/latexila.desktop.in.in.h:1
-msgid "LaTeXila"
-msgstr "LaTeXila"
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:6
+msgid "Completion of LaTeX commands"
+msgstr "Aanvullen van LaTeX-opdrachten"
 
-#: ../data/latexila.desktop.in.in.h:2
-msgid "Integrated LaTeX Environment"
-msgstr "Geïntegreerde LaTeX-omgeving"
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:7
+msgid "Generating the PDF file"
+msgstr "Het PDF-bestand wordt gegenereerd"
 
-#: ../data/latexila.desktop.in.in.h:3
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:8
+msgid "Document structure in the side panel"
+msgstr "Documentstructuur in het zijpaneel"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:1
+msgid "LaTeX Editor"
+msgstr "LaTeX-verwerker"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:2
 msgid "Edit LaTeX documents"
 msgstr "LaTeX-documenten bewerken"
 
-#: ../data/latexila.desktop.in.in.h:4
+#: ../data/org.gnome.gnome-latex.desktop.in.h:3
+msgid "text;tex;latex;editor;documents;"
+msgstr "text;tex;latex;editor;documents;verwerker;tekstverwerker;documenten;"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:4
 msgid "Open a New Window"
 msgstr "Een nieuw venster openen"
 
-#: ../data/latexila.desktop.in.in.h:5
+#: ../data/org.gnome.gnome-latex.desktop.in.h:5
 msgid "Open a New Document"
 msgstr "Een nieuw document openen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:1
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:1
 msgid "Use Default Font"
-msgstr "Standaard lettertype gebruiken"
+msgstr "Standaardlettertype gebruiken"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:2
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:2
 msgid ""
-"Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to LaTeXila. If this option is turned off, then "
-"the font named in the \"Editor Font\" option will be used instead of the "
+"Whether to use the system’s default fixed width font for editing text "
+"instead of a font specific to GNOME LaTeX. If this option is turned off, "
+"then the font named in the “Editor Font” option will be used instead of the "
 "system font."
 msgstr ""
 "Of voor het bewerken van tekst het standaard lettertype met vaste breedte "
-"gebruikt moet worden in plaats van een specifiek LaTeXilla lettertype. Als "
+"gebruikt moet worden in plaats van een specifiek Gnome LaTeX-lettertype. Als "
 "deze optie uitgeschakeld is, dan zal het lettertype vermeld in de optie "
-"\"Editor-lettertype\" gebruikt worden in plaats van het systeemlettertype."
+"‘Editor-lettertype’ gebruikt worden in plaats van het systeemlettertype."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:3
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:3
 msgid "Editor Font"
 msgstr "Editor-lettertype"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:4
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:4
 msgid ""
 "A custom font that will be used for the editing area. This will only take "
-"effect if the \"Use Default Font\" option is turned off."
+"effect if the “Use Default Font” option is turned off."
 msgstr ""
 "Een aangepast lettertype dat gebruikt wordt voor het bewerkingsgebied. Dit "
-"zal alleen werken als de optie \"Standaard lettertype gebruiken\" is "
+"zal alleen werken als de optie ‘Standaardlettertype gebruiken’ is "
 "uitgeschakeld."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:5
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:5
 msgid "Style Scheme"
 msgstr "Stijlschema"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:6
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:6
 msgid "The ID of a GtkSourceView Style Scheme used to color the text."
 msgstr ""
 "Het ID van een GtkSourceView-stijlschema gebruikt om de tekst te kleuren."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:7
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:7
 msgid "Create Backup Copies"
 msgstr "Reservekopieën maken"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:8
-msgid "Whether LaTeXila should create backup copies for the files it saves."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:8
+msgid "Whether GNOME LaTeX should create backup copies for the files it saves."
 msgstr ""
-"Of LaTeXila reservekopieën moet maken van de bestanden die opgeslagen worden."
+"Of Gnome LaTeX reservekopieën moet maken van de bestanden die opgeslagen "
+"worden."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:9
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:9
 msgid "Autosave"
 msgstr "Automatisch opslaan"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:10
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:10
 msgid ""
-"Whether LaTeXila should automatically save modified files after a time "
-"interval. You can set the time interval with the \"Autosave Interval\" "
-"option."
+"Whether GNOME LaTeX should automatically save modified files after a time "
+"interval. You can set the time interval with the “Autosave Interval” option."
 msgstr ""
-"Of LaTeXila automatisch gewijzigde bestanden moet opslaan na een "
-"tijdsinterval. U kunt de tijdsinterval instellen met de optie \"Interval "
-"automatisch opslaan\"."
+"Of Gnome LaTeX gewijzigde bestanden automatisch moet opslaan na een "
+"tijdsinterval. U kunt het tijdsinterval instellen met de optie ‘Interval "
+"voor automatisch opslaan’."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:11
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:11
 msgid "Autosave Interval"
-msgstr "Interval automatisch opslaan"
+msgstr "Interval voor automatisch opslaan"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:12
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:12
 msgid ""
-"Number of minutes after which LaTeXila will automatically save modified "
-"files. This will only take effect if the \"Autosave\" option is turned on."
+"Number of minutes after which GNOME LaTeX will automatically save modified "
+"files. This will only take effect if the “Autosave” option is turned on."
 msgstr ""
-"Aantal minuten waarna LaTeXila automatisch gewijzigde bestanden opslaat. Dit "
-"zal alleen werken wanneer de optie \"Automatisch opslaan\" is ingeschakeld."
+"Aantal minuten waarna Gnome LaTeX gewijzigde bestanden automatisch opslaat. "
+"Dit zal alleen werken wanneer de optie ‘Automatisch opslaan’ is ingeschakeld."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:13
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:13
 #: ../src/ui/preferences_dialog.ui.h:9
 msgid "Reopen files on startup"
 msgstr "Bestanden heropenen na opstarten"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:14
-msgid "Whether LaTeXila should reopen the files that was opened the last time."
-msgstr "Of LaTeXila de laatst geopende bestanden moet heropenen."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:14
+msgid ""
+"Whether GNOME LaTeX should reopen the files that was opened the last time."
+msgstr "Of Gnome LaTeX de laatst geopende bestanden moet heropenen."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:15
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:15
 msgid "Tab Size"
 msgstr "Tab-grootte"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:16
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:16
 msgid ""
 "Specifies the number of spaces that should be displayed instead of Tab "
 "characters."
@@ -253,199 +265,216 @@ msgstr ""
 "Specificeert het aantal spaties dat getoond moet worden in plaats van een "
 "tab-teken."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:17
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:17
 msgid "Insert spaces"
 msgstr "Spaties invoegen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:18
-msgid "Whether LaTeXila should insert spaces instead of tabs."
-msgstr "Of LaTeXila spaties moet invoegen in plaats van tabs."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:18
+msgid "Whether GNOME LaTeX should insert spaces instead of tabs."
+msgstr "Of Gnome LaTeX spaties moet invoegen in plaats van tabs."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:19
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:19
 msgid "Forget lack of tabulations"
 msgstr "Het ontbreken van tabulatie vergeten"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:20
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:20
 msgid "Forget you are not using tabulations."
 msgstr "Vergeten dat u geen tabulatie gebruikt."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:21
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:21
 msgid "Display Line Numbers"
 msgstr "Regelnummers tonen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:22
-msgid "Whether LaTeXila should display line numbers in the editing area."
-msgstr "Of LaTeXila regelnummers moet tonen in het bewerkingsgebied."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:22
+msgid "Whether GNOME LaTeX should display line numbers in the editing area."
+msgstr "Of Gnome LaTeX regelnummers moet tonen in het bewerkingsgebied."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:23
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:23
 msgid "Highlight Current Line"
 msgstr "De huidige regel markeren"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:24
-msgid "Whether LaTeXila should highlight the current line."
-msgstr "Of LaTeXila de huidige regel moet markeren."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:24
+msgid "Whether GNOME LaTeX should highlight the current line."
+msgstr "Of Gnome LaTeX de huidige regel moet markeren."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:25
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:25
 msgid "Highlight Matching Brackets"
 msgstr "Overeenkomstige haakjes markeren"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:26
-msgid "Whether LaTeXila should highlight matching brackets."
-msgstr "Of LaTeXila overeenkomstige haakjes moet markeren."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:26
+msgid "Whether GNOME LaTeX should highlight matching brackets."
+msgstr "Of Gnome LaTeX overeenkomstige haakjes moet markeren."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:27
-msgid "Spell checking"
-msgstr "Spellingscontrole"
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:27
+msgid "Highlight Misspelled Words"
+msgstr "Verkeerd gespelde woorden markeren"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:28
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:28
+msgid "Whether misspelled words are highlighted by default."
+msgstr "Of verkeerd gespelde woorden standaard gemarkeerd worden."
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:29
+msgid "Spell-Checking Language"
+msgstr "Taal voor spellingscontrole"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:30
+msgid ""
+"The default language used for the spell-checking. Set to the empty string to "
+"take the best language available based on the environment."
+msgstr ""
+"De standaardtaal voor de spellingscontrole. Als deze tekenreeks leeg is, "
+"wordt de meest geschikte taal gekozen op basis van de omgeving."
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:31
 msgid "Main toolbar is visible"
 msgstr "Hoofdwerkbalk is zichtbaar"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:29
-msgid ""
-"Whether the main toolbar (file open, close, build, ...) should be visible."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:32
+msgid "Whether the main toolbar (file open, close, build…) should be visible."
 msgstr ""
 "Of de hoofdwerkbalk (bestand openen, sluiten, opbouwen, …) zichtbaar moet "
 "zijn."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:30
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:33
 msgid "Edit toolbar is visible"
 msgstr "Werkbalk Bewerken is zichtbaar"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:31
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:34
 msgid ""
-"Whether the edit toolbar (bold, italic, character sizes, ...) should be "
-"visible."
+"Whether the edit toolbar (bold, italic, character sizes…) should be visible."
 msgstr ""
 "Of de werkbalk Bewerken (vet, cursief, tekengrootte, …) zichtbaar moet zijn."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:32
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:35
 msgid "Side panel is Visible"
 msgstr "Zijpaneel is zichtbaar"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:33
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:36
 msgid ""
 "Whether the side panel at the left of editing windows should be visible."
 msgstr "Of het zijpaneel links van het bewerkingsvenster zichtbaar moet zijn."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:34
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:37
 msgid "Bottom panel is Visible"
 msgstr "Onderste paneel is zichtbaar"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:35
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:38
 msgid "Whether the bottom panel containing the build view should be visible."
 msgstr "Of het onderste paneel met de bouwweergave zichtbaar moet zijn."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:36
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:39
 msgid "Side panel component"
 msgstr "Zijpaneelcomponent"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:37
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:40
 msgid ""
-"Side panel's active component. 0: Symbols. 1: File browser. 2: Structure."
+"Side panel’s active component. 0: Symbols. 1: File browser. 2: Structure."
 msgstr ""
-"Actieve component zijpaneel. 0: Symbolen. 1. Bestandsbrowser. 3. Structuur."
+"Actieve component van zijpaneel. 0: Symbolen. 1. Bestandsbrowser. 3. "
+"Structuur."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:38
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:41
 msgid "Show build output warnings"
 msgstr "Waarschuwingen bouw-uitvoer tonen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:39
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:42
 msgid "Show build output badboxes"
 msgstr "Badboxes bouw-uitvoer tonen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:40
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:43
 msgid "Interactive completion"
 msgstr "Interactief aanvullen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:41
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:44
 msgid "Automatically show LaTeX commands proposals"
 msgstr "Automatisch voorgestelde LaTeX-opdrachten tonen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:42
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:45
 msgid "Minimum number of characters for interactive completion"
 msgstr "Minimaal aantal tekens voor interactief aanvullen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:43
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:46
 msgid ""
-"Minimum number of characters after \"\\\" for the interactive completion of "
+"Minimum number of characters after “\\” for the interactive completion of "
 "LaTeX commands"
 msgstr ""
-"Minimaal aantal tekens na \"\\\" voor interactief aanvullen van LaTeX-"
+"Minimaal aantal tekens na ‘\\’ voor interactief aanvullen van LaTeX-"
 "opdrachten"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:44
-#: ../src/ui/preferences_dialog.ui.h:19
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:47
+#: ../src/ui/preferences_dialog.ui.h:21
 msgid "No confirmation when cleaning-up"
 msgstr "Opruimen van bestanden niet bevestigen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:45
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:48
 msgid "Automatic clean-up"
 msgstr "Automatisch opruimen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:46
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:49
 msgid ""
 "Automatically clean-up files after close. no-confirm-clean must be true."
 msgstr ""
 "Automatisch bestanden opruimen bij afsluiten. no-confirm-clean moet waar "
 "zijn."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:47
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:50
 msgid "File extensions for the clean-up"
 msgstr "Extensies van bestanden die opgeruimd moeten worden"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:48
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:51
 msgid "The list of file extensions for the clean-up, separated by spaces"
 msgstr ""
 "Lijst met extensies van bestanden die opgeruimd moeten worden, gescheiden "
 "door spaties"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:49
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:52
 msgid "Enabled default build tools"
-msgstr "Standaard bouwhulpprogramma's inschakelen"
+msgstr "Ingeschakelde standaardcompilatieprogramma’s"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:50
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:53
 msgid "The list of the default build tools that are enabled"
-msgstr "Lijst van standaard bouwhulpprogramma's die ingeschakeld zijn"
+msgstr "Lijst van standaardcompilatieprogramma’s die ingeschakeld zijn"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:51
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:54
 msgid "Disabled default build tools"
-msgstr "Uitgeschakelde standaard bouwhulpprogramma's"
+msgstr "Uitgeschakelde standaardcompilatieprogramma’s"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:52
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:55
 msgid "The list of the default build tools that are disabled"
-msgstr "Lijst van standaard bouwhulpprogramma's die uitgeschakeld zijn"
+msgstr "Lijst van standaardcompilatieprogramma’s die uitgeschakeld zijn"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:53
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:56
 msgid "Current directory"
 msgstr "Huidige map"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:54
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:57
 msgid "URI of the file browser current directory"
 msgstr "URI van de huidige map in de verkenner"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:55 ../src/file_browser.vala:281
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:58
+#: ../src/file_browser.vala:348
 msgid "Show build files"
-msgstr "bouwbestanden tonen"
+msgstr "Bouwbestanden tonen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:56
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:59
 msgid ""
 "Show files with an extension present in preferences.latex.clean-extensions."
 msgstr ""
 "Bestanden met een extensie aanwezig in preferences.latex.clean-extensions "
 "tonen."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:57 ../src/file_browser.vala:289
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:60
+#: ../src/file_browser.vala:356
 msgid "Show hidden files"
 msgstr "Verborgen bestanden tonen"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:58
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:61
 msgid "Show files beginning with a dot."
 msgstr "Verborgen bestanden (die beginnen met een punt) tonen."
 
+#. (itstool) path: template/babel
 #. This must be translated by a usepackage LaTeX command.
-#: article.xml:8(template/babel) beamer.xml:8(template/babel)
-#: book.xml:8(template/babel) report.xml:8(template/babel)
+#: article.xml:8 beamer.xml:8 book.xml:8 report.xml:8
 #, no-wrap
 msgid ""
 "\n"
@@ -454,8 +483,8 @@ msgstr ""
 "\n"
 "% babelpakket of equivalent\n"
 
-#. There is a helper script in data/templates/tex2po.sh
-#: letter.xml:2(template/translatableChunk)
+#. (itstool) path: template/translatableChunk
+#: letter.xml:2
 #, no-wrap
 msgid ""
 "\n"
@@ -469,8 +498,7 @@ msgid ""
 "\n"
 "\\begin{document}\n"
 "\n"
-"\\begin{letter}{Destination\\\\Address of the destination\\\\Phone number of "
-"the destination}\n"
+"\\begin{letter}{Destination\\\\Address of the destination\\\\Phone number of the destination}\n"
 "\n"
 "\\opening{Dear Sir,}\n"
 "\n"
@@ -497,8 +525,7 @@ msgstr ""
 "\n"
 "\\begin{document}\n"
 "\n"
-"\\begin{letter}{Bestemming\\\\Adres van de begunstigde\\\\Telefoonnummer van "
-"de begunstigde}\n"
+"\\begin{letter}{Bestemming\\\\Adres van de begunstigde\\\\Telefoonnummer van de begunstigde}\n"
 "\n"
 "\\opening{Geachte,}\n"
 "\n"
@@ -517,173 +544,195 @@ msgstr ""
 msgid "Hide panel"
 msgstr "Paneel verbergen"
 
-#: ../src/build_tool_dialog.vala:81
-msgid "Build Tool (read-only)"
-msgstr "Bouwhulpprogramma (alleen-lezen)"
+#: ../src/build_tool_dialog.vala:71
+msgid "Personal Build Tool"
+msgstr "Persoonlijk compilatieprogramma"
 
-#: ../src/build_tool_dialog.vala:88
-msgid "Build Tool"
-msgstr "Bouwhulpprogramma"
+#: ../src/build_tool_dialog.vala:72 ../src/build_tools_preferences.vala:335
+#: ../src/clean_build_files.vala:242 ../src/dialogs.vala:41
+#: ../src/document_tab.vala:178
+#: ../src/liblatexila/latexila-templates-dialogs.c:130
+#: ../src/liblatexila/latexila-templates-dialogs.c:238
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:147
+#: ../src/main_window_file.vala:157 ../src/main_window.vala:754
+#: ../src/main_window.vala:811 ../src/preferences_dialog.vala:114
+#: ../src/project_dialogs.vala:31 ../src/project_dialogs.vala:122
+#: ../src/project_dialogs.vala:276 ../src/project_dialogs.vala:296
+msgid "_Cancel"
+msgstr "_Annuleren"
 
-#. icon stock-id
+#: ../src/build_tool_dialog.vala:73 ../src/project_dialogs.vala:123
+msgid "_Apply"
+msgstr "Toe_passen"
+
+#: ../src/build_tool_dialog.vala:77
+msgid "Default Build Tool (read-only)"
+msgstr "Standaardcompilatieprogramma (alleen-lezen)"
+
+#. icon-name
 #. label
-#: ../src/build_tool_dialog.vala:159
+#: ../src/build_tool_dialog.vala:158
 msgid "Execute"
 msgstr "Uitvoeren"
 
-#: ../src/build_tool_dialog.vala:163
+#: ../src/build_tool_dialog.vala:162
 msgid "Convert"
 msgstr "Converteren"
 
-#: ../src/build_tool_dialog.vala:164
+#. FIXME don't use Stock
+#: ../src/build_tool_dialog.vala:163
 msgid "View File"
 msgstr "Bestand bekijken"
 
-#: ../src/build_tool_dialog.vala:228
+#. In all cases, the text must be selectable, but there is no property
+#. for that. So set as editable, but in read-only mode the edited text
+#. isn't changed (see below).
+#: ../src/build_tool_dialog.vala:231
 msgid "Commands"
 msgstr "Opdrachten"
 
-#: ../src/build_tool_dialog.vala:238
+#: ../src/build_tool_dialog.vala:241
 msgid "Post Processor"
 msgstr "Nabehandeling"
 
-#: ../src/build_tool_dialog.vala:265 ../src/build_tools_preferences.vala:289
-msgid "Add..."
+#: ../src/build_tool_dialog.vala:271 ../src/build_tools_preferences.vala:297
+msgid "Add…"
 msgstr "Toevoegen…"
 
-#: ../src/build_tool_dialog.vala:282 ../src/build_tools_preferences.vala:306
+#: ../src/build_tool_dialog.vala:288 ../src/build_tools_preferences.vala:314
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: ../src/build_tool_dialog.vala:312 ../src/build_tools_preferences.vala:346
+#: ../src/build_tool_dialog.vala:318 ../src/build_tools_preferences.vala:354
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:286
 msgid "Move up"
 msgstr "Naar boven"
 
-#: ../src/build_tool_dialog.vala:363 ../src/build_tools_preferences.vala:398
+#: ../src/build_tool_dialog.vala:369 ../src/build_tools_preferences.vala:406
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:298
 msgid "Move down"
 msgstr "Naar beneden"
 
-#: ../src/build_tool_dialog.vala:563 ../src/build_tools_preferences.vala:181
-#: ../src/latex_menu.vala:52 ../src/structure.vala:782
+#: ../src/build_tool_dialog.vala:573 ../src/build_tools_preferences.vala:177
+#: ../src/liblatexila/latexila-latex-commands.c:71 ../src/structure.vala:783
 msgid "Label"
 msgstr "Label"
 
-#: ../src/build_tool_dialog.vala:568
+#: ../src/build_tool_dialog.vala:578
 msgid "You can select this arrow and copy/paste it!"
 msgstr "U kunt dit pijltje selecteren en het kopiëren-plakken!"
 
-#: ../src/build_tool_dialog.vala:584
+#: ../src/build_tool_dialog.vala:594
 msgid "Description"
 msgstr "Omschrijving"
 
-#: ../src/build_tool_dialog.vala:590
+#: ../src/build_tool_dialog.vala:600
 msgid "File extensions for which the build tool can be executed."
 msgstr ""
-"Bestandsextensies waarvoor het bouwhulpprogramma kan worden uitgevoerd."
+"Bestandsextensies waarvoor het compilatieprogramma uitgevoerd kan worden."
 
-#: ../src/build_tool_dialog.vala:591
+#: ../src/build_tool_dialog.vala:601
 msgid "The extensions are separated by spaces."
 msgstr "De extensies zijn gescheiden door spaties."
 
-#: ../src/build_tool_dialog.vala:592
+#: ../src/build_tool_dialog.vala:602
 msgid "If it is empty, all extensions are allowed."
 msgstr "Als het leeg is, zijn alle extensies toegestaan."
 
-#: ../src/build_tool_dialog.vala:594
+#: ../src/build_tool_dialog.vala:604
 msgid "Extensions"
 msgstr "Extensies"
 
-#: ../src/build_tool_dialog.vala:599
+#: ../src/build_tool_dialog.vala:609
 msgid "Icon"
 msgstr "Pictogram"
 
 #. Placeholders
-#: ../src/build_tool_dialog.vala:606
+#: ../src/build_tool_dialog.vala:616
 msgid "Placeholders:"
 msgstr "Tijdelijke aanduidingen:"
 
-#: ../src/build_tool_dialog.vala:610
-msgid "The active document's filename."
+#: ../src/build_tool_dialog.vala:620
+msgid "The active document’s filename."
 msgstr "Bestandsnaam van het actieve document."
 
-#: ../src/build_tool_dialog.vala:611 ../src/build_tool_dialog.vala:616
+#: ../src/build_tool_dialog.vala:621 ../src/build_tool_dialog.vala:626
 msgid "If the active document belongs to a project, the main file is chosen."
 msgstr ""
 "Als het actieve document onderdeel is van een project, dan wordt het "
 "hoofdbestand gekozen."
 
-#: ../src/build_tool_dialog.vala:615
-msgid "The active document's filename without its extension."
+#: ../src/build_tool_dialog.vala:625
+msgid "The active document’s filename without its extension."
 msgstr "Bestandsnaam van het actieve document zonder extensie."
 
-#: ../src/build_tool_dialog.vala:659
+#: ../src/build_tool_dialog.vala:675
 msgid "Jobs"
 msgstr "Taken"
 
-#: ../src/build_tool_dialog.vala:665
+#: ../src/build_tool_dialog.vala:681
 msgid "List of files to open after executing the build jobs."
 msgstr ""
 "Lijst met bestanden die geopend moeten worden na uitvoeren van de bouwtaken."
 
-#: ../src/build_tool_dialog.vala:666
+#: ../src/build_tool_dialog.vala:682
 msgid "The files are separated by spaces."
 msgstr "De bestanden zijn gescheiden door spaties."
 
-#: ../src/build_tool_dialog.vala:667
+#: ../src/build_tool_dialog.vala:683
 msgid "You should use the placeholders to specify the files."
 msgstr ""
 "U dient de tijdelijke aanduidingen te gebruiken om de bestanden te "
 "specificeren."
 
-#: ../src/build_tool_dialog.vala:670
+#: ../src/build_tool_dialog.vala:686
 msgid "Files to open"
 msgstr "Te openen bestanden"
 
-#: ../src/build_tool_runner.vala:191
-#, c-format
-msgid "%s doesn't seem to be installed."
-msgstr "%s lijkt niet geïnstalleerd te zijn."
-
-#: ../src/build_tool_runner.vala:263
-#, c-format
-msgid "Open %s"
-msgstr "%s openen"
-
-#: ../src/build_tool_runner.vala:272
-#, c-format
-msgid "The file '%s' doesn't exist."
-msgstr "Bestand %s bestaat niet."
-
-#: ../src/build_tool_runner.vala:289
-#, c-format
-msgid "Failed to open '%s':"
-msgstr "Openen van ‘%s’ is mislukt:"
-
-#: ../src/build_tools_preferences.vala:53
+#: ../src/build_tools_preferences.vala:57
 msgid "Build Tools"
-msgstr "Bouwhulpprogramma's"
+msgstr "Bouwhulpprogramma’s"
 
-#: ../src/build_tools_preferences.vala:109
-msgid "Default build tools"
-msgstr "Standaard bouwhulpprogramma's"
+#: ../src/build_tools_preferences.vala:113
+msgid "Default Build Tools"
+msgstr "Standaardcompilatieprogramma’s"
 
-#: ../src/build_tools_preferences.vala:129
-msgid "Personal build tools"
-msgstr "Persoonlijke bouwhulpprogramma's"
+#: ../src/build_tools_preferences.vala:134
+msgid "Personal Build Tools"
+msgstr "Persoonlijke compilatieprogramma’s"
 
-#: ../src/build_tools_preferences.vala:172
+#: ../src/build_tools_preferences.vala:168
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
-#: ../src/build_tools_preferences.vala:274
+#: ../src/build_tools_preferences.vala:241
+msgid "View the properties (read-only)"
+msgstr "De eigenschappen bekijken (alleen-lezen)"
+
+#: ../src/build_tools_preferences.vala:246
+msgid "Edit the properties"
+msgstr "De eigenschappen bewerken"
+
+#: ../src/build_tools_preferences.vala:266
+msgid "Create a copy"
+msgstr "Een kopie aanmaken"
+
+#: ../src/build_tools_preferences.vala:281
 #, c-format
 msgid "%s [copy]"
 msgstr "%s [kopiëren]"
 
-#: ../src/build_tools_preferences.vala:324
+#: ../src/build_tools_preferences.vala:332
 #, c-format
-msgid "Do you really want to delete the build tool \"%s\"?"
-msgstr "Weet u zeker dat u het bouwhulpprogramma ‘%s’ wilt verwijderen?"
+msgid "Do you really want to delete the build tool “%s”?"
+msgstr "Weet u zeker dat u het compilatieprogramma ‘%s’ wilt verwijderen?"
+
+#: ../src/build_tools_preferences.vala:336 ../src/clean_build_files.vala:243
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:148
+#: ../src/main_window_edit.vala:51 ../src/main_window_structure.vala:38
+#: ../src/project_dialogs.vala:242 ../src/project_dialogs.vala:277
+msgid "_Delete"
+msgstr "Verwij_deren"
 
 #: ../src/clean_build_files.vala:267
 msgid "Do you really want to delete these files?"
@@ -698,7 +747,7 @@ msgstr "De bestanden die u wilt verwijderen selecteren:"
 msgid "No build file to clean up."
 msgstr "Er zijn geen bouwbestanden om op te ruimen."
 
-#: ../src/completion.vala:315
+#: ../src/completion.vala:334
 msgid "No matching proposal"
 msgstr "Geen bijpassend voorstel"
 
@@ -709,9 +758,14 @@ msgstr "Geen bijpassend voorstel"
 msgid "Ln %d, Col %d"
 msgstr "Ln %d, Kol %d"
 
-#: ../src/dialogs.vala:40 ../src/main_window.vala:765
-msgid "Close without Saving"
-msgstr "Sluiten zonder op te slaan"
+#: ../src/dialogs.vala:40 ../src/main_window.vala:753
+msgid "Close _without Saving"
+msgstr "Sluiten _zonder opslaan"
+
+#: ../src/dialogs.vala:42 ../src/main_window_file.vala:41
+#: ../src/main_window.vala:759 ../src/main_window.vala:812
+msgid "_Save"
+msgstr "Op_slaan"
 
 #: ../src/dialogs.vala:66
 #, c-format
@@ -725,87 +779,68 @@ msgid "Select the documents you want to save:"
 msgstr "Documenten die u wilt opslaan selecteren:"
 
 #: ../src/dialogs.vala:129
-msgid "If you don't save, all your changes will be permanently lost."
-msgstr "Als u niet opslaat, dan gaan alle wijzigingen definitief verloren."
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr "Als u niet opslaat, zullen al uw wijzigingen definitief verloren gaan."
 
-#: ../src/document_structure.vala:720
+#: ../src/document_structure.vala:745
 msgid "The structure item already contains a sub-paragraph."
-msgstr "Het structuur-item bevat al een sub-paragraaf."
+msgstr "Het structuur-item bevat al een subparagraaf."
 
-#: ../src/document_tab.vala:173
-msgid "Close document"
-msgstr "Document sluiten"
-
-#. main file
-#: ../src/document_tab.vala:233 ../src/project_dialogs.vala:44
-#: ../src/project_dialogs.vala:47 ../src/project_dialogs.vala:139
-#: ../src/project_dialogs.vala:142 ../src/project_dialogs.vala:216
-msgid "Main File"
-msgstr "Hoofdbestand"
-
-#: ../src/document_tab.vala:235
-msgid "Main File:"
-msgstr "Hoofdbestand:"
-
-#: ../src/document_tab.vala:259
+#: ../src/document_tab.vala:147
 #, c-format
-msgid "Activate '%s'"
+msgid "Activate “%s”"
 msgstr "‘%s’ activeren"
 
-#: ../src/document_tab.vala:278
+#: ../src/document_tab.vala:166
 #, c-format
 msgid "The file %s changed on disk."
 msgstr "Het bestand %s is aangepast op de schijf."
 
-#: ../src/document_tab.vala:283
+#: ../src/document_tab.vala:171
 msgid "Do you want to drop your changes and reload the file?"
 msgstr "Wilt u uw wijzigingen verwerpen en het bestand  opnieuw laden?"
 
-#: ../src/document_tab.vala:285
+#: ../src/document_tab.vala:173
 msgid "Do you want to reload the file?"
 msgstr "Wilt u het bestand opnieuw laden?"
 
-#: ../src/document_tab.vala:289
-msgid "Reload"
-msgstr "Herladen"
+#: ../src/document_tab.vala:177
+msgid "_Reload"
+msgstr "He_rladen"
 
-#: ../src/document.vala:121
+#: ../src/document.vala:133
 #, c-format
-msgid "Impossible to load the file '%s'."
+msgid "Impossible to load the file “%s”."
 msgstr "Laden van bestand ‘%s’ is niet mogelijk."
 
-#: ../src/document.vala:197
+#: ../src/document.vala:215
 #, c-format
 msgid "The file %s has been modified since reading it."
 msgstr "Het bestand %s is gewijzigd sinds het lezen ervan."
 
-#: ../src/document.vala:200
+#: ../src/document.vala:218
 msgid "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
 "Als u het opslaat, gaan mogelijk alle externe wijzigingen verloren. Toch "
 "opslaan?"
 
-#: ../src/document.vala:203
-msgid "Save Anyway"
-msgstr "Toch opslaan"
+#: ../src/document.vala:222
+msgid "_Save Anyway"
+msgstr "Toch op_slaan"
 
-#: ../src/document.vala:205
-msgid "Don't Save"
-msgstr "Niet opslaan"
+#: ../src/document.vala:223
+msgid "_Don’t Save"
+msgstr "_Niet opslaan"
 
-#: ../src/document.vala:217
+#: ../src/document.vala:240
 msgid "Impossible to save the file."
 msgstr "Opslaan van het bestand is niet mogelijk."
 
-#: ../src/document.vala:242
+#: ../src/document.vala:268
 msgid "Error trying to convert the document to UTF-8"
 msgstr "Fout bij het omzetten naar UTF-8"
 
-#: ../src/document.vala:296
-msgid "Unsaved Document"
-msgstr "Niet-opgeslagen document"
-
-#: ../src/document.vala:575
+#: ../src/document.vala:497
 msgid ""
 "The file has a temporary location. The data can be lost after rebooting your "
 "computer."
@@ -813,754 +848,907 @@ msgstr ""
 "Het bestand bevindt zich op een tijdelijke locatie. De gegevens kunnen "
 "verloren gaan na herstarten van uw computer."
 
-#: ../src/document.vala:576
+#: ../src/document.vala:498
 msgid "Do you want to save the file in a safer place?"
 msgstr "Wilt u het bestand op een veiligere plaats opslaan?"
 
-#: ../src/file_browser.vala:216
+#: ../src/document.vala:499 ../src/main_window_file.vala:44
+#: ../src/main_window.vala:757
+msgid "Save _As"
+msgstr "Opslaan _als"
+
+#: ../src/document.vala:500
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: ../src/document_view.vala:312
+msgid "No dictionaries available for the spell-checking."
+msgstr "Geen woordenboeken beschikbaar voor spellingscontrole."
+
+#. Help
+#: ../src/document_view.vala:314 ../src/main_window.vala:63
+msgid "_Help"
+msgstr "Projecten beheren"
+
+#: ../src/document_view.vala:315
+msgid "_OK"
+msgstr "_Oké"
+
+#: ../src/file_browser.vala:219
 msgid "Go to the home directory"
 msgstr "Ga naar de persoonlijke map"
 
-#: ../src/file_browser.vala:231
+#: ../src/file_browser.vala:234
 msgid "Go to the parent directory"
 msgstr "Ga naar de bovenliggende map"
 
-#: ../src/file_browser.vala:247
+#: ../src/file_browser.vala:250
 msgid "Go to the active document directory"
 msgstr "Ga naar de map van het actieve document"
 
-#: ../src/file_browser.vala:336
+#: ../src/file_browser.vala:290
+msgid "Open in a file manager"
+msgstr "Openen met bestandsbeheer"
+
+#: ../src/file_browser.vala:292
+msgid "Open the current directory in a file manager"
+msgstr "Open de huidige map met een bestandsbeheerder"
+
+#: ../src/file_browser.vala:314
+msgid "Open in a terminal"
+msgstr "Openen in terminal"
+
+#: ../src/file_browser.vala:315
+msgid "Open the current directory in a terminal"
+msgstr "Open de huidige map in een terminal"
+
+#: ../src/file_browser.vala:405
 msgid "File System"
 msgstr "Bestandssysteem"
 
 #. File browser
-#: ../src/file_browser.vala:455 ../src/main_window.vala:404
+#: ../src/file_browser.vala:524 ../src/main_window.vala:450
 msgid "File Browser"
 msgstr "Bestandsverkenner"
 
-#. LaTeX: Sectioning
-#: ../src/latex_menu.vala:32
+#: ../src/glatex_app.vala:78
+msgid "Show the application’s version"
+msgstr "De toepassingsversie tonen"
+
+#: ../src/glatex_app.vala:81
+msgid "Create new document"
+msgstr "Nieuw document aanmaken"
+
+#: ../src/glatex_app.vala:84
+msgid "Create a new top-level window in an existing instance of GNOME LaTeX"
+msgstr "Een nieuw venster aanmaken in een bestaande instantie van Gnome LaTeX"
+
+#: ../src/glatex_app.vala:195
+msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
+msgstr "Gnome LaTeX is een LaTeX-omgeving voor Gnome"
+
+#: ../src/glatex_app.vala:224 ../src/main_window.vala:69
+msgid "About GNOME LaTeX"
+msgstr "Over Gnome LaTeX"
+
+#: ../src/glatex_app.vala:225
+msgid "translator-credits"
+msgstr ""
+"Bruno Brouard <annoa.b@gmail.com>\n"
+"Sébastien Wilmet <sebastien.wilmet@gmail.com>\n"
+"Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
+"Nathan Follens <nthn@unseen.is>\n"
+"\n"
+"Meer info over Gnome-NL http://nl.gnome.org"
+
+#. Sections and sub-sections
+#. LaTeX
+#: ../src/latex_menu.vala:30
 msgid "_Sectioning"
 msgstr "_Secties"
 
-#: ../src/latex_menu.vala:34 ../src/structure.vala:775
-msgid "Part"
-msgstr "Deel"
-
-#: ../src/latex_menu.vala:36 ../src/structure.vala:776
-msgid "Chapter"
-msgstr "Hoofdstuk"
-
-#: ../src/latex_menu.vala:38 ../src/structure.vala:777
-msgid "Section"
-msgstr "Sectie"
-
-#: ../src/latex_menu.vala:40 ../src/structure.vala:778
-msgid "Sub-section"
-msgstr "Subsectie"
-
-#: ../src/latex_menu.vala:42 ../src/structure.vala:779
-msgid "Sub-sub-section"
-msgstr "Sub-subsectie"
-
-#: ../src/latex_menu.vala:44 ../src/structure.vala:780
-msgid "Paragraph"
-msgstr "Paragraaf"
-
-#: ../src/latex_menu.vala:46 ../src/structure.vala:781
-msgid "Sub-paragraph"
-msgstr "Sub-paragraaf"
-
-#. LaTeX: References
-#: ../src/latex_menu.vala:50
+#: ../src/latex_menu.vala:31
 msgid "_References"
 msgstr "_Verwijzingen"
 
-#: ../src/latex_menu.vala:54
-msgid "Reference to a label"
-msgstr "Verwijzing naar een label"
-
-#: ../src/latex_menu.vala:56
-msgid "Page reference to a label"
-msgstr "Verwijzing naar de pagina van een label"
-
-#: ../src/latex_menu.vala:58
-msgid "Add a word to the index"
-msgstr "Een woord toevoegen aan de index"
-
-#: ../src/latex_menu.vala:60
-msgid "Footnote"
-msgstr "Voetnoot"
-
-#: ../src/latex_menu.vala:62
-msgid "Reference to a bibliography item"
-msgstr "Verwijzing naar een bibliografie-item"
-
-#: ../src/latex_menu.vala:68
-msgid "Center - \\begin{center}"
-msgstr "Centreren - \\begin{center}"
-
-#: ../src/latex_menu.vala:70
-msgid "Align Left - \\begin{flushleft}"
-msgstr "Links uitlijnen - \\begin{flushleft}"
-
-#: ../src/latex_menu.vala:72
-msgid "Align Right - \\begin{flushright}"
-msgstr "Rechts uitlijnen - \\begin{flushright}"
-
-#: ../src/latex_menu.vala:74
-msgid "Figure - \\begin{figure}"
-msgstr "Figuur - \\begin{figure}"
-
-#: ../src/latex_menu.vala:76 ../src/latex_menu.vala:78
-msgid "Table - \\begin{table}"
-msgstr "Tabel - \\begin{table}"
-
-#: ../src/latex_menu.vala:80
-msgid "Quote - \\begin{quote}"
-msgstr "Kort citaat - \\begin{quote}"
-
-#: ../src/latex_menu.vala:82
-msgid "Quotation - \\begin{quotation}"
-msgstr "Lang citaat - \\begin{quotation}"
-
-#: ../src/latex_menu.vala:84
-msgid "Verse - \\begin{verse}"
-msgstr "Vers - \\begin{verse}"
-
-#: ../src/latex_menu.vala:86
-msgid "Verbatim - \\begin{verbatim}"
-msgstr "Verbatim - \\begin{verbatim}"
-
-#: ../src/latex_menu.vala:88
-msgid "Minipage - \\begin{minipage}"
-msgstr "Minipagina - \\begin{minipage}"
-
-#: ../src/latex_menu.vala:90
-msgid "Title page - \\begin{titlepage}"
-msgstr "Titelpagina - \\begin{titlepage}"
-
-#. LaTeX: list environments
-#: ../src/latex_menu.vala:94
+#: ../src/latex_menu.vala:33
 msgid "_List Environments"
 msgstr "_Lijstomgeving"
 
-#: ../src/latex_menu.vala:96 ../src/latex_menu.vala:98
-msgid "Bulleted List - \\begin{itemize}"
-msgstr "Opsommingslijst - \\begin{itemize}"
-
-#: ../src/latex_menu.vala:100 ../src/latex_menu.vala:102
-msgid "Enumeration - \\begin{enumerate}"
-msgstr "Genummerde lijst - \\begin{enumerate}"
-
-#: ../src/latex_menu.vala:104 ../src/latex_menu.vala:106
-msgid "Description - \\begin{description}"
-msgstr "Omschrijving - \\begin{description}"
-
-#: ../src/latex_menu.vala:108
-msgid "Custom list - \\begin{list}"
-msgstr "Aangepaste lijst - \\begin{list}"
-
-#: ../src/latex_menu.vala:110
-msgid "List item - \\item"
-msgstr "Lijstitem - \\item"
-
-#. LaTeX: character sizes
-#: ../src/latex_menu.vala:114
+#: ../src/latex_menu.vala:34
 msgid "_Characters Sizes"
 msgstr "_Tekengrootte"
 
-#. LaTeX: font styles
-#: ../src/latex_menu.vala:138
+#: ../src/latex_menu.vala:35
 msgid "_Font Styles"
 msgstr "_Lettertypestijl"
 
-#: ../src/latex_menu.vala:140
-msgid "Bold - \\textbf"
-msgstr "Vet - \\textbf"
-
-#: ../src/latex_menu.vala:142
-msgid "Italic - \\textit"
-msgstr "Cursief - \\textit"
-
-#: ../src/latex_menu.vala:144
-msgid "Typewriter - \\texttt"
-msgstr "Typemachine - \\texttt"
-
-#: ../src/latex_menu.vala:146
-msgid "Slanted - \\textsl"
-msgstr "Scheef - \\textsl"
-
-#: ../src/latex_menu.vala:148
-msgid "Small Capitals - \\textsc"
-msgstr "Kleine hoofdletters - \\textsc"
-
-#: ../src/latex_menu.vala:150
-msgid "Sans Serif - \\textsf"
-msgstr "Niet geschreefd (Sans Serif) - \\textsf"
-
-#: ../src/latex_menu.vala:152
-msgid "Emphasized - \\emph"
-msgstr "Benadrukt - \\emph"
-
-#: ../src/latex_menu.vala:154
-msgid "Underline - \\underline"
-msgstr "Onderlijnd - \\underline"
-
-#: ../src/latex_menu.vala:156
+#: ../src/latex_menu.vala:36
 msgid "_Font Family"
 msgstr "_Lettertypefamilie"
 
-#: ../src/latex_menu.vala:158
-msgid "Roman - \\rmfamily"
-msgstr "Roman - \\rmfamily"
-
-#: ../src/latex_menu.vala:160
-msgid "Sans Serif - \\sffamily"
-msgstr "Niet geschreefd (sans serif) - \\sffamily"
-
-#: ../src/latex_menu.vala:162
-msgid "Monospace - \\ttfamily"
-msgstr "Monospace - \\ttfamily"
-
-#: ../src/latex_menu.vala:164
+#: ../src/latex_menu.vala:37
 msgid "F_ont Series"
 msgstr "L_ettertypeserie"
 
-#: ../src/latex_menu.vala:166
-msgid "Medium - \\mdseries"
-msgstr "Medium - \\mdseries"
-
-#: ../src/latex_menu.vala:168
-msgid "Bold - \\bfseries"
-msgstr "Vet - \\bfseries"
-
-#: ../src/latex_menu.vala:170
+#: ../src/latex_menu.vala:38
 msgid "Fo_nt Shape"
 msgstr "Le_ttertypevorm"
 
-#: ../src/latex_menu.vala:172
-msgid "Upright - \\upshape"
-msgstr "Rechtop - \\upshape"
-
-#: ../src/latex_menu.vala:174
-msgid "Italic - \\itshape"
-msgstr "Cursief - \\itshape"
-
-#: ../src/latex_menu.vala:176
-msgid "Slanted - \\slshape"
-msgstr "Scheef - \\slshape"
-
-#: ../src/latex_menu.vala:178
-msgid "Small Capitals - \\scshape"
-msgstr "Kleine hoofdletters - \\scshape"
-
-#. LaTeX: Tabular
-#: ../src/latex_menu.vala:182
+#: ../src/latex_menu.vala:39
 msgid "_Tabular"
 msgstr "_Tabelvorm"
 
-#: ../src/latex_menu.vala:184
-msgid "Tabbing - \\begin{tabbing}"
-msgstr "Tabulatie - \\begin{tabbing}"
-
-#: ../src/latex_menu.vala:186
-msgid "Tabular - \\begin{tabular}"
-msgstr "Tabelvorm - \\begin{tabular}"
-
-#: ../src/latex_menu.vala:188
-msgid "Multicolumn - \\multicolumn"
-msgstr "Meerdere kolommen - \\multicolumn"
-
-#: ../src/latex_menu.vala:190
-msgid "Horizontal line - \\hline"
-msgstr "Horizontale lijn - \\hline"
-
-#: ../src/latex_menu.vala:192
-msgid "Vertical line - \\vline"
-msgstr "Verticale lijn - \\vline"
-
-#: ../src/latex_menu.vala:194
-msgid "Horizontal line (columns specified) - \\cline"
-msgstr "Horizontale lijn (kolommen gespecificeerd) - \\cline"
-
-# Bruno : presentation mode
-#: ../src/latex_menu.vala:200
-msgid "Frame - \\begin{frame}"
-msgstr "Kader - \\begin{frame}"
-
-#: ../src/latex_menu.vala:202
-msgid "Block - \\begin{block}"
-msgstr "Blok - \\begin{block}"
-
-#: ../src/latex_menu.vala:204
-msgid "Two columns - \\begin{columns}"
-msgstr "Twee kolommen - \\begin{columns}"
-
-#. LaTeX: Spacing
-#: ../src/latex_menu.vala:208
+#: ../src/latex_menu.vala:41
 msgid "_Spacing"
 msgstr "_Spatiëring"
 
-#: ../src/latex_menu.vala:209
-msgid "New _Line"
-msgstr "Nieuw _regel"
-
-#: ../src/latex_menu.vala:210
-msgid "New Line - \\\\"
-msgstr "Nieuw regel - \\\\"
-
-#: ../src/latex_menu.vala:212
-msgid "New page - \\newpage"
-msgstr "Nieuwe pagina - \\newpage"
-
-#: ../src/latex_menu.vala:214
-msgid "Line break - \\linebreak"
-msgstr "Regeleinde - \\linebreak"
-
-#: ../src/latex_menu.vala:216
-msgid "Page break - \\pagebreak"
-msgstr "Pagina-einde - \\pagebreak"
-
-#: ../src/latex_menu.vala:218
-msgid "Big skip - \\bigskip"
-msgstr "Grote sprong - \\bigskip"
-
-#: ../src/latex_menu.vala:220
-msgid "Medium skip - \\medskip"
-msgstr "Medium sprong - \\medskip"
-
-#: ../src/latex_menu.vala:222
-msgid "Horizontal space - \\hspace"
-msgstr "Horizontale spatiëring - \\hspace"
-
-#: ../src/latex_menu.vala:224
-msgid "Vertical space - \\vspace"
-msgstr "Verticale spatiëring - \\vspace"
-
-#: ../src/latex_menu.vala:226
-msgid "No paragraph indentation - \\noindent"
-msgstr "Geen paragraaf inspringing - \\noindent"
-
-#. LaTeX: International accents
-#: ../src/latex_menu.vala:230
+#: ../src/latex_menu.vala:42
 msgid "International _Accents"
 msgstr "Internationale _accenten"
 
-#: ../src/latex_menu.vala:231
-msgid "Acute accent - \\'"
-msgstr "Accent aigu - \\'"
-
-#: ../src/latex_menu.vala:232
-msgid "Grave accent - \\`"
-msgstr "Accent grave - \\`"
-
-#: ../src/latex_menu.vala:233
-msgid "Circumflex accent - \\^"
-msgstr "Accent circonflex - \\^"
-
-#: ../src/latex_menu.vala:234
-msgid "Trema - \\\""
-msgstr "Trema - \\\""
-
-#: ../src/latex_menu.vala:235
-msgid "Tilde - \\~"
-msgstr "Tilde - \\~"
-
-#: ../src/latex_menu.vala:236
-msgid "Macron - \\="
-msgstr "Macron - \\="
-
-#: ../src/latex_menu.vala:237
-msgid "Dot above - \\."
-msgstr "Punt boven - \\."
-
-#: ../src/latex_menu.vala:238
-msgid "Caron - \\v"
-msgstr "Caron - \\v"
-
-#: ../src/latex_menu.vala:239
-msgid "Breve - \\u"
-msgstr "Brève - \\u"
-
-#: ../src/latex_menu.vala:241
-msgid "Double acute accent - \\H"
-msgstr "Dubbel accent aigu - \\H"
-
-#: ../src/latex_menu.vala:242
-msgid "Cedilla - \\c"
-msgstr "Cédille - \\c"
-
-#: ../src/latex_menu.vala:243
-msgid "Ogonek - \\k"
-msgstr "Ogonek - \\k"
-
-#: ../src/latex_menu.vala:244
-msgid "Dot below - \\d"
-msgstr "Punt onder - \\d"
-
-#: ../src/latex_menu.vala:245
-msgid "Macron below - \\b"
-msgstr "Macron onder - \\b"
-
-#: ../src/latex_menu.vala:246
-msgid "Ring - \\r"
-msgstr "Ring - \\r"
-
-#: ../src/latex_menu.vala:247
-msgid "Tie - \\t"
-msgstr "Tie - \\t"
-
-#. LaTeX: Others
-#: ../src/latex_menu.vala:251
+#: ../src/latex_menu.vala:43
 msgid "_Misc"
 msgstr "_Overig"
 
-#: ../src/latex_menu.vala:253
-msgid "Document class - \\documentclass"
-msgstr "Documentklasse - \\documentclass"
-
-#: ../src/latex_menu.vala:255
-msgid "Use package - \\usepackage"
-msgstr "Pakket gebruiken - \\usepackage"
-
-#: ../src/latex_menu.vala:256
-msgid "_AMS packages"
-msgstr "_AMS-pakketten"
-
-#: ../src/latex_menu.vala:257
-msgid "AMS packages"
-msgstr "AMS-pakketten"
-
-#: ../src/latex_menu.vala:258
-msgid "Author - \\author"
-msgstr "Auteur - \\author"
-
-#: ../src/latex_menu.vala:259
-msgid "Title - \\title"
-msgstr "Titel - \\title"
-
-#: ../src/latex_menu.vala:261
-msgid "Content of the document - \\begin{document}"
-msgstr "Inhoud van het document - \\begin{document}"
-
-#: ../src/latex_menu.vala:263
-msgid "Make title - \\maketitle"
-msgstr "Maken van titel - \\maketitle"
-
-#: ../src/latex_menu.vala:265
-msgid "Table of contents - \\tableofcontents"
-msgstr "Inhoudsopgave - \\tableofcontents"
-
-#: ../src/latex_menu.vala:267
-msgid "Abstract - \\begin{abstract}"
-msgstr "Samenvatting - \\begin{abstract}"
-
-#: ../src/latex_menu.vala:269
-msgid "Include an image (graphicx package) - \\includegraphics"
-msgstr "Afbeelding invoegen (graphicx pakket) - \\includegraphics"
-
-#: ../src/latex_menu.vala:272
-msgid "Include a file - \\input"
-msgstr "Bestand invoegen - \\input"
-
 #. Math
-#: ../src/latex_menu.vala:276
+#: ../src/latex_menu.vala:46
 msgid "_Math"
 msgstr "_Math"
 
-#. Math Environments
-#: ../src/latex_menu.vala:280
+#: ../src/latex_menu.vala:47
 msgid "_Math Environments"
 msgstr "_Math-omgevingen"
 
-#: ../src/latex_menu.vala:281
-msgid "_Mathematical Environment - $...$"
-msgstr "_Mathematische omgeving - $...$"
-
-#: ../src/latex_menu.vala:282
-msgid "Mathematical Environment - $...$"
-msgstr "Mathematische omgeving - $...$"
-
-#: ../src/latex_menu.vala:283
-msgid "_Centered Formula - \\[...\\]"
-msgstr "Ge_centreerde formule - \\[...\\]"
-
-#: ../src/latex_menu.vala:284
-msgid "Centered Formula - \\[...\\]"
-msgstr "Gecentreerde formule - \\[...\\]"
-
-#: ../src/latex_menu.vala:286
-msgid "_Numbered Equation - \\begin{equation}"
-msgstr "Ge_nummerde vergelijking - \\begin{equation}"
-
-#: ../src/latex_menu.vala:287
-msgid "Numbered Equation - \\begin{equation}"
-msgstr "Genummerde vergelijking - \\begin{equation}"
-
-#: ../src/latex_menu.vala:288
-msgid "_Array of Equations - \\begin{align*}"
-msgstr "Reeks vergelijkingen - \\begin{align*}"
-
-#: ../src/latex_menu.vala:289
-msgid "Array of Equations - \\begin{align*}"
-msgstr "Reeks vergelijkingen - \\begin{align*}"
-
-#: ../src/latex_menu.vala:291
-msgid "Numbered Array of _Equations - \\begin{align}"
-msgstr "Reeks genummerde vergelijkingen - \\begin{align}"
-
-#: ../src/latex_menu.vala:292
-msgid "Numbered Array of Equations - \\begin{align}"
-msgstr "Reeks genummerde vergelijkingen - \\begin{align}"
-
-#: ../src/latex_menu.vala:295
-msgid "_Superscript - ^{}"
-msgstr "_Superscript - ^{}"
-
-#: ../src/latex_menu.vala:296
-msgid "Superscript - ^{}"
-msgstr "Superscript - ^{}"
-
-#: ../src/latex_menu.vala:297
-msgid "Su_bscript - __{}"
-msgstr "Su_bscript - _{}"
-
-#: ../src/latex_menu.vala:298
-msgid "Subscript - _{}"
-msgstr "Subscript - _{}"
-
-#: ../src/latex_menu.vala:299
-msgid "_Fraction - \\frac{}{}"
-msgstr "Breuk - \\frac{}{}"
-
-#: ../src/latex_menu.vala:300
-msgid "Fraction - \\frac{}{}"
-msgstr "Breuk - \\frac{}{}"
-
-#: ../src/latex_menu.vala:301
-msgid "Square _Root - \\sqrt{}"
-msgstr "_Vierkantswortel - \\sqrt{}"
-
-#: ../src/latex_menu.vala:302
-msgid "Square Root - \\sqrt{}"
-msgstr "Vierkantswortel - \\sqrt{}"
-
-#: ../src/latex_menu.vala:303
-msgid "_N-th Root - \\sqrt[]{}"
-msgstr "_N-de wortel - \\sqrt[]{}"
-
-#: ../src/latex_menu.vala:304
-msgid "N-th Root - \\sqrt[]{}"
-msgstr "N-de wortel - \\sqrt[]{}"
-
-#. Math functions
-#: ../src/latex_menu.vala:308
+#: ../src/latex_menu.vala:48
 msgid "Math _Functions"
 msgstr "Wiskundige _functies"
 
-#. Math Font Styles
-#: ../src/latex_menu.vala:342
+#: ../src/latex_menu.vala:49
 msgid "Math Font _Styles"
 msgstr "Math lettertypestijlen"
 
-#: ../src/latex_menu.vala:344
-msgid "Roman - \\mathrm"
-msgstr "Roman - \\mathrm"
-
-#: ../src/latex_menu.vala:346
-msgid "Italic - \\mathit"
-msgstr "Cursief - \\mathit"
-
-#: ../src/latex_menu.vala:348
-msgid "Bold - \\mathbf"
-msgstr "Vet - \\mathbf"
-
-#: ../src/latex_menu.vala:350
-msgid "Sans Serif - \\mathsf"
-msgstr "Niet geschreefd (sans serif) - \\mathsf"
-
-#: ../src/latex_menu.vala:352
-msgid "Typewriter - \\mathtt"
-msgstr "Typemachine - \\mathtt"
-
-#: ../src/latex_menu.vala:354
-msgid "Calligraphic - \\mathcal"
-msgstr "Calligrafisch - \\mathcal"
-
-#: ../src/latex_menu.vala:356
-msgid "Blackboard (uppercase only)  - \\mathbb (amsfonts package)"
-msgstr "Blackboard (Alleen hoofdletters) - \\mathbb (amsfonts-pakket)"
-
-#: ../src/latex_menu.vala:359
-msgid "Euler Fraktur - \\mathfrak (amsfonts package)"
-msgstr "Euler Fraktur - \\mathfrak (amsfonts-pakket)"
-
-#. Math Accents
-#: ../src/latex_menu.vala:364
+#: ../src/latex_menu.vala:50
 msgid "Math _Accents"
 msgstr "Math _accenten"
 
-#. Math Spaces
-#: ../src/latex_menu.vala:385
+#: ../src/latex_menu.vala:51
 msgid "Math _Spaces"
 msgstr "Math _spaties"
 
-#: ../src/latex_menu.vala:386
-msgid "_Small"
-msgstr "_Klein"
-
-#: ../src/latex_menu.vala:387
-msgid "Small - \\,"
-msgstr "Klein - \\,"
-
-#: ../src/latex_menu.vala:388
-msgid "_Medium"
-msgstr "_Medium"
-
-#: ../src/latex_menu.vala:389
-msgid "Medium - \\:"
-msgstr "Medium - \\:"
-
-#: ../src/latex_menu.vala:390
-msgid "_Large"
-msgstr "_Groot"
-
-#: ../src/latex_menu.vala:391
-msgid "Large - \\;"
-msgstr "Groot - \\;"
-
-#. Math: Left Delimiters
-#: ../src/latex_menu.vala:397
+#: ../src/latex_menu.vala:52
 msgid "_Left Delimiters"
 msgstr "_Linker haakjes"
 
-#: ../src/latex_menu.vala:398
+#: ../src/latex_menu.vala:53
+msgid "Right _Delimiters"
+msgstr "Rechter haakjes"
+
+#. menus under toolitems
+#: ../src/latex_menu.vala:67
+msgid "Sectioning"
+msgstr "Secties"
+
+#: ../src/latex_menu.vala:70
+msgid "Characters Sizes"
+msgstr "Tekengrootte"
+
+#: ../src/latex_menu.vala:73
+msgid "References"
+msgstr "Verwijzingen"
+
+#: ../src/latex_menu.vala:76
+msgid "Presentation Environments"
+msgstr "Presentatieomgevingen"
+
+#: ../src/latex_menu.vala:79
+msgid "Math Environments"
+msgstr "Math-omgevingen"
+
+#: ../src/liblatexila/latexila-build-job.c:365
+#, c-format
+msgid "%s doesn’t seem to be installed."
+msgstr "%s lijkt niet geïnstalleerd te zijn."
+
+#: ../src/liblatexila/latexila-build-tool.c:555
+#: ../src/liblatexila/latexila-synctex.c:569
+#, c-format
+msgid "The file “%s” doesn’t exist."
+msgstr "Bestand ‘%s’ bestaat niet."
+
+#: ../src/liblatexila/latexila-build-tool.c:583
+#, c-format
+msgid "Failed to open “%s”:"
+msgstr "Openen van ‘%s’ is mislukt:"
+
+#: ../src/liblatexila/latexila-build-tool.c:689
+#, c-format
+msgid "Open %s"
+msgstr "%s openen"
+
+#: ../src/liblatexila/latexila-latex-commands.c:54 ../src/structure.vala:776
+msgid "Part"
+msgstr "Deel"
+
+#: ../src/liblatexila/latexila-latex-commands.c:56 ../src/structure.vala:777
+msgid "Chapter"
+msgstr "Hoofdstuk"
+
+#: ../src/liblatexila/latexila-latex-commands.c:58 ../src/structure.vala:778
+msgid "Section"
+msgstr "Sectie"
+
+#: ../src/liblatexila/latexila-latex-commands.c:60 ../src/structure.vala:779
+msgid "Sub-section"
+msgstr "Subsectie"
+
+#: ../src/liblatexila/latexila-latex-commands.c:62 ../src/structure.vala:780
+msgid "Sub-sub-section"
+msgstr "Subsubsectie"
+
+#: ../src/liblatexila/latexila-latex-commands.c:64 ../src/structure.vala:781
+msgid "Paragraph"
+msgstr "Paragraaf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:66 ../src/structure.vala:782
+msgid "Sub-paragraph"
+msgstr "Subparagraaf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:73
+msgid "Reference to a label"
+msgstr "Verwijzing naar een label"
+
+#: ../src/liblatexila/latexila-latex-commands.c:75
+msgid "Page reference to a label"
+msgstr "Verwijzing naar de pagina van een label"
+
+#: ../src/liblatexila/latexila-latex-commands.c:77
+msgid "Add a word to the index"
+msgstr "Een woord toevoegen aan de index"
+
+#: ../src/liblatexila/latexila-latex-commands.c:79
+msgid "Footnote"
+msgstr "Voetnoot"
+
+#: ../src/liblatexila/latexila-latex-commands.c:81
+msgid "Reference to a bibliography item"
+msgstr "Verwijzing naar een bibliografie-item"
+
+#: ../src/liblatexila/latexila-latex-commands.c:86
+msgid "Center — \\begin{center}"
+msgstr "Centreren — \\begin{center}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:88
+msgid "Align Left — \\begin{flushleft}"
+msgstr "Links uitlijnen — \\begin{flushleft}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:90
+msgid "Align Right — \\begin{flushright}"
+msgstr "Rechts uitlijnen — \\begin{flushright}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:92
+msgid "Figure — \\begin{figure}"
+msgstr "Figuur — \\begin{figure}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:94
+msgid "Table — \\begin{table}"
+msgstr "Tabel — \\begin{table}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:96
+msgid "Quote — \\begin{quote}"
+msgstr "Kort citaat — \\begin{quote}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:98
+msgid "Quotation — \\begin{quotation}"
+msgstr "Lang citaat — \\begin{quotation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:100
+msgid "Verse — \\begin{verse}"
+msgstr "Vers — \\begin{verse}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:102
+msgid "Verbatim — \\begin{verbatim}"
+msgstr "Verbatim — \\begin{verbatim}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:104
+msgid "Minipage — \\begin{minipage}"
+msgstr "Minipagina — \\begin{minipage}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:106
+msgid "Title page — \\begin{titlepage}"
+msgstr "Titelpagina — \\begin{titlepage}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:111
+msgid "Bulleted List — \\begin{itemize}"
+msgstr "Opsommingslijst — \\begin{itemize}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:113
+msgid "Enumeration — \\begin{enumerate}"
+msgstr "Genummerde lijst — \\begin{enumerate}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:115
+msgid "Description — \\begin{description}"
+msgstr "Omschrijving — \\begin{description}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:117
+msgid "Custom list — \\begin{list}"
+msgstr "Aangepaste lijst — \\begin{list}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:119
+msgid "List item — \\item"
+msgstr "Lijstitem — \\item"
+
+#: ../src/liblatexila/latexila-latex-commands.c:137
+msgid "Bold — \\textbf"
+msgstr "Vet — \\textbf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:139
+msgid "Italic — \\textit"
+msgstr "Cursief — \\textit"
+
+#: ../src/liblatexila/latexila-latex-commands.c:141
+msgid "Typewriter — \\texttt"
+msgstr "Typemachine — \\texttt"
+
+#: ../src/liblatexila/latexila-latex-commands.c:143
+msgid "Slanted — \\textsl"
+msgstr "Scheef — \\textsl"
+
+#: ../src/liblatexila/latexila-latex-commands.c:145
+msgid "Small Capitals — \\textsc"
+msgstr "Kleine hoofdletters — \\textsc"
+
+#: ../src/liblatexila/latexila-latex-commands.c:147
+msgid "Sans Serif — \\textsf"
+msgstr "Schreefloos (sans serif) — \\textsf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:149
+msgid "Emphasized — \\emph"
+msgstr "Benadrukt — \\emph"
+
+#: ../src/liblatexila/latexila-latex-commands.c:151
+msgid "Underline — \\underline"
+msgstr "Onderstrepen — \\underline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:154
+msgid "Roman — \\rmfamily"
+msgstr "Roman — \\rmfamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:156
+msgid "Sans Serif — \\sffamily"
+msgstr "Schreefloos (sans serif) — \\sffamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:158
+msgid "Monospace — \\ttfamily"
+msgstr "Monospace — \\ttfamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:161
+msgid "Medium — \\mdseries"
+msgstr "Medium — \\mdseries"
+
+#: ../src/liblatexila/latexila-latex-commands.c:163
+msgid "Bold — \\bfseries"
+msgstr "Vet — \\bfseries"
+
+#: ../src/liblatexila/latexila-latex-commands.c:166
+msgid "Upright — \\upshape"
+msgstr "Rechtop — \\upshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:168
+msgid "Italic — \\itshape"
+msgstr "Cursief — \\itshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:170
+msgid "Slanted — \\slshape"
+msgstr "Scheef — \\slshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:172
+msgid "Small Capitals — \\scshape"
+msgstr "Kleine hoofdletters — \\scshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:177
+msgid "Tabbing — \\begin{tabbing}"
+msgstr "Tabulatie — \\begin{tabbing}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:179
+msgid "Tabular — \\begin{tabular}"
+msgstr "Tabelvorm — \\begin{tabular}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:181
+msgid "Multicolumn — \\multicolumn"
+msgstr "Meerdere kolommen — \\multicolumn"
+
+#: ../src/liblatexila/latexila-latex-commands.c:183
+msgid "Horizontal line — \\hline"
+msgstr "Horizontale lijn — \\hline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:185
+msgid "Vertical line — \\vline"
+msgstr "Verticale lijn — \\vline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:187
+msgid "Horizontal line (columns specified) — \\cline"
+msgstr "Horizontale lijn (kolommen gespecificeerd) — \\cline"
+
+# Bruno : presentation mode
+#: ../src/liblatexila/latexila-latex-commands.c:192
+msgid "Frame — \\begin{frame}"
+msgstr "Kader — \\begin{frame}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:194
+msgid "Block — \\begin{block}"
+msgstr "Blok — \\begin{block}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:196
+msgid "Two columns — \\begin{columns}"
+msgstr "Twee kolommen — \\begin{columns}"
+
+#. LaTeX: Spacing
+#: ../src/liblatexila/latexila-latex-commands.c:200
+msgid "New _Line"
+msgstr "Nieuwe _regel"
+
+#: ../src/liblatexila/latexila-latex-commands.c:201
+msgid "New Line — \\\\"
+msgstr "Nieuw regel — \\\\"
+
+#: ../src/liblatexila/latexila-latex-commands.c:203
+msgid "New page — \\newpage"
+msgstr "Nieuwe pagina — \\newpage"
+
+#: ../src/liblatexila/latexila-latex-commands.c:205
+msgid "Line break — \\linebreak"
+msgstr "Regeleinde — \\linebreak"
+
+#: ../src/liblatexila/latexila-latex-commands.c:207
+msgid "Page break — \\pagebreak"
+msgstr "Pagina-einde — \\pagebreak"
+
+#: ../src/liblatexila/latexila-latex-commands.c:209
+msgid "Big skip — \\bigskip"
+msgstr "Grote sprong — \\bigskip"
+
+#: ../src/liblatexila/latexila-latex-commands.c:211
+msgid "Medium skip — \\medskip"
+msgstr "Medium sprong — \\medskip"
+
+#: ../src/liblatexila/latexila-latex-commands.c:213
+msgid "Horizontal space — \\hspace"
+msgstr "Horizontale spatiëring — \\hspace"
+
+#: ../src/liblatexila/latexila-latex-commands.c:215
+msgid "Vertical space — \\vspace"
+msgstr "Verticale spatiëring — \\vspace"
+
+#: ../src/liblatexila/latexila-latex-commands.c:217
+msgid "No paragraph indentation — \\noindent"
+msgstr "Geen paragraafinspringing — \\noindent"
+
+#. LaTeX: International accents
+#: ../src/liblatexila/latexila-latex-commands.c:221
+msgid "Acute accent — \\'"
+msgstr "Accent aigu — \\'"
+
+#: ../src/liblatexila/latexila-latex-commands.c:222
+msgid "Grave accent — \\`"
+msgstr "Accent grave — \\`"
+
+#: ../src/liblatexila/latexila-latex-commands.c:223
+msgid "Circumflex accent — \\^"
+msgstr "Accent circonflexe — \\^"
+
+#: ../src/liblatexila/latexila-latex-commands.c:224
+msgid "Trema — \\\""
+msgstr "Trema — \\\""
+
+#: ../src/liblatexila/latexila-latex-commands.c:225
+msgid "Tilde — \\~"
+msgstr "Tilde — \\~"
+
+#: ../src/liblatexila/latexila-latex-commands.c:226
+msgid "Macron — \\="
+msgstr "Macron — \\="
+
+#: ../src/liblatexila/latexila-latex-commands.c:227
+msgid "Dot above — \\."
+msgstr "Punt boven — \\."
+
+#: ../src/liblatexila/latexila-latex-commands.c:228
+msgid "Caron — \\v"
+msgstr "Caron — \\v"
+
+#: ../src/liblatexila/latexila-latex-commands.c:229
+msgid "Breve — \\u"
+msgstr "Brève — \\u"
+
+#: ../src/liblatexila/latexila-latex-commands.c:231
+msgid "Double acute accent — \\H"
+msgstr "Dubbel accent aigu — \\H"
+
+#: ../src/liblatexila/latexila-latex-commands.c:232
+msgid "Cedilla — \\c"
+msgstr "Cédille — \\c"
+
+#: ../src/liblatexila/latexila-latex-commands.c:233
+msgid "Ogonek — \\k"
+msgstr "Ogonek — \\k"
+
+#: ../src/liblatexila/latexila-latex-commands.c:234
+msgid "Dot below — \\d"
+msgstr "Punt onder — \\d"
+
+#: ../src/liblatexila/latexila-latex-commands.c:235
+msgid "Macron below — \\b"
+msgstr "Macron onder — \\b"
+
+#: ../src/liblatexila/latexila-latex-commands.c:236
+msgid "Ring — \\r"
+msgstr "Ring — \\r"
+
+#: ../src/liblatexila/latexila-latex-commands.c:237
+msgid "Tie — \\t"
+msgstr "Tie — \\t"
+
+#: ../src/liblatexila/latexila-latex-commands.c:242
+msgid "Document class — \\documentclass"
+msgstr "Documentklasse — \\documentclass"
+
+#: ../src/liblatexila/latexila-latex-commands.c:244
+msgid "Use package — \\usepackage"
+msgstr "Pakket gebruiken — \\usepackage"
+
+#: ../src/liblatexila/latexila-latex-commands.c:245
+msgid "_AMS packages"
+msgstr "_AMS-pakketten"
+
+#: ../src/liblatexila/latexila-latex-commands.c:246
+msgid "AMS packages"
+msgstr "AMS-pakketten"
+
+#: ../src/liblatexila/latexila-latex-commands.c:247
+msgid "Author — \\author"
+msgstr "Auteur — \author"
+
+#: ../src/liblatexila/latexila-latex-commands.c:248
+msgid "Title — \\title"
+msgstr "Titel — \\title"
+
+#: ../src/liblatexila/latexila-latex-commands.c:250
+msgid "Content of the document — \\begin{document}"
+msgstr "Inhoud van het document — \\begin{document}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:252
+msgid "Make title — \\maketitle"
+msgstr "Maken van titel — \\maketitle"
+
+#: ../src/liblatexila/latexila-latex-commands.c:254
+msgid "Table of contents — \\tableofcontents"
+msgstr "Inhoudsopgave — \\tableofcontents"
+
+#: ../src/liblatexila/latexila-latex-commands.c:256
+msgid "Abstract — \\begin{abstract}"
+msgstr "Samenvatting — \\begin{abstract}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:258
+msgid "Include an image (graphicx package) — \\includegraphics"
+msgstr "Afbeelding invoegen (graphicx-pakket) — \\includegraphics"
+
+#: ../src/liblatexila/latexila-latex-commands.c:260
+msgid "Include a file — \\input"
+msgstr "Bestand invoegen — \\input"
+
+#. Math Environments
+#: ../src/liblatexila/latexila-latex-commands.c:264
+msgid "_Mathematical Environment — $…$"
+msgstr "_Wiskundige omgeving — $…$"
+
+#: ../src/liblatexila/latexila-latex-commands.c:265
+msgid "Mathematical Environment — $…$"
+msgstr "Wiskundige omgeving — $…$"
+
+#: ../src/liblatexila/latexila-latex-commands.c:266
+msgid "_Centered Formula — \\[…\\]"
+msgstr "Ge_centreerde formule — \\[…\\]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:267
+msgid "Centered Formula — \\[…\\]"
+msgstr "Gecentreerde formule — \\[…\\]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:269
+msgid "_Numbered Equation — \\begin{equation}"
+msgstr "Ge_nummerde vergelijking — \\begin{equation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:270
+msgid "Numbered Equation — \\begin{equation}"
+msgstr "Genummerde vergelijking — \\begin{equation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:271
+msgid "_Array of Equations — \\begin{align*}"
+msgstr "_Reeks vergelijkingen — \\begin{align*}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:272
+msgid "Array of Equations — \\begin{align*}"
+msgstr "Reeks vergelijkingen — \\begin{align*}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:274
+msgid "Numbered Array of _Equations — \\begin{align}"
+msgstr "R_eeks genummerde vergelijkingen — \\begin{align}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:275
+msgid "Numbered Array of Equations — \\begin{align}"
+msgstr "Reeks genummerde vergelijkingen — \\begin{align}"
+
+#. Math misc
+#: ../src/liblatexila/latexila-latex-commands.c:279
+msgid "_Superscript — ^{}"
+msgstr "_Superscript — ^{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:280
+msgid "Superscript — ^{}"
+msgstr "Superscript — ^{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:281
+msgid "Su_bscript — __{}"
+msgstr "Su_bscript — _{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:282
+msgid "Subscript — _{}"
+msgstr "Subscript — _{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:283
+msgid "_Fraction — \\frac{}{}"
+msgstr "_Breuk — \\frac{}{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:284
+msgid "Fraction — \\frac{}{}"
+msgstr "Breuk — \\frac{}{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:285
+msgid "Square _Root — \\sqrt{}"
+msgstr "Vie_rkantswortel — \\sqrt{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:286
+msgid "Square Root — \\sqrt{}"
+msgstr "Vierkantswortel — \\sqrt{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:287
+msgid "_N-th Root — \\sqrt[]{}"
+msgstr "_N-de wortel — \\sqrt[]{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:288
+msgid "N-th Root — \\sqrt[]{}"
+msgstr "N-de wortel — \\sqrt[]{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:326
+msgid "Roman — \\mathrm"
+msgstr "Roman — \\mathrm"
+
+#: ../src/liblatexila/latexila-latex-commands.c:328
+msgid "Italic — \\mathit"
+msgstr "Cursief — \\mathit"
+
+#: ../src/liblatexila/latexila-latex-commands.c:330
+msgid "Bold — \\mathbf"
+msgstr "Vet — \\mathbf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:332
+msgid "Sans Serif — \\mathsf"
+msgstr "Schreefloos (sans serif) — \\mathsf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:334
+msgid "Typewriter — \\mathtt"
+msgstr "Typemachine — \\mathtt"
+
+#: ../src/liblatexila/latexila-latex-commands.c:336
+msgid "Calligraphic — \\mathcal"
+msgstr "Kalligrafisch — \\mathcal"
+
+#: ../src/liblatexila/latexila-latex-commands.c:338
+msgid "Blackboard (uppercase only) — \\mathbb (amsfonts package)"
+msgstr "Blackboard (alleen hoofdletters) — \\mathbb (amsfonts-pakket)"
+
+#: ../src/liblatexila/latexila-latex-commands.c:340
+msgid "Euler Fraktur — \\mathfrak (amsfonts package)"
+msgstr "Euler Fraktur — \\mathfrak (amsfonts-pakket)"
+
+#. Math Spaces
+#: ../src/liblatexila/latexila-latex-commands.c:358
+msgid "_Small"
+msgstr "_Klein"
+
+#: ../src/liblatexila/latexila-latex-commands.c:358
+msgid "Small — \\,"
+msgstr "Klein — \\,"
+
+#: ../src/liblatexila/latexila-latex-commands.c:359
+msgid "_Medium"
+msgstr "_Medium"
+
+#: ../src/liblatexila/latexila-latex-commands.c:359
+msgid "Medium — \\:"
+msgstr "Medium — \\:"
+
+#: ../src/liblatexila/latexila-latex-commands.c:360
+msgid "_Large"
+msgstr "_Groot"
+
+#: ../src/liblatexila/latexila-latex-commands.c:360
+msgid "Large — \\;"
+msgstr "Groot — \\;"
+
+#. Math: Left Delimiters
+#: ../src/liblatexila/latexila-latex-commands.c:366
 msgid "left ("
 msgstr "links ("
 
-#: ../src/latex_menu.vala:400
+#: ../src/liblatexila/latexila-latex-commands.c:367
 msgid "left ["
 msgstr "links ["
 
-#: ../src/latex_menu.vala:402
+#: ../src/liblatexila/latexila-latex-commands.c:368
 msgid "left { "
-msgstr "links {"
+msgstr "links { "
 
-#: ../src/latex_menu.vala:404
+#: ../src/liblatexila/latexila-latex-commands.c:369
 msgid "left <"
 msgstr "links <"
 
-#: ../src/latex_menu.vala:406
+#: ../src/liblatexila/latexila-latex-commands.c:370
 msgid "left )"
 msgstr "links )"
 
-#: ../src/latex_menu.vala:408
+#: ../src/liblatexila/latexila-latex-commands.c:371
 msgid "left ]"
 msgstr "links ]"
 
-#: ../src/latex_menu.vala:410
+#: ../src/liblatexila/latexila-latex-commands.c:372
 msgid "left  }"
 msgstr "links }"
 
-#: ../src/latex_menu.vala:412
+#: ../src/liblatexila/latexila-latex-commands.c:373
 msgid "left >"
 msgstr "links >"
 
-#: ../src/latex_menu.vala:414
+#: ../src/liblatexila/latexila-latex-commands.c:374
 msgid "left ."
 msgstr "links ."
 
 #. Math: Right Delimiters
-#: ../src/latex_menu.vala:419
-msgid "Right _Delimiters"
-msgstr "Rechter haakjes"
-
-#: ../src/latex_menu.vala:420
+#: ../src/liblatexila/latexila-latex-commands.c:378
 msgid "right )"
 msgstr "rechts )"
 
-#: ../src/latex_menu.vala:422
+#: ../src/liblatexila/latexila-latex-commands.c:379
 msgid "right ]"
 msgstr "rechts ]"
 
-#: ../src/latex_menu.vala:424
+#: ../src/liblatexila/latexila-latex-commands.c:380
 msgid "right  }"
 msgstr "rechts }"
 
-#: ../src/latex_menu.vala:426
+#: ../src/liblatexila/latexila-latex-commands.c:381
 msgid "right >"
 msgstr "rechts >"
 
-#: ../src/latex_menu.vala:428
+#: ../src/liblatexila/latexila-latex-commands.c:382
 msgid "right ("
 msgstr "rechts ("
 
-#: ../src/latex_menu.vala:430
+#: ../src/liblatexila/latexila-latex-commands.c:383
 msgid "right ["
 msgstr "rechts ["
 
-#: ../src/latex_menu.vala:432
+#: ../src/liblatexila/latexila-latex-commands.c:384
 msgid "right { "
-msgstr "rechts {"
+msgstr "rechts { "
 
-#: ../src/latex_menu.vala:434
+#: ../src/liblatexila/latexila-latex-commands.c:385
 msgid "right <"
 msgstr "rechts <"
 
-#: ../src/latex_menu.vala:436
+#: ../src/liblatexila/latexila-latex-commands.c:386
 msgid "right ."
 msgstr "rechts ."
 
-#. menus under toolitems
-#: ../src/latex_menu.vala:451
-msgid "Sectioning"
-msgstr "Secties"
+#: ../src/liblatexila/latexila-synctex.c:194
+msgid "Impossible to do the forward search."
+msgstr "Voorwaarts zoeken is niet mogelijk."
 
-#: ../src/latex_menu.vala:454
-msgid "Characters Sizes"
-msgstr "Tekengrootte"
+#: ../src/liblatexila/latexila-synctex.c:539
+msgid "Can not communicate with evince."
+msgstr "Communicatie met evince is niet mogelijk."
 
-#: ../src/latex_menu.vala:457
-msgid "References"
-msgstr "Verwijzingen"
+#: ../src/liblatexila/latexila-synctex.c:603
+msgid "The PDF file doesn’t exist."
+msgstr "Het PDF-bestand bestaat niet."
 
-#: ../src/latex_menu.vala:460
-msgid "Presentation Environments"
-msgstr "Presentatieomgevingen"
+#: ../src/liblatexila/latexila-synctex.c:654
+msgid "The document is not saved."
+msgstr "Het document is niet opgeslagen."
 
-#: ../src/latex_menu.vala:463
-msgid "Math Environments"
-msgstr "Math-omgevingen"
+#: ../src/liblatexila/latexila-templates-default.c:90
+msgid "Empty"
+msgstr "Leeg"
 
-#: ../src/latex_menu.vala:466
-msgid "Left Delimiters"
-msgstr "Linker haakjes"
+#: ../src/liblatexila/latexila-templates-default.c:94
+msgid "Article"
+msgstr "Artikel"
 
-#: ../src/latex_menu.vala:469
-msgid "Right Delimiters"
-msgstr "Rechter haakjes"
+#: ../src/liblatexila/latexila-templates-default.c:95
+msgid "Report"
+msgstr "Rapport"
 
-#: ../src/main.vala:51
-msgid "Show the application's version"
-msgstr "De versie van de toepassing tonen"
+#: ../src/liblatexila/latexila-templates-default.c:96
+msgid "Book"
+msgstr "Boek"
 
-#: ../src/main.vala:54
-msgid "Create new document"
-msgstr "Nieuw document aanmaken"
+#: ../src/liblatexila/latexila-templates-default.c:97
+msgid "Letter"
+msgstr "Brief"
 
-#: ../src/main.vala:57
-msgid "Create a new top-level window in an existing instance of LaTeXila"
-msgstr "Een nieuw venster aanmaken in een bestaande instantie van LaTeXila"
+#: ../src/liblatexila/latexila-templates-default.c:98
+msgid "Presentation"
+msgstr "Presentatie"
 
-#: ../src/main.vala:66
-msgid "- Integrated LaTeX Environment for GNOME"
-msgstr "- Geïntegreerde LaTeX-omgeving voor Gnome"
+#: ../src/liblatexila/latexila-templates-dialogs.c:50
+msgid "Default Templates"
+msgstr "Standaardsjablonen"
 
-#: ../src/main.vala:78
+#: ../src/liblatexila/latexila-templates-dialogs.c:62
+msgid "Personal Templates"
+msgstr "Persoonlijke sjablonen"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:124
+msgid "New File…"
+msgstr "Nieuw bestand…"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:131
+#: ../src/main_window_file.vala:32
+msgid "_New"
+msgstr "_Nieuw"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:232
+msgid "New Template…"
+msgstr "Nieuw sjabloon…"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:239
+#: ../src/project_dialogs.vala:32
+msgid "Crea_te"
+msgstr "_Aanmaken"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:249
+msgid "Name of the new template"
+msgstr "Naam van het nieuwe sjabloon"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:267
+msgid "Choose an icon"
+msgstr "Een pictogram kiezen"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:336
+msgid "Impossible to create the personal template."
+msgstr "Aanmaken van het persoonlijke sjabloon is niet mogelijk."
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:143
 #, c-format
-msgid "Run '%s --help' to see a full list of available command line options.\n"
-msgstr "Voer '%s --help' uit om een volledige lijst van commando's te zien.\n"
+msgid "Do you really want to delete the template “%s”?"
+msgstr "Weet u zeker dat u het sjabloon ‘%s’ wilt verwijderen?"
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:170
+#, c-format
+msgid "Error when deleting the template “%s”."
+msgstr "Fout bij verwijderen van het sjabloon ‘%s’."
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:230
+msgid "Error when moving the template."
+msgstr "Fout bij verwijderen van het sjabloon."
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:274
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:366
+msgid "Manage Personal Templates"
+msgstr "Persoonlijke sjablonen beheren"
 
 #: ../src/main_window_build_tools.vala:28
 msgid "_Build"
@@ -1592,11 +1780,11 @@ msgstr "Log bekijken"
 
 #: ../src/main_window_build_tools.vala:40
 msgid "_Manage Build Tools"
-msgstr "_Bouwhulpprogramma's-beheer"
+msgstr "_Bouwhulpprogramma’s-beheer"
 
 #: ../src/main_window_build_tools.vala:41
 msgid "Manage Build Tools"
-msgstr "Bouwhulpprogramma's-beheer"
+msgstr "Bouwhulpprogramma’s-beheer"
 
 #: ../src/main_window_build_tools.vala:46
 msgid "Show _Details"
@@ -1670,26 +1858,46 @@ msgstr "Het huidige document naar een nieuw venster verplaatsen"
 msgid "_Edit"
 msgstr "B_ewerken"
 
+#: ../src/main_window_edit.vala:32
+msgid "_Undo"
+msgstr "_Ongedaan maken"
+
 #: ../src/main_window_edit.vala:33
 msgid "Undo the last action"
 msgstr "De laatste actie ongedaan maken"
+
+#: ../src/main_window_edit.vala:35
+msgid "_Redo"
+msgstr "_Herhalen"
 
 #: ../src/main_window_edit.vala:36
 msgid "Redo the last undone action"
 msgstr "De laatst ongedaan gemaakte actie herstellen"
 
+#: ../src/main_window_edit.vala:38 ../src/main_window_structure.vala:32
+msgid "Cu_t"
+msgstr "K_nippen"
+
 #: ../src/main_window_edit.vala:39
 msgid "Cut the selection"
 msgstr "De selectie knippen"
+
+#: ../src/main_window_edit.vala:41 ../src/main_window_structure.vala:35
+msgid "_Copy"
+msgstr "_Kopiëren"
 
 #: ../src/main_window_edit.vala:42
 msgid "Copy the selection"
 msgstr "De selectie kopiëren"
 
-#. No shortcut here because if the shortcut is null, Ctrl+V is used for the _all_
+#. No shortcut here because if the shortcut is null, Ctrl+V is used for _all_
 #. the window. In this case Ctrl+V in the search text entry would be broken (the
 #. text is pasted in the document instead of the entry).
 #. Anyway if we press Ctrl+V when the cursor is in the document, no problem.
+#: ../src/main_window_edit.vala:48
+msgid "_Paste"
+msgstr "_Plakken"
+
 #: ../src/main_window_edit.vala:49
 msgid "Paste the clipboard"
 msgstr "Vanaf het plakbord plakken"
@@ -1698,43 +1906,62 @@ msgstr "Vanaf het plakbord plakken"
 msgid "Delete the selected text"
 msgstr "De geselecteerde tekst verwijderen"
 
+#: ../src/main_window_edit.vala:54
+msgid "Select _All"
+msgstr "_Alles selecteren"
+
 #: ../src/main_window_edit.vala:55
 msgid "Select the entire document"
 msgstr "Het volledige document selecteren"
 
-#: ../src/main_window_edit.vala:57 ../src/main_window_structure.vala:44
+#: ../src/main_window_edit.vala:57
+msgid "_Indent"
+msgstr "_Inspringen"
+
+#: ../src/main_window_edit.vala:58
+msgid "Indent the selected lines"
+msgstr "De geselecteerde regels inspringen"
+
+#: ../src/main_window_edit.vala:60
+msgid "_Unindent"
+msgstr "_Niet inspringen"
+
+#: ../src/main_window_edit.vala:61
+msgid "Unindent the selected lines"
+msgstr "De geselecteerde regels niet inspringen"
+
+#: ../src/main_window_edit.vala:63 ../src/main_window_structure.vala:44
 msgid "_Comment"
 msgstr "_Commentaar"
 
-#: ../src/main_window_edit.vala:58
-msgid "Comment the selected lines (add the character \"%\")"
+#: ../src/main_window_edit.vala:64
+msgid "Comment the selected lines (add the character “%”)"
 msgstr ""
 "De geselecteerde regels van commentaar voorzien (voeg het teken ‘%’ toe)"
 
-#: ../src/main_window_edit.vala:61
+#: ../src/main_window_edit.vala:67
 msgid "_Uncomment"
 msgstr "Commentaar_symbool verwijderen"
 
-#: ../src/main_window_edit.vala:62
-msgid "Uncomment the selected lines (remove the character \"%\")"
-msgstr "Het commentaarsymbool (‘%’) uit de geselecteerde regels verwijderen"
+#: ../src/main_window_edit.vala:68
+msgid "Uncomment the selected lines (remove the character “%”)"
+msgstr "Het commentaarteken (‘%’) uit de geselecteerde regels verwijderen"
 
-#: ../src/main_window_edit.vala:65
-#| msgid "_Comment"
+#: ../src/main_window_edit.vala:71
 msgid "_Completion"
 msgstr "_Aanvulling"
 
-#: ../src/main_window_edit.vala:66
+#: ../src/main_window_edit.vala:72
 msgid "Complete the LaTeX command"
-msgstr "De LaTeX-opdracht afmaken"
+msgstr "De LaTeX-opdracht aanvullen"
 
-#: ../src/main_window_edit.vala:69
-msgid "Configure the application"
-msgstr "De toepassing configureren"
+#: ../src/main_window_edit.vala:74
+msgid "_Preferences"
+msgstr "_Voorkeuren"
 
 #: ../src/main_window_edit.vala:75
-msgid "Activate or disable the spell checking"
-msgstr "De spellingscontrole activeren of deactiveren"
+msgid "Configure the application"
+msgstr "De toepassing configureren"
 
 #: ../src/main_window_file.vala:30
 msgid "_File"
@@ -1752,7 +1979,11 @@ msgstr "Nieuw _venster"
 msgid "Create a new window"
 msgstr "Een nieuw venster aanmaken"
 
-#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:85
+#: ../src/main_window_file.vala:38 ../src/main_window_file.vala:158
+msgid "_Open"
+msgstr "_Openen"
+
+#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:90
 msgid "Open a file"
 msgstr "Een bestand openen"
 
@@ -1765,7 +1996,7 @@ msgid "Save the current file with a different name"
 msgstr "Het huidige bestand opslaan onder een andere naam"
 
 #: ../src/main_window_file.vala:47
-msgid "Create _Template From Document..."
+msgid "Create _Template From Document…"
 msgstr "Een sja_bloon maken van dit document…"
 
 #: ../src/main_window_file.vala:48
@@ -1773,12 +2004,16 @@ msgid "Create a new template from the current document"
 msgstr "Een nieuw sjabloon maken van het huidige document"
 
 #: ../src/main_window_file.vala:50
-msgid "_Delete Template..."
-msgstr "Sjabloon v_erwijderen…"
+msgid "_Manage Personal Templates…"
+msgstr "Persoo_nlijke sjablonen beheren…"
 
 #: ../src/main_window_file.vala:51
-msgid "Delete personal template(s)"
-msgstr "Persoonlijke sjablo(o)n(en) verwijderen"
+msgid "Manage personal templates"
+msgstr "Persoonlijke sjablonen beheren"
+
+#: ../src/main_window_file.vala:53
+msgid "_Close"
+msgstr "_Sluiten"
 
 #: ../src/main_window_file.vala:54
 msgid "Close the current file"
@@ -1793,21 +2028,21 @@ msgstr "_Recent openen"
 msgid "Open recently used files"
 msgstr "Recent gebruikte bestanden openen"
 
-#: ../src/main_window_file.vala:86
+#: ../src/main_window_file.vala:91
 msgid "Open a recently used file"
 msgstr "Een recent gebruikt bestand openen"
 
-#: ../src/main_window_file.vala:143
+#: ../src/main_window_file.vala:154
 msgid "Open Files"
 msgstr "Bestanden openen"
 
 #. Filter: by default show only .tex and .bib files
-#: ../src/main_window_file.vala:157
+#: ../src/main_window_file.vala:177
 msgid "All LaTeX Files"
 msgstr "Alle LaTeX-bestanden"
 
 #. All files filter
-#: ../src/main_window_file.vala:164
+#: ../src/main_window_file.vala:184
 msgid "All Files"
 msgstr "Alle bestanden"
 
@@ -1869,6 +2104,40 @@ msgstr ""
 "Het bestand waarnaar verwezen wordt door het geselecteerde structuur-item "
 "openen"
 
+#: ../src/main_window_tools.vala:28
+msgid "_Tools"
+msgstr "H_ulpmiddelen"
+
+#: ../src/main_window_tools.vala:29
+msgid "_Check Spelling…"
+msgstr "Spelling _controleren…"
+
+#: ../src/main_window_tools.vala:30
+msgid "Check the spelling of the current document"
+msgstr "Controleer de spelling van het huidige document"
+
+#: ../src/main_window_tools.vala:31
+msgid "_Set Language…"
+msgstr "Taal in_stellen…"
+
+#: ../src/main_window_tools.vala:32
+msgid "Set the language used for the spell-checking for the current document"
+msgstr ""
+"Stel de taal in die gebruikt moet worden voor spellingscontrole van het "
+"huidige document"
+
+#: ../src/main_window_tools.vala:38
+msgid "_Highlight Misspelled Words"
+msgstr "_Verkeerd gespelde woorden markeren"
+
+#: ../src/main_window_tools.vala:39
+msgid "Highlight misspelled words in the current document"
+msgstr "Markeer verkeerd gespelde woorden in het huidige document"
+
+#: ../src/main_window.vala:28
+msgid "_Quit"
+msgstr "_Afsluiten"
+
 #: ../src/main_window.vala:29
 msgid "Quit the program"
 msgstr "Het programma verlaten"
@@ -1907,16 +2176,24 @@ msgstr "Het lettertype naar de originele grootte terugbrengen"
 msgid "_Search"
 msgstr "_Zoeken"
 
+#: ../src/main_window.vala:42
+msgid "_Find"
+msgstr "_Zoeken"
+
 #: ../src/main_window.vala:43
 msgid "Search for text"
 msgstr "Zoeken naar tekst"
+
+#: ../src/main_window.vala:44
+msgid "Find and _Replace"
+msgstr "Zoeken en ve_rvangen"
 
 #: ../src/main_window.vala:45
 msgid "Search for and replace text"
 msgstr "Tekst zoeken en vervangen"
 
 #: ../src/main_window.vala:46
-msgid "_Go to Line..."
+msgid "_Go to Line…"
 msgstr "_Ga naar regel…"
 
 #: ../src/main_window.vala:47
@@ -1924,190 +2201,152 @@ msgid "Go to a specific line"
 msgstr "Naar een opgegeven regel springen"
 
 #: ../src/main_window.vala:48
-msgid "_Search Forward"
-msgstr "Voorwaarts z_oeken"
+msgid "_Jump to PDF"
+msgstr "Sp_ringen naar PDF"
 
 #: ../src/main_window.vala:49
-msgid "Jump to the associated position in the PDF file"
-msgstr "Naar de geassocieerde positie in het PDF-bestand springen"
+msgid ""
+"Jump to the associated position in the PDF file. Another shortcut: Ctrl"
+"+click, which works in both directions."
+msgstr ""
+"Spring naar de geassocieerde positie in het PDF-bestand. Een andere "
+"sneltoets, Ctrl+klik, werkt in beide richtingen."
 
 #. Projects
-#: ../src/main_window.vala:52
+#: ../src/main_window.vala:53
 msgid "_Projects"
 msgstr "_Projecten"
 
-#: ../src/main_window.vala:53
+#: ../src/main_window.vala:54
 msgid "_New Project"
 msgstr "_Nieuw project"
 
-#: ../src/main_window.vala:54
+#: ../src/main_window.vala:55
 msgid "Create a new project"
 msgstr "Een nieuw project aanmaken"
 
-#: ../src/main_window.vala:55
+#: ../src/main_window.vala:56
 msgid "_Configure Current Project"
 msgstr "Het huidige project _configureren"
 
-#: ../src/main_window.vala:56
+#: ../src/main_window.vala:57
 msgid "Change the main file of the current project"
 msgstr "Het hoofdbestand van het huidige project wijzigen"
 
-#: ../src/main_window.vala:58
+#: ../src/main_window.vala:59
 msgid "_Manage Projects"
 msgstr "Projecten _beheren"
 
-#: ../src/main_window.vala:59 ../src/project_dialogs.vala:183
+#: ../src/main_window.vala:60 ../src/project_dialogs.vala:187
 msgid "Manage Projects"
 msgstr "Beheer projecten"
 
-#. Help
-#: ../src/main_window.vala:62
-msgid "_Help"
-msgstr "Projecten beheren"
-
-#: ../src/main_window.vala:63
+#: ../src/main_window.vala:64
 msgid "_Contents"
 msgstr "I_nhoud"
 
-#: ../src/main_window.vala:64
-msgid "Open the LaTeXila documentation"
-msgstr "De LaTeXila-documentatie openen"
-
 #: ../src/main_window.vala:65
+msgid "Open the GNOME LaTeX documentation"
+msgstr "De Gnome LaTeX-documentatie openen"
+
+#: ../src/main_window.vala:66
 msgid "_LaTeX Reference"
 msgstr "_LaTeX-referentie"
 
-#: ../src/main_window.vala:66
+#: ../src/main_window.vala:67
 msgid "The Kile LaTeX Reference"
 msgstr "De Kile LaTeX-referentie"
 
-#: ../src/main_window.vala:67
-msgid "_Donate"
-msgstr "_Doneren"
-
 #: ../src/main_window.vala:68
-msgid ""
-"Donate to demonstrate your appreciation of LaTeXila and help its future "
-"development"
-msgstr ""
-"Doneren om uw waardering voor LaTeXila te tonen en te helpen bij de "
-"verdere ontwikkeling ervan."
+msgid "_About"
+msgstr "I_nfo"
 
-#: ../src/main_window.vala:71 ../src/main_window.vala:1244
-msgid "About LaTeXila"
-msgstr "Over LaTeXila"
-
-#: ../src/main_window.vala:76
+#: ../src/main_window.vala:74
 msgid "_Main Toolbar"
 msgstr "_Hoofdwerkbalk"
 
-#: ../src/main_window.vala:77
+#: ../src/main_window.vala:75
 msgid "Show or hide the main toolbar"
 msgstr "De hoofdwerkbalk tonen of verbergen"
 
 #. Translators: "Edit" here is an adjective.
-#: ../src/main_window.vala:79
+#: ../src/main_window.vala:77
 msgid "_Edit Toolbar"
 msgstr "Werkbalk be_werken"
 
-#: ../src/main_window.vala:80
+#: ../src/main_window.vala:78
 msgid "Show or hide the edit toolbar"
 msgstr "De werkbalk tonen of verbergen"
 
-#: ../src/main_window.vala:81
+#: ../src/main_window.vala:79
 msgid "_Side panel"
 msgstr "_Zijpaneel"
 
-#: ../src/main_window.vala:82
+#: ../src/main_window.vala:80
 msgid "Show or hide the side panel"
 msgstr "Het zijpaneel tonen of verbergen"
 
-#: ../src/main_window.vala:83
+#: ../src/main_window.vala:81
 msgid "_Bottom panel"
 msgstr "_Onderste paneel"
 
-#: ../src/main_window.vala:84
+#: ../src/main_window.vala:82
 msgid "Show or hide the bottom panel"
 msgstr "Het  onderste paneel tonen of verbergen"
 
 #. Symbols
-#: ../src/main_window.vala:400
+#: ../src/main_window.vala:446
 msgid "Symbols"
 msgstr "Symbolen"
 
-#: ../src/main_window.vala:409
+#: ../src/main_window.vala:455
 msgid "Structure"
 msgstr "Structuur"
 
-#: ../src/main_window.vala:655
+#: ../src/main_window.vala:648
 #, c-format
-msgid "This file (%s) is already opened in another LaTeXila window."
-msgstr "Dit bestand (%s) is al geopend in een ander LaTeXila venster."
+msgid "This file (%s) is already opened in another GNOME LaTeX window."
+msgstr "Dit bestand (%s) is al geopend in een ander Gnome LaTeX-venster."
 
-#: ../src/main_window.vala:657
+#: ../src/main_window.vala:650
 msgid ""
-"LaTeXila opened this instance of the file in a non-editable way. Do you want "
-"to edit it anyway?"
+"GNOME LaTeX opened this instance of the file in a non-editable way. Do you "
+"want to edit it anyway?"
 msgstr ""
-"LaTeXila heeft dit bestand geopend in een niet-bewerkbare modus. Wilt u het "
-"toch bewerken?"
+"Gnome LaTeX heeft dit bestand geopend in een niet-bewerkbare modus. Wilt u "
+"het toch bewerken?"
 
-#: ../src/main_window.vala:660
+#: ../src/main_window.vala:654
 msgid "Edit Anyway"
 msgstr "Toch bewerken"
 
-#: ../src/main_window.vala:661
-msgid "Don't Edit"
+#: ../src/main_window.vala:655
+msgid "Don’t Edit"
 msgstr "Niet bewerken"
 
-#: ../src/main_window.vala:762
+#: ../src/main_window.vala:750
 #, c-format
-msgid "Save changes to document \"%s\" before closing?"
+msgid "Save changes to document “%s” before closing?"
 msgstr "Wijzigingen in document ‘%s’ opslaan voor sluiten?"
 
-#: ../src/main_window.vala:842
-msgid "Read-Only"
-msgstr "Alleen-lezen"
-
-#: ../src/main_window.vala:860
+#: ../src/main_window.vala:809
 msgid "Save File"
 msgstr "Bestand opslaan"
 
-#: ../src/main_window.vala:895
-#, c-format
-msgid "A file named \"%s\" already exists. Do you want to replace it?"
-msgstr "Een bestand met de naam ‘%s’ bestaat al. Wilt u het overschrijven?"
-
-#: ../src/main_window.vala:900 ../src/search.vala:182
-msgid "Replace"
-msgstr "Overschrijven"
-
-#: ../src/main_window.vala:1206
-msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
-msgstr "LaTeXila is een geïntegreerde LaTeX-omgeving voor Gnome"
-
-#: ../src/main_window.vala:1245
-msgid "translator-credits"
-msgstr "Vertalingen door"
-
-#: ../src/post_processors.vala:188
-msgid "Latexmk messages"
-msgstr "Latexmk berichten"
-
-#: ../src/preferences_dialog.vala:31
+#: ../src/preferences_dialog.vala:33
 msgid "Preferences"
 msgstr "Voorkeuren"
 
 #. reset all button
-#: ../src/preferences_dialog.vala:36 ../src/utils.vala:400
-msgid "Reset All"
-msgstr "Alles resetten"
+#: ../src/preferences_dialog.vala:42 ../src/preferences_dialog.vala:115
+msgid "_Reset All"
+msgstr "Alles op_nieuw instellen"
 
-#: ../src/preferences_dialog.vala:39
+#: ../src/preferences_dialog.vala:43
 msgid "Reset all preferences"
 msgstr "Alle voorkeuren terug naar beginwaarde"
 
-#: ../src/preferences_dialog.vala:118
+#: ../src/preferences_dialog.vala:112
 msgid "Do you really want to reset all preferences?"
 msgstr "Weet u zeker dat u alle voorkeuren wilt resetten?"
 
@@ -2117,54 +2356,69 @@ msgid_plural "minutes"
 msgstr[0] "minuut"
 msgstr[1] "minuten"
 
-#: ../src/preferences_dialog.vala:291
+#: ../src/preferences_dialog.vala:294
 msgid "character"
 msgid_plural "characters"
 msgstr[0] "teken"
 msgstr[1] "karakters"
 
-#: ../src/preferences_dialog.vala:331
+#: ../src/preferences_dialog.vala:337
 #, c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "Het lettertype met vaste breedte van het systeem (%s) gebruiken"
 
-#: ../src/project_dialogs.vala:26
+#: ../src/project_dialogs.vala:28
 msgid "New Project"
 msgstr "Nieuw project"
 
 #. directory
-#: ../src/project_dialogs.vala:36 ../src/project_dialogs.vala:40
-#: ../src/project_dialogs.vala:203
+#: ../src/project_dialogs.vala:40 ../src/project_dialogs.vala:42
+#: ../src/project_dialogs.vala:204
 msgid "Directory"
 msgstr "Map"
 
-#: ../src/project_dialogs.vala:101
+#. main file
+#: ../src/project_dialogs.vala:46 ../src/project_dialogs.vala:48
+#: ../src/project_dialogs.vala:142 ../src/project_dialogs.vala:144
+#: ../src/project_dialogs.vala:217
+msgid "Main File"
+msgstr "Hoofdbestand"
+
+#: ../src/project_dialogs.vala:102
 #, c-format
-msgid "There is a conflict with the project \"%s\"."
+msgid "There is a conflict with the project “%s”."
 msgstr "Er is een conflict met het project ‘%s’."
 
-#: ../src/project_dialogs.vala:116
+#: ../src/project_dialogs.vala:119
 msgid "Configure Project"
 msgstr "Project configureren"
 
-#: ../src/project_dialogs.vala:134
+#: ../src/project_dialogs.vala:137
 msgid "Location of the project"
 msgstr "Locatie van het project"
 
-#: ../src/project_dialogs.vala:243 ../src/project_dialogs.vala:300
-msgid "Clear All"
-msgstr "Alles wissen"
+#: ../src/project_dialogs.vala:241
+msgid "_Properties"
+msgstr "Eigenscha_ppen"
 
-#: ../src/project_dialogs.vala:275
+#: ../src/project_dialogs.vala:243
+msgid "_Clear All"
+msgstr "A_lles wissen"
+
+#: ../src/project_dialogs.vala:273
 #, c-format
-msgid "Do you really want to delete the project \"%s\"?"
+msgid "Do you really want to delete the project “%s”?"
 msgstr "Weet u zeker dat u project ‘%s’ wilt wissen?"
 
-#: ../src/project_dialogs.vala:296
+#: ../src/project_dialogs.vala:294
 msgid "Do you really want to clear all projects?"
 msgstr "Weet u zeker dat u alle projecten wilt wissen?"
 
-#: ../src/project_dialogs.vala:328
+#: ../src/project_dialogs.vala:297
+msgid "Clear _All"
+msgstr "_Alles wissen"
+
+#: ../src/project_dialogs.vala:321
 msgid "The Main File is not in the directory."
 msgstr "Het hoofdbestand zit niet in de map."
 
@@ -2176,141 +2430,146 @@ msgstr "Ga naar regel:"
 msgid "Line you want to move the cursor to"
 msgstr "Regel waar de cursor naartoe moet"
 
-#: ../src/search.vala:174
+#: ../src/search.vala:172
 msgid "Replace with"
 msgstr "Vervangen door"
 
+#: ../src/search.vala:180
+msgid "Replace"
+msgstr "Overschrijven"
+
 #. replace all: image + label
-#: ../src/search.vala:186
+#: ../src/search.vala:184
 msgid "Replace All"
 msgstr "Alles vervangen"
 
-#: ../src/search.vala:195
+#: ../src/search.vala:194
 msgid "All"
 msgstr "Alles"
 
-#: ../src/search.vala:309
+#: ../src/search.vala:290
 msgid "Search for"
 msgstr "Zoeken naar"
 
-#: ../src/search.vala:320
+#: ../src/search.vala:301
 msgid "Case sensitive"
 msgstr "Hoofdlettergevoelig"
 
-#: ../src/search.vala:323
+#: ../src/search.vala:304
 msgid "Entire words only"
 msgstr "Alleen hele woorden"
 
-#: ../src/search.vala:469
+#: ../src/search.vala:451
 msgid "Not found"
 msgstr "Niet gevonden"
 
 #. Translators: the first %d is the position of the current search occurrence,
 #. * and the second %d is the total number of search occurrences.
 #.
-#: ../src/search.vala:486
+#: ../src/search.vala:468
 #, c-format
 msgid "Match %d of %d"
 msgstr "Overeenkomst %d van %d"
 
 #. Translators: %d is the total number of search occurrences.
-#: ../src/search.vala:491
+#: ../src/search.vala:473
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
 msgstr[0] "%d overeenkomst"
 msgstr[1] "%d overeenkomsten"
 
-#: ../src/structure.vala:163
+#: ../src/structure.vala:164
 msgid "Refresh"
 msgstr "Verversen"
 
-#: ../src/structure.vala:177
+#: ../src/structure.vala:179
 msgid "Collapse All"
 msgstr "Alles inklappen"
 
-#: ../src/structure.vala:187
+#: ../src/structure.vala:189
 msgid "Show labels"
 msgstr "Labels tonen"
 
-#: ../src/structure.vala:188
+#: ../src/structure.vala:190
 msgid "Show included files"
 msgstr "Opgenomen bestanden tonen"
 
-#: ../src/structure.vala:189
+#: ../src/structure.vala:191
 msgid "Show tables"
 msgstr "Tabellen tonen"
 
-#: ../src/structure.vala:190
+#: ../src/structure.vala:192
 msgid "Show figures and images"
 msgstr "Figuren en afbeeldingen tonen"
 
 #. Translators: do not translate the words TODO and FIXME. They are special
 #. comments that can be inserted in LaTeX documents.
-#: ../src/structure.vala:193
+#: ../src/structure.vala:195
 msgid "Show TODOs and FIXMEs"
-msgstr "TODO's en FIXME's tonen"
+msgstr "TODO’s en FIXME’s tonen"
 
-#: ../src/structure.vala:633
+#: ../src/structure.vala:634
 #, c-format
 msgid "Structure action error: %s"
 msgstr "Fout met de structuur: %s"
 
-#: ../src/structure.vala:638
+#: ../src/structure.vala:639
 msgid "The structure data seems outdated. Please refresh the structure."
 msgstr "De structuurgegevens lijken verouderd te zijn. Ververs de structuur."
 
 #. Translators: it's a verb
-#: ../src/structure.vala:729
+#: ../src/structure.vala:730
 msgid "cut"
 msgstr "knippen"
 
 #. Translators: it's a verb
-#: ../src/structure.vala:731
+#: ../src/structure.vala:732
 msgid "copy"
 msgstr "kopiëren"
 
-#: ../src/structure.vala:732
+#: ../src/structure.vala:733
 msgid "delete"
 msgstr "verwijderen"
 
-#: ../src/structure.vala:733
+#: ../src/structure.vala:734
 msgid "select"
 msgstr "selecteren"
 
+# Misschien "toevoegen als commentaar", afhankelijk van de context - Nathan
 #. Translators: it's a verb
-#: ../src/structure.vala:735
+#: ../src/structure.vala:736
 msgid "comment"
-msgstr "Van commentaar voorzien"
+msgstr "van commentaar voorzien"
 
 #. Translators: it's a verb
-#: ../src/structure.vala:737
+#: ../src/structure.vala:738
 msgid "shift left"
 msgstr "naar links"
 
 #. Translators: it's a verb
-#: ../src/structure.vala:739
+#: ../src/structure.vala:740
 msgid "shift right"
 msgstr "naar rechts"
 
-#: ../src/structure.vala:740
+#: ../src/structure.vala:741
 msgid "open file"
-msgstr "Bestand openen"
+msgstr "bestand openen"
 
-#: ../src/structure.vala:785
+#: ../src/structure.vala:786
 msgid "Table"
 msgstr "Tabel"
 
 #. Translators: "Figure" here means a diagram (\begin{figure}...\end{figure})
-#: ../src/structure.vala:787
+#: ../src/structure.vala:788
 msgid "Figure"
 msgstr "Figuur"
 
-#: ../src/structure.vala:788
+#: ../src/structure.vala:789
 msgid "Image"
 msgstr "Afbeelding"
 
-#: ../src/structure.vala:789
+#: ../src/structure.vala:790
 msgid "File included"
 msgstr "Bestand opgenomen"
 
@@ -2344,84 +2603,23 @@ msgstr "Overig tekst"
 
 #: ../src/symbols.vala:159
 msgid "Most Used"
-msgstr "Meest Gebruikt"
+msgstr "Meest gebruikt"
 
-#: ../src/synctex.vala:84
-msgid "The document is not saved."
-msgstr "Het document is niet opgeslagen."
+#: ../src/symbols_view.vala:157
+msgid "_Clear"
+msgstr "Wi_ssen"
 
-#: ../src/synctex.vala:91
-msgid "The PDF file doesn't exist."
-msgstr "Het PDF-bestand bestaat niet."
+#: ../src/symbols_view.vala:159
+msgid "Clear most used symbols"
+msgstr "Meest gebruikte symbolen wissen"
 
-#: ../src/synctex.vala:100
-#, c-format
-msgid "The file \"%s\" doesn't exist."
-msgstr "Het bestand ‘%s’ bestaat niet."
+#: ../src/tab_label.vala:48
+msgid "Project main file"
+msgstr "Hoofdbestand van project"
 
-#: ../src/synctex.vala:107
-msgid "Can not communicate with evince."
-msgstr "Communicatie met evince is niet mogelijk."
-
-#: ../src/synctex.vala:125
-msgid "Impossible to do the forward search."
-msgstr "Voorwaarts zoeken is niet mogelijk."
-
-#: ../src/templates_dialogs.vala:34
-msgid "New File..."
-msgstr "Nieuw bestand…"
-
-#: ../src/templates_dialogs.vala:55
-msgid "Default templates"
-msgstr "Standaard sjablonen"
-
-#: ../src/templates_dialogs.vala:64
-msgid "Your personal templates"
-msgstr "Uw persoonlijke sjablonen"
-
-#: ../src/templates_dialogs.vala:173
-msgid "New Template..."
-msgstr "Nieuw sjabloon…"
-
-#: ../src/templates_dialogs.vala:185
-msgid "Name of the new template"
-msgstr "Naam van het nieuwe sjabloon"
-
-#: ../src/templates_dialogs.vala:198
-msgid "Choose an icon"
-msgstr "Een pictogram kiezen"
-
-#: ../src/templates_dialogs.vala:242
-msgid "Delete Template(s)..."
-msgstr "Sjablo(o)n(en) verwijderen..."
-
-#: ../src/templates_dialogs.vala:259
-msgid "Personal templates"
-msgstr "Persoonlijke sjablonen"
-
-#: ../src/templates.vala:75
-msgid "Empty"
-msgstr "Leeg"
-
-#: ../src/templates.vala:77
-msgid "Article"
-msgstr "Artikel"
-
-#: ../src/templates.vala:78
-msgid "Report"
-msgstr "Rapport"
-
-#: ../src/templates.vala:79
-msgid "Book"
-msgstr "Boek"
-
-#: ../src/templates.vala:80
-msgid "Letter"
-msgstr "Brief"
-
-#: ../src/templates.vala:81
-msgid "Presentation"
-msgstr "Presentatie"
+#: ../src/tab_label.vala:51
+msgid "Project main file:"
+msgstr "Hoofdbestand van project:"
 
 #: ../src/ui/preferences_dialog.ui.h:1
 msgid "Display line numbers"
@@ -2485,28 +2683,140 @@ msgid "Font & Colors"
 msgstr "Lettertype en kleuren"
 
 #: ../src/ui/preferences_dialog.ui.h:18
-msgid "File Clean-Up"
-msgstr "Bestanden opruimen"
-
-#: ../src/ui/preferences_dialog.ui.h:20
-msgid "Automatically clean-up files after close"
-msgstr "Automatisch bestanden opruimen bij het sluiten"
-
-#: ../src/ui/preferences_dialog.ui.h:21
 msgid "Interactive completion after"
 msgstr "Interactief aanvullen na"
 
+#: ../src/ui/preferences_dialog.ui.h:19
+msgid "Number of characters after “\\”"
+msgstr "Aantal tekens na ‘\\’"
+
+#: ../src/ui/preferences_dialog.ui.h:20
+msgid "File Clean-Up"
+msgstr "Bestanden opruimen"
+
 #: ../src/ui/preferences_dialog.ui.h:22
-msgid "Number of characters after &apos;\\&apos;"
-msgstr "Aantal tekens na &apos;\\&apos;"
+msgid "Automatically clean-up files after close"
+msgstr "Automatisch bestanden opruimen bij het sluiten"
 
 #: ../src/ui/preferences_dialog.ui.h:23
-msgid "Number of characters after '\\'"
-msgstr "Aantal tekens na '\\'"
+msgid ""
+"The spell-checking settings can also be changed on a file-by-file basis via "
+"the Tools menu."
+msgstr ""
+"De spellingscontrole-instellingen kunnen ook per bestand gewijzigd worden "
+"via het menu Hulpmiddelen."
 
 #: ../src/ui/preferences_dialog.ui.h:24
+msgid "Default Spell-Checking Settings"
+msgstr "Standaardinstellingen voor spellingscontrole"
+
+#: ../src/ui/preferences_dialog.ui.h:25
+msgid "Language:"
+msgstr "Taal:"
+
+#: ../src/ui/preferences_dialog.ui.h:26
+msgid "Highlight misspelled words"
+msgstr "Verkeerd gespelde woorden markeren"
+
+#: ../src/ui/preferences_dialog.ui.h:27
 msgid "Other"
 msgstr "Overig"
+
+#~ msgid ""
+#~ "LaTeXila is an integrated LaTeX environment for the GNOME desktop. The "
+#~ "idea of LaTeXila is to always deal directly with the LaTeX code, while "
+#~ "simplifying as most as possible the writing of this LaTeX code."
+#~ msgstr ""
+#~ "LaTeXila is een geïntegreerde LaTeX-omgeving voor de Gnome-werkomgeving. "
+#~ "De bedoeling van LaTeXila is om altijd direct met de LaTeX-code te "
+#~ "werken, waarbij het schrijven van deze LaTeX-code zoveel mogelijk "
+#~ "vereenvoudigd wordt."
+
+#~ msgid ""
+#~ "To help the writing of the LaTeX markup, auto-completion is available as "
+#~ "well as menus and toolbars with the principal commands."
+#~ msgstr ""
+#~ "Om te helpen bij het schrijven van de LaTeX-code is autoaanvulling "
+#~ "beschikbaar, evenals menu's en werkbalken met daarin de belangrijkste "
+#~ "opdrachten."
+
+#~ msgid "Integrated LaTeX Environment"
+#~ msgstr "Geïntegreerde LaTeX-omgeving"
+
+#~ msgid "Build Tool"
+#~ msgstr "Bouwhulpprogramma"
+
+#~ msgid "Add..."
+#~ msgstr "Toevoegen…"
+
+#~ msgid "Close document"
+#~ msgstr "Document sluiten"
+
+#~ msgid "Main File:"
+#~ msgstr "Hoofdbestand:"
+
+#~ msgid "Unsaved Document"
+#~ msgstr "Niet-opgeslagen document"
+
+#~ msgid "Left Delimiters"
+#~ msgstr "Linker haakjes"
+
+#~ msgid "Right Delimiters"
+#~ msgstr "Rechter haakjes"
+
+#~ msgid "- Integrated LaTeX Environment for GNOME"
+#~ msgstr "- Geïntegreerde LaTeX-omgeving voor Gnome"
+
+#~ msgid ""
+#~ "Run '%s --help' to see a full list of available command line options.\n"
+#~ msgstr ""
+#~ "Voer '%s --help' uit om een volledige lijst van commando's te zien.\n"
+
+#~ msgid "_Delete Template..."
+#~ msgstr "Sjabloon v_erwijderen…"
+
+#~ msgid "Delete personal template(s)"
+#~ msgstr "Persoonlijke sjablo(o)n(en) verwijderen"
+
+#~ msgid "_Go to Line..."
+#~ msgstr "_Ga naar regel…"
+
+#~ msgid "_Search Forward"
+#~ msgstr "Voorwaarts z_oeken"
+
+#~ msgid "Jump to the associated position in the PDF file"
+#~ msgstr "Naar de geassocieerde positie in het PDF-bestand springen"
+
+#~ msgid "_Donate"
+#~ msgstr "_Doneren"
+
+#~ msgid ""
+#~ "Donate to demonstrate your appreciation of LaTeXila and help its future "
+#~ "development"
+#~ msgstr ""
+#~ "Doneren om uw waardering voor LaTeXila te tonen en te helpen bij de "
+#~ "verdere ontwikkeling ervan."
+
+#~ msgid "Read-Only"
+#~ msgstr "Alleen-lezen"
+
+#~ msgid "A file named \"%s\" already exists. Do you want to replace it?"
+#~ msgstr "Een bestand met de naam ‘%s’ bestaat al. Wilt u het overschrijven?"
+
+#~ msgid "Latexmk messages"
+#~ msgstr "Latexmk berichten"
+
+#~ msgid "The file \"%s\" doesn't exist."
+#~ msgstr "Het bestand ‘%s’ bestaat niet."
+
+#~ msgid "New File..."
+#~ msgstr "Nieuw bestand…"
+
+#~ msgid "Delete Template(s)..."
+#~ msgstr "Sjablo(o)n(en) verwijderen..."
+
+#~ msgid "Number of characters after &apos;\\&apos;"
+#~ msgstr "Aantal tekens na &apos;\\&apos;"
 
 #~ msgid ""
 #~ "The program for viewing documents.\n"
@@ -2544,9 +2854,6 @@ msgstr "Overig"
 
 #~ msgid "Reset"
 #~ msgstr "Reset"
-
-#~ msgid "Number of most used symbols:"
-#~ msgstr "Aantal meest gebruikte symbolen:"
 
 #~ msgid "Show only files with these extensions"
 #~ msgstr "Toon enkel bestanden met deze extensies"
