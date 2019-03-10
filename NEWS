@@ -1,5 +1,20 @@
 GNOME LaTeX NEWS
 
+Release 3.32.0, 2019-03-10, “Raging Storm”
+------------------------------------------
+* Apply GNOME goal “App menu retirement”:
+  https://gitlab.gnome.org/GNOME/Initiatives/issues/4
+* Have a much better (and you'll see, familiar :-) ) icon for GNOME LaTeX.
+  Take advantage of the GNOME goal “App Icon Redesign”:
+  https://gitlab.gnome.org/GNOME/Initiatives/issues/2
+* Copyright of GNOME LaTeX: 2009-2019, 10 years!!
+* What else is new? Ah, yes, I've merged the old Git repository for the first
+  versions (0.0.1 to 0.2), for historic purposes. If you look at the code, one
+  thing that you can realize is that there was really a lack of good
+  documentation for how to write a GTK+ app in C, something that I've now fixed
+  by writing this guide: https://people.gnome.org/~swilmet/glib-gtk-book/
+* Translation updates.
+
 Release 3.30.2, 2018-08-05
 --------------------------
 * Close crowdfunding.
