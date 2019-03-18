@@ -2,26 +2,26 @@
 # Copyright (C) 2011 latexila's COPYRIGHT HOLDER
 # This file is distributed under the same license as the latexila package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2015, 2017, 2018.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
-"POT-Creation-Date: 2018-10-24 16:23+0000\n"
-"PO-Revision-Date: 2018-11-30 10:15+0100\n"
+"POT-Creation-Date: 2019-02-02 16:39+0000\n"
+"PO-Revision-Date: 2019-03-18 16:12+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 3.31.90\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2018"
+msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2019"
 
 #. (itstool) path: page/title
 #: C/build_tools.page:10
@@ -400,7 +400,6 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/spell_checking.page:10
-#| msgid "Spell Checking"
 msgid "Spell-Checking"
 msgstr "Revisión ortográfica"
 
@@ -411,16 +410,11 @@ msgstr "El propósito es corregir los errores ortográficos fácilmente."
 
 #. (itstool) path: section/title
 #: C/spell_checking.page:17
-#| msgid "Use the spell checking"
 msgid "Use the spell-checking"
 msgstr "Usar la corrección ortográfica"
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:18
-#| msgid ""
-#| "The default spell checking settings can be changed in the preferences "
-#| "dialog: <guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu"
-#| "\">Preferences</gui> <gui style=\"tab\">Other</gui> </guiseq>"
 msgid ""
 "The default spell-checking settings can be changed in the preferences "
 "dialog: <guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu"
@@ -469,7 +463,6 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:51
-#, fuzzy
 #| msgid ""
 #| "If your language is not listed, install a dictionary for one of the "
 #| "supported backends."
@@ -478,8 +471,9 @@ msgid ""
 "of the supported Enchant backends (for most languages the best choice is to "
 "install an Hunspell dictionary)."
 msgstr ""
-"Si su idioma no aparece en la lista, instale un diccionario para uno de los "
-"«backend» soportados."
+"Si su idioma no aparece en la lista de GNOME LaTeX, instale un diccionario "
+"para uno de los «backend» de Enchant soportados (para la mayoría de los "
+"idiomas la mejor opción es instalar un diccionario Hunspell)."
 
 #. (itstool) path: page/title
 #: C/structure.page:10
