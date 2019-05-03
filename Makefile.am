@@ -11,6 +11,7 @@ AM_DISTCHECK_CONFIGURE_FLAGS =	\
 EXTRA_DIST =			\
 	gnome-latex.doap	\
 	HACKING			\
+	HISTORY.md		\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in
