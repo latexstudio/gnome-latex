@@ -297,7 +297,7 @@ msgstr "Mostra els números de línia"
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:22
 msgid "Whether GNOME LaTeX should display line numbers in the editing area."
 msgstr ""
-"Si GNOME LaTeX hauria de mostrar els nombre de línia a l'àrea d'edició."
+"Si GNOME LaTeX hauria de mostrar els nombres de línia a l'àrea d'edició."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:23
 msgid "Highlight Current Line"
@@ -805,7 +805,7 @@ msgstr "Si no ho deseu, es perdran permanentment tots els canvis."
 
 #: ../src/document_structure.vala:720
 msgid "The structure item already contains a sub-paragraph."
-msgstr "L'element de l'estructura conté realment un subparàgraf"
+msgstr "L'element de l'estructura conté realment un subparàgraf."
 
 #: ../src/document_tab.vala:147
 #, c-format
@@ -901,7 +901,7 @@ msgstr "D'ac_ord"
 
 #: ../src/file_browser.vala:219
 msgid "Go to the home directory"
-msgstr "Ves al directori de l'usuari"
+msgstr "Vés al directori de l'usuari"
 
 #: ../src/file_browser.vala:234
 msgid "Go to the parent directory"
@@ -957,7 +957,7 @@ msgstr ""
 
 #: ../src/glatex_app.vala:212
 msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
-msgstr "GNOME LaTeX és un editor LaTeX per al escriptori GNOME"
+msgstr "GNOME LaTeX és un editor LaTeX per a l'escriptori GNOME"
 
 #: ../src/glatex_app.vala:241 ../src/main_window.vala:71
 msgid "About GNOME LaTeX"
@@ -974,7 +974,7 @@ msgstr ""
 #. LaTeX
 #: ../src/latex_menu.vala:30
 msgid "_Sectioning"
-msgstr "_Secccionat"
+msgstr "_Seccionat"
 
 #: ../src/latex_menu.vala:31
 msgid "_References"
@@ -1134,7 +1134,7 @@ msgstr "Referència de pàgina d'una etiqueta"
 
 #: ../src/liblatexila/latexila-latex-commands.c:77
 msgid "Add a word to the index"
-msgstr "Afegeix una paraula a l'index"
+msgstr "Afegeix una paraula a l'índex"
 
 #: ../src/liblatexila/latexila-latex-commands.c:79
 msgid "Footnote"
@@ -1310,7 +1310,7 @@ msgstr "Bloc — \\begin{block}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:196
 msgid "Two columns — \\begin{columns}"
-msgstr "Dos columnes — \\begin{columns}"
+msgstr "Dues columnes — \\begin{columns}"
 
 #. LaTeX: Spacing
 #: ../src/liblatexila/latexila-latex-commands.c:200
@@ -1763,7 +1763,7 @@ msgstr "Impossible crear la plantilla personal."
 #, c-format
 #| msgid "Do you want to reload the file?"
 msgid "Do you really want to delete the template “%s”?"
-msgstr "Voleu realment suprimir la plantilla «%s» ?"
+msgstr "Voleu realment suprimir la plantilla «%s»?"
 
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:170
 #, c-format
@@ -2121,7 +2121,7 @@ msgstr "Desplaçament a l'_esquerra"
 #: ../src/main_window_structure.vala:48
 msgid "Shift the selected structure item to the left (e.g. section → chapter)"
 msgstr ""
-"Desplaça l'element seleccionat de l'estructura cap a l'esquerra (ex. secció "
+"Desplaça l'element seleccionat de l'estructura cap a l'esquerra (p. ex. secció "
 "→ capítol)"
 
 #: ../src/main_window_structure.vala:51
@@ -2131,7 +2131,7 @@ msgstr "Desplaçament a la d_reta"
 #: ../src/main_window_structure.vala:52
 msgid "Shift the selected structure item to the right (e.g. chapter → section)"
 msgstr ""
-"Desplaça l'element seleccionat de l'estructura cap a la dreta (ex. secció → "
+"Desplaça l'element seleccionat de l'estructura cap a la dreta (p. ex. secció → "
 "capítol)"
 
 #: ../src/main_window_structure.vala:55
@@ -2141,7 +2141,7 @@ msgstr "_Obre fitxer"
 #: ../src/main_window_structure.vala:56
 msgid "Open the file referenced by the selected structure item"
 msgstr ""
-"Obre el fitxer al qual fa referencia l'element seleccionat de l'estructura"
+"Obre el fitxer al qual fa referència l'element seleccionat de l'estructura"
 
 #: ../src/main_window_tools.vala:28
 msgid "_Tools"
@@ -2453,11 +2453,11 @@ msgstr "_Neteja-ho tot"
 #: ../src/project_dialogs.vala:273
 #, c-format
 msgid "Do you really want to delete the project “%s”?"
-msgstr "De veritat voleu suprimir el projecte «%s» ?"
+msgstr "De veritat voleu suprimir el projecte «%s»?"
 
 #: ../src/project_dialogs.vala:294
 msgid "Do you really want to clear all projects?"
-msgstr "De veritat voleu suprimir tots els projectes ?"
+msgstr "De veritat voleu suprimir tots els projectes?"
 
 #: ../src/project_dialogs.vala:297
 #| msgid "Clear All"
@@ -2658,7 +2658,7 @@ msgstr "_Neteja"
 
 #: ../src/symbols_view.vala:159
 msgid "Clear most used symbols"
-msgstr "Suprimeix el símbols més usats"
+msgstr "Suprimeix els símbols més usats"
 
 #: ../src/tab_label.vala:48
 msgid "Project main file"
