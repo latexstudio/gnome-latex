@@ -567,7 +567,7 @@ migrate_latexila_to_gnome_latex_gsettings (void)
 		g_free (cur_latexila_key);
 	}
 
-	_dh_dconf_migration_free (migration);
+	_dh_dconf_migration_sync_and_free (migration);
 #else
 	g_warning ("LaTeXila -> GNOME LaTeX dconf migration not supported.");
 #endif
