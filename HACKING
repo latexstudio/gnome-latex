@@ -13,6 +13,7 @@ project.
 [1] https://blogs.gnome.org/swilmet/2012/08/19/latexila-some-principles-for-the-user-experience/
 
 Notes to potential developers who want to fork gnome-latex
+or for developers wanting to implement a LaTeX editor.
 ----------------------------------------------------------
 
 I wrote the Vala code when I was a beginner, so some parts may be ugly and not
