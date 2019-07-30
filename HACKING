@@ -31,6 +31,15 @@ For gnome-latex, if the build tools break in the future, a solution is to
 create a container with an older version of TeX Live bundled (or at least an
 older version of latexmk bundled).
 
+For the file structure in the side panel, a better implementation would be to
+maintain an AST (Abstract Syntax Tree) attached to the GtkSourceBuffer, and by
+using GtkSourceRegion. Then this AST can serve for other features, especially
+for the auto-completion, or for text folding. For a project with multiple *.tex
+files, the AST can be created for files not yet opened in the application; this
+would be useful to provide completion for the \ref, \pageref and \cite
+commands. See also the Proposal 2 at:
+https://wiki.gnome.org/Projects/GtkSourceView/CodeFolding
+
 Previous content of this file:
 ==============================
 
