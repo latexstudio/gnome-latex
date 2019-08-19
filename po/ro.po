@@ -1,0 +1,3188 @@
+# Romanian translation for latexila.
+# Copyright (C) 2011 latexila's COPYRIGHT HOLDER
+# This file is distributed under the same license as the latexila package.
+#
+# Alexandru Florescu <show_some_originality@yahoo.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: latexila latexila-2-2\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
+"POT-Creation-Date: 2018-10-24 15:29+0000\n"
+"PO-Revision-Date: 2011-11-28 18:06+0200\n"
+"Last-Translator: \n"
+"Language-Team: Romanian <kde-i18n-doc@kde.org>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
+"X-Generator: Lokalize 1.2\n"
+
+#. (itstool) path: tool/label
+#: build_tools.xml:43 ../src/build_tool_dialog.vala:165
+msgid "View PDF"
+msgstr "Vizualizează PDF"
+
+#. (itstool) path: tool/description
+#: build_tools.xml:44
+msgid "View the PDF file"
+msgstr "Vizualizează fișierul PDF"
+
+#. (itstool) path: tool/label
+#: build_tools.xml:49 ../src/build_tool_dialog.vala:164
+msgid "View DVI"
+msgstr "Vizualizează DVI"
+
+#. (itstool) path: tool/description
+#: build_tools.xml:50
+msgid "View the DVI file"
+msgstr "Vizualizează fișierul DVI"
+
+#. (itstool) path: tool/label
+#: build_tools.xml:55 ../src/build_tool_dialog.vala:166
+msgid "View PS"
+msgstr "Vizualizează PS"
+
+#. (itstool) path: tool/description
+#: build_tools.xml:56
+msgid "View the PostScript file"
+msgstr "Vizualizează fișierul PostScript"
+
+#. (itstool) path: tool/description
+#: build_tools.xml:64
+msgid "Create a PDF file from LaTeX sources with the \"pdflatex\" command"
+msgstr "Creează un fișier PDF din sursele LaTeX cu comanda „pdflatex”"
+
+#. (itstool) path: tool/description
+#: build_tools.xml:70
+msgid "Create a DVI file from LaTeX sources with the \"latex\" command"
+msgstr "Creează un fișier DVI din sursele LaTeX cu comanda „latex”"
+
+#. (itstool) path: tool/description
+#: build_tools.xml:78
+msgid "Run BibTeX (bibliography)"
+msgstr "Rulați BibTeX (bibliografie)"
+
+#. (itstool) path: tool/description
+#: build_tools.xml:84
+msgid "Run MakeIndex"
+msgstr "Rulați MakeIndex"
+
+#. (itstool) path: tool/description
+#: build_tools.xml:92
+msgid "Convert the DVI document to the PDF format"
+msgstr "Convertiți documentul DVI în format PDF"
+
+#. (itstool) path: tool/description
+#: build_tools.xml:98
+msgid "Convert the DVI document to the PostScript format"
+msgstr "Convertiți documentul DVI în format PostScript"
+
+#. (itstool) path: tool/description
+#: build_tools.xml:104
+msgid "Convert the PostScript document to the PDF format"
+msgstr "Convertiți documentul PostScript în format PDF"
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:1
+msgid "LaTeX editor"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:2
+msgid ""
+"GNOME LaTeX is a LaTeX editor for the GNOME desktop, previously named "
+"LaTeXila. GNOME LaTeX permits to concentrate on the content and the "
+"structure of the document instead of being distracted by its presentation."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:3
+msgid ""
+"To help the writing of the LaTeX markup, auto-completion is available as "
+"well as menus and toolbars with the principal commands. New documents are "
+"created from templates. There are buttons to compile, convert and view a "
+"document in one click. And projects containing several .tex files are "
+"managed easily."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:4
+msgid ""
+"A side panel contains three components: the document structure to easily "
+"navigate in it; lists of symbols to insert them in a document; and a file "
+"browser."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:5
+msgid ""
+"GNOME LaTeX has also other features like the spell-checking, or jumping to "
+"the associated position between the .tex file and the PDF."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:6
+msgid "Completion of LaTeX commands"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:7
+#, fuzzy
+#| msgid "View the PDF file"
+msgid "Generating the PDF file"
+msgstr "Vizualizează fișierul PDF"
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:8
+#, fuzzy
+#| msgid "Show or hide the side panel"
+msgid "Document structure in the side panel"
+msgstr "Arată sau ascunde panoul lateral"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:1
+#, fuzzy
+#| msgid "Editor"
+msgid "LaTeX Editor"
+msgstr "Editor"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:2
+#, fuzzy
+#| msgid "Open the LaTeXila documentation"
+msgid "Edit LaTeX documents"
+msgstr "Deschide documentația LaTeXila"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:3
+msgid "text;tex;latex;editor;documents;"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:4
+#, fuzzy
+#| msgid "_Move to New Window"
+msgid "Open a New Window"
+msgstr "_Mergi la noua fereastră"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:5
+#, fuzzy
+#| msgid "Unsaved Document"
+msgid "Open a New Document"
+msgstr "Document nesalvat"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:1
+msgid "Use Default Font"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:2
+msgid ""
+"Whether to use the system’s default fixed width font for editing text "
+"instead of a font specific to GNOME LaTeX. If this option is turned off, "
+"then the font named in the “Editor Font” option will be used instead of the "
+"system font."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:3
+#, fuzzy
+#| msgid "Editor _font: "
+msgid "Editor Font"
+msgstr "_Fontul de editare:"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:4
+msgid ""
+"A custom font that will be used for the editing area. This will only take "
+"effect if the “Use Default Font” option is turned off."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:5
+#, fuzzy
+#| msgid "Color Scheme"
+msgid "Style Scheme"
+msgstr "Schemă de culoare"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:6
+msgid "The ID of a GtkSourceView Style Scheme used to color the text."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:7
+msgid "Create Backup Copies"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:8
+msgid "Whether GNOME LaTeX should create backup copies for the files it saves."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:9
+msgid "Autosave"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:10
+msgid ""
+"Whether GNOME LaTeX should automatically save modified files after a time "
+"interval. You can set the time interval with the “Autosave Interval” option."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:11
+msgid "Autosave Interval"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:12
+msgid ""
+"Number of minutes after which GNOME LaTeX will automatically save modified "
+"files. This will only take effect if the “Autosave” option is turned on."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:13
+#: ../src/ui/preferences_dialog.ui.h:9
+msgid "Reopen files on startup"
+msgstr "Redeschide fișierele la pornire"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:14
+msgid ""
+"Whether GNOME LaTeX should reopen the files that was opened the last time."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:15
+msgid "Tab Size"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:16
+msgid ""
+"Specifies the number of spaces that should be displayed instead of Tab "
+"characters."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:17
+#, fuzzy
+#| msgid "Insert spaces instead of tabs"
+msgid "Insert spaces"
+msgstr "Introdu spații în loc de taburi"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:18
+#, fuzzy
+#| msgid "Insert spaces instead of tabs"
+msgid "Whether GNOME LaTeX should insert spaces instead of tabs."
+msgstr "Introdu spații în loc de taburi"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:19
+#, fuzzy
+#| msgid "Forget you are not using tabulations"
+msgid "Forget lack of tabulations"
+msgstr "Uită că nu se folosesc tabulaturi"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:20
+#, fuzzy
+#| msgid "Forget you are not using tabulations"
+msgid "Forget you are not using tabulations."
+msgstr "Uită că nu se folosesc tabulaturi"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:21
+#, fuzzy
+#| msgid "Display line numbers"
+msgid "Display Line Numbers"
+msgstr "Afișează numărul liniilor"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:22
+msgid "Whether GNOME LaTeX should display line numbers in the editing area."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:23
+#, fuzzy
+#| msgid "Highlight current line"
+msgid "Highlight Current Line"
+msgstr "Evidențiază linia actuală"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:24
+msgid "Whether GNOME LaTeX should highlight the current line."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:25
+#, fuzzy
+#| msgid "Highlight matching brackets"
+msgid "Highlight Matching Brackets"
+msgstr "Evidențiază parantezele potrivite"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:26
+#, fuzzy
+#| msgid "Highlight matching brackets"
+msgid "Whether GNOME LaTeX should highlight matching brackets."
+msgstr "Evidențiază parantezele potrivite"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:27
+msgid "Highlight Misspelled Words"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:28
+msgid "Whether misspelled words are highlighted by default."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:29
+msgid "Spell-Checking Language"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:30
+msgid ""
+"The default language used for the spell-checking. Set to the empty string to "
+"take the best language available based on the environment."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:31
+#, fuzzy
+#| msgid "_Main Toolbar"
+msgid "Main toolbar is visible"
+msgstr "Bara principală de u_nelte"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:32
+msgid "Whether the main toolbar (file open, close, build…) should be visible."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:33
+#, fuzzy
+#| msgid "_Edit Toolbar"
+msgid "Edit toolbar is visible"
+msgstr "_Editează bara de unelte"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:34
+msgid ""
+"Whether the edit toolbar (bold, italic, character sizes…) should be visible."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:35
+#, fuzzy
+#| msgid "_Side panel"
+msgid "Side panel is Visible"
+msgstr "Panou later_al"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:36
+msgid ""
+"Whether the side panel at the left of editing windows should be visible."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:37
+#, fuzzy
+#| msgid "_Bottom panel"
+msgid "Bottom panel is Visible"
+msgstr "Panou de su_bsol"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:38
+msgid "Whether the bottom panel containing the build view should be visible."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:39
+#, fuzzy
+#| msgid "_Side panel"
+msgid "Side panel component"
+msgstr "Panou later_al"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:40
+msgid ""
+"Side panel’s active component. 0: Symbols. 1: File browser. 2: Structure."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:41
+#, fuzzy
+#| msgid "Show Warnings"
+msgid "Show build output warnings"
+msgstr "Arată avertismente"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:42
+msgid "Show build output badboxes"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:43
+#, fuzzy
+#| msgid "Interactive completion after"
+msgid "Interactive completion"
+msgstr "Completare interactivă după"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:44
+msgid "Automatically show LaTeX commands proposals"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:45
+msgid "Minimum number of characters for interactive completion"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:46
+msgid ""
+"Minimum number of characters after “\\” for the interactive completion of "
+"LaTeX commands"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:47
+#: ../src/ui/preferences_dialog.ui.h:21
+msgid "No confirmation when cleaning-up"
+msgstr "Nicio confirmare la curățare"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:48
+#, fuzzy
+#| msgid "Automatically clean-up files after close"
+msgid "Automatic clean-up"
+msgstr "Curăță automat fișierele după închidere"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:49
+#, fuzzy
+#| msgid "Automatically clean-up files after close"
+msgid ""
+"Automatically clean-up files after close. no-confirm-clean must be true."
+msgstr "Curăță automat fișierele după închidere"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:50
+#, fuzzy
+#| msgid "Except those for clean-up"
+msgid "File extensions for the clean-up"
+msgstr "Exclude-le de la curățare"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:51
+msgid "The list of file extensions for the clean-up, separated by spaces"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:52
+#, fuzzy
+#| msgid "Reset all build tools"
+msgid "Enabled default build tools"
+msgstr "Resetează toate uneltele de build"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:53
+msgid "The list of the default build tools that are enabled"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:54
+#, fuzzy
+#| msgid "Reset all build tools"
+msgid "Disabled default build tools"
+msgstr "Resetează toate uneltele de build"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:55
+msgid "The list of the default build tools that are disabled"
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:56
+#, fuzzy
+#| msgid "Go to the parent directory"
+msgid "Current directory"
+msgstr "Navighează la directorul superior"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:57
+#, fuzzy
+#| msgid "Go to the active document directory"
+msgid "URI of the file browser current directory"
+msgstr "Navighează la documentul directorului activ"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:58
+#: ../src/file_browser.vala:348
+#, fuzzy
+#| msgid "Show all files"
+msgid "Show build files"
+msgstr "Arată toate fișierele"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:59
+msgid ""
+"Show files with an extension present in preferences.latex.clean-extensions."
+msgstr ""
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:60
+#: ../src/file_browser.vala:356
+#, fuzzy
+#| msgid "Show all files"
+msgid "Show hidden files"
+msgstr "Arată toate fișierele"
+
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:61
+#, fuzzy
+#| msgid "Show hidden files (beginning with a dot)"
+msgid "Show files beginning with a dot."
+msgstr "Arată fișierele ascunse (care încep cu un punct)"
+
+#. (itstool) path: template/babel
+#. This must be translated by a usepackage LaTeX command.
+#: article.xml:8 beamer.xml:8 book.xml:8 report.xml:8
+#, no-wrap
+msgid ""
+"\n"
+"% babel package or equivalent\n"
+msgstr ""
+"\n"
+"% pachet babel sau echivalent\n"
+
+#. (itstool) path: template/translatableChunk
+#: letter.xml:2
+#, no-wrap
+msgid ""
+"\n"
+"\\documentclass[a4paper,11pt]{letter}\n"
+"\\usepackage[T1]{fontenc}\n"
+"\\usepackage[utf8]{inputenc}\n"
+"\\usepackage{lmodern}\n"
+"\n"
+"\\address{Your name\\\\Your address\\\\Your phone number}\n"
+"\\signature{Your name}\n"
+"\n"
+"\\begin{document}\n"
+"\n"
+"\\begin{letter}{Destination\\\\Address of the destination\\\\Phone number of the destination}\n"
+"\n"
+"\\opening{Dear Sir,}\n"
+"\n"
+"% corps of the letter\n"
+"\n"
+"\\closing{Yours sincerely,}\n"
+"\n"
+"%\\cc{Other destination}\n"
+"%\\ps{PS: PostScriptum}\n"
+"%\\encl{Enclosures}\n"
+"\n"
+"\\end{letter}\n"
+"\\end{document}\n"
+msgstr ""
+"\n"
+"\\documentclass[a4paper,11pt]{letter}\n"
+"\\usepackage[T1]{fontenc}\n"
+"\\usepackage[utf8]{inputenc}\n"
+"\\usepackage{lmodern}\n"
+"\n"
+"\\address{Numele dumneavoastră\\\\Adresa dumneavoastră\\\\Numărul dumneavoastră de telefon}\n"
+"\\signature{Numele dumneavoastră}\n"
+"\n"
+"\\begin{document}\n"
+"\n"
+"\\begin{letter}{Destinația\\\\Adresa destinației\\\\Numărul de telefon al destinației}\n"
+"\n"
+
+#: ../src/bottom_panel.vala:53 ../src/side_panel.vala:85
+msgid "Hide panel"
+msgstr "Ascunde panoul"
+
+#: ../src/build_tool_dialog.vala:71
+#, fuzzy
+#| msgid "Build Tool"
+msgid "Personal Build Tool"
+msgstr "Unealtă de build"
+
+#: ../src/build_tool_dialog.vala:72 ../src/build_tools_preferences.vala:335
+#: ../src/clean_build_files.vala:242 ../src/dialogs.vala:41
+#: ../src/document_tab.vala:178
+#: ../src/liblatexila/latexila-templates-dialogs.c:130
+#: ../src/liblatexila/latexila-templates-dialogs.c:238
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:147
+#: ../src/main_window_file.vala:157 ../src/main_window.vala:754
+#: ../src/main_window.vala:811 ../src/preferences_dialog.vala:114
+#: ../src/project_dialogs.vala:31 ../src/project_dialogs.vala:122
+#: ../src/project_dialogs.vala:276 ../src/project_dialogs.vala:296
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:73 ../src/project_dialogs.vala:123
+msgid "_Apply"
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:77
+msgid "Default Build Tool (read-only)"
+msgstr ""
+
+#. icon-name
+#. label
+#: ../src/build_tool_dialog.vala:158
+msgid "Execute"
+msgstr "Execută"
+
+#: ../src/build_tool_dialog.vala:162
+msgid "Convert"
+msgstr "Convertește"
+
+#. FIXME don't use Stock
+#: ../src/build_tool_dialog.vala:163
+msgid "View File"
+msgstr "Vizualizează fișierul"
+
+#. In all cases, the text must be selectable, but there is no property
+#. for that. So set as editable, but in read-only mode the edited text
+#. isn't changed (see below).
+#: ../src/build_tool_dialog.vala:231
+msgid "Commands"
+msgstr "Comenzi"
+
+#: ../src/build_tool_dialog.vala:241
+msgid "Post Processor"
+msgstr "Post-procesor"
+
+#: ../src/build_tool_dialog.vala:271 ../src/build_tools_preferences.vala:297
+msgid "Add…"
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:288 ../src/build_tools_preferences.vala:314
+msgid "Remove"
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:318 ../src/build_tools_preferences.vala:354
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:286
+msgid "Move up"
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:369 ../src/build_tools_preferences.vala:406
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:298
+msgid "Move down"
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:573 ../src/build_tools_preferences.vala:177
+#: ../src/liblatexila/latexila-latex-commands.c:71 ../src/structure.vala:783
+msgid "Label"
+msgstr "Etichetă"
+
+#: ../src/build_tool_dialog.vala:578
+msgid "You can select this arrow and copy/paste it!"
+msgstr "Puteți selecta această săgeată și să o copiați/lipiți!"
+
+#: ../src/build_tool_dialog.vala:594
+msgid "Description"
+msgstr "Descriere"
+
+#: ../src/build_tool_dialog.vala:600
+#, fuzzy
+#| msgid ""
+#| "File extensions for which the build tool can be executed.\n"
+#| "The extensions are separated by spaces."
+msgid "File extensions for which the build tool can be executed."
+msgstr ""
+"Extensiile fișierului pentru care unealta de build poate fi executată.\n"
+"Extensiile sunt separate prin spațiu."
+
+#: ../src/build_tool_dialog.vala:601
+msgid "The extensions are separated by spaces."
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:602
+msgid "If it is empty, all extensions are allowed."
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:604
+msgid "Extensions"
+msgstr "Extensii"
+
+#: ../src/build_tool_dialog.vala:609
+msgid "Icon"
+msgstr "Iconiță"
+
+#. Placeholders
+#: ../src/build_tool_dialog.vala:616
+msgid "Placeholders:"
+msgstr "Substituent:"
+
+#: ../src/build_tool_dialog.vala:620
+#, fuzzy
+msgid "The active document’s filename."
+msgstr "Numele activ al documentului"
+
+#: ../src/build_tool_dialog.vala:621 ../src/build_tool_dialog.vala:626
+msgid "If the active document belongs to a project, the main file is chosen."
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:625
+#, fuzzy
+msgid "The active document’s filename without its extension."
+msgstr "Numele activ al fișierului fără extensiile sale"
+
+#: ../src/build_tool_dialog.vala:675
+msgid "Jobs"
+msgstr "Servicii"
+
+#: ../src/build_tool_dialog.vala:681
+msgid "List of files to open after executing the build jobs."
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:682
+msgid "The files are separated by spaces."
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:683
+msgid "You should use the placeholders to specify the files."
+msgstr ""
+
+#: ../src/build_tool_dialog.vala:686
+msgid "Files to open"
+msgstr ""
+
+#: ../src/build_tools_preferences.vala:57
+msgid "Build Tools"
+msgstr "Unelte de build"
+
+#: ../src/build_tools_preferences.vala:113
+#, fuzzy
+#| msgid "Build Tools"
+msgid "Default Build Tools"
+msgstr "Unelte de build"
+
+#: ../src/build_tools_preferences.vala:134
+#, fuzzy
+#| msgid "Build Tools"
+msgid "Personal Build Tools"
+msgstr "Unelte de build"
+
+#: ../src/build_tools_preferences.vala:168
+#, fuzzy
+#| msgid "Table"
+msgid "Enabled"
+msgstr "Tabel"
+
+#: ../src/build_tools_preferences.vala:241
+msgid "View the properties (read-only)"
+msgstr ""
+
+#: ../src/build_tools_preferences.vala:246
+#, fuzzy
+#| msgid "Quit the program"
+msgid "Edit the properties"
+msgstr "Închide programul"
+
+#: ../src/build_tools_preferences.vala:266
+#, fuzzy
+#| msgid "Create a new window"
+msgid "Create a copy"
+msgstr "Creează o fereastră nouă"
+
+#: ../src/build_tools_preferences.vala:281
+#, c-format
+msgid "%s [copy]"
+msgstr "%s [copie]"
+
+#: ../src/build_tools_preferences.vala:332
+#, fuzzy, c-format
+#| msgid "Do you really want to delete the build tool \"%s\"?"
+msgid "Do you really want to delete the build tool “%s”?"
+msgstr "Sigur ștergeți unealta de build „%s”?"
+
+#: ../src/build_tools_preferences.vala:336 ../src/clean_build_files.vala:243
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:148
+#: ../src/main_window_edit.vala:51 ../src/main_window_structure.vala:38
+#: ../src/project_dialogs.vala:242 ../src/project_dialogs.vala:277
+#, fuzzy
+#| msgid "delete"
+msgid "_Delete"
+msgstr "șterge"
+
+#: ../src/clean_build_files.vala:267
+msgid "Do you really want to delete these files?"
+msgstr "Sigur doriți să ștergeți aceste fișiere?"
+
+#. secondary label
+#: ../src/clean_build_files.vala:272
+msgid "Select the files you want to delete:"
+msgstr "Alegeți fișierele pe care vreți să le ștergeți:"
+
+#: ../src/clean_build_files.vala:336
+msgid "No build file to clean up."
+msgstr "Niciun fișier de build de curățat."
+
+#: ../src/completion.vala:334
+msgid "No matching proposal"
+msgstr "Nicio propunere de potrivire"
+
+#. Translators: "Ln" is an abbreviation for "Line", Col is an abbreviation for
+#. "Column". Please, use abbreviations if possible.
+#: ../src/custom_statusbar.vala:45
+#, c-format
+msgid "Ln %d, Col %d"
+msgstr "Ln %d, Col %d"
+
+#: ../src/dialogs.vala:40 ../src/main_window.vala:753
+#, fuzzy
+#| msgid "Close without Saving"
+msgid "Close _without Saving"
+msgstr "Închide fără a salva"
+
+#: ../src/dialogs.vala:42 ../src/main_window_file.vala:41
+#: ../src/main_window.vala:759 ../src/main_window.vala:812
+#, fuzzy
+#| msgid "_Save All"
+msgid "_Save"
+msgstr "_Salvează toate"
+
+#: ../src/dialogs.vala:66
+#, c-format
+msgid ""
+"There are %d documents with unsaved changes. Save changes before closing?"
+msgstr ""
+"Există %d documente cu schimbări nesalvate. Salvați schimbările înainte de a "
+"închide?"
+
+#: ../src/dialogs.vala:72
+msgid "Select the documents you want to save:"
+msgstr "Alegeți documentele pe care vreți să le salvați:"
+
+#: ../src/dialogs.vala:129
+#, fuzzy
+#| msgid "If you don't save, all your changes will be permanently lost."
+msgid "If you don’t save, all your changes will be permanently lost."
+msgstr "Dacă nu salvați, toate schimbările vor fi pierdute definitiv."
+
+#: ../src/document_structure.vala:745
+msgid "The structure item already contains a sub-paragraph."
+msgstr "Elementul de structură conține deja un sub-paragraf."
+
+#: ../src/document_tab.vala:147
+#, fuzzy, c-format
+#| msgid "Activate '%s'"
+msgid "Activate “%s”"
+msgstr "Activează „%s”"
+
+#: ../src/document_tab.vala:166
+#, c-format
+msgid "The file %s changed on disk."
+msgstr "Fișierul %s a fost schimbat pe disk."
+
+#: ../src/document_tab.vala:171
+msgid "Do you want to drop your changes and reload the file?"
+msgstr "Doriți să renunțați la schimbări și să reîncărcați fișierul?"
+
+#: ../src/document_tab.vala:173
+msgid "Do you want to reload the file?"
+msgstr "Doriți să reîncărcați fișierul?"
+
+#: ../src/document_tab.vala:177
+#, fuzzy
+#| msgid "Reload"
+msgid "_Reload"
+msgstr "Reîncarcă"
+
+#: ../src/document.vala:133
+#, fuzzy, c-format
+#| msgid "Impossible to load the file '%s'."
+msgid "Impossible to load the file “%s”."
+msgstr "Nu se poate încărca fișierul „%s”."
+
+#: ../src/document.vala:215
+#, c-format
+msgid "The file %s has been modified since reading it."
+msgstr "Fișierul %s a fost modificat de la citirea sa."
+
+#: ../src/document.vala:218
+msgid "If you save it, all the external changes could be lost. Save it anyway?"
+msgstr "Dacă salvați, toate schimbările externe se pot pierde. Salvați?"
+
+#: ../src/document.vala:222
+#, fuzzy
+#| msgid "Save Anyway"
+msgid "_Save Anyway"
+msgstr "Salvează oricum"
+
+#: ../src/document.vala:223
+#, fuzzy
+#| msgid "Don't Save"
+msgid "_Don’t Save"
+msgstr "Nu salva"
+
+#: ../src/document.vala:240
+msgid "Impossible to save the file."
+msgstr "Nu se poate încărca fișierul „%s”"
+
+#: ../src/document.vala:268
+msgid "Error trying to convert the document to UTF-8"
+msgstr "Eroare la încercarea de a converti documentul la UTF-8"
+
+#: ../src/document.vala:497
+msgid ""
+"The file has a temporary location. The data can be lost after rebooting your "
+"computer."
+msgstr ""
+
+#: ../src/document.vala:498
+#, fuzzy
+#| msgid "Do you want to reload the file?"
+msgid "Do you want to save the file in a safer place?"
+msgstr "Doriți să reîncărcați fișierul?"
+
+#: ../src/document.vala:499 ../src/main_window_file.vala:44
+#: ../src/main_window.vala:757
+#, fuzzy
+#| msgid "_Save All"
+msgid "Save _As"
+msgstr "_Salvează toate"
+
+#: ../src/document.vala:500
+msgid "Cancel"
+msgstr ""
+
+#: ../src/document_view.vala:312
+msgid "No dictionaries available for the spell-checking."
+msgstr ""
+
+#. Help
+#: ../src/document_view.vala:314 ../src/main_window.vala:63
+msgid "_Help"
+msgstr "_Ajutor"
+
+#: ../src/document_view.vala:315
+msgid "_OK"
+msgstr ""
+
+#: ../src/file_browser.vala:219
+msgid "Go to the home directory"
+msgstr "Navighează la dosarul personal"
+
+#: ../src/file_browser.vala:234
+msgid "Go to the parent directory"
+msgstr "Navighează la directorul superior"
+
+#: ../src/file_browser.vala:250
+msgid "Go to the active document directory"
+msgstr "Navighează la documentul directorului activ"
+
+#: ../src/file_browser.vala:290
+#, fuzzy
+#| msgid "Open a file"
+msgid "Open in a file manager"
+msgstr "Deschide un fișier"
+
+#: ../src/file_browser.vala:292
+#, fuzzy
+#| msgid "Save the current file with a different name"
+msgid "Open the current directory in a file manager"
+msgstr "Salvează fișierul actual cu un alt nume"
+
+#: ../src/file_browser.vala:314
+#, fuzzy
+#| msgid "Open a file"
+msgid "Open in a terminal"
+msgstr "Deschide un fișier"
+
+#: ../src/file_browser.vala:315
+#, fuzzy
+#| msgid "Save the current file with a different name"
+msgid "Open the current directory in a terminal"
+msgstr "Salvează fișierul actual cu un alt nume"
+
+#: ../src/file_browser.vala:405
+msgid "File System"
+msgstr "Sistem de fișiere"
+
+#. File browser
+#: ../src/file_browser.vala:524 ../src/main_window.vala:450
+msgid "File Browser"
+msgstr "Navigator de fișiere"
+
+#: ../src/glatex_app.vala:78
+#, fuzzy
+#| msgid "Show the application's version"
+msgid "Show the application’s version"
+msgstr "Arată versiunea aplicației"
+
+#: ../src/glatex_app.vala:81
+msgid "Create new document"
+msgstr "Creează un document nou"
+
+#: ../src/glatex_app.vala:84
+#, fuzzy
+#| msgid "Create a new top-level window in an existing instance of LaTeXila"
+msgid "Create a new top-level window in an existing instance of GNOME LaTeX"
+msgstr ""
+"Creează o nouă fereastră de prim nivel într-o instanță existentă de LaTeXila"
+
+#: ../src/glatex_app.vala:195
+#, fuzzy
+#| msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
+msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
+msgstr "LaTeXila este un mediu integrat LaTeX pentru desktop-ul GNOME"
+
+#: ../src/glatex_app.vala:224 ../src/main_window.vala:69
+#, fuzzy
+#| msgid "About LaTeXila"
+msgid "About GNOME LaTeX"
+msgstr "Despre LaTeXila"
+
+#: ../src/glatex_app.vala:225
+msgid "translator-credits"
+msgstr "Alexandru Florescu Marian <acdc152@gmail.com>"
+
+#. Sections and sub-sections
+#. LaTeX
+#: ../src/latex_menu.vala:30
+msgid "_Sectioning"
+msgstr "_Secționare"
+
+#: ../src/latex_menu.vala:31
+msgid "_References"
+msgstr "_Referințe"
+
+#: ../src/latex_menu.vala:33
+msgid "_List Environments"
+msgstr "_Listează mediile"
+
+#: ../src/latex_menu.vala:34
+msgid "_Characters Sizes"
+msgstr "Dimensiunea _caracterelor"
+
+#: ../src/latex_menu.vala:35
+msgid "_Font Styles"
+msgstr "Stilul _fontului"
+
+#: ../src/latex_menu.vala:36
+msgid "_Font Family"
+msgstr "_Familie de fonturi"
+
+#: ../src/latex_menu.vala:37
+msgid "F_ont Series"
+msgstr "Serie de f_onturi"
+
+#: ../src/latex_menu.vala:38
+msgid "Fo_nt Shape"
+msgstr "Forma fo_ntului"
+
+#: ../src/latex_menu.vala:39
+msgid "_Tabular"
+msgstr "_Tabular"
+
+#: ../src/latex_menu.vala:41
+msgid "_Spacing"
+msgstr "_Spațiere"
+
+#: ../src/latex_menu.vala:42
+msgid "International _Accents"
+msgstr "_Accente internaționale"
+
+#: ../src/latex_menu.vala:43
+msgid "_Misc"
+msgstr "_Diverse"
+
+#. Math
+#: ../src/latex_menu.vala:46
+msgid "_Math"
+msgstr "_Matematică"
+
+#: ../src/latex_menu.vala:47
+msgid "_Math Environments"
+msgstr "_Medii matematice"
+
+#: ../src/latex_menu.vala:48
+msgid "Math _Functions"
+msgstr "_Funcții  matematice"
+
+#: ../src/latex_menu.vala:49
+msgid "Math Font _Styles"
+msgstr "_Stilurile fontului matematic"
+
+#: ../src/latex_menu.vala:50
+msgid "Math _Accents"
+msgstr "_Accente matematice"
+
+#: ../src/latex_menu.vala:51
+msgid "Math _Spaces"
+msgstr "_Spații matematice"
+
+#: ../src/latex_menu.vala:52
+msgid "_Left Delimiters"
+msgstr "De_limitatori la stânga"
+
+#: ../src/latex_menu.vala:53
+msgid "Right _Delimiters"
+msgstr "Delimitatori la _dreapta"
+
+#. menus under toolitems
+#: ../src/latex_menu.vala:67
+msgid "Sectioning"
+msgstr "Secționare"
+
+#: ../src/latex_menu.vala:70
+msgid "Characters Sizes"
+msgstr "Dimensiunile caracterelor"
+
+#: ../src/latex_menu.vala:73
+msgid "References"
+msgstr "Referințe"
+
+#: ../src/latex_menu.vala:76
+#, fuzzy
+#| msgid "Math Environments"
+msgid "Presentation Environments"
+msgstr "Medii matematice"
+
+#: ../src/latex_menu.vala:79
+msgid "Math Environments"
+msgstr "Medii matematice"
+
+#: ../src/liblatexila/latexila-build-job.c:365
+#, fuzzy, c-format
+#| msgid "%s doesn't seem to be installed."
+msgid "%s doesn’t seem to be installed."
+msgstr "%s nu este instalat."
+
+#: ../src/liblatexila/latexila-build-tool.c:555
+#: ../src/liblatexila/latexila-synctex.c:569
+#, fuzzy, c-format
+#| msgid "The file %s changed on disk."
+msgid "The file “%s” doesn’t exist."
+msgstr "Fișierul %s a fost schimbat pe disk."
+
+#: ../src/liblatexila/latexila-build-tool.c:583
+#, c-format
+msgid "Failed to open “%s”:"
+msgstr ""
+
+#: ../src/liblatexila/latexila-build-tool.c:689
+#, fuzzy, c-format
+#| msgid "Open Files"
+msgid "Open %s"
+msgstr "Deschide fișiere"
+
+#: ../src/liblatexila/latexila-latex-commands.c:54 ../src/structure.vala:776
+msgid "Part"
+msgstr "Parte"
+
+#: ../src/liblatexila/latexila-latex-commands.c:56 ../src/structure.vala:777
+msgid "Chapter"
+msgstr "Capitol"
+
+#: ../src/liblatexila/latexila-latex-commands.c:58 ../src/structure.vala:778
+msgid "Section"
+msgstr "Secțiune"
+
+#: ../src/liblatexila/latexila-latex-commands.c:60 ../src/structure.vala:779
+msgid "Sub-section"
+msgstr "Sub-secțiune"
+
+#: ../src/liblatexila/latexila-latex-commands.c:62 ../src/structure.vala:780
+msgid "Sub-sub-section"
+msgstr "Sub-sub-secțiune"
+
+#: ../src/liblatexila/latexila-latex-commands.c:64 ../src/structure.vala:781
+msgid "Paragraph"
+msgstr "Paragraf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:66 ../src/structure.vala:782
+msgid "Sub-paragraph"
+msgstr "Sub-paragraf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:73
+msgid "Reference to a label"
+msgstr "Referințe la o etichetă"
+
+#: ../src/liblatexila/latexila-latex-commands.c:75
+msgid "Page reference to a label"
+msgstr "Referințele paginii la o etichetă"
+
+#: ../src/liblatexila/latexila-latex-commands.c:77
+msgid "Add a word to the index"
+msgstr "Adaugă un cuvânt în index"
+
+#: ../src/liblatexila/latexila-latex-commands.c:79
+msgid "Footnote"
+msgstr "Notă de subsol"
+
+#: ../src/liblatexila/latexila-latex-commands.c:81
+msgid "Reference to a bibliography item"
+msgstr "Referințe la un element bibliografic"
+
+#: ../src/liblatexila/latexila-latex-commands.c:86
+#, fuzzy
+#| msgid "Center - \\begin{center}"
+msgid "Center — \\begin{center}"
+msgstr "Centru - \\begin{center}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:88
+#, fuzzy
+#| msgid "Align Left - \\begin{flushleft}"
+msgid "Align Left — \\begin{flushleft}"
+msgstr "Aliniere la stânga - \\begin{flushleft}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:90
+#, fuzzy
+#| msgid "Align Right - \\begin{flushright}"
+msgid "Align Right — \\begin{flushright}"
+msgstr "Aliniere la dreapta - \\begin{flushright}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:92
+#, fuzzy
+#| msgid "Figure - \\begin{figure}"
+msgid "Figure — \\begin{figure}"
+msgstr "Figura - \\begin{figure}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:94
+#, fuzzy
+#| msgid "Table - \\begin{table}"
+msgid "Table — \\begin{table}"
+msgstr "Tabel - \\begin{table}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:96
+#, fuzzy
+#| msgid "Quote - \\begin{quote}"
+msgid "Quote — \\begin{quote}"
+msgstr "Citat - \\begin{quote}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:98
+#, fuzzy
+#| msgid "Quotation - \\begin{quotation}"
+msgid "Quotation — \\begin{quotation}"
+msgstr "Citare - \\begin{quotation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:100
+#, fuzzy
+#| msgid "Verse - \\begin{verse}"
+msgid "Verse — \\begin{verse}"
+msgstr "Vers - \\begin{verse}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:102
+#, fuzzy
+#| msgid "Verbatim - \\begin{verbatim}"
+msgid "Verbatim — \\begin{verbatim}"
+msgstr "Textual - \\begin{verbatim}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:104
+#, fuzzy
+#| msgid "Minipage - \\begin{minipage}"
+msgid "Minipage — \\begin{minipage}"
+msgstr "Minipagină - \\begin{minipage}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:106
+#, fuzzy
+#| msgid "Title page - \\begin{titlepage}"
+msgid "Title page — \\begin{titlepage}"
+msgstr "Pagina de titlu - \\begin{titlepage}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:111
+#, fuzzy
+#| msgid "Bulleted List - \\begin{itemize}"
+msgid "Bulleted List — \\begin{itemize}"
+msgstr "Lista cu buline - \\begin{itemize}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:113
+#, fuzzy
+#| msgid "Enumeration - \\begin{enumerate}"
+msgid "Enumeration — \\begin{enumerate}"
+msgstr "Enumerație - \\begin{enumerate}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:115
+#, fuzzy
+#| msgid "Description - \\begin{description}"
+msgid "Description — \\begin{description}"
+msgstr "Descriere - \\begin{description}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:117
+#, fuzzy
+#| msgid "Custom list - \\begin{list}"
+msgid "Custom list — \\begin{list}"
+msgstr "Lista personalizată - \\begin{list}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:119
+#, fuzzy
+#| msgid "List item - \\item"
+msgid "List item — \\item"
+msgstr "Listează elemente - \\item"
+
+#: ../src/liblatexila/latexila-latex-commands.c:137
+#, fuzzy
+#| msgid "Bold - \\textbf"
+msgid "Bold — \\textbf"
+msgstr "Îngroșat - \\textbf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:139
+#, fuzzy
+#| msgid "Italic - \\textit"
+msgid "Italic — \\textit"
+msgstr "Italic - \\textit"
+
+#: ../src/liblatexila/latexila-latex-commands.c:141
+#, fuzzy
+#| msgid "Typewriter - \\texttt"
+msgid "Typewriter — \\texttt"
+msgstr "Stil dactilografiat - \\texttt"
+
+#: ../src/liblatexila/latexila-latex-commands.c:143
+#, fuzzy
+#| msgid "Slanted - \\textsl"
+msgid "Slanted — \\textsl"
+msgstr "Înclinat - \\textsl"
+
+#: ../src/liblatexila/latexila-latex-commands.c:145
+#, fuzzy
+#| msgid "Small Capitals - \\textsc"
+msgid "Small Capitals — \\textsc"
+msgstr "Majuscule mici - \\textsc"
+
+#: ../src/liblatexila/latexila-latex-commands.c:147
+#, fuzzy
+#| msgid "Sans Serif - \\textsf"
+msgid "Sans Serif — \\textsf"
+msgstr "Sans Serif - \\textsf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:149
+#, fuzzy
+#| msgid "Emphasized - \\emph"
+msgid "Emphasized — \\emph"
+msgstr "Accentuat - \\emph"
+
+#: ../src/liblatexila/latexila-latex-commands.c:151
+#, fuzzy
+#| msgid "Underline - \\underline"
+msgid "Underline — \\underline"
+msgstr "Subliniat - \\underline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:154
+#, fuzzy
+#| msgid "Roman - \\rmfamily"
+msgid "Roman — \\rmfamily"
+msgstr "Roman - \\rmfamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:156
+#, fuzzy
+#| msgid "Sans Serif - \\sffamily"
+msgid "Sans Serif — \\sffamily"
+msgstr "Sans Serif - \\sffamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:158
+#, fuzzy
+#| msgid "Monospace - \\ttfamily"
+msgid "Monospace — \\ttfamily"
+msgstr "Monospațiu - \\ttfamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:161
+#, fuzzy
+#| msgid "Medium - \\mdseries"
+msgid "Medium — \\mdseries"
+msgstr "Mediu - \\mdseries"
+
+#: ../src/liblatexila/latexila-latex-commands.c:163
+#, fuzzy
+#| msgid "Bold - \\bfseries"
+msgid "Bold — \\bfseries"
+msgstr "Îngroșat - \\bfseries"
+
+#: ../src/liblatexila/latexila-latex-commands.c:166
+#, fuzzy
+#| msgid "Upright - \\upshape"
+msgid "Upright — \\upshape"
+msgstr "Drept - \\upshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:168
+#, fuzzy
+#| msgid "Italic - \\itshape"
+msgid "Italic — \\itshape"
+msgstr "Italic - \\itshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:170
+#, fuzzy
+#| msgid "Slanted - \\slshape"
+msgid "Slanted — \\slshape"
+msgstr "Înclinat - \\slshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:172
+#, fuzzy
+#| msgid "Small Capitals - \\scshape"
+msgid "Small Capitals — \\scshape"
+msgstr "Majuscule mici - \\scshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:177
+#, fuzzy
+msgid "Tabbing — \\begin{tabbing}"
+msgstr "Tabbing - \\begin{tabbing}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:179
+#, fuzzy
+#| msgid "Tabular - \\begin{tabular}"
+msgid "Tabular — \\begin{tabular}"
+msgstr "Tabular - \\begin{tabular}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:181
+#, fuzzy
+#| msgid "Multicolumn - \\multicolumn"
+msgid "Multicolumn — \\multicolumn"
+msgstr "Multi-coloană - \\multicolumn"
+
+#: ../src/liblatexila/latexila-latex-commands.c:183
+#, fuzzy
+#| msgid "Horizontal line - \\hline"
+msgid "Horizontal line — \\hline"
+msgstr "Linie orizontală - \\hline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:185
+#, fuzzy
+#| msgid "Vertical line - \\vline"
+msgid "Vertical line — \\vline"
+msgstr "Linie verticală - \\vline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:187
+#, fuzzy
+#| msgid "Horizontal line (columns specified) - \\cline"
+msgid "Horizontal line (columns specified) — \\cline"
+msgstr "Linie orizontală (coloanele specificate) - \\cline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:192
+#, fuzzy
+#| msgid "Figure - \\begin{figure}"
+msgid "Frame — \\begin{frame}"
+msgstr "Figura - \\begin{figure}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:194
+msgid "Block — \\begin{block}"
+msgstr ""
+
+#: ../src/liblatexila/latexila-latex-commands.c:196
+msgid "Two columns — \\begin{columns}"
+msgstr ""
+
+#. LaTeX: Spacing
+#: ../src/liblatexila/latexila-latex-commands.c:200
+msgid "New _Line"
+msgstr "_Linie nouă"
+
+#: ../src/liblatexila/latexila-latex-commands.c:201
+#, fuzzy
+#| msgid "New Line - \\\\"
+msgid "New Line — \\\\"
+msgstr "Linie nouă - \\\\"
+
+#: ../src/liblatexila/latexila-latex-commands.c:203
+#, fuzzy
+#| msgid "New page - \\newpage"
+msgid "New page — \\newpage"
+msgstr "Pagină nouă - \\newpage"
+
+#: ../src/liblatexila/latexila-latex-commands.c:205
+#, fuzzy
+#| msgid "Line break - \\linebreak"
+msgid "Line break — \\linebreak"
+msgstr "Pauză de linie - \\linebreak"
+
+#: ../src/liblatexila/latexila-latex-commands.c:207
+#, fuzzy
+#| msgid "Page break - \\pagebreak"
+msgid "Page break — \\pagebreak"
+msgstr "Pauză de pagină - \\pagebreak"
+
+#: ../src/liblatexila/latexila-latex-commands.c:209
+#, fuzzy
+#| msgid "Big skip - \\bigskip"
+msgid "Big skip — \\bigskip"
+msgstr "Omitere mare - \\bigskip"
+
+#: ../src/liblatexila/latexila-latex-commands.c:211
+#, fuzzy
+#| msgid "Medium skip - \\medskip"
+msgid "Medium skip — \\medskip"
+msgstr "Omitere medie - medskip"
+
+#: ../src/liblatexila/latexila-latex-commands.c:213
+#, fuzzy
+#| msgid "Horizontal space - \\hspace"
+msgid "Horizontal space — \\hspace"
+msgstr "Spațiu orizontal - \\hspace"
+
+#: ../src/liblatexila/latexila-latex-commands.c:215
+#, fuzzy
+#| msgid "Vertical space - \\vspace"
+msgid "Vertical space — \\vspace"
+msgstr "Spațiu vertical - \\vspace"
+
+#: ../src/liblatexila/latexila-latex-commands.c:217
+#, fuzzy
+#| msgid "No paragraph indentation - \\noindent"
+msgid "No paragraph indentation — \\noindent"
+msgstr "Nicio indentare de paragraf - \\noindent"
+
+#. LaTeX: International accents
+#: ../src/liblatexila/latexila-latex-commands.c:221
+#, fuzzy
+#| msgid "Acute accent - \\'"
+msgid "Acute accent — \\'"
+msgstr "Accent ascuțit - \\'"
+
+#: ../src/liblatexila/latexila-latex-commands.c:222
+#, fuzzy
+#| msgid "Grave accent - \\`"
+msgid "Grave accent — \\`"
+msgstr "Accent grav - \\`"
+
+#: ../src/liblatexila/latexila-latex-commands.c:223
+#, fuzzy
+#| msgid "Circumflex accent - \\^"
+msgid "Circumflex accent — \\^"
+msgstr "Accent circumflex - \\^"
+
+#: ../src/liblatexila/latexila-latex-commands.c:224
+#, fuzzy
+#| msgid "Trema - \\\""
+msgid "Trema — \\\""
+msgstr "Trema - \\\""
+
+#: ../src/liblatexila/latexila-latex-commands.c:225
+#, fuzzy
+#| msgid "Tilde - \\~"
+msgid "Tilde — \\~"
+msgstr "Tilda -\\~"
+
+#: ../src/liblatexila/latexila-latex-commands.c:226
+#, fuzzy
+#| msgid "Macron - \\="
+msgid "Macron — \\="
+msgstr "Macron - \\="
+
+#: ../src/liblatexila/latexila-latex-commands.c:227
+#, fuzzy
+#| msgid "Dot above - \\."
+msgid "Dot above — \\."
+msgstr "Punct superior - \\."
+
+#: ../src/liblatexila/latexila-latex-commands.c:228
+#, fuzzy
+#| msgid "Caron - \\v"
+msgid "Caron — \\v"
+msgstr "Caron - \\v"
+
+#: ../src/liblatexila/latexila-latex-commands.c:229
+#, fuzzy
+msgid "Breve — \\u"
+msgstr "Brevă - \\u"
+
+#: ../src/liblatexila/latexila-latex-commands.c:231
+#, fuzzy
+#| msgid "Double acute accent - \\H"
+msgid "Double acute accent — \\H"
+msgstr "Accent ascuțit dublu -\\H"
+
+#: ../src/liblatexila/latexila-latex-commands.c:232
+#, fuzzy
+#| msgid "Cedilla - \\c"
+msgid "Cedilla — \\c"
+msgstr "Sedilă - \\c"
+
+#: ../src/liblatexila/latexila-latex-commands.c:233
+#, fuzzy
+#| msgid "Ogonek - \\k"
+msgid "Ogonek — \\k"
+msgstr "Ogonek - \\k"
+
+#: ../src/liblatexila/latexila-latex-commands.c:234
+#, fuzzy
+#| msgid "Dot below - \\d"
+msgid "Dot below — \\d"
+msgstr "Punct sub - \\d"
+
+#: ../src/liblatexila/latexila-latex-commands.c:235
+#, fuzzy
+#| msgid "Macron below - \\b"
+msgid "Macron below — \\b"
+msgstr "Macron sub - \\b"
+
+#: ../src/liblatexila/latexila-latex-commands.c:236
+#, fuzzy
+#| msgid "Ring - \\r"
+msgid "Ring — \\r"
+msgstr "Inel - \\r"
+
+#: ../src/liblatexila/latexila-latex-commands.c:237
+#, fuzzy
+msgid "Tie — \\t"
+msgstr "Cravată - \\t"
+
+#: ../src/liblatexila/latexila-latex-commands.c:242
+#, fuzzy
+#| msgid "Document class - \\documentclass"
+msgid "Document class — \\documentclass"
+msgstr "Clasa document - \\documentclass"
+
+#: ../src/liblatexila/latexila-latex-commands.c:244
+#, fuzzy
+#| msgid "Use package - \\usepackage"
+msgid "Use package — \\usepackage"
+msgstr "Folosește pachet - \\usepackage"
+
+#: ../src/liblatexila/latexila-latex-commands.c:245
+msgid "_AMS packages"
+msgstr "Pachete _AMS"
+
+#: ../src/liblatexila/latexila-latex-commands.c:246
+msgid "AMS packages"
+msgstr "Pachete AMS"
+
+#: ../src/liblatexila/latexila-latex-commands.c:247
+#, fuzzy
+#| msgid "Author - \\author"
+msgid "Author — \\author"
+msgstr "Autor - \\author"
+
+#: ../src/liblatexila/latexila-latex-commands.c:248
+#, fuzzy
+#| msgid "Title - \\title"
+msgid "Title — \\title"
+msgstr "Titlu - \\title"
+
+#: ../src/liblatexila/latexila-latex-commands.c:250
+#, fuzzy
+#| msgid "Content of the document - \\begin{document}"
+msgid "Content of the document — \\begin{document}"
+msgstr "Conținutul documentului - \\begin{document}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:252
+#, fuzzy
+#| msgid "Make title - \\maketitle"
+msgid "Make title — \\maketitle"
+msgstr "Creează titlu - \\maketitle"
+
+#: ../src/liblatexila/latexila-latex-commands.c:254
+#, fuzzy
+#| msgid "Table of contents - \\tableofcontents"
+msgid "Table of contents — \\tableofcontents"
+msgstr "Cuprins - \\tableofcontents"
+
+#: ../src/liblatexila/latexila-latex-commands.c:256
+#, fuzzy
+#| msgid "Abstract - \\begin{abstract}"
+msgid "Abstract — \\begin{abstract}"
+msgstr "Abstract -\\begin{abstract}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:258
+#, fuzzy
+#| msgid "Include an image (graphicx package) - \\includegraphics"
+msgid "Include an image (graphicx package) — \\includegraphics"
+msgstr "Include o imagine (pachete graphicx) - \\includegraphics"
+
+#: ../src/liblatexila/latexila-latex-commands.c:260
+#, fuzzy
+#| msgid "Include a file - \\input"
+msgid "Include a file — \\input"
+msgstr "Include un fișier - \\input"
+
+#. Math Environments
+#: ../src/liblatexila/latexila-latex-commands.c:264
+#, fuzzy
+#| msgid "_Mathematical Environment - $...$"
+msgid "_Mathematical Environment — $…$"
+msgstr "_Mediu matematic - $...$"
+
+#: ../src/liblatexila/latexila-latex-commands.c:265
+#, fuzzy
+#| msgid "Mathematical Environment - $...$"
+msgid "Mathematical Environment — $…$"
+msgstr "Mediu matematic - $...$"
+
+#: ../src/liblatexila/latexila-latex-commands.c:266
+#, fuzzy
+#| msgid "_Centered Formula - \\[...\\]"
+msgid "_Centered Formula — \\[…\\]"
+msgstr "Formulă _centrată -\\[...\\]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:267
+#, fuzzy
+#| msgid "Centered Formula - \\[...\\]"
+msgid "Centered Formula — \\[…\\]"
+msgstr "Formulă centrată - \\[...\\]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:269
+#, fuzzy
+#| msgid "_Numbered Equation - \\begin{equation}"
+msgid "_Numbered Equation — \\begin{equation}"
+msgstr "Ecuație _numerotată - \\begin{equation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:270
+#, fuzzy
+#| msgid "Numbered Equation - \\begin{equation}"
+msgid "Numbered Equation — \\begin{equation}"
+msgstr "Ecuație numerotată - \\begin{equation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:271
+#, fuzzy
+#| msgid "_Array of Equations - \\begin{align*}"
+msgid "_Array of Equations — \\begin{align*}"
+msgstr "_Vector de ecuații - \\begin{align*}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:272
+#, fuzzy
+#| msgid "Array of Equations - \\begin{align*}"
+msgid "Array of Equations — \\begin{align*}"
+msgstr "Vector de ecuații - \\begin{align*}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:274
+#, fuzzy
+#| msgid "Numbered Array of _Equations - \\begin{align}"
+msgid "Numbered Array of _Equations — \\begin{align}"
+msgstr "Vector numerotat de _ecuații - \\begin{align}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:275
+#, fuzzy
+#| msgid "Numbered Array of Equations - \\begin{align}"
+msgid "Numbered Array of Equations — \\begin{align}"
+msgstr "Vector numerotat de ecuații - \\begin{align}"
+
+#. Math misc
+#: ../src/liblatexila/latexila-latex-commands.c:279
+#, fuzzy
+#| msgid "_Superscript - ^{}"
+msgid "_Superscript — ^{}"
+msgstr "_Exponent - ^{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:280
+#, fuzzy
+#| msgid "Superscript - ^{}"
+msgid "Superscript — ^{}"
+msgstr "Exponent - ^{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:281
+#, fuzzy
+#| msgid "Su_bscript - __{}"
+msgid "Su_bscript — __{}"
+msgstr "In_dice - __{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:282
+#, fuzzy
+#| msgid "Subscript - _{}"
+msgid "Subscript — _{}"
+msgstr "Incidce - _{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:283
+#, fuzzy
+#| msgid "_Fraction - \\frac{}{}"
+msgid "_Fraction — \\frac{}{}"
+msgstr "_Fracție - \\frac{}{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:284
+#, fuzzy
+#| msgid "Fraction - \\frac{}{}"
+msgid "Fraction — \\frac{}{}"
+msgstr "Fracție - \\frac{}{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:285
+#, fuzzy
+#| msgid "Square _Root - \\sqrt{}"
+msgid "Square _Root — \\sqrt{}"
+msgstr "_Radical - \\sqrt{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:286
+#, fuzzy
+#| msgid "Square Root - \\sqrt{}"
+msgid "Square Root — \\sqrt{}"
+msgstr "Radical - \\sqrt{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:287
+#, fuzzy
+#| msgid "_N-th Root - \\sqrt[]{}"
+msgid "_N-th Root — \\sqrt[]{}"
+msgstr "Radical de ordin _n - \\sqrt[]{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:288
+#, fuzzy
+#| msgid "N-th Root - \\sqrt[]{}"
+msgid "N-th Root — \\sqrt[]{}"
+msgstr "Radical de ordin n - \\sqrt[]{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:326
+#, fuzzy
+#| msgid "Roman - \\mathrm"
+msgid "Roman — \\mathrm"
+msgstr "Roman - \\mathrm "
+
+#: ../src/liblatexila/latexila-latex-commands.c:328
+#, fuzzy
+#| msgid "Italic - \\mathit"
+msgid "Italic — \\mathit"
+msgstr "Înclinat - \\mathit"
+
+#: ../src/liblatexila/latexila-latex-commands.c:330
+#, fuzzy
+#| msgid "Bold - \\mathbf"
+msgid "Bold — \\mathbf"
+msgstr "Îngroșat - \\mathbf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:332
+#, fuzzy
+#| msgid "Sans Serif - \\mathsf"
+msgid "Sans Serif — \\mathsf"
+msgstr "Sans Serif - \\mathsf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:334
+#, fuzzy
+#| msgid "Typewriter - \\mathtt"
+msgid "Typewriter — \\mathtt"
+msgstr "Stil dactilografiat - \\mathtt"
+
+#: ../src/liblatexila/latexila-latex-commands.c:336
+#, fuzzy
+#| msgid "Calligraphic - \\mathcal"
+msgid "Calligraphic — \\mathcal"
+msgstr "Caligrafic - \\mathcal"
+
+#: ../src/liblatexila/latexila-latex-commands.c:338
+#, fuzzy
+#| msgid "Blackboard (uppercase only)  - \\mathbb (amsfonts package)"
+msgid "Blackboard (uppercase only) — \\mathbb (amsfonts package)"
+msgstr "Blackboard (doar majuscule) - \\mathbb (pachetul amsfonts)"
+
+#: ../src/liblatexila/latexila-latex-commands.c:340
+#, fuzzy
+#| msgid "Euler Fraktur - \\mathfrak (amsfonts package)"
+msgid "Euler Fraktur — \\mathfrak (amsfonts package)"
+msgstr "Euler Fraktur - \\mathfrak (pachetul amsfonts)"
+
+#. Math Spaces
+#: ../src/liblatexila/latexila-latex-commands.c:358
+msgid "_Small"
+msgstr "_Mic"
+
+#: ../src/liblatexila/latexila-latex-commands.c:358
+#, fuzzy
+#| msgid "Small - \\,"
+msgid "Small — \\,"
+msgstr "Mic - \\,"
+
+#: ../src/liblatexila/latexila-latex-commands.c:359
+msgid "_Medium"
+msgstr "_Mediu"
+
+#: ../src/liblatexila/latexila-latex-commands.c:359
+#, fuzzy
+#| msgid "Medium - \\:"
+msgid "Medium — \\:"
+msgstr "Mediu - \\:"
+
+#: ../src/liblatexila/latexila-latex-commands.c:360
+msgid "_Large"
+msgstr "Ma_re"
+
+#: ../src/liblatexila/latexila-latex-commands.c:360
+#, fuzzy
+#| msgid "Large - \\;"
+msgid "Large — \\;"
+msgstr "Mare - \\;"
+
+#. Math: Left Delimiters
+#: ../src/liblatexila/latexila-latex-commands.c:366
+msgid "left ("
+msgstr "stânga ("
+
+#: ../src/liblatexila/latexila-latex-commands.c:367
+msgid "left ["
+msgstr "stânga ("
+
+#: ../src/liblatexila/latexila-latex-commands.c:368
+msgid "left { "
+msgstr "stânga {"
+
+#: ../src/liblatexila/latexila-latex-commands.c:369
+msgid "left <"
+msgstr "stânga <"
+
+#: ../src/liblatexila/latexila-latex-commands.c:370
+msgid "left )"
+msgstr "stânga )"
+
+#: ../src/liblatexila/latexila-latex-commands.c:371
+msgid "left ]"
+msgstr "stânga )"
+
+#: ../src/liblatexila/latexila-latex-commands.c:372
+msgid "left  }"
+msgstr "stânga }"
+
+#: ../src/liblatexila/latexila-latex-commands.c:373
+msgid "left >"
+msgstr "stânga >"
+
+#: ../src/liblatexila/latexila-latex-commands.c:374
+msgid "left ."
+msgstr "stânga ."
+
+#. Math: Right Delimiters
+#: ../src/liblatexila/latexila-latex-commands.c:378
+msgid "right )"
+msgstr "dreapta )"
+
+#: ../src/liblatexila/latexila-latex-commands.c:379
+msgid "right ]"
+msgstr "dreapta ]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:380
+msgid "right  }"
+msgstr "dreapta }"
+
+#: ../src/liblatexila/latexila-latex-commands.c:381
+msgid "right >"
+msgstr "dreapta >"
+
+#: ../src/liblatexila/latexila-latex-commands.c:382
+msgid "right ("
+msgstr "dreapta ("
+
+#: ../src/liblatexila/latexila-latex-commands.c:383
+msgid "right ["
+msgstr "dreapta ["
+
+#: ../src/liblatexila/latexila-latex-commands.c:384
+msgid "right { "
+msgstr "dreapta {"
+
+#: ../src/liblatexila/latexila-latex-commands.c:385
+msgid "right <"
+msgstr "dreapta <"
+
+#: ../src/liblatexila/latexila-latex-commands.c:386
+msgid "right ."
+msgstr "dreapta ."
+
+#: ../src/liblatexila/latexila-synctex.c:194
+#, fuzzy
+#| msgid "Impossible to load the file '%s'."
+msgid "Impossible to do the forward search."
+msgstr "Nu se poate încărca fișierul „%s”."
+
+#: ../src/liblatexila/latexila-synctex.c:539
+msgid "Can not communicate with evince."
+msgstr ""
+
+#: ../src/liblatexila/latexila-synctex.c:603
+msgid "The PDF file doesn’t exist."
+msgstr ""
+
+#: ../src/liblatexila/latexila-synctex.c:654
+#, fuzzy
+msgid "The document is not saved."
+msgstr "Numele activ al documentului"
+
+#: ../src/liblatexila/latexila-templates-default.c:90
+msgid "Empty"
+msgstr "Gol"
+
+#: ../src/liblatexila/latexila-templates-default.c:94
+msgid "Article"
+msgstr "Articol"
+
+#: ../src/liblatexila/latexila-templates-default.c:95
+msgid "Report"
+msgstr "Raport"
+
+#: ../src/liblatexila/latexila-templates-default.c:96
+msgid "Book"
+msgstr "Carte"
+
+#: ../src/liblatexila/latexila-templates-default.c:97
+msgid "Letter"
+msgstr "Scrisoare"
+
+#: ../src/liblatexila/latexila-templates-default.c:98
+msgid "Presentation"
+msgstr "Prezentare"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:50
+#, fuzzy
+#| msgid "Default templates"
+msgid "Default Templates"
+msgstr "Șabloane implicite"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:62
+#, fuzzy
+#| msgid "Personal templates"
+msgid "Personal Templates"
+msgstr "Șabloane personale"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:124
+#, fuzzy
+#| msgid "New file"
+msgid "New File…"
+msgstr "Fișier nou"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:131
+#: ../src/main_window_file.vala:32
+msgid "_New"
+msgstr ""
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:232
+#, fuzzy
+#| msgid "New Template..."
+msgid "New Template…"
+msgstr "Șablon nou..."
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:239
+#: ../src/project_dialogs.vala:32
+msgid "Crea_te"
+msgstr ""
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:249
+msgid "Name of the new template"
+msgstr "Numele noului șablon"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:267
+msgid "Choose an icon"
+msgstr "Alegeți o iconiță"
+
+#: ../src/liblatexila/latexila-templates-dialogs.c:336
+#, fuzzy
+#| msgid "Impossible to save the file."
+msgid "Impossible to create the personal template."
+msgstr "Nu se poate încărca fișierul „%s”"
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:143
+#, fuzzy, c-format
+#| msgid "Do you really want to delete these files?"
+msgid "Do you really want to delete the template “%s”?"
+msgstr "Sigur doriți să ștergeți aceste fișiere?"
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:170
+#, c-format
+msgid "Error when deleting the template “%s”."
+msgstr ""
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:230
+msgid "Error when moving the template."
+msgstr ""
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:274
+#, fuzzy
+#| msgid "delete"
+msgid "Delete"
+msgstr "șterge"
+
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:366
+#, fuzzy
+#| msgid "Personal templates"
+msgid "Manage Personal Templates"
+msgstr "Șabloane personale"
+
+#: ../src/main_window_build_tools.vala:28
+msgid "_Build"
+msgstr "_Build"
+
+#: ../src/main_window_build_tools.vala:30
+msgid "Cleanup Build _Files"
+msgstr "Curăță _fișierele temporare de construire"
+
+#: ../src/main_window_build_tools.vala:31
+msgid "Clean-up build files (*.aux, *.log, *.out, *.toc, etc)"
+msgstr ""
+"Curăță fișierele temporare de construire (*.aux, *.log, *.out, *.toc, etc)"
+
+#: ../src/main_window_build_tools.vala:34
+msgid "_Stop Execution"
+msgstr "Opre_ște execuția"
+
+#: ../src/main_window_build_tools.vala:35
+msgid "Stop Execution"
+msgstr "Oprește execuția"
+
+#: ../src/main_window_build_tools.vala:37
+msgid "View _Log"
+msgstr "Vizua_lizează istoricul"
+
+#: ../src/main_window_build_tools.vala:38
+msgid "View Log"
+msgstr "Vizualizează istoricul"
+
+#: ../src/main_window_build_tools.vala:40
+#, fuzzy
+#| msgid "Build Tools"
+msgid "_Manage Build Tools"
+msgstr "Unelte de build"
+
+#: ../src/main_window_build_tools.vala:41
+#, fuzzy
+#| msgid "Build Tools"
+msgid "Manage Build Tools"
+msgstr "Unelte de build"
+
+#: ../src/main_window_build_tools.vala:46
+#, fuzzy
+#| msgid "Show tables"
+msgid "Show _Details"
+msgstr "Arată tabelele"
+
+#: ../src/main_window_build_tools.vala:47
+#, fuzzy
+#| msgid "Show tables"
+msgid "Show Details"
+msgstr "Arată tabelele"
+
+#: ../src/main_window_build_tools.vala:49
+msgid "Show _Warnings"
+msgstr "Arată _avertismente"
+
+#: ../src/main_window_build_tools.vala:50
+msgid "Show Warnings"
+msgstr "Arată avertismente"
+
+#: ../src/main_window_build_tools.vala:52
+msgid "Show _Bad Boxes"
+msgstr "Arată căsuțele de_fecte"
+
+#: ../src/main_window_build_tools.vala:53
+msgid "Show Bad Boxes"
+msgstr "Arată căsuțele defecte"
+
+#: ../src/main_window_documents.vala:30
+msgid "_Documents"
+msgstr "_Documente"
+
+#: ../src/main_window_documents.vala:32
+msgid "_Save All"
+msgstr "_Salvează toate"
+
+#: ../src/main_window_documents.vala:33
+msgid "Save all open files"
+msgstr "Salvează toate fișierele deschise"
+
+#: ../src/main_window_documents.vala:35
+msgid "_Close All"
+msgstr "În_chide toate"
+
+#: ../src/main_window_documents.vala:36
+msgid "Close all open files"
+msgstr "Închide toate fișierele deschise"
+
+#: ../src/main_window_documents.vala:38
+msgid "_Previous Document"
+msgstr "Documentele _precedente"
+
+#: ../src/main_window_documents.vala:39
+msgid "Activate previous document"
+msgstr "Activează documentele precedente"
+
+#: ../src/main_window_documents.vala:41
+msgid "_Next Document"
+msgstr "Docume_ntele următoare"
+
+#: ../src/main_window_documents.vala:42
+msgid "Activate next document"
+msgstr "Activează documentele următoare"
+
+#: ../src/main_window_documents.vala:44
+msgid "_Move to New Window"
+msgstr "_Mergi la noua fereastră"
+
+#: ../src/main_window_documents.vala:45
+msgid "Move the current document to a new window"
+msgstr "Mută documentul actual într-o fereastră nouă"
+
+#: ../src/main_window_edit.vala:30
+msgid "_Edit"
+msgstr "_Editare"
+
+#: ../src/main_window_edit.vala:32
+msgid "_Undo"
+msgstr ""
+
+#: ../src/main_window_edit.vala:33
+msgid "Undo the last action"
+msgstr "Anulează ultima acțiune"
+
+#: ../src/main_window_edit.vala:35
+msgid "_Redo"
+msgstr ""
+
+#: ../src/main_window_edit.vala:36
+msgid "Redo the last undone action"
+msgstr "Refă ultima acțiune anulată"
+
+#: ../src/main_window_edit.vala:38 ../src/main_window_structure.vala:32
+msgid "Cu_t"
+msgstr ""
+
+#: ../src/main_window_edit.vala:39
+msgid "Cut the selection"
+msgstr "Taie selecția"
+
+#: ../src/main_window_edit.vala:41 ../src/main_window_structure.vala:35
+msgid "_Copy"
+msgstr ""
+
+#: ../src/main_window_edit.vala:42
+msgid "Copy the selection"
+msgstr "Copiază selecția"
+
+#. No shortcut here because if the shortcut is null, Ctrl+V is used for _all_
+#. the window. In this case Ctrl+V in the search text entry would be broken (the
+#. text is pasted in the document instead of the entry).
+#. Anyway if we press Ctrl+V when the cursor is in the document, no problem.
+#: ../src/main_window_edit.vala:48
+msgid "_Paste"
+msgstr ""
+
+#: ../src/main_window_edit.vala:49
+msgid "Paste the clipboard"
+msgstr "Lipește clipboard-ul"
+
+#: ../src/main_window_edit.vala:52
+msgid "Delete the selected text"
+msgstr "Șterge textul selectat"
+
+#: ../src/main_window_edit.vala:54
+#, fuzzy
+#| msgid "_Select"
+msgid "Select _All"
+msgstr "_Selectează"
+
+#: ../src/main_window_edit.vala:55
+msgid "Select the entire document"
+msgstr "Selectează întregul document"
+
+#: ../src/main_window_edit.vala:57
+msgid "_Indent"
+msgstr ""
+
+#: ../src/main_window_edit.vala:58
+#, fuzzy
+#| msgid "Delete the selected text"
+msgid "Indent the selected lines"
+msgstr "Șterge textul selectat"
+
+#: ../src/main_window_edit.vala:60
+msgid "_Unindent"
+msgstr ""
+
+#: ../src/main_window_edit.vala:61
+#, fuzzy
+#| msgid "Delete the selected text"
+msgid "Unindent the selected lines"
+msgstr "Șterge textul selectat"
+
+#: ../src/main_window_edit.vala:63 ../src/main_window_structure.vala:44
+msgid "_Comment"
+msgstr "_Comentează"
+
+#: ../src/main_window_edit.vala:64
+#, fuzzy
+#| msgid "Comment the selected lines (add the character \"%\")"
+msgid "Comment the selected lines (add the character “%”)"
+msgstr "Comentează liniile selectate (adaugă caracterul „%”)"
+
+#: ../src/main_window_edit.vala:67
+msgid "_Uncomment"
+msgstr "_Decomentează"
+
+#: ../src/main_window_edit.vala:68
+#, fuzzy
+#| msgid "Uncomment the selected lines (remove the character \"%\")"
+msgid "Uncomment the selected lines (remove the character “%”)"
+msgstr "Decomentează liniile selectate (elimină caracterul „%s”)"
+
+#: ../src/main_window_edit.vala:71
+#, fuzzy
+#| msgid "_Comment"
+msgid "_Completion"
+msgstr "_Comentează"
+
+#: ../src/main_window_edit.vala:72
+msgid "Complete the LaTeX command"
+msgstr ""
+
+#: ../src/main_window_edit.vala:74
+#, fuzzy
+#| msgid "Preferences"
+msgid "_Preferences"
+msgstr "Preferințe"
+
+#: ../src/main_window_edit.vala:75
+msgid "Configure the application"
+msgstr "Configurează aplicația"
+
+#: ../src/main_window_file.vala:30
+msgid "_File"
+msgstr "_Fișier"
+
+#: ../src/main_window_file.vala:33
+msgid "New file"
+msgstr "Fișier nou"
+
+#: ../src/main_window_file.vala:35
+msgid "New _Window"
+msgstr "Fereastră _nouă"
+
+#: ../src/main_window_file.vala:36
+msgid "Create a new window"
+msgstr "Creează o fereastră nouă"
+
+#: ../src/main_window_file.vala:38 ../src/main_window_file.vala:158
+msgid "_Open"
+msgstr ""
+
+#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:90
+msgid "Open a file"
+msgstr "Deschide un fișier"
+
+#: ../src/main_window_file.vala:42
+msgid "Save the current file"
+msgstr "Salvează fișierul actual"
+
+#: ../src/main_window_file.vala:45
+msgid "Save the current file with a different name"
+msgstr "Salvează fișierul actual cu un alt nume"
+
+#: ../src/main_window_file.vala:47
+#, fuzzy
+#| msgid "Create _Template From Document..."
+msgid "Create _Template From Document…"
+msgstr "Creează un șablon din documen_t..."
+
+#: ../src/main_window_file.vala:48
+msgid "Create a new template from the current document"
+msgstr "Creează un șablon nou din documentul actual"
+
+#: ../src/main_window_file.vala:50
+#, fuzzy
+#| msgid "Personal templates"
+msgid "_Manage Personal Templates…"
+msgstr "Șabloane personale"
+
+#: ../src/main_window_file.vala:51
+#, fuzzy
+#| msgid "Your personal templates"
+msgid "Manage personal templates"
+msgstr "Șabloanele dumneavoastră"
+
+#: ../src/main_window_file.vala:53
+#, fuzzy
+#| msgid "Close"
+msgid "_Close"
+msgstr "Închide"
+
+#: ../src/main_window_file.vala:54
+msgid "Close the current file"
+msgstr "Închide fișierele actuale"
+
+#. recent documents
+#: ../src/main_window_file.vala:69
+msgid "Open _Recent"
+msgstr "Deschide _recente"
+
+#: ../src/main_window_file.vala:70
+msgid "Open recently used files"
+msgstr "Deschide fișierele recent folosite"
+
+#: ../src/main_window_file.vala:91
+msgid "Open a recently used file"
+msgstr "Deschide un fișier utilizat recent"
+
+#: ../src/main_window_file.vala:154
+msgid "Open Files"
+msgstr "Deschide fișiere"
+
+#. Filter: by default show only .tex and .bib files
+#: ../src/main_window_file.vala:177
+#, fuzzy
+#| msgid "All Files"
+msgid "All LaTeX Files"
+msgstr "Toate fișierele"
+
+#. All files filter
+#: ../src/main_window_file.vala:184
+msgid "All Files"
+msgstr "Toate fișierele"
+
+#: ../src/main_window_structure.vala:30
+msgid "S_tructure"
+msgstr "S_tructură"
+
+#: ../src/main_window_structure.vala:33
+msgid "Cut the selected structure item"
+msgstr "Taie elementul de structură selectat"
+
+#: ../src/main_window_structure.vala:36
+msgid "Copy the selected structure item"
+msgstr "Copiază elementul de structură selectat"
+
+#: ../src/main_window_structure.vala:39
+msgid "Delete the selected structure item"
+msgstr "Șterge elementul de structură selectat"
+
+#: ../src/main_window_structure.vala:41
+msgid "_Select"
+msgstr "_Selectează"
+
+#: ../src/main_window_structure.vala:42
+msgid "Select the contents of the selected structure item"
+msgstr "Selectează conținutul elementului de structură ales"
+
+#: ../src/main_window_structure.vala:45
+msgid "Comment the selected structure item"
+msgstr "Comentează elementul de structură selectat"
+
+#: ../src/main_window_structure.vala:47
+msgid "Shift _Left"
+msgstr "Mută _la stânga"
+
+#: ../src/main_window_structure.vala:48
+msgid "Shift the selected structure item to the left (e.g. section → chapter)"
+msgstr ""
+"Mută elementul de structură selectat la stânga (e.g. secțiune → capitol)"
+
+#: ../src/main_window_structure.vala:51
+msgid "Shift _Right"
+msgstr "Mută la d_reapta"
+
+#: ../src/main_window_structure.vala:52
+msgid "Shift the selected structure item to the right (e.g. chapter → section)"
+msgstr ""
+"Mută elementul de structură selectat la dreapta (e.g. capitol → secțiune)"
+
+#: ../src/main_window_structure.vala:55
+#, fuzzy
+#| msgid "Open Files"
+msgid "_Open File"
+msgstr "Deschide fișiere"
+
+#: ../src/main_window_structure.vala:56
+#, fuzzy
+#| msgid "Delete the selected structure item"
+msgid "Open the file referenced by the selected structure item"
+msgstr "Șterge elementul de structură selectat"
+
+#: ../src/main_window_tools.vala:28
+msgid "_Tools"
+msgstr ""
+
+#: ../src/main_window_tools.vala:29
+msgid "_Check Spelling…"
+msgstr ""
+
+#: ../src/main_window_tools.vala:30
+#, fuzzy
+#| msgid "Change the main file of the current project"
+msgid "Check the spelling of the current document"
+msgstr "Schimbă fișierul principal al proiectului actual"
+
+#: ../src/main_window_tools.vala:31
+msgid "_Set Language…"
+msgstr ""
+
+#: ../src/main_window_tools.vala:32
+#, fuzzy
+#| msgid "Create a new template from the current document"
+msgid "Set the language used for the spell-checking for the current document"
+msgstr "Creează un șablon nou din documentul actual"
+
+#: ../src/main_window_tools.vala:38
+msgid "_Highlight Misspelled Words"
+msgstr ""
+
+#: ../src/main_window_tools.vala:39
+msgid "Highlight misspelled words in the current document"
+msgstr ""
+
+#: ../src/main_window.vala:28
+msgid "_Quit"
+msgstr ""
+
+#: ../src/main_window.vala:29
+msgid "Quit the program"
+msgstr "Închide programul"
+
+#. View
+#: ../src/main_window.vala:32
+msgid "_View"
+msgstr "_Vizualizează"
+
+#: ../src/main_window.vala:33
+msgid "Zoom _In"
+msgstr "Măreșt_e"
+
+#: ../src/main_window.vala:34
+msgid "Enlarge the font"
+msgstr "Mărește fontul"
+
+#: ../src/main_window.vala:35
+msgid "Zoom _Out"
+msgstr "Micș_orează"
+
+#: ../src/main_window.vala:36
+msgid "Shrink the font"
+msgstr "Micșorează fontul"
+
+#: ../src/main_window.vala:37
+msgid "_Reset Zoom"
+msgstr "_Resetează focalizarea"
+
+#: ../src/main_window.vala:38
+msgid "Reset the size of the font"
+msgstr "Resetează dimensiunea fontului"
+
+#. Search
+#: ../src/main_window.vala:41
+msgid "_Search"
+msgstr "C_aută"
+
+#: ../src/main_window.vala:42
+msgid "_Find"
+msgstr ""
+
+#: ../src/main_window.vala:43
+msgid "Search for text"
+msgstr "Caută după text"
+
+#: ../src/main_window.vala:44
+#, fuzzy
+#| msgid "Clear Replace"
+msgid "Find and _Replace"
+msgstr "Curăță înlocuirea"
+
+#: ../src/main_window.vala:45
+msgid "Search for and replace text"
+msgstr "Caută și înlocuiește textul"
+
+#: ../src/main_window.vala:46
+#, fuzzy
+#| msgid "Go to Line:"
+msgid "_Go to Line…"
+msgstr "Sari la linia:"
+
+#: ../src/main_window.vala:47
+msgid "Go to a specific line"
+msgstr "Navighează la linia specificată"
+
+#: ../src/main_window.vala:48
+msgid "_Jump to PDF"
+msgstr ""
+
+#: ../src/main_window.vala:49
+msgid ""
+"Jump to the associated position in the PDF file. Another shortcut: Ctrl"
+"+click, which works in both directions."
+msgstr ""
+
+#. Projects
+#: ../src/main_window.vala:53
+msgid "_Projects"
+msgstr "_Proiecte"
+
+#: ../src/main_window.vala:54
+msgid "_New Project"
+msgstr "Proiect _nou"
+
+#: ../src/main_window.vala:55
+msgid "Create a new project"
+msgstr "Creează un proiect nou"
+
+#: ../src/main_window.vala:56
+msgid "_Configure Current Project"
+msgstr "_Configurează proiectul actual"
+
+#: ../src/main_window.vala:57
+msgid "Change the main file of the current project"
+msgstr "Schimbă fișierul principal al proiectului actual"
+
+#: ../src/main_window.vala:59
+msgid "_Manage Projects"
+msgstr "Gestio_nează proiectele"
+
+#: ../src/main_window.vala:60 ../src/project_dialogs.vala:187
+msgid "Manage Projects"
+msgstr "Gestionează proiectele"
+
+#: ../src/main_window.vala:64
+msgid "_Contents"
+msgstr "_Conținut"
+
+#: ../src/main_window.vala:65
+#, fuzzy
+#| msgid "Open the LaTeXila documentation"
+msgid "Open the GNOME LaTeX documentation"
+msgstr "Deschide documentația LaTeXila"
+
+#: ../src/main_window.vala:66
+msgid "_LaTeX Reference"
+msgstr "Referințe _LaTeX"
+
+#: ../src/main_window.vala:67
+msgid "The Kile LaTeX Reference"
+msgstr "Referința Kile LaTeX"
+
+#: ../src/main_window.vala:68
+msgid "_About"
+msgstr ""
+
+#: ../src/main_window.vala:74
+msgid "_Main Toolbar"
+msgstr "Bara principală de u_nelte"
+
+#: ../src/main_window.vala:75
+msgid "Show or hide the main toolbar"
+msgstr "Arată sau ascunde bara principală de unelte"
+
+#. Translators: "Edit" here is an adjective.
+#: ../src/main_window.vala:77
+msgid "_Edit Toolbar"
+msgstr "_Editează bara de unelte"
+
+#: ../src/main_window.vala:78
+msgid "Show or hide the edit toolbar"
+msgstr "Arată sau ascunde bara de unelte de editare"
+
+#: ../src/main_window.vala:79
+msgid "_Side panel"
+msgstr "Panou later_al"
+
+#: ../src/main_window.vala:80
+msgid "Show or hide the side panel"
+msgstr "Arată sau ascunde panoul lateral"
+
+#: ../src/main_window.vala:81
+msgid "_Bottom panel"
+msgstr "Panou de su_bsol"
+
+#: ../src/main_window.vala:82
+msgid "Show or hide the bottom panel"
+msgstr "Arată sau ascunde panoul de subsol"
+
+#. Symbols
+#: ../src/main_window.vala:446
+msgid "Symbols"
+msgstr "Simboluri"
+
+#: ../src/main_window.vala:455
+msgid "Structure"
+msgstr "Structură"
+
+#: ../src/main_window.vala:648
+#, fuzzy, c-format
+#| msgid "This file (%s) is already opened in another LaTeXila window."
+msgid "This file (%s) is already opened in another GNOME LaTeX window."
+msgstr "Acest fișier (%s) este deja deschis într-o altă fereastră LaTeXila."
+
+#: ../src/main_window.vala:650
+#, fuzzy
+#| msgid ""
+#| "LaTeXila opened this instance of the file in a non-editable way. Do you "
+#| "want to edit it anyway?"
+msgid ""
+"GNOME LaTeX opened this instance of the file in a non-editable way. Do you "
+"want to edit it anyway?"
+msgstr ""
+"LaTeXila a deschis această instanță a fișierului într-un mod non-editabil. "
+"Editați oricum?"
+
+#: ../src/main_window.vala:654
+msgid "Edit Anyway"
+msgstr "Editează oricum"
+
+#: ../src/main_window.vala:655
+#, fuzzy
+#| msgid "Don't Edit"
+msgid "Don’t Edit"
+msgstr "Nu edita"
+
+#: ../src/main_window.vala:750
+#, fuzzy, c-format
+#| msgid "Save changes to document \"%s\" before closing?"
+msgid "Save changes to document “%s” before closing?"
+msgstr "Salvați schimbările la documentul „%s” înainte de închidere?"
+
+#: ../src/main_window.vala:809
+msgid "Save File"
+msgstr "Salvează fișierul"
+
+#: ../src/preferences_dialog.vala:33
+msgid "Preferences"
+msgstr "Preferințe"
+
+#. reset all button
+#: ../src/preferences_dialog.vala:42 ../src/preferences_dialog.vala:115
+#, fuzzy
+#| msgid "Reset All"
+msgid "_Reset All"
+msgstr "Resetează tot"
+
+#: ../src/preferences_dialog.vala:43
+msgid "Reset all preferences"
+msgstr "Resetează toate preferințele"
+
+#: ../src/preferences_dialog.vala:112
+msgid "Do you really want to reset all preferences?"
+msgstr "Sigur doriți să restabiliți toate preferințele?"
+
+#: ../src/preferences_dialog.vala:191
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "minut"
+msgstr[1] "minute"
+msgstr[2] "de minute"
+
+#: ../src/preferences_dialog.vala:294
+msgid "character"
+msgid_plural "characters"
+msgstr[0] "caracter"
+msgstr[1] "caractere"
+msgstr[2] "de caractere"
+
+#: ../src/preferences_dialog.vala:337
+#, c-format
+msgid "Use the system fixed width font (%s)"
+msgstr "Folosește fontul de lățime fixă al sistemului (%s)"
+
+#: ../src/project_dialogs.vala:28
+msgid "New Project"
+msgstr "Proiect nou"
+
+#. directory
+#: ../src/project_dialogs.vala:40 ../src/project_dialogs.vala:42
+#: ../src/project_dialogs.vala:204
+msgid "Directory"
+msgstr "Dosar"
+
+#. main file
+#: ../src/project_dialogs.vala:46 ../src/project_dialogs.vala:48
+#: ../src/project_dialogs.vala:142 ../src/project_dialogs.vala:144
+#: ../src/project_dialogs.vala:217
+msgid "Main File"
+msgstr "Fișier principal"
+
+#: ../src/project_dialogs.vala:102
+#, fuzzy, c-format
+#| msgid "There is a conflict with the project \"%s\"."
+msgid "There is a conflict with the project “%s”."
+msgstr "Există un conflict cu proiectul „%s”."
+
+#: ../src/project_dialogs.vala:119
+msgid "Configure Project"
+msgstr "Configurează proiectul"
+
+#: ../src/project_dialogs.vala:137
+msgid "Location of the project"
+msgstr "Locația proiectului"
+
+#: ../src/project_dialogs.vala:241
+#, fuzzy
+#| msgid "_Projects"
+msgid "_Properties"
+msgstr "_Proiecte"
+
+#: ../src/project_dialogs.vala:243
+#, fuzzy
+#| msgid "Clear All"
+msgid "_Clear All"
+msgstr "Curăță totul"
+
+#: ../src/project_dialogs.vala:273
+#, fuzzy, c-format
+#| msgid "Do you really want to delete the project \"%s\"?"
+msgid "Do you really want to delete the project “%s”?"
+msgstr "Sigur ștergeți proiectul „%s”?"
+
+#: ../src/project_dialogs.vala:294
+msgid "Do you really want to clear all projects?"
+msgstr "Sigur ștergeți toate proiectele?"
+
+#: ../src/project_dialogs.vala:297
+#, fuzzy
+#| msgid "Clear All"
+msgid "Clear _All"
+msgstr "Curăță totul"
+
+#: ../src/project_dialogs.vala:321
+msgid "The Main File is not in the directory."
+msgstr "Fișierul principal nu este în dosar."
+
+#: ../src/search.vala:40
+msgid "Go to Line:"
+msgstr "Sari la linia:"
+
+#: ../src/search.vala:50
+msgid "Line you want to move the cursor to"
+msgstr "Linia la care vreți să mutați cursorul"
+
+#: ../src/search.vala:172
+msgid "Replace with"
+msgstr "Înlocuiește cu"
+
+#: ../src/search.vala:180
+msgid "Replace"
+msgstr "Înlocuiește"
+
+#. replace all: image + label
+#: ../src/search.vala:184
+msgid "Replace All"
+msgstr "Înlocuiește tot"
+
+#: ../src/search.vala:194
+msgid "All"
+msgstr "Toate"
+
+#: ../src/search.vala:290
+msgid "Search for"
+msgstr "Caută după"
+
+#: ../src/search.vala:301
+msgid "Case sensitive"
+msgstr "Sensibil la majuscule"
+
+#: ../src/search.vala:304
+msgid "Entire words only"
+msgstr "Doar cuvinte întregi"
+
+#: ../src/search.vala:451
+msgid "Not found"
+msgstr "Nu s-a găsit"
+
+#. Translators: the first %d is the position of the current search occurrence,
+#. * and the second %d is the total number of search occurrences.
+#.
+#: ../src/search.vala:468
+#, c-format
+msgid "Match %d of %d"
+msgstr ""
+
+#. Translators: %d is the total number of search occurrences.
+#: ../src/search.vala:473
+#, fuzzy, c-format
+#| msgid "%u matches"
+msgid "%d match"
+msgid_plural "%d matches"
+msgstr[0] "%u potriviri"
+msgstr[1] "%u potriviri"
+msgstr[2] "%u potriviri"
+
+#: ../src/structure.vala:164
+msgid "Refresh"
+msgstr "Reîmprospătează"
+
+#: ../src/structure.vala:179
+msgid "Collapse All"
+msgstr "Ascunde tot"
+
+#: ../src/structure.vala:189
+msgid "Show labels"
+msgstr "Arată etichetele"
+
+#: ../src/structure.vala:190
+#, fuzzy
+#| msgid "Show all files"
+msgid "Show included files"
+msgstr "Arată toate fișierele"
+
+#: ../src/structure.vala:191
+msgid "Show tables"
+msgstr "Arată tabelele"
+
+#: ../src/structure.vala:192
+msgid "Show figures and images"
+msgstr "Arată figurile și imaginile"
+
+#. Translators: do not translate the words TODO and FIXME. They are special
+#. comments that can be inserted in LaTeX documents.
+#: ../src/structure.vala:195
+msgid "Show TODOs and FIXMEs"
+msgstr "Arată TODO-urile și FIXME-urile"
+
+#: ../src/structure.vala:634
+#, fuzzy, c-format
+msgid "Structure action error: %s"
+msgstr "Eroare a acțiunii de structură: %s"
+
+#: ../src/structure.vala:639
+msgid "The structure data seems outdated. Please refresh the structure."
+msgstr "Datele de structură par învechite. Reîmprospătați structura."
+
+#. Translators: it's a verb
+#: ../src/structure.vala:730
+msgid "cut"
+msgstr "taie"
+
+#. Translators: it's a verb
+#: ../src/structure.vala:732
+msgid "copy"
+msgstr "copiază"
+
+#: ../src/structure.vala:733
+msgid "delete"
+msgstr "șterge"
+
+#: ../src/structure.vala:734
+msgid "select"
+msgstr "selectează"
+
+#. Translators: it's a verb
+#: ../src/structure.vala:736
+msgid "comment"
+msgstr "comentează"
+
+#. Translators: it's a verb
+#: ../src/structure.vala:738
+msgid "shift left"
+msgstr "mută la stânga"
+
+#. Translators: it's a verb
+#: ../src/structure.vala:740
+msgid "shift right"
+msgstr "mută la dreapta"
+
+#: ../src/structure.vala:741
+#, fuzzy
+#| msgid "Open a file"
+msgid "open file"
+msgstr "Deschide un fișier"
+
+#: ../src/structure.vala:786
+msgid "Table"
+msgstr "Tabel"
+
+#. Translators: "Figure" here means a diagram (\begin{figure}...\end{figure})
+#: ../src/structure.vala:788
+msgid "Figure"
+msgstr "Figură"
+
+#: ../src/structure.vala:789
+msgid "Image"
+msgstr "Imagine"
+
+#: ../src/structure.vala:790
+msgid "File included"
+msgstr "Fișier inclus"
+
+#: ../src/symbols.vala:59
+msgid "Greek"
+msgstr "Grec"
+
+#: ../src/symbols.vala:60
+msgid "Arrows"
+msgstr "Săgeți"
+
+#: ../src/symbols.vala:61
+msgid "Relations"
+msgstr "Relații"
+
+#: ../src/symbols.vala:62
+msgid "Operators"
+msgstr "Operatori"
+
+#: ../src/symbols.vala:63
+msgid "Delimiters"
+msgstr "Delimitatori"
+
+#: ../src/symbols.vala:64
+msgid "Misc math"
+msgstr "Matematică diversă"
+
+#: ../src/symbols.vala:65
+msgid "Misc text"
+msgstr "Text divers"
+
+#: ../src/symbols.vala:159
+msgid "Most Used"
+msgstr "Cele mai folosite"
+
+#: ../src/symbols_view.vala:157
+#, fuzzy
+#| msgid "Clear All"
+msgid "_Clear"
+msgstr "Curăță totul"
+
+#: ../src/symbols_view.vala:159
+#, fuzzy
+#| msgid "Number of most used symbols:"
+msgid "Clear most used symbols"
+msgstr "Numărul celor mai folosite simboluri:"
+
+#: ../src/tab_label.vala:48
+msgid "Project main file"
+msgstr ""
+
+#: ../src/tab_label.vala:51
+msgid "Project main file:"
+msgstr ""
+
+#: ../src/ui/preferences_dialog.ui.h:1
+msgid "Display line numbers"
+msgstr "Afișează numărul liniilor"
+
+#: ../src/ui/preferences_dialog.ui.h:2
+msgid "Tab width:"
+msgstr "Lățimea tabului:"
+
+#: ../src/ui/preferences_dialog.ui.h:3
+msgid "Insert spaces instead of tabs"
+msgstr "Introdu spații în loc de taburi"
+
+#: ../src/ui/preferences_dialog.ui.h:4
+msgid "Forget you are not using tabulations"
+msgstr "Uită că nu se folosesc tabulaturi"
+
+#: ../src/ui/preferences_dialog.ui.h:5
+msgid "Highlight current line"
+msgstr "Evidențiază linia actuală"
+
+#: ../src/ui/preferences_dialog.ui.h:6
+msgid "Highlight matching brackets"
+msgstr "Evidențiază parantezele potrivite"
+
+#: ../src/ui/preferences_dialog.ui.h:7
+msgid "Create a backup copy of files before saving"
+msgstr "Creează o copie de rezervă fișierelor înainte de salvarea"
+
+#: ../src/ui/preferences_dialog.ui.h:8
+#, fuzzy
+msgid "Autosave files every"
+msgstr "Autosalvează fiecare fișier"
+
+#: ../src/ui/preferences_dialog.ui.h:10
+msgid "Editor"
+msgstr "Editor"
+
+#: ../src/ui/preferences_dialog.ui.h:11
+msgid "Font"
+msgstr "Font"
+
+#: ../src/ui/preferences_dialog.ui.h:13
+#, no-c-format
+msgid "_Use the system fixed width font (%s)"
+msgstr "Folosește font_ul de lățime fixă al sistemului (%s)"
+
+#: ../src/ui/preferences_dialog.ui.h:14
+msgid "Editor _font: "
+msgstr "_Fontul de editare:"
+
+#: ../src/ui/preferences_dialog.ui.h:15
+msgid "Pick the editor font"
+msgstr "Alegeți fontul de editare"
+
+#: ../src/ui/preferences_dialog.ui.h:16
+msgid "Color Scheme"
+msgstr "Schemă de culoare"
+
+#: ../src/ui/preferences_dialog.ui.h:17
+msgid "Font & Colors"
+msgstr "Font & culori"
+
+#: ../src/ui/preferences_dialog.ui.h:18
+msgid "Interactive completion after"
+msgstr "Completare interactivă după"
+
+#: ../src/ui/preferences_dialog.ui.h:19
+#, fuzzy
+#| msgid "Number of characters after '\\'"
+msgid "Number of characters after “\\”"
+msgstr "Numărul de caractere după „\\”"
+
+#: ../src/ui/preferences_dialog.ui.h:20
+msgid "File Clean-Up"
+msgstr "Curățarea fișierelor"
+
+#: ../src/ui/preferences_dialog.ui.h:22
+msgid "Automatically clean-up files after close"
+msgstr "Curăță automat fișierele după închidere"
+
+#: ../src/ui/preferences_dialog.ui.h:23
+msgid ""
+"The spell-checking settings can also be changed on a file-by-file basis via "
+"the Tools menu."
+msgstr ""
+
+#: ../src/ui/preferences_dialog.ui.h:24
+msgid "Default Spell-Checking Settings"
+msgstr ""
+
+#: ../src/ui/preferences_dialog.ui.h:25
+msgid "Language:"
+msgstr ""
+
+#: ../src/ui/preferences_dialog.ui.h:26
+msgid "Highlight misspelled words"
+msgstr ""
+
+#: ../src/ui/preferences_dialog.ui.h:27
+msgid "Other"
+msgstr "Alta"
+
+#~ msgid "Must Succeed"
+#~ msgstr "Trebuie să reușească"
+
+#~ msgid "Rubber may not support filenames with spaces (even in a directory)"
+#~ msgstr ""
+#~ "Se poate ca Rubber să nu suporte numele de fișiere cu spații (chiar și în "
+#~ "dosare)"
+
+#~ msgid "Job"
+#~ msgstr "Serviciu"
+
+#~ msgid "File"
+#~ msgstr "Fișier"
+
+#~ msgid "Line"
+#~ msgstr "Linie"
+
+#~ msgid "Close document"
+#~ msgstr "Închide documentul"
+
+#~ msgid "Main File:"
+#~ msgstr "Fișier principal:"
+
+#~ msgid "Left Delimiters"
+#~ msgstr "Delimitatori la stânga"
+
+#~ msgid "Right Delimiters"
+#~ msgstr "Delimitatori la dreapta"
+
+#~ msgid "- Integrated LaTeX Environment for GNOME"
+#~ msgstr "- Mediu integrat LaTeX pentru GNOME"
+
+#~ msgid ""
+#~ "Run '%s --help' to see a full list of available command line options.\n"
+#~ msgstr ""
+#~ "Rulați „%s--help” pentru a vedea o listă completă a opțiunilor de linie "
+#~ "de comandă disponibile.\n"
+
+#~ msgid "_Delete Template..."
+#~ msgstr "Șterge șablonu_l..."
+
+#~ msgid "Delete personal template(s)"
+#~ msgstr "Șterge șabloanele personale"
+
+#~ msgid "_Go to Line..."
+#~ msgstr "Sa_ri la linia:..."
+
+#~ msgid "Show _Errors"
+#~ msgstr "Arată _erori"
+
+#~ msgid "Show Errors"
+#~ msgstr "Arată erori"
+
+#~ msgid "Read-Only"
+#~ msgstr "Doar-citire"
+
+#~ msgid "A file named \"%s\" already exists. Do you want to replace it?"
+#~ msgstr "Un fișier numit „%s” există deja. Doriți să-l înlocuiți?"
+
+#~ msgid "Latexmk messages"
+#~ msgstr "Mesajele Latexmk"
+
+#~ msgid "Do you really want to reset all build tools?"
+#~ msgstr "Sigur restabiliți toate uneltele de build?"
+
+#~ msgid "Active"
+#~ msgstr "Activ"
+
+#~ msgid "%u of %u"
+#~ msgstr "%u al %u"
+
+#~ msgid "One match"
+#~ msgstr "O potrivire"
+
+#~ msgid "Expand All"
+#~ msgstr "Extinde tot"
+
+#~ msgid "Show files included"
+#~ msgstr "Arată fișierele incluse"
+
+#~ msgid "New File..."
+#~ msgstr "Fișier nou..."
+
+#~ msgid "Delete Template(s)..."
+#~ msgstr "Șterge șabloane..."
+
+#~ msgid ""
+#~ "The program for viewing documents.\n"
+#~ "Its value can be changed in the preferences dialog."
+#~ msgstr ""
+#~ "Programul pentru vizualizarea documentelor.\n"
+#~ "Valoarea sa poate fi schimbată în dialogul de preferințe."
+
+#~ msgid "New command"
+#~ msgstr "Comandă nouă"
+
+#~ msgid "Always show all information for the Latexmk post processor"
+#~ msgstr "Întotdeauna arată toate informațiile pentru post-procesorul Latexmk"
+
+#~ msgid "Program for viewing documents:"
+#~ msgstr "Program pentru vizualizarea documentelor:"
+
+#~ msgid "Delete one build tool"
+#~ msgstr "Șterge o unealtă de build"
+
+#~ msgid "Reset"
+#~ msgstr "Resetează"
+
+#~ msgid "Show only files with these extensions"
+#~ msgstr "Arată numai fișierele cu aceste extensii"
+
+#~ msgid "Clear Find"
+#~ msgstr "Curăță căutarea"
+
+#~ msgid "Find previous"
+#~ msgstr "Găsește anteriorul"
+
+#~ msgid "Find next"
+#~ msgstr "Găsește următorul"
+
+#~ msgid "Toggle between search and replace mode"
+#~ msgstr "Comută între modul de căutare și cel de înlocuire"
