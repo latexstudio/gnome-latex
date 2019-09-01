@@ -444,7 +444,7 @@ msgstr "Extensions de fitxer a netejar"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:51
 msgid "The list of file extensions for the clean-up, separated by spaces"
-msgstr "La llista d'extensions de fitxer a netejar, separada per espais."
+msgstr "La llista d'extensions de fitxer a netejar, separada per espais"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:52
 msgid "Enabled default build tools"
@@ -1126,7 +1126,7 @@ msgstr "Subparàgraf"
 
 #: ../src/liblatexila/latexila-latex-commands.c:73
 msgid "Reference to a label"
-msgstr "Referencia d'una etiqueta"
+msgstr "Referència d'una etiqueta"
 
 #: ../src/liblatexila/latexila-latex-commands.c:75
 msgid "Page reference to a label"
@@ -1142,7 +1142,7 @@ msgstr "Nota al peu"
 
 #: ../src/liblatexila/latexila-latex-commands.c:81
 msgid "Reference to a bibliography item"
-msgstr "Referencia d'un element de bibliografia"
+msgstr "Referència d'un element de bibliografia"
 
 #: ../src/liblatexila/latexila-latex-commands.c:86
 msgid "Center — \\begin{center}"
@@ -1768,7 +1768,7 @@ msgstr "Voleu realment suprimir la plantilla «%s»?"
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:170
 #, c-format
 msgid "Error when deleting the template “%s”."
-msgstr "Error mentre es suprimia la plantilla «%s»."
+msgstr "Error mentre se suprimia la plantilla «%s»."
 
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:230
 msgid "Error when moving the template."
@@ -1909,11 +1909,11 @@ msgstr "Refés l'últim canvi desfet"
 
 #: ../src/main_window_edit.vala:38 ../src/main_window_structure.vala:32
 msgid "Cu_t"
-msgstr "_Talla"
+msgstr "_Retalla"
 
 #: ../src/main_window_edit.vala:39
 msgid "Cut the selection"
-msgstr "Talla la selecció"
+msgstr "Retalla la selecció"
 
 #: ../src/main_window_edit.vala:41 ../src/main_window_structure.vala:35
 msgid "_Copy"
@@ -2092,7 +2092,7 @@ msgstr "Es_tructura"
 
 #: ../src/main_window_structure.vala:33
 msgid "Cut the selected structure item"
-msgstr "Talla l'element seleccionat de l'estructura"
+msgstr "Retalla l'element seleccionat de l'estructura"
 
 #: ../src/main_window_structure.vala:36
 msgid "Copy the selected structure item"
@@ -2568,7 +2568,7 @@ msgstr "L'estructura de dades sembla obsoleta. Actualitzeu l'estructura."
 #. Translators: it's a verb
 #: ../src/structure.vala:730
 msgid "cut"
-msgstr "talla"
+msgstr "retalla"
 
 #. Translators: it's a verb
 #: ../src/structure.vala:732
@@ -2687,7 +2687,7 @@ msgstr "Insereix espais en lloc de tabulacions"
 
 #: ../src/ui/preferences_dialog.ui.h:4
 msgid "Forget you are not using tabulations"
-msgstr "Oblida que no estas usant tabulacions"
+msgstr "Oblida que no esteu usant tabulacions"
 
 #: ../src/ui/preferences_dialog.ui.h:5
 msgid "Highlight current line"
@@ -2699,7 +2699,7 @@ msgstr "Ressalta les claus i els parèntesis concordants"
 
 #: ../src/ui/preferences_dialog.ui.h:7
 msgid "Create a backup copy of files before saving"
-msgstr "Crea una copia de seguretat dels fitxers abans del desat"
+msgstr "Crea una còpia de seguretat dels fitxers abans del desat"
 
 #: ../src/ui/preferences_dialog.ui.h:8
 msgid "Autosave files every"
