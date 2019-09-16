@@ -3,22 +3,22 @@
 # This file is distributed under the same license as the latexila package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2011.
 # miguel <bokerones.fritos@gmail.com>, 2012.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila 2.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
-"POT-Creation-Date: 2018-04-11 10:50+0000\n"
-"PO-Revision-Date: 2018-04-20 12:56+0200\n"
+"POT-Creation-Date: 2019-02-06 22:21+0000\n"
+"PO-Revision-Date: 2019-09-16 10:35+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: es <gnome-es-list@gnome.org>\n"
-"Language: es\n"
+"Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 3.34.0\n"
 
 #. (itstool) path: tool/label
 #: build_tools.xml:43 ../src/build_tool_dialog.vala:165
@@ -312,14 +312,10 @@ msgstr ""
 "Indica si las palabras mal escritas se resaltan de manera predeterminada."
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:29
-#| msgid "Spell Checking Language"
 msgid "Spell-Checking Language"
 msgstr "Idioma de la revisión ortográfica"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:30
-#| msgid ""
-#| "The default language used for the spell checking. Set to the empty string "
-#| "to take the best language available based on the environment."
 msgid ""
 "The default language used for the spell-checking. Set to the empty string to "
 "take the best language available based on the environment."
@@ -870,7 +866,6 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #: ../src/document_view.vala:312
-#| msgid "No dictionaries available for the spell checking."
 msgid "No dictionaries available for the spell-checking."
 msgstr "No hay diccionarios disponibles para la revisión ortográfica."
 
@@ -2138,8 +2133,6 @@ msgid "_Set Language…"
 msgstr "_Establecer idioma…"
 
 #: ../src/main_window_tools.vala:32
-#| msgid ""
-#| "Set the language used for the spell checking for the current document"
 msgid "Set the language used for the spell-checking for the current document"
 msgstr ""
 "Establecer el idioma usado para comprobar la ortografía del documento actual"
@@ -2290,7 +2283,7 @@ msgstr "Mostrar u ocultar la barra de herramientas principal"
 #. Translators: "Edit" here is an adjective.
 #: ../src/main_window.vala:79
 msgid "_Edit Toolbar"
-msgstr "_Editar la barra de herramientas"
+msgstr "Barra de herramientas de _edición"
 
 #: ../src/main_window.vala:80
 msgid "Show or hide the edit toolbar"
@@ -2724,9 +2717,6 @@ msgid "Automatically clean-up files after close"
 msgstr "Limpiar automáticamente los archivos después de cerrar"
 
 #: ../src/ui/preferences_dialog.ui.h:24
-#| msgid ""
-#| "The spell checking settings can also be changed on a file-by-file basis "
-#| "via the Tools menu."
 msgid ""
 "The spell-checking settings can also be changed on a file-by-file basis via "
 "the Tools menu."
@@ -2735,7 +2725,6 @@ msgstr ""
 "por archivo mediante el menú de Herramientas."
 
 #: ../src/ui/preferences_dialog.ui.h:25
-#| msgid "Default Spell Checking Settings"
 msgid "Default Spell-Checking Settings"
 msgstr "Configuración predeterminada de la revisión ortográfica"
 
