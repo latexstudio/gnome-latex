@@ -3,22 +3,22 @@
 # This file is distributed under the same license as the latexila package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2011.
 # miguel <bokerones.fritos@gmail.com>, 2012.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila 2.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
-"POT-Creation-Date: 2018-05-11 08:29+0000\n"
-"PO-Revision-Date: 2018-05-18 09:52+0200\n"
+"POT-Creation-Date: 2019-03-18 15:18+0000\n"
+"PO-Revision-Date: 2019-09-16 10:35+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: es <gnome-es-list@gnome.org>\n"
-"Language: es\n"
+"Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 3.34.0\n"
 
 #. (itstool) path: tool/label
 #: build_tools.xml:43 ../src/build_tool_dialog.vala:165
@@ -168,11 +168,6 @@ msgid "Use Default Font"
 msgstr "Usar tipografía predeterminada"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:2
-#| msgid ""
-#| "Whether to use the system's default fixed width font for editing text "
-#| "instead of a font specific to GNOME LaTeX. If this option is turned off, "
-#| "then the font named in the \"Editor Font\" option will be used instead of "
-#| "the system font."
 msgid ""
 "Whether to use the system’s default fixed width font for editing text "
 "instead of a font specific to GNOME LaTeX. If this option is turned off, "
@@ -189,9 +184,6 @@ msgid "Editor Font"
 msgstr "Tipografía del editor"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:4
-#| msgid ""
-#| "A custom font that will be used for the editing area. This will only take "
-#| "effect if the \"Use Default Font\" option is turned off."
 msgid ""
 "A custom font that will be used for the editing area. This will only take "
 "effect if the “Use Default Font” option is turned off."
@@ -223,10 +215,6 @@ msgid "Autosave"
 msgstr "Autoguardar"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:10
-#| msgid ""
-#| "Whether GNOME LaTeX should automatically save modified files after a time "
-#| "interval. You can set the time interval with the \"Autosave Interval\" "
-#| "option."
 msgid ""
 "Whether GNOME LaTeX should automatically save modified files after a time "
 "interval. You can set the time interval with the “Autosave Interval” option."
@@ -240,10 +228,6 @@ msgid "Autosave Interval"
 msgstr "Intervalo de autoguardado"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:12
-#| msgid ""
-#| "Number of minutes after which GNOME LaTeX will automatically save "
-#| "modified files. This will only take effect if the \"Autosave\" option is "
-#| "turned on."
 msgid ""
 "Number of minutes after which GNOME LaTeX will automatically save modified "
 "files. This will only take effect if the “Autosave” option is turned on."
@@ -343,8 +327,6 @@ msgid "Main toolbar is visible"
 msgstr "La barra de herramientas principal es visible"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:32
-#| msgid ""
-#| "Whether the main toolbar (file open, close, build, ...) should be visible."
 msgid "Whether the main toolbar (file open, close, build…) should be visible."
 msgstr ""
 "Indica si la barra de herramientas principal (abrir archivo, cerrar, "
@@ -355,9 +337,6 @@ msgid "Edit toolbar is visible"
 msgstr "La barra de herramientas de edición es visible"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:34
-#| msgid ""
-#| "Whether the edit toolbar (bold, italic, character sizes, ...) should be "
-#| "visible."
 msgid ""
 "Whether the edit toolbar (bold, italic, character sizes…) should be visible."
 msgstr ""
@@ -388,8 +367,6 @@ msgid "Side panel component"
 msgstr "Panel lateral"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:40
-#| msgid ""
-#| "Side panel's active component. 0: Symbols. 1: File browser. 2: Structure."
 msgid ""
 "Side panel’s active component. 0: Symbols. 1: File browser. 2: Structure."
 msgstr ""
@@ -417,9 +394,6 @@ msgid "Minimum number of characters for interactive completion"
 msgstr "Número mínimo de caracteres para completado interactivo"
 
 #: ../data/org.gnome.gnome-latex.gschema.xml.in.h:46
-#| msgid ""
-#| "Minimum number of characters after \"\\\" for the interactive completion "
-#| "of LaTeX commands"
 msgid ""
 "Minimum number of characters after “\\” for the interactive completion of "
 "LaTeX commands"
@@ -580,8 +554,8 @@ msgstr "Herramienta de construcción personal"
 #: ../src/liblatexila/latexila-templates-dialogs.c:130
 #: ../src/liblatexila/latexila-templates-dialogs.c:238
 #: ../src/liblatexila/latexila-templates-manage-dialog.c:147
-#: ../src/main_window_file.vala:157 ../src/main_window.vala:760
-#: ../src/main_window.vala:817 ../src/preferences_dialog.vala:114
+#: ../src/main_window_file.vala:157 ../src/main_window.vala:754
+#: ../src/main_window.vala:811 ../src/preferences_dialog.vala:114
 #: ../src/project_dialogs.vala:31 ../src/project_dialogs.vala:122
 #: ../src/project_dialogs.vala:276 ../src/project_dialogs.vala:296
 msgid "_Cancel"
@@ -680,7 +654,6 @@ msgid "Placeholders:"
 msgstr "Marcadores de posición:"
 
 #: ../src/build_tool_dialog.vala:620
-#| msgid "The active document's filename."
 msgid "The active document’s filename."
 msgstr "El nombre de archivo del documento activo."
 
@@ -691,7 +664,6 @@ msgstr ""
 "principal."
 
 #: ../src/build_tool_dialog.vala:625
-#| msgid "The active document's filename without its extension."
 msgid "The active document’s filename without its extension."
 msgstr "El nombre de archivo del documento activo sin su extensión."
 
@@ -752,7 +724,6 @@ msgstr "%s (copia)"
 
 #: ../src/build_tools_preferences.vala:332
 #, c-format
-#| msgid "Do you really want to delete the build tool \"%s\"?"
 msgid "Do you really want to delete the build tool “%s”?"
 msgstr "¿Realmente quiere eliminar la herramienta de construcción «%s»?"
 
@@ -787,12 +758,12 @@ msgstr "No hay propuesta equivalente"
 msgid "Ln %d, Col %d"
 msgstr "Ln %d, Col %d"
 
-#: ../src/dialogs.vala:40 ../src/main_window.vala:759
+#: ../src/dialogs.vala:40 ../src/main_window.vala:753
 msgid "Close _without Saving"
 msgstr "Cerrar _sin guardar"
 
 #: ../src/dialogs.vala:42 ../src/main_window_file.vala:41
-#: ../src/main_window.vala:765 ../src/main_window.vala:818
+#: ../src/main_window.vala:759 ../src/main_window.vala:812
 msgid "_Save"
 msgstr "_Guardar"
 
@@ -809,17 +780,15 @@ msgid "Select the documents you want to save:"
 msgstr "Seleccione los documentos que quiere guardar:"
 
 #: ../src/dialogs.vala:129
-#| msgid "If you don't save, all your changes will be permanently lost."
 msgid "If you don’t save, all your changes will be permanently lost."
 msgstr "Si no guarda, todos sus cambios se perderán permanentemente."
 
-#: ../src/document_structure.vala:720
+#: ../src/document_structure.vala:745
 msgid "The structure item already contains a sub-paragraph."
 msgstr "El elemento de estructura ya contiene un subpárrafo."
 
 #: ../src/document_tab.vala:147
 #, c-format
-#| msgid "Activate '%s'"
 msgid "Activate “%s”"
 msgstr "Activar «%s»"
 
@@ -840,41 +809,39 @@ msgstr "¿Quiere volver a cargar el archivo?"
 msgid "_Reload"
 msgstr "_Recargar"
 
-#: ../src/document.vala:128
+#: ../src/document.vala:133
 #, c-format
-#| msgid "Impossible to load the file '%s'."
 msgid "Impossible to load the file “%s”."
 msgstr "No se puede cargar el archivo «%s»."
 
-#: ../src/document.vala:210
+#: ../src/document.vala:215
 #, c-format
 msgid "The file %s has been modified since reading it."
 msgstr "El archivo %s se ha modificado desde que lo leyó."
 
-#: ../src/document.vala:213
+#: ../src/document.vala:218
 msgid "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
 "Si lo guarda, todos los cambios externos se perderán. ¿Quiere guardarlo de "
 "todas formas?"
 
-#: ../src/document.vala:217
+#: ../src/document.vala:222
 msgid "_Save Anyway"
 msgstr "_Guardar de todos modos"
 
-#: ../src/document.vala:218
-#| msgid "_Don't Save"
+#: ../src/document.vala:223
 msgid "_Don’t Save"
 msgstr "_No guardar"
 
-#: ../src/document.vala:235
+#: ../src/document.vala:240
 msgid "Impossible to save the file."
 msgstr "No es posible guardar el archivo."
 
-#: ../src/document.vala:263
+#: ../src/document.vala:268
 msgid "Error trying to convert the document to UTF-8"
 msgstr "Error al tratar de convertir el documento a UTF-8"
 
-#: ../src/document.vala:492
+#: ../src/document.vala:497
 msgid ""
 "The file has a temporary location. The data can be lost after rebooting your "
 "computer."
@@ -882,16 +849,16 @@ msgstr ""
 "El archivo está en una ubicación temporal. Los datos se pueden perder tras "
 "reiniciar el equipo."
 
-#: ../src/document.vala:493
+#: ../src/document.vala:498
 msgid "Do you want to save the file in a safer place?"
 msgstr "¿Quiere guardar el archivo en un lugar más seguro?"
 
-#: ../src/document.vala:494 ../src/main_window_file.vala:44
-#: ../src/main_window.vala:763
+#: ../src/document.vala:499 ../src/main_window_file.vala:44
+#: ../src/main_window.vala:757
 msgid "Save _As"
 msgstr "Guardar _como"
 
-#: ../src/document.vala:495
+#: ../src/document.vala:500
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -942,34 +909,33 @@ msgid "File System"
 msgstr "Sistema de archivos"
 
 #. File browser
-#: ../src/file_browser.vala:524 ../src/main_window.vala:456
+#: ../src/file_browser.vala:524 ../src/main_window.vala:450
 msgid "File Browser"
 msgstr "Explorador de archivos"
 
-#: ../src/glatex_app.vala:79
-#| msgid "Show the application's version"
+#: ../src/glatex_app.vala:78
 msgid "Show the application’s version"
 msgstr "Mostrar la versión de la aplicación"
 
-#: ../src/glatex_app.vala:82
+#: ../src/glatex_app.vala:81
 msgid "Create new document"
 msgstr "Crear un documento nuevo"
 
-#: ../src/glatex_app.vala:85
+#: ../src/glatex_app.vala:84
 msgid "Create a new top-level window in an existing instance of GNOME LaTeX"
 msgstr ""
 "Crear una ventana nueva de nivel superior en una instancia existente de "
 "GNOME LaTeX"
 
-#: ../src/glatex_app.vala:212
+#: ../src/glatex_app.vala:206
 msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
 msgstr "GNOME LaTeX es un editor LaTeX para el escritorio GNOME"
 
-#: ../src/glatex_app.vala:241 ../src/main_window.vala:71
+#: ../src/glatex_app.vala:235 ../src/main_window.vala:69
 msgid "About GNOME LaTeX"
 msgstr "Acerca de GNOME LaTeX"
 
-#: ../src/glatex_app.vala:242
+#: ../src/glatex_app.vala:236
 msgid "translator-credits"
 msgstr ""
 "Daniel Mustieles García <daniel.mustieles@gmail.com>, 2011\n"
@@ -1081,20 +1047,17 @@ msgstr "Entornos matemáticos"
 
 #: ../src/liblatexila/latexila-build-job.c:365
 #, c-format
-#| msgid "%s doesn't seem to be installed."
 msgid "%s doesn’t seem to be installed."
 msgstr "parece que %s no está instalado."
 
 #: ../src/liblatexila/latexila-build-tool.c:555
 #: ../src/liblatexila/latexila-synctex.c:569
 #, c-format
-#| msgid "The file '%s' doesn't exist."
 msgid "The file “%s” doesn’t exist."
 msgstr "El archivo «%s» no existe."
 
 #: ../src/liblatexila/latexila-build-tool.c:583
 #, c-format
-#| msgid "Failed to open '%s':"
 msgid "Failed to open “%s”:"
 msgstr "Falló al abrir «%s»:"
 
@@ -1152,212 +1115,170 @@ msgid "Reference to a bibliography item"
 msgstr "Referencia a un elemento bibliográfico"
 
 #: ../src/liblatexila/latexila-latex-commands.c:86
-#| msgid "Center - \\begin{center}"
 msgid "Center — \\begin{center}"
 msgstr "Centrado: \\begin{center}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:88
-#| msgid "Align Left - \\begin{flushleft}"
 msgid "Align Left — \\begin{flushleft}"
 msgstr "Alinear a la izquierda: \\begin{flushleft}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:90
-#| msgid "Align Right - \\begin{flushright}"
 msgid "Align Right — \\begin{flushright}"
 msgstr "Alinear a la derecha: \\begin{flushright}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:92
-#| msgid "Figure - \\begin{figure}"
 msgid "Figure — \\begin{figure}"
 msgstr "Figura: \\begin{figure}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:94
-#| msgid "Table - \\begin{table}"
 msgid "Table — \\begin{table}"
 msgstr "Tabla: \\begin{table}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:96
-#| msgid "Quote - \\begin{quote}"
 msgid "Quote — \\begin{quote}"
 msgstr "Cita: \\begin{quote}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:98
-#| msgid "Quotation - \\begin{quotation}"
 msgid "Quotation — \\begin{quotation}"
 msgstr "Cita: \\begin{quotation}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:100
-#| msgid "Verse - \\begin{verse}"
 msgid "Verse — \\begin{verse}"
 msgstr "Verso: \\begin{verse}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:102
-#| msgid "Verbatim - \\begin{verbatim}"
 msgid "Verbatim — \\begin{verbatim}"
 msgstr "Literal: \\begin{verbatim}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:104
-#| msgid "Minipage - \\begin{minipage}"
 msgid "Minipage — \\begin{minipage}"
 msgstr "Minipágina: \\begin{minipage}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:106
-#| msgid "Title page - \\begin{titlepage}"
 msgid "Title page — \\begin{titlepage}"
 msgstr "Título de la página: \\begin{titlepage}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:111
-#| msgid "Bulleted List - \\begin{itemize}"
 msgid "Bulleted List — \\begin{itemize}"
 msgstr "Lista con topos: \\begin{itemize}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:113
-#| msgid "Enumeration - \\begin{enumerate}"
 msgid "Enumeration — \\begin{enumerate}"
 msgstr "Enumeración: \\begin{enumerate}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:115
-#| msgid "Description - \\begin{description}"
 msgid "Description — \\begin{description}"
 msgstr "Descripción: \\begin{description}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:117
-#| msgid "Custom list - \\begin{list}"
 msgid "Custom list — \\begin{list}"
 msgstr "Lista personalizada: \\begin{list}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:119
-#| msgid "List item - \\item"
 msgid "List item — \\item"
 msgstr "Elemento de lista: \\item"
 
 #: ../src/liblatexila/latexila-latex-commands.c:137
-#| msgid "Bold - \\textbf"
 msgid "Bold — \\textbf"
 msgstr "Negrita: \\textbf"
 
 #: ../src/liblatexila/latexila-latex-commands.c:139
-#| msgid "Italic - \\textit"
 msgid "Italic — \\textit"
 msgstr "Cursiva: \\textit"
 
 #: ../src/liblatexila/latexila-latex-commands.c:141
-#| msgid "Typewriter - \\texttt"
 msgid "Typewriter — \\texttt"
 msgstr "Máquina de escribir: \\texttt"
 
 #: ../src/liblatexila/latexila-latex-commands.c:143
-#| msgid "Slanted - \\textsl"
 msgid "Slanted — \\textsl"
 msgstr "Inclinada: \\textsl"
 
 #: ../src/liblatexila/latexila-latex-commands.c:145
-#| msgid "Small Capitals - \\textsc"
 msgid "Small Capitals — \\textsc"
 msgstr "Mayúsculas pequeñas: \\testsc"
 
 #: ../src/liblatexila/latexila-latex-commands.c:147
-#| msgid "Sans Serif - \\textsf"
 msgid "Sans Serif — \\textsf"
 msgstr "Sans Serif: \\textsf"
 
 #: ../src/liblatexila/latexila-latex-commands.c:149
-#| msgid "Emphasized - \\emph"
 msgid "Emphasized — \\emph"
 msgstr "Enfatizado: \\emph"
 
 #: ../src/liblatexila/latexila-latex-commands.c:151
-#| msgid "Underline - \\underline"
 msgid "Underline — \\underline"
 msgstr "Subrayado: \\underline"
 
 #: ../src/liblatexila/latexila-latex-commands.c:154
-#| msgid "Roman - \\rmfamily"
 msgid "Roman — \\rmfamily"
 msgstr "Roman: \\rmfamily"
 
 #: ../src/liblatexila/latexila-latex-commands.c:156
-#| msgid "Sans Serif - \\sffamily"
 msgid "Sans Serif — \\sffamily"
 msgstr "Sans Serif: \\sffamily"
 
 #: ../src/liblatexila/latexila-latex-commands.c:158
-#| msgid "Monospace - \\ttfamily"
 msgid "Monospace — \\ttfamily"
 msgstr "Monospace: \\ttfamily"
 
 #: ../src/liblatexila/latexila-latex-commands.c:161
-#| msgid "Medium - \\mdseries"
 msgid "Medium — \\mdseries"
 msgstr "Medio: \\mdseries"
 
 #: ../src/liblatexila/latexila-latex-commands.c:163
-#| msgid "Bold - \\bfseries"
 msgid "Bold — \\bfseries"
 msgstr "Negrita: \\bfseries"
 
 #: ../src/liblatexila/latexila-latex-commands.c:166
-#| msgid "Upright - \\upshape"
 msgid "Upright — \\upshape"
 msgstr "Dunhill: \\upshape"
 
 #: ../src/liblatexila/latexila-latex-commands.c:168
-#| msgid "Italic - \\itshape"
 msgid "Italic — \\itshape"
 msgstr "Cursiva: \\itshape"
 
 #: ../src/liblatexila/latexila-latex-commands.c:170
-#| msgid "Slanted - \\slshape"
 msgid "Slanted — \\slshape"
 msgstr "Inclinada: \\slshape"
 
 #: ../src/liblatexila/latexila-latex-commands.c:172
-#| msgid "Small Capitals - \\scshape"
 msgid "Small Capitals — \\scshape"
 msgstr "Mayúsculas pequeñas: \\scshape"
 
 #: ../src/liblatexila/latexila-latex-commands.c:177
-#| msgid "Tabbing - \\begin{tabbing}"
 msgid "Tabbing — \\begin{tabbing}"
 msgstr "Tabulación: \\begin{tabbing}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:179
-#| msgid "Tabular - \\begin{tabular}"
 msgid "Tabular — \\begin{tabular}"
 msgstr "Tabular: \\begin{tabular}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:181
-#| msgid "Multicolumn - \\multicolumn"
 msgid "Multicolumn — \\multicolumn"
 msgstr "Multicolumna: \\multicolumn"
 
 #: ../src/liblatexila/latexila-latex-commands.c:183
-#| msgid "Horizontal line - \\hline"
 msgid "Horizontal line — \\hline"
 msgstr "Línea horizontal: \\hline"
 
 #: ../src/liblatexila/latexila-latex-commands.c:185
-#| msgid "Vertical line - \\vline"
 msgid "Vertical line — \\vline"
 msgstr "Línea vertical: \\vline"
 
 #: ../src/liblatexila/latexila-latex-commands.c:187
-#| msgid "Horizontal line (columns specified) - \\cline"
 msgid "Horizontal line (columns specified) — \\cline"
 msgstr "Línea horizontal (columnas especificadas): \\cline"
 
 #: ../src/liblatexila/latexila-latex-commands.c:192
-#| msgid "Frame - \\begin{frame}"
 msgid "Frame — \\begin{frame}"
 msgstr "Marco: \\begin{marco}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:194
-#| msgid "Block - \\begin{block}"
 msgid "Block — \\begin{block}"
 msgstr "Bloque: \\begin{block}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:196
-#| msgid "Two columns - \\begin{columns}"
 msgid "Two columns — \\begin{columns}"
 msgstr "Dos columnas: \\begin{columns}"
 
@@ -1367,138 +1288,111 @@ msgid "New _Line"
 msgstr "_Línea nueva"
 
 #: ../src/liblatexila/latexila-latex-commands.c:201
-#| msgid "New Line - \\\\"
 msgid "New Line — \\\\"
 msgstr "Línea nueva: \\\\"
 
 #: ../src/liblatexila/latexila-latex-commands.c:203
-#| msgid "New page - \\newpage"
 msgid "New page — \\newpage"
 msgstr "Página nueva: \\newpage"
 
 #: ../src/liblatexila/latexila-latex-commands.c:205
-#| msgid "Line break - \\linebreak"
 msgid "Line break — \\linebreak"
 msgstr "Salto de línea: \\linebreak"
 
 #: ../src/liblatexila/latexila-latex-commands.c:207
-#| msgid "Page break - \\pagebreak"
 msgid "Page break — \\pagebreak"
 msgstr "Salto de página: \\pagebreak"
 
 #: ../src/liblatexila/latexila-latex-commands.c:209
-#| msgid "Big skip - \\bigskip"
 msgid "Big skip — \\bigskip"
 msgstr "Salto grande: \\bigskip"
 
 #: ../src/liblatexila/latexila-latex-commands.c:211
-#| msgid "Medium skip - \\medskip"
 msgid "Medium skip — \\medskip"
 msgstr "Salto medio: \\medskip"
 
 #: ../src/liblatexila/latexila-latex-commands.c:213
-#| msgid "Horizontal space - \\hspace"
 msgid "Horizontal space — \\hspace"
 msgstr "Espacio horizontal: \\hspace"
 
 #: ../src/liblatexila/latexila-latex-commands.c:215
-#| msgid "Vertical space - \\vspace"
 msgid "Vertical space — \\vspace"
 msgstr "Espacio vertical: \\vspace"
 
 #: ../src/liblatexila/latexila-latex-commands.c:217
-#| msgid "No paragraph indentation - \\noindent"
 msgid "No paragraph indentation — \\noindent"
 msgstr "Sin sangría de párrafo: \\noindent"
 
 #. LaTeX: International accents
 #: ../src/liblatexila/latexila-latex-commands.c:221
-#| msgid "Acute accent - \\'"
 msgid "Acute accent — \\'"
 msgstr "Acento agudo: \\'"
 
 #: ../src/liblatexila/latexila-latex-commands.c:222
-#| msgid "Grave accent - \\`"
 msgid "Grave accent — \\`"
 msgstr "Acento grave: \\`"
 
 #: ../src/liblatexila/latexila-latex-commands.c:223
-#| msgid "Circumflex accent - \\^"
 msgid "Circumflex accent — \\^"
 msgstr "Acento circunflejo: \\^"
 
 #: ../src/liblatexila/latexila-latex-commands.c:224
-#| msgid "Trema - \\\""
 msgid "Trema — \\\""
 msgstr "Diéresis: \\\""
 
 #: ../src/liblatexila/latexila-latex-commands.c:225
-#| msgid "Tilde - \\~"
 msgid "Tilde — \\~"
 msgstr "Tilde: \\~"
 
 #: ../src/liblatexila/latexila-latex-commands.c:226
-#| msgid "Macron - \\="
 msgid "Macron — \\="
 msgstr "Macrón: \\="
 
 #: ../src/liblatexila/latexila-latex-commands.c:227
-#| msgid "Dot above - \\."
 msgid "Dot above — \\."
 msgstr "Punto por encima: \\."
 
 #: ../src/liblatexila/latexila-latex-commands.c:228
-#| msgid "Caron - \\v"
 msgid "Caron — \\v"
 msgstr "Carón: \\v"
 
 #: ../src/liblatexila/latexila-latex-commands.c:229
-#| msgid "Breve - \\u"
 msgid "Breve — \\u"
 msgstr "Breve: \\u"
 
 #: ../src/liblatexila/latexila-latex-commands.c:231
-#| msgid "Double acute accent - \\H"
 msgid "Double acute accent — \\H"
 msgstr "Acento agudo doble: \\H"
 
 #: ../src/liblatexila/latexila-latex-commands.c:232
-#| msgid "Cedilla - \\c"
 msgid "Cedilla — \\c"
 msgstr "Cedilla: \\c"
 
 #: ../src/liblatexila/latexila-latex-commands.c:233
-#| msgid "Ogonek - \\k"
 msgid "Ogonek — \\k"
 msgstr "Colita: \\k"
 
 #: ../src/liblatexila/latexila-latex-commands.c:234
-#| msgid "Dot below - \\d"
 msgid "Dot below — \\d"
 msgstr "Punto por debajo: \\d"
 
 #: ../src/liblatexila/latexila-latex-commands.c:235
-#| msgid "Macron below - \\b"
 msgid "Macron below — \\b"
 msgstr "Macrón por debajo: \\b"
 
 #: ../src/liblatexila/latexila-latex-commands.c:236
-#| msgid "Ring - \\r"
 msgid "Ring — \\r"
 msgstr "Anillo: \\r"
 
 #: ../src/liblatexila/latexila-latex-commands.c:237
-#| msgid "Tie - \\t"
 msgid "Tie — \\t"
 msgstr "Tilde: \\~"
 
 #: ../src/liblatexila/latexila-latex-commands.c:242
-#| msgid "Document class - \\documentclass"
 msgid "Document class — \\documentclass"
 msgstr "Clase de documento: \\documentclass"
 
 #: ../src/liblatexila/latexila-latex-commands.c:244
-#| msgid "Use package - \\usepackage"
 msgid "Use package — \\usepackage"
 msgstr "Usar paquete: \\usepackage"
 
@@ -1511,184 +1405,148 @@ msgid "AMS packages"
 msgstr "Paquetes AMS"
 
 #: ../src/liblatexila/latexila-latex-commands.c:247
-#| msgid "Author - \\author"
 msgid "Author — \\author"
 msgstr "Autor: \\author"
 
 #: ../src/liblatexila/latexila-latex-commands.c:248
-#| msgid "Title - \\title"
 msgid "Title — \\title"
 msgstr "Título: \\title"
 
 #: ../src/liblatexila/latexila-latex-commands.c:250
-#| msgid "Content of the document - \\begin{document}"
 msgid "Content of the document — \\begin{document}"
 msgstr "Contenido del documento: \\begin{document}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:252
-#| msgid "Make title - \\maketitle"
 msgid "Make title — \\maketitle"
 msgstr "Construir título: \\maketitle"
 
 #: ../src/liblatexila/latexila-latex-commands.c:254
-#| msgid "Table of contents - \\tableofcontents"
 msgid "Table of contents — \\tableofcontents"
 msgstr "Tabla de contenidos: \\tableofcontents"
 
 #: ../src/liblatexila/latexila-latex-commands.c:256
-#| msgid "Abstract - \\begin{abstract}"
 msgid "Abstract — \\begin{abstract}"
 msgstr "Resumen: \\begin{abstract}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:258
-#| msgid "Include an image (graphicx package) - \\includegraphics"
 msgid "Include an image (graphicx package) — \\includegraphics"
 msgstr "Incluir una imagen (paquete «graphicx»): \\includegraphics"
 
 #: ../src/liblatexila/latexila-latex-commands.c:260
-#| msgid "Include a file - \\input"
 msgid "Include a file — \\input"
 msgstr "Incluir un archivo: \\input"
 
 #. Math Environments
 #: ../src/liblatexila/latexila-latex-commands.c:264
-#| msgid "_Mathematical Environment - $...$"
 msgid "_Mathematical Environment — $…$"
 msgstr "Entorno _matemático: $…$"
 
 #: ../src/liblatexila/latexila-latex-commands.c:265
-#| msgid "Mathematical Environment - $...$"
 msgid "Mathematical Environment — $…$"
 msgstr "Entorno Matemático: $…$"
 
 #: ../src/liblatexila/latexila-latex-commands.c:266
-#| msgid "_Centered Formula - \\[...\\]"
 msgid "_Centered Formula — \\[…\\]"
 msgstr "Fórmula _centrada: \\[…\\]"
 
 #: ../src/liblatexila/latexila-latex-commands.c:267
-#| msgid "Centered Formula - \\[...\\]"
 msgid "Centered Formula — \\[…\\]"
 msgstr "Fórmula centrada: \\[…\\]"
 
 #: ../src/liblatexila/latexila-latex-commands.c:269
-#| msgid "_Numbered Equation - \\begin{equation}"
 msgid "_Numbered Equation — \\begin{equation}"
 msgstr "Ecuación _numerada: \\begin{equation}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:270
-#| msgid "Numbered Equation - \\begin{equation}"
 msgid "Numbered Equation — \\begin{equation}"
 msgstr "Ecuación numerada: \\begin{equation}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:271
-#| msgid "_Array of Equations - \\begin{align*}"
 msgid "_Array of Equations — \\begin{align*}"
 msgstr "_Vector de ecuaciones: \\begin{align*}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:272
-#| msgid "Array of Equations - \\begin{align*}"
 msgid "Array of Equations — \\begin{align*}"
 msgstr "Vector de Ecuaciones: \\begin{align*}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:274
-#| msgid "Numbered Array of _Equations - \\begin{align}"
 msgid "Numbered Array of _Equations — \\begin{align}"
 msgstr "Vector numerado de _ecuaciones: \\begin{align}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:275
-#| msgid "Numbered Array of Equations - \\begin{align}"
 msgid "Numbered Array of Equations — \\begin{align}"
 msgstr "Vector numerado de ecuaciones: \\begin{align}"
 
 #. Math misc
 #: ../src/liblatexila/latexila-latex-commands.c:279
-#| msgid "_Superscript - ^{}"
 msgid "_Superscript — ^{}"
 msgstr "_Superíndice: ^{}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:280
-#| msgid "Superscript - ^{}"
 msgid "Superscript — ^{}"
 msgstr "Superíndice: ^{}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:281
-#| msgid "Su_bscript - __{}"
 msgid "Su_bscript — __{}"
 msgstr "Su_bíndice: __{}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:282
-#| msgid "Subscript - _{}"
 msgid "Subscript — _{}"
 msgstr "Subíndice: _{}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:283
-#| msgid "_Fraction - \\frac{}{}"
 msgid "_Fraction — \\frac{}{}"
 msgstr "_Fracción: \\frac{}{}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:284
-#| msgid "Fraction - \\frac{}{}"
 msgid "Fraction — \\frac{}{}"
 msgstr "Fracción: \\frac{}{}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:285
-#| msgid "Square _Root - \\sqrt{}"
 msgid "Square _Root — \\sqrt{}"
 msgstr "_Raíz cuadrada: \\sqrt{}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:286
-#| msgid "Square Root - \\sqrt{}"
 msgid "Square Root — \\sqrt{}"
 msgstr "Raíz cuadrada: \\sqrt{}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:287
-#| msgid "_N-th Root - \\sqrt[]{}"
 msgid "_N-th Root — \\sqrt[]{}"
 msgstr "Raíz e_nésima: \\sqrt[]{}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:288
-#| msgid "N-th Root - \\sqrt[]{}"
 msgid "N-th Root — \\sqrt[]{}"
 msgstr "Raíz enésima: \\sqrt[]{}"
 
 #: ../src/liblatexila/latexila-latex-commands.c:326
-#| msgid "Roman - \\mathrm"
 msgid "Roman — \\mathrm"
 msgstr "Roman: \\mathrm"
 
 #: ../src/liblatexila/latexila-latex-commands.c:328
-#| msgid "Italic - \\mathit"
 msgid "Italic — \\mathit"
 msgstr "Cursiva: \\mathit"
 
 #: ../src/liblatexila/latexila-latex-commands.c:330
-#| msgid "Bold - \\mathbf"
 msgid "Bold — \\mathbf"
 msgstr "Negrita: \\mathbf"
 
 #: ../src/liblatexila/latexila-latex-commands.c:332
-#| msgid "Sans Serif - \\mathsf"
 msgid "Sans Serif — \\mathsf"
 msgstr "Sans Serif: \\mathsf"
 
 #: ../src/liblatexila/latexila-latex-commands.c:334
-#| msgid "Typewriter - \\mathtt"
 msgid "Typewriter — \\mathtt"
 msgstr "Máquina de escribir: \\mathtt"
 
 #: ../src/liblatexila/latexila-latex-commands.c:336
-#| msgid "Calligraphic - \\mathcal"
 msgid "Calligraphic — \\mathcal"
 msgstr "Caligrafía: \\mathcal"
 
 #: ../src/liblatexila/latexila-latex-commands.c:338
-#| msgid "Blackboard (uppercase only)  - \\mathbb (amsfonts package)"
 msgid "Blackboard (uppercase only) — \\mathbb (amsfonts package)"
 msgstr "Pizarra (sólo en mayúsculas): \\mathbb (paquete «amsfonts»)"
 
 #: ../src/liblatexila/latexila-latex-commands.c:340
-#| msgid "Euler Fraktur - \\mathfrak (amsfonts package)"
 msgid "Euler Fraktur — \\mathfrak (amsfonts package)"
 msgstr "Euler Fraktur: \\mathfrak (paquete «amsfonts»)"
 
@@ -1698,7 +1556,6 @@ msgid "_Small"
 msgstr "_Pequeña"
 
 #: ../src/liblatexila/latexila-latex-commands.c:358
-#| msgid "Small - \\,"
 msgid "Small — \\,"
 msgstr "Pequeña: \\,"
 
@@ -1707,7 +1564,6 @@ msgid "_Medium"
 msgstr "_Media"
 
 #: ../src/liblatexila/latexila-latex-commands.c:359
-#| msgid "Medium - \\:"
 msgid "Medium — \\:"
 msgstr "Media: \\:"
 
@@ -1716,7 +1572,6 @@ msgid "_Large"
 msgstr "_Grande"
 
 #: ../src/liblatexila/latexila-latex-commands.c:360
-#| msgid "Large - \\;"
 msgid "Large — \\;"
 msgstr "Grande: \\;"
 
@@ -1803,7 +1658,6 @@ msgid "Can not communicate with evince."
 msgstr "No se puede comunicar con Evince."
 
 #: ../src/liblatexila/latexila-synctex.c:603
-#| msgid "The PDF file doesn't exist."
 msgid "The PDF file doesn’t exist."
 msgstr "El archivo PDF no existe."
 
@@ -1844,7 +1698,6 @@ msgid "Personal Templates"
 msgstr "Plantillas personales"
 
 #: ../src/liblatexila/latexila-templates-dialogs.c:124
-#| msgid "New file"
 msgid "New File…"
 msgstr "Archivo nuevo…"
 
@@ -1854,7 +1707,6 @@ msgid "_New"
 msgstr "_Nuevo"
 
 #: ../src/liblatexila/latexila-templates-dialogs.c:232
-#| msgid "New Template..."
 msgid "New Template…"
 msgstr "Plantilla nueva…"
 
@@ -2082,7 +1934,6 @@ msgid "_Comment"
 msgstr "_Comentar"
 
 #: ../src/main_window_edit.vala:64
-#| msgid "Comment the selected lines (add the character \"%\")"
 msgid "Comment the selected lines (add the character “%”)"
 msgstr "Comentar las líneas elegidas (agregar el carácter «%»)"
 
@@ -2091,7 +1942,6 @@ msgid "_Uncomment"
 msgstr "_Descomentar"
 
 #: ../src/main_window_edit.vala:68
-#| msgid "Uncomment the selected lines (remove the character \"%\")"
 msgid "Uncomment the selected lines (remove the character “%”)"
 msgstr "Descomentar de las líneas seleccionadas (quitar el carácter «%»)"
 
@@ -2144,7 +1994,6 @@ msgid "Save the current file with a different name"
 msgstr "Guardar el archivo actual con un nombre distinto"
 
 #: ../src/main_window_file.vala:47
-#| msgid "Create _Template From Document..."
 msgid "Create _Template From Document…"
 msgstr "_Crear plantilla desde documento…"
 
@@ -2153,7 +2002,6 @@ msgid "Create a new template from the current document"
 msgstr "Crear una nueva plantilla a partir del documento actual"
 
 #: ../src/main_window_file.vala:50
-#| msgid "Manage Personal Templates"
 msgid "_Manage Personal Templates…"
 msgstr "_Gestionar plantillas personales…"
 
@@ -2341,7 +2189,6 @@ msgid "Search for and replace text"
 msgstr "Buscar y reemplazar texto"
 
 #: ../src/main_window.vala:46
-#| msgid "Go to Line:"
 msgid "_Go to Line…"
 msgstr "_Ir a la línea…"
 
@@ -2406,58 +2253,58 @@ msgstr "Referencia de _LaTeX"
 msgid "The Kile LaTeX Reference"
 msgstr "La referencia de LaTeX de Kile"
 
-#: ../src/main_window.vala:70 ../src/ui/menus.ui.h:5
+#: ../src/main_window.vala:68 ../src/ui/menus.ui.h:5
 msgid "_About"
 msgstr "Acerca _de"
 
-#: ../src/main_window.vala:76
+#: ../src/main_window.vala:74
 msgid "_Main Toolbar"
 msgstr "Barra de _herramientas principal"
 
-#: ../src/main_window.vala:77
+#: ../src/main_window.vala:75
 msgid "Show or hide the main toolbar"
 msgstr "Mostrar u ocultar la barra de herramientas principal"
 
 #. Translators: "Edit" here is an adjective.
-#: ../src/main_window.vala:79
+#: ../src/main_window.vala:77
 msgid "_Edit Toolbar"
-msgstr "_Editar la barra de herramientas"
+msgstr "Barra de herramientas de _edición"
 
-#: ../src/main_window.vala:80
+#: ../src/main_window.vala:78
 msgid "Show or hide the edit toolbar"
 msgstr "Mostrar u ocultar la barra de herramientas de edición"
 
-#: ../src/main_window.vala:81
+#: ../src/main_window.vala:79
 msgid "_Side panel"
 msgstr "Panel _lateral"
 
-#: ../src/main_window.vala:82
+#: ../src/main_window.vala:80
 msgid "Show or hide the side panel"
 msgstr "Mostrar u ocultar el panel lateral"
 
-#: ../src/main_window.vala:83
+#: ../src/main_window.vala:81
 msgid "_Bottom panel"
 msgstr "Panel _inferior"
 
-#: ../src/main_window.vala:84
+#: ../src/main_window.vala:82
 msgid "Show or hide the bottom panel"
 msgstr "Mostrar u ocultar el panel inferior"
 
 #. Symbols
-#: ../src/main_window.vala:452
+#: ../src/main_window.vala:446
 msgid "Symbols"
 msgstr "Símbolos"
 
-#: ../src/main_window.vala:461
+#: ../src/main_window.vala:455
 msgid "Structure"
 msgstr "Estructura"
 
-#: ../src/main_window.vala:654
+#: ../src/main_window.vala:648
 #, c-format
 msgid "This file (%s) is already opened in another GNOME LaTeX window."
 msgstr "Este archivo (%s) ya esta abierto en otra ventana de GNOME LaTeX."
 
-#: ../src/main_window.vala:656
+#: ../src/main_window.vala:650
 msgid ""
 "GNOME LaTeX opened this instance of the file in a non-editable way. Do you "
 "want to edit it anyway?"
@@ -2465,22 +2312,20 @@ msgstr ""
 "GNOME LaTeX abrió esta instancia del archivo en una forma no editable."
 "¿Quiere editarlo de todas formas?"
 
-#: ../src/main_window.vala:660
+#: ../src/main_window.vala:654
 msgid "Edit Anyway"
 msgstr "Editar de todas formas"
 
-#: ../src/main_window.vala:661
-#| msgid "Don't Edit"
+#: ../src/main_window.vala:655
 msgid "Don’t Edit"
 msgstr "No editar"
 
-#: ../src/main_window.vala:756
+#: ../src/main_window.vala:750
 #, c-format
-#| msgid "Save changes to document \"%s\" before closing?"
 msgid "Save changes to document “%s” before closing?"
 msgstr "¿Guardar los cambios del documento «%s» antes de cerrar?"
 
-#: ../src/main_window.vala:815
+#: ../src/main_window.vala:809
 msgid "Save File"
 msgstr "Guardar Archivo"
 
@@ -2501,19 +2346,19 @@ msgstr "Restablecer todas las preferencias"
 msgid "Do you really want to reset all preferences?"
 msgstr "¿Realmente quiere restablecer todas las preferencias?"
 
-#: ../src/preferences_dialog.vala:189
+#: ../src/preferences_dialog.vala:191
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuto"
 msgstr[1] "minutos"
 
-#: ../src/preferences_dialog.vala:289
+#: ../src/preferences_dialog.vala:294
 msgid "character"
 msgid_plural "characters"
 msgstr[0] "carácter"
 msgstr[1] "caracteres"
 
-#: ../src/preferences_dialog.vala:344
+#: ../src/preferences_dialog.vala:337
 #, c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "Usar la tipografía de ancho fijo del sistema (%s)"
@@ -2537,7 +2382,6 @@ msgstr "Archivo principal"
 
 #: ../src/project_dialogs.vala:102
 #, c-format
-#| msgid "There is a conflict with the project \"%s\"."
 msgid "There is a conflict with the project “%s”."
 msgstr "Hay un conflicto con el proyecto «%s»."
 
@@ -2559,7 +2403,6 @@ msgstr "_Limpiar todo"
 
 #: ../src/project_dialogs.vala:273
 #, c-format
-#| msgid "Do you really want to delete the project \"%s\"?"
 msgid "Do you really want to delete the project “%s”?"
 msgstr "¿Realmente quiere eliminar el proyecto «%s»?"
 
@@ -2600,32 +2443,32 @@ msgstr "Reemplazar todo"
 msgid "All"
 msgstr "Todo"
 
-#: ../src/search.vala:308
+#: ../src/search.vala:290
 msgid "Search for"
 msgstr "Buscar"
 
-#: ../src/search.vala:319
+#: ../src/search.vala:301
 msgid "Case sensitive"
 msgstr "Sensible a capitalización"
 
-#: ../src/search.vala:322
+#: ../src/search.vala:304
 msgid "Entire words only"
 msgstr "Solo palabras completas"
 
-#: ../src/search.vala:469
+#: ../src/search.vala:451
 msgid "Not found"
 msgstr "No encontrado"
 
 #. Translators: the first %d is the position of the current search occurrence,
 #. * and the second %d is the total number of search occurrences.
 #.
-#: ../src/search.vala:486
+#: ../src/search.vala:468
 #, c-format
 msgid "Match %d of %d"
 msgstr "%d de %d coincidencias"
 
 #. Translators: %d is the total number of search occurrences.
-#: ../src/search.vala:491
+#: ../src/search.vala:473
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
@@ -2843,7 +2686,6 @@ msgid "Interactive completion after"
 msgstr "Completado interactivo después de"
 
 #: ../src/ui/preferences_dialog.ui.h:19
-#| msgid "Number of characters after '\\'"
 msgid "Number of characters after “\\”"
 msgstr "Número de caracteres después de «\\»"
 
