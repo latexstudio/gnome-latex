@@ -26,8 +26,6 @@ G_BEGIN_DECLS
 
 /* File utilities */
 
-gchar *		latexila_utils_replace_home_dir_with_tilde	(const gchar *filename);
-
 void		latexila_utils_file_query_exists_async		(GFile               *file,
 								 GCancellable        *cancellable,
 								 GAsyncReadyCallback  callback,

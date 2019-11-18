@@ -20,28 +20,6 @@
 #include "latexila.h"
 
 static void
-test_replace_home_dir_with_tilde (void)
-{
-	const gchar *homedir = g_get_home_dir ();
-	gchar *before;
-	gchar *after;
-
-	before = g_build_filename (homedir, "blah", NULL);
-	after = latexila_utils_replace_home_dir_with_tilde (before);
-	g_assert_cmpstr (after, ==, "~/blah");
-	g_free (before);
-	g_free (after);
-
-	after = latexila_utils_replace_home_dir_with_tilde (homedir);
-	g_assert_cmpstr (after, ==, "~");
-	g_free (after);
-
-	after = latexila_utils_replace_home_dir_with_tilde ("/blah");
-	g_assert_cmpstr (after, ==, "/blah");
-	g_free (after);
-}
-
-static void
 test_str_replace (void)
 {
 	gchar *result;
@@ -69,7 +47,6 @@ main (gint    argc,
 {
 	g_test_init (&argc, &argv, NULL);
 
-	g_test_add_func ("/utils/replace-home-dir-with-tilde", test_replace_home_dir_with_tilde);
 	g_test_add_func ("/utils/str-replace", test_str_replace);
 
 	return g_test_run ();

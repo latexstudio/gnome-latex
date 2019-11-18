@@ -28,6 +28,7 @@
 
 #include "latexila-build-view.h"
 #include <string.h>
+#include <tepl/tepl.h>
 #include "latexila-utils.h"
 #include "latexila-enum-types.h"
 
@@ -750,7 +751,7 @@ latexila_build_view_append_single_message (LatexilaBuildView *build_view,
 
 		file = g_file_new_for_path (message->filename);
 
-		filename_with_tilde = latexila_utils_replace_home_dir_with_tilde (message->filename);
+		filename_with_tilde = tepl_utils_replace_home_dir_with_tilde (message->filename);
 		path = g_markup_escape_text (filename_with_tilde, -1);
 		g_free (filename_with_tilde);
 

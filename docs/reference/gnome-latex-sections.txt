@@ -267,7 +267,6 @@ LATEXILA_TYPE_TEMPLATES_PERSONAL
 
 <SECTION>
 <FILE>utils</FILE>
-latexila_utils_replace_home_dir_with_tilde
 latexila_utils_file_query_exists_async
 latexila_utils_file_query_exists_finish
 latexila_utils_create_parent_directories

@@ -305,7 +305,7 @@ public class Document : Tepl.Buffer
         if (location == null)
             return get_file ().get_short_name ();
 
-        return Latexila.utils_replace_home_dir_with_tilde (location.get_parse_name ());
+        return Tepl.utils_replace_home_dir_with_tilde (location.get_parse_name ());
     }
 
     public string get_short_name_for_display ()

@@ -77,7 +77,7 @@ namespace Utils
         string dir = Path.get_dirname (uri);
         if (dir == ".")
             return null;
-        return Latexila.utils_replace_home_dir_with_tilde (dir);
+        return Tepl.utils_replace_home_dir_with_tilde (dir);
     }
 
     /* Returns a string suitable to be displayed in the UI indicating

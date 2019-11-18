@@ -100,7 +100,7 @@ namespace ProjectDialogs
                 MessageType.ERROR,
                 ButtonsType.OK,
                 _("There is a conflict with the project “%s”."),
-                Latexila.utils_replace_home_dir_with_tilde (conflict.get_parse_name ()) + "/");
+                Tepl.utils_replace_home_dir_with_tilde (conflict.get_parse_name ()) + "/");
             error_dialog.run ();
             error_dialog.destroy ();
         }
@@ -129,7 +129,7 @@ namespace ProjectDialogs
 
         // directory
         string project_dir = project.directory.get_parse_name ();
-        project_dir = Latexila.utils_replace_home_dir_with_tilde (project_dir) + "/";
+        project_dir = Tepl.utils_replace_home_dir_with_tilde (project_dir) + "/";
         Label location = new Label (project_dir);
         location.set_line_wrap (true);
         location.set_halign (Align.START);
@@ -334,7 +334,7 @@ namespace ProjectDialogs
             string uri_directory = project.directory.get_parse_name ();
             string uri_main_file = project.main_file.get_parse_name ();
 
-            string dir = Latexila.utils_replace_home_dir_with_tilde (uri_directory) + "/";
+            string dir = Tepl.utils_replace_home_dir_with_tilde (uri_directory) + "/";
 
             // relative path
             string main_file =
