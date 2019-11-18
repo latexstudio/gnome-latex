@@ -280,16 +280,16 @@ get_command_argv (GTask     *task,
 
 		if (strstr (argv[i], "$filename") != NULL)
 		{
-			new_arg = latexila_utils_str_replace (argv[i], "$filename", base_filename);
+			new_arg = tepl_utils_str_replace (argv[i], "$filename", base_filename);
 		}
 		else if (strstr (argv[i], "$shortname"))
 		{
-			new_arg = latexila_utils_str_replace (argv[i], "$shortname", base_shortname);
+			new_arg = tepl_utils_str_replace (argv[i], "$shortname", base_shortname);
 		}
 		else if (strstr (argv[i], "$view"))
 		{
 			g_warning ("Build job: the '$view' placeholder is deprecated.");
-			new_arg = latexila_utils_str_replace (argv[i], "$view", "xdg-open");
+			new_arg = tepl_utils_str_replace (argv[i], "$view", "xdg-open");
 		}
 
 		if (new_arg != NULL)

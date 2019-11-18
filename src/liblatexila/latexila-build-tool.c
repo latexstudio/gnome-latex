@@ -670,13 +670,13 @@ open_file (GTask *task)
 
 	if (strstr (file_to_open, "$filename") != NULL)
 	{
-		uri = latexila_utils_str_replace (file_to_open, "$filename", filename);
-		uri_for_display = latexila_utils_str_replace (file_to_open, "$filename", filename_for_display);
+		uri = tepl_utils_str_replace (file_to_open, "$filename", filename);
+		uri_for_display = tepl_utils_str_replace (file_to_open, "$filename", filename_for_display);
 	}
 	else if (strstr (file_to_open, "$shortname") != NULL)
 	{
-		uri = latexila_utils_str_replace (file_to_open, "$shortname", shortname);
-		uri_for_display = latexila_utils_str_replace (file_to_open, "$shortname", shortname_for_display);
+		uri = tepl_utils_str_replace (file_to_open, "$shortname", shortname);
+		uri_for_display = tepl_utils_str_replace (file_to_open, "$shortname", shortname_for_display);
 	}
 	else
 	{

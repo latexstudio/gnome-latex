@@ -434,8 +434,8 @@ insert_text (TeplApplicationWindow *tepl_window,
 		current_indent = tepl_iter_get_line_indentation (&selection_start);
 		newline_replacement = g_strdup_printf ("\n%s", current_indent);
 
-		text_before_with_indent = latexila_utils_str_replace (text_before, "\n", newline_replacement);
-		text_after_with_indent = latexila_utils_str_replace (text_after, "\n", newline_replacement);
+		text_before_with_indent = tepl_utils_str_replace (text_before, "\n", newline_replacement);
+		text_after_with_indent = tepl_utils_str_replace (text_after, "\n", newline_replacement);
 
 		g_free (current_indent);
 		g_free (newline_replacement);
