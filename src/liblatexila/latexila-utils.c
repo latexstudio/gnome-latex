@@ -33,71 +33,12 @@
 #include "config.h"
 #include "latexila-utils.h"
 #include <string.h>
+#include <tepl/tepl.h>
 #include "latexila-synctex.h"
 
 #if HAVE_DCONF_MIGRATION
 #include "dh-dconf-migration.h"
 #endif
-
-static gint
-get_extension_position (const gchar *filename)
-{
-	const gchar *pos;
-	gint length;
-
-	if (filename == NULL)
-	{
-		return 0;
-	}
-
-	length = strlen (filename);
-	pos = filename + length;
-	g_assert (pos[0] == '\0');
-
-	while (TRUE)
-	{
-		pos = g_utf8_find_prev_char (filename, pos);
-
-		if (pos == NULL || pos[0] == '/')
-		{
-			break;
-		}
-
-		if (pos[0] == '.')
-		{
-			return pos - filename;
-		}
-	}
-
-	return length;
-}
-
-/**
- * latexila_utils_get_shortname:
- * @filename: a filename.
- *
- * Returns: the @filename without its extension. Free with g_free().
- */
-gchar *
-latexila_utils_get_shortname (const gchar *filename)
-{
-	return g_strndup (filename, get_extension_position (filename));
-}
-
-/**
- * latexila_utils_get_extension:
- * @filename: a filename.
- *
- * Returns: the @filename's extension with the dot, in lowercase. Free with
- * g_free().
- */
-gchar *
-latexila_utils_get_extension (const gchar *filename)
-{
-	gint pos = get_extension_position (filename);
-
-	return g_ascii_strdown (filename + pos, -1);
-}
 
 /**
  * latexila_utils_replace_home_dir_with_tilde:
@@ -359,7 +300,7 @@ latexila_utils_show_uri (GtkWidget    *widget,
 
 	if (gtk_show_uri_on_window (parent, uri, timestamp, error))
 	{
-		gchar *extension = latexila_utils_get_extension (uri);
+		gchar *extension = tepl_utils_get_file_extension (uri);
 
 		if (g_strcmp0 (extension, ".pdf") == 0 &&
 		    default_document_viewer_is_evince (uri))

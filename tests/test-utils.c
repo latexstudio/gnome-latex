@@ -20,46 +20,6 @@
 #include "latexila.h"
 
 static void
-test_get_shortname (void)
-{
-	gchar *shortname;
-
-	shortname = latexila_utils_get_shortname ("file.txt");
-	g_assert_cmpstr (shortname, ==, "file");
-	g_free (shortname);
-
-	shortname = latexila_utils_get_shortname ("file.tar.gz");
-	g_assert_cmpstr (shortname, ==, "file.tar");
-	g_free (shortname);
-
-	shortname = latexila_utils_get_shortname ("file");
-	g_assert_cmpstr (shortname, ==, "file");
-	g_free (shortname);
-
-	shortname = latexila_utils_get_shortname ("dir.ext/blah");
-	g_assert_cmpstr (shortname, ==, "dir.ext/blah");
-	g_free (shortname);
-}
-
-static void
-test_get_extension (void)
-{
-	gchar *extension;
-
-	extension = latexila_utils_get_extension ("file.pdf");
-	g_assert_cmpstr (extension, ==, ".pdf");
-	g_free (extension);
-
-	extension = latexila_utils_get_extension ("file.tar.gz");
-	g_assert_cmpstr (extension, ==, ".gz");
-	g_free (extension);
-
-	extension = latexila_utils_get_extension ("file");
-	g_assert_cmpstr (extension, ==, "");
-	g_free (extension);
-}
-
-static void
 test_replace_home_dir_with_tilde (void)
 {
 	const gchar *homedir = g_get_home_dir ();
@@ -109,8 +69,6 @@ main (gint    argc,
 {
 	g_test_init (&argc, &argv, NULL);
 
-	g_test_add_func ("/utils/get-shortname", test_get_shortname);
-	g_test_add_func ("/utils/get-extension", test_get_extension);
 	g_test_add_func ("/utils/replace-home-dir-with-tilde", test_replace_home_dir_with_tilde);
 	g_test_add_func ("/utils/str-replace", test_str_replace);
 

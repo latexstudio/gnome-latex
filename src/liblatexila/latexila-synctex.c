@@ -40,6 +40,7 @@
 
 #include "latexila-synctex.h"
 #include <glib/gi18n.h>
+#include <tepl/tepl.h>
 #include "evince-gdbus-generated.h"
 #include "latexila-utils.h"
 
@@ -208,7 +209,7 @@ get_pdf_uri (GFile *main_tex_file)
 	gchar *pdf_uri;
 
 	tex_uri = g_file_get_uri (main_tex_file);
-	short_uri = latexila_utils_get_shortname (tex_uri);
+	short_uri = tepl_utils_get_file_shortname (tex_uri);
 	pdf_uri = g_strdup_printf ("%s.pdf", short_uri);
 
 	g_free (tex_uri);
@@ -605,7 +606,7 @@ pdf_file_query_exists_cb (GFile             *pdf_file,
 		return;
 	}
 
-	short_uri = latexila_utils_get_shortname (data->pdf_uri);
+	short_uri = tepl_utils_get_file_shortname (data->pdf_uri);
 	synctex_uri = g_strdup_printf ("%s.synctex.gz", short_uri);
 	synctex_file = g_file_new_for_uri (synctex_uri);
 	g_free (short_uri);

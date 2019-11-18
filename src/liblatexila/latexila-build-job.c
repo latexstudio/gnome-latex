@@ -28,6 +28,7 @@
 #include "latexila-build-job.h"
 #include <string.h>
 #include <glib/gi18n.h>
+#include <tepl/tepl.h>
 #include "latexila-build-view.h"
 #include "latexila-post-processor-all-output.h"
 #include "latexila-post-processor-latex.h"
@@ -271,7 +272,7 @@ get_command_argv (GTask     *task,
 
 	/* Replace placeholders */
 	base_filename = g_file_get_basename (data->file);
-	base_shortname = latexila_utils_get_shortname (base_filename);
+	base_shortname = tepl_utils_get_file_shortname (base_filename);
 
 	for (i = 0; argv[i] != NULL; i++)
 	{

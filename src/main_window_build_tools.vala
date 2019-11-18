@@ -229,7 +229,7 @@ public class MainWindowBuildTools
         }
 
         string path = active_doc.get_main_file ().get_parse_name ();
-        string ext = Latexila.utils_get_extension (path);
+        string ext = Tepl.utils_get_file_extension (path);
 
         string[] extensions = tool.extensions.split (" ");
         bool sensitive = tool.extensions.length == 0 || ext in extensions;
@@ -475,7 +475,7 @@ public class MainWindowBuildTools
         File mainfile = _main_window.active_document.get_main_file ();
         File directory = mainfile.get_parent ();
 
-        string basename = Latexila.utils_get_shortname (mainfile.get_basename ()) + ".log";
+        string basename = Tepl.utils_get_file_shortname (mainfile.get_basename ()) + ".log";
         File file = directory.get_child (basename);
         DocumentTab? tab = _main_window.open_document (file);
 

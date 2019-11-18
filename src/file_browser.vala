@@ -176,7 +176,7 @@ public class FileBrowser : Grid
                 return;
             }
 
-            string extension = Latexila.utils_get_extension (basename);
+            string extension = Tepl.utils_get_file_extension (basename);
             if (extension != ".dvi" &&
                 extension != ".pdf" &&
                 extension != ".ps")
@@ -504,7 +504,7 @@ public class FileBrowser : Grid
                     continue;
             }
 
-            string extension = Latexila.utils_get_extension (basename);
+            string extension = Tepl.utils_get_file_extension (basename);
             string icon_name = get_extension_icon_name (extension);
             insert_file (false, icon_name, basename);
         }

@@ -31,6 +31,7 @@
 #include "latexila-build-tool.h"
 #include <string.h>
 #include <glib/gi18n.h>
+#include <tepl/tepl.h>
 #include "latexila-build-job.h"
 #include "latexila-build-view.h"
 #include "latexila-utils.h"
@@ -664,8 +665,8 @@ open_file (GTask *task)
 	filename = g_file_get_uri (data->file);
 	filename_for_display = g_file_get_parse_name (data->file);
 
-	shortname = latexila_utils_get_shortname (filename);
-	shortname_for_display = latexila_utils_get_shortname (filename_for_display);
+	shortname = tepl_utils_get_file_shortname (filename);
+	shortname_for_display = tepl_utils_get_file_shortname (filename_for_display);
 
 	if (strstr (file_to_open, "$filename") != NULL)
 	{
