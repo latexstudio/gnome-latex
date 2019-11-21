@@ -9,18 +9,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=latexila&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-09 12:50+0000\n"
-"PO-Revision-Date: 2016-03-09 23:46+0200\n"
-"Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-latex/issues\n"
+"POT-Creation-Date: 2019-11-18 10:41+0000\n"
+"PO-Revision-Date: 2019-11-21 04:32+0200\n"
+"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Greek, Modern (1453-) <opensuse-translation-el@opensuse.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Project-Style: gnome\n"
 
 #. (itstool) path: tool/label
@@ -88,167 +87,217 @@ msgstr "Μετατροπή εγγράφου DVI σε μορφή PostScript"
 msgid "Convert the PostScript document to the PDF format"
 msgstr "Μετατροπή εγγράφου PostScript σε μορφή PDF"
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:1
-msgid ""
-"LaTeXila is an integrated LaTeX environment for the GNOME desktop. The idea "
-"of LaTeXila is to always deal directly with the LaTeX code, while "
-"simplifying as most as possible the writing of this LaTeX code."
-msgstr ""
-"Το LaTeXila είναι ένα ολοκληρωμένο περιβάλλον LaTeX για την επιφάνεια "
-"εργασίας του GNOME. Η ιδέα του LaTeXila είναι να αντιμετωπίζει πάντα άμεσα "
-"τον κώδικα LaTeX, ενώ απλουστεύει όσο το δυνατό περισσότερο το γράψιμο αυτού "
-"του κώδικα LaTeX."
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:1
+#| msgid "LaTeXila"
+msgid "LaTeX editor"
+msgstr "Επεξεργαστής LaTeX"
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:2
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:2
+msgid ""
+"GNOME LaTeX is a LaTeX editor for the GNOME desktop, previously named "
+"LaTeXila. GNOME LaTeX permits to concentrate on the content and the "
+"structure of the document instead of being distracted by its presentation."
+msgstr ""
+"Το GNOME LaTeX είναι ένα πρόγραμμα επεξεργασίας LaTeX για την επιφάνεια "
+"εργασίας του GNOME, που προηγουμένως ονομαζόταν LaTeXila. Το GNOME LaTeX "
+"επιτρέπει να επικεντρωθεί στο περιεχόμενο και τη δομή του εγγράφου αντί να "
+"αποσπάται από την παρουσίασή του."
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:3
+#, fuzzy
+#| msgid ""
+#| "New documents are created from templates. There are buttons to compile, "
+#| "convert and view a document in one click. And projects containing "
+#| "several .tex files are managed easily."
 msgid ""
 "To help the writing of the LaTeX markup, auto-completion is available as "
-"well as menus and toolbars with the principal commands."
-msgstr ""
-"Για να βοηθηθείτε στην συγγραφή με χρήση του LaTeX, είναι διαθέσιμη η "
-"αυτόματη συμπλήρωση όπως επίσης μενού και εργαλειοθήκες με τις κύριες "
-"εντολές."
-
-#: ../data/org.gnome.latexila.appdata.xml.in.h:3
-msgid ""
-"New documents are created from templates. There are buttons to compile, "
-"convert and view a document in one click. And projects containing several ."
-"tex files are managed easily."
+"well as menus and toolbars with the principal commands. New documents are "
+"created from templates. There are buttons to compile, convert and view a "
+"document in one click. And projects containing several .tex files are "
+"managed easily."
 msgstr ""
 "Τα νέα έγγραφα δημιουργούνται από τα πρότυπα. Υπάρχουν κουμπιά για την "
 "μεταγλώττιση, τη μετατροπή και την προβολή ενός εγγράφου με ένα κλικ. Επίσης "
 "είναι εύκολη η διαχείριση έργων που περιέχουν διάφορα αρχεία .tex."
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:4
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:4
+#, fuzzy
+#| msgid ""
+#| "A side panel contains three components: the document structure to easily "
+#| "navigate in it; lists of symbols to insert them in a document; and an "
+#| "integrated file browser."
 msgid ""
 "A side panel contains three components: the document structure to easily "
-"navigate in it; lists of symbols to insert them in a document; and an "
-"integrated file browser."
+"navigate in it; lists of symbols to insert them in a document; and a file "
+"browser."
 msgstr ""
 "Υπάρχει ένας πλευρικός πίνακας με τρία στοιχεία: τη δομή του εγγράφου για να "
 "περιηγηθείτε εύκολα σε αυτό, λίστες συμβόλων να τα εισάγετε σε ένα έγγραφο "
 "και ένα ολοκληρωμένο πρόγραμμα περιήγησης αρχείων."
 
-#: ../data/org.gnome.latexila.appdata.xml.in.h:5
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:5
+#, fuzzy
+#| msgid ""
+#| "LaTeXila has also other features like the spell checking, or the forward "
+#| "and backward search to switch between the .tex and the PDF."
 msgid ""
-"LaTeXila has also other features like the spell checking, or the forward and "
-"backward search to switch between the .tex and the PDF."
+"GNOME LaTeX has also other features like the spell-checking, or jumping to "
+"the associated position between the .tex file and the PDF."
 msgstr ""
-"Το LaTeXila έχει και άλλες λειτουργίες, όπως τον ορθογραφικό έλεγχο ή την "
+"Το GNOME LaTeX έχει και άλλες λειτουργίες, όπως τον ορθογραφικό έλεγχο ή την "
 "αναζήτηση είτε προς τα εμπρός είτε προς τα πίσω για εναλλαγή μεταξύ των "
 "αρχείων .tex και  PDF."
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:1
-msgid "Integrated LaTeX Environment"
-msgstr "Ολοκληρωμένο περιβάλλον LaTeX"
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:6
+#| msgid "Complete the LaTeX command"
+msgid "Completion of LaTeX commands"
+msgstr "Συμπλήρωση των εντολών LaTeX"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:2
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:7
+#| msgid "View the PDF file"
+msgid "Generating the PDF file"
+msgstr "Δημιουργία του αρχείου PDF"
+
+#: ../data/org.gnome.gnome-latex.appdata.xml.in.h:8
+#, fuzzy
+#| msgid "Show or hide the side panel"
+msgid "Document structure in the side panel"
+msgstr "Εμφάνιση ή απόκρυψη του πλευρικού παραθύρου"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:1
+#| msgid "Editor"
+msgid "LaTeX Editor"
+msgstr "Επεξεργαστής LaTeX"
+
+#: ../data/org.gnome.gnome-latex.desktop.in.h:2
 msgid "Edit LaTeX documents"
 msgstr "Επεξεργασία εγγράφων LaTeX"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:3
+#: ../data/org.gnome.gnome-latex.desktop.in.h:3
 msgid "text;tex;latex;editor;documents;"
 msgstr "text;tex;latex;editor;documents;κείμενο;επεξεργαστής;έγγραφα;"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:4
+#: ../data/org.gnome.gnome-latex.desktop.in.h:4
 msgid "Open a New Window"
 msgstr "Άνοιγμα νέου παραθύρου"
 
-#: ../data/org.gnome.latexila.desktop.in.in.h:5
+#: ../data/org.gnome.gnome-latex.desktop.in.h:5
 msgid "Open a New Document"
 msgstr "Άνοιγμα νέου εγγράφου"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:1
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:1
 msgid "Use Default Font"
 msgstr "Χρήση προεπιλεγμένης γραμματοσειράς"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:2
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:2
+#, fuzzy
+#| msgid ""
+#| "Whether to use the system's default fixed width font for editing text "
+#| "instead of a font specific to LaTeXila. If this option is turned off, "
+#| "then the font named in the \"Editor Font\" option will be used instead of "
+#| "the system font."
 msgid ""
-"Whether to use the system's default fixed width font for editing text "
-"instead of a font specific to LaTeXila. If this option is turned off, then "
-"the font named in the \"Editor Font\" option will be used instead of the "
+"Whether to use the system’s default fixed width font for editing text "
+"instead of a font specific to GNOME LaTeX. If this option is turned off, "
+"then the font named in the “Editor Font” option will be used instead of the "
 "system font."
 msgstr ""
 "Αν θα χρησιμοποιούνται η προεπιλεγμένη γραμματοσειρά σταθερού πλάτους του "
 "συστήματος για την επεξεργασία κειμένου αντί για μια συγκεκριμένη "
-"γραμματοσειρά στο LaTeXila. Αν αυτή η επιλογή απενεργοποιηθεί, τότε θα "
+"γραμματοσειρά στο GNOME LaTeX. Αν αυτή η επιλογή απενεργοποιηθεί, τότε θα "
 "χρησιμοποιηθεί η επώνυμη γραμματοσειρά στην επιλογή \"Επεξεργαστής "
 "γραμματοσειράς\" αντί για τη γραμματοσειρά του συστήματος."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:3
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:3
 msgid "Editor Font"
 msgstr "Γραμματοσειρά επεξεργαστή"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:4
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:4
+#, fuzzy
+#| msgid ""
+#| "A custom font that will be used for the editing area. This will only take "
+#| "effect if the \"Use Default Font\" option is turned off."
 msgid ""
 "A custom font that will be used for the editing area. This will only take "
-"effect if the \"Use Default Font\" option is turned off."
+"effect if the “Use Default Font” option is turned off."
 msgstr ""
 "Μια προσαρμοσμένη γραμματοσειρά για χρήση στην περιοχή επεξεργασίας. Αυτό "
 "πραγματοποιείται μόνο όταν είναι απενεργοποιημένη η \"Χρήση προεπιλεγμένης "
 "γραμματοσειράς\"."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:5
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:5
 msgid "Style Scheme"
 msgstr "Σχήμα στυλ"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:6
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:6
 msgid "The ID of a GtkSourceView Style Scheme used to color the text."
 msgstr ""
 "Το αναγνωριστικό ενός σχήματος στυλ GtkSourceView που χρησιμοποιείται για να "
 "χρωματίσει το κείμενο."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:7
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:7
 msgid "Create Backup Copies"
 msgstr "Δημιουργία αντιγράφων ασφαλείας"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:8
-msgid "Whether LaTeXila should create backup copies for the files it saves."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:8
+#| msgid "Whether LaTeXila should create backup copies for the files it saves."
+msgid "Whether GNOME LaTeX should create backup copies for the files it saves."
 msgstr ""
-"Αν το LaTeXila θα δημιουργεί αντίγραφα ασφαλείας για τα αρχεία που "
+"Αν το GNOME LaTeX θα δημιουργεί αντίγραφα ασφαλείας για τα αρχεία που "
 "αποθηκεύει."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:9
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:9
 msgid "Autosave"
 msgstr "Αυτόματη αποθήκευση"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:10
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:10
+#| msgid ""
+#| "Whether LaTeXila should automatically save modified files after a time "
+#| "interval. You can set the time interval with the \"Autosave Interval\" "
+#| "option."
 msgid ""
-"Whether LaTeXila should automatically save modified files after a time "
-"interval. You can set the time interval with the \"Autosave Interval\" "
-"option."
+"Whether GNOME LaTeX should automatically save modified files after a time "
+"interval. You can set the time interval with the “Autosave Interval” option."
 msgstr ""
-"Αν το LaTeXila θα αποθηκεύει αυτόματα τα τροποποιημένα αρχεία μετά από "
+"Αν το GNOME LaTeX θα αποθηκεύει αυτόματα τα τροποποιημένα αρχεία μετά από "
 "κάποιο χρονικό διάστημα. Μπορείτε να ορίσετε αυτό το διάστημα στην επιλογή "
 "\"Διάστημα αυτόματης αποθήκευσης\"."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:11
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:11
 msgid "Autosave Interval"
 msgstr "Διάστημα αυτόματης αποθήκευσης"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:12
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:12
+#| msgid ""
+#| "Number of minutes after which LaTeXila will automatically save modified "
+#| "files. This will only take effect if the \"Autosave\" option is turned on."
 msgid ""
-"Number of minutes after which LaTeXila will automatically save modified "
-"files. This will only take effect if the \"Autosave\" option is turned on."
+"Number of minutes after which GNOME LaTeX will automatically save modified "
+"files. This will only take effect if the “Autosave” option is turned on."
 msgstr ""
-"Αριθμός λεπτών μετά το οποίο το LaTeXila θα αποθηκεύει αυτόματα τα "
+"Αριθμός λεπτών μετά το οποίο το GNOME LaTeX θα αποθηκεύει αυτόματα τα "
 "τροποποιημένα αρχεία. Αυτό πραγματοποιείται μόνο όταν είναι ενεργοποιημένη η "
 "\"Αυτόματη αποθήκευση\"."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:13
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:13
 #: ../src/ui/preferences_dialog.ui.h:9
 msgid "Reopen files on startup"
 msgstr "Ξανάνοιγμα των αρχείων στην εκκίνηση"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:14
-msgid "Whether LaTeXila should reopen the files that was opened the last time."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:14
+#| msgid ""
+#| "Whether LaTeXila should reopen the files that was opened the last time."
+msgid ""
+"Whether GNOME LaTeX should reopen the files that was opened the last time."
 msgstr ""
-"Αν το LaTeXila θα ξανανοίγει τα αρχεία που ήταν ανοιχτά την τελευταία φορά."
+"Αν το GNOME LaTeX θα ξανανοίγει τα αρχεία που ήταν ανοιχτά την τελευταία "
+"φορά."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:15
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:15
 msgid "Tab Size"
 msgstr "Μέγεθος στηλοθέτη"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:16
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:16
 msgid ""
 "Specifies the number of spaces that should be displayed instead of Tab "
 "characters."
@@ -256,213 +305,234 @@ msgstr ""
 "Καθορίζει τον αριθμό των διαστημάτων που θα πρέπει να εμφανίζονται αντί για "
 "χαρακτήρες στηλοθέτη."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:17
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:17
 msgid "Insert spaces"
 msgstr "Εισαγωγή διαστημάτων"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:18
-msgid "Whether LaTeXila should insert spaces instead of tabs."
-msgstr "Αν το LaTeXila θα εισάγει διαστήματα αντί για στηλοθέτες."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:18
+#| msgid "Whether LaTeXila should insert spaces instead of tabs."
+msgid "Whether GNOME LaTeX should insert spaces instead of tabs."
+msgstr "Αν το GNOME LaTeX θα εισάγει διαστήματα αντί για στηλοθέτες."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:19
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:19
 msgid "Forget lack of tabulations"
 msgstr "Παράλειψη της έλλειψης πινακοποιήσεων"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:20
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:20
 msgid "Forget you are not using tabulations."
 msgstr "Παράλειψη της μη χρήσης πινακοποιήσεων."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:21
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:21
 msgid "Display Line Numbers"
 msgstr "Προβολή αριθμών γραμμής"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:22
-msgid "Whether LaTeXila should display line numbers in the editing area."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:22
+#| msgid "Whether LaTeXila should display line numbers in the editing area."
+msgid "Whether GNOME LaTeX should display line numbers in the editing area."
 msgstr ""
-"Αν το LaTeXila θα προβάλλει τους αριθμούς γραμμών στην περιοχή επεξεργασίας."
+"Αν το GNOME LaTeX θα προβάλλει τους αριθμούς γραμμών στην περιοχή "
+"επεξεργασίας."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:23
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:23
 msgid "Highlight Current Line"
 msgstr "Επισήμανση τρέχουσας γραμμής"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:24
-msgid "Whether LaTeXila should highlight the current line."
-msgstr "Αν το LaTeXila θα επισημαίνει την τρέχουσα γραμμή."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:24
+#| msgid "Whether LaTeXila should highlight the current line."
+msgid "Whether GNOME LaTeX should highlight the current line."
+msgstr "Αν το GNOME LaTeX θα επισημαίνει την τρέχουσα γραμμή."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:25
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:25
 msgid "Highlight Matching Brackets"
 msgstr "Επισήμανση αγκυλών που ταιριάζουν"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:26
-msgid "Whether LaTeXila should highlight matching brackets."
-msgstr "Αν το LaTeXila θα επισημαίνει τις αγκύλες που ταιριάζουν."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:26
+#| msgid "Whether LaTeXila should highlight matching brackets."
+msgid "Whether GNOME LaTeX should highlight matching brackets."
+msgstr "Αν το GNOME LaTeX θα επισημαίνει τις αγκύλες που ταιριάζουν."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:27
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:27
 msgid "Highlight Misspelled Words"
 msgstr "Επισήμανση λέξεων με ορθογραφικά λάθη"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:28
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:28
 msgid "Whether misspelled words are highlighted by default."
 msgstr "Αν τα ορθογραφικά λάθη των λέξεων επισημαίνονται από προεπιλογή."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:29
-msgid "Spell Checking Language"
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:29
+#| msgid "Spell Checking Language"
+msgid "Spell-Checking Language"
 msgstr "Γλώσσα ορθογραφικού ελέγχου"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:30
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:30
+#| msgid ""
+#| "The default language used for the spell checking. Set to the empty string "
+#| "to take the best language available based on the environment."
 msgid ""
-"The default language used for the spell checking. Set to the empty string to "
+"The default language used for the spell-checking. Set to the empty string to "
 "take the best language available based on the environment."
 msgstr ""
 "Η προεπιλεγμένη γλώσσα που χρησιμοποιείται για τον ορθογραφικό έλεγχο. "
 "Ορίστε κενή συμβολοσειρά για να χρησιμοποιηθεί η καλύτερη διαθέσιμη γλώσσα "
 "με βάση το περιβάλλον."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:31
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:31
 msgid "Main toolbar is visible"
 msgstr "Ορατότητα κύριας εργαλειοθήκης"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:32
-msgid ""
-"Whether the main toolbar (file open, close, build, ...) should be visible."
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:32
+#, fuzzy
+#| msgid ""
+#| "Whether the main toolbar (file open, close, build, ...) should be visible."
+msgid "Whether the main toolbar (file open, close, build…) should be visible."
 msgstr ""
 "Αν η κύρια εργαλειοθήκη (άνοιγμα αρχείου, κλείσιμο, δόμηση, ...) θα είναι "
 "ορατή."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:33
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:33
 msgid "Edit toolbar is visible"
 msgstr "Ορατότητα επεξεργασίας εργαλειοθήκης"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:34
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:34
+#, fuzzy
+#| msgid ""
+#| "Whether the edit toolbar (bold, italic, character sizes, ...) should be "
+#| "visible."
 msgid ""
-"Whether the edit toolbar (bold, italic, character sizes, ...) should be "
-"visible."
+"Whether the edit toolbar (bold, italic, character sizes…) should be visible."
 msgstr ""
 "Αν η εργαλειοθήκη επεξεργασίας (έντονα, πλάγια, μεγέθη χαρακτήρων, ...) θα "
 "είναι ορατή."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:35
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:35
 msgid "Side panel is Visible"
 msgstr "Ορατότητα πλευρικού παραθύρου"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:36
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:36
 msgid ""
 "Whether the side panel at the left of editing windows should be visible."
 msgstr ""
 "Αν το πλευρικό παράθυρο στα αριστερά του παραθύρων επεξεργασίας θα είναι "
 "ορατό."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:37
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:37
 msgid "Bottom panel is Visible"
 msgstr "Ορατότητα κάτω παραθύρου"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:38
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:38
 msgid "Whether the bottom panel containing the build view should be visible."
 msgstr "Αν το κάτω παράθυρο που περιέχει την προβολή δόμησης θα είναι ορατό."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:39
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:39
 msgid "Side panel component"
 msgstr "Στοιχείο πλευρικού παραθύρου"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:40
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:40
+#| msgid ""
+#| "Side panel's active component. 0: Symbols. 1: File browser. 2: Structure."
 msgid ""
-"Side panel's active component. 0: Symbols. 1: File browser. 2: Structure."
+"Side panel’s active component. 0: Symbols. 1: File browser. 2: Structure."
 msgstr ""
 "Το ενεργό στοιχείο του πλευρικού παραθύρου. 0: Σύμβολα. 1: Περιηγητής "
 "αρχείου. 2: Δομή."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:41
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:41
 msgid "Show build output warnings"
 msgstr "Εμφάνιση προειδοποιήσεων εξόδου δόμησης"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:42
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:42
 msgid "Show build output badboxes"
 msgstr "Εμφάνιση κακών πλαισίων εξόδου δόμησης"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:43
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:43
 msgid "Interactive completion"
 msgstr "Διαδραστική συμπλήρωση"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:44
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:44
 msgid "Automatically show LaTeX commands proposals"
 msgstr "Αυτόματη εμφάνιση των προτάσεων εντολών LaTeX"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:45
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:45
 msgid "Minimum number of characters for interactive completion"
 msgstr "Ελάχιστος αριθμός χαρακτήρων για διαδραστική συμπλήρωση"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:46
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:46
+#| msgid ""
+#| "Minimum number of characters after \"\\\" for the interactive completion "
+#| "of LaTeX commands"
 msgid ""
-"Minimum number of characters after \"\\\" for the interactive completion of "
+"Minimum number of characters after “\\” for the interactive completion of "
 "LaTeX commands"
 msgstr ""
-"Ελάχιστος αριθμός χαρακτήρων μετά από \"\\\" για τη διαδραστική συμπλήρωση "
-"των εντολών LaTeX"
+"Ελάχιστος αριθμός χαρακτήρων μετά από «\\» για τη διαδραστική συμπλήρωση των "
+"εντολών LaTeX"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:47
-#: ../src/ui/preferences_dialog.ui.h:22
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:47
+#: ../src/ui/preferences_dialog.ui.h:21
 msgid "No confirmation when cleaning-up"
 msgstr "Χωρίς επιβεβαίωση για καθαρισμό"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:48
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:48
 msgid "Automatic clean-up"
 msgstr "Αυτόματος καθαρισμός"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:49
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:49
 msgid ""
 "Automatically clean-up files after close. no-confirm-clean must be true."
 msgstr ""
 "Αυτόματος καθαρισμός αρχείων μετά το κλείσιμο. Ο καθαρισμός χωρίς "
 "επιβεβαίωση πρέπει να είναι αληθής."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:50
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:50
 msgid "File extensions for the clean-up"
 msgstr "Επεκτάσεις αρχείου για καθαρισμό"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:51
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:51
 msgid "The list of file extensions for the clean-up, separated by spaces"
 msgstr "Η λίστα των επεκτάσεων αρχείων για καθαρισμό, διαχωριζόμενη με κενά"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:52
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:52
 msgid "Enabled default build tools"
 msgstr "Ενεργά προεπιλεγμένα εργαλεία δόμησης"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:53
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:53
 msgid "The list of the default build tools that are enabled"
 msgstr "Η λίστα των προεπιλεγμένων εργαλείων δόμησης που είναι ενεργά"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:54
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:54
 msgid "Disabled default build tools"
 msgstr "Ανενεργά προεπιλεγμένα εργαλεία δόμησης"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:55
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:55
 msgid "The list of the default build tools that are disabled"
 msgstr "Η λίστα των προεπιλεγμένων εργαλείων δόμησης που είναι ανενεργά"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:56
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:56
 msgid "Current directory"
 msgstr "Τρέχον κατάλογος"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:57
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:57
 msgid "URI of the file browser current directory"
 msgstr "Το URI του τρέχοντος καταλόγου του περιηγητή αρχείων"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:58 ../src/file_browser.vala:361
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:58
+#: ../src/file_browser.vala:348
 msgid "Show build files"
 msgstr "Εμφάνιση αρχείων δόμησης"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:59
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:59
 msgid ""
 "Show files with an extension present in preferences.latex.clean-extensions."
 msgstr ""
 "Να εμφανίζονται τα αρχεία με μια παρούσα επέκταση στο preferences.latex."
 "clean-extensions."
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:60 ../src/file_browser.vala:369
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:60
+#: ../src/file_browser.vala:356
 msgid "Show hidden files"
 msgstr "Εμφάνιση κρυφών αρχείων"
 
-#: ../data/org.gnome.latexila.gschema.xml.in.h:61
+#: ../data/org.gnome.gnome-latex.gschema.xml.in.h:61
 msgid "Show files beginning with a dot."
 msgstr "Να εμφανίζονται τα αρχεία που ξεκινούν με μια κουκκίδα."
 
@@ -543,12 +613,12 @@ msgstr "Προσωπικό εργαλείο δόμησης"
 
 #: ../src/build_tool_dialog.vala:72 ../src/build_tools_preferences.vala:335
 #: ../src/clean_build_files.vala:242 ../src/dialogs.vala:41
-#: ../src/document_tab.vala:291
-#: ../src/liblatexila/latexila-templates-dialogs.c:128
+#: ../src/document_tab.vala:178
+#: ../src/liblatexila/latexila-templates-dialogs.c:130
 #: ../src/liblatexila/latexila-templates-dialogs.c:238
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:145
-#: ../src/main_window_file.vala:153 ../src/main_window.vala:757
-#: ../src/main_window.vala:853 ../src/preferences_dialog.vala:114
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:147
+#: ../src/main_window_file.vala:157 ../src/main_window.vala:754
+#: ../src/main_window.vala:811 ../src/preferences_dialog.vala:114
 #: ../src/project_dialogs.vala:31 ../src/project_dialogs.vala:122
 #: ../src/project_dialogs.vala:276 ../src/project_dialogs.vala:296
 msgid "_Cancel"
@@ -589,25 +659,25 @@ msgid "Post Processor"
 msgstr "Μετεπεξεργαστής"
 
 #: ../src/build_tool_dialog.vala:271 ../src/build_tools_preferences.vala:297
-msgid "Add..."
-msgstr "Προσθήκη..."
+msgid "Add…"
+msgstr "Προσθήκη…"
 
 #: ../src/build_tool_dialog.vala:288 ../src/build_tools_preferences.vala:314
 msgid "Remove"
 msgstr "Αφαίρεση"
 
 #: ../src/build_tool_dialog.vala:318 ../src/build_tools_preferences.vala:354
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:282
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:286
 msgid "Move up"
 msgstr "Μετακίνηση προς τα πάνω"
 
 #: ../src/build_tool_dialog.vala:369 ../src/build_tools_preferences.vala:406
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:294
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:298
 msgid "Move down"
 msgstr "Μετακίνηση προς τα κάτω"
 
 #: ../src/build_tool_dialog.vala:573 ../src/build_tools_preferences.vala:177
-#: ../src/latex_menu.vala:52 ../src/structure.vala:783
+#: ../src/liblatexila/latexila-latex-commands.c:71 ../src/structure.vala:783
 msgid "Label"
 msgstr "Ετικέτα"
 
@@ -647,7 +717,8 @@ msgid "Placeholders:"
 msgstr "Δεσμευτικά θέσης:"
 
 #: ../src/build_tool_dialog.vala:620
-msgid "The active document's filename."
+#| msgid "The active document's filename."
+msgid "The active document’s filename."
 msgstr "Το όνομα αρχείου του ενεργού εγγράφου."
 
 #: ../src/build_tool_dialog.vala:621 ../src/build_tool_dialog.vala:626
@@ -655,7 +726,8 @@ msgid "If the active document belongs to a project, the main file is chosen."
 msgstr "Αν το ενεργό έγγραφο ανήκει σε ένα έργο, επιλέγεται το κύριο αρχείο."
 
 #: ../src/build_tool_dialog.vala:625
-msgid "The active document's filename without its extension."
+#| msgid "The active document's filename without its extension."
+msgid "The active document’s filename without its extension."
 msgstr "Το όνομα αρχείου του ενεργού εγγράφου χωρίς την επέκτασή του."
 
 #: ../src/build_tool_dialog.vala:675
@@ -714,11 +786,12 @@ msgstr "%s [αντίγραφο]"
 
 #: ../src/build_tools_preferences.vala:332
 #, c-format
-msgid "Do you really want to delete the build tool \"%s\"?"
-msgstr "Επιθυμείτε σίγουρα την διαγραφή του εργαλείου δόμησης \"%s\";"
+#| msgid "Do you really want to delete the build tool \"%s\"?"
+msgid "Do you really want to delete the build tool “%s”?"
+msgstr "Επιθυμείτε σίγουρα την διαγραφή του εργαλείου δόμησης «%s»;"
 
 #: ../src/build_tools_preferences.vala:336 ../src/clean_build_files.vala:243
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:146
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:148
 #: ../src/main_window_edit.vala:51 ../src/main_window_structure.vala:38
 #: ../src/project_dialogs.vala:242 ../src/project_dialogs.vala:277
 msgid "_Delete"
@@ -737,7 +810,7 @@ msgstr "Επιλέξτε τα αρχεία που θέλετε να διαγρά
 msgid "No build file to clean up."
 msgstr "Δεν υπάρχει αρχείο δόμησης για καθαρισμό."
 
-#: ../src/completion.vala:330
+#: ../src/completion.vala:334
 msgid "No matching proposal"
 msgstr "Δεν υπάρχει πρόταση που ταιριάζει"
 
@@ -748,12 +821,12 @@ msgstr "Δεν υπάρχει πρόταση που ταιριάζει"
 msgid "Ln %d, Col %d"
 msgstr "Γρ %d, Στ %d"
 
-#: ../src/dialogs.vala:40 ../src/main_window.vala:756
+#: ../src/dialogs.vala:40 ../src/main_window.vala:753
 msgid "Close _without Saving"
 msgstr "Κλείσιμο _χωρίς αποθήκευση"
 
 #: ../src/dialogs.vala:42 ../src/main_window_file.vala:41
-#: ../src/main_window.vala:762 ../src/main_window.vala:854
+#: ../src/main_window.vala:759 ../src/main_window.vala:812
 msgid "_Save"
 msgstr "Απ_οθήκευση"
 
@@ -770,87 +843,72 @@ msgid "Select the documents you want to save:"
 msgstr "Επιλέξτε τα έγγραφα που θέλετε να αποθηκεύσετε:"
 
 #: ../src/dialogs.vala:129
-msgid "If you don't save, all your changes will be permanently lost."
+#| msgid "If you don't save, all your changes will be permanently lost."
+msgid "If you don’t save, all your changes will be permanently lost."
 msgstr "Αν δεν αποθηκεύσετε, όλες οι αλλαγές θα χαθούν μόνιμα."
 
-#: ../src/document_structure.vala:720
+#: ../src/document_structure.vala:745
 msgid "The structure item already contains a sub-paragraph."
 msgstr "Το στοιχείο δομής περιέχει ήδη μια υποπαράγραφο."
 
-#: ../src/document_tab.vala:174
-msgid "Close document"
-msgstr "Κλείσιμο εγγράφου"
-
-#. main file
-#: ../src/document_tab.vala:234 ../src/project_dialogs.vala:46
-#: ../src/project_dialogs.vala:48 ../src/project_dialogs.vala:142
-#: ../src/project_dialogs.vala:144 ../src/project_dialogs.vala:217
-msgid "Main File"
-msgstr "Κύριο αρχείο"
-
-#: ../src/document_tab.vala:236
-msgid "Main File:"
-msgstr "Κύριο αρχείο:"
-
-#: ../src/document_tab.vala:260
+#: ../src/document_tab.vala:147
 #, c-format
-msgid "Activate '%s'"
-msgstr "Ενεργοποίηση '%s'"
+#| msgid "Activate '%s'"
+msgid "Activate “%s”"
+msgstr "Ενεργοποίηση «%s»"
 
-#: ../src/document_tab.vala:279
+#: ../src/document_tab.vala:166
 #, c-format
 msgid "The file %s changed on disk."
 msgstr "Το αρχείο %s έχει τροποποιηθεί στον δίσκο."
 
-#: ../src/document_tab.vala:284
+#: ../src/document_tab.vala:171
 msgid "Do you want to drop your changes and reload the file?"
 msgstr "Θέλετε να απορρίψετε τις αλλαγές σας και να ξαναφορτώσετε το αρχείο;"
 
-#: ../src/document_tab.vala:286
+#: ../src/document_tab.vala:173
 msgid "Do you want to reload the file?"
 msgstr "Θέλετε να επαναφορτώσετε το αρχείο;"
 
-#: ../src/document_tab.vala:290
+#: ../src/document_tab.vala:177
 msgid "_Reload"
 msgstr "Α_νανέωση"
 
-#: ../src/document.vala:134
+#: ../src/document.vala:133
 #, c-format
-msgid "Impossible to load the file '%s'."
-msgstr "Αδύνατη η φόρτωση του αρχείου '%s'."
+#| msgid "Impossible to load the file '%s'."
+msgid "Impossible to load the file “%s”."
+msgstr "Αδύνατη η φόρτωση του αρχείου «%s»."
 
-#: ../src/document.vala:212
+#: ../src/document.vala:215
 #, c-format
 msgid "The file %s has been modified since reading it."
 msgstr "Το αρχείο %s έχει τροποποιηθεί από τότε που το διαβάσατε."
 
-#: ../src/document.vala:215
+#: ../src/document.vala:218
 msgid "If you save it, all the external changes could be lost. Save it anyway?"
 msgstr ""
 "Αν το αποθηκεύσετε όλες οι εξωτερικές αλλαγές μπορεί να χαθούν. Να "
 "αποθηκευτεί οπωσδήποτε;"
 
-#: ../src/document.vala:218
+#: ../src/document.vala:222
 msgid "_Save Anyway"
 msgstr "Απο_θήκευση οπωσδήποτε"
 
-#: ../src/document.vala:219
-msgid "_Don't Save"
+#: ../src/document.vala:223
+#| msgid "_Don't Save"
+msgid "_Don’t Save"
 msgstr "_Να μην αποθηκευθεί"
 
-#: ../src/document.vala:231
+#: ../src/document.vala:240
 msgid "Impossible to save the file."
 msgstr "Αδύνατη η αποθήκευση του αρχείου."
 
-#: ../src/document.vala:256
+#: ../src/document.vala:268
 msgid "Error trying to convert the document to UTF-8"
 msgstr "Σφάλμα στην προσπάθεια μετατροπής του εγγράφου σε UTF-8"
 
-#: ../src/document.vala:310
-msgid "Untitled Document"
-msgstr "Ανώνυμο έγγραφο"
-
-#: ../src/document.vala:594
+#: ../src/document.vala:497
 msgid ""
 "The file has a temporary location. The data can be lost after rebooting your "
 "computer."
@@ -858,30 +916,30 @@ msgstr ""
 "Το αρχείο έχει μια προσωρινή θέση. Τα δεδομένα μπορούν να χαθούν μετά την "
 "επανεκκίνηση του υπολογιστή σας."
 
-#: ../src/document.vala:595
+#: ../src/document.vala:498
 msgid "Do you want to save the file in a safer place?"
 msgstr "Θέλετε να αποθηκεύσετε το αρχείο σε μια πιο ασφαλή θέση;"
 
-#: ../src/document.vala:598 ../src/main_window_file.vala:44
-#: ../src/main_window.vala:760
+#: ../src/document.vala:499 ../src/main_window_file.vala:44
+#: ../src/main_window.vala:757
 msgid "Save _As"
 msgstr "Αποθήκευση _ως"
 
-#: ../src/document.vala:599
+#: ../src/document.vala:500
 msgid "Cancel"
 msgstr "Aκύρωση"
 
-#: ../src/document_view.vala:356
-msgid "No dictionaries available for the spell checking."
+#: ../src/document_view.vala:312
+#| msgid "No dictionaries available for the spell checking."
+msgid "No dictionaries available for the spell-checking."
 msgstr "Δεν υπάρχουν διαθέσιμα λεξικά για ορθογραφικό έλεγχο."
 
 #. Help
-#: ../src/document_view.vala:358 ../src/main_window.vala:62
-#: ../src/ui/menus.ui.h:4
+#: ../src/document_view.vala:314 ../src/main_window.vala:63
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: ../src/document_view.vala:359 ../src/tab_info_bar.vala:77
+#: ../src/document_view.vala:315
 msgid "_OK"
 msgstr "Εν_τάξει"
 
@@ -897,56 +955,60 @@ msgstr "Μετάβαση στον γονικό κατάλογο"
 msgid "Go to the active document directory"
 msgstr "Μετάβαση στον ενεργό κατάλογο εγγράφου"
 
-#: ../src/file_browser.vala:303
+#: ../src/file_browser.vala:290
 msgid "Open in a file manager"
 msgstr "Άνοιγμα στον διαχειριστή αρχείων"
 
-#: ../src/file_browser.vala:305
+#: ../src/file_browser.vala:292
 msgid "Open the current directory in a file manager"
 msgstr "Άνοιγμα του τρέχοντος καταλόγου στον διαχειριστή αρχείων"
 
-#: ../src/file_browser.vala:327
+#: ../src/file_browser.vala:314
 msgid "Open in a terminal"
 msgstr "Άνοιγμα σε τερματικό"
 
-#: ../src/file_browser.vala:328
+#: ../src/file_browser.vala:315
 msgid "Open the current directory in a terminal"
 msgstr "Άνοιγμα του τρέχοντος  καταλόγου σε τερματικό"
 
-#: ../src/file_browser.vala:417
+#: ../src/file_browser.vala:405
 msgid "File System"
 msgstr "Σύστημα αρχείων"
 
 #. File browser
-#: ../src/file_browser.vala:536 ../src/main_window.vala:406
+#: ../src/file_browser.vala:524 ../src/main_window.vala:450
 msgid "File Browser"
 msgstr "Περιηγητής αρχείων"
 
-#: ../src/latexila_app.vala:77
-msgid "Show the application's version"
+#: ../src/glatex_app.vala:78
+#| msgid "Show the application's version"
+msgid "Show the application’s version"
 msgstr "Εμφάνιση της έκδοσης της εφαρμογής"
 
-#: ../src/latexila_app.vala:80
+#: ../src/glatex_app.vala:81
 msgid "Create new document"
 msgstr "Δημιουργία νέου εγγράφου"
 
-#: ../src/latexila_app.vala:83
-msgid "Create a new top-level window in an existing instance of LaTeXila"
+#: ../src/glatex_app.vala:84
+#| msgid "Create a new top-level window in an existing instance of LaTeXila"
+msgid "Create a new top-level window in an existing instance of GNOME LaTeX"
 msgstr ""
 "Δημιουργία νέου παραθύρου κορυφαίου επιπέδου σε ένα υπάρχον στιγμιότυπο του "
-"LaTeXila"
+"GNOME LaTeX"
 
-#: ../src/latexila_app.vala:217
-msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
+#: ../src/glatex_app.vala:195
+#| msgid "LaTeXila is an Integrated LaTeX Environment for the GNOME Desktop"
+msgid "GNOME LaTeX is a LaTeX editor for the GNOME desktop"
 msgstr ""
-"Το LaTeXila είναι ένα ολοκληρωμένο περιβάλλον LaTeX για την επιφάνεια "
+"Το GNOME LaTeX είναι ένα ολοκληρωμένο περιβάλλον LaTeX για την επιφάνεια "
 "εργασίας του GNOME"
 
-#: ../src/latexila_app.vala:256 ../src/main_window.vala:68
-msgid "About LaTeXila"
-msgstr "Περί του LaTeXila"
+#: ../src/glatex_app.vala:224 ../src/main_window.vala:69
+#| msgid "About LaTeXila"
+msgid "About GNOME LaTeX"
+msgstr "Περί του GNOME LaTeX"
 
-#: ../src/latexila_app.vala:257
+#: ../src/glatex_app.vala:225
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -956,738 +1018,883 @@ msgstr ""
 "Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
 "http://gnome.gr/"
 
-#. LaTeX: Sectioning
-#: ../src/latex_menu.vala:32
+#. Sections and sub-sections
+#. LaTeX
+#: ../src/latex_menu.vala:30
 msgid "_Sectioning"
 msgstr "Ε_νότητες"
 
-#: ../src/latex_menu.vala:34 ../src/structure.vala:776
-msgid "Part"
-msgstr "Μέρος"
-
-#: ../src/latex_menu.vala:36 ../src/structure.vala:777
-msgid "Chapter"
-msgstr "Κεφάλαιο"
-
-#: ../src/latex_menu.vala:38 ../src/structure.vala:778
-msgid "Section"
-msgstr "Ενότητα"
-
-#: ../src/latex_menu.vala:40 ../src/structure.vala:779
-msgid "Sub-section"
-msgstr "Υποενότητα"
-
-#: ../src/latex_menu.vala:42 ../src/structure.vala:780
-msgid "Sub-sub-section"
-msgstr "Υπο-υποενότητα"
-
-#: ../src/latex_menu.vala:44 ../src/structure.vala:781
-msgid "Paragraph"
-msgstr "Παράγραφος"
-
-#: ../src/latex_menu.vala:46 ../src/structure.vala:782
-msgid "Sub-paragraph"
-msgstr "Υποπαράγραφος"
-
-#. LaTeX: References
-#: ../src/latex_menu.vala:50
+#: ../src/latex_menu.vala:31
 msgid "_References"
 msgstr "_Αναφορές"
 
-#: ../src/latex_menu.vala:54
-msgid "Reference to a label"
-msgstr "Αναφορά σε μια ετικέτα"
-
-#: ../src/latex_menu.vala:56
-msgid "Page reference to a label"
-msgstr "Αναφορά σελίδας σε μια ετικέτα"
-
-#: ../src/latex_menu.vala:58
-msgid "Add a word to the index"
-msgstr "Προσθήκη λέξης στο ευρετήριο"
-
-#: ../src/latex_menu.vala:60
-msgid "Footnote"
-msgstr "Υποσημείωση"
-
-#: ../src/latex_menu.vala:62
-msgid "Reference to a bibliography item"
-msgstr "Αναφορά σε ένα στοιχείο βιβλιογραφίας"
-
-#: ../src/latex_menu.vala:68
-msgid "Center - \\begin{center}"
-msgstr "Kέντρο - \\begin{center}"
-
-#: ../src/latex_menu.vala:70
-msgid "Align Left - \\begin{flushleft}"
-msgstr "Στοίχιση αριστερά - \\begin{flushleft}"
-
-#: ../src/latex_menu.vala:72
-msgid "Align Right - \\begin{flushright}"
-msgstr "Στοίχιση δεξιά - \\begin{flushleft}"
-
-#: ../src/latex_menu.vala:74
-msgid "Figure - \\begin{figure}"
-msgstr "Σχήμα - \\begin{figure}"
-
-#: ../src/latex_menu.vala:76
-msgid "Table - \\begin{table}"
-msgstr "Πίνακας - \\begin{table}"
-
-#: ../src/latex_menu.vala:78
-msgid "Quote - \\begin{quote}"
-msgstr "Παράθεση - \\begin{quote}"
-
-#: ../src/latex_menu.vala:80
-msgid "Quotation - \\begin{quotation}"
-msgstr "Εισαγωγικά - \\begin{quotation}"
-
-#: ../src/latex_menu.vala:82
-msgid "Verse - \\begin{verse}"
-msgstr "Ποίημα - \\begin{verse}"
-
-#: ../src/latex_menu.vala:84
-msgid "Verbatim - \\begin{verbatim}"
-msgstr "Κατά λέξη - \\begin{verbatim}"
-
-#: ../src/latex_menu.vala:86
-msgid "Minipage - \\begin{minipage}"
-msgstr "Μικρή σελίδα - \\begin{minipage}"
-
-#: ../src/latex_menu.vala:88
-msgid "Title page - \\begin{titlepage}"
-msgstr "Σελίδα τίτλου - \\begin{titlepage}"
-
-#. LaTeX: list environments
-#: ../src/latex_menu.vala:92
+#: ../src/latex_menu.vala:33
 msgid "_List Environments"
 msgstr "Περιβάλλοντα _λίστας"
 
-#: ../src/latex_menu.vala:94
-msgid "Bulleted List - \\begin{itemize}"
-msgstr "Λίστα κουκκίδων - \\begin{itemize}"
-
-#: ../src/latex_menu.vala:96
-msgid "Enumeration - \\begin{enumerate}"
-msgstr "Αρίθμηση - \\begin{enumerate}"
-
-#: ../src/latex_menu.vala:98
-msgid "Description - \\begin{description}"
-msgstr "Περιγραφή - \\begin{description}"
-
-#: ../src/latex_menu.vala:100
-msgid "Custom list - \\begin{list}"
-msgstr "Προσαρμοσμένη λίστα - \\begin{list}"
-
-#: ../src/latex_menu.vala:102
-msgid "List item - \\item"
-msgstr "Στοιχείο λίστας - \\item"
-
-#. LaTeX: character sizes
-#: ../src/latex_menu.vala:106
+#: ../src/latex_menu.vala:34
 msgid "_Characters Sizes"
 msgstr "Μεγέθη _χαρακτήρων"
 
-#. LaTeX: font styles
-#: ../src/latex_menu.vala:130
+#: ../src/latex_menu.vala:35
 msgid "_Font Styles"
 msgstr "Τεχνοτροπίες _γραμματοσειράς"
 
-#: ../src/latex_menu.vala:132
-msgid "Bold - \\textbf"
-msgstr "Έντονα - \\textbf"
-
-#: ../src/latex_menu.vala:134
-msgid "Italic - \\textit"
-msgstr "Πλάγια - \\textit"
-
-#: ../src/latex_menu.vala:136
-msgid "Typewriter - \\texttt"
-msgstr "Γραφομηχανή - \\texttt"
-
-#: ../src/latex_menu.vala:138
-msgid "Slanted - \\textsl"
-msgstr "Λοξά - \\textsl"
-
-#: ../src/latex_menu.vala:140
-msgid "Small Capitals - \\textsc"
-msgstr "Μικρά κεφαλαία - \\textsc"
-
-#: ../src/latex_menu.vala:142
-msgid "Sans Serif - \\textsf"
-msgstr "Χωρίς πατούρα - \\textsf"
-
-#: ../src/latex_menu.vala:144
-msgid "Emphasized - \\emph"
-msgstr "Με έμφαση - \\emph"
-
-#: ../src/latex_menu.vala:146
-msgid "Underline - \\underline"
-msgstr "Υπογράμμιση - \\underline"
-
-#: ../src/latex_menu.vala:148
+#: ../src/latex_menu.vala:36
 msgid "_Font Family"
 msgstr "Οικογένεια _γραμματοσειράς"
 
-#: ../src/latex_menu.vala:150
-msgid "Roman - \\rmfamily"
-msgstr "Λατινικά - \\rmfamily"
-
-#: ../src/latex_menu.vala:152
-msgid "Sans Serif - \\sffamily"
-msgstr "Χωρίς πατούρα - \\sffamily"
-
-#: ../src/latex_menu.vala:154
-msgid "Monospace - \\ttfamily"
-msgstr "Σταθερού πλάτους - \\ttfamily"
-
-#: ../src/latex_menu.vala:156
+#: ../src/latex_menu.vala:37
 msgid "F_ont Series"
 msgstr "Σειρές _γραμματοσειράς"
 
-#: ../src/latex_menu.vala:158
-msgid "Medium - \\mdseries"
-msgstr "Μεσαία- \\mdseries"
-
-#: ../src/latex_menu.vala:160
-msgid "Bold - \\bfseries"
-msgstr "Έντονα - \\bfseries"
-
-#: ../src/latex_menu.vala:162
+#: ../src/latex_menu.vala:38
 msgid "Fo_nt Shape"
 msgstr "Σχήμα γρα_μματοσειράς"
 
-#: ../src/latex_menu.vala:164
-msgid "Upright - \\upshape"
-msgstr "Όρθια - \\upshape"
-
-#: ../src/latex_menu.vala:166
-msgid "Italic - \\itshape"
-msgstr "Πλάγια - \\itshape"
-
-#: ../src/latex_menu.vala:168
-msgid "Slanted - \\slshape"
-msgstr "Λοξά - \\slshape"
-
-#: ../src/latex_menu.vala:170
-msgid "Small Capitals - \\scshape"
-msgstr "Μικρά κεφαλαία - \\scshape"
-
-#. LaTeX: Tabular
-#: ../src/latex_menu.vala:174
+#: ../src/latex_menu.vala:39
 msgid "_Tabular"
 msgstr "_Πινακοειδή"
 
-#: ../src/latex_menu.vala:176
-msgid "Tabbing - \\begin{tabbing}"
-msgstr "Στηλοθέτες - \\begin{tabbing}"
-
-#: ../src/latex_menu.vala:178
-msgid "Tabular - \\begin{tabular}"
-msgstr "Πινακοειδής - \\begin{tabular}"
-
-#: ../src/latex_menu.vala:180
-msgid "Multicolumn - \\multicolumn"
-msgstr "Πολλαπλή στήλη - \\multicolumn"
-
-#: ../src/latex_menu.vala:182
-msgid "Horizontal line - \\hline"
-msgstr "Οριζόντια γραμμή - \\hline"
-
-#: ../src/latex_menu.vala:184
-msgid "Vertical line - \\vline"
-msgstr "Κατακόρυφη γραμμή - \\vline"
-
-#: ../src/latex_menu.vala:186
-msgid "Horizontal line (columns specified) - \\cline"
-msgstr "Οριζόντια γραμμή (συγκεκριμένες στήλες) - \\cline"
-
-#: ../src/latex_menu.vala:192
-msgid "Frame - \\begin{frame}"
-msgstr "Πλαίσιο - \\begin{frame}"
-
-#: ../src/latex_menu.vala:194
-msgid "Block - \\begin{block}"
-msgstr "Ομάδα - \\begin{block}"
-
-#: ../src/latex_menu.vala:196
-msgid "Two columns - \\begin{columns}"
-msgstr "Δύο στήλες - \\begin{columns}"
-
-#. LaTeX: Spacing
-#: ../src/latex_menu.vala:200
+#: ../src/latex_menu.vala:41
 msgid "_Spacing"
 msgstr "_Διάστιχο"
 
-#: ../src/latex_menu.vala:201
-msgid "New _Line"
-msgstr "Νέα _γραμμή"
-
-#: ../src/latex_menu.vala:202
-msgid "New Line - \\\\"
-msgstr "Νέα γραμμή - \\\\"
-
-#: ../src/latex_menu.vala:204
-msgid "New page - \\newpage"
-msgstr "Νέα σελίδα - \\newpage"
-
-#: ../src/latex_menu.vala:206
-msgid "Line break - \\linebreak"
-msgstr "Αλλαγή γραμμής - \\linebreak"
-
-#: ../src/latex_menu.vala:208
-msgid "Page break - \\pagebreak"
-msgstr "Αλλαγή σελίδας - \\pagebreak"
-
-#: ../src/latex_menu.vala:210
-msgid "Big skip - \\bigskip"
-msgstr "Μεγάλη υπερπήδηση - \\bigskip"
-
-#: ../src/latex_menu.vala:212
-msgid "Medium skip - \\medskip"
-msgstr "Μεσαία υπερπήδηση - \\medskip"
-
-#: ../src/latex_menu.vala:214
-msgid "Horizontal space - \\hspace"
-msgstr "Οριζόντιο κενό - \\hspace"
-
-#: ../src/latex_menu.vala:216
-msgid "Vertical space - \\vspace"
-msgstr "Κατακόρυφο κενό - \\vspace"
-
-#: ../src/latex_menu.vala:218
-msgid "No paragraph indentation - \\noindent"
-msgstr "Χωρίς εσοχή παραγράφου - \\noindent"
-
-#. LaTeX: International accents
-#: ../src/latex_menu.vala:222
+#: ../src/latex_menu.vala:42
 msgid "International _Accents"
 msgstr "Διεθνείς _τόνοι"
 
-#: ../src/latex_menu.vala:223
-msgid "Acute accent - \\'"
-msgstr "Οξεία - \\'"
-
-#: ../src/latex_menu.vala:224
-msgid "Grave accent - \\`"
-msgstr "Βαρεία - \\`"
-
-#: ../src/latex_menu.vala:225
-msgid "Circumflex accent - \\^"
-msgstr "Περισπωμένη - \\^"
-
-#: ../src/latex_menu.vala:226
-msgid "Trema - \\\""
-msgstr "Τρήμα (διαλυτικά) - \\\""
-
-#: ../src/latex_menu.vala:227
-msgid "Tilde - \\~"
-msgstr "Τίλντε - \\~"
-
-#: ../src/latex_menu.vala:228
-msgid "Macron - \\="
-msgstr "Μακρό - \\="
-
-#: ../src/latex_menu.vala:229
-msgid "Dot above - \\."
-msgstr "Κουκκίδα από πάνω - \\."
-
-#: ../src/latex_menu.vala:230
-msgid "Caron - \\v"
-msgstr "Αντίστροφη περισπωμένη - \\v"
-
-#: ../src/latex_menu.vala:231
-msgid "Breve - \\u"
-msgstr "Μπρέβε - \\u"
-
-#: ../src/latex_menu.vala:233
-msgid "Double acute accent - \\H"
-msgstr "Διπλή οξεία - \\H"
-
-#: ../src/latex_menu.vala:234
-msgid "Cedilla - \\c"
-msgstr "Σεντίλα - \\c"
-
-#: ../src/latex_menu.vala:235
-msgid "Ogonek - \\k"
-msgstr "Ογκόνεκ - \\k"
-
-#: ../src/latex_menu.vala:236
-msgid "Dot below - \\d"
-msgstr "Κουκκίδα από κάτω - \\d"
-
-#: ../src/latex_menu.vala:237
-msgid "Macron below - \\b"
-msgstr "Μακρό από κάτω - \\b"
-
-#: ../src/latex_menu.vala:238
-msgid "Ring - \\r"
-msgstr "Δακτύλιος - \\r"
-
-#: ../src/latex_menu.vala:239
-msgid "Tie - \\t"
-msgstr "Σύζευξη - \\t"
-
-#. LaTeX: Others
-#: ../src/latex_menu.vala:243
+#: ../src/latex_menu.vala:43
 msgid "_Misc"
 msgstr "_Ποικίλα"
 
-#: ../src/latex_menu.vala:245
-msgid "Document class - \\documentclass"
-msgstr "Κλάση εγγράφου - \\documentclass"
-
-#: ../src/latex_menu.vala:247
-msgid "Use package - \\usepackage"
-msgstr "Χρήση πακέτου - \\usepackage"
-
-#: ../src/latex_menu.vala:248
-msgid "_AMS packages"
-msgstr "Πακέτα _AMS"
-
-#: ../src/latex_menu.vala:249
-msgid "AMS packages"
-msgstr "Πακέτα AMS"
-
-#: ../src/latex_menu.vala:250
-msgid "Author - \\author"
-msgstr "Συντάκτης - \\author"
-
-#: ../src/latex_menu.vala:251
-msgid "Title - \\title"
-msgstr "Τίτλος - \\title"
-
-#: ../src/latex_menu.vala:253
-msgid "Content of the document - \\begin{document}"
-msgstr "Περιεχόμενο του εγγράφου - \\begin{document}"
-
-#: ../src/latex_menu.vala:255
-msgid "Make title - \\maketitle"
-msgstr "Δημιουργία τίτλου - \\maketitle"
-
-#: ../src/latex_menu.vala:257
-msgid "Table of contents - \\tableofcontents"
-msgstr "Πίνακας περιεχομένων - \\tableofcontents"
-
-#: ../src/latex_menu.vala:259
-msgid "Abstract - \\begin{abstract}"
-msgstr "Περίληψη - \\begin{abstract}"
-
-#: ../src/latex_menu.vala:261
-msgid "Include an image (graphicx package) - \\includegraphics"
-msgstr "Συμπερίληψη μιας εικόνας (πακέτο graphicx) - \\includegraphics"
-
-#: ../src/latex_menu.vala:264
-msgid "Include a file - \\input"
-msgstr "Συμπερίληψη αρχείου - \\input"
-
 #. Math
-#: ../src/latex_menu.vala:268
+#: ../src/latex_menu.vala:46
 msgid "_Math"
 msgstr "_Μαθηματικά"
 
-#. Math Environments
-#: ../src/latex_menu.vala:272
+#: ../src/latex_menu.vala:47
 msgid "_Math Environments"
 msgstr "_Μαθηματικά περιβάλλοντα"
 
-#: ../src/latex_menu.vala:273
-msgid "_Mathematical Environment - $...$"
-msgstr "_Μαθηματικό περιβάλλον - $...$"
-
-#: ../src/latex_menu.vala:274
-msgid "Mathematical Environment - $...$"
-msgstr "Μαθηματικό περιβάλλον - $...$"
-
-#: ../src/latex_menu.vala:275
-msgid "_Centered Formula - \\[...\\]"
-msgstr "_Κεντραρισμένος τύπος - \\[...\\]"
-
-#: ../src/latex_menu.vala:276
-msgid "Centered Formula - \\[...\\]"
-msgstr "Κεντραρισμένος τύπος - \\[...\\]"
-
-#: ../src/latex_menu.vala:278
-msgid "_Numbered Equation - \\begin{equation}"
-msgstr "_Αριθμημένη εξίσωση - \\begin{equation}"
-
-#: ../src/latex_menu.vala:279
-msgid "Numbered Equation - \\begin{equation}"
-msgstr "Αριθμημένη εξίσωση - \\begin{equation}"
-
-#: ../src/latex_menu.vala:280
-msgid "_Array of Equations - \\begin{align*}"
-msgstr "_Πίνακας εξισώσεων - \\begin{align*}"
-
-#: ../src/latex_menu.vala:281
-msgid "Array of Equations - \\begin{align*}"
-msgstr "Πίνακας εξισώσεων - \\begin{align*}"
-
-#: ../src/latex_menu.vala:283
-msgid "Numbered Array of _Equations - \\begin{align}"
-msgstr "Αριθμημένος πίνακας ε_ξισώσεων - \\begin{align}"
-
-#: ../src/latex_menu.vala:284
-msgid "Numbered Array of Equations - \\begin{align}"
-msgstr "Αριθμημένος πίνακας εξισώσεων - \\begin{align}"
-
-#: ../src/latex_menu.vala:287
-msgid "_Superscript - ^{}"
-msgstr "Εκ_θέτης - ^{}"
-
-#: ../src/latex_menu.vala:288
-msgid "Superscript - ^{}"
-msgstr "Εκθέτης - ^{}"
-
-#: ../src/latex_menu.vala:289
-msgid "Su_bscript - __{}"
-msgstr "Δείκ_της - __{}"
-
-#: ../src/latex_menu.vala:290
-msgid "Subscript - _{}"
-msgstr "Δείκτης - _{}"
-
-#: ../src/latex_menu.vala:291
-msgid "_Fraction - \\frac{}{}"
-msgstr "_Κλάσμα- \\frac{}{}"
-
-#: ../src/latex_menu.vala:292
-msgid "Fraction - \\frac{}{}"
-msgstr "Κλάσμα- \\frac{}{}"
-
-#: ../src/latex_menu.vala:293
-msgid "Square _Root - \\sqrt{}"
-msgstr "Τετραγωνική _ρίζα - \\sqrt{}"
-
-#: ../src/latex_menu.vala:294
-msgid "Square Root - \\sqrt{}"
-msgstr "Τετραγωνική ρίζα - \\sqrt{}"
-
-#: ../src/latex_menu.vala:295
-msgid "_N-th Root - \\sqrt[]{}"
-msgstr "_Ν-οστή ρίζα - \\sqrt[]{}"
-
-#: ../src/latex_menu.vala:296
-msgid "N-th Root - \\sqrt[]{}"
-msgstr "Ν-οστή ρίζα - \\sqrt[]{}"
-
-#. Math functions
-#: ../src/latex_menu.vala:300
+#: ../src/latex_menu.vala:48
 msgid "Math _Functions"
 msgstr "Μαθηματικές _συναρτήσεις"
 
-#. Math Font Styles
-#: ../src/latex_menu.vala:334
+#: ../src/latex_menu.vala:49
 msgid "Math Font _Styles"
 msgstr "Τε_χνοτροπίες γραμματοσειρών μαθηματικών"
 
-#: ../src/latex_menu.vala:336
-msgid "Roman - \\mathrm"
-msgstr "Λατινικά - \\mathrm"
-
-#: ../src/latex_menu.vala:338
-msgid "Italic - \\mathit"
-msgstr "Πλάγια - \\mathit"
-
-#: ../src/latex_menu.vala:340
-msgid "Bold - \\mathbf"
-msgstr "Έντονα - \\mathbf"
-
-#: ../src/latex_menu.vala:342
-msgid "Sans Serif - \\mathsf"
-msgstr "Χωρίς πατούρα - \\mathsf"
-
-#: ../src/latex_menu.vala:344
-msgid "Typewriter - \\mathtt"
-msgstr "Γραφομηχανή - \\mathtt"
-
-#: ../src/latex_menu.vala:346
-msgid "Calligraphic - \\mathcal"
-msgstr "Καλλιγραφικά - \\mathcal"
-
-#: ../src/latex_menu.vala:348
-msgid "Blackboard (uppercase only)  - \\mathbb (amsfonts package)"
-msgstr "Μαυροπίνακας (μόνο κεφαλαία) - \\mathbb (πακέτο amsfonts)"
-
-#: ../src/latex_menu.vala:351
-msgid "Euler Fraktur - \\mathfrak (amsfonts package)"
-msgstr "Fraktur Όιλερ - \\mathfrak (πακέτο amsfonts)"
-
-#. Math Accents
-#: ../src/latex_menu.vala:356
+#: ../src/latex_menu.vala:50
 msgid "Math _Accents"
 msgstr "Μαθηματικοί _τόνοι"
 
-#. Math Spaces
-#: ../src/latex_menu.vala:377
+#: ../src/latex_menu.vala:51
 msgid "Math _Spaces"
 msgstr "Μαθηματικά _κενά"
 
-#: ../src/latex_menu.vala:378
-msgid "_Small"
-msgstr "_Μικρά"
-
-#: ../src/latex_menu.vala:379
-msgid "Small - \\,"
-msgstr "Μικρά - \\,"
-
-#: ../src/latex_menu.vala:380
-msgid "_Medium"
-msgstr "_Μεσαία"
-
-#: ../src/latex_menu.vala:381
-msgid "Medium - \\:"
-msgstr "Μεσαία - \\:"
-
-#: ../src/latex_menu.vala:382
-msgid "_Large"
-msgstr "_Μεγάλα"
-
-#: ../src/latex_menu.vala:383
-msgid "Large - \\;"
-msgstr "Μεγάλα - \\;"
-
-#. Math: Left Delimiters
-#: ../src/latex_menu.vala:389
+#: ../src/latex_menu.vala:52
 msgid "_Left Delimiters"
 msgstr "_Αριστεροί οριοθέτες"
 
-#: ../src/latex_menu.vala:390
-msgid "left ("
-msgstr "αριστερό ("
-
-#: ../src/latex_menu.vala:392
-msgid "left ["
-msgstr "αριστερό ["
-
-#: ../src/latex_menu.vala:394
-msgid "left { "
-msgstr "αριστερό { "
-
-#: ../src/latex_menu.vala:396
-msgid "left <"
-msgstr "αριστερό <"
-
-#: ../src/latex_menu.vala:398
-msgid "left )"
-msgstr "αριστερό )"
-
-#: ../src/latex_menu.vala:400
-msgid "left ]"
-msgstr "αριστερό ]"
-
-#: ../src/latex_menu.vala:402
-msgid "left  }"
-msgstr "αριστερό }"
-
-#: ../src/latex_menu.vala:404
-msgid "left >"
-msgstr "αριστερό >"
-
-#: ../src/latex_menu.vala:406
-msgid "left ."
-msgstr "αριστερή ."
-
-#. Math: Right Delimiters
-#: ../src/latex_menu.vala:411
+#: ../src/latex_menu.vala:53
 msgid "Right _Delimiters"
 msgstr "Δεξιοί _οριοθέτες"
 
-#: ../src/latex_menu.vala:412
-msgid "right )"
-msgstr "δεξιό )"
-
-#: ../src/latex_menu.vala:414
-msgid "right ]"
-msgstr "δεξιό ]"
-
-#: ../src/latex_menu.vala:416
-msgid "right  }"
-msgstr "δεξιό }"
-
-#: ../src/latex_menu.vala:418
-msgid "right >"
-msgstr "δεξιό >"
-
-#: ../src/latex_menu.vala:420
-msgid "right ("
-msgstr "δεξιό ("
-
-#: ../src/latex_menu.vala:422
-msgid "right ["
-msgstr "δεξιό ["
-
-#: ../src/latex_menu.vala:424
-msgid "right { "
-msgstr "δεξιό { "
-
-#: ../src/latex_menu.vala:426
-msgid "right <"
-msgstr "δεξιό <"
-
-#: ../src/latex_menu.vala:428
-msgid "right ."
-msgstr "δεξιά ."
-
 #. menus under toolitems
-#: ../src/latex_menu.vala:443
+#: ../src/latex_menu.vala:67
 msgid "Sectioning"
 msgstr "Ενότητες"
 
-#: ../src/latex_menu.vala:446
+#: ../src/latex_menu.vala:70
 msgid "Characters Sizes"
 msgstr "Μεγέθη χαρακτήρων"
 
-#: ../src/latex_menu.vala:449
+#: ../src/latex_menu.vala:73
 msgid "References"
 msgstr "Αναφορές"
 
-#: ../src/latex_menu.vala:452
+#: ../src/latex_menu.vala:76
 msgid "Presentation Environments"
 msgstr "Περιβάλλοντα παρουσίασης"
 
-#: ../src/latex_menu.vala:455
+#: ../src/latex_menu.vala:79
 msgid "Math Environments"
 msgstr "Περιβάλλοντα μαθηματικών"
 
-#: ../src/liblatexila/latexila-build-job.c:359
+#: ../src/liblatexila/latexila-build-job.c:365
 #, c-format
-msgid "%s doesn't seem to be installed."
+#| msgid "%s doesn't seem to be installed."
+msgid "%s doesn’t seem to be installed."
 msgstr "Το %s δεν φαίνεται να είναι εγκατεστημένο."
 
-#: ../src/liblatexila/latexila-build-tool.c:547
+#: ../src/liblatexila/latexila-build-tool.c:555
+#: ../src/liblatexila/latexila-synctex.c:569
 #, c-format
-msgid "The file '%s' doesn't exist."
-msgstr "Το αρχείο '%s' δεν υπάρχει."
+#| msgid "The file '%s' doesn't exist."
+msgid "The file “%s” doesn’t exist."
+msgstr "Το αρχείο «%s» δεν υπάρχει."
 
-#: ../src/liblatexila/latexila-build-tool.c:575
+#: ../src/liblatexila/latexila-build-tool.c:583
 #, c-format
-msgid "Failed to open '%s':"
-msgstr "Αποτυχία ανοίγματος του '%s':"
+#| msgid "Failed to open '%s':"
+msgid "Failed to open “%s”:"
+msgstr "Αποτυχία ανοίγματος του «%s»:"
 
-#: ../src/liblatexila/latexila-build-tool.c:677
+#: ../src/liblatexila/latexila-build-tool.c:689
 #, c-format
 msgid "Open %s"
 msgstr "Άνοιγμα %s"
 
-#: ../src/liblatexila/latexila-synctex.c:189
+#: ../src/liblatexila/latexila-latex-commands.c:54 ../src/structure.vala:776
+msgid "Part"
+msgstr "Μέρος"
+
+#: ../src/liblatexila/latexila-latex-commands.c:56 ../src/structure.vala:777
+msgid "Chapter"
+msgstr "Κεφάλαιο"
+
+#: ../src/liblatexila/latexila-latex-commands.c:58 ../src/structure.vala:778
+msgid "Section"
+msgstr "Ενότητα"
+
+#: ../src/liblatexila/latexila-latex-commands.c:60 ../src/structure.vala:779
+msgid "Sub-section"
+msgstr "Υποενότητα"
+
+#: ../src/liblatexila/latexila-latex-commands.c:62 ../src/structure.vala:780
+msgid "Sub-sub-section"
+msgstr "Υπο-υποενότητα"
+
+#: ../src/liblatexila/latexila-latex-commands.c:64 ../src/structure.vala:781
+msgid "Paragraph"
+msgstr "Παράγραφος"
+
+#: ../src/liblatexila/latexila-latex-commands.c:66 ../src/structure.vala:782
+msgid "Sub-paragraph"
+msgstr "Υποπαράγραφος"
+
+#: ../src/liblatexila/latexila-latex-commands.c:73
+msgid "Reference to a label"
+msgstr "Αναφορά σε μια ετικέτα"
+
+#: ../src/liblatexila/latexila-latex-commands.c:75
+msgid "Page reference to a label"
+msgstr "Αναφορά σελίδας σε μια ετικέτα"
+
+#: ../src/liblatexila/latexila-latex-commands.c:77
+msgid "Add a word to the index"
+msgstr "Προσθήκη λέξης στο ευρετήριο"
+
+#: ../src/liblatexila/latexila-latex-commands.c:79
+msgid "Footnote"
+msgstr "Υποσημείωση"
+
+#: ../src/liblatexila/latexila-latex-commands.c:81
+msgid "Reference to a bibliography item"
+msgstr "Αναφορά σε ένα στοιχείο βιβλιογραφίας"
+
+#: ../src/liblatexila/latexila-latex-commands.c:86
+#| msgid "Center - \\begin{center}"
+msgid "Center — \\begin{center}"
+msgstr "Kέντρο — \\begin{center}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:88
+#| msgid "Align Left - \\begin{flushleft}"
+msgid "Align Left — \\begin{flushleft}"
+msgstr "Στοίχιση αριστερά — \\begin{flushleft}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:90
+#| msgid "Align Right - \\begin{flushright}"
+msgid "Align Right — \\begin{flushright}"
+msgstr "Στοίχιση δεξιά — \\begin{flushright}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:92
+#| msgid "Figure - \\begin{figure}"
+msgid "Figure — \\begin{figure}"
+msgstr "Σχήμα — \\begin{figure}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:94
+#| msgid "Table - \\begin{table}"
+msgid "Table — \\begin{table}"
+msgstr "Πίνακας — \\begin{table}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:96
+#| msgid "Quote - \\begin{quote}"
+msgid "Quote — \\begin{quote}"
+msgstr "Παράθεση — \\begin{quote}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:98
+#| msgid "Quotation - \\begin{quotation}"
+msgid "Quotation — \\begin{quotation}"
+msgstr "Εισαγωγικά — \\begin{quotation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:100
+#, fuzzy
+#| msgid "Verse - \\begin{verse}"
+msgid "Verse — \\begin{verse}"
+msgstr "Ποίημα - \\begin{verse}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:102
+#, fuzzy
+#| msgid "Verbatim - \\begin{verbatim}"
+msgid "Verbatim — \\begin{verbatim}"
+msgstr "Κατά λέξη - \\begin{verbatim}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:104
+#, fuzzy
+#| msgid "Minipage - \\begin{minipage}"
+msgid "Minipage — \\begin{minipage}"
+msgstr "Μικρή σελίδα - \\begin{minipage}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:106
+#| msgid "Title page - \\begin{titlepage}"
+msgid "Title page — \\begin{titlepage}"
+msgstr "Σελίδα τίτλου — \\begin{titlepage}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:111
+#| msgid "Bulleted List - \\begin{itemize}"
+msgid "Bulleted List — \\begin{itemize}"
+msgstr "Λίστα κουκκίδων — \\begin{itemize}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:113
+#, fuzzy
+#| msgid "Enumeration - \\begin{enumerate}"
+msgid "Enumeration — \\begin{enumerate}"
+msgstr "Αρίθμηση - \\begin{enumerate}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:115
+#, fuzzy
+#| msgid "Description - \\begin{description}"
+msgid "Description — \\begin{description}"
+msgstr "Περιγραφή - \\begin{description}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:117
+#, fuzzy
+#| msgid "Custom list - \\begin{list}"
+msgid "Custom list — \\begin{list}"
+msgstr "Προσαρμοσμένη λίστα - \\begin{list}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:119
+#| msgid "List item - \\item"
+msgid "List item — \\item"
+msgstr "Στοιχείο λίστας — \\item"
+
+#: ../src/liblatexila/latexila-latex-commands.c:137
+#| msgid "Bold - \\textbf"
+msgid "Bold — \\textbf"
+msgstr "Έντονα — \\textbf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:139
+#| msgid "Italic - \\textit"
+msgid "Italic — \\textit"
+msgstr "Πλάγια — \\textit"
+
+#: ../src/liblatexila/latexila-latex-commands.c:141
+#| msgid "Typewriter - \\texttt"
+msgid "Typewriter — \\texttt"
+msgstr "Γραφομηχανήr — \\texttt"
+
+#: ../src/liblatexila/latexila-latex-commands.c:143
+#, fuzzy
+#| msgid "Slanted - \\textsl"
+msgid "Slanted — \\textsl"
+msgstr "Λοξά - \\textsl"
+
+#: ../src/liblatexila/latexila-latex-commands.c:145
+#, fuzzy
+#| msgid "Small Capitals - \\textsc"
+msgid "Small Capitals — \\textsc"
+msgstr "Μικρά κεφαλαία - \\textsc"
+
+#: ../src/liblatexila/latexila-latex-commands.c:147
+#, fuzzy
+#| msgid "Sans Serif - \\textsf"
+msgid "Sans Serif — \\textsf"
+msgstr "Χωρίς πατούρα - \\textsf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:149
+#| msgid "Emphasized - \\emph"
+msgid "Emphasized — \\emph"
+msgstr "Με έμφαση— \\emph"
+
+#: ../src/liblatexila/latexila-latex-commands.c:151
+#, fuzzy
+#| msgid "Underline - \\underline"
+msgid "Underline — \\underline"
+msgstr "Υπογράμμιση - \\underline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:154
+#, fuzzy
+#| msgid "Roman - \\rmfamily"
+msgid "Roman — \\rmfamily"
+msgstr "Λατινικά - \\rmfamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:156
+#, fuzzy
+#| msgid "Sans Serif - \\sffamily"
+msgid "Sans Serif — \\sffamily"
+msgstr "Χωρίς πατούρα - \\sffamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:158
+#| msgid "Monospace - \\ttfamily"
+msgid "Monospace — \\ttfamily"
+msgstr "Σταθερού πλάτους — \\ttfamily"
+
+#: ../src/liblatexila/latexila-latex-commands.c:161
+#| msgid "Medium - \\mdseries"
+msgid "Medium — \\mdseries"
+msgstr "Μεσαία — \\mdseries"
+
+#: ../src/liblatexila/latexila-latex-commands.c:163
+#| msgid "Bold - \\bfseries"
+msgid "Bold — \\bfseries"
+msgstr "Έντονα — \\bfseries"
+
+#: ../src/liblatexila/latexila-latex-commands.c:166
+#, fuzzy
+#| msgid "Upright - \\upshape"
+msgid "Upright — \\upshape"
+msgstr "Όρθια - \\upshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:168
+#| msgid "Italic - \\itshape"
+msgid "Italic — \\itshape"
+msgstr "Πλάγια — \\itshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:170
+#, fuzzy
+#| msgid "Slanted - \\slshape"
+msgid "Slanted — \\slshape"
+msgstr "Λοξά - \\slshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:172
+#, fuzzy
+#| msgid "Small Capitals - \\scshape"
+msgid "Small Capitals — \\scshape"
+msgstr "Μικρά κεφαλαία - \\scshape"
+
+#: ../src/liblatexila/latexila-latex-commands.c:177
+#, fuzzy
+#| msgid "Tabbing - \\begin{tabbing}"
+msgid "Tabbing — \\begin{tabbing}"
+msgstr "Στηλοθέτες - \\begin{tabbing}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:179
+#, fuzzy
+#| msgid "Tabular - \\begin{tabular}"
+msgid "Tabular — \\begin{tabular}"
+msgstr "Πινακοειδής - \\begin{tabular}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:181
+#| msgid "Multicolumn - \\multicolumn"
+msgid "Multicolumn — \\multicolumn"
+msgstr "Πολλαπλή στήλη — \\multicolumn"
+
+#: ../src/liblatexila/latexila-latex-commands.c:183
+#, fuzzy
+#| msgid "Horizontal line - \\hline"
+msgid "Horizontal line — \\hline"
+msgstr "Οριζόντια γραμμή - \\hline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:185
+#| msgid "Vertical line - \\vline"
+msgid "Vertical line — \\vline"
+msgstr "Κατακόρυφη γραμμή — \\vline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:187
+#| msgid "Horizontal line (columns specified) - \\cline"
+msgid "Horizontal line (columns specified) — \\cline"
+msgstr "Οριζόντια γραμμή (συγκεκριμένες στήλες) — \\cline"
+
+#: ../src/liblatexila/latexila-latex-commands.c:192
+#| msgid "Frame - \\begin{frame}"
+msgid "Frame — \\begin{frame}"
+msgstr "Πλαίσιο — \\begin{frame}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:194
+#, fuzzy
+#| msgid "Block - \\begin{block}"
+msgid "Block — \\begin{block}"
+msgstr "Ομάδα - \\begin{block}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:196
+#| msgid "Two columns - \\begin{columns}"
+msgid "Two columns — \\begin{columns}"
+msgstr "Δύο στήλες — \\begin{columns}"
+
+#. LaTeX: Spacing
+#: ../src/liblatexila/latexila-latex-commands.c:200
+msgid "New _Line"
+msgstr "Νέα _γραμμή"
+
+#: ../src/liblatexila/latexila-latex-commands.c:201
+#| msgid "New Line - \\\\"
+msgid "New Line — \\\\"
+msgstr "Νέα γραμμή — \\\\"
+
+#: ../src/liblatexila/latexila-latex-commands.c:203
+#| msgid "New page - \\newpage"
+msgid "New page — \\newpage"
+msgstr "Νέα σελίδα — \\newpage"
+
+#: ../src/liblatexila/latexila-latex-commands.c:205
+#| msgid "Line break - \\linebreak"
+msgid "Line break — \\linebreak"
+msgstr "Αλλαγή γραμμής — \\linebreak"
+
+#: ../src/liblatexila/latexila-latex-commands.c:207
+#| msgid "Page break - \\pagebreak"
+msgid "Page break — \\pagebreak"
+msgstr "Αλλαγή σελίδας — \\pagebreak"
+
+#: ../src/liblatexila/latexila-latex-commands.c:209
+#| msgid "Big skip - \\bigskip"
+msgid "Big skip — \\bigskip"
+msgstr "Μεγάλη υπερπήδηση — \\bigskip"
+
+#: ../src/liblatexila/latexila-latex-commands.c:211
+#| msgid "Medium skip - \\medskip"
+msgid "Medium skip — \\medskip"
+msgstr "Μεσαία υπερπήδηση — \\medskip"
+
+#: ../src/liblatexila/latexila-latex-commands.c:213
+#| msgid "Horizontal space - \\hspace"
+msgid "Horizontal space — \\hspace"
+msgstr "Οριζόντιο κενό — \\hspace"
+
+#: ../src/liblatexila/latexila-latex-commands.c:215
+#| msgid "Vertical space - \\vspace"
+msgid "Vertical space — \\vspace"
+msgstr "Κατακόρυφο κενό — \\vspace"
+
+#: ../src/liblatexila/latexila-latex-commands.c:217
+#, fuzzy
+#| msgid "No paragraph indentation - \\noindent"
+msgid "No paragraph indentation — \\noindent"
+msgstr "Χωρίς εσοχή παραγράφου - \\noindent"
+
+#. LaTeX: International accents
+#: ../src/liblatexila/latexila-latex-commands.c:221
+#, fuzzy
+#| msgid "Acute accent - \\'"
+msgid "Acute accent — \\'"
+msgstr "Οξεία - \\'"
+
+#: ../src/liblatexila/latexila-latex-commands.c:222
+#, fuzzy
+#| msgid "Grave accent - \\`"
+msgid "Grave accent — \\`"
+msgstr "Βαρεία - \\`"
+
+#: ../src/liblatexila/latexila-latex-commands.c:223
+#, fuzzy
+#| msgid "Circumflex accent - \\^"
+msgid "Circumflex accent — \\^"
+msgstr "Περισπωμένη - \\^"
+
+#: ../src/liblatexila/latexila-latex-commands.c:224
+#| msgid "Trema - \\\""
+msgid "Trema — \\\""
+msgstr "Τρήμα (διαλυτικά) — \\\""
+
+#: ../src/liblatexila/latexila-latex-commands.c:225
+#, fuzzy
+#| msgid "Tilde - \\~"
+msgid "Tilde — \\~"
+msgstr "Τίλντε - \\~"
+
+#: ../src/liblatexila/latexila-latex-commands.c:226
+#, fuzzy
+#| msgid "Macron - \\="
+msgid "Macron — \\="
+msgstr "Μακρό - \\="
+
+#: ../src/liblatexila/latexila-latex-commands.c:227
+#| msgid "Dot above - \\."
+msgid "Dot above — \\."
+msgstr "Κουκκίδα από πάνω — \\."
+
+#: ../src/liblatexila/latexila-latex-commands.c:228
+#, fuzzy
+#| msgid "Caron - \\v"
+msgid "Caron — \\v"
+msgstr "Αντίστροφη περισπωμένη - \\v"
+
+#: ../src/liblatexila/latexila-latex-commands.c:229
+#, fuzzy
+#| msgid "Breve - \\u"
+msgid "Breve — \\u"
+msgstr "Μπρέβε - \\u"
+
+#: ../src/liblatexila/latexila-latex-commands.c:231
+#, fuzzy
+#| msgid "Double acute accent - \\H"
+msgid "Double acute accent — \\H"
+msgstr "Διπλή οξεία - \\H"
+
+#: ../src/liblatexila/latexila-latex-commands.c:232
+#, fuzzy
+#| msgid "Cedilla - \\c"
+msgid "Cedilla — \\c"
+msgstr "Σεντίλα - \\c"
+
+#: ../src/liblatexila/latexila-latex-commands.c:233
+#, fuzzy
+#| msgid "Ogonek - \\k"
+msgid "Ogonek — \\k"
+msgstr "Ογκόνεκ - \\k"
+
+#: ../src/liblatexila/latexila-latex-commands.c:234
+#| msgid "Dot below - \\d"
+msgid "Dot below — \\d"
+msgstr "Κουκκίδα από κάτω — \\d"
+
+#: ../src/liblatexila/latexila-latex-commands.c:235
+#, fuzzy
+#| msgid "Macron below - \\b"
+msgid "Macron below — \\b"
+msgstr "Μακρό από κάτω - \\b"
+
+#: ../src/liblatexila/latexila-latex-commands.c:236
+#| msgid "Ring - \\r"
+msgid "Ring — \\r"
+msgstr "Δακτύλιος — \\r"
+
+#: ../src/liblatexila/latexila-latex-commands.c:237
+#, fuzzy
+#| msgid "Tie - \\t"
+msgid "Tie — \\t"
+msgstr "Σύζευξη - \\t"
+
+#: ../src/liblatexila/latexila-latex-commands.c:242
+#| msgid "Document class - \\documentclass"
+msgid "Document class — \\documentclass"
+msgstr "Κλάση εγγράφου — \\documentclass"
+
+#: ../src/liblatexila/latexila-latex-commands.c:244
+#| msgid "Use package - \\usepackage"
+msgid "Use package — \\usepackage"
+msgstr "Χρήση πακέτου — \\usepackage"
+
+#: ../src/liblatexila/latexila-latex-commands.c:245
+msgid "_AMS packages"
+msgstr "Πακέτα _AMS"
+
+#: ../src/liblatexila/latexila-latex-commands.c:246
+msgid "AMS packages"
+msgstr "Πακέτα AMS"
+
+#: ../src/liblatexila/latexila-latex-commands.c:247
+#| msgid "Author - \\author"
+msgid "Author — \\author"
+msgstr "Συντάκτης — \\author"
+
+#: ../src/liblatexila/latexila-latex-commands.c:248
+#| msgid "Title - \\title"
+msgid "Title — \\title"
+msgstr "Τίτλος — \\title"
+
+#: ../src/liblatexila/latexila-latex-commands.c:250
+#| msgid "Content of the document - \\begin{document}"
+msgid "Content of the document — \\begin{document}"
+msgstr "Περιεχόμενο του εγγράφου — \\begin{document}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:252
+#| msgid "Make title - \\maketitle"
+msgid "Make title — \\maketitle"
+msgstr "Δημιουργία τίτλου — \\maketitle"
+
+#: ../src/liblatexila/latexila-latex-commands.c:254
+#| msgid "Table of contents - \\tableofcontents"
+msgid "Table of contents — \\tableofcontents"
+msgstr "Πίνακας περιεχομένων — \\tableofcontents"
+
+#: ../src/liblatexila/latexila-latex-commands.c:256
+#| msgid "Abstract - \\begin{abstract}"
+msgid "Abstract — \\begin{abstract}"
+msgstr "Περίληψη — \\begin{abstract}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:258
+#, fuzzy
+#| msgid "Include an image (graphicx package) - \\includegraphics"
+msgid "Include an image (graphicx package) — \\includegraphics"
+msgstr "Συμπερίληψη μιας εικόνας (πακέτο graphicx) - \\includegraphics"
+
+#: ../src/liblatexila/latexila-latex-commands.c:260
+#, fuzzy
+#| msgid "Include a file - \\input"
+msgid "Include a file — \\input"
+msgstr "Συμπερίληψη αρχείου - \\input"
+
+#. Math Environments
+#: ../src/liblatexila/latexila-latex-commands.c:264
+#, fuzzy
+#| msgid "_Mathematical Environment - $...$"
+msgid "_Mathematical Environment — $…$"
+msgstr "_Μαθηματικό περιβάλλον - $...$"
+
+#: ../src/liblatexila/latexila-latex-commands.c:265
+#| msgid "Mathematical Environment - $...$"
+msgid "Mathematical Environment — $…$"
+msgstr "Μαθηματικό περιβάλλον — $…$"
+
+#: ../src/liblatexila/latexila-latex-commands.c:266
+#, fuzzy
+#| msgid "_Centered Formula - \\[...\\]"
+msgid "_Centered Formula — \\[…\\]"
+msgstr "_Κεντραρισμένος τύπος - \\[...\\]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:267
+#| msgid "Centered Formula - \\[...\\]"
+msgid "Centered Formula — \\[…\\]"
+msgstr "Κεντραρισμένος τύπος — \\[…\\]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:269
+#| msgid "_Numbered Equation - \\begin{equation}"
+msgid "_Numbered Equation — \\begin{equation}"
+msgstr "_Αριθμημένη εξίσωση — \\begin{equation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:270
+#| msgid "Numbered Equation - \\begin{equation}"
+msgid "Numbered Equation — \\begin{equation}"
+msgstr "Αριθμημένη εξίσωση — \\begin{equation}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:271
+#, fuzzy
+#| msgid "_Array of Equations - \\begin{align*}"
+msgid "_Array of Equations — \\begin{align*}"
+msgstr "_Πίνακας εξισώσεων - \\begin{align*}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:272
+#, fuzzy
+#| msgid "Array of Equations - \\begin{align*}"
+msgid "Array of Equations — \\begin{align*}"
+msgstr "Πίνακας εξισώσεων - \\begin{align*}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:274
+#, fuzzy
+#| msgid "Numbered Array of _Equations - \\begin{align}"
+msgid "Numbered Array of _Equations — \\begin{align}"
+msgstr "Αριθμημένος πίνακας ε_ξισώσεων - \\begin{align}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:275
+#, fuzzy
+#| msgid "Numbered Array of Equations - \\begin{align}"
+msgid "Numbered Array of Equations — \\begin{align}"
+msgstr "Αριθμημένος πίνακας εξισώσεων - \\begin{align}"
+
+#. Math misc
+#: ../src/liblatexila/latexila-latex-commands.c:279
+#| msgid "_Superscript - ^{}"
+msgid "_Superscript — ^{}"
+msgstr "Εκ_θέτης — ^{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:280
+#| msgid "Superscript - ^{}"
+msgid "Superscript — ^{}"
+msgstr "Εκθέτης — ^{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:281
+#| msgid "Su_bscript - __{}"
+msgid "Su_bscript — __{}"
+msgstr "Δείκ_της — __{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:282
+#| msgid "Subscript - _{}"
+msgid "Subscript — _{}"
+msgstr "Δείκτης — _{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:283
+#, fuzzy
+#| msgid "_Fraction - \\frac{}{}"
+msgid "_Fraction — \\frac{}{}"
+msgstr "_Κλάσμα- \\frac{}{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:284
+#, fuzzy
+#| msgid "Fraction - \\frac{}{}"
+msgid "Fraction — \\frac{}{}"
+msgstr "Κλάσμα- \\frac{}{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:285
+#| msgid "Square _Root - \\sqrt{}"
+msgid "Square _Root — \\sqrt{}"
+msgstr "Τετραγωνική _ρίζα — \\sqrt{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:286
+#| msgid "Square Root - \\sqrt{}"
+msgid "Square Root — \\sqrt{}"
+msgstr "Τετραγωνική ρίζα — \\sqrt{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:287
+#| msgid "_N-th Root - \\sqrt[]{}"
+msgid "_N-th Root — \\sqrt[]{}"
+msgstr "_Ν-οστή ρίζα — \\sqrt[]{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:288
+#| msgid "N-th Root - \\sqrt[]{}"
+msgid "N-th Root — \\sqrt[]{}"
+msgstr "Ν-οστή ρίζα— \\sqrt[]{}"
+
+#: ../src/liblatexila/latexila-latex-commands.c:326
+#| msgid "Roman - \\mathrm"
+msgid "Roman — \\mathrm"
+msgstr "Λατινικά — \\mathrm"
+
+#: ../src/liblatexila/latexila-latex-commands.c:328
+#| msgid "Italic - \\mathit"
+msgid "Italic — \\mathit"
+msgstr "Πλάγια — \\mathit"
+
+#: ../src/liblatexila/latexila-latex-commands.c:330
+#| msgid "Bold - \\mathbf"
+msgid "Bold — \\mathbf"
+msgstr "Έντονα — \\mathbf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:332
+#, fuzzy
+#| msgid "Sans Serif - \\mathsf"
+msgid "Sans Serif — \\mathsf"
+msgstr "Χωρίς πατούρα - \\mathsf"
+
+#: ../src/liblatexila/latexila-latex-commands.c:334
+#| msgid "Typewriter - \\mathtt"
+msgid "Typewriter — \\mathtt"
+msgstr "Γραφομηχανή — \\mathtt"
+
+#: ../src/liblatexila/latexila-latex-commands.c:336
+#| msgid "Calligraphic - \\mathcal"
+msgid "Calligraphic — \\mathcal"
+msgstr "Καλλιγραφικά — \\mathcal"
+
+#: ../src/liblatexila/latexila-latex-commands.c:338
+#| msgid "Blackboard (uppercase only)  - \\mathbb (amsfonts package)"
+msgid "Blackboard (uppercase only) — \\mathbb (amsfonts package)"
+msgstr "Μαυροπίνακας (μόνο κεφαλαία) — \\mathbb (πακέτο amsfonts)"
+
+#: ../src/liblatexila/latexila-latex-commands.c:340
+#, fuzzy
+#| msgid "Euler Fraktur - \\mathfrak (amsfonts package)"
+msgid "Euler Fraktur — \\mathfrak (amsfonts package)"
+msgstr "Fraktur Όιλερ - \\mathfrak (πακέτο amsfonts)"
+
+#. Math Spaces
+#: ../src/liblatexila/latexila-latex-commands.c:358
+msgid "_Small"
+msgstr "_Μικρά"
+
+#: ../src/liblatexila/latexila-latex-commands.c:358
+#| msgid "Small - \\,"
+msgid "Small — \\,"
+msgstr "Μικρά — \\,"
+
+#: ../src/liblatexila/latexila-latex-commands.c:359
+msgid "_Medium"
+msgstr "_Μεσαία"
+
+#: ../src/liblatexila/latexila-latex-commands.c:359
+#| msgid "Medium - \\:"
+msgid "Medium — \\:"
+msgstr "Μεσαία — \\:"
+
+#: ../src/liblatexila/latexila-latex-commands.c:360
+msgid "_Large"
+msgstr "_Μεγάλα"
+
+#: ../src/liblatexila/latexila-latex-commands.c:360
+#| msgid "Large - \\;"
+msgid "Large — \\;"
+msgstr "Μεγάλα — \\;"
+
+#. Math: Left Delimiters
+#: ../src/liblatexila/latexila-latex-commands.c:366
+msgid "left ("
+msgstr "αριστερό ("
+
+#: ../src/liblatexila/latexila-latex-commands.c:367
+msgid "left ["
+msgstr "αριστερό ["
+
+#: ../src/liblatexila/latexila-latex-commands.c:368
+msgid "left { "
+msgstr "αριστερό { "
+
+#: ../src/liblatexila/latexila-latex-commands.c:369
+msgid "left <"
+msgstr "αριστερό <"
+
+#: ../src/liblatexila/latexila-latex-commands.c:370
+msgid "left )"
+msgstr "αριστερό )"
+
+#: ../src/liblatexila/latexila-latex-commands.c:371
+msgid "left ]"
+msgstr "αριστερό ]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:372
+msgid "left  }"
+msgstr "αριστερό }"
+
+#: ../src/liblatexila/latexila-latex-commands.c:373
+msgid "left >"
+msgstr "αριστερό >"
+
+#: ../src/liblatexila/latexila-latex-commands.c:374
+msgid "left ."
+msgstr "αριστερή ."
+
+#. Math: Right Delimiters
+#: ../src/liblatexila/latexila-latex-commands.c:378
+msgid "right )"
+msgstr "δεξιό )"
+
+#: ../src/liblatexila/latexila-latex-commands.c:379
+msgid "right ]"
+msgstr "δεξιό ]"
+
+#: ../src/liblatexila/latexila-latex-commands.c:380
+msgid "right  }"
+msgstr "δεξιό }"
+
+#: ../src/liblatexila/latexila-latex-commands.c:381
+msgid "right >"
+msgstr "δεξιό >"
+
+#: ../src/liblatexila/latexila-latex-commands.c:382
+msgid "right ("
+msgstr "δεξιό ("
+
+#: ../src/liblatexila/latexila-latex-commands.c:383
+msgid "right ["
+msgstr "δεξιό ["
+
+#: ../src/liblatexila/latexila-latex-commands.c:384
+msgid "right { "
+msgstr "δεξιό { "
+
+#: ../src/liblatexila/latexila-latex-commands.c:385
+msgid "right <"
+msgstr "δεξιό <"
+
+#: ../src/liblatexila/latexila-latex-commands.c:386
+msgid "right ."
+msgstr "δεξιά ."
+
+#: ../src/liblatexila/latexila-synctex.c:194
 msgid "Impossible to do the forward search."
 msgstr "Αδύνατη η αναζήτηση προς τα μπρος."
 
-#: ../src/liblatexila/latexila-synctex.c:526
+#: ../src/liblatexila/latexila-synctex.c:539
 msgid "Can not communicate with evince."
 msgstr "Αδύνατη η επικοινωνία με το evince."
 
-#: ../src/liblatexila/latexila-synctex.c:556
-#, c-format
-msgid "The file \"%s\" doesn't exist."
-msgstr "Το αρχείο \"%s\" δεν υπάρχει."
-
-#: ../src/liblatexila/latexila-synctex.c:590
-msgid "The PDF file doesn't exist."
+#: ../src/liblatexila/latexila-synctex.c:603
+#| msgid "The PDF file doesn't exist."
+msgid "The PDF file doesn’t exist."
 msgstr "Το αρχείο PDF δεν υπάρχει."
 
-#: ../src/liblatexila/latexila-synctex.c:641
+#: ../src/liblatexila/latexila-synctex.c:654
 msgid "The document is not saved."
 msgstr "Το έγγραφο δεν αποθηκεύτηκε."
 
@@ -1723,18 +1930,20 @@ msgstr "Προεπιλεγμένα πρότυπα"
 msgid "Personal Templates"
 msgstr "Προσωπικά πρότυπα"
 
-#: ../src/liblatexila/latexila-templates-dialogs.c:122
-msgid "New File..."
-msgstr "Νέο αρχείο..."
+#: ../src/liblatexila/latexila-templates-dialogs.c:124
+#| msgid "New file"
+msgid "New File…"
+msgstr "Νέο αρχείο…"
 
-#: ../src/liblatexila/latexila-templates-dialogs.c:129
+#: ../src/liblatexila/latexila-templates-dialogs.c:131
 #: ../src/main_window_file.vala:32
 msgid "_New"
 msgstr "Νέ_ο"
 
 #: ../src/liblatexila/latexila-templates-dialogs.c:232
-msgid "New Template..."
-msgstr "Νέο πρότυπο..."
+#| msgid "New Template..."
+msgid "New Template…"
+msgstr "Νέο πρότυπο…"
 
 #: ../src/liblatexila/latexila-templates-dialogs.c:239
 #: ../src/project_dialogs.vala:32
@@ -1749,29 +1958,29 @@ msgstr "Όνομα του νέου προτύπου"
 msgid "Choose an icon"
 msgstr "Επιλογή εικονιδίου"
 
-#: ../src/liblatexila/latexila-templates-dialogs.c:332
+#: ../src/liblatexila/latexila-templates-dialogs.c:336
 msgid "Impossible to create the personal template."
 msgstr "Αδύνατη η δημιουργία του προσωπικού προτύπου."
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:141
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:143
 #, c-format
 msgid "Do you really want to delete the template “%s”?"
 msgstr "Επιθυμείτε σίγουρα την διαγραφή του προτύπου “%s”;"
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:168
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:170
 #, c-format
 msgid "Error when deleting the template “%s”."
 msgstr "Σφάλμα κατά τη διαγραφή του προτύπου “%s”."
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:226
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:230
 msgid "Error when moving the template."
 msgstr "Σφάλμα κατά τη μετακίνηση του προτύπου."
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:270
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:274
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: ../src/liblatexila/latexila-templates-manage-dialog.c:362
+#: ../src/liblatexila/latexila-templates-manage-dialog.c:366
 msgid "Manage Personal Templates"
 msgstr "Διαχείριση προσωπικών προτύπων"
 
@@ -1803,7 +2012,7 @@ msgstr "Εμφάνιση _καταγραφής"
 msgid "View Log"
 msgstr "Προβολή καταγραφής"
 
-#: ../src/main_window_build_tools.vala:40 ../src/ui/menus.ui.h:3
+#: ../src/main_window_build_tools.vala:40
 msgid "_Manage Build Tools"
 msgstr "_Διαχείριση εργαλείων δόμησης"
 
@@ -1960,16 +2169,18 @@ msgid "_Comment"
 msgstr "_Σχόλιο"
 
 #: ../src/main_window_edit.vala:64
-msgid "Comment the selected lines (add the character \"%\")"
-msgstr "Σχολιασμός των επιλεγμένων γραμμών (προσθήκη του χαρακτήρα \"%\")"
+#| msgid "Comment the selected lines (add the character \"%\")"
+msgid "Comment the selected lines (add the character “%”)"
+msgstr "Σχολιασμός των επιλεγμένων γραμμών (προσθήκη του χαρακτήρα «%»)"
 
 #: ../src/main_window_edit.vala:67
 msgid "_Uncomment"
 msgstr "_Αποσχολιασμός"
 
 #: ../src/main_window_edit.vala:68
-msgid "Uncomment the selected lines (remove the character \"%\")"
-msgstr "Αποσχολιασμός των επιλεγμένων γραμμών (αφαίρεση του χαρακτήρα \"%\")"
+#| msgid "Uncomment the selected lines (remove the character \"%\")"
+msgid "Uncomment the selected lines (remove the character “%”)"
+msgstr "Αποσχολιασμός των επιλεγμένων γραμμών (αφαίρεση του χαρακτήρα «%»)"
 
 #: ../src/main_window_edit.vala:71
 msgid "_Completion"
@@ -1979,7 +2190,7 @@ msgstr "Σ_υμπλήρωση"
 msgid "Complete the LaTeX command"
 msgstr "Συμπλήρωση της εντολής LaTeX"
 
-#: ../src/main_window_edit.vala:74 ../src/ui/menus.ui.h:2
+#: ../src/main_window_edit.vala:74
 msgid "_Preferences"
 msgstr "Προ_τιμήσεις"
 
@@ -2003,11 +2214,11 @@ msgstr "Νέο _παράθυρο"
 msgid "Create a new window"
 msgstr "Δημιουργία νέου παραθύρου"
 
-#: ../src/main_window_file.vala:38 ../src/main_window_file.vala:154
+#: ../src/main_window_file.vala:38 ../src/main_window_file.vala:158
 msgid "_Open"
 msgstr "_Άνοιγμα"
 
-#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:86
+#: ../src/main_window_file.vala:39 ../src/main_window_file.vala:90
 msgid "Open a file"
 msgstr "Άνοιγμα αρχείου"
 
@@ -2020,7 +2231,8 @@ msgid "Save the current file with a different name"
 msgstr "Αποθήκευση του τρέχοντος αρχείου με διαφορετικό όνομα"
 
 #: ../src/main_window_file.vala:47
-msgid "Create _Template From Document..."
+#| msgid "Create _Template From Document..."
+msgid "Create _Template From Document…"
 msgstr "Δημιουργία _προτύπου από έγγραφο..."
 
 #: ../src/main_window_file.vala:48
@@ -2028,8 +2240,9 @@ msgid "Create a new template from the current document"
 msgstr "Δημιουργία νέου προτύπου από το τρέχον έγγραφο"
 
 #: ../src/main_window_file.vala:50
-msgid "_Manage Personal Templates..."
-msgstr "_Διαχείριση προσωπικών προτύπων..."
+#| msgid "Manage Personal Templates"
+msgid "_Manage Personal Templates…"
+msgstr "_Διαχείριση προσωπικών προτύπων…"
 
 #: ../src/main_window_file.vala:51
 msgid "Manage personal templates"
@@ -2052,21 +2265,21 @@ msgstr "Άνοιγμα π_ρόσφατων"
 msgid "Open recently used files"
 msgstr "Άνοιγμα πρόσφατα χρησιμοποιημένων αρχείων"
 
-#: ../src/main_window_file.vala:87
+#: ../src/main_window_file.vala:91
 msgid "Open a recently used file"
 msgstr "Άνοιγμα ενός πρόσφατα χρησιμοποιημένου αρχείου"
 
-#: ../src/main_window_file.vala:150
+#: ../src/main_window_file.vala:154
 msgid "Open Files"
 msgstr "Άνοιγμα αρχείων"
 
 #. Filter: by default show only .tex and .bib files
-#: ../src/main_window_file.vala:173
+#: ../src/main_window_file.vala:177
 msgid "All LaTeX Files"
 msgstr "Όλα τα αρχεία LaTeX"
 
 #. All files filter
-#: ../src/main_window_file.vala:180
+#: ../src/main_window_file.vala:184
 msgid "All Files"
 msgstr "Όλα τα αρχεία"
 
@@ -2126,7 +2339,42 @@ msgstr "Ά_νοιγμα αρχείου"
 msgid "Open the file referenced by the selected structure item"
 msgstr "Άνοιγμα του αναφερόμενου αρχείου από το επιλεγμένο στοιχείο δομής"
 
-#: ../src/main_window.vala:28 ../src/ui/menus.ui.h:6
+#: ../src/main_window_tools.vala:28
+msgid "_Tools"
+msgstr "_Εργαλεία"
+
+#: ../src/main_window_tools.vala:29
+msgid "_Check Spelling…"
+msgstr "Έ_λεγχος ορθογραφίας…"
+
+#: ../src/main_window_tools.vala:30
+#| msgid "Change the main file of the current project"
+msgid "Check the spelling of the current document"
+msgstr "Έλεγχος ορθογραφίας του τρέχοντος εγγράφου"
+
+#: ../src/main_window_tools.vala:31
+#| msgid "Language:"
+msgid "_Set Language…"
+msgstr "_Ορισμός γλώσσας…"
+
+#: ../src/main_window_tools.vala:32
+#| msgid "Create a new template from the current document"
+msgid "Set the language used for the spell-checking for the current document"
+msgstr ""
+"Ορισμός γλώσσας που θα χρησιμοποιηθεί για ορθογραφικό έλεγχο για το τρέχον "
+"έγγραφο"
+
+#: ../src/main_window_tools.vala:38
+#| msgid "Highlight Misspelled Words"
+msgid "_Highlight Misspelled Words"
+msgstr "_Επισήμανση λέξεων με ορθογραφικά λάθη"
+
+#: ../src/main_window_tools.vala:39
+#| msgid "Highlight misspelled words"
+msgid "Highlight misspelled words in the current document"
+msgstr "Επισήμανση λέξεων με ορθογραφικά λάθη στο τρέχον έγγραφο"
+
+#: ../src/main_window.vala:28
 msgid "_Quit"
 msgstr "Έ_ξοδος"
 
@@ -2185,144 +2433,151 @@ msgid "Search for and replace text"
 msgstr "Αναζήτηση και αντικατάσταση κειμένου"
 
 #: ../src/main_window.vala:46
-msgid "_Go to Line..."
-msgstr "Μετά_βαση στη γραμμή..."
+#| msgid "Go to Line:"
+msgid "_Go to Line…"
+msgstr "_Μετάβαση στη γραμμή…"
 
 #: ../src/main_window.vala:47
 msgid "Go to a specific line"
 msgstr "Μετάβαση σε συγκεκριμένη γραμμή"
 
 #: ../src/main_window.vala:48
-msgid "_Search Forward"
-msgstr "Α_ναζήτηση προς τα εμπρός"
+msgid "_Jump to PDF"
+msgstr ""
 
 #: ../src/main_window.vala:49
-msgid "Jump to the associated position in the PDF file"
-msgstr "Μετάβαση στη συσχετισμένη θέση στο αρχείο PDF"
+msgid ""
+"Jump to the associated position in the PDF file. Another shortcut: Ctrl"
+"+click, which works in both directions."
+msgstr ""
 
 #. Projects
-#: ../src/main_window.vala:52
+#: ../src/main_window.vala:53
 msgid "_Projects"
 msgstr "Έ_ργα"
 
-#: ../src/main_window.vala:53
+#: ../src/main_window.vala:54
 msgid "_New Project"
 msgstr "_Νέο έργο"
 
-#: ../src/main_window.vala:54
+#: ../src/main_window.vala:55
 msgid "Create a new project"
 msgstr "Δημιουργία νέου έργου"
 
-#: ../src/main_window.vala:55
+#: ../src/main_window.vala:56
 msgid "_Configure Current Project"
 msgstr "_Διαμόρφωση τρέχοντος έργου"
 
-#: ../src/main_window.vala:56
+#: ../src/main_window.vala:57
 msgid "Change the main file of the current project"
 msgstr "Αλλαγή του κύριου αρχείου του τρέχοντος έργου"
 
-#: ../src/main_window.vala:58
+#: ../src/main_window.vala:59
 msgid "_Manage Projects"
 msgstr "_Διαχείριση έργων"
 
-#: ../src/main_window.vala:59 ../src/project_dialogs.vala:187
+#: ../src/main_window.vala:60 ../src/project_dialogs.vala:187
 msgid "Manage Projects"
 msgstr "Διαχείριση έργων"
 
-#: ../src/main_window.vala:63
+#: ../src/main_window.vala:64
 msgid "_Contents"
 msgstr "_Περιεχόμενα"
 
-#: ../src/main_window.vala:64
-msgid "Open the LaTeXila documentation"
-msgstr "Άνοιγμα της τεκμηρίωσης LaTeXila"
-
 #: ../src/main_window.vala:65
+#| msgid "Open the LaTeXila documentation"
+msgid "Open the GNOME LaTeX documentation"
+msgstr "Άνοιγμα της τεκμηρίωσης GNOME LaTeX"
+
+#: ../src/main_window.vala:66
 msgid "_LaTeX Reference"
 msgstr "Αναφορά _LaTeX"
 
-#: ../src/main_window.vala:66
+#: ../src/main_window.vala:67
 msgid "The Kile LaTeX Reference"
 msgstr "Η αναφορά LaTeX του Kile"
 
-#: ../src/main_window.vala:67 ../src/ui/menus.ui.h:5
+#: ../src/main_window.vala:68
 msgid "_About"
 msgstr "Πε_ρί"
 
-#: ../src/main_window.vala:73
+#: ../src/main_window.vala:74
 msgid "_Main Toolbar"
 msgstr "_Κύρια εργαλειοθήκη"
 
-#: ../src/main_window.vala:74
+#: ../src/main_window.vala:75
 msgid "Show or hide the main toolbar"
 msgstr "Εμφάνιση ή απόκρυψη της κύριας εργαλειοθήκης"
 
 #. Translators: "Edit" here is an adjective.
-#: ../src/main_window.vala:76
+#: ../src/main_window.vala:77
 msgid "_Edit Toolbar"
 msgstr "_Επεξεργασία εργαλειοθήκης"
 
-#: ../src/main_window.vala:77
+#: ../src/main_window.vala:78
 msgid "Show or hide the edit toolbar"
 msgstr "Εμφάνιση ή απόκρυψη της εργαλειοθήκης επεξεργασίας"
 
-#: ../src/main_window.vala:78
+#: ../src/main_window.vala:79
 msgid "_Side panel"
 msgstr "_Πλευρικό παράθυρο"
 
-#: ../src/main_window.vala:79
+#: ../src/main_window.vala:80
 msgid "Show or hide the side panel"
 msgstr "Εμφάνιση ή απόκρυψη του πλευρικού παραθύρου"
 
-#: ../src/main_window.vala:80
+#: ../src/main_window.vala:81
 msgid "_Bottom panel"
 msgstr "_Κάτω παράθυρο"
 
-#: ../src/main_window.vala:81
+#: ../src/main_window.vala:82
 msgid "Show or hide the bottom panel"
 msgstr "Εμφάνιση ή απόκρυψη του κάτω παραθύρου"
 
 #. Symbols
-#: ../src/main_window.vala:402
+#: ../src/main_window.vala:446
 msgid "Symbols"
 msgstr "Σύμβολα"
 
-#: ../src/main_window.vala:411
+#: ../src/main_window.vala:455
 msgid "Structure"
 msgstr "Δομή"
 
-#: ../src/main_window.vala:645
+#: ../src/main_window.vala:648
 #, c-format
-msgid "This file (%s) is already opened in another LaTeXila window."
+#| msgid "This file (%s) is already opened in another LaTeXila window."
+msgid "This file (%s) is already opened in another GNOME LaTeX window."
 msgstr ""
-"Αυτό το αρχείο (%s) είναι ήδη ανοικτό σε ένα άλλο παράθυρο του LaTeXila."
-
-#: ../src/main_window.vala:647
-msgid ""
-"LaTeXila opened this instance of the file in a non-editable way. Do you want "
-"to edit it anyway?"
-msgstr ""
-"Το LaTeXila άνοιξε αυτό το στιγμιότυπο του αρχείου με μη επεξεργάσιμο τρόπο. "
-"Θέλετε να το επεξεργαστείτε οπωσδήποτε;"
+"Αυτό το αρχείο (%s) είναι ήδη ανοικτό σε ένα άλλο παράθυρο του GNOME LaTeX."
 
 #: ../src/main_window.vala:650
+#| msgid ""
+#| "LaTeXila opened this instance of the file in a non-editable way. Do you "
+#| "want to edit it anyway?"
+msgid ""
+"GNOME LaTeX opened this instance of the file in a non-editable way. Do you "
+"want to edit it anyway?"
+msgstr ""
+"Το GNOME LaTeX άνοιξε αυτό το στιγμιότυπο του αρχείου με μη επεξεργάσιμο "
+"τρόπο. Θέλετε να το επεξεργαστείτε οπωσδήποτε;"
+
+#: ../src/main_window.vala:654
 msgid "Edit Anyway"
 msgstr "Επεξεργασία οπωσδήποτε"
 
-#: ../src/main_window.vala:651
-msgid "Don't Edit"
+#: ../src/main_window.vala:655
+#, fuzzy
+#| msgid "Don't Edit"
+msgid "Don’t Edit"
 msgstr "Να μην επεξεργαστεί"
 
-#: ../src/main_window.vala:753
+#: ../src/main_window.vala:750
 #, c-format
-msgid "Save changes to document \"%s\" before closing?"
-msgstr "Αποθήκευση αλλαγών στο έγγραφο \"%s\" πριν το κλείσιμο;"
+#| msgid "Save changes to document \"%s\" before closing?"
+msgid "Save changes to document “%s” before closing?"
+msgstr "Αποθήκευση αλλαγών στο έγγραφο «%s» πριν το κλείσιμο;"
 
-#: ../src/main_window.vala:833
-msgid "Read-Only"
-msgstr "Μόνο για ανάγνωση"
-
-#: ../src/main_window.vala:851
+#: ../src/main_window.vala:809
 msgid "Save File"
 msgstr "Αποθήκευση αρχείου"
 
@@ -2343,19 +2598,19 @@ msgstr "Επαναφορά όλων των προτιμήσεων"
 msgid "Do you really want to reset all preferences?"
 msgstr "Επιθυμείτε σίγουρα την επαναφορά όλων των προτιμήσεων;"
 
-#: ../src/preferences_dialog.vala:189
+#: ../src/preferences_dialog.vala:191
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "λεπτό"
 msgstr[1] "λεπτά"
 
-#: ../src/preferences_dialog.vala:289
+#: ../src/preferences_dialog.vala:294
 msgid "character"
 msgid_plural "characters"
 msgstr[0] "χαρακτήρας"
 msgstr[1] "χαρακτήρες"
 
-#: ../src/preferences_dialog.vala:344
+#: ../src/preferences_dialog.vala:337
 #, c-format
 msgid "Use the system fixed width font (%s)"
 msgstr "Χρήση της γραμματοσειράς σταθερού πλάτους του συστήματος (%s)"
@@ -2370,10 +2625,18 @@ msgstr "Νέο έργο"
 msgid "Directory"
 msgstr "Κατάλογος"
 
+#. main file
+#: ../src/project_dialogs.vala:46 ../src/project_dialogs.vala:48
+#: ../src/project_dialogs.vala:142 ../src/project_dialogs.vala:144
+#: ../src/project_dialogs.vala:217
+msgid "Main File"
+msgstr "Κύριο αρχείο"
+
 #: ../src/project_dialogs.vala:102
 #, c-format
-msgid "There is a conflict with the project \"%s\"."
-msgstr "Υπάρχει μια σύγκρουση με το έργο \"%s\"."
+#| msgid "There is a conflict with the project \"%s\"."
+msgid "There is a conflict with the project “%s”."
+msgstr "Υπάρχει μια σύγκρουση με το έργο «%s»."
 
 #: ../src/project_dialogs.vala:119
 msgid "Configure Project"
@@ -2393,8 +2656,9 @@ msgstr "_Εκκαθάριση όλων"
 
 #: ../src/project_dialogs.vala:273
 #, c-format
-msgid "Do you really want to delete the project \"%s\"?"
-msgstr "Επιθυμείτε σίγουρα τη διαγραφή του έργου \"%s\";"
+#| msgid "Do you really want to delete the project \"%s\"?"
+msgid "Do you really want to delete the project “%s”?"
+msgstr "Επιθυμείτε σίγουρα τη διαγραφή του έργου «%s»;"
 
 #: ../src/project_dialogs.vala:294
 msgid "Do you really want to clear all projects?"
@@ -2416,49 +2680,49 @@ msgstr "Μετάβαση στη γραμμή:"
 msgid "Line you want to move the cursor to"
 msgstr "Η γραμμή στην οποία θέλετε να μετακινήσετε τον δρομέα"
 
-#: ../src/search.vala:174
+#: ../src/search.vala:172
 msgid "Replace with"
 msgstr "Αντικατάσταση με"
 
-#: ../src/search.vala:182
+#: ../src/search.vala:180
 msgid "Replace"
 msgstr "Αντικατάσταση"
 
 #. replace all: image + label
-#: ../src/search.vala:186
+#: ../src/search.vala:184
 msgid "Replace All"
 msgstr "Αντικατάσταση όλων"
 
-#: ../src/search.vala:195
+#: ../src/search.vala:194
 msgid "All"
 msgstr "Όλα"
 
-#: ../src/search.vala:309
+#: ../src/search.vala:290
 msgid "Search for"
 msgstr "Αναζήτηση για"
 
-#: ../src/search.vala:320
+#: ../src/search.vala:301
 msgid "Case sensitive"
 msgstr "Διάκριση πεζών/κεφαλαίων"
 
-#: ../src/search.vala:323
+#: ../src/search.vala:304
 msgid "Entire words only"
 msgstr "Μόνο ολόκληρες λέξεις"
 
-#: ../src/search.vala:469
+#: ../src/search.vala:451
 msgid "Not found"
 msgstr "Δεν βρέθηκε"
 
 #. Translators: the first %d is the position of the current search occurrence,
 #. * and the second %d is the total number of search occurrences.
 #.
-#: ../src/search.vala:486
+#: ../src/search.vala:468
 #, c-format
 msgid "Match %d of %d"
 msgstr "Ταίριασμα %d από %d"
 
 #. Translators: %d is the total number of search occurrences.
-#: ../src/search.vala:491
+#: ../src/search.vala:473
 #, c-format
 msgid "%d match"
 msgid_plural "%d matches"
@@ -2599,9 +2863,14 @@ msgstr "Εκκα_θάριση"
 msgid "Clear most used symbols"
 msgstr "Εκκαθάριση πιο χρησιμοποιημένων συμβόλων"
 
-#: ../src/ui/menus.ui.h:1
-msgid "_New Window"
-msgstr "Νέο _παράθυρο"
+#: ../src/tab_label.vala:48
+#| msgid "open file"
+msgid "Project main file"
+msgstr "Κυρίως τίτλος έργου"
+
+#: ../src/tab_label.vala:51
+msgid "Project main file:"
+msgstr "Κυρίως αρχείο του έργου:"
 
 #: ../src/ui/preferences_dialog.ui.h:1
 msgid "Display line numbers"
@@ -2669,47 +2938,106 @@ msgid "Interactive completion after"
 msgstr "Διαδραστική συμπλήρωση μετά από"
 
 #: ../src/ui/preferences_dialog.ui.h:19
-msgid "Number of characters after &apos;\\&apos;"
-msgstr "Αριθμός χαρακτήρων μετά από &apos;\\&apos;"
+#| msgid "Number of characters after '\\'"
+msgid "Number of characters after “\\”"
+msgstr "Αριθμός χαρακτήρων μετά από «\\»"
 
 #: ../src/ui/preferences_dialog.ui.h:20
-msgid "Number of characters after '\\'"
-msgstr "Αριθμός χαρακτήρων μετά από '\\'"
-
-#: ../src/ui/preferences_dialog.ui.h:21
 msgid "File Clean-Up"
 msgstr "Καθαρισμός αρχείου"
 
-#: ../src/ui/preferences_dialog.ui.h:23
+#: ../src/ui/preferences_dialog.ui.h:22
 msgid "Automatically clean-up files after close"
 msgstr "Αυτόματος καθαρισμός αρχείων μετά το κλείσιμο"
 
-#: ../src/ui/preferences_dialog.ui.h:24
+#: ../src/ui/preferences_dialog.ui.h:23
+#, fuzzy
+#| msgid ""
+#| "The spell checking settings can also be changed on a file-by-file basis "
+#| "via the Tools menu."
 msgid ""
-"The spell checking settings can also be changed on a file-by-file basis via "
+"The spell-checking settings can also be changed on a file-by-file basis via "
 "the Tools menu."
 msgstr ""
 "Οι ρυθμίσεις του ορθογραφικού ελέγχου μπορούν να αλλάξουν μέσα από κάθε "
 "αρχείο από το μενού των εργαλείων."
 
-#: ../src/ui/preferences_dialog.ui.h:25
-msgid "Default Spell Checking Settings"
+#: ../src/ui/preferences_dialog.ui.h:24
+#| msgid "Default Spell Checking Settings"
+msgid "Default Spell-Checking Settings"
 msgstr "Προεπιλεγμένες ρυθμίσεις ορθογραφικού ελέγχου"
 
-#: ../src/ui/preferences_dialog.ui.h:26
+#: ../src/ui/preferences_dialog.ui.h:25
 msgid "Language:"
 msgstr "Γλώσσες:"
 
-#: ../src/ui/preferences_dialog.ui.h:27
+#: ../src/ui/preferences_dialog.ui.h:26
 msgid "Highlight misspelled words"
 msgstr "Επισήμανση λέξεων με ορθογραφικά λάθη"
 
-#: ../src/ui/preferences_dialog.ui.h:28
+#: ../src/ui/preferences_dialog.ui.h:27
 msgid "Other"
 msgstr "Άλλα"
 
-#~ msgid "LaTeXila"
-#~ msgstr "LaTeXila"
+#~ msgid ""
+#~ "LaTeXila is an integrated LaTeX environment for the GNOME desktop. The "
+#~ "idea of LaTeXila is to always deal directly with the LaTeX code, while "
+#~ "simplifying as most as possible the writing of this LaTeX code."
+#~ msgstr ""
+#~ "Το LaTeXila είναι ένα ολοκληρωμένο περιβάλλον LaTeX για την επιφάνεια "
+#~ "εργασίας του GNOME. Η ιδέα του LaTeXila είναι να αντιμετωπίζει πάντα "
+#~ "άμεσα τον κώδικα LaTeX, ενώ απλουστεύει όσο το δυνατό περισσότερο το "
+#~ "γράψιμο αυτού του κώδικα LaTeX."
+
+#~ msgid ""
+#~ "To help the writing of the LaTeX markup, auto-completion is available as "
+#~ "well as menus and toolbars with the principal commands."
+#~ msgstr ""
+#~ "Για να βοηθηθείτε στην συγγραφή με χρήση του LaTeX, είναι διαθέσιμη η "
+#~ "αυτόματη συμπλήρωση όπως επίσης μενού και εργαλειοθήκες με τις κύριες "
+#~ "εντολές."
+
+#~ msgid "Integrated LaTeX Environment"
+#~ msgstr "Ολοκληρωμένο περιβάλλον LaTeX"
+
+#~ msgid "Add..."
+#~ msgstr "Προσθήκη..."
+
+#~ msgid "Close document"
+#~ msgstr "Κλείσιμο εγγράφου"
+
+#~ msgid "Main File:"
+#~ msgstr "Κύριο αρχείο:"
+
+#~ msgid "Untitled Document"
+#~ msgstr "Ανώνυμο έγγραφο"
+
+#~ msgid "The file \"%s\" doesn't exist."
+#~ msgstr "Το αρχείο \"%s\" δεν υπάρχει."
+
+#~ msgid "New File..."
+#~ msgstr "Νέο αρχείο..."
+
+#~ msgid "_Manage Personal Templates..."
+#~ msgstr "_Διαχείριση προσωπικών προτύπων..."
+
+#~ msgid "_Go to Line..."
+#~ msgstr "Μετά_βαση στη γραμμή..."
+
+#~ msgid "_Search Forward"
+#~ msgstr "Α_ναζήτηση προς τα εμπρός"
+
+#~ msgid "Jump to the associated position in the PDF file"
+#~ msgstr "Μετάβαση στη συσχετισμένη θέση στο αρχείο PDF"
+
+#~ msgid "Read-Only"
+#~ msgstr "Μόνο για ανάγνωση"
+
+#~ msgid "_New Window"
+#~ msgstr "Νέο _παράθυρο"
+
+#~ msgid "Number of characters after &apos;\\&apos;"
+#~ msgstr "Αριθμός χαρακτήρων μετά από &apos;\\&apos;"
 
 #~ msgid "Build Tool"
 #~ msgstr "Εργαλείο δόμησης"
