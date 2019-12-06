@@ -34,11 +34,6 @@ public class Document : Tepl.Buffer
 
     public Document ()
     {
-        // FIXME properly: horrible hack, keep the Document objects alive, to
-        // avoid a crash on application shutdown:
-        // https://gitlab.gnome.org/GNOME/gnome-latex/issues/57
-        this.ref ();
-
         // syntax highlighting: LaTeX by default
         var lm = Gtk.SourceLanguageManager.get_default ();
         set_language (lm.get_language ("latex"));
