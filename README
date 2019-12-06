@@ -30,7 +30,7 @@ Dependencies
 * Latexmk >= 4.31 (optional, but strongly recommended)
 
 And for building the sources:
-* Vala = 0.40 (may be optional), attention GNOME LaTeX cannot be built with Vala >= 0.42.
+* Vala >= 0.46 (may be optional)
 * yelp-tools
 
 If you are installing GNOME LaTeX from a tarball, you don't have to install
