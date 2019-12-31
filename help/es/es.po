@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: latexila master\n"
-"POT-Creation-Date: 2019-09-17 14:04+0000\n"
+"POT-Creation-Date: 2019-11-21 02:34+0000\n"
 "PO-Revision-Date: 2019-10-28 16:34+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
@@ -152,7 +152,7 @@ msgid ""
 msgstr ""
 "De manera predeterminada, hay muchas herramientas de construcción ocultas. "
 "Para ver la lista completa de herramientas de construcción, activarlas o "
-"configurarlas, consulte la <link xref=\"#general_configuration\"/>."
+"configurarlas, consulte la sección <link xref=\"#general_configuration\"/>."
 
 #. (itstool) path: section/title
 #: C/build_tools.page:107
@@ -216,7 +216,7 @@ msgstr "El comando, que puede usar marcadores de posición."
 #. (itstool) path: item/p
 #: C/build_tools.page:136
 msgid "The post processor (see <link xref=\"#post-processors\"/>)."
-msgstr "El post-procesador (consulte la <link xref=\"#post-processors\"/>)."
+msgstr "El post-procesador (consulte la sección <link xref=\"#post-processors\"/>)."
 
 #. (itstool) path: section/p
 #: C/build_tools.page:139
@@ -400,7 +400,6 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/spell_checking.page:10
-#| msgid "Spell Checking"
 msgid "Spell-Checking"
 msgstr "Revisión ortográfica"
 
@@ -411,16 +410,11 @@ msgstr "El propósito es corregir los errores ortográficos fácilmente."
 
 #. (itstool) path: section/title
 #: C/spell_checking.page:17
-#| msgid "Use the spell checking"
 msgid "Use the spell-checking"
 msgstr "Usar la revisión ortográfica"
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:18
-#| msgid ""
-#| "The default spell checking settings can be changed in the preferences "
-#| "dialog: <guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu"
-#| "\">Preferences</gui> <gui style=\"tab\">Other</gui> </guiseq>"
 msgid ""
 "The default spell-checking settings can be changed in the preferences "
 "dialog: <guiseq> <gui style=\"menu\">Edit</gui> <gui style=\"menu"
@@ -476,9 +470,6 @@ msgstr ""
 
 #. (itstool) path: section/p
 #: C/spell_checking.page:51
-#| msgid ""
-#| "If your language is not listed, install a dictionary for one of the "
-#| "supported backends."
 msgid ""
 "If your language is not listed in GNOME LaTeX, install a dictionary for one "
 "of the supported Enchant backends (for most languages the best choice is to "
@@ -810,7 +801,7 @@ msgstr ""
 #~ "<link xref=\"#post-processors\"/>."
 #~ msgstr ""
 #~ "Para obtener una explicación de la opción sobre el post-procesador "
-#~ "Latexmk, consulte la <link xref=\"#post-processors\"/>."
+#~ "Latexmk, consulte la sección <link xref=\"#post-processors\"/>."
 
 #~ msgid ""
 #~ "Whether the job must succeed. If this option is enabled, when an error "
